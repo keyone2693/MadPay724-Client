@@ -1,0 +1,149 @@
+/* Hotspots */
+.HotspotPlugin_Hotspot {
+	position: absolute;
+	cursor: pointer;
+	z-index: 2;
+	transition: all 0.8s cubic-bezier(.4,0,0,1);
+	-webkit-transition: all 0.8s cubic-bezier(.4,0,0,1);
+}
+.HotspotPlugin_Hotspot:hover,.hindex{
+	z-index:999
+}
+.cp-img-map{
+	position: relative;
+	display: table;
+	margin-right: auto;
+	margin-left: auto;
+}
+.cp-img-map-wrapper{
+	position: relative;
+	display: inline-block;
+	line-height: .5;
+	z-index: 1;
+}
+.HotspotPlugin_Hotspot .Hotspot_text{
+    content:"";
+    display:block;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    background-color: #e7512f;
+}
+.HotspotPlugin_Hotspot .Hotspot_text.small-size{
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 10px;
+}
+.HotspotPlugin_Hotspot .Hotspot_text.normal-size{
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+}
+.HotspotPlugin_Hotspot .Hotspot_text.large-size{
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
+}
+.HotspotPlugin_Hotspot .Hotspot_text.x-large-size{
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    font-size: 25px;
+}
+.HotspotPlugin_Hotspot .Hotspot_text:after{
+	opacity: 0;
+	background: inherit;
+	border-radius: inherit;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	content: "";
+    z-index: -1;
+}
+.HotspotPlugin_Hotspot.style-1 .Hotspot_text{
+    -webkit-animation: scale_lg_sm 1.3s forwards linear infinite;
+	animation: scale_lg_sm 1.3s forwards linear infinite;
+}
+.HotspotPlugin_Hotspot.style-2 .Hotspot_text{
+    -webkit-animation: scale_cont 1.3s forwards linear infinite;
+	animation: scale_cont 1.3s forwards linear infinite;
+}
+.HotspotPlugin_Hotspot.style-3 .Hotspot_text{
+    -webkit-animation: up_down_anim 1s forwards ease infinite;
+	animation: up_down_anim 1s forwards ease infinite;
+}
+.hotspotImg img{
+	display: block;
+}
+.HotspotPlugin_Hotspot > div:not(.Hotspot_text){
+	position:absolute;
+	top: 50%;
+	left: 100%;
+	z-index: 3;
+	transform: translate(0,10px);
+	-webkit-transform: translate(0,10px);
+	padding: 20px;
+	background-color: #fff;
+	min-width: 250px;
+	color: #777;
+	border-radius: 6px;
+	box-shadow: 0px 25px 50px 0px rgba(0, 0, 0, 0.12);
+	-webkit-box-shadow: 0px 25px 50px 0px rgba(0, 0, 0, 0.12);
+}
+.HotspotPlugin_Hotspot.position-top > div:not(.Hotspot_text){
+	top: -100%;
+	left: 50%;
+	z-index: 3;
+	transform: translate(-50%,-60%);
+	-webkit-transform: translate(-50%,-60%);
+}
+.HotspotPlugin_Hotspot.position-bottom > div:not(.Hotspot_text){
+	top: 100%;
+	left: 50%;
+	z-index: 3;
+	transform: translate(-50%,10px);
+	-webkit-transform: translate(-50%,10px);
+}
+.HotspotPlugin_Hotspot.position-right > div:not(.Hotspot_text){
+	top: -23px;
+	left: -10px;
+	z-index: 0;
+	-webkit-transform: translate(0,10px);
+	transform: translate(0,10px);
+}
+.HotspotPlugin_Hotspot.position-left > div:not(.Hotspot_text){
+	top: 50%;
+	right: 100%;
+	left:auto;
+	z-index: 3;
+	transform: translate(-10px,-50%);
+	-webkit-transform: translate(-10px,-50%);
+}
+.cp-img-map[data-action="hover"] .HotspotPlugin_Hotspot > div:not(.Hotspot_text){
+	opacity: 0;
+	visibility: hidden;
+	-webkit-transform: translate(0,0);
+	transform: translate(0,0);
+}
+.cp-img-map[data-action="hover"] .HotspotPlugin_Hotspot:hover > div:not(.Hotspot_text){
+	opacity:1;
+	visibility: visible;
+}
+.HotspotPlugin_Hotspot > div > .Hotspot_Title {
+    padding-bottom: 10px;
+    font-weight: bold;
+    font-size: 15px;
+}
+.HotspotPlugin_Hotspot > div > .Hotspot_Message {
+	font-size: 13px;
+}
+.Hotspot_text.hidden{
+	display: block !important;
+}
+.hotspotImg{
+	background-color: transparent !important	
+}
