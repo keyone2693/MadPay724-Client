@@ -6,12 +6,15 @@ import { authRoutes } from './routes/routes';
 import { AuthComponent } from './auth.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(authRoutes)
+    RouterModule.forRoot(authRoutes),
+    FormsModule
   ],
   declarations: [
     AuthComponent,

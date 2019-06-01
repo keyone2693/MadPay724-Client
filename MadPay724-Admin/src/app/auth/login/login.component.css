@@ -1,0 +1,6 @@
+.custom-control-input {
+    top: 5px;
+    right: 1px;
+    z-index: 999;
+    cursor: pointer;
+}
