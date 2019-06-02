@@ -31,9 +31,9 @@
                                         <div class="col-md-12">
                                             <div
                                                 class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0 ml-5 float-right">
-                                                <input [(ngModel)]="model.isrememberme" type="checkbox"
-                                                    class="custom-control-input" name="isrememberme">
-                                                <label class="custom-control-label float-left" for="isrememberme">مرا به
+                                                <input [(ngModel)]="model.isremember" type="checkbox"
+                                                    class="custom-control-input" name="isremember">
+                                                <label class="custom-control-label float-left" for="isremember">مرا به
                                                     خاطر بسپار</label>
                                             </div>
                                         </div>
@@ -49,7 +49,7 @@
                         </div>
                         <div class="card-footer grey darken-1">
                             <div class="text-center mb-1">رمز عبور را فراموش کرده اید؟ <a><b>بازیابی</b></a></div>
-                            <div class="text-center">آیا حساب کاربری ندارید؟ <a ><b>ثبت نام</b></a></div>
+                            <div class="text-center" [routerLink]="['/auth/register']">آیا حساب کاربری ندارید؟ <a ><b>ثبت نام</b></a></div>
                         </div>
                     </div>
                 </div>

@@ -28,7 +28,6 @@
               "src/assets/fonts/font-awesome/css/font-awesome.min.css",
               "src/assets/vendors/css/perfect-scrollbar.min.css",
               "src/assets/vendors/css/prism.min.css",
-              "src/assets/vendors/css/chartist.min.css",
               "src/assets/css/app.css",
               "src/styles.css"
             ],
@@ -41,11 +40,9 @@
               "src/assets/vendors/js/jquery.matchHeight-min.js",
               "src/assets/vendors/js/screenfull.min.js",
               "src/assets/vendors/js/pace/pace.min.js",
-              "src/assets/vendors/js/chartist.min.js",
               "src/assets/js/app-sidebar.js",
               "src/assets/js/notification-sidebar.js",
-              "src/assets/js/customizer.js",
-              "src/assets/js/dashboard-ecommerce.js"
+              "src/assets/js/customizer.js"
             ],
             "es5BrowserSupport": true
           },
