@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import Chartist from '../../assets/vendors/js/chartist.min.js';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-panel',
@@ -9,12 +10,18 @@ import Chartist from '../../assets/vendors/js/chartist.min.js';
 })
 export class PanelComponent implements OnInit {
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit() {
     this.loadChart();
   }
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/auth/login']);
+  }
+
+
 
   loadChart() {
     // Widget Area Chart 1 Starts
