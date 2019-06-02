@@ -11,25 +11,29 @@
                       </div>
                       <div class="card-body">
                           <div class="card-block mx-auto">
-                              <form>
+                              <form #registerForm="ngForm" (ngSubmit)="register()">
                                   <div class="form-group">
                                       <div class="col-md-12">
-                                          <input type="text" class="form-control form-control-lg" name="fname" id="fname" placeholder="نام">
+                                          <input [(ngModel)]="model.username" required  type="text" class="form-control form-control-lg"
+                                           name="username" id="username" placeholder="ایمیل خود را وارد کنید">
                                       </div>
                                   </div>
                                   <div class="form-group">
                                       <div class="col-md-12">
-                                          <input type="text" class="form-control form-control-lg" name="lname" id="lname" placeholder="نام خانوادگی">
+                                          <input [(ngModel)]="model.name" required  type="text" class="form-control form-control-lg" 
+                                          name="name" id="name" placeholder="نام ">
                                       </div>
                                   </div>
                                   <div class="form-group">
                                       <div class="col-md-12">
-                                          <input type="email" class="form-control form-control-lg" name="inputEmail" id="inputEmail" placeholder="ایمیل">
+                                          <input [(ngModel)]="model.phonenumber" required  type="email" class="form-control form-control-lg" 
+                                          name="phonenumber" id="phonenumber" placeholder="شماره موبایل">
                                       </div>
                                   </div>
                                   <div class="form-group">
                                       <div class="col-md-12">
-                                          <input type="password" class="form-control form-control-lg" name="inputPass" id="inputPass" placeholder="رمز عبور">
+                                          <input [(ngModel)]="model.password" required  type="password" class="form-control form-control-lg"
+                                           name="password" id="password" placeholder="رمز عبور">
                                       </div>
                                   </div>
                                   <div class="form-group col-sm-offset-1">
@@ -39,7 +43,7 @@
                                       </div>
                                   </div>
                                   <div class="form-group text-center">
-                                      <button type="button" class="btn btn-danger px-4 py-2 text-uppercase white font-small-4 box-shadow-2 border-0">شروع کنید</button>
+                                      <button type="submit" class="btn btn-danger px-4 py-2 text-uppercase white font-small-4 box-shadow-2 border-0">شروع کنید</button>
                                   </div>
                               </form>
                           </div>
