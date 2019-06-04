@@ -10,6 +10,10 @@ import { AuthModule } from './auth/auth.module';
 import { ErrorInterceptorProvider } from './Services/error.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+
+import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 
 @NgModule({
   declarations: [
@@ -28,9 +32,23 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       preventDuplicates: true,
       progressBar: true,
       progressAnimation: 'decreasing'
-    })
+    }),
+    HttpClientModule,
+    LoadingBarHttpClientModule,
+    LoadingBarRouterModule
+    // NgProgressModule.withConfig({
+    //   trickleSpeed: 200,
+    //   thick: true,
+    //   min: 0,
+    //   max: 100,
+    //   color: 'red'
+    // }),
+    // NgProgressHttpModule,
+    // NgProgressRouterModule
+    ],
+  providers: [
+      ErrorInterceptorProvider
   ],
-  providers: [ErrorInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -8,15 +8,13 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './services/auth.service';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(authRoutes),
-    FormsModule,
-    HttpClientModule
+    FormsModule
   ],
   declarations: [
     AuthComponent,

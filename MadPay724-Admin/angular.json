@@ -29,6 +29,7 @@
               "src/assets/vendors/css/perfect-scrollbar.min.css",
               "src/assets/vendors/css/prism.min.css",
               "src/assets/css/app.css",
+              "node_modules/ngx-toastr/toastr.css",
               "src/styles.css"
             ],
             "scripts": [
