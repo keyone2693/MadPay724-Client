@@ -54,15 +54,6 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     NgxUiLoaderRouterModule,
     NgxUiLoaderHttpModule.forRoot({ showForeground: true })
-    // NgProgressModule.withConfig({
-    //   trickleSpeed: 200,
-    //   thick: true,
-    //   min: 0,
-    //   max: 100,
-    //   color: 'red'
-    // }),
-    // NgProgressHttpModule,
-    // NgProgressRouterModule
     ],
   providers: [
       ErrorInterceptorProvider

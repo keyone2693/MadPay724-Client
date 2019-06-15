@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import Chartist from '../../assets/vendors/js/chartist.min.js';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../auth/services/auth.service.js';
 
 @Component({
   selector: 'app-panel',
@@ -11,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class PanelComponent implements OnInit {
 
-  constructor(private router: Router, private alertService: ToastrService) {
+  constructor(private router: Router, private alertService: ToastrService, private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -22,6 +23,11 @@ export class PanelComponent implements OnInit {
     this.router.navigate(['/auth/login']);
     this.alertService.warning('با موفقیت خارج شدید', 'موفق');
   }
+
+  loggedIn() {
+    return this.authService.loggedIn();
+  }
+
   loadChart() {
     // Widget Area Chart 1 Starts
     var widgetlineChart = new Chartist.Line(
