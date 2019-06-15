@@ -4,6 +4,7 @@ import Chartist from '../../assets/vendors/js/chartist.min.js';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../auth/services/auth.service.js';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-panel',
@@ -11,13 +12,24 @@ import { AuthService } from '../auth/services/auth.service.js';
   styleUrls: ['./panel.component.css']
 })
 export class PanelComponent implements OnInit {
+  jwtHelper = new JwtHelperService();
 
-  constructor(private router: Router, private alertService: ToastrService, private authService: AuthService) {
+  
+  constructor(private router: Router, private alertService: ToastrService, public authService: AuthService) {
   }
 
   ngOnInit() {
+    this.getDecodedToken();
     this.loadChart();
   }
+
+  getDecodedToken() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.authService.decodedToken = this.jwtHelper.decodeToken(token);
+    }
+  }
+
   logout() {
     localStorage.removeItem('token');
     this.router.navigate(['/auth/login']);
