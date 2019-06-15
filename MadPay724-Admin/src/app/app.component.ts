@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { fadeAnimation } from './common/animation';
 
 @Component({
   selector: 'app-root',
