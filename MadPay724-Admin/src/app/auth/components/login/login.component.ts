@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { parseLazyRoute } from '@angular/compiler/src/aot/lazy_routes';
 
 
 
@@ -13,16 +14,17 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent implements OnInit {
   model: any = {};
-
-  constructor(private authService: AuthService, private router: Router, private alertService: ToastrService) { }
+  returnUrl: any = '';
+  constructor(private authService: AuthService, private router: Router,
+    private alertService: ToastrService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(params => this.returnUrl = params['return'] || '/panel');
   }
-
 
   login() {
     this.authService.login(this.model).subscribe(next => {
-      this.router.navigate(['/panel']);
+      this.router.navigate([this.returnUrl]);
       this.alertService.success('با موفقیت وارد شدید', 'موفق');
     }, error => {
       this.alertService.error(error, 'خطا در ورود');

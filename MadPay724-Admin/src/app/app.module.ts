@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { NgxUiLoaderModule, NgxUiLoaderConfig, POSITION, SPINNER, PB_DIRECTION,
    NgxUiLoaderRouterModule, NgxUiLoaderHttpModule } from 'ngx-ui-loader';
+import { AuthGuard } from './guards/auth.guard';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   pbColor: 'red',
@@ -50,7 +51,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgxUiLoaderHttpModule.forRoot({ showForeground: true })
     ],
   providers: [
-      ErrorInterceptorProvider
+      ErrorInterceptorProvider,
+      AuthGuard
   ],
   bootstrap: [AppComponent]
 })
