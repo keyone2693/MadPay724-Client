@@ -5156,7 +5156,8 @@ input[type='submit'].btn-block, input[type='reset'].btn-block, input[type='butto
 }
 .breadcrumb-item + .breadcrumb-item::before {
   display : inline-block;
-  padding-right : 0.5rem;
+  padding-left : 0.5rem;
+  padding-right : 0.3rem;
   color : #6C757D;
   content : '/';
 }
