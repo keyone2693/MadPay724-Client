@@ -46241,7 +46241,7 @@ datetime .form-group {
   -webkit-box-shadow : 0 6px 14px 2px rgba(0, 0, 0, 0.2);
           box-shadow : 0 6px 14px 2px rgba(0, 0, 0, 0.2);
   border-radius : 50%;
-  padding : 4px 0 4px 4px;
+  padding : 4px;
   margin-left : 8px;
   margin-right : 12px;
 }
