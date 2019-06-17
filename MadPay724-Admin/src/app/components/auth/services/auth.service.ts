@@ -22,7 +22,7 @@ decodedToken: any;
         const user = resp;
         if (user) {
           localStorage.setItem('token', user.token);
-          //this.decodedToken = this.jwtHelper.decodeToken(user.token);
+          this.decodedToken = this.jwtHelper.decodeToken(user.token);
         }
       })
     );

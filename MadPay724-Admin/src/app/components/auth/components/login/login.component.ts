@@ -19,7 +19,10 @@ export class LoginComponent implements OnInit {
     private alertService: ToastrService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => this.returnUrl = params['return'] || '/panel');
+    this.route.queryParams.subscribe(params => this.returnUrl = params['return'] || '/panel/dashboard');
+    if (this.loggedIn()) {
+      this.router.navigate([this.returnUrl]);
+    }
   }
 
   login() {
@@ -29,5 +32,9 @@ export class LoginComponent implements OnInit {
     }, error => {
       this.alertService.error(error, 'خطا در ورود');
     });
+  }
+
+  loggedIn() {
+   return this.authService.loggedIn();
   }
 }
