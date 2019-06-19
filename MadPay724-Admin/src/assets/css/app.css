@@ -46471,7 +46471,10 @@ datetime .form-group {
 
   font-size : 0.85rem;
 }
-.app-sidebar .navigation li.active a:before, .off-canvas-sidebar .navigation li.active a:before {
+.app-sidebar .navigation li.active a i, .off-canvas-sidebar .navigation li.active a i {
+  color : #FF4961 !important;
+}
+.off-canvas-sidebar .navigation li.active a:before {
   content : '';
   display : block;
   width : 7px;
@@ -46493,6 +46496,10 @@ datetime .form-group {
      -moz-transition : all 0.2s ease;
           transition : all 0.2s ease;
 }
+.mlisub{
+  width: 90%;
+margin: 0 auto;
+}
 .app-sidebar .navigation li.active a span, .off-canvas-sidebar .navigation li.active a span {
 
   font-size : 0.85rem;
@@ -46512,7 +46519,7 @@ datetime .form-group {
   overflow : hidden;
   line-height : 2rem;
   padding : 7px 14px 7px 10px;
-  margin : 10px 13px;
+  margin : 10px 10px;
   border-radius : 3rem;
   color : #000000;
 }
@@ -46530,7 +46537,7 @@ datetime .form-group {
 }
 .app-sidebar .navigation li ul li a, .off-canvas-sidebar .navigation li ul li a {
   display : block;
-  padding : 5px 55px 5px 18px;
+  padding : 5px 25px 5px 18px;
   margin : 8px 13px;
 }
 .app-sidebar .navigation > li.active > a, .off-canvas-sidebar .navigation > li.active > a {

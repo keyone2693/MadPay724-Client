@@ -13,27 +13,34 @@
                 <li routerLinkActive="active" class=" nav-item">
                     <a [routerLink]="['/panel/dashboard']"><i class="icon-home"></i><span data-i18n="" class="menu-title">داشبورد</span></a>
                 </li>
+               
+               
                 <li class="has-sub nav-item">
-                    <a href="javascript:;">
-                        <i class="icon-home">  </i>
-                        <span data-i18n="" class="menu-title">منوی اول</span>
-                        <!-- <span class="tag badge badge-pill badge-danger mt-1">2</span> -->
-                    </a>
-                    <ul class="menu-content">
-                        <li>
-                            <a class="menu-item">تجارت الکترونیک</a>
+                        <a href="javascript:;">
+                            <i class="icon-info"></i>
+                            <span data-i18n="" class="menu-title">اطلاعات شما</span>
+                            <!-- <span class="tag badge badge-pill badge-danger mt-1">2</span> -->
+                        </a>
+                        <ul class="menu-content">
+                            <li routerLinkActive="active mlisub">
+                                    
+                                <a [routerLink]="['/panel/userinfo/profile']" class="menu-item">
+                                    <i class="icon-user-following"></i>
+                                    پروفایل</a>
+                            </li>
+                            <li routerLinkActive="active mlisub">
+                                <a [routerLink]="['/panel/userinfo/documents']" class="menu-item">
+                                    <i class="icon-docs"></i>
+                                    مدارک</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class=" nav-item">
+                            <a>
+                                <i class="icon-user-following">
+        
+                                </i><span class="menu-title">ارتباط با ما</span></a>
                         </li>
-                        <li>
-                            <a class="menu-item">تجزیه و تحلیل</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class=" nav-item" routerLinkActive="active">
-                    <a [routerLink]="['/panel/profile']">
-                        <i class="icon-user-following">
-
-                        </i><span data-i18n="" class="menu-title">پروفایل</span></a>
-                </li>
             </ul>
         </div>
     </div>

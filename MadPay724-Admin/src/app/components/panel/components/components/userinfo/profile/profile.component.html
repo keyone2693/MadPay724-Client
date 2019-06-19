@@ -1,0 +1,543 @@
+<div class="main-panel">
+  <div class="main-content">
+    <div class="content-wrapper">
+      <div class="container-fluid">
+        <!-- User Profile Starts-->
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a [routerLink]="['/panel/dashboard']">داشبورد</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a [routerLink]="['/panel/profile']">پروفایل کاربری</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              مشاهده و ویرایش اطلاعات
+            </li>
+          </ol>
+        </nav>
+        <!--Basic User Details Starts-->
+        <section id="user-area">
+          <div class="row">
+            <div class="col-xl-3 col-lg-12">
+              <div class="card mb-4">
+                <div class="card-header">
+                  <div class="card-title-wrap bar-primary">
+                    <div class="card-title">اطلاعات شخصی</div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="card-block">
+                    <div class="align-self-center halfway-fab text-center">
+                      <a class="profile-image">
+                        <img
+                          src="../../../../../../assets/img/portrait/medium/avatar-m-9.jpg"
+                          class="rounded-circle img-border gradient-summer width-100"
+                          alt="Card image"
+                        />
+                      </a>
+                    </div>
+                    <div class="text-center">
+                      <span class="font-medium-2 text-uppercase"
+                        >علی زمانی</span
+                      >
+                      <p class="grey font-small-2">توسعه دهنده سریع</p>
+                    </div>
+                    <div class="row">
+                      <div class="col-12 col-sm-6">
+                        <ul class="no-list-style pr-0 text-center">
+                          <li class="mb-2">
+                            <span class="text-bold-500 primary"
+                              ><a
+                                ><i class="icon-present font-small-3"></i> روز
+                                تولد :</a
+                              ></span
+                            >
+                            <span class="display-block overflow-hidden"
+                              >10 مرداد 1350</span
+                            >
+                          </li>
+                          <li class="mb-2">
+                            <span class="text-bold-500 primary"
+                              ><a
+                                ><i class="ft-globe font-small-3"></i> زندگی می
+                                کند در :</a
+                              ></span
+                            >
+                            <span class="display-block overflow-hidden"
+                              >شیراز ، ایران</span
+                            >
+                          </li>
+                          <li class="mb-2">
+                            <span class="text-bold-500 primary"
+                              ><a
+                                ><i class="ft-user font-small-3"></i> جنسیت:</a
+                              ></span
+                            >
+                            <span class="display-block overflow-hidden"
+                              >مرد</span
+                            >
+                          </li>
+                          <li class="mb-2">
+                            <span class="text-bold-500 primary"
+                              ><a
+                                ><i class="ft-mail font-small-3"></i> ایمیل :</a
+                              ></span
+                            >
+                            <a class="display-block overflow-hidden"
+                              >fkazemi5236@gmail.com</a
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <ul class="no-list-style pr-0 text-center">
+                          <li class="mb-2">
+                            <span class="text-bold-500 primary"
+                              ><a
+                                ><i class="ft-monitor font-small-3"></i> وبسایت
+                                :</a
+                              ></span
+                            >
+                            <a class="display-block overflow-hidden"
+                              >pixinvent.com</a
+                            >
+                          </li>
+                          <li class="mb-2">
+                            <span class="text-bold-500 primary"
+                              ><a
+                                ><i class="ft-smartphone font-small-3"></i>
+                                شماره تماس :</a
+                              ></span
+                            >
+                            <span class="display-block overflow-hidden"
+                              >(012)345-678-99</span
+                            >
+                          </li>
+                          <li class="mb-2">
+                            <span class="text-bold-500 primary"
+                              ><a
+                                ><i class="ft-briefcase font-small-3"></i
+                                >اشتغال:</a
+                              ></span
+                            >
+                            <span class="display-block overflow-hidden"
+                              >توسعه دهنده سریع</span
+                            >
+                          </li>
+                          <li class="mb-2">
+                            <span class="text-bold-500 primary"
+                              ><a
+                                ><i class="ft-book font-small-3"></i> تاریخ
+                                عضویت:</a
+                              ></span
+                            >
+                            <span class="display-block overflow-hidden"
+                              >1 تیر 1390</span
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-9 col-lg-12">
+              <!--About div starts-->
+              <div id="about">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="card">
+                      <div class="card-header">
+                        <div class="card-title-wrap bar-info">
+                          <h4 class="card-title">ویرایش پروفایل کاربری</h4>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <div class="card-block">
+                          <ul class="nav nav-tabs nav-justified">
+                            <li class="nav-item">
+                              <a
+                                class="nav-link active show"
+                                id="active-tab"
+                                data-toggle="tab"
+                                href="#active"
+                                aria-controls="active"
+                                aria-expanded="true"
+                                >عکس پروفایل</a
+                              >
+                            </li>
+                            <li class="nav-item">
+                              <a
+                                class="nav-link"
+                                id="link-tab"
+                                data-toggle="tab"
+                                href="#link"
+                                aria-controls="link"
+                                aria-expanded="false"
+                                >مشخصات کاربری</a
+                              >
+                            </li>
+                            <li class="nav-item">
+                              <a
+                                class="nav-link"
+                                id="click-tab"
+                                data-toggle="tab"
+                                href="#click"
+                                aria-controls="click"
+                                aria-expanded="false"
+                                >بازیابی پسورد</a
+                              >
+                            </li>
+                            <!-- <li class="nav-item">
+                              <a
+                                class="nav-link"
+                                id="click-tab"
+                                data-toggle="tab"
+                                href="#bankkart"
+                                aria-controls="click"
+                                aria-expanded="false"
+                                >کارت بانکی</a
+                              >
+                            </li> -->
+                          </ul>
+                          <div class="tab-content px-1 pt-1">
+                            <div
+                              role="tabpanel"
+                              class="tab-pane active show"
+                              id="active"
+                              aria-labelledby="active-tab"
+                              aria-expanded="true"
+                            >
+                              <p class="textalign">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از
+                                صنعت چاپ و با استفاده از طراحان گرافیک است.
+                                چاپگرها و متون بلکه روزنامه و مجله در ستون و
+                                سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی
+                                مورد نیاز و کاربردهای متنوع با هدف بهبود
+                                ابزارهای کاربردی می باشد.
+                              </p>
+                            </div>
+                            <div
+                              class="tab-pane"
+                              id="link"
+                              role="tabpanel"
+                              aria-labelledby="link-tab"
+                              aria-expanded="false"
+                            >
+                              <div class="card-header">
+                                <div class="card-title-wrap bar-success">
+                                  <h4 class="card-title" id="basic-layout-form">
+                                    ویرایش اطلاعات
+                                  </h4>
+                                </div>
+                                <p class="mb-0">
+                                  در این بخش میتوانید اطلاعات پروفایل خودرا
+                                  ویرایش کنید.
+                                </p>
+                              </div>
+                              <div class="card-body">
+                                <div class="px-3">
+                                  <form class="form">
+                                    <div class="form-body">
+                                      <h4 class="form-section">
+                                        <i class="icon-user"></i> اطلاعات شخصی
+                                      </h4>
+
+                                      <div class="row">
+                                        <div class="col-md-6">
+                                          <div class="form-group">
+                                            <label for="projectinput1"
+                                              >نام</label
+                                            >
+                                            <input
+                                              type="text"
+                                              id="projectinput1"
+                                              class="form-control"
+                                              name="fname"
+                                            />
+                                          </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                          <div class="form-group">
+                                            <label for="projectinput2"
+                                              >شماره موبایل</label
+                                            >
+                                            <input
+                                              type="text"
+                                              id="projectinput2"
+                                              class="form-control"
+                                              name="lname"
+                                            />
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col-md-6">
+                                          <div class="form-group">
+                                            <label for="projectinput5"
+                                              >جنسیت</label
+                                            >
+                                            <select
+                                              id="projectinput5"
+                                              name="interested"
+                                              class="form-control"
+                                            >
+                                              <option value="design"
+                                                >مرد</option
+                                              >
+                                              <option value="development"
+                                                >زن</option
+                                              >
+                                            </select>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <h4 class="form-section">
+                                        <i class="icon-book-open"></i>محل سکونت
+                                      </h4>
+
+                                      <div class="form-group">
+                                        <label for="companyName">شهر</label>
+                                        <input
+                                          type="text"
+                                          id="companyName"
+                                          class="form-control"
+                                          name="company"
+                                        />
+                                      </div>
+
+                                      <div class="form-group">
+                                        <label for="projectinput8">آدرس</label>
+                                        <textarea
+                                          id="projectinput8"
+                                          rows="5"
+                                          class="form-control"
+                                          name="comment"
+                                        ></textarea>
+                                      </div>
+                                    </div>
+
+                                    <div class="form-actions">
+                                      <!-- <button type="button" class="btn btn-danger mr-1">
+									<i class="icon-trash"></i> لغو
+								</button> -->
+                                      <button
+                                        type="button"
+                                        class="btn btn-success"
+                                      >
+                                        <i class="icon-note"></i> ذخیره
+                                      </button>
+                                    </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              class="tab-pane"
+                              id="click"
+                              role="tabpanel"
+                              aria-labelledby="click-tab"
+                              aria-expanded="false"
+                            >
+                              <div class="card-header">
+                                <div class="card-title-wrap bar-success">
+                                  <h4 class="card-title" id="basic-layout-form">
+                                    ریست پسورد
+                                  </h4>
+                                </div>
+                                <p class="mb-0">
+                                  در این بخش میتوانید پسورد خود را تغییر دهید
+                                </p>
+                              </div>
+                              <div class="card-body">
+                                <div class="px-3">
+                                  <form class="form">
+                                    <div class="form-body">
+                                      <h4 class="form-section">
+                                        <i class="icon-user"></i> پسورد
+                                      </h4>
+                                      <div class="row">
+                                        <div class="col-md-6">
+                                          <div class="form-group">
+                                            <label for="projectinput1"
+                                              >پسورد قبلی</label
+                                            >
+                                            <input
+                                              type="text"
+                                              id="projectinput1"
+                                              class="form-control"
+                                              name="fname"
+                                            />
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col-md-6">
+                                          <div class="form-group">
+                                            <label for="projectinput1"
+                                              >پسورد جدید</label
+                                            >
+                                            <input
+                                              type="text"
+                                              id="projectinput1"
+                                              class="form-control"
+                                              name="fname"
+                                            />
+                                          </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                          <div class="form-group">
+                                            <label for="projectinput2"
+                                              >تکرار پسورد جدید</label
+                                            >
+                                            <input
+                                              type="text"
+                                              id="projectinput2"
+                                              class="form-control"
+                                              name="lname"
+                                            />
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="form-actions">
+                                      <!-- <button type="button" class="btn btn-danger mr-1">
+									<i class="icon-trash"></i> لغو
+								</button> -->
+                                      <button
+                                        type="button"
+                                        class="btn btn-success"
+                                      >
+                                        <i class="icon-note"></i> ذخیره
+                                      </button>
+                                    </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          <!--   <div
+                              class="tab-pane"
+                              id="bankkart"
+                              role="tabpanel"
+                              aria-labelledby="linkOpt-tab"
+                              aria-expanded="false"
+                            >
+                              <div class="card-header">
+                                <div class="card-title-wrap bar-success">
+                                  <h4 class="card-title" id="basic-layout-form">
+                                    کارت بانکی
+                                  </h4>
+                                </div>
+                                <div class="alert alert-info">
+                                    <strong>اطلاع! </strong>  الزاما باید حساب بانکی شخصی که مدارک ایشان
+                                    ارسال شده ثبت شود.
+                                </div>
+                                <div class="alert alert-warning">
+                                    <strong>هشدار! </strong> هیچگونه مسئولیتی در قبال واریز وجه به حساب
+                                    افراد ثالث را نمی‌پذیرد.
+                                </div>
+                             
+                              </div>
+                              <div class="card-body">
+                                <div class="px-3">
+                                  <form class="form">
+                                    <div class="form-body">
+                                      <h4 class="form-section">
+                                        <i class="icon-user"></i> مشخصات کارت
+                                      </h4>
+                                      <div class="row">
+                                        <div class="col-md-6">
+                                          <div class="form-group">
+                                            <label for="projectinput1"
+                                              >نام بانک</label
+                                            >
+                                            <input
+                                              type="text"
+                                              id="projectinput1"
+                                              class="form-control"
+                                              name="fname"
+                                            />
+                                          </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                              <label for="projectinput1"
+                                                >نام صاحب کارت</label
+                                              > 
+                                              <input
+                                                type="text"
+                                                id="projectinput1"
+                                                class="form-control"
+                                                name="fname"
+                                              />
+                                            </div>
+                                          </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col-md-12">
+                                          <div class="form-group">
+                                            <label for="projectinput1"
+                                              >شماره شبا</label
+                                            >
+                                            <input
+                                              type="text"
+                                              id="projectinput1"
+                                              class="form-control"
+                                              name="fname"
+                                            />
+                                          </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                          <div class="form-group">
+                                            <label for="projectinput2"
+                                              >شماره کارت</label
+                                            >
+                                            <input
+                                              type="text"
+                                              id="projectinput2"
+                                              class="form-control"
+                                              name="lname"
+                                            />
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="form-actions">
+                                       <button type="button" class="btn btn-danger mr-1">
+									<i class="icon-trash"></i> لغو
+								</button> 
+                                      <button
+                                        type="button"
+                                        class="btn btn-success"
+                                      >
+                                        <i class="icon-note"></i> ذخیره
+                                      </button>
+                                    </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div> -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--About div ends-->
+              <!--User Timeline div starts-->
+
+              <!--User Timeline div ends-->
+            </div>
+          </div>
+        </section>
+        <!--User Profile Starts-->
+      </div>
+    </div>
+  </div>
+</div>
