@@ -3,6 +3,7 @@ import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/components/panel/services/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/components/auth/services/auth.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -12,17 +13,21 @@ import { AuthService } from 'src/app/components/auth/services/auth.service';
 export class ProfileComponent implements OnInit {
   user: User;
 
-  constructor(private userService: UserService, private alertService: ToastrService, private authService: AuthService) { }
+  constructor(private userService: UserService, private alertService: ToastrService,
+              private authService: AuthService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.loadUser();
   }
 
   loadUser() {
-    this.userService.getUser(this.authService.decodedToken.nameid).subscribe((user: User) => {
-      this.user = user;
-    }, error => {
-      this.alertService.error(error);
-    });
+this.route.data.subscribe(data => {
+  this.user = data.user;
+});
+    // this.userService.getUser(this.authService.decodedToken.nameid).subscribe((user: User) => {
+    //   this.user = user;
+    // }, error => {
+    //   this.alertService.error(error);
+    // });
   }
 }

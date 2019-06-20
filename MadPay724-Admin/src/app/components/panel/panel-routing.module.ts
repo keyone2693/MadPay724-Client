@@ -4,6 +4,7 @@ import { PanelComponent } from './panel.component';
 import { DashboardComponent } from './components/components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/components/userinfo/profile/profile.component';
 import { DocumentsComponent } from './components/components/userinfo/documents/documents.component';
+import { UserProfileResolver } from 'src/app/resolvers/userprofile.resolver';
 
 const routes: Routes = [
   {
@@ -11,7 +12,7 @@ const routes: Routes = [
     component: PanelComponent,
     children: [
       {path: 'dashboard', component: DashboardComponent},
-      {path: 'userinfo/profile', component: ProfileComponent},
+      {path: 'userinfo/profile', component: ProfileComponent, resolve: {user: UserProfileResolver}},
       {path: 'userinfo/documents', component: DocumentsComponent}
     ]
    }

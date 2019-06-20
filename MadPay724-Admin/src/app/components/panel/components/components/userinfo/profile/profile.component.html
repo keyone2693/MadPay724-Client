@@ -31,7 +31,7 @@
                     <div class="align-self-center halfway-fab text-center">
                       <a class="profile-image">
                         <img
-                          src="{{user?.photoUrl}}"
+                          src="{{user.photoUrl}}"
                           class="rounded-circle img-border gradient-summer width-200"
                           alt="Card image"
                         />
@@ -39,7 +39,7 @@
                     </div>
                     <div class="text-center">
                       <span class="font-medium-2 text-uppercase"
-                        >{{user?.name}}</span
+                        >{{user.name}}</span
                       >
                       <p class="grey font-small-2">ادمین سایت</p>
                     </div>
@@ -53,7 +53,7 @@
                               ></span
                             >
                             <span class="display-block overflow-hidden"
-                              >{{user?.lastActive | persianTimeAgo}}</span
+                              >{{user.lastActive | persianTimeAgo}}</span
                             >
                           </li>
                         </ul>
@@ -176,7 +176,7 @@
                                               id="projectinput1"
                                               class="form-control"
                                               name="fname"
-                                              value="{{user?.name}}"
+                                              value="{{user.name}}"
                                             />
                                           </div>
                                         </div>
@@ -190,7 +190,7 @@
                                               id="projectinput2"
                                               class="form-control"
                                               name="lname"
-                                              value="{{user?.phoneNumber}}"
+                                              value="{{user.phoneNumber}}"
                                             />
                                           </div>
                                         </div>
@@ -206,10 +206,10 @@
                                               name="interested"
                                               class="form-control"
                                             >
-                                              <option value="design" [selected]="user?.gender"
+                                              <option value="design" [selected]="user.gender"
                                                 >مرد</option
                                               >
-                                              <option value="development"  [selected]="!user?.gender"
+                                              <option value="development"  [selected]="!user.gender"
                                                 >زن</option
                                               >
                                             </select>
@@ -228,7 +228,7 @@
                                           id="companyName"
                                           class="form-control"
                                           name="company"
-                                          value="{{user?.city}}"
+                                          value="{{user.city}}"
                                         />
                                       </div>
 
@@ -239,7 +239,7 @@
                                           rows="5"
                                           class="form-control"
                                           name="comment"
-                                        >{{user?.address}}</textarea>
+                                        >{{user.address}}</textarea>
                                       </div>
                                     </div>
 

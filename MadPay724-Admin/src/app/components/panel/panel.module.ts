@@ -8,6 +8,7 @@ import { ProfileComponent } from './components/components/userinfo/profile/profi
 import { DocumentsComponent } from './components/components/userinfo/documents/documents.component';
 import { UserService } from './services/user.service';
 import { PersianTimeAgoPipe } from 'persian-time-ago-pipe';
+import { UserProfileResolver } from 'src/app/resolvers/userprofile.resolver';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { PersianTimeAgoPipe } from 'persian-time-ago-pipe';
     PersianTimeAgoPipe
   ],
   providers: [
-    UserService
+    UserService,
+    UserProfileResolver
   ],
 })
 
