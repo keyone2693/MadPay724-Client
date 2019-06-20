@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  baseUrl = 'http://localhost:9788/site/admin/auth/';
+  baseUrl = environment.apiUrl + 'site/admin/auth/';
   jwtHelper = new JwtHelperService();
 decodedToken: any;
 
