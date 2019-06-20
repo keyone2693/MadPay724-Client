@@ -7,6 +7,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ProfileComponent } from './components/components/userinfo/profile/profile.component';
 import { DocumentsComponent } from './components/components/userinfo/documents/documents.component';
 import { UserService } from './services/user.service';
+import { PersianTimeAgoPipe } from 'persian-time-ago-pipe';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { UserService } from './services/user.service';
     ProfileComponent,
     DocumentsComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    PersianTimeAgoPipe
   ],
   providers: [
     UserService

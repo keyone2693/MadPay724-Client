@@ -1,9 +1,9 @@
 export interface BankCard {
     id: string;
-    bankname: string;
-    ownername: string;
+    bankName: string;
+    ownerName: string;
     shaba: string;
-    cardnumber: string;
-    expiredateMonth: boolean;
-    expiredateYear: number;
+    cardNumber: string;
+    expireDateMonth: boolean;
+    expireDateYear: number;
 }

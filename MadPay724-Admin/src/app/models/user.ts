@@ -4,14 +4,14 @@ import { BankCard } from './bankcard';
 export interface User {
      id: string;
      name: string;
-     username: string;
-     phonenumber: string;
+     userName: string;
+     phoneNumber: string;
      address: string;
      gender: boolean;
      age: number;
-     lastactive: Date;
+     lastActive: Date;
      city: string;
-     photourl: string;
+     photoUrl: string;
      photo?: Photo[];
-     bankkard?: BankCard[];
+     bankCard?: BankCard[];
 }
