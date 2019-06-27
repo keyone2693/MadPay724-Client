@@ -40,6 +40,5 @@ export class ProfileComponent implements OnInit {
     updateUserInfo() {
       console.log(this.user);
       this.alertService.success('اطلاعات کاربری با موفیقیت ویرایش شد', 'موفق');
-      this.editForm
     }
 }
