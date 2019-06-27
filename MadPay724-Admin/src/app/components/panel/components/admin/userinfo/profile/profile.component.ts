@@ -44,8 +44,11 @@ export class ProfileComponent implements OnInit {
     // });
    }
     updateUserInfo() {
-      console.log(this.user);
-      this.alertService.success('اطلاعات کاربری با موفیقیت ویرایش شد', 'موفق');
-      this.editForm.form.markAsPristine();
+      this.userService.updateUserInfo(this.authService.decodedToken.nameid, this.user).subscribe(next => {
+        this.alertService.success('اطلاعات کاربری با موفیقیت ویرایش شد', 'موفق');
+        this.editForm.form.markAsPristine();
+            }, error => {
+              this.alertService.error(error, 'خطا در ویرایش');
+      });
     }
 }
