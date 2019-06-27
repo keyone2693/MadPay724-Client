@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/components/panel/services/user.service';
 import { ToastrService } from 'ngx-toastr';
@@ -12,8 +12,14 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  @ViewChild('editForm', {static: true}) editForm: NgForm;
+  @ViewChild('editForm', {static: false}) editForm: NgForm;
   user: User;
+  @HostListener('window:beforeunload', ['$event'])
+  unloadNotification($event: any) {
+    if (this.editForm.dirty) {
+      $event.returnValue = true;
+    }
+  }
 
   constructor(private userService: UserService, private alertService: ToastrService,
               private authService: AuthService, private route: ActivatedRoute) { }
@@ -40,5 +46,6 @@ export class ProfileComponent implements OnInit {
     updateUserInfo() {
       console.log(this.user);
       this.alertService.success('اطلاعات کاربری با موفیقیت ویرایش شد', 'موفق');
+      this.editForm.form.markAsPristine();
     }
 }

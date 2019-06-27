@@ -11,6 +11,7 @@ import { PersianTimeAgoPipe } from 'persian-time-ago-pipe';
 import { UserProfileResolver } from 'src/app/resolvers/userprofile.resolver';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { PreventUnsavedGuard } from 'src/app/guards/prevent-unsaved.guard';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { CommonModule } from '@angular/common';
   ],
   providers: [
     UserService,
-    UserProfileResolver
+    UserProfileResolver,
+    PreventUnsavedGuard
   ],
 })
 

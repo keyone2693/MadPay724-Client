@@ -5,6 +5,7 @@ import { DashboardComponent } from './components/admin/dashboard/dashboard.compo
 import { ProfileComponent } from './components/admin/userinfo/profile/profile.component';
 import { DocumentComponent } from './components/admin/userinfo/document/document.component';
 import { UserProfileResolver } from 'src/app/resolvers/userprofile.resolver';
+import { PreventUnsavedGuard } from 'src/app/guards/prevent-unsaved.guard';
 
 const routes: Routes = [
   {
@@ -12,7 +13,9 @@ const routes: Routes = [
     component: PanelComponent,
     children: [
       {path: 'dashboard', component: DashboardComponent},
-      {path: 'userinfo/profile', component: ProfileComponent, resolve: {user: UserProfileResolver}},
+      {path: 'userinfo/profile', component: ProfileComponent,
+       resolve: {user: UserProfileResolver},
+       canDeactivate: [PreventUnsavedGuard]},
       {path: 'userinfo/documents', component: DocumentComponent}
     ]
    }
