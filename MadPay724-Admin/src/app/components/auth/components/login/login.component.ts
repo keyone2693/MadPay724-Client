@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
     private alertService: ToastrService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.model.isremember = true;
     this.route.queryParams.subscribe(params => this.returnUrl = params['return'] || '/panel/dashboard');
     if (this.loggedIn()) {
       this.router.navigate([this.returnUrl]);

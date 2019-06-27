@@ -65,7 +65,7 @@ export function tokenGet() {
     ],
   providers: [
       ErrorInterceptorProvider,
-      AuthGuard
+      AuthGuard,
   ],
   bootstrap: [AppComponent]
 })

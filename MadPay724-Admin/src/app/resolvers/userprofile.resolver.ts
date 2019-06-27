@@ -19,6 +19,6 @@ export class UserProfileResolver implements Resolve<User> {
                 this.router.navigate(['/panel/userinfo/profile']);
                 return of(null);
             })
-        )
+        );
     }
 }

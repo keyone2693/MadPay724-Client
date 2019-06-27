@@ -19,11 +19,16 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.loadUser();
   }
+  goToSaveBtn() {
+    $('html , body').animate({
+      scrollTop: $('#btnsave').offset().top + 300
+    }, 500);
+  }
 
   loadUser() {
-this.route.data.subscribe(data => {
-  this.user = data.user;
-});
+    this.route.data.subscribe(data => {
+      this.user = data.user;
+    });
     // this.userService.getUser(this.authService.decodedToken.nameid).subscribe((user: User) => {
     //   this.user = user;
     // }, error => {

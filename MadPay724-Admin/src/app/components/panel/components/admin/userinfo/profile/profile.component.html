@@ -146,6 +146,7 @@
                               aria-labelledby="link-tab"
                               aria-expanded="false"
                             >
+                            
                               <div class="card-header">
                                 <div class="card-title-wrap bar-success">
                                   <h4 class="card-title" id="basic-layout-form">
@@ -157,9 +158,13 @@
                                   ویرایش کنید.
                                 </p>
                               </div>
+                              <div class="alert alert-warning" *ngIf="editForm.dirty">
+                                <strong>هشدار! </strong>                              
+                                شما تغییری در اطلاعات وارد کرده اید لطفا تغییرات را   <a class="btn-flat btn-primary" (click)="goToSaveBtn()">ذخیره</a> کنید.
+                            </div>
                               <div class="card-body">
                                 <div class="px-3">
-                                  <form class="form">
+                                  <form #editForm="ngForm" (ngSubmit)="updateUserInfo()" class="form">
                                     <div class="form-body">
                                       <h4 class="form-section">
                                         <i class="icon-user"></i> اطلاعات شخصی
@@ -176,7 +181,7 @@
                                               id="projectinput1"
                                               class="form-control"
                                               name="fname"
-                                              value="{{user.name}}"
+                                              [(ngModel)]="user.name"
                                             />
                                           </div>
                                         </div>
@@ -188,10 +193,10 @@
                                             <input
                                               type="text"
                                               id="projectinput2"
-                                              class="form-control"
+                                              class="form-control" style="direction: ltr !important;text-align: left;"
                                               name="lname"
-                                              value="{{user.phoneNumber}}"
-                                            />
+                                              [(ngModel)]="user.phoneNumber"
+                                             />
                                           </div>
                                         </div>
                                       </div>
@@ -205,11 +210,12 @@
                                               id="projectinput5"
                                               name="interested"
                                               class="form-control"
+                                              [(ngModel)]="user.gender"
                                             >
-                                              <option value="design" [selected]="user.gender"
+                                              <option value="true"
                                                 >مرد</option
                                               >
-                                              <option value="development"  [selected]="!user.gender"
+                                              <option value="fasle"
                                                 >زن</option
                                               >
                                             </select>
@@ -228,7 +234,7 @@
                                           id="companyName"
                                           class="form-control"
                                           name="company"
-                                          value="{{user.city}}"
+                                          [(ngModel)]="user.city"
                                         />
                                       </div>
 
@@ -239,7 +245,8 @@
                                           rows="5"
                                           class="form-control"
                                           name="comment"
-                                        >{{user.address}}</textarea>
+                                          [(ngModel)]="user.address"
+                                        ></textarea>
                                       </div>
                                     </div>
 
@@ -327,7 +334,7 @@
                                       </div>
                                     </div>
 
-                                    <div class="form-actions">
+                                    <div class="form-actions" id="btnsave">
                                       <!-- <button type="button" class="btn btn-danger mr-1">
 									<i class="icon-trash"></i> لغو
 								</button> -->
