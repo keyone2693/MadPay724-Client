@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/components/panel/services/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/components/auth/services/auth.service';
 import { ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -11,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  @ViewChild('editForm', {static: true}) editForm: NgForm;
   user: User;
 
   constructor(private userService: UserService, private alertService: ToastrService,
@@ -21,7 +23,7 @@ export class ProfileComponent implements OnInit {
   }
   goToSaveBtn() {
     $('html , body').animate({
-      scrollTop: $('#btnsave').offset().top + 300
+      scrollTop: $('#btnsave').offset().top + 20
     }, 500);
   }
 
@@ -34,5 +36,9 @@ export class ProfileComponent implements OnInit {
     // }, error => {
     //   this.alertService.error(error);
     // });
-  }
+   }
+    updateUserInfo() {
+      console.log(this.user);
+      this.alertService.success('اطلاعات کاربری با موفیقیت ویرایش شد', 'موفق');
+    }
 }

@@ -250,12 +250,12 @@
                                       </div>
                                     </div>
 
-                                    <div class="form-actions">
+                                    <div class="form-actions" id="btnsave">
                                       <!-- <button type="button" class="btn btn-danger mr-1">
 									<i class="icon-trash"></i> لغو
 								</button> -->
                                       <button
-                                        type="button"
+                                        type="submit" [disabled]="!editForm.dirty" 
                                         class="btn btn-success"
                                       >
                                         <i class="icon-note"></i> ذخیره
@@ -334,7 +334,7 @@
                                       </div>
                                     </div>
 
-                                    <div class="form-actions" id="btnsave">
+                                    <div class="form-actions">
                                       <!-- <button type="button" class="btn btn-danger mr-1">
 									<i class="icon-trash"></i> لغو
 								</button> -->
