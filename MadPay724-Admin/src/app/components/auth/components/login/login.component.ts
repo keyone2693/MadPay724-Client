@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   model: any = {};
   returnUrl: any = '';
   constructor(private authService: AuthService, private router: Router,
-    private alertService: ToastrService, private route: ActivatedRoute) { }
+              private alertService: ToastrService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.model.isremember = true;

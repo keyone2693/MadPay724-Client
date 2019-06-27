@@ -178,9 +178,8 @@
                                             >
                                             <input
                                               type="text"
-                                              id="projectinput1"
                                               class="form-control"
-                                              name="fname"
+                                              [ngModelOptions]="{standalone: true}"
                                               [(ngModel)]="user.name"
                                             />
                                           </div>
@@ -192,10 +191,8 @@
                                             >
                                             <input
                                               type="text"
-                                              id="projectinput2"
                                               class="form-control" style="direction: ltr !important;text-align: left;"
-                                              name="lname"
-                                              [(ngModel)]="user.phoneNumber"
+                                              [(ngModel)]="user.phoneNumber" [ngModelOptions]="{standalone: true}"
                                              />
                                           </div>
                                         </div>
@@ -207,10 +204,8 @@
                                               >جنسیت</label
                                             >
                                             <select
-                                              id="projectinput5"
-                                              name="interested"
                                               class="form-control"
-                                              [(ngModel)]="user.gender"
+                                              [(ngModel)]="user.gender" [ngModelOptions]="{standalone: true}"
                                             >
                                               <option value="true"
                                                 >مرد</option
@@ -231,21 +226,17 @@
                                         <label for="companyName">شهر</label>
                                         <input
                                           type="text"
-                                          id="companyName"
                                           class="form-control"
-                                          name="company"
-                                          [(ngModel)]="user.city"
+                                          [(ngModel)]="user.city" [ngModelOptions]="{standalone: true}"
                                         />
                                       </div>
 
                                       <div class="form-group">
                                         <label for="projectinput8">آدرس</label>
                                         <textarea
-                                          id="projectinput8"
                                           rows="5"
                                           class="form-control"
-                                          name="comment"
-                                          [(ngModel)]="user.address"
+                                          [(ngModel)]="user.address" [ngModelOptions]="{standalone: true}"
                                         ></textarea>
                                       </div>
                                     </div>
@@ -258,7 +249,7 @@
                                         type="submit" [disabled]="!editForm.dirty" 
                                         class="btn btn-success"
                                       >
-                                        <i class="icon-note"></i> ذخیره
+                                        <i class="icon-note"></i> تغییر اطلاعات کاربری
                                       </button>
                                     </div>
                                   </form>
@@ -284,7 +275,7 @@
                               </div>
                               <div class="card-body">
                                 <div class="px-3">
-                                  <form class="form">
+                                  <form #editPassForm="ngForm" (ngSubmit)="updateUserPass()"  class="form">
                                     <div class="form-body">
                                       <h4 class="form-section">
                                         <i class="icon-user"></i> پسورد
@@ -296,10 +287,9 @@
                                               >پسورد قبلی</label
                                             >
                                             <input
-                                              type="text"
-                                              id="projectinput1"
+                                              type="password"
+                                              [(ngModel)]="passModel.oldPassword" [ngModelOptions]="{standalone: true}"
                                               class="form-control"
-                                              name="fname"
                                             />
                                           </div>
                                         </div>
@@ -311,10 +301,9 @@
                                               >پسورد جدید</label
                                             >
                                             <input
-                                              type="text"
-                                              id="projectinput1"
+                                              type="password"
+                                              [(ngModel)]="passModel.newPassword" [ngModelOptions]="{standalone: true}"
                                               class="form-control"
-                                              name="fname"
                                             />
                                           </div>
                                         </div>
@@ -324,10 +313,9 @@
                                               >تکرار پسورد جدید</label
                                             >
                                             <input
-                                              type="text"
-                                              id="projectinput2"
+                                              type="password"
+                                              [(ngModel)]="passModel.confirmNewPassword" [ngModelOptions]="{standalone: true}"
                                               class="form-control"
-                                              name="lname"
                                             />
                                           </div>
                                         </div>
@@ -339,10 +327,10 @@
 									<i class="icon-trash"></i> لغو
 								</button> -->
                                       <button
-                                        type="button"
+                                        type="submit"
                                         class="btn btn-success"
                                       >
-                                        <i class="icon-note"></i> ذخیره
+                                        <i class="icon-note"></i> تغییر پسورد
                                       </button>
                                     </div>
                                   </form>

@@ -24,4 +24,8 @@ getUser(id: string): Observable<User> {
 updateUserInfo(id: string, user: User) {
   return this.http.put(this.baseUrl + id, user);
 }
+
+updateUserPass(id: string, passModel: any) {
+  return this.http.put(this.baseUrl + 'ChangeUserPassword/' + id, passModel);
+}
 }

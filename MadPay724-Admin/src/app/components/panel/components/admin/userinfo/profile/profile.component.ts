@@ -14,6 +14,7 @@ import { NgForm } from '@angular/forms';
 export class ProfileComponent implements OnInit {
   @ViewChild('editForm', {static: false}) editForm: NgForm;
   user: User;
+  passModel: any = {};
   @HostListener('window:beforeunload', ['$event'])
   unloadNotification($event: any) {
     if (this.editForm.dirty) {
@@ -49,6 +50,15 @@ export class ProfileComponent implements OnInit {
         this.editForm.form.markAsPristine();
             }, error => {
               this.alertService.error(error, 'خطا در ویرایش');
+      });
+    }
+
+    updateUserPass() {
+      this.userService.updateUserPass(this.authService.decodedToken.nameid, this.passModel).subscribe(next => {
+        this.alertService.success('پسورد شما با موفقیت تغییر کرد', 'موفق');
+        this.editForm.form.markAsPristine();
+            }, error => {
+              this.alertService.error(error, 'خطا در تغییر پسورد');
       });
     }
 }
