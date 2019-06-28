@@ -13,3 +13,16 @@
 .tabpadding{
     padding: 40px 20px;
 }
+
+.inputupload{
+    position: absolute;
+top: 47px;
+left: 0;
+right: 0;
+margin: 0 auto;
+width: 96%;
+background: red;
+height: 64%;
+opacity: 0;
+cursor: pointer;
+}

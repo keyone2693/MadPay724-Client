@@ -11,6 +11,7 @@ export class AppComponent  implements  OnInit {
   jwtHelper = new JwtHelperService();
 
   constructor(private authService: AuthService) {}
+
   ngOnInit() {
     this.getDecodedToken();
   }

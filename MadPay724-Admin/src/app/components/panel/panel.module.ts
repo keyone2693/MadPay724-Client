@@ -12,7 +12,6 @@ import { UserProfileResolver } from 'src/app/resolvers/userprofile.resolver';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { PreventUnsavedGuard } from 'src/app/guards/prevent-unsaved.guard';
-import { UserEditInfoComponent } from './components/admin/userinfo/profile/components/user-edit-info/user-edit-info.component';
 import { UserChangePassComponent } from './components/admin/userinfo/profile/components/user-change-pass/user-change-pass.component';
 import { UserChangePicComponent } from './components/admin/userinfo/profile/components/user-change-pic/user-change-pic.component';
 import { FileUploadModule } from 'ng2-file-upload';
@@ -31,7 +30,6 @@ import { FileUploadModule } from 'ng2-file-upload';
     DocumentComponent,
     NavbarComponent,
     SidebarComponent,
-    UserEditInfoComponent,
     UserChangePassComponent,
     UserChangePicComponent,
     PersianTimeAgoPipe

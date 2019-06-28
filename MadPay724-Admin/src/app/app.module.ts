@@ -13,6 +13,7 @@ import { NgxUiLoaderModule, NgxUiLoaderConfig, POSITION, SPINNER, PB_DIRECTION,
 import { AuthGuard } from './guards/auth.guard';
 import { JwtModule } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
+import { AuthService } from './components/auth/services/auth.service';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   pbColor: 'red',
@@ -66,6 +67,7 @@ export function tokenGet() {
   providers: [
       ErrorInterceptorProvider,
       AuthGuard,
+      AuthService
   ],
   bootstrap: [AppComponent]
 })

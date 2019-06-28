@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { CanDeactivate} from '@angular/router';
-import { UserEditInfoComponent } from '../components/panel/components/admin/userinfo/profile/components/user-edit-info/user-edit-info.component';
+import { ProfileComponent } from '../components/panel/components/admin/userinfo/profile/profile.component';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PreventUnsavedGuard implements CanDeactivate<UserEditInfoComponent> {
+export class PreventUnsavedGuard implements CanDeactivate<ProfileComponent> {
 
-  canDeactivate(component: UserEditInfoComponent) {
+  canDeactivate(component: ProfileComponent) {
     if (component.editForm.dirty) {
         return confirm('شما تغییراتی ایجاد کرده اید با خروج تغیرات ذخیره نمیشود');
     }

@@ -1,21 +1,20 @@
 <div class="row tabpadding">
  
-    <div class="col-md-3">
+    <div class="col-md-5">
 
         <h3>انتخاب فایل</h3>
 
-        <div ng2FileDrop
+        <div ng2FileDrop 
              [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
              (fileOver)="fileOverBase($event)"
              [uploader]="uploader"
-             class="well my-drop-zone dropupload">
-            عکس را درگ کنید
+             class="well my-drop-zone dropupload" style="position: relative">
+            عکس را انتخاب یا در کادر درگ کنید
         </div>
-        انتخاب عکس
-        <input type="file" ng2FileSelect [uploader]="uploader" />
+        <input type="file" class="inputupload" ng2FileSelect [uploader]="uploader" />
     </div>
 
-    <div class="col-md-9" style="margin-bottom: 40px">
+    <div class="col-md-7" style="margin-bottom: 40px">
         <table class="table">
             <thead>
             <tr>

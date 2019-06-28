@@ -4,7 +4,6 @@ import { AuthComponent } from './auth.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from './services/auth.service';
 import { AuthRoutingModule } from './auth-routing.module';
 
 @NgModule({
@@ -17,6 +16,6 @@ import { AuthRoutingModule } from './auth-routing.module';
     LoginComponent,
     RegisterComponent
   ],
-    providers: [AuthService],
+    providers: [],
 })
 export class AuthModule { }

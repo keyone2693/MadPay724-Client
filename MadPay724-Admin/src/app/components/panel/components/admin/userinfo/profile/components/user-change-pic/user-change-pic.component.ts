@@ -12,14 +12,14 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./user-change-pic.component.css']
 })
 export class UserChangePicComponent implements OnInit {
-  @Output() getUserPhotoUrl = new EventEmitter<string>();
+  // @Output() getUserPhotoUrl = new EventEmitter<string>();
   uploader: FileUploader;
   hasBaseDropZoneOver = false;
   baseUrl = environment.apiUrl;
   constructor(private authService: AuthService, private alertService: ToastrService) { }
 
   ngOnInit() {
-   this.initializeUplaoder();
+  this.initializeUplaoder();
   }
   fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;
@@ -42,7 +42,10 @@ initializeUplaoder() {
       this.alertService.success('عکس پروفایل تغییر کرد', 'موفق');
       const res: Photo = JSON.parse(response);
      // this.user.photoUrl = res.url;
-      this.getUserPhotoUrl.emit(res.url);
+     // this.getUserPhotoUrl.emit(res.url);
+      this.authService.changeUserPhoto(res.url);
+      this.authService.currentUser.photoUrl = res.url;
+      localStorage.setItem('user',JSON.stringify(this.authService.currentUser));
     }
   };
 
