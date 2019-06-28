@@ -1,0 +1,15 @@
+.margt15{
+    margin-top: 15px;
+    margin-left: 10px;
+}
+
+.dropupload{
+    padding: 50px 0;
+    text-align: center;
+    border: 4px dashed #c4c4c4;
+    border-radius: 5px;
+    margin-bottom: 19px;
+}
+.tabpadding{
+    padding: 40px 20px;
+}

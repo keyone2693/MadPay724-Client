@@ -1,0 +1,73 @@
+<div class="card-header">
+  <div class="card-title-wrap bar-success">
+    <h4 class="card-title" id="basic-layout-form">
+      ریست پسورد
+    </h4>
+  </div>
+  <p class="mb-0">
+    در این بخش میتوانید پسورد خود را تغییر دهید
+  </p>
+</div>
+<div class="card-body">
+  <div class="px-3">
+    <form #editPassForm="ngForm" (ngSubmit)="updateUserPass()"  class="form">
+      <div class="form-body">
+        <h4 class="form-section">
+          <i class="icon-user"></i> پسورد
+        </h4>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="projectinput1"
+                >پسورد قبلی</label
+              >
+              <input
+                type="password"
+                [(ngModel)]="passModel.oldPassword" [ngModelOptions]="{standalone: true}"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="projectinput1"
+                >پسورد جدید</label
+              >
+              <input
+                type="password"
+                [(ngModel)]="passModel.newPassword" [ngModelOptions]="{standalone: true}"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="projectinput2"
+                >تکرار پسورد جدید</label
+              >
+              <input
+                type="password"
+                [(ngModel)]="passModel.confirmNewPassword" [ngModelOptions]="{standalone: true}"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <!-- <button type="button" class="btn btn-danger mr-1">
+<i class="icon-trash"></i> لغو
+</button> -->
+        <button
+          type="submit"
+          class="btn btn-success"
+        >
+          <i class="icon-note"></i> تغییر پسورد
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
