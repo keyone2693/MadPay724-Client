@@ -23,10 +23,10 @@ export class RegisterComponent implements OnInit {
     }, [this.passMatchValidator, this.aproveRulesValidator]);
   }
   passMatchValidator(g: FormGroup) {
-    return g.get('password').value === g.get('confirmPassword').value ? null : { mismath: true};
+    return g.get('password').value === g.get('confirmPassword').value ? null : { mismatch: true};
   }
   aproveRulesValidator(g: FormGroup) {
-    return g.get('aproveRules').value === true ? null : { mismath: true};
+    return g.get('aproveRules').value === true ? null : { aprovemismatch: true};
   }
   register() {
     console.log(this.registerForm.value);

@@ -8,28 +8,77 @@
                 ثبت نام
             </span>
             <div class="row">
-                <div class="col-lg-12 p-t-20">
-                    <div class="wrap-input100 validate-input" data-validate="نام  را وارد کنید">
+                <div class="col-lg-12 p-t-20 ">
+                    <div class="wrap-input100 validate-input "
+
+                        [ngClass]="{'alert-validate': registerForm.get('name').errors
+                                && registerForm.get('name').touched}"
+
+                        [attr.data-validate]="registerForm.get('name').hasError('required')
+                        && registerForm.get('name').touched ? 'نام را وارد کنید' : null"
+                        
+                     >
                         <input formControlName="name" class="input100" type="text" placeholder="نام کاربری">
                         <i class="fa fa-user focus-input1001"></i>
+                        <i *ngIf="registerForm.get('name').hasError('required')
+                                  && registerForm.get('name').touched" class="icon-info material-icons erroe_dis"></i>
+
                     </div>
                 </div>
                 <div class="col-lg-12 p-t-20">
-                    <div class="wrap-input100 validate-input" data-validate="نام کاربری را وارد کنید">
+                    <div class="wrap-input100 validate-input"
+
+                    [ngClass]="{'alert-validate': registerForm.get('username').errors
+                    && registerForm.get('username').touched}"
+
+                    [attr.data-validate]="registerForm.get('username').hasError('required')
+                    && registerForm.get('username').touched ? 'ایمیل را وارد کنید' : registerForm.get('username').hasError('email')
+                    && registerForm.get('username').touched ? 'ایمیل صحیح نمیباشد' : null"
+                    
+                    data-validate="نام کاربری را وارد کنید">
                         <input formControlName="username"  class="input100" type="text" placeholder="ایمیل">
                         <i class="fa fa-envelope-o focus-input1001"></i>
+                        <i *ngIf="(registerForm.get('username').hasError('required')
+                                  && registerForm.get('username').touched) || (registerForm.get('username').hasError('email')
+                                  && registerForm.get('username').touched)" class="icon-info material-icons erroe_dis"></i>
                     </div>
                 </div>
                 <div class="col-lg-12 p-t-20">
-                    <div class="wrap-input100 validate-input" data-validate="رمز عبور را وارد کنید">
+                    <div class="wrap-input100 validate-input" 
+                    
+                    [ngClass]="{'alert-validate': registerForm.get('password').errors
+                    && registerForm.get('password').touched}"
+
+                    [attr.data-validate]="registerForm.get('password').hasError('required')
+                    && registerForm.get('password').touched ? 'پسورد را وارد کنید' : registerForm.get('password').hasError('minlength')
+                    && registerForm.get('password').touched ? 'حداقل 4 حرف باید وارد کنید' : registerForm.get('password').hasError('maxlength')
+                    && registerForm.get('password').touched ? 'حداکثر 10 حرف میتوانید وارد کنید' : null"
+                    >
                         <input formControlName="password"  class="input100" type="password" placeholder="رمز عبور">
                         <i class="fa fa-lock focus-input1001"></i>
+                        <i *ngIf="(registerForm.get('password').hasError('required')
+                                  && registerForm.get('password').touched) || (registerForm.get('password').hasError('minlength')
+                                  && registerForm.get('password').touched) || (registerForm.get('password').hasError('maxlength')
+                                  && registerForm.get('password').touched)" class="icon-info material-icons erroe_dis"></i>
                     </div>
                 </div>
                 <div class="col-lg-12 p-t-20">
-                    <div class="wrap-input100 validate-input" data-validate="دوباره رمز عبور را وارد کنید">
+                    <div class="wrap-input100 validate-input"        
+
+                    [ngClass]="{'alert-validate': (registerForm.get('confirmPassword').errors
+                    && registerForm.get('confirmPassword').touched) || (registerForm.hasError('mismatch')
+                    && registerForm.get('confirmPassword').touched)}"
+
+                    [attr.data-validate]="registerForm.get('confirmPassword').hasError('required')
+                    && registerForm.get('confirmPassword').touched  ? 'پسور را دوباره وارد کنید' : registerForm.hasError('mismatch')
+                    && registerForm.get('confirmPassword').touched  ? 'پسور ها یکسان نمیباشد' : null"
+                    
+                    >
                         <input formControlName="confirmPassword"  class="input100" type="password" name="pass2" placeholder="تکرار رمز عبور">
                         <i class="fa fa-lock focus-input1001"></i>
+                        <i *ngIf="(registerForm.get('confirmPassword').hasError('required')
+                                  && registerForm.get('confirmPassword').touched) || (registerForm.hasError('mismatch')
+                                  && registerForm.get('confirmPassword').touched)" class="icon-info material-icons erroe_dis"></i>
                     </div>
                 </div>
             </div>
@@ -56,6 +105,3 @@
         </form>
     </div>
 </div>
-
-<p>val : {{ registerForm.value | json }}</p>
-<p>val : {{registerForm.status | json}}</p>
