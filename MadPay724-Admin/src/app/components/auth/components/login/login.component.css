@@ -4,3 +4,81 @@
     z-index: 999;
     cursor: pointer;
 }
+
+input[type=text]:not(.browser-default),input[type=password]:not(.browser-default){background-color:transparent;border:none;border-bottom:1px solid #9e9e9e;border-radius:0;outline:none;height:3rem;width:100%;font-size:1rem;margin:0 0 8px 0;padding:0;box-shadow:none;box-sizing:content-box;transition:all 0.3s;}
+input[type=text]:not(.browser-default):disabled,input[type=password]:not(.browser-default):disabled{color:rgba(0, 0, 0, 0.42);border-bottom:1px dotted rgba(0, 0, 0, 0.42);}
+input[type=text]:not(.browser-default):focus:not([readonly]),input[type=password]:not(.browser-default):focus:not([readonly]){border-bottom:1px solid #26a69a;box-shadow:0 1px 0 0 #26a69a;}
+[type="checkbox"]:checked{position:absolute;opacity:0;pointer-events:none;}
+[type="checkbox"] + span:not(.lever){position:relative;padding-left:35px;cursor:pointer;display:inline-block;height:25px;line-height:25px;font-size:1rem;user-select:none;}
+[type="checkbox"] + span:not(.lever):before,[type="checkbox"]:not(.filled-in) + span:not(.lever):after{content:'';position:absolute;top:0;left:0;width:18px;height:18px;z-index:0;border:2px solid #5a5a5a;border-radius:1px;margin-top:3px;transition:.2s;}
+[type="checkbox"]:not(.filled-in) + span:not(.lever):after{border:0;transform:scale(0);}
+[type="checkbox"]:checked + span:not(.lever):before{top:-4px;left:-5px;width:12px;height:22px;border-top:2px solid transparent;border-left:2px solid transparent;border-right:2px solid #26a69a;border-bottom:2px solid #26a69a;transform:rotate(40deg);backface-visibility:hidden;transform-origin:100% 100%;}
+[type="checkbox"]:checked:disabled + span:before{border-right:2px solid rgba(0, 0, 0, 0.42);border-bottom:2px solid rgba(0, 0, 0, 0.42);}
+/*! CSS Used from: http://aceteam2.gigfa.com/lorax/lorax/source/rtl/assets/css/style.css */
+.p-t-50{padding-top:50px;}
+button,input,a{outline:none!important;}
+button:hover,input:hover,a:hover{text-decoration:none;}
+img{max-width:100%;}
+.form-check,label{font-size:14px;line-height:1.42857;color:#414244;font-weight:400;}
+.form-check{margin-bottom:.5rem;padding-right:0;}
+.form-check .form-check-label{cursor:pointer;padding-right:25px;position:relative;padding-left:15px;}
+.form-check .form-check-label span{display:block;position:absolute;right:-1px;top:-1px;transition-duration:.2s;padding-right:0;}
+.form-check .form-check-input{opacity:0;height:0;width:0;overflow:hidden;position:absolute;margin:0;z-index:-1;right:0;pointer-events:none;}
+.form-check .form-check-input:checked + .form-check-sign:before{animation:rippleOn .5s;}
+.form-check .form-check-input:checked + .form-check-sign .check{background:#9c27b0;}
+.form-check .form-check-input:checked + .form-check-sign .check:before{color:#ffffff;box-shadow:0 0 0px 10px, -10px -5px 0 10px, -32px 0 0 20px, 0 32px 0 20px, 15px 5px 0 10px, -20px -12px 0 11px;left: 6px;
+    top: 2px;animation:checkboxOn .3s forwards;}
+.form-check .form-check-sign{vertical-align:middle;position:relative;top:-2px;float:right;padding-left:10px;display:inline-block;}
+.form-check .form-check-sign:before{display:block;position:absolute;right:0;content:"";background-color:rgba(0, 0, 0, 0.84);height:20px;width:20px;border-radius:100%;z-index:1;opacity:0;margin:0;top:0;transform:scale3d(2.3, 2.3, 1);}
+.form-check .form-check-sign .check{position:absolute;display:inline-block;width:20px;height:20px;border:1px solid rgba(0, 0, 0, 0.54);overflow:hidden;z-index:1;border-radius:3px;}
+.form-check .form-check-sign .check:before{position:absolute;content:"";transform:rotate(-45deg);display:block;margin-top:-3px;margin-right:7px;width:0;color:#ffffff;height:0;box-shadow:0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0 inset;animation:checkboxOff .3s forwards;}
+/*! CSS Used from: http://aceteam2.gigfa.com/lorax/lorax/source/rtl/assets/css/pages/extra_pages.css */
+input[type=text],input[type=text]:not(.browser-default),input[type=password],input[type=password]:not(.browser-default){outline:none;margin-bottom:0;}
+input[type=text]:focus:not([readonly]),input[type=text]:not(.browser-default):focus:not([readonly]),input[type=password]:focus:not([readonly]),input[type=password]:not(.browser-default):focus:not([readonly]){box-shadow:none;}
+input:focus::-webkit-input-placeholder{color:transparent;}
+input:focus:-moz-placeholder{color:transparent;}
+input:focus::-moz-placeholder{color:transparent;}
+input:focus:-ms-input-placeholder{color:transparent;}
+input::-webkit-input-placeholder{color:#fff;}
+input:-moz-placeholder{color:#fff;}
+input::-moz-placeholder{color:#fff;}
+input:-ms-input-placeholder{color:#fff;}
+input:focus::-webkit-input-placeholder{color:transparent;}
+input:focus:-moz-placeholder{color:transparent;}
+input:focus:-ms-input-placeholder{color:transparent;}
+input:focus::-moz-placeholder{color:transparent;}
+input:-moz-placeholder{color:#fff;}
+input:-ms-input-placeholder{color:#fff;}
+input::-webkit-input-placeholder{color:#fff;}
+input::-moz-placeholder{color:#fff;}
+label{margin:0;display:block;}
+button{outline:none!important;border:none;background:transparent;}
+button:hover{cursor:pointer;}
+.txt1{font-size:13px;color:#e5e5e5;line-height:1.5;text-align:center;}
+.container-login100{width:100%;min-height:100vh;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;padding:15px;}
+.container-login100::before{content:"";display:block;position:absolute;z-index:-1;width:100%;height:100%;top:0;right:0;background-color:rgba(255, 255, 255, 0.7);}
+.wrap-login100{width:500px;border-radius:30px;overflow:hidden;padding:55px 55px 37px 55px;background:-webkit-linear-gradient(top, #7579ff, #b224ef);}
+.login100-form{width:100%;}
+.login100-form-logo{font-size:60px;color:#333333;display:flex;justify-content:center;align-items:center;width:250px;height:120px;border-radius:50%;background-color:transparent;margin:0 auto;}
+.login100-form-title{font-size:30px;color:#fff;line-height:1.2;text-align:center;display:block;}
+.wrap-input100{width:100%;position:relative;margin-bottom:30px;}
+input[type=text].input100,input[type=text]:not(.browser-default).input100,input[type=password].input100,input[type=password]:not(.browser-default).input100{font-size:16px;color:#fff;line-height:1.2;display:block;width:calc(100% - 43px);height:45px;background:transparent;padding:0 38px 0 5px;border-bottom:2px solid rgba(255, 255, 255, 0.24);-webkit-transition:all 0.4s;-o-transition:all 0.4s;-moz-transition:all 0.4s;transition:all 0.4s;}
+input[type=text].input100:focus,input[type=text]:not(.browser-default).input100:focus,input[type=password].input100:focus,input[type=password]:not(.browser-default).input100:focus{width:calc(100% - 10px);padding-right:5px;border-bottom:2px solid white;}
+.focus-input1001{position:absolute;font-size:30px;display:block;width:100%;height:100%;top:8px;right:0;color:#fff;pointer-events:none;transition:all 0.4s;}
+.contact100-form-checkbox{padding-right:5px;padding-top:5px;padding-bottom:35px;}
+.contact100-form-checkbox .form-check .form-check-sign .check{border:1px solid #fff;}
+.contact100-form-checkbox .form-check .form-check-label{color:#fff;}
+.container-login100-form-btn{width:100%;display:flex;flex-wrap:wrap;justify-content:center;}
+.login100-form-btn{font-size:16px;color:#555555;line-height:1.2;display:flex;justify-content:center;align-items:center;padding:0 20px;min-width:120px;height:50px;border-radius:25px;background:#8e57f9;
+    background:linear-gradient(to bottom, #8e57f9, #03a9f4);position:relative;z-index:1;transition:all 0.4s;}
+.login100-form-btn:hover{color:#fff;background-color:#2ab7a9;}
+.login100-form-btn:hover:before{opacity:0;}
+.login100-form-btn::before{content:"";display:block;position:absolute;z-index:-1;width:100%;height:100%;border-radius:25px;background-color:#fff;top:0;right:0;opacity:1;transition:all 0.4s;}
+@media (max-width: 576px){
+.wrap-login100{padding:55px 15px 37px 15px;}
+}
+.validate-input{position:relative;}
+.p-b-34{padding-bottom:34px;}
+.p-t-27{padding-top:27px;}
+.page-background{background:#333;} 
+.input100:focus + .focus-input1001{top:-22px;font-size:18px;}

@@ -1,57 +1,61 @@
-<!-- ////////////////////////////////////////////////////////////////////////////-->
-<div class="wrapper">
-    <!--Registration Page Starts-->
-    <section id="regestration">
-        <div class="container-fluid">
-            <div class="row full-height-vh">
-                <div class="col-12 d-flex align-items-center justify-content-center gradient-aqua-marine">
-                    <div class="card px-4 py-2 box-shadow-2">
-                        <div class="card-header text-center">
-                            <img src="../../../assets/img/logos/logo-color-big.png" alt="company-logo" class="mb-3" width="80">
-                            <h4 class="text-uppercase text-bold-400 grey darken-1">ثبت نام</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-block mx-auto">
-                                <form #registerForm="ngForm" (ngSubmit)="register()">
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            <input [(ngModel)]="model.username" required type="text" class="form-control form-control-lg" name="username" id="username" placeholder="ایمیل خود را وارد کنید">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            <input [(ngModel)]="model.name" required type="text" class="form-control form-control-lg" name="name" id="name" placeholder="نام ">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            <input [(ngModel)]="model.phonenumber" required type="email" class="form-control form-control-lg" name="phonenumber" id="phonenumber" placeholder="شماره موبایل">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            <input [(ngModel)]="model.password" required type="password" class="form-control form-control-lg" name="password" id="password" placeholder="رمز عبور">
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-sm-offset-1">
-                                        <div class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                                            <input type="checkbox" class="custom-control-input" checked id="terms">
-                                            <label class="custom-control-label pl-2" for="terms">موافقم<a>شرایط و ضوابط</a></label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group text-center">
-                                        <button type="submit" class="btn btn-danger px-4 py-2 text-uppercase white font-small-4 box-shadow-2 border-0">شروع کنید</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="card-footer grey darken-1">
-                            <div class="text-center">آیا حساب کاربری دارید ؟ <a [routerLink]="['/auth/login']"><b>ورود</b></a></div>
-                        </div>
+<div class="container-login100 page-background">
+    <div class="wrap-login100">
+        <form [formGroup]="registerForm" (ngSubmit)="register()" class="login100-form validate-form">
+            <span class="login100-form-logo">
+                <img alt="" src="../../../../../assets/img/white.png">
+            </span>
+            <span class="login100-form-title p-b-34 p-t-27">
+                ثبت نام
+            </span>
+            <div class="row">
+                <div class="col-lg-12 p-t-20">
+                    <div class="wrap-input100 validate-input" data-validate="نام  را وارد کنید">
+                        <input formControlName="name" class="input100" type="text" placeholder="نام کاربری">
+                        <i class="fa fa-user focus-input1001"></i>
+                    </div>
+                </div>
+                <div class="col-lg-12 p-t-20">
+                    <div class="wrap-input100 validate-input" data-validate="نام کاربری را وارد کنید">
+                        <input formControlName="username"  class="input100" type="text" placeholder="ایمیل">
+                        <i class="fa fa-envelope-o focus-input1001"></i>
+                    </div>
+                </div>
+                <div class="col-lg-12 p-t-20">
+                    <div class="wrap-input100 validate-input" data-validate="رمز عبور را وارد کنید">
+                        <input formControlName="password"  class="input100" type="password" placeholder="رمز عبور">
+                        <i class="fa fa-lock focus-input1001"></i>
+                    </div>
+                </div>
+                <div class="col-lg-12 p-t-20">
+                    <div class="wrap-input100 validate-input" data-validate="دوباره رمز عبور را وارد کنید">
+                        <input formControlName="confirmPassword"  class="input100" type="password" name="pass2" placeholder="تکرار رمز عبور">
+                        <i class="fa fa-lock focus-input1001"></i>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!--Registration Page Ends-->
+            <div class="contact100-form-checkbox">
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" value=""> موافقم <a> شرایط و ضوابط</a>
+                        <span class="form-check-sign">
+                            <span class="check"></span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+            <div class="container-login100-form-btn">
+                <button class="login100-form-btn">
+                    ثبت نام
+                </button>
+            </div>
+            <div class="text-center p-t-50">
+                <a class="txt1"  [routerLink]="['/auth/login']">
+                    آیا عضو هستید ؟
+                </a>
+            </div>
+        </form>
+    </div>
 </div>
+
+<p>val : {{ registerForm.value | json }}</p>
+<p>val : {{registerForm.status | json}}</p>

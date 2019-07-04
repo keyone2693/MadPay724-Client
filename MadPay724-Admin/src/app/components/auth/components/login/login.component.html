@@ -1,52 +1,41 @@
-<div class="wrapper">
-    <!--Login Page Starts-->
-    <section id="login">
-        <div class="container-fluid">
-            <div class="row full-height-vh">
-                <div class="col-12 d-flex align-items-center justify-content-center gradient-aqua-marine">
-                    <div class="card box-shadow-2 width-400">
-                        <div class="card-header text-center">
-                            <img src="../../../assets/img/logos/logo-color-big.png" alt="company-logo" class="mb-3" width="80">
-                            <h4 class="text-uppercase text-bold-400 grey darken-1">ورود</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-block">
-                                <form #loginForm="ngForm" (ngSubmit)="login()">
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            <input [(ngModel)]="model.username" required type="email" class="form-control form-control-lg" name="username" id="username" placeholder="ایمیل">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            <input [(ngModel)]="model.password" required type="password" class="form-control form-control-lg" name="password" id="password" placeholder="رمز عبور">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            <div class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0 ml-5 float-right">
-                                                <input [(ngModel)]="model.isremember" type="checkbox" class="custom-control-input" name="isremember">
-                                                <label class="custom-control-label float-left" for="isremember">مرا به
-                                                    خاطر بسپار</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="text-center col-md-12">
-                                            <button [disabled]="!loginForm.valid" type="submit" class="btn btn-danger px-4 py-2 text-uppercase white font-small-4 box-shadow-2 border-0">ارسال</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="card-footer grey darken-1">
-                            <div class="text-center mb-1">رمز عبور را فراموش کرده اید؟ <a><b>بازیابی</b></a></div>
-                            <div class="text-center">آیا حساب کاربری ندارید؟ <a [routerLink]="['/auth/register']"><b>ثبت نام</b></a></div>
-                        </div>
-                    </div>
+<div class="container-login100 page-background">
+    <div class="wrap-login100">
+        <form #loginForm="ngForm" (ngSubmit)="login()" class="login100-form validate-form">
+            <span class="login100-form-logo">
+                <img alt="" src="../../../../../assets/img/white.png">
+            </span>
+            <span class="login100-form-title p-b-34 p-t-27">
+                ورود
+            </span>
+            <div class="wrap-input100 validate-input" data-validate="Enter username">
+                <input class="input100" type="text" [(ngModel)]="model.username" [ngModelOptions]="{standalone: true}" placeholder="یوزرنیم">
+                <i class="fa fa-user focus-input1001"></i>
+            </div>
+            <div class="wrap-input100 validate-input" data-validate="Enter password">
+                <input class="input100" type="password" [(ngModel)]="model.password" [ngModelOptions]="{standalone: true}" placeholder="پسورد">
+                <i class="fa fa-lock focus-input1001"></i>
+            </div>
+            <div class="contact100-form-checkbox">
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" [(ngModel)]="model.isremember" [ngModelOptions]="{standalone: true}" type="checkbox"> مرا به خاطر بسپار
+                        <span class="form-check-sign">
+                            <span class="check"></span>
+                        </span>
+                    </label>
                 </div>
             </div>
-        </div>
-    </section>
-    <!--Login Page Ends-->
+            <div class="container-login100-form-btn">
+                <button class="login100-form-btn">
+                    ورود
+                </button>
+            </div>
+                <div class="text-center p-t-50">
+                    <a [routerLink]="['/auth/register']" style="font-size: 15px;background: #333;padding: 10px 20px;border-radius: 5px;"  class="txt1 col-md-6">
+                         آیا حساب کاربری ندارید؟ </a>
+                    <a  href="forgot-password.html" class="txt1 col-md-6" style="font-size: 14px;padding: 10px 20px;border-radius: 5px;">
+                         رمز عبور را فراموش کرده اید؟ </a>
+                        </div>
+        </form>
+    </div>
 </div>
