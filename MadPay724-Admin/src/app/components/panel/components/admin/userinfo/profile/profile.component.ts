@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, HostListener, Input } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { ActivatedRoute } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/components/auth/services/auth.service';
 import { UserService } from 'src/app/components/panel/services/user.service';
 import { ToastrService } from 'ngx-toastr';
@@ -14,10 +14,10 @@ import { ToastrService } from 'ngx-toastr';
 export class ProfileComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private userService: UserService, private alertService: ToastrService,
-              private authService: AuthService) { }
- @ViewChild('editForm', {static: true}) editForm: NgForm;
+              private authService: AuthService, private formBuilder: FormBuilder) { }
   user: User;
   photoUrl: string;
+  editForm: FormGroup;
   @HostListener('window:beforeunload', ['$event'])
   unloadNotification($event: any) {
     if (this.editForm.dirty) {
@@ -28,7 +28,19 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.authService.currentPhotoUrl.subscribe(pu => this.photoUrl = pu);
     this.loadUser();
+    this.createEditUserInfoForm();
   }
+
+  createEditUserInfoForm() {
+    this.editForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      phoneNumber: ['', Validators.required],
+      gender: [''],
+      city: [''],
+      address: ['']
+    });
+  }
+
   goToSaveBtn() {
     $('html , body').animate({
       scrollTop: $('#btnsave').offset().top + 20
@@ -37,7 +49,7 @@ export class ProfileComponent implements OnInit {
   updateUserInfo() {
     this.userService.updateUserInfo(this.authService.decodedToken.nameid, this.user).subscribe(next => {
       this.alertService.success('اطلاعات کاربری با موفیقیت ویرایش شد', 'موفق');
-      this.editForm.form.markAsPristine();
+      this.editForm.reset(this.user);
           }, error => {
             this.alertService.error(error, 'خطا در ویرایش');
     });

@@ -158,35 +158,42 @@
                           </div>
                             <div class="card-body">
                               <div class="px-3">
-                                <form #editForm="ngForm" (ngSubmit)="updateUserInfo()" class="form">
+                                <form [formGroup]="editForm" (ngSubmit)="updateUserInfo()" class="form">
                                   <div class="form-body">
                                     <h4 class="form-section">
                                       <i class="icon-user"></i> اطلاعات شخصی
                                     </h4>
                                     <div class="row">
                                       <div class="col-md-6">
-                                        <div class="form-group">
+                                        <div class="form-group"
+                                        [ngClass]="{'error': editForm.get('name').errors
+                                        && editForm.get('name').touched}">
                                           <label for="projectinput1"
                                             >نام</label
                                           >
-                                          <input
-                                            type="text"
-                                            class="form-control"
-                                            [ngModelOptions]="{standalone: true}"
-                                            [(ngModel)]="user.name"
-                                          />
+                                          <div class="controls">
+                                            <input type="text" class="form-control" formControlName="name" [(ngModel)]="user.name" aria-invalid="true">
+                                        <div class="help-block">
+                                          <ul role="alert">
+                                            <li *ngIf="editForm.get('name').errors
+                                            && editForm.get('name').touched">این فیلد نمیتواند خالی باشد</li>
+                                          </ul>
+                                        </div></div>
                                         </div>
                                       </div>
                                       <div class="col-md-6">
-                                        <div class="form-group">
+                                        <div class="form-group"
+                                        [ngClass]="{'error': editForm.get('phoneNumber').errors
+                                        && editForm.get('phoneNumber').touched}">
                                           <label for="projectinput2"
                                             >شماره موبایل</label
                                           >
-                                          <input
-                                            type="text"
-                                            class="form-control" style="direction: ltr !important;text-align: left;"
-                                            [(ngModel)]="user.phoneNumber" [ngModelOptions]="{standalone: true}"
-                                           />
+                                          <div class="controls">
+                                            <input type="text" name="noChar" class="form-control" formControlName="phoneNumber" [(ngModel)]="user.phoneNumber" aria-invalid="true">
+                                        <div class="help-block"><ul role="alert">
+                                            <li *ngIf="editForm.get('phoneNumber').errors
+                                            && editForm.get('phoneNumber').touched">این فیلد نمیتواند خالی باشد</li>
+                                          </ul></div></div>
                                         </div>
                                       </div>
                                     </div>
@@ -198,7 +205,8 @@
                                           >
                                           <select
                                             class="form-control"
-                                            [(ngModel)]="user.gender" [ngModelOptions]="{standalone: true}"
+                                             [(ngModel)]="user.gender"
+                                            formControlName="gender"
                                           >
                                             <option value="true"
                                               >مرد</option
@@ -217,19 +225,21 @@
 
                                     <div class="form-group">
                                       <label for="companyName">شهر</label>
-                                      <input
-                                        type="text"
-                                        class="form-control"
-                                        [(ngModel)]="user.city" [ngModelOptions]="{standalone: true}"
-                                      />
+                                      <div class="controls">
+                                        <div class="controls">
+                                          <input type="text" name="noChar" class="form-control" formControlName="city" [(ngModel)]="user.city" aria-invalid="true">
+                                      </div>
+                                      </div>
+                                     
                                     </div>
+                                    
 
                                     <div class="form-group">
                                       <label for="projectinput8">آدرس</label>
                                       <textarea
                                         rows="5"
-                                        class="form-control"
-                                        [(ngModel)]="user.address" [ngModelOptions]="{standalone: true}"
+                                        class="form-control" [(ngModel)]="user.address"
+                                        formControlName="address"
                                       ></textarea>
                                     </div>
                                   </div>
@@ -239,7 +249,7 @@
                 <i class="icon-trash"></i> لغو
               </button> -->
                                     <button
-                                      type="submit" [disabled]="editForm.dirty" 
+                                      type="submit" [disabled]="!editForm.dirty" 
                                       class="btn btn-success"
                                     >
                                       <i class="icon-note"></i> تغییر اطلاعات کاربری
