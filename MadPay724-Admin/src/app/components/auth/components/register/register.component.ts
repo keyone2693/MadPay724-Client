@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
       username: new FormControl('', [Validators.required , Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]),
       confirmPassword: new FormControl('', Validators.required),
-      aproveRules: new FormControl(false, Validators.required)
+      aproveRules: new FormControl(true, Validators.required)
     }, [this.passMatchValidator, this.aproveRulesValidator]);
   }
   passMatchValidator(g: FormGroup) {

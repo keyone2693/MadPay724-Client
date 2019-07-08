@@ -33,11 +33,11 @@ export class ProfileComponent implements OnInit {
 
   createEditUserInfoForm() {
     this.editForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      phoneNumber: ['', Validators.required],
-      gender: [''],
-      city: [''],
-      address: ['']
+      name: [this.user.name, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      phoneNumber: [this.user.phoneNumber, Validators.required],
+      gender: [this.user.gender],
+      city: [this.user.city],
+      address: [this.user.address]
     });
   }
 
