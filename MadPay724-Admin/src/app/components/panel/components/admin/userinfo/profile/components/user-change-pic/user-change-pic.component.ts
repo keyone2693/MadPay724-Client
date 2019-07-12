@@ -45,7 +45,7 @@ initializeUplaoder() {
      // this.getUserPhotoUrl.emit(res.url);
       this.authService.changeUserPhoto(res.url);
       this.authService.currentUser.photoUrl = res.url;
-      localStorage.setItem('user',JSON.stringify(this.authService.currentUser));
+      localStorage.setItem('user', JSON.stringify(this.authService.currentUser));
     }
   };
 
