@@ -2,9 +2,9 @@ import { Component, OnInit, ViewChild, HostListener, Input } from '@angular/core
 import { User } from 'src/app/models/user';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/components/auth/services/auth.service';
-import { UserService } from 'src/app/components/panel/services/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from 'src/app/Services/panel/user.service';
+import { AuthService } from 'src/app/Services/auth/auth.service';
 
 @Component({
   selector: 'app-profile',

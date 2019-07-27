@@ -12,7 +12,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  baseUrl = environment.apiUrl + 'site/admin/auth/';
+  baseUrl = environment.apiUrl + environment.apiV1 + 'site/admin/auth/';
   jwtHelper = new JwtHelperService();
   decodedToken: any;
   currentUser: User;

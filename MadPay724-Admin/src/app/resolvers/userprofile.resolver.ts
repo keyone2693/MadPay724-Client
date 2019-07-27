@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { User } from '../models/user';
-import { UserService } from '../components/panel/services/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { AuthService } from '../components/auth/services/auth.service';
+import { AuthService } from '../Services/auth/auth.service';
+import { UserService } from '../Services/panel/user.service';
 
 @Injectable()
 export class UserProfileResolver implements Resolve<User> {

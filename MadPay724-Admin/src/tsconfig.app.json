@@ -4,9 +4,6 @@
     "outDir": "../out-tsc/app",
     "types": ["jquery"]
   },
-  "angularCompilerOptions": {
-    "enableIvy": true
-  },
   "exclude": [
     "test.ts",
     "**/*.spec.ts"

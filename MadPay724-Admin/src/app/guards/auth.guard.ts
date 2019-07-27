@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, RouterStateSnapshot, ActivatedRouteSnapshot} from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from '../components/auth/services/auth.service';
+import { AuthService } from '../Services/auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ import { AuthService } from '../components/auth/services/auth.service';
 export class AuthGuard implements CanActivate {
 
 constructor(private authService: AuthService, private router: Router,
-   private alertService: ToastrService) {}
+            private alertService: ToastrService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     if (this.authService.loggedIn()) {

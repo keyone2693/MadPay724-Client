@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserService } from 'src/app/components/panel/services/user.service';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from 'src/app/components/auth/services/auth.service';
+import { UserService } from 'src/app/Services/panel/user.service';
+import { AuthService } from 'src/app/Services/auth/auth.service';
 
 @Component({
   selector: 'app-user-change-pass',

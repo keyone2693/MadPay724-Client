@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../../../Services/auth/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { parseLazyRoute } from '@angular/compiler/src/aot/lazy_routes';
 
 
 
@@ -20,10 +19,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.model.isremember = true;
-    this.route.queryParams.subscribe(params => this.returnUrl = params['return'] || '/panel/dashboard');
-    if (this.loggedIn()) {
-      this.router.navigate([this.returnUrl]);
-    }
+    this.route.queryParams.subscribe(params => this.returnUrl = params.return || '/panel/dashboard');
   }
 
   login() {
@@ -35,7 +31,4 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  loggedIn() {
-   return this.authService.loggedIn();
-  }
 }

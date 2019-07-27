@@ -1,10 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { environment } from 'src/environments/environment';
-import { AuthService } from 'src/app/components/auth/services/auth.service';
 import { Photo } from 'src/app/models/photo';
-import { User } from 'src/app/models/user';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/Services/auth/auth.service';
 
 @Component({
   selector: 'app-user-change-pic',
@@ -15,7 +14,7 @@ export class UserChangePicComponent implements OnInit {
   // @Output() getUserPhotoUrl = new EventEmitter<string>();
   uploader: FileUploader;
   hasBaseDropZoneOver = false;
-  baseUrl = environment.apiUrl;
+  baseUrl = environment.apiUrl + environment.apiV1;
   constructor(private authService: AuthService, private alertService: ToastrService) { }
 
   ngOnInit() {

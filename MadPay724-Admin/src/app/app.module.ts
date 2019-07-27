@@ -13,7 +13,7 @@ import { NgxUiLoaderModule, NgxUiLoaderConfig, POSITION, SPINNER, PB_DIRECTION,
 import { AuthGuard } from './guards/auth.guard';
 import { JwtModule } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
-import { AuthService } from './components/auth/services/auth.service';
+import { AuthService } from './Services/auth/auth.service';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   pbColor: 'red',
@@ -56,7 +56,7 @@ export function tokenGet() {
       config: {
         tokenGetter: tokenGet,
         whitelistedDomains: [environment.apiUrlJwt],
-        blacklistedRoutes: [environment.apiUrlJwt + '/site/admin/auth']
+        blacklistedRoutes: [environment.apiUrlJwt + 'api/v1/site/admin/auth']
       }
     }),
     // Import NgxUiLoaderModule
