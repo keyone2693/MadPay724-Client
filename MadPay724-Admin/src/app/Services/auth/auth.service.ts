@@ -16,7 +16,7 @@ export class AuthService {
   jwtHelper = new JwtHelperService();
   decodedToken: any;
   currentUser: User;
-  photoUrl = new BehaviorSubject<string>('../../../../assets/img/profilepic.png');
+  photoUrl = new BehaviorSubject<string>('../../../assets/img/profilepic.png');
   currentPhotoUrl = this.photoUrl.asObservable();
 
   constructor(private http: HttpClient) { }
@@ -38,8 +38,8 @@ export class AuthService {
       })
     );
   }
-  register(model: any) {
-    return this.http.post(this.baseUrl + 'register', model);
+  register(user: User) {
+    return this.http.post(this.baseUrl + 'register', user);
   }
 
 loggedIn() {

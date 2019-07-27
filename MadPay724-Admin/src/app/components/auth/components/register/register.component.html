@@ -18,7 +18,7 @@
                         && registerForm.get('name').touched ? 'نام را وارد کنید' : null"
                         
                      >
-                        <input formControlName="name" class="input100" type="text" placeholder="نام کاربری">
+                        <input formControlName="name" class="input100" type="text" placeholder="نام و نام خانوادگی">
                         <i class="fa fa-user focus-input1001"></i>
                         <i *ngIf="registerForm.get('name').hasError('required')
                                   && registerForm.get('name').touched" class="icon-info material-icons erroe_dis"></i>
@@ -35,12 +35,28 @@
                     && registerForm.get('username').touched ? 'ایمیل را وارد کنید' : registerForm.get('username').hasError('email')
                     && registerForm.get('username').touched ? 'ایمیل صحیح نمیباشد' : null"
                     
-                    data-validate="نام کاربری را وارد کنید">
-                        <input formControlName="username"  class="input100" type="text" placeholder="ایمیل">
+                    data-validate="ایمیل را وارد کنید">
+                        <input formControlName="username"  class="input100" type="text" placeholder="ایمیل (یوزرنیم)">
                         <i class="fa fa-envelope-o focus-input1001"></i>
                         <i *ngIf="(registerForm.get('username').hasError('required')
                                   && registerForm.get('username').touched) || (registerForm.get('username').hasError('email')
                                   && registerForm.get('username').touched)" class="icon-info material-icons erroe_dis"></i>
+                    </div>
+                </div>
+                <div class="col-lg-12 p-t-20">
+                    <div class="wrap-input100 validate-input"
+
+                    [ngClass]="{'alert-validate': registerForm.get('phoneNumber').errors
+                    && registerForm.get('phoneNumber').touched}"
+
+                    [attr.data-validate]="registerForm.get('phoneNumber').hasError('required')
+                    && registerForm.get('phoneNumber').touched ? 'شماره موبایل صحیح وارد کنید' : null"
+                    
+                    data-validate="موبایل خود را وارد کنید">
+                        <input formControlName="phoneNumber"  class="input100" type="text" placeholder="شماره موبایل">
+                        <i class="fa fa-envelope-o focus-input1001"></i>
+                        <i *ngIf="(registerForm.get('phoneNumber').hasError('required')
+                                  && registerForm.get('phoneNumber').touched)" class="icon-info material-icons erroe_dis"></i>
                     </div>
                 </div>
                 <div class="col-lg-12 p-t-20">
