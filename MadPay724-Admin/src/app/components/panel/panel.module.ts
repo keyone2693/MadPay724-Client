@@ -4,17 +4,18 @@ import { PanelRoutingModule } from './panel-routing.module';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { ProfileComponent } from './components/admin/userinfo/profile/profile.component';
-import { DocumentComponent } from './components/admin/userinfo/document/document.component';
 import { PersianTimeAgoPipe } from 'persian-time-ago-pipe';
 import { UserProfileResolver } from 'src/app/resolvers/userprofile.resolver';
 import { CommonModule } from '@angular/common';
 import { PreventUnsavedGuard } from 'src/app/guards/prevent-unsaved.guard';
-import { UserChangePassComponent } from './components/admin/userinfo/profile/components/user-change-pass/user-change-pass.component';
-import { UserChangePicComponent } from './components/admin/userinfo/profile/components/user-change-pic/user-change-pic.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FileUploadModule } from 'ng2-file-upload';
 import { UserService } from 'src/app/Services/panel/user.service';
+import { UsersManagementComponent } from './components/admin/users-management/users-management.component';
+import { UserChangePassComponent } from './components/user/userinfo/profile/components/user-change-pass/user-change-pass.component';
+import { DocumentComponent } from './components/user/userinfo/document/document.component';
+import { UserChangePicComponent } from './components/user/userinfo/profile/components/user-change-pic/user-change-pic.component';
+import { ProfileComponent } from './components/user/userinfo/profile/profile.component';
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import { UserService } from 'src/app/Services/panel/user.service';
     SidebarComponent,
     UserChangePassComponent,
     UserChangePicComponent,
+    UsersManagementComponent,
     PersianTimeAgoPipe
   ],
   providers: [

@@ -1,48 +1,94 @@
-<div data-active-color="white" data-background-color="timber" data-image="../../../../../assets/app-assets/img/sidebar-bg/01.jpg" class="app-sidebar">
-    <div class="sidebar-header">
-        <div class="logo clearfix">
-            <a href="index-2.html" class="logo-text float-right">
-                <div class="logo-img"><img src="../assets/img/logo.png" alt="Convex Logo" /></div><span class="text align-middle">CONVEX</span>
-            </a><a id="sidebarToggle" href="javascript:;" class="nav-toggle d-none d-sm-none d-md-none d-lg-block"><i data-toggle="collapsed" class="ft-circle toggle-icon"></i></a>
-            <a id="sidebarClose" href="javascript:;" class="nav-close d-block d-md-block d-lg-none d-xl-none"><i class="ft-circle"></i></a>
+<div
+  data-active-color="white"
+  data-background-color="timber"
+  data-image="../../../../../assets/app-assets/img/sidebar-bg/01.jpg"
+  class="app-sidebar"
+>
+  <div class="sidebar-header">
+    <div class="logo clearfix">
+      <a href="index-2.html" class="logo-text float-right">
+        <div class="logo-img">
+          <img src="../assets/img/logo.png" alt="Convex Logo" />
         </div>
+        <span class="text align-middle">CONVEX</span> </a
+      ><a
+        id="sidebarToggle"
+        href="javascript:;"
+        class="nav-toggle d-none d-sm-none d-md-none d-lg-block"
+        ><i data-toggle="collapsed" class="ft-circle toggle-icon"></i
+      ></a>
+      <a
+        id="sidebarClose"
+        href="javascript:;"
+        class="nav-close d-block d-md-block d-lg-none d-xl-none"
+        ><i class="ft-circle"></i
+      ></a>
     </div>
-    <div class="sidebar-content">
-        <div class="nav-container">
-            <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
-                <li routerLinkActive="active" class=" nav-item">
-                    <a [routerLink]="['/panel/dashboard']"><i class="icon-home"></i><span data-i18n="" class="menu-title">داشبورد</span></a>
-                </li>
-               
-               
-                <li class="has-sub nav-item">
-                        <a href="javascript:;">
-                            <i class="icon-info"></i>
-                            <span data-i18n="" class="menu-title">اطلاعات شما</span>
-                            <!-- <span class="tag badge badge-pill badge-danger mt-1">2</span> -->
-                        </a>
-                        <ul class="menu-content">
-                            <li routerLinkActive="active mlisub">
-                                    
-                                <a [routerLink]="['/panel/userinfo/profile']" class="menu-item">
-                                    <i class="icon-user-following"></i>
-                                    پروفایل</a>
-                            </li>
-                            <li routerLinkActive="active mlisub">
-                                <a [routerLink]="['/panel/userinfo/documents']" class="menu-item">
-                                    <i class="icon-docs"></i>
-                                    مدارک</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class=" nav-item">
-                            <a>
-                                <i class="icon-user-following">
-        
-                                </i><span class="menu-title">ارتباط با ما</span></a>
-                        </li>
-            </ul>
-        </div>
+  </div>
+  <div class="sidebar-content">
+    <div class="nav-container">
+      <ul
+        id="main-menu-navigation"
+        data-menu="menu-navigation"
+        class="navigation navigation-main"
+      >
+        <li routerLinkActive="active" class=" nav-item">
+          <a [routerLink]="['/panel/user/dashboard']"
+            ><i class="icon-home"></i
+            ><span data-i18n="" class="menu-title">داشبورد</span></a
+          >
+        </li>
+        <!--#region Admin-->
+        <li class="has-sub nav-item">
+          <a href="javascript:;">
+            <i class="icon-info"></i>
+            <span data-i18n="" class="menu-title">کاربران</span>
+            <!-- <span class="tag badge badge-pill badge-danger mt-1">2</span> -->
+          </a>
+          <ul class="menu-content">
+            <li routerLinkActive="active mlisub">
+              <a [routerLink]="['/panel/admin/users/usersmanagement']" class="menu-item">
+                <i class="icon-user-following"></i>
+                مدیریت کاربران</a
+              >
+            </li>
+          </ul>
+        </li>
+
+        <!--#endregion-->
+
+        <!--#region User-->
+        <li class="has-sub nav-item">
+          <a href="javascript:;">
+            <i class="icon-info"></i>
+            <span data-i18n="" class="menu-title">اطلاعات شما</span>
+            <!-- <span class="tag badge badge-pill badge-danger mt-1">2</span> -->
+          </a>
+          <ul class="menu-content">
+            <li routerLinkActive="active mlisub">
+              <a [routerLink]="['/panel/user/userinfo/profile']" class="menu-item">
+                <i class="icon-user-following"></i>
+                پروفایل</a
+              >
+            </li>
+            <li routerLinkActive="active mlisub">
+              <a [routerLink]="['/panel/user/userinfo/documents']" class="menu-item">
+                <i class="icon-docs"></i>
+                مدارک</a
+              >
+            </li>
+          </ul>
+        </li>
+        <!--#endregion-->
+
+        <li class=" nav-item">
+          <a>
+            <i class="icon-user-following"> </i
+            ><span class="menu-title">ارتباط با ما</span></a
+          >
+        </li>
+      </ul>
     </div>
-    <div class="sidebar-background"></div>
+  </div>
+  <div class="sidebar-background"></div>
 </div>

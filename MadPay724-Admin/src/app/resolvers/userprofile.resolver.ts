@@ -13,7 +13,7 @@ export class UserProfileResolver implements Resolve<User> {
                 private alertService: ToastrService, private authService: AuthService) {}
 
     resolve(route: ActivatedRouteSnapshot): Observable<User> {
-        return this.userService.getUser (this.authService.decodedToken.nameid).pipe(
+        return this.userService.getUser(this.authService.decodedToken.nameid).pipe(
             catchError(error => {
                 this.alertService.error('خطا دردریافت اطلاعات', 'خطا');
                 this.router.navigate(['/panel/userinfo/profile']);

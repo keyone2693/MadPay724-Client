@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
         this.alertService.error(error, 'خطا در ثبت نام');
       }, () => {
         this.authService.login(this.user).subscribe(() => {
-          this.router.navigate(['/panel/dashboard']);
+          this.router.navigate(['/panel/user/dashboard']);
         }, error => {
           this.alertService.warning(error, 'ثبت نام موفق خطا در ورود');
         });

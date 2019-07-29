@@ -2,21 +2,25 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PanelComponent } from './panel.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
-import { ProfileComponent } from './components/admin/userinfo/profile/profile.component';
-import { DocumentComponent } from './components/admin/userinfo/document/document.component';
 import { UserProfileResolver } from 'src/app/resolvers/userprofile.resolver';
 import { PreventUnsavedGuard } from 'src/app/guards/prevent-unsaved.guard';
+import { UsersManagementComponent } from './components/admin/users-management/users-management.component';
+import { ProfileComponent } from './components/user/userinfo/profile/profile.component';
+import { DocumentComponent } from './components/user/userinfo/document/document.component';
 
 const routes: Routes = [
   {
     path: '',
     component: PanelComponent,
     children: [
-      {path: 'dashboard', component: DashboardComponent},
-      {path: 'userinfo/profile', component: ProfileComponent,
+      {path: 'user/dashboard', component: DashboardComponent},
+      // userinfo
+      {path: 'user/userinfo/profile', component: ProfileComponent,
        resolve: {user: UserProfileResolver},
        canDeactivate: [PreventUnsavedGuard]},
-      {path: 'userinfo/documents', component: DocumentComponent}
+      {path: 'user/userinfo/documents', component: DocumentComponent},
+      // users
+      {path: 'admin/users/usersmanagement', component: UsersManagementComponent}
     ]
    }
 ];

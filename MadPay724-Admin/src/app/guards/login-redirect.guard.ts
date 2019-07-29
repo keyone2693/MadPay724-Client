@@ -13,7 +13,7 @@ constructor(private router: Router, private authService: AuthService, private al
     if (!this.loggedIn()) {
       return true;
     } else {
-        this.router.navigate(['/panel/dashboard']);
+        this.router.navigate(['/panel/user/dashboard']);
         this.alertService.warning('شما قبلا وارد شده اید', 'موفق');
         return false;
     }
