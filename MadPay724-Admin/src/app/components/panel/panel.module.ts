@@ -16,6 +16,7 @@ import { UserChangePassComponent } from './components/user/userinfo/profile/comp
 import { DocumentComponent } from './components/user/userinfo/document/document.component';
 import { UserChangePicComponent } from './components/user/userinfo/profile/components/user-change-pic/user-change-pic.component';
 import { ProfileComponent } from './components/user/userinfo/profile/profile.component';
+import { AuthGuard } from 'src/app/guards/auth.guard';
 
 @NgModule({
   imports: [
@@ -40,6 +41,7 @@ import { ProfileComponent } from './components/user/userinfo/profile/profile.com
   providers: [
     UserService,
     UserProfileResolver,
+    AuthGuard,
     PreventUnsavedGuard
   ],
 })

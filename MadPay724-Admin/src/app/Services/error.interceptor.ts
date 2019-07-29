@@ -12,7 +12,7 @@ export class ErrorInterceptor implements HttpInterceptor {
             catchError(error => {
                 if (error instanceof HttpErrorResponse) {
                     if (error.status === 401) {
-                        return throwError('درخواست غیر مجاز');
+                        return throwError(error.error);
                     }
                     // error
                     const appError = error.headers.get('App-Error');
