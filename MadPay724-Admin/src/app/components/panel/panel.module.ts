@@ -17,6 +17,7 @@ import { DocumentComponent } from './components/user/userinfo/document/document.
 import { UserChangePicComponent } from './components/user/userinfo/profile/components/user-change-pic/user-change-pic.component';
 import { ProfileComponent } from './components/user/userinfo/profile/profile.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
+import { HasRoleDirective } from 'src/app/directives/hasRole.directive';
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ import { AuthGuard } from 'src/app/guards/auth.guard';
     UserChangePassComponent,
     UserChangePicComponent,
     UsersManagementComponent,
-    PersianTimeAgoPipe
+    PersianTimeAgoPipe,
+    HasRoleDirective
   ],
   providers: [
     UserService,

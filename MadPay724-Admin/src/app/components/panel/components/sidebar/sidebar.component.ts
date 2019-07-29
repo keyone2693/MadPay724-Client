@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  url = '../../../assets/js/app-sidebar.js';
+  url = '../../../../../assets/js/app-sidebar.js';
   loadAPI: any;
   constructor() { }
 

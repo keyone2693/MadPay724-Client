@@ -39,7 +39,7 @@
           >
         </li>
         <!--#region Admin-->
-        <li class="has-sub nav-item">
+        <li *appHasRole="['Admin']" class="has-sub nav-item">
           <a href="javascript:;">
             <i class="icon-info"></i>
             <span data-i18n="" class="menu-title">کاربران</span>
@@ -65,13 +65,13 @@
             <!-- <span class="tag badge badge-pill badge-danger mt-1">2</span> -->
           </a>
           <ul class="menu-content">
-            <li routerLinkActive="active mlisub">
+            <li  *appHasRole="['User', 'Admin', 'Blog', 'Accountant' ]" routerLinkActive="active mlisub">
               <a [routerLink]="['/panel/user/userinfo/profile']" class="menu-item">
                 <i class="icon-user-following"></i>
                 پروفایل</a
               >
             </li>
-            <li routerLinkActive="active mlisub">
+            <li  *appHasRole="['User']" routerLinkActive="active mlisub">
               <a [routerLink]="['/panel/user/userinfo/documents']" class="menu-item">
                 <i class="icon-docs"></i>
                 مدارک</a

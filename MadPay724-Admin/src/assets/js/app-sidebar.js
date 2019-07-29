@@ -94,7 +94,6 @@
             });
 
             
-
             setTimeout(function() {
                 $children.addClass('is-shown');
                 $children.removeClass('is-hidden');
