@@ -55,11 +55,11 @@ export class AuthService {
 
 getNewRefreshToken(): Observable<any> {
   const user: User = JSON.parse(localStorage.getItem('user'));
-  const userName = user.userName;
+  const username = user.userName;
   const refreshToken = localStorage.getItem('refreshToken');
-  const grantType = 'refresh_token';
+  const granttype = 'refresh_token';
 
-  return this.http.post(this.baseUrl + 'login', {userName, refreshToken, grantType}).pipe(
+  return this.http.post(this.baseUrl + 'login', {username, refreshToken, granttype}).pipe(
     map((result: any) => {
       if (result && result.token) {
         localStorage.setItem('token', result.token);

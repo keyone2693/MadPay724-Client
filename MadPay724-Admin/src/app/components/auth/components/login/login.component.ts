@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.model.isremember = true;
+    this.model.granttype = 'password';
     this.route.queryParams.subscribe(params => this.returnUrl = params.return || '/panel/user/dashboard');
   }
 
