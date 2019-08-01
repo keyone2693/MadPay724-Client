@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
 import { User } from 'src/app/models/user';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 
 @Injectable({
@@ -52,6 +52,30 @@ export class AuthService {
     this.decodedToken = null;
     this.currentUser = null;
   }
+
+getNewRefreshToken(): Observable<any> {
+  const user: User = JSON.parse(localStorage.getItem('user'));
+  const userName = user.userName;
+  const refreshToken = localStorage.getItem('refreshToken');
+  const grantType = 'refresh_token';
+
+  return this.http.post(this.baseUrl + 'login', {userName, refreshToken, grantType}).pipe(
+    map((result: any) => {
+      if (result && result.token) {
+        localStorage.setItem('token', result.token);
+       // localStorage.setItem('refreshToken', result.refresh_token);
+       // localStorage.setItem('user', JSON.stringify(result.user));
+        this.decodedToken = this.jwtHelper.decodeToken(result.token);
+      //  this.currentUser = result.user;
+      //  this.changeUserPhoto(this.currentUser.photoUrl);
+      }
+      return result as any;
+    })
+  );
+
+}
+
+
   roleMatch(allowedRoles): boolean {
     let isMatch = false;
     const userRoles = this.decodedToken.role as Array<string>;
