@@ -8,10 +8,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
-import { NgxUiLoaderModule, NgxUiLoaderConfig, POSITION, SPINNER, PB_DIRECTION,
-   NgxUiLoaderRouterModule, NgxUiLoaderHttpModule } from 'ngx-ui-loader';
-// import { JwtModule } from '@auth0/angular-jwt';
-import { environment } from 'src/environments/environment';
+import {
+  NgxUiLoaderModule, NgxUiLoaderConfig, POSITION, SPINNER, PB_DIRECTION,
+  NgxUiLoaderRouterModule, NgxUiLoaderHttpModule
+} from 'ngx-ui-loader';
 import { AuthService } from './Services/auth/auth.service';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -51,21 +51,13 @@ export function tokenGet() {
       progressAnimation: 'decreasing'
     }),
     HttpClientModule,
-    // JwtModule.forRoot({
-    //   config: {
-    //     tokenGetter: tokenGet,
-    //     whitelistedDomains: [environment.apiUrlJwt],
-    //     blacklistedRoutes: [environment.apiUrlJwt + '/api/v1/site/panel/auth']
-    //   }
-    // }),
-    // Import NgxUiLoaderModule
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     NgxUiLoaderRouterModule,
     NgxUiLoaderHttpModule.forRoot({ showForeground: true })
-    ],
+  ],
   providers: [
-      ErrorInterceptorProvider,
-      AuthService
+    ErrorInterceptorProvider,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

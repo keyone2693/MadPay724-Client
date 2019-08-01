@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse,
-     HTTP_INTERCEPTORS, HttpResponse } from '@angular/common/http';
+import {
+    HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse,
+    HTTP_INTERCEPTORS, HttpResponse
+} from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, tap, switchMap, finalize, filter, take } from 'rxjs/operators';
 import { AuthService } from './auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
 
 
 
@@ -14,22 +15,28 @@ export class ErrorInterceptor implements HttpInterceptor {
     private isTokenRefreshin = false;
     tokenSubject = new BehaviorSubject<string>(null);
 
-    constructor(private authService: AuthService, private alertService: ToastrService, private router: Router) { }
+    constructor(private authService: AuthService, private alertService: ToastrService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        return next.handle(req).pipe(
+        return next.handle(this.attachTokenToRequest(req)).pipe(
             tap((event: HttpEvent<any>) => {
                 if (event instanceof HttpResponse) {
                     console.log('success');
                 }
-            }), catchError(error => {
+            }), catchError((error): Observable<any> => {
                 if (error instanceof HttpErrorResponse) {
-                    if (error.status === 401) {
-                        // return throwError(error.error);
-                        console.log('attemring refresh tiken ...');
-                        this.handleHttpResponseError(req, next);
+                    if ((error as HttpErrorResponse).status === 401) {
+                        if (error.error === '0x000keyvanx00') {
+                            this.alertService.error('خطا در اعتبار سنجی خودکار', 'خطا');
+                            return this.authService.logout() as any;
+                        } else if (error.error === '1x111keyvanx11') {
+                            return throwError('کاربری با این یوزر و پس وجود ندارد');
+                        } else {
+                            return this.handleHttpResponseError(req, next);
+                        }
+                    } else {
+                        return this.handelError(error);
                     }
-                    return this.handelError(error);
                 }
             })
         );
@@ -40,7 +47,6 @@ export class ErrorInterceptor implements HttpInterceptor {
             this.isTokenRefreshin = true;
 
             this.tokenSubject.next(null);
-
             return this.authService.getNewRefreshToken().pipe(
                 switchMap((tokenResponse: any) => {
                     if (tokenResponse) {
@@ -51,12 +57,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                         return next.handle(this.attachTokenToRequest(requrst));
                     }
                 }), catchError(err => {
-                    if (err.error === '0x000keyvanx00') {
-                        this.authService.logout();
-                        return throwError('خطا در اعتبار سنجی خودکار');
-                    } else {
-                        return this.handelError(err);
-                    }
+                    return this.handelError(err);
                 }), finalize(() => {
                     this.isTokenRefreshin = false;
                 })
@@ -64,16 +65,16 @@ export class ErrorInterceptor implements HttpInterceptor {
         } else {
             this.isTokenRefreshin = false;
             return this.tokenSubject.pipe(filter(token => token != null),
-            take(1),
-            switchMap(token => {
-                return next.handle(this.attachTokenToRequest(requrst));
-            }));
+                take(1),
+                switchMap(token => {
+                    return next.handle(this.attachTokenToRequest(requrst));
+                }));
         }
     }
     private attachTokenToRequest(request: HttpRequest<any>) {
-        const token = localStorage.getItem('jwt');
+        const token = localStorage.getItem('token');
 
-        return request.clone({ setHeaders: { Authorization: 'Bearer ${token}' } });
+        return request.clone({ setHeaders: { Authorization: 'Bearer ' + token } });
     }
 
     private handelError(error: HttpErrorResponse) {

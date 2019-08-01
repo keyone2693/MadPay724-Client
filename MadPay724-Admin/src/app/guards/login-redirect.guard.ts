@@ -10,7 +10,7 @@ export class LoginRedirectGuard implements CanActivate {
 constructor(private router: Router, private authService: AuthService, private alertService: ToastrService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if (!this.loggedIn()) {
+    if (!this.authService.loggedIn()) {
       return true;
     } else {
         this.router.navigate([this.authService.getDashboardUrl()]);
@@ -18,8 +18,4 @@ constructor(private router: Router, private authService: AuthService, private al
         return false;
     }
   }
-
-  loggedIn() {
-    return this.authService.loggedIn();
-   }
 }

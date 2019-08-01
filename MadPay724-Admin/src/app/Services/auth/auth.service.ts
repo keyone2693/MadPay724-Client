@@ -6,6 +6,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
 import { User } from 'src/app/models/user';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -19,7 +21,7 @@ export class AuthService {
   photoUrl = new BehaviorSubject<string>('../../../assets/img/profilepic.png');
   currentPhotoUrl = this.photoUrl.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private alertService: ToastrService, private router: Router) { }
 
   changeUserPhoto(photoUrl: string) {
     this.photoUrl.next(photoUrl);
@@ -30,6 +32,7 @@ export class AuthService {
         const user = resp;
         if (user) {
           localStorage.setItem('token', user.token);
+          localStorage.setItem('refreshToken', user.refresh_token);
           localStorage.setItem('user', JSON.stringify(user.user));
           this.decodedToken = this.jwtHelper.decodeToken(user.token);
           this.currentUser = user.user;
@@ -44,13 +47,21 @@ export class AuthService {
 
   loggedIn() {
     const token = localStorage.getItem('token');
-    return !this.jwtHelper.isTokenExpired(token);
+    // tslint:disable-next-line: triple-equals
+    if (token != null || token != undefined) {
+      return true; // !this.jwtHelper.isTokenExpired(token);
+    } else {
+      return false;
+    }
   }
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.removeItem('refreshToken');
     this.decodedToken = null;
     this.currentUser = null;
+    this.router.navigate(['/auth/login']);
+    this.alertService.warning('با موفقیت خارج شدید', 'موفق');
   }
 
 getNewRefreshToken(): Observable<any> {
@@ -58,9 +69,8 @@ getNewRefreshToken(): Observable<any> {
   const username = user.userName;
   const refreshToken = localStorage.getItem('refreshToken');
   const granttype = 'refresh_token';
-
-  return this.http.post(this.baseUrl + 'login', {username, refreshToken, granttype}).pipe(
-    map((result: any) => {
+  return this.http.post<any>(this.baseUrl + 'login', {username, refreshToken, granttype}).pipe(
+    map(result => {
       if (result && result.token) {
         localStorage.setItem('token', result.token);
        // localStorage.setItem('refreshToken', result.refresh_token);
