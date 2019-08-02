@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: 'auth', redirectTo: '/auth/login', pathMatch: 'full'},
@@ -16,6 +15,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})],
-  exports: [RouterModule]
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 
-import Chartist from '../../../../../../assets/vendors/js/chartist.min.js';
+import Chartist from '../../../../../../../assets/vendors/js/chartist.min.js';
 
 @Component({
   selector: 'app-dashboard',
