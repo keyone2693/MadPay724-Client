@@ -16,6 +16,7 @@ import { UserDashboardComponent } from './components/user-dashboard/user-dashboa
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/SharedModule/material/material.module';
 import { NotificationComponent } from './components/notification/notification.component';
+import { NotificationResolver } from 'src/app/resolvers/notification.resolver';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import { NotificationComponent } from './components/notification/notification.co
   providers: [
     UserService,
     UserProfileResolver,
+    NotificationResolver,
     PreventUnsavedGuard
   ]
 })

@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { UserComponent } from './user.component';
 import { UserProfileResolver } from 'src/app/resolvers/userprofile.resolver';
 import { PreventUnsavedGuard } from 'src/app/guards/prevent-unsaved.guard';
-import { DashboardComponent } from '../admin/components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/userinfo/profile/profile.component';
 import { DocumentComponent } from './components/userinfo/document/document.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 import { NotificationComponent } from './components/notification/notification.component';
+import { NotificationResolver } from 'src/app/resolvers/notification.resolver';
 
 const routes: Routes = [
    {
@@ -25,7 +25,8 @@ const routes: Routes = [
       {path: 'userinfo/documents', canActivate: [AuthGuard], component: DocumentComponent,
        data: {roles: ['User']}},
       //
-      {path: 'notification', canActivate: [AuthGuard], component: NotificationComponent,
+      {path: 'notification', canActivate: [AuthGuard],
+      resolve: {notify: NotificationResolver}, component: NotificationComponent,
       data: {roles: ['User']}},
 
     ]
