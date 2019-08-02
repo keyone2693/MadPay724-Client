@@ -20,11 +20,14 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.model.isremember = true;
     this.model.granttype = 'password';
-    this.route.queryParams.subscribe(params => this.returnUrl = params.return || '/panel/user/dashboard');
+    this.route.queryParams.subscribe(params => this.returnUrl = params.return);
   }
 
   login() {
     this.authService.login(this.model).subscribe(next => {
+      if (this.returnUrl === null || this.returnUrl === undefined) {
+        this.returnUrl = this.authService.getDashboardUrl();
+      }
       this.router.navigate([this.returnUrl]);
       this.alertService.success('با موفقیت وارد شدید', 'موفق');
     }, error => {

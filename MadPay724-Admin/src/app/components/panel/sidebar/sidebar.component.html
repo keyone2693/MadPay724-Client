@@ -32,7 +32,13 @@
         data-menu="menu-navigation"
         class="navigation navigation-main"
       >
-        <li routerLinkActive="active" class=" nav-item">
+        <li *appHasRole="['Admin']" routerLinkActive="active" class=" nav-item">
+          <a [routerLink]="['/panel/admin/dashboard']"
+            ><i class="icon-home"></i
+            ><span data-i18n="" class="menu-title">داشبورد</span></a
+          >
+        </li>
+        <li *appHasRole="['User']" routerLinkActive="active" class=" nav-item">
           <a [routerLink]="['/panel/user/dashboard']"
             ><i class="icon-home"></i
             ><span data-i18n="" class="menu-title">داشبورد</span></a
