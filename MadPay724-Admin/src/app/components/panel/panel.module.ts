@@ -19,13 +19,17 @@ import { ProfileComponent } from './components/user/userinfo/profile/profile.com
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { HasRoleDirective } from 'src/app/directives/hasRole.directive';
 
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
+
 @NgModule({
   imports: [
     PanelRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    FileUploadModule
+    FileUploadModule,
+    MatCheckboxModule
   ],
   declarations: [
     PanelComponent,

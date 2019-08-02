@@ -1,3 +1,31 @@
-<p>
-  document works!
-</p>
+<div class="main-panel">
+  <div class="main-content">
+    <div class="content-wrapper">
+      <div class="container-fluid">
+        <!-- User Profile Starts-->
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a [routerLink]="['/panel/dashboard']">داشبورد</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a [routerLink]="['/panel/profile']">ارسال مدارک</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              مشاهده و ویرایش مدارک
+            </li>
+          </ol>
+        </nav>
+        <!--Basic User Details Starts-->
+        <section id="user-area">
+          <div class="row">
+            <div class="col-md-12"><mat-checkbox>اطلاع رسانی با اس ام اس</mat-checkbox></div>
+            
+
+          </div>
+        </section>
+        <!--User Profile Starts-->
+      </div>
+    </div>
+  </div>
+</div>
