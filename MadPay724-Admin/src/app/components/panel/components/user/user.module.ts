@@ -6,7 +6,6 @@ import { UserProfileResolver } from 'src/app/resolvers/userprofile.resolver';
 import { PreventUnsavedGuard } from 'src/app/guards/prevent-unsaved.guard';
 import { FileUploadModule } from 'ng2-file-upload';
 
-import {MatCheckboxModule} from '@angular/material/checkbox';
 import { UserRoutingModule } from './user-routing.module';
 import { UserChangePicComponent } from './components/userinfo/profile/components/user-change-pic/user-change-pic.component';
 import { UserChangePassComponent } from './components/userinfo/profile/components/user-change-pass/user-change-pass.component';
@@ -15,15 +14,17 @@ import { ProfileComponent } from './components/userinfo/profile/profile.componen
 import { PersianTimeAgoPipe } from 'persian-time-ago-pipe';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from 'src/app/SharedModule/material/material.module';
+import { NotificationComponent } from './components/notification/notification.component';
 
 @NgModule({
   imports: [
     UserRoutingModule,
     FileUploadModule,
-    MatCheckboxModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ],
   declarations: [
     PersianTimeAgoPipe,
@@ -32,7 +33,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DocumentComponent,
     UserChangePassComponent,
     UserChangePicComponent,
-    UserDashboardComponent
+    UserDashboardComponent,
+    NotificationComponent
   ],
   providers: [
     UserService,

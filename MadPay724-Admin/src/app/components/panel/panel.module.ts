@@ -21,7 +21,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     HasRoleDirective
   ],
   providers: [
-    AuthGuard,
+    AuthGuard
   ]
 })
 

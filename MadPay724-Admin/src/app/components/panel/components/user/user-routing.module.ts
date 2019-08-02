@@ -8,6 +8,7 @@ import { ProfileComponent } from './components/userinfo/profile/profile.componen
 import { DocumentComponent } from './components/userinfo/document/document.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
+import { NotificationComponent } from './components/notification/notification.component';
 
 const routes: Routes = [
    {
@@ -23,7 +24,9 @@ const routes: Routes = [
        canDeactivate: [PreventUnsavedGuard]},
       {path: 'userinfo/documents', canActivate: [AuthGuard], component: DocumentComponent,
        data: {roles: ['User']}},
-      // users
+      //
+      {path: 'notification', canActivate: [AuthGuard], component: NotificationComponent,
+      data: {roles: ['User']}},
 
     ]
    }
