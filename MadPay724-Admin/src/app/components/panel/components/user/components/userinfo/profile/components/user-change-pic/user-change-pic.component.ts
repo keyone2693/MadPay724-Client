@@ -26,7 +26,7 @@ export class UserChangePicComponent implements OnInit {
 
 initializeUplaoder() {
   this.uploader = new FileUploader({
-      url: this.baseUrl + 'site/admin/Users/' + this.authService.decodedToken.nameid + '/photos',
+      url: this.baseUrl + 'site/panel/users/' + this.authService.decodedToken.nameid + '/photos',
       authToken: 'Bearer ' + localStorage.getItem('token'),
       allowedFileType: ['image'],
       removeAfterUpload: true,

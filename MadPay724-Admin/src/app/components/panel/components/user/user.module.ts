@@ -14,13 +14,16 @@ import { DocumentComponent } from './components/userinfo/document/document.compo
 import { ProfileComponent } from './components/userinfo/profile/profile.component';
 import { PersianTimeAgoPipe } from 'persian-time-ago-pipe';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     UserRoutingModule,
     FileUploadModule,
     MatCheckboxModule,
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     PersianTimeAgoPipe,

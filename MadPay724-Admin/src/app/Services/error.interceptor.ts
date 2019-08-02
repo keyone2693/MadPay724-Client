@@ -31,9 +31,8 @@ export class ErrorInterceptor implements HttpInterceptor {
                             return this.authService.logout() as any;
                         } else if (error.error === '1x111keyvanx11') {
                             return throwError('کاربری با این یوزر و پس وجود ندارد');
-                        } else {
-                            return this.handleHttpResponseError(req, next);
                         }
+                        return this.handleHttpResponseError(req, next);
                     } else {
                         return this.handelError(error);
                     }

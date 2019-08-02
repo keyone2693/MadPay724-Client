@@ -16,7 +16,7 @@ export class UserProfileResolver implements Resolve<User> {
         return this.userService.getUser(this.authService.decodedToken.nameid).pipe(
             catchError(error => {
                 this.alertService.error('خطا دردریافت اطلاعات', 'خطا');
-                this.router.navigate(['/panel/userinfo/profile']);
+                this.router.navigate(['/panel/user/userinfo/profile']);
                 return of(null);
             })
         );
