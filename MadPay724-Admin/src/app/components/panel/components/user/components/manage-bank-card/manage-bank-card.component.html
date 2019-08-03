@@ -1,51 +1,57 @@
 <div class="main-panel">
-    <div class="main-content">
-      <div class="content-wrapper">
-        <div class="container-fluid">
-          <!-- User Profile Starts-->
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item">
-                <a [routerLink]="['/panel/dashboard']">داشبورد</a>
-              </li>
-              <li class="breadcrumb-item">
-                <a [routerLink]="['/panel/profile']">کارت ها بانکی </a>
-              </li>
-              <li class="breadcrumb-item active" aria-current="page">
-                مشاهده و ویرایش کارت ها
-              </li>
-            </ol>
-          </nav>
-          <!--Basic User Details Starts-->
-          <section id="user-area">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="card">
-                  <div class="card-header">
-                    <div class="card-title-wrap bar-success">
-                      <h4 class="card-title">کارت‌ها</h4>
-                    </div>
-                    <p>
-                      تمام کارت‌های شما در این صفحه نمایش داده می‌شوند
-                    </p>
-                    <button
+  <div class="main-content">
+    <div class="content-wrapper">
+      <div class="container-fluid">
+        <!-- User Profile Starts-->
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a [routerLink]="['/panel/dashboard']">داشبورد</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a [routerLink]="['/panel/profile']">کارت ها بانکی </a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              مشاهده و ویرایش کارت ها
+            </li>
+          </ol>
+        </nav>
+        <!--Basic User Details Starts-->
+        <section id="user-area">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title-wrap bar-success">
+                    <h4 class="card-title">کارت‌ها</h4>
+                  </div>
+                  <p>
+                    تمام کارت‌های شما در این صفحه نمایش داده می‌شوند
+                  </p>
+                  <button
                     mat-raised-button
                     (click)="onCreate()"
                     color="green"
-                    class="float-left mb-10" >
-                  <i class="ft-plus-circle"></i>
-                   افزودن کارت بانکی
+                    class="float-left mb-10"
+                  >
+                    <i class="ft-plus-circle"></i>
+                    افزودن کارت بانکی
                   </button>
-                  </div>
-                  <div class="card-body" *ngFor="let bankcard of bankCards | async">
-                     <app-bank-card [bankcard]="bankcard"></app-bank-card>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <app-bank-card *ngFor="let bankcard of bankCards"
+                      [bankcard]="bankcard"
+                      class="col-lg-4 col-md-6 col-12 float-right">
+                    </app-bank-card>
                   </div>
                 </div>
               </div>
             </div>
-          </section>
-          <!--User Profile Starts-->
-        </div>
+          </div>
+        </section>
+        <!--User Profile Starts-->
       </div>
     </div>
   </div>
+</div>

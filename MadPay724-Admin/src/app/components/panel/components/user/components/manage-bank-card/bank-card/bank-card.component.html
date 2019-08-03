@@ -1,4 +1,4 @@
-<div class="col-lg-4 col-md-6 col-12 float-right">
+  
   <div
     class="card  carhover"
     [ngClass]="bankcard.approve ? 'bg-success' : 'bg-danger'">
@@ -7,7 +7,7 @@
         <div class="row text-white">
           <div class="col-4">
             <p class="banktiilte">
-              <span class="bankicon"><i class="ibl64 ibl-bsi"></i></span>
+              <span class="bankicon"><i class="ibl64 ibl-{{bankcard.bankName}}"></i></span>
               <span class="pt-1 m-0 text-white">
                 بانک صادرات
               </span>
@@ -20,12 +20,12 @@
             <small class="float-left" *ngIf="!bankcard.approve"
               >تایید نشده<i class="icon-close px-1"></i
             ></small>
-            <h5 class="text-white cardnum">6104-33**-****-2516</h5>
+            <h5 class="text-white cardnum">{{bankcard.cardNumber}}</h5>
             <span class="float-right lblhesab"
-              ><small>شماره حساب : </small><small>578965354</small></span
+              ><small>شماره حساب : </small><small>{{bankcard.hesabNumber}}</small></span
             >
             <span class="float-left lblexpire"
-              ><small>انقضا : </small><small>1403/09</small></span
+              ><small>انقضا : </small><small>{{bankcard.expireDateYear}}/{{bankcard.expireDateMonth}}</small></span
             >
           </div>
         </div>
@@ -38,4 +38,3 @@
       </div>
     </div>
   </div>
-</div>

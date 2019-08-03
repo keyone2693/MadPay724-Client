@@ -1,0 +1,79 @@
+@import 'IranianBankLogos/dist/ibl.min.css';
+
+.banktiilte {
+  padding: 0 !important;
+  margin: 0 !important;
+  text-align: center;
+  width: 100%;
+}
+.banktiilte span {
+  display: block;
+}
+.bankicon {
+  background: #fff;
+  border-radius: 100px;
+  width: 90px;
+  vertical-align: middle;
+  padding: 15px 0px 0px;
+  margin: 0 auto;
+}
+@font-face {
+  font-family: ocra;
+  src: url('../../../../../../../../assets/fonts/OCRA.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 300;
+}
+.cardnum {
+  background: #f6f6f6;
+  color: #333 !important;
+  padding: 15px 10px;
+  border-radius: 5px;
+  margin-top: 45px;
+  font-family: ocra;
+  text-align: center;
+  direction: ltr !important;
+}
+
+.lblhesab small:last-child {
+    padding: 4px 5px 1px;
+
+    border-radius: 5px;
+    
+    color: #FDFDFD;
+    
+    font-size: 15px;
+    
+    font-weight: 900;
+}
+
+.lblexpire small:last-child {
+    padding: 4px 5px 1px;
+
+    border-radius: 5px;
+    
+    color: #FDFDFD;
+    
+    font-size: 15px;
+    
+    font-weight: 900;
+}
+.carhover{
+    -webkit-transition: .3s;
+transition: .3s;
+}
+.carhover:hover{
+    -webkit-box-shadow: 0 6px 15px rgba(0,0,0,.35);
+    box-shadow: 0 6px 15px rgba(0,0,0,.35);
+}
+.mb-10{
+    margin-bottom: 10px;
+}
+
+.mat-green {
+  background: #4caf50;
+  color: #fff;
+  width: 250px;
+  float: left;
+  font-weight: 900;
+  font-size: 16px;
+}

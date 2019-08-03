@@ -8,9 +8,11 @@ import { BankCard } from 'src/app/models/bankcard';
 })
 export class BankCardComponent implements OnInit {
 @Input() bankcard: BankCard;
+approve: boolean;
   constructor() { }
 
   ngOnInit() {
+    this.approve = true;
   }
 
 }
