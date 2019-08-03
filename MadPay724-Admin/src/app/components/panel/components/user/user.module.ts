@@ -17,7 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/SharedModule/material/material.module';
 import { NotificationComponent } from './components/notification/notification.component';
 import { NotificationResolver } from 'src/app/resolvers/notification.resolver';
-import { BankCardComponent } from './components/bank-card/bank-card.component';
+import { ManageBankCardComponent } from './components/manage-bank-card/manage-bank-card.component';
+import { BankCardComponent } from './components/manage-bank-card/bank-card/bank-card.component';
 
 @NgModule({
   imports: [
@@ -37,13 +38,15 @@ import { BankCardComponent } from './components/bank-card/bank-card.component';
     UserChangePicComponent,
     UserDashboardComponent,
     NotificationComponent,
-    BankCardComponent
+    BankCardComponent,
+    ManageBankCardComponent
   ],
   providers: [
     UserService,
     UserProfileResolver,
     NotificationResolver,
     PreventUnsavedGuard
-  ]
+  ], entryComponents:
+  [BankCardComponent]
 })
 export class UserModule { }

@@ -8,11 +8,17 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule,
     Material.MatCheckboxModule,
-    Material.MatButtonModule
+    Material.MatButtonModule,
+    Material.MatInputModule,
+    Material.MatSelectModule,
+    Material.MatDialogModule
   ],
   exports: [
     Material.MatCheckboxModule,
-    Material.MatButtonModule
+    Material.MatButtonModule,
+    Material.MatInputModule,
+    Material.MatSelectModule,
+    Material.MatDialogModule
   ]
 })
 export class MaterialModule { }
