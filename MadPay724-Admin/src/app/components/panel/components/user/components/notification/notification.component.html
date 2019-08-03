@@ -19,117 +19,176 @@
         <!--Basic User Details Starts-->
         <section id="user-area">
           <div class="row">
-              <div class="col-md-12">
-                  <div class="card" style="height: 206.8px;">
-                      <div class="card-header">
-                          <div class="card-title-wrap bar-success">
-                              <h4 class="card-title">تنظیمات اطلاع رسانی</h4>
-                          </div>
-                          <p>
-                              در این صفحه شما می‌توانید تنظیمات اطلاع رسانی خود را انجام دهید
-                            .</p>
-                      </div>
-                      <div class="card-body">
-                          <div class="card-block text-center">
-                              <div class="alert alert-secondary">
-                                  <strong>توجه! </strong>  هزینه هر پیامک اطلاع رسانی 40 تومان می‌باشد، که از موجودی کیف‌ پول پیامک کسر می‌گردد.
-                              </div>
-                          </div>
-                      </div>
+            <div class="col-md-12">
+              <div class="card" style="height: 206.8px;">
+                <div class="card-header">
+                  <div class="card-title-wrap bar-success">
+                    <h4 class="card-title">تنظیمات اطلاع رسانی</h4>
                   </div>
-              </div>
-          </div>
-           <form [formGroup]="notifyForm" (ngSubmit)="updateNotify()">
-            <div class="row">
-           
-              <div class="col-md-3 col-sm-6 col-xs-12">
-                  <div class="card">
-                      <div class="card-header">
-                          <div class="card-title-wrap bar-info">
-                              <h4 class="card-title mb-0">تراکنش های ورودی</h4>
-                          </div>
-                      </div>
-                      <div class="card-body">
-                          <div class="card-block">
-                              <p>توضیحات
-                              </p>
-                              <fieldset>
-                                      <div class="col-md-12"><mat-checkbox formControlName="enterEmail">ایمیل</mat-checkbox></div>
-                                      <div class="col-md-12"><mat-checkbox formControlName="enterSms">پیامک</mat-checkbox></div>
-                                      <div class="col-md-12"><mat-checkbox formControlName="enterTelegram">تلگرام</mat-checkbox></div>
-                              </fieldset>
-                          </div>
-                      </div>
+                  <p>
+                    در این صفحه شما می‌توانید تنظیمات اطلاع رسانی خود را انجام
+                    دهید .
+                  </p>
+                </div>
+                <div class="card-body">
+                  <div class="card-block text-center">
+                    <div class="alert alert-secondary">
+                      <strong>توجه! </strong> هزینه هر پیامک اطلاع رسانی 40
+                      تومان می‌باشد، که از موجودی کیف‌ پول پیامک کسر می‌گردد.
+                    </div>
                   </div>
+                </div>
               </div>
-              <div class="col-md-3 col-sm-6 col-xs-12">
-                  <div class="card">
-                      <div class="card-header">
-                          <div class="card-title-wrap bar-info">
-                              <h4 class="card-title mb-0">تراکنش های ورودی</h4>
-                          </div>
-                      </div>
-                      <div class="card-body">
-                          <div class="card-block">
-                              <p>توضیحات
-                              </p>
-                              <fieldset>
-                                      <div class="col-md-12"><mat-checkbox formControlName="exitEmail">ایمیل</mat-checkbox></div>
-                                      <div class="col-md-12"><mat-checkbox formControlName="exitSms">پیامک</mat-checkbox></div>
-                                      <div class="col-md-12"><mat-checkbox formControlName="exitTelegram">تلگرام</mat-checkbox></div>
-                              </fieldset>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-3 col-sm-6 col-xs-12">
-                  <div class="card">
-                      <div class="card-header">
-                          <div class="card-title-wrap bar-info">
-                              <h4 class="card-title mb-0">تراکنش های ورودی</h4>
-                          </div>
-                      </div>
-                      <div class="card-body">
-                          <div class="card-block">
-                              <p>توضیحات
-                              </p>
-                              <fieldset>
-                                      <div class="col-md-12"><mat-checkbox formControlName="ticketEmail">ایمیل</mat-checkbox></div>
-                                      <div class="col-md-12"><mat-checkbox formControlName="ticketSms">پیامک</mat-checkbox></div>
-                                      <div class="col-md-12"><mat-checkbox formControlName="ticketTelegram">تلگرام</mat-checkbox></div>
-                              </fieldset>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-3 col-sm-6 col-xs-12">
-                  <div class="card">
-                      <div class="card-header">
-                          <div class="card-title-wrap bar-info">
-                              <h4 class="card-title mb-0">تراکنش های ورودی</h4>
-                          </div>
-                      </div>
-                      <div class="card-body">
-                          <div class="card-block">
-                              <p>توضیحات
-                              </p>
-                              <fieldset>
-                                      <div class="col-md-12"><mat-checkbox formControlName="loginEmail">ایمیل</mat-checkbox></div>
-                                      <div class="col-md-12"><mat-checkbox formControlName="loginSms">پیامک</mat-checkbox></div>
-                                      <div class="col-md-12"><mat-checkbox formControlName="loginTelegram">تلگرام</mat-checkbox></div>
-                              </fieldset>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+            </div>
           </div>
           <div class="row">
-            <div class="col-md-12">   
-                         <button mat-raised-button color="green" type="submit">ذخیره تغییرات</button>
-</div>
+            <div class="alert alert-warning" *ngIf="notifyForm.dirty">
+              <strong>هشدار! </strong>
+              شما تغییری در اطلاعات وارد کرده اید لطفا تغییرات را
+              <a class="btn-flat btn-primary" (click)="goToSaveBtn()">ذخیره</a>
+              کنید.
+            </div>
           </div>
+          <form [formGroup]="notifyForm" (ngSubmit)="updateNotify()">
+            <div class="row">
+              <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="card">
+                  <div class="card-header">
+                    <div class="card-title-wrap bar-info">
+                      <h4 class="card-title mb-0">تراکنش های ورودی</h4>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="card-block">
+                      <p>توضیحات</p>
+                      <fieldset>
+                        <div class="col-md-12">
+                          <mat-checkbox formControlName="enterEmail"
+                            >ایمیل</mat-checkbox
+                          >
+                        </div>
+                        <div class="col-md-12">
+                          <mat-checkbox formControlName="enterSms"
+                            >پیامک</mat-checkbox
+                          >
+                        </div>
+                        <div class="col-md-12">
+                          <mat-checkbox formControlName="enterTelegram"
+                            >تلگرام</mat-checkbox
+                          >
+                        </div>
+                      </fieldset>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="card">
+                  <div class="card-header">
+                    <div class="card-title-wrap bar-info">
+                      <h4 class="card-title mb-0">تراکنش های خروجی</h4>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="card-block">
+                      <p>توضیحات</p>
+                      <fieldset>
+                        <div class="col-md-12">
+                          <mat-checkbox formControlName="exitEmail"
+                            >ایمیل</mat-checkbox
+                          >
+                        </div>
+                        <div class="col-md-12">
+                          <mat-checkbox formControlName="exitSms"
+                            >پیامک</mat-checkbox
+                          >
+                        </div>
+                        <div class="col-md-12">
+                          <mat-checkbox formControlName="exitTelegram"
+                            >تلگرام</mat-checkbox
+                          >
+                        </div>
+                      </fieldset>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="card">
+                  <div class="card-header">
+                    <div class="card-title-wrap bar-info">
+                      <h4 class="card-title mb-0">تیکت ها</h4>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="card-block">
+                      <p>توضیحات</p>
+                      <fieldset>
+                        <div class="col-md-12">
+                          <mat-checkbox formControlName="ticketEmail"
+                            >ایمیل</mat-checkbox
+                          >
+                        </div>
+                        <div class="col-md-12">
+                          <mat-checkbox formControlName="ticketSms"
+                            >پیامک</mat-checkbox
+                          >
+                        </div>
+                        <div class="col-md-12">
+                          <mat-checkbox formControlName="ticketTelegram"
+                            >تلگرام</mat-checkbox
+                          >
+                        </div>
+                      </fieldset>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="card">
+                  <div class="card-header">
+                    <div class="card-title-wrap bar-info">
+                      <h4 class="card-title mb-0">ورود به مادپی</h4>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="card-block">
+                      <p>توضیحات</p>
+                      <fieldset>
+                        <div class="col-md-12">
+                          <mat-checkbox formControlName="loginEmail"
+                            >ایمیل</mat-checkbox
+                          >
+                        </div>
+                        <div class="col-md-12">
+                          <mat-checkbox formControlName="loginSms"
+                            >پیامک</mat-checkbox
+                          >
+                        </div>
+                        <div class="col-md-12">
+                          <mat-checkbox formControlName="loginTelegram"
+                            >تلگرام</mat-checkbox
+                          >
+                        </div>
+                      </fieldset>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12" id="btnsave">
+                <button
+                  mat-raised-button
+                  color="green"
+                  type="submit"
+                  [disabled]="!notifyForm.dirty"
+                >
+                  ذخیره تغییرات
+                </button>
+              </div>
+            </div>
           </form>
-          
         </section>
         <!--User Profile Starts-->
       </div>

@@ -8,11 +8,15 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class NotificationService {
-  baseUrl = environment.apiUrl + environment.apiV1 + 'site/panel/notifications/';
+  baseUrl = environment.apiUrl + environment.apiV1 + 'site/panel/';
 constructor(private http: HttpClient) { }
 
 getNotify(id: string): Observable<Notify> {
-  return this.http.get<Notify>(this.baseUrl + id);
+  return this.http.get<Notify>(this.baseUrl + 'notifications/' + id);
+}
+
+updateNotify(id: string, notify: Notify) {
+  return this.http.put(this.baseUrl + 'users/' + id + '/notifications', notify);
 }
 
 }

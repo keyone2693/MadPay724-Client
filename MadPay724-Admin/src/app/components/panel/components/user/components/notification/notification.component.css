@@ -10,3 +10,8 @@
   font-weight: 900;
   font-size: 16px;
 }
+.alert-warning{
+  float: none;
+
+margin: 0 auto;
+}
