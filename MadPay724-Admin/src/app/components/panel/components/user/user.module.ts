@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/SharedModule/material/material.module';
 import { NotificationComponent } from './components/notification/notification.component';
 import { NotificationResolver } from 'src/app/resolvers/notification.resolver';
+import { BankCardComponent } from './components/bank-card/bank-card.component';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { NotificationResolver } from 'src/app/resolvers/notification.resolver';
     UserChangePassComponent,
     UserChangePicComponent,
     UserDashboardComponent,
-    NotificationComponent
+    NotificationComponent,
+    BankCardComponent
   ],
   providers: [
     UserService,

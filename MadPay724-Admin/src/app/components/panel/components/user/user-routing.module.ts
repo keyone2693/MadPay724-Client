@@ -9,6 +9,7 @@ import { AuthGuard } from 'src/app/guards/auth.guard';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { NotificationResolver } from 'src/app/resolvers/notification.resolver';
+import { BankCardComponent } from './components/bank-card/bank-card.component';
 
 const routes: Routes = [
    {
@@ -28,6 +29,9 @@ const routes: Routes = [
       {path: 'notification', canActivate: [AuthGuard],
       resolve: {notify: NotificationResolver}, component: NotificationComponent,
       data: {roles: ['User']}},
+      //
+      {path: 'bankcard', canActivate: [AuthGuard], component: BankCardComponent,
+      data: {roles: ['User']}}
 
     ]
    }

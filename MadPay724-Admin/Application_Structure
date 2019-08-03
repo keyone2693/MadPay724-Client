@@ -22,6 +22,7 @@
 |      +--● user.module.ts
 |      |  |--user.component.ts|.html|.css
 |      |  |--document.component.ts|.html|.css
+|      |  |--notification.component.ts|.html|.css
 |      |  |
 |      |  +--● profile.component.ts|.html|.css
 |      |  |  |--user-change-pass.component.ts|.html|.css

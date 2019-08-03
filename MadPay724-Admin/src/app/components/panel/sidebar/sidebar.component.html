@@ -32,19 +32,17 @@
         data-menu="menu-navigation"
         class="navigation navigation-main"
       >
+       
+
+       
+        <!--#region Admin-->
         <li *appHasRole="['Admin']" routerLinkActive="active" class=" nav-item">
           <a [routerLink]="['/panel/admin/dashboard']"
             ><i class="icon-home"></i
             ><span data-i18n="" class="menu-title">داشبورد</span></a
           >
         </li>
-        <li *appHasRole="['User']" routerLinkActive="active" class=" nav-item">
-          <a [routerLink]="['/panel/user/dashboard']"
-            ><i class="icon-home"></i
-            ><span data-i18n="" class="menu-title">داشبورد</span></a
-          >
-        </li>
-        <!--#region Admin-->
+
         <li *appHasRole="['Admin']" class="has-sub nav-item">
           <a href="javascript:;">
             <i class="icon-info"></i>
@@ -64,6 +62,18 @@
         <!--#endregion-->
 
         <!--#region User-->
+        <li *appHasRole="['User']" routerLinkActive="active" class=" nav-item">
+          <a [routerLink]="['/panel/user/dashboard']"
+            ><i class="icon-home"></i
+            ><span data-i18n="" class="menu-title">داشبورد</span></a
+          >
+        </li>
+        <li *appHasRole="['User']" routerLinkActive="active" class=" nav-item">
+          <a [routerLink]="['/panel/user/bankcard']"
+            ><i class="icon-credit-card"></i
+            ><span data-i18n="" class="menu-title">کارت های بانکی</span></a
+          >
+        </li>
         <li class="has-sub nav-item">
           <a href="javascript:;">
             <i class="icon-info"></i>

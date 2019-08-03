@@ -1,0 +1,19 @@
+@import 'IranianBankLogos/dist/ibl.min.css';
+
+.banktiilte{
+    padding: 0 !important;
+    margin: 0 !important;
+    text-align: center;
+    width: 100px;
+}.banktiilte span{
+    display: block;
+}
+.bankicon{
+    background: #fff;border-radius: 100px;width: 90px;vertical-align: middle;padding: 15px 0px 0px;
+}
+@font-face  {
+    font-family: ocra;
+    src: url('../../../../../../../assets/fonts/OCRA.ttf')format("truetype");
+    font-style: normal;
+    font-weight: 300;
+}
