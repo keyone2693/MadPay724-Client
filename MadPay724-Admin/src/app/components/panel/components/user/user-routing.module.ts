@@ -10,6 +10,7 @@ import { UserDashboardComponent } from './components/user-dashboard/user-dashboa
 import { NotificationComponent } from './components/notification/notification.component';
 import { NotificationResolver } from 'src/app/resolvers/notification.resolver';
 import { ManageBankCardComponent } from './components/manage-bank-card/manage-bank-card.component';
+import { BankCardResolver } from 'src/app/resolvers/bankcard.resolver';
 
 const routes: Routes = [
    {
@@ -30,7 +31,8 @@ const routes: Routes = [
       resolve: {notify: NotificationResolver}, component: NotificationComponent,
       data: {roles: ['User']}},
       //
-      {path: 'bankcard', canActivate: [AuthGuard], component: ManageBankCardComponent,
+      {path: 'bankcard', canActivate: [AuthGuard],
+      resolve: {bankcards: BankCardResolver}, component: ManageBankCardComponent,
       data: {roles: ['User']}}
 
     ]

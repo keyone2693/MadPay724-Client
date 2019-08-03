@@ -19,6 +19,10 @@ import { NotificationComponent } from './components/notification/notification.co
 import { NotificationResolver } from 'src/app/resolvers/notification.resolver';
 import { ManageBankCardComponent } from './components/manage-bank-card/manage-bank-card.component';
 import { BankCardComponent } from './components/manage-bank-card/bank-card/bank-card.component';
+import { BankCardResolver } from 'src/app/resolvers/bankcard.resolver';
+import { NotificationService } from 'src/app/Services/panel/user/notification.service';
+import { BankCardService } from 'src/app/Services/panel/user/bankcard.service';
+import { EditBankCardComponent } from './components/manage-bank-card/edit-bank-card/edit-bank-card.component';
 
 @NgModule({
   imports: [
@@ -39,14 +43,18 @@ import { BankCardComponent } from './components/manage-bank-card/bank-card/bank-
     UserDashboardComponent,
     NotificationComponent,
     BankCardComponent,
-    ManageBankCardComponent
+    ManageBankCardComponent,
+    EditBankCardComponent
   ],
   providers: [
     UserService,
+    NotificationService,
+    BankCardService,
     UserProfileResolver,
     NotificationResolver,
+    BankCardResolver,
     PreventUnsavedGuard
   ], entryComponents:
-  [BankCardComponent]
+  [EditBankCardComponent]
 })
 export class UserModule { }
