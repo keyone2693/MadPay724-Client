@@ -6,6 +6,6 @@ export interface BankCard {
     ownerName: string;
     shaba: string;
     cardNumber: string;
-    expireDateMonth: boolean;
-    expireDateYear: number;
+    expireDateMonth: string;
+    expireDateYear: string;
 }

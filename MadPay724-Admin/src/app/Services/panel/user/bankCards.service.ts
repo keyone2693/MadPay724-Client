@@ -25,4 +25,6 @@ export class BankCardsService {
     return this.http.get<BankCard[]>(this.baseUrl + 'users/' + id + '/bankcards');
   }
 
+ 
+
 }

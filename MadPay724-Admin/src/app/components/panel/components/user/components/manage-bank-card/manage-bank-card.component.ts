@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DefaultIterableDiffer } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { BankCard } from 'src/app/models/bankcard';
 import { ToastrService } from 'ngx-toastr';
@@ -16,7 +16,7 @@ export class ManageBankCardComponent implements OnInit {
   formTitle: string;
   bankCards: BankCard[];
   constructor(private dialog: MatDialog, private route: ActivatedRoute, private alertService: ToastrService,
-              private formBuilder: FormBuilder, private bankcardService: BankCardsService,
+              private bankcardService: BankCardsService,
               private authService: AuthService) { }
 
   ngOnInit() {
@@ -32,7 +32,37 @@ export class ManageBankCardComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    this.dialog.open(EditBankCardComponent, dialogConfig);
+    const dialogRef =  this.dialog.open(EditBankCardComponent, dialogConfig);
+
+    const sub = dialogRef.componentInstance.newBankCard.subscribe((data) => {
+      this.insertBankCard(data);
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      sub.unsubscribe();
+    });
+
+  }
+  insertBankCard(bankCard: BankCard) {
+    this.bankCards.push({
+      id: bankCard.id,
+      approve: bankCard.approve,
+      bankName: bankCard.bankName,
+      hesabNumber: bankCard.hesabNumber,
+      ownerName: bankCard.ownerName,
+      shaba: bankCard.shaba,
+      cardNumber: bankCard.cardNumber,
+      expireDateMonth: bankCard.expireDateMonth,
+      expireDateYear: bankCard.expireDateYear
+    });
+  }
+
+  updateBankCard(bankCard: BankCard) {
+    const updateBankCard = this.bankCards.find(this.findIndexToUpdate, bankCard.id);
+    const index = this.bankCards.indexOf(updateBankCard);
+    this.bankCards[index] = bankCard;
+  }
+  findIndexToUpdate(bankCard) {
+    return bankCard.id === this;
   }
 
 }

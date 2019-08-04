@@ -91,11 +91,14 @@
       
       <mat-dialog-actions class="float-left">
           <button mat-raised-button matDialogClose
+          (click)="onClear()"
            color="warn" class="float-left mb-10">
               <i class="icon-close"></i>
               انصراف
             </button>
-          <button mat-raised-button [disabled]="bankCardService.bankcardForm.invalid"
+          <button mat-raised-button
+          (click)="onSubmitAdd()"
+          [disabled]="bankCardService.bankcardForm.invalid"
           color="green" class="float-left mb-10">
               <i class="icon-check"></i>
               ذخیره کارت بانکی
