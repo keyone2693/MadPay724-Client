@@ -25,6 +25,8 @@ export class BankCardsService {
     return this.http.get<BankCard[]>(this.baseUrl + 'users/' + id + '/bankcards');
   }
 
- 
+  addBankCard(bankCard: BankCard, id: string): Observable<BankCard> {
+    return this.http.post<BankCard>(this.baseUrl + 'users/' + id + '/bankcards', bankCard);
+  }
 
 }

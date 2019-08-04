@@ -5,22 +5,22 @@ import { CommonModule } from '@angular/common';
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    Material.MatCheckboxModule,
-    Material.MatButtonModule,
-    Material.MatInputModule,
-    Material.MatSelectModule,
-    Material.MatDialogModule,
-    Material.MatFormFieldModule
-  ],
-  exports: [
-    Material.MatCheckboxModule,
-    Material.MatButtonModule,
-    Material.MatInputModule,
-    Material.MatSelectModule,
-    Material.MatDialogModule,
-    Material.MatFormFieldModule
-  ]
+   imports: [
+      CommonModule,
+      Material.MatCheckboxModule,
+      Material.MatButtonModule,
+      Material.MatInputModule,
+      Material.MatSelectModule,
+      Material.MatDialogModule,
+      Material.MatFormFieldModule
+   ],
+   exports: [
+      Material.MatCheckboxModule,
+      Material.MatButtonModule,
+      Material.MatInputModule,
+      Material.MatSelectModule,
+      Material.MatDialogModule,
+      Material.MatFormFieldModule
+   ]
 })
 export class MaterialModule { }

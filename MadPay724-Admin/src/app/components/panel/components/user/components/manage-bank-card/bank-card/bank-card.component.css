@@ -1,4 +1,4 @@
-@import 'IranianBankLogos/dist/ibl.min.css';
+@import '../../../../../../../../assets/plugin/iranianbanklogos/dist/ibl.min.css';
 
 .banktiilte {
   padding: 0 !important;
@@ -76,4 +76,9 @@ transition: .3s;
   float: left;
   font-weight: 900;
   font-size: 16px;
+}
+.lblownname{
+color: #fff !important;
+padding-top: 14px;
+vertical-align: middle;
 }

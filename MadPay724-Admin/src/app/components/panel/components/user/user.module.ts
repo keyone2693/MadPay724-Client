@@ -24,6 +24,8 @@ import { NotificationService } from 'src/app/Services/panel/user/notification.se
 import { EditBankCardComponent } from './components/manage-bank-card/edit-bank-card/edit-bank-card.component';
 import { BankCardsService } from 'src/app/Services/panel/user/bankCards.service';
 
+import { DigitOnlyModule } from '@uiowa/digit-only';
+
 @NgModule({
   imports: [
     UserRoutingModule,
@@ -31,7 +33,8 @@ import { BankCardsService } from 'src/app/Services/panel/user/bankCards.service'
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    DigitOnlyModule
   ],
   declarations: [
     PersianTimeAgoPipe,
@@ -54,7 +57,8 @@ import { BankCardsService } from 'src/app/Services/panel/user/bankCards.service'
     NotificationResolver,
     BankCardResolver,
     PreventUnsavedGuard
-  ], entryComponents:
+  ],
+   entryComponents:
   [EditBankCardComponent]
 })
 export class UserModule { }

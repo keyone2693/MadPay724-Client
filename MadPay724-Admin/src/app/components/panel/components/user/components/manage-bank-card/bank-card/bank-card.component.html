@@ -9,7 +9,7 @@
             <p class="banktiilte">
               <span class="bankicon"><i class="ibl64 ibl-{{bankcard.bankName}}"></i></span>
               <span class="pt-1 m-0 text-white">
-                بانک صادرات
+               {{getBankName(bankcard.bankName)}}
               </span>
             </p>
           </div>
@@ -20,7 +20,9 @@
             <small class="float-left" *ngIf="!bankcard.approve"
               >تایید نشده<i class="icon-close px-1"></i
             ></small>
-            <h5 class="text-white cardnum">{{bankcard.cardNumber}}</h5>
+            <h5 class="text-white cardnum">
+              {{bankcard.cardNumber | slice:0:4}}-{{bankcard.cardNumber | slice:4:8}}-{{bankcard.cardNumber | slice:8:12}}-{{bankcard.cardNumber | slice:12:16}}
+            </h5>
             <span class="float-right lblhesab"
               ><small>شماره حساب : </small><small>{{bankcard.hesabNumber}}</small></span
             >
@@ -35,6 +37,9 @@
           <i class="icon-note"></i>
           ویرایش کارت بانکی
         </button>
+        <span class="float-right lblownname"
+        ><small>نام صاحب حساب : </small><small>{{bankcard.ownerName}}</small></span
+      >
       </div>
     </div>
   </div>
