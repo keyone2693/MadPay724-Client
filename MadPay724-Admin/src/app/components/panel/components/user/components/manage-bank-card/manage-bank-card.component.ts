@@ -16,8 +16,8 @@ export class ManageBankCardComponent implements OnInit {
   formTitle: string;
   bankCards: BankCard[];
   constructor(private dialog: MatDialog, private route: ActivatedRoute, private alertService: ToastrService,
-              private bankcardService: BankCardsService,
-              private authService: AuthService) { }
+    private bankcardService: BankCardsService,
+    private authService: AuthService) { }
 
   ngOnInit() {
     this.loadBankCards();
@@ -32,8 +32,7 @@ export class ManageBankCardComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    const dialogRef =  this.dialog.open(EditBankCardComponent, dialogConfig);
-
+    const dialogRef = this.dialog.open(EditBankCardComponent, dialogConfig);
     const sub = dialogRef.componentInstance.newBankCard.subscribe((data) => {
       this.insertBankCard(data);
     });
@@ -56,13 +55,6 @@ export class ManageBankCardComponent implements OnInit {
     });
   }
 
-  updateBankCard(bankCard: BankCard) {
-    const updateBankCard = this.bankCards.find(this.findIndexToUpdate, bankCard.id);
-    const index = this.bankCards.indexOf(updateBankCard);
-    this.bankCards[index] = bankCard;
-  }
-  findIndexToUpdate(bankCard) {
-    return bankCard.id === this;
-  }
+  
 
 }

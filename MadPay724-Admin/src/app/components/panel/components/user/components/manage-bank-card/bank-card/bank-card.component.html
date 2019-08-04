@@ -1,7 +1,7 @@
   
   <div
     class="card  carhover"
-    [ngClass]="bankcard.approve ? 'bg-success' : 'bg-danger'">
+    [ngClass]="bankcard.approve ? 'bg-success' : 'bg-danger blurcard'">
     <div class="card-body">
       <div class="px-1 py-3">
         <div class="row text-white">
@@ -33,7 +33,7 @@
         </div>
       </div>
       <div class="col-12">
-        <button mat-raised-button class="float-left mb-10">
+        <button mat-raised-button (click)="onEdit(bankcard)" class="float-left mb-10">
           <i class="icon-note"></i>
           ویرایش کارت بانکی
         </button>

@@ -35,38 +35,38 @@
 }
 
 .lblhesab small:last-child {
-    padding: 4px 5px 1px;
+  padding: 4px 5px 1px;
 
-    border-radius: 5px;
-    
-    color: #FDFDFD;
-    
-    font-size: 15px;
-    
-    font-weight: 900;
+  border-radius: 5px;
+
+  color: #fdfdfd;
+
+  font-size: 15px;
+
+  font-weight: 900;
 }
 
 .lblexpire small:last-child {
-    padding: 4px 5px 1px;
+  padding: 4px 5px 1px;
 
-    border-radius: 5px;
-    
-    color: #FDFDFD;
-    
-    font-size: 15px;
-    
-    font-weight: 900;
+  border-radius: 5px;
+
+  color: #fdfdfd;
+
+  font-size: 15px;
+
+  font-weight: 900;
 }
-.carhover{
-    -webkit-transition: .3s;
-transition: .3s;
+.carhover {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
-.carhover:hover{
-    -webkit-box-shadow: 0 6px 15px rgba(0,0,0,.35);
-    box-shadow: 0 6px 15px rgba(0,0,0,.35);
+.carhover:hover {
+  -webkit-box-shadow: 0 6px 15px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.35);
 }
-.mb-10{
-    margin-bottom: 10px;
+.mb-10 {
+  margin-bottom: 10px;
 }
 
 .mat-green {
@@ -77,8 +77,15 @@ transition: .3s;
   font-weight: 900;
   font-size: 16px;
 }
-.lblownname{
-color: #fff !important;
-padding-top: 14px;
-vertical-align: middle;
+.lblownname {
+  color: #fff !important;
+  padding-top: 14px;
+  vertical-align: middle;
+}
+.blurcard {
+  -webkit-filter: blur(1px);
+  -moz-filter: blur(1px);
+  -o-filter: blur(1px);
+  -ms-filter: blur(1px);
+  filter: blur(1px);
 }

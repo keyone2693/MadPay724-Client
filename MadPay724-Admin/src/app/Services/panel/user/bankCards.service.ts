@@ -12,6 +12,8 @@ export class BankCardsService {
   baseUrl = environment.apiUrl + environment.apiV1 + 'site/panel/';
   constructor(private http: HttpClient, private formBuilder: FormBuilder) { }
   bankcardForm: FormGroup = this.formBuilder.group({
+    id: [],
+    approve: [],
     bankName: ['', [Validators.required]],
     hesabNumber: [''],
     ownerName: ['', [Validators.required, Validators.maxLength(100)]],
@@ -29,4 +31,11 @@ export class BankCardsService {
     return this.http.post<BankCard>(this.baseUrl + 'users/' + id + '/bankcards', bankCard);
   }
 
+  updateBankCard(bankCard: BankCard) {
+    return this.http.put(this.baseUrl + 'bankcards/' + bankCard.id, bankCard);
+  }
+
+  populateForm(bankCard: BankCard) {
+    this.bankcardForm.setValue(bankCard);
+    }
 }

@@ -15,6 +15,7 @@ import { MatDialogRef } from '@angular/material';
 export class EditBankCardComponent implements OnInit {
 
   @Output() newBankCard = new EventEmitter<BankCard>();
+  @Output() updateBankCard = new EventEmitter<BankCard>();
   bankcard: BankCard;
   constructor(private authService: AuthService, public bankCardService: BankCardsService,
               private alertService: ToastrService, private matdialogRef: MatDialogRef<EditBankCardComponent>,
@@ -30,14 +31,27 @@ export class EditBankCardComponent implements OnInit {
   onSubmitAdd() {
     if (this.bankCardService.bankcardForm.valid) {
       this.bankcard = Object.assign({}, this.bankCardService.bankcardForm.value);
-      this.bankCardService.addBankCard(this.bankcard, this.authService.decodedToken.nameid).subscribe((data) => {
-        this.alertService.success('کارت بانکی شما با موفقیت ثبت شد', 'موفق');
-        this.alertService.info('کارت شما در انتظار تایید میباشد', 'توجه');
-        this.onClear();
-        this.newBankCard.emit(data);
-      }, error => {
-        this.alertService.error(error, 'خطا در ثبت کارت جدید');
-      });
+      if (this.bankCardService.bankcardForm.get('id').value === null ||
+       this.bankCardService.bankcardForm.get('id').value === undefined) {
+
+          this.bankCardService.addBankCard(this.bankcard, this.authService.decodedToken.nameid).subscribe((data) => {
+              this.alertService.success('کارت بانکی شما با موفقیت ثبت شد', 'موفق');
+              this.alertService.info('کارت شما در انتظار تایید میباشد', 'توجه');
+              this.onClear();
+              this.newBankCard.emit(data);
+            }, error => {
+              this.alertService.error(error, 'خطا در ثبت کارت جدید');
+            });
+      } else {
+        this.bankCardService.updateBankCard(this.bankcard).subscribe(() => {
+            this.alertService.success('کارت بانکی شما با موفقیت ویرایش شد', 'موفق');
+            this.alertService.info('کارت شما در انتظار تایید میباشد', 'توجه');
+            this.onClear();
+            this.updateBankCard.emit(this.bankcard);
+          }, error => {
+            this.alertService.error(error, 'خطا در ثبت کارت جدید');
+          });
+      }
     } else {
       this.alertService.warning('اطلاعات کارت را به درستی وارد کنید', 'خطا');
     }
