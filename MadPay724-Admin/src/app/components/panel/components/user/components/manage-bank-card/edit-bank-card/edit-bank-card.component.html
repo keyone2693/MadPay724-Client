@@ -1,10 +1,10 @@
 
       <h2 mat-dialog-title class="mmatdiagtitle">افزودن و ویرایش کارت بانکی</h2>
 
-      <mat-dialog-content [formGroup]="form">
+      <mat-dialog-content [formGroup]="bankCardService.bankcardForm">
               <mat-form-field class="col-md-8">
                 <mat-label>نام بانک *</mat-label>
-                <mat-select>
+                <mat-select formControlName="bankName">
                   <mat-option value="bsi">بانک صادرات</mat-option>
                   <mat-option value="mellat">بانک ملت</mat-option>
                   <mat-option value="tejarat">بانک تجارت</mat-option>
@@ -35,27 +35,55 @@
                   <mat-option value="edbi">بانک خاورمیانه</mat-option>
                   <mat-option value="bim">بانک ایران و ونزولا</mat-option>
                 </mat-select>
+                <mat-error *ngIf="bankCardService.bankcardForm.get('bankName').hasError('required')
+                && bankCardService.bankcardForm.get('bankName').touched">بانک کارت خودرا انتخاب کنید</mat-error>
               </mat-form-field>
              
               <mat-form-field class="col-md-6 ml-10">
-                <input matInput placeholder="نام صاحب حساب *" />
+                <input matInput formControlName="ownerName" placeholder="نام صاحب حساب *" />
+                <mat-error *ngIf="bankCardService.bankcardForm.get('ownerName').hasError('required')
+                && bankCardService.bankcardForm.get('ownerName').touched">این فیلد نمیتواند خالی باشد</mat-error>
+
+                <mat-error *ngIf="bankCardService.bankcardForm.get('ownerName').hasError('maxlength')
+                && bankCardService.bankcardForm.get('ownerName').touched">
+                این فیلد نمیتواند بیشتر از 100 کاراکتر باشد</mat-error>
               </mat-form-field>
               <mat-form-field class="col-md-6">
-                  <input matInput placeholder="شماره حساب"/>
+                  <input matInput formControlName="hesabNumber" placeholder="شماره حساب"/>
                 </mat-form-field>
                 <mat-form-field class="col-md-6 ml-10">
-                    <input matInput placeholder="شماره کارت *"  />
+                    <input matInput formControlName="cardNumber" placeholder="شماره کارت *"  />
+                    <mat-error *ngIf="bankCardService.bankcardForm.get('cardNumber').hasError('required')
+                    && bankCardService.bankcardForm.get('cardNumber').touched">این فیلد نمیتواند خالی باشد</mat-error>
+  
+                    <mat-error *ngIf="bankCardService.bankcardForm.get('cardNumber').hasError('maxlength')
+                    && bankCardService.bankcardForm.get('cardNumber').touched">
+                    این فیلد نمیتواند بیشتر از 20 کاراکتر باشد</mat-error>
                   </mat-form-field>
               <mat-form-field class="col-md-6">
                 <span matPrefix>IR &nbsp;</span>
-                <input type="tel" matInput placeholder="شماره شبا" />
+                <input type="tel" matInput formControlName="shaba" placeholder="شماره شبا" />
               </mat-form-field>            
               <p class="col-md-12">
                 <mat-form-field class="ml-10">
-                  <input matInput placeholder="تاریخ انقضا / سال *"/>
+                  <input matInput formControlName="expireDateYear" placeholder="تاریخ انقضا / سال *"/>
+                  <mat-error *ngIf="bankCardService.bankcardForm.get('expireDateYear').hasError('required')
+                  && bankCardService.bankcardForm.get('expireDateYear').touched">این فیلد نمیتواند خالی باشد</mat-error>
+
+                  <mat-error *ngIf="(bankCardService.bankcardForm.get('expireDateYear').hasError('maxlength')
+                  && bankCardService.bankcardForm.get('expireDateYear').touched) ||
+                   (bankCardService.bankcardForm.get('expireDateYear').hasError('minlength')
+                  && bankCardService.bankcardForm.get('expireDateYear').touched)">این فیلد باید 4 رقمی باشد</mat-error>
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput placeholder="تاریخ انقضا / ماه *"/>
+                    <input matInput formControlName="expireDateMonth" placeholder="تاریخ انقضا / ماه *"/>
+                    <mat-error *ngIf="bankCardService.bankcardForm.get('expireDateMonth').hasError('required')
+                    && bankCardService.bankcardForm.get('expireDateMonth').touched">این فیلد نمیتواند خالی باشد</mat-error>
+
+                    <mat-error *ngIf="(bankCardService.bankcardForm.get('expireDateMonth').hasError('maxlength')
+                    && bankCardService.bankcardForm.get('expireDateMonth').touched) ||
+                     (bankCardService.bankcardForm.get('expireDateMonth').hasError('minlength')
+                    && bankCardService.bankcardForm.get('expireDateMonth').touched)">این فیلد باید 2 رقمی باشد</mat-error>
                 </mat-form-field>
               </p>
        
@@ -67,7 +95,7 @@
               <i class="icon-close"></i>
               انصراف
             </button>
-          <button mat-raised-button 
+          <button mat-raised-button [disabled]="bankCardService.bankcardForm.invalid"
           color="green" class="float-left mb-10">
               <i class="icon-check"></i>
               ذخیره کارت بانکی

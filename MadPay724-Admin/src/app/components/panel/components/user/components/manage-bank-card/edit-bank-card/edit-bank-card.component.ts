@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BankCardsService } from 'src/app/Services/panel/user/bankCards.service';
 
 @Component({
   selector: 'app-edit-bank-card',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditBankCardComponent implements OnInit {
 
-  constructor() { }
+  constructor(public bankCardService: BankCardsService) { }
 
   ngOnInit() {
   }

@@ -5,11 +5,11 @@ import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from '../Services/auth/auth.service';
 import { BankCard } from '../models/bankcard';
-import { BankCardService } from '../Services/panel/user/bankcard.service';
+import { BankCardsService } from '../Services/panel/user/bankCards.service';
 
 @Injectable()
 export class BankCardResolver implements Resolve<BankCard[]> {
-    constructor(private cardService: BankCardService, private router: Router,
+    constructor(private cardService: BankCardsService, private router: Router,
                 private alertService: ToastrService, private authService: AuthService) {}
 
     resolve(route: ActivatedRouteSnapshot): Observable<BankCard[]> {

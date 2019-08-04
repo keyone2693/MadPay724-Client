@@ -21,8 +21,8 @@ import { ManageBankCardComponent } from './components/manage-bank-card/manage-ba
 import { BankCardComponent } from './components/manage-bank-card/bank-card/bank-card.component';
 import { BankCardResolver } from 'src/app/resolvers/bankcard.resolver';
 import { NotificationService } from 'src/app/Services/panel/user/notification.service';
-import { BankCardService } from 'src/app/Services/panel/user/bankcard.service';
 import { EditBankCardComponent } from './components/manage-bank-card/edit-bank-card/edit-bank-card.component';
+import { BankCardsService } from 'src/app/Services/panel/user/bankCards.service';
 
 @NgModule({
   imports: [
@@ -49,7 +49,7 @@ import { EditBankCardComponent } from './components/manage-bank-card/edit-bank-c
   providers: [
     UserService,
     NotificationService,
-    BankCardService,
+    BankCardsService,
     UserProfileResolver,
     NotificationResolver,
     BankCardResolver,
