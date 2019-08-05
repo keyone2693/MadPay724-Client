@@ -1,9 +1,12 @@
   
   <div
     class="card  carhover"
-    [ngClass]="bankcard.approve ? 'bg-success' : 'bg-danger blurcard'">
+    [ngClass]="bankcard.approve ? 'bg-success' : 'bg-danger'">
     <div class="card-body">
-      <div class="px-1 py-3">
+        <button mat-raised-button (click)="onDelete(bankcard)" class="btnDelete">
+            <i class="icon-close px-1"></i>
+          </button>
+      <div class="px-1 py-3" [ngClass]="{blurcard : !bankcard.approve}">
         <div class="row text-white">
           <div class="col-4">
             <p class="banktiilte">
@@ -37,9 +40,9 @@
           <i class="icon-note"></i>
           ویرایش کارت بانکی
         </button>
-        <span class="float-right lblownname"
-        ><small>نام صاحب حساب : </small><small>{{bankcard.ownerName}}</small></span
-      >
+        <span class="float-right lblownname"  [ngClass]="{blurcard : !bankcard.approve}">
+          <small>نام صاحب حساب : </small><small>{{bankcard.ownerName}}</small>
+        </span>
       </div>
     </div>
   </div>

@@ -1,5 +1,7 @@
 
-      <h2 mat-dialog-title class="mmatdiagtitle">افزودن و ویرایش کارت بانکی</h2>
+      <h2 mat-dialog-title class="mmatdiagtitle" *ngIf="addActive()">افزودن کارت بانکی</h2>
+      <h2 mat-dialog-title class="mmatdiagtitle" *ngIf="!addActive()">ویرایش کارت بانکی 
+        {{bankCardService.bankcardForm.get('cardNumber').value}}</h2>
 
       <mat-dialog-content [formGroup]="bankCardService.bankcardForm">
               <mat-form-field class="col-md-8">
@@ -101,6 +103,8 @@
           [disabled]="bankCardService.bankcardForm.invalid"
           color="green" class="float-left mb-10">
               <i class="icon-check"></i>
-              ذخیره کارت بانکی
+              <span *ngIf="addActive()">افزودن کارت بانکی</span>
+              <span *ngIf="!addActive()">ویرایش کارت بانکی</span>
+              
             </button>
       </mat-dialog-actions> 

@@ -31,8 +31,7 @@ export class EditBankCardComponent implements OnInit {
   onSubmitAdd() {
     if (this.bankCardService.bankcardForm.valid) {
       this.bankcard = Object.assign({}, this.bankCardService.bankcardForm.value);
-      if (this.bankCardService.bankcardForm.get('id').value === null ||
-       this.bankCardService.bankcardForm.get('id').value === undefined) {
+      if (this.addActive()) {
 
           this.bankCardService.addBankCard(this.bankcard, this.authService.decodedToken.nameid).subscribe((data) => {
               this.alertService.success('کارت بانکی شما با موفقیت ثبت شد', 'موفق');
@@ -55,5 +54,10 @@ export class EditBankCardComponent implements OnInit {
     } else {
       this.alertService.warning('اطلاعات کارت را به درستی وارد کنید', 'خطا');
     }
+  }
+
+  addActive(): boolean {
+    return (this.bankCardService.bankcardForm.get('id').value === null ||
+            this.bankCardService.bankcardForm.get('id').value === undefined);
   }
 }
