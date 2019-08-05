@@ -13,7 +13,6 @@ import {
   NgxUiLoaderRouterModule, NgxUiLoaderHttpModule
 } from 'ngx-ui-loader';
 import { AuthService } from './Services/auth/auth.service';
-import { PanelComponent } from './components/panel/panel.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   pbColor: 'red',

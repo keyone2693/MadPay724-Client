@@ -5,6 +5,7 @@ import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/Services/panel/user.service';
 import { AuthService } from 'src/app/Services/auth/auth.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +15,9 @@ import { AuthService } from 'src/app/Services/auth/auth.service';
 export class ProfileComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private userService: UserService, private alertService: ToastrService,
-              private authService: AuthService, private formBuilder: FormBuilder) { }
+              private authService: AuthService, private formBuilder: FormBuilder, private title: Title) {
+                this.title.setTitle('پروفایل کاربری');
+               }
   user: User;
   photoUrl: string;
   editForm: FormGroup;

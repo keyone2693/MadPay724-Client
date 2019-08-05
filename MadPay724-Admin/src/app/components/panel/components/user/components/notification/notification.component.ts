@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Notify } from 'src/app/models/notify';
 import { NotificationService } from 'src/app/Services/panel/user/notification.service';
 import { AuthService } from 'src/app/Services/auth/auth.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-notification',
@@ -17,7 +18,9 @@ export class NotificationComponent implements OnInit {
   notify: Notify;
   constructor(private route: ActivatedRoute, private alertService: ToastrService,
               private formBuilder: FormBuilder, private notifyService: NotificationService,
-              private authService: AuthService) { }
+              private authService: AuthService, private title: Title) {
+                this.title.setTitle('مدیریت تنظیمات اطلاع رسانی');
+               }
 
   ngOnInit() {
     this.loadNotify();

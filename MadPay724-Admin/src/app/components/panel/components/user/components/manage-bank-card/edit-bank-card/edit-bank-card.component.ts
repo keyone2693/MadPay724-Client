@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Services/auth/auth.service';
 import { MatDialogRef } from '@angular/material';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -19,7 +20,9 @@ export class EditBankCardComponent implements OnInit {
   bankcard: BankCard;
   constructor(private authService: AuthService, public bankCardService: BankCardsService,
               private alertService: ToastrService, private matdialogRef: MatDialogRef<EditBankCardComponent>,
-              private router: Router) { }
+              private router: Router, private title: Title) {
+                this.title.setTitle('ویرایش کارت بانکی');
+               }
 
   ngOnInit() {
   }
