@@ -18,9 +18,7 @@ export class NotificationComponent implements OnInit {
   notify: Notify;
   constructor(private route: ActivatedRoute, private alertService: ToastrService,
               private formBuilder: FormBuilder, private notifyService: NotificationService,
-              private authService: AuthService, private title: Title) {
-                this.title.setTitle('مدیریت تنظیمات اطلاع رسانی');
-               }
+              private authService: AuthService) {}
 
   ngOnInit() {
     this.loadNotify();

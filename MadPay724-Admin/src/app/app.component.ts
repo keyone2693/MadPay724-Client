@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './Services/auth/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { TitleService } from './Services/common/title.service';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +11,10 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class AppComponent implements OnInit {
   jwtHelper = new JwtHelperService();
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private titleService: TitleService) { }
 
   ngOnInit() {
+    this.titleService.init();
     this.getDecodedToken();
   }
 

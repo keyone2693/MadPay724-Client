@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 
 import Chartist from '../../../../../../../assets/vendors/js/chartist.min.js';
-import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,9 +10,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private title: Title) {
-    this.title.setTitle('داشبورد مدیریت');
-   }
+  constructor() {}
 
   ngOnInit() {
     this.loadChart();

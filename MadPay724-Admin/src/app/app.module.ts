@@ -13,6 +13,7 @@ import {
   NgxUiLoaderRouterModule, NgxUiLoaderHttpModule
 } from 'ngx-ui-loader';
 import { AuthService } from './Services/auth/auth.service';
+import { TitleService } from './Services/common/title.service';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   pbColor: 'red',
@@ -57,6 +58,7 @@ export function tokenGet() {
   ],
   providers: [
     ErrorInterceptorProvider,
+    TitleService,
     AuthService
   ],
   bootstrap: [AppComponent]

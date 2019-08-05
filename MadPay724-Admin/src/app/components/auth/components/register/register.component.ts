@@ -4,7 +4,6 @@ import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
-import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-register',
@@ -15,9 +14,7 @@ export class RegisterComponent implements OnInit {
   user: User;
   registerForm: FormGroup;
   constructor(private authService: AuthService, private alertService: ToastrService,
-              private router: Router, private title: Title) {
-                this.title.setTitle('ثبت نام در مادپی');
-               }
+              private router: Router) {}
 
   ngOnInit() {
     this.registerForm = new FormGroup({

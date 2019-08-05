@@ -7,7 +7,6 @@ import { FormBuilder } from '@angular/forms';
 import { AuthService } from 'src/app/Services/auth/auth.service';
 import { EditBankCardComponent } from './edit-bank-card/edit-bank-card.component';
 import { BankCardsService } from 'src/app/Services/panel/user/bankCards.service';
-import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-manage-bank-card',
   templateUrl: './manage-bank-card.component.html',
@@ -18,9 +17,7 @@ export class ManageBankCardComponent implements OnInit {
   bankCards: BankCard[];
   constructor(private dialog: MatDialog, private route: ActivatedRoute, private alertService: ToastrService,
               private bankcardService: BankCardsService,
-              private authService: AuthService, private title: Title) {
-                this.title.setTitle('مدیریت کارت های بانکی');
-               }
+              private authService: AuthService) {}
 
   ngOnInit() {
     this.loadBankCards();

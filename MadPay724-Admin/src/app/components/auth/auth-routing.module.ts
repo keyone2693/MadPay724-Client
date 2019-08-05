@@ -10,8 +10,10 @@ const routes: Routes = [
     path: '',
     component: AuthComponent,
     children: [
-      {path: 'login', canActivate: [LoginRedirectGuard], component: LoginComponent},
-      {path: 'register', component: RegisterComponent}
+      {path: 'login', canActivate: [LoginRedirectGuard], component: LoginComponent,
+      data: {title: ['ورود به پنل کاربری']}},
+      {path: 'register', component: RegisterComponent,
+      data: {title: ['ثبت نام در مادپی']}}
     ]
    }
 ];

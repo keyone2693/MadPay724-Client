@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-users-management',
@@ -8,9 +7,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class UsersManagementComponent implements OnInit {
 
-  constructor(private title: Title) {
-    this.title.setTitle('مدیریت کاربران');
-   }
+  constructor() {}
 
   ngOnInit() {
   }

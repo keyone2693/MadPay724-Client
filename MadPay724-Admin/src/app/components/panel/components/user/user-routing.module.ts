@@ -18,22 +18,22 @@ const routes: Routes = [
     component: UserComponent,
     children: [
       {path: 'dashboard', canActivate: [AuthGuard], component: UserDashboardComponent,
-      data: {roles: ['User']}},
+      data: {roles: ['User'], title: ['داشبورد کاربر']}},
       // userinfo
       {path: 'userinfo/profile', canActivate: [AuthGuard], component: ProfileComponent,
-       data: {roles: ['User', 'Admin', 'Blog', 'Accountant']},
+       data: {roles: ['User', 'Admin', 'Blog', 'Accountant'], title: ['پروفایل کاربری']},
        resolve: {user: UserProfileResolver},
        canDeactivate: [PreventUnsavedGuard]},
       {path: 'userinfo/documents', canActivate: [AuthGuard], component: DocumentComponent,
-       data: {roles: ['User']}},
+       data: {roles: ['User'], title: ['ارسال مدارک شناسایی']}},
       //
       {path: 'notification', canActivate: [AuthGuard],
       resolve: {notify: NotificationResolver}, component: NotificationComponent,
-      data: {roles: ['User']}},
+      data: {roles: ['User'], title: [' تنظیمات اطلاع رسانی']}},
       //
       {path: 'bankcard', canActivate: [AuthGuard],
       resolve: {bankcards: BankCardResolver}, component: ManageBankCardComponent,
-      data: {roles: ['User']}}
+      data: {roles: ['User'], title: ['مدیریت کارت های بانکی']}}
 
     ]
    }

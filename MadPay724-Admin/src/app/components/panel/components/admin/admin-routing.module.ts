@@ -11,9 +11,9 @@ const routes: Routes = [
         component: AdminComponent,
         children: [
           {path: 'dashboard', canActivate: [AuthGuard], component: DashboardComponent,
-          data: {roles: ['Admin']}},
+          data: {roles: ['Admin'], title: ['داشبورد مدیریت']}},
           {path: 'users/usersmanagement', canActivate: [AuthGuard], component: UsersManagementComponent,
-            data: {roles: ['Admin']}}
+            data: {roles: ['Admin'], title: ['مدیریت کاربران']}}
         ]
        }
 ];
