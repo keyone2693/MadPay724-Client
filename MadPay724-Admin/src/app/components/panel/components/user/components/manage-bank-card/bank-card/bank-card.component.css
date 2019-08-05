@@ -89,3 +89,16 @@
   -ms-filter: blur(1px);
   filter: blur(1px);
 }
+.btnDelete {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  font-size: 25px;
+  color: #ff4a62;
+  top: -22px;
+  background: #fff;
+}
+.card-body {
+  position: relative;
+}

@@ -42,7 +42,9 @@
                   <div class="row">
                     <app-bank-card *ngFor="let bankcard of bankCards"
                       [bankcard]="bankcard"
-                      class="col-lg-4 col-md-6 col-12 float-right">
+                      class="col-lg-4 col-md-6 col-12 float-right"
+                      (deleteBankCard)="removeBankCard($event)"
+                      >
                     </app-bank-card>
                   </div>
                 </div>

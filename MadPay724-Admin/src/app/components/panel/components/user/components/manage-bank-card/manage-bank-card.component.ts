@@ -54,7 +54,9 @@ export class ManageBankCardComponent implements OnInit {
       expireDateYear: bankCard.expireDateYear
     });
   }
-
-  
+  removeBankCard(bankCard: BankCard) {
+   // this.bankCards.filter( p => p.id === bankCard.id);
+    this.bankCards.splice(this.bankCards.indexOf(bankCard) , 1);
+  }
 
 }

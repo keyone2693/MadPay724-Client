@@ -3,10 +3,11 @@
     class="card  carhover"
     [ngClass]="bankcard.approve ? 'bg-success' : 'bg-danger'">
     <div class="card-body">
-        <button mat-raised-button (click)="onDelete(bankcard)" class="btnDelete">
+        <button mat-mini-fab (click)="onDelete(bankcard)" class="btnDelete">
             <i class="icon-close px-1"></i>
           </button>
-      <div class="px-1 py-3" [ngClass]="{blurcard : !bankcard.approve}">
+      
+      <div class="px-1 my-3" [ngClass]="{blurcard : !bankcard.approve}">
         <div class="row text-white">
           <div class="col-4">
             <p class="banktiilte">

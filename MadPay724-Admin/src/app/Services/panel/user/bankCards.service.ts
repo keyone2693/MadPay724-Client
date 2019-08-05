@@ -35,6 +35,10 @@ export class BankCardsService {
     return this.http.put(this.baseUrl + 'bankcards/' + bankCard.id, bankCard);
   }
 
+  deleteBankCard(id: string) {
+    return this.http.delete(this.baseUrl + 'bankcards/' + id);
+  }
+
   populateForm(bankCard: BankCard) {
     this.bankcardForm.setValue(bankCard);
     }

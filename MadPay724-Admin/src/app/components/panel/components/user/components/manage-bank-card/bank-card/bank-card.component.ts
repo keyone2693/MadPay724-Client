@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { BankCard } from 'src/app/models/bankcard';
 import { BankCardsService } from 'src/app/Services/panel/user/bankCards.service';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { EditBankCardComponent } from '../edit-bank-card/edit-bank-card.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-bank-card',
@@ -11,8 +12,9 @@ import { EditBankCardComponent } from '../edit-bank-card/edit-bank-card.componen
 })
 export class BankCardComponent implements OnInit {
   @Input() bankcard: BankCard;
+  @Output() deleteBankCard = new EventEmitter<BankCard>();
   approve: boolean;
-  constructor(private banCardSercise: BankCardsService, private dialog: MatDialog) { }
+  constructor(private banCardSercise: BankCardsService, private dialog: MatDialog, private alertService: ToastrService) { }
 
   ngOnInit() {
     this.approve = true;
@@ -67,9 +69,19 @@ export class BankCardComponent implements OnInit {
     });
 
   }
+  onDelete(bankCard: BankCard) {
+    if (confirm('آیا از حذف این کارت مطمن هستید ؟')) {
+      this.banCardSercise.deleteBankCard(bankCard.id).subscribe(() => {
+        this.alertService.success('کارت بانکی شما با موفقیت حذف شد', 'موفق');
+        this.deleteBankCard.emit(bankCard);
+      }, error => {
+        this.alertService.error(error, 'خطا در حذف کارت جدید');
+      });
+    }
 
-  updateBankCard(bankCard: BankCard) {
-    this.bankcard = bankCard;
-  }
+}
+updateBankCard(bankCard: BankCard) {
+  this.bankcard = bankCard;
+}
 
 }
