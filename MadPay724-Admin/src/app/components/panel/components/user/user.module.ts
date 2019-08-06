@@ -14,7 +14,7 @@ import { ProfileComponent } from './components/userinfo/profile/profile.componen
 import { PersianTimeAgoPipe } from 'persian-time-ago-pipe';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MaterialModule } from 'src/app/SharedModule/material/material.module';
+import { UserMaterialModule } from 'src/app/Shared/Modules/material/user-material.module';
 import { NotificationComponent } from './components/notification/notification.component';
 import { NotificationResolver } from 'src/app/resolvers/notification.resolver';
 import { ManageBankCardComponent } from './components/manage-bank-card/manage-bank-card.component';
@@ -33,7 +33,7 @@ import { DigitOnlyModule } from '@uiowa/digit-only';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule,
+    UserMaterialModule,
     DigitOnlyModule
   ],
   declarations: [
