@@ -1,0 +1,31 @@
+.docbuttons {
+  border-bottom: 2px dashed #8d8d8d;
+  padding-bottom: 18px;
+}
+.docbuttons .docbutton-right button,
+.docbuttons .docbutton-left button {
+  width: 300px;
+  height: 55px;
+  margin: 0 auto;
+  border: 2px solid #3f51b5;
+  font-size: 22px;
+  font-weight: 900;
+  color: #3f51b5;
+}
+.docbuttons .docbutton-right,
+.docbuttons .docbutton-left {
+  text-align: center;
+}
+
+.right,
+.left {
+  margin-top: 40px;
+  border-right: 5px solid #28D094;
+  padding: 50px 20px;
+  background: #ededed;
+}
+
+.buttons-active {
+  background: #3f51b5;
+  color: #fff !important;
+}

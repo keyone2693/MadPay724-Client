@@ -1,28 +1,117 @@
 <div class="main-panel">
-    <div class="main-content">
-      <div class="content-wrapper">
-        <div class="container-fluid">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a [routerLink]="['/panel/dashboard']">داشبورد</a>
-                  </li>
-                  <li class="breadcrumb-item">
-                    <a [routerLink]="['/panel/user/userinfo/documents']">ارسال مدارک شناسایی</a>
-                  </li>
-                  <li class="breadcrumb-item active" aria-current="page">
-                  مدیریت مدارک ارسالی
-                  </li>
-            </ol>
-          </nav>
-          <section id="user-area">
-            <div class="row">
-              <div class="col-md-12">
-               
+  <div class="main-content">
+    <div class="content-wrapper">
+      <div class="container-fluid">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a [routerLink]="['/panel/dashboard']">داشبورد</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a [routerLink]="['/panel/user/userinfo/documents']"
+                >ارسال مدارک شناسایی</a
+              >
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              مدیریت مدارک ارسالی
+            </li>
+          </ol>
+        </nav>
+        <section id="user-area">
+          <div class="row">
+            <div class="col-md-12">
+             
+              <div class="container">
+                  <div class="docbuttons row">
+                      <div class="col-md-6 docbutton-right">
+                        <button mat-raised-button [ngClass]="{'buttons-active': true}">حساب حقیقی</button>
+                      </div>
+                      <div class="col-md-6 docbutton-left">
+                        <button mat-raised-button>حساب حقوقی</button>
+                      </div>
+                    </div>
+                 <div class="right">
+                  <h2 mat-dialog-title class="mmatdiagtitle">
+                      افزودن کارت بانکی
+                    </h2>
+      
+                    <mat-dialog-content [formGroup]="">
+      
+                      <mat-form-field class="col-md-6 ml-10">
+                        <input
+                          matInput
+                          formControlName="ownerName"
+                          placeholder="نام صاحب حساب *"
+                        />
+                        <mat-error>این فیلد نمیتواند خالی باشد</mat-error>
+                      </mat-form-field>
+                      
+                    </mat-dialog-content>
+      
+                    <mat-dialog-actions class="float-left">
+                      <button
+                        mat-raised-button
+                        matDialogClose
+                        color="warn"
+                        class="float-left mb-10"
+                      >
+                        <i class="icon-close"></i>
+                        انصراف
+                      </button>
+                      <button
+                        mat-raised-button
+                        color="green"
+                        class="float-left mb-10"
+                      >
+                        <i class="icon-check"></i>
+                        <span>ویرایش کارت بانکی</span>
+                      </button>
+                    </mat-dialog-actions>
               </div>
+              <div class="left">
+                  <h2 mat-dialog-title class="mmatdiagtitle">
+                      افزودن کارت بانکی
+                    </h2>
+      
+                    <mat-dialog-content [formGroup]="">
+      
+                      <mat-form-field class="col-md-6 ml-10">
+                        <input
+                          matInput
+                          formControlName="ownerName"
+                          placeholder="نام صاحب حساب *"
+                        />
+                        <mat-error>این فیلد نمیتواند خالی باشد</mat-error>
+                      </mat-form-field>
+                      
+                    </mat-dialog-content>
+      
+                    <mat-dialog-actions class="float-left">
+                      <button
+                        mat-raised-button
+                        matDialogClose
+                        color="warn"
+                        class="float-left mb-10"
+                      >
+                        <i class="icon-close"></i>
+                        انصراف
+                      </button>
+                      <button
+                        mat-raised-button
+                        color="green"
+                        class="float-left mb-10"
+                      >
+                        <i class="icon-check"></i>
+                        <span>ویرایش کارت بانکی</span>
+                      </button>
+                    </mat-dialog-actions>
+              </div>
+              </div>
+             
             </div>
-          </section>
-        </div>
+          </div>
+        </section>
       </div>
     </div>
   </div>
+</div>
