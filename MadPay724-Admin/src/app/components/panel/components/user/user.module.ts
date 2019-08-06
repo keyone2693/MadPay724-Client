@@ -27,6 +27,7 @@ import { BankCardsService } from 'src/app/Services/panel/user/bankCards.service'
 import { DigitOnlyModule } from '@uiowa/digit-only';
 import { RightDocumentComponent } from './components/userinfo/document/components/right-document/right-document.component';
 import { LeftDocumentComponent } from './components/userinfo/document/components/left-document/left-document.component';
+import { DocumentListComponent } from './components/userinfo/document/components/document-list/document-list.component';
 
 @NgModule({
   imports: [
@@ -45,6 +46,7 @@ import { LeftDocumentComponent } from './components/userinfo/document/components
     DocumentComponent,
     RightDocumentComponent,
     LeftDocumentComponent,
+    DocumentListComponent,
     UserChangePassComponent,
     UserChangePicComponent,
     UserDashboardComponent,

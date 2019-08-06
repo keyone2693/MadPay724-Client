@@ -1,51 +1,75 @@
-<div class="main-panel">
-  <div class="main-content">
-    <div class="content-wrapper">
-      <div class="container-fluid">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a [routerLink]="['/panel/dashboard']">داشبورد</a>
-            </li>
-            <li class="breadcrumb-item">
-              <a [routerLink]="['/panel/user/userinfo/documents']"
-                >ارسال مدارک شناسایی</a
-              >
-            </li>
-            <li class="breadcrumb-item active" aria-current="page">
-              مدیریت مدارک ارسالی
-            </li>
-          </ol>
-        </nav>
-        <section id="user-area">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="container">
-                <div class="docbuttons row">
-                  <div class="col-md-6 docbutton-right">
-                    <button
-                      mat-raised-button
-                      [ngClass]="{ 'buttons-active': flag }" (click)="isRight(true)">
-                      حساب حقیقی
-                    </button>
-                  </div>
-                  <div class="col-md-6 docbutton-left">
-                    <button mat-raised-button 
-                    [ngClass]="{ 'buttons-active': !flag }" (click)="isRight(false)">
-                    حساب حقوقی</button>
-                  </div>
-                </div>
-                <div class="right" *ngIf="flag">
-                  <app-right-document></app-right-document>
-                </div>
-                <div class="left" *ngIf="!flag">
-                    <app-left-document></app-left-document>
-                </div>
-              </div>
-            </div>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/panel/dashboard']">داشبورد</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/panel/user/userinfo/documents']"
+        >ارسال مدارک شناسایی</a
+      >
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">
+      مدیریت مدارک ارسالی
+    </li>
+  </ol>
+</nav>
+<section id="user-area">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="container">
+        <div class="docbuttons row">
+          <div class="col-md-6 docbutton-right">
+            <button
+              mat-raised-button
+              [ngClass]="{ 'buttons-active': flag }"
+              (click)="isRight(true)"
+            >
+              حساب حقیقی
+            </button>
           </div>
-        </section>
+          <div class="col-md-6 docbutton-left">
+            <button
+              mat-raised-button
+              [ngClass]="{ 'buttons-active': !flag }"
+              (click)="isRight(false)"
+            >
+              حساب حقوقی
+            </button>
+          </div>
+        </div>
+        <div class="right row" *ngIf="flag">
+          <div class="col-md-6"><app-right-document></app-right-document></div>
+          <div class="col-md-6">
+              <div class="alert alert-warning palignjust">
+                <h5>توجه!</h5>
+                <p><strong> <i class="icon-check"></i></strong> لطفا تصویر واضحی از روی کارت ملی خود تهیه و ارسال نمایید</p>
+                <p><strong> <i class="icon-check"></i></strong> حداقل سن برای دریافت خدمات تجاری 18 سال تمام است</p>
+                <p><strong> <i class="icon-check"></i></strong> استفاده از مدارک سایرین و مدارک والدین مجاز نمی‌باشد و در صورت مشاهده حساب مسدود می‌گردد</p>
+                <p><strong> <i class="icon-check"></i></strong> در صورت استفاده از مدارک دیگران، حساب کاربری مسدود می‌شود</p>
+                <p><strong> <i class="icon-check"></i></strong> درصورت جعل اسناد هویتی و هرگونه دستکاری در آن‌ها، فرد مذکور به مراجع قضایی معرفی خواهد شد</p>
+                <p><strong> <i class="icon-check"></i></strong> مجازات جعل اسناد طبق ماده 530 قانون تعزیرات 2 ماه تا 2 سال حبس به همراه مجازات نقدی به همراه دارد</p>
+                  
+              </div>
+          </div>
+        </div>
+        <div class="left row" *ngIf="!flag">
+          <div class="col-md-6"><app-left-document></app-left-document></div>
+          <div class="col-md-6">
+              <div class="alert alert-warning palignjust">
+                  <h5>توجه!</h5>
+                  <p><strong> <i class="icon-check"></i></strong> لطفا تصویر واضحی از روی کارت ملی خود تهیه و ارسال نمایید</p>
+                  <p><strong> <i class="icon-check"></i></strong> حداقل سن برای دریافت خدمات تجاری 18 سال تمام است</p>
+                  <p><strong> <i class="icon-check"></i></strong> استفاده از مدارک سایرین و مدارک والدین مجاز نمی‌باشد و در صورت مشاهده حساب مسدود می‌گردد</p>
+                  <p><strong> <i class="icon-check"></i></strong> در صورت استفاده از مدارک دیگران، حساب کاربری مسدود می‌شود</p>
+                  <p><strong> <i class="icon-check"></i></strong> درصورت جعل اسناد هویتی و هرگونه دستکاری در آن‌ها، فرد مذکور به مراجع قضایی معرفی خواهد شد</p>
+                  <p><strong> <i class="icon-check"></i></strong> مجازات جعل اسناد طبق ماده 530 قانون تعزیرات 2 ماه تا 2 سال حبس به همراه مجازات نقدی به همراه دارد</p>
+                    
+                </div>
+
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>
+<app-document-list></app-document-list>
