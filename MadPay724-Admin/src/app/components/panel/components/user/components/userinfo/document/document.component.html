@@ -20,94 +20,28 @@
         <section id="user-area">
           <div class="row">
             <div class="col-md-12">
-             
               <div class="container">
-                  <div class="docbuttons row">
-                      <div class="col-md-6 docbutton-right">
-                        <button mat-raised-button [ngClass]="{'buttons-active': true}">حساب حقیقی</button>
-                      </div>
-                      <div class="col-md-6 docbutton-left">
-                        <button mat-raised-button>حساب حقوقی</button>
-                      </div>
-                    </div>
-                 <div class="right">
-                  <h2 mat-dialog-title class="mmatdiagtitle">
-                      افزودن کارت بانکی
-                    </h2>
-      
-                    <mat-dialog-content [formGroup]="">
-      
-                      <mat-form-field class="col-md-6 ml-10">
-                        <input
-                          matInput
-                          formControlName="ownerName"
-                          placeholder="نام صاحب حساب *"
-                        />
-                        <mat-error>این فیلد نمیتواند خالی باشد</mat-error>
-                      </mat-form-field>
-                      
-                    </mat-dialog-content>
-      
-                    <mat-dialog-actions class="float-left">
-                      <button
-                        mat-raised-button
-                        matDialogClose
-                        color="warn"
-                        class="float-left mb-10"
-                      >
-                        <i class="icon-close"></i>
-                        انصراف
-                      </button>
-                      <button
-                        mat-raised-button
-                        color="green"
-                        class="float-left mb-10"
-                      >
-                        <i class="icon-check"></i>
-                        <span>ویرایش کارت بانکی</span>
-                      </button>
-                    </mat-dialog-actions>
+                <div class="docbuttons row">
+                  <div class="col-md-6 docbutton-right">
+                    <button
+                      mat-raised-button
+                      [ngClass]="{ 'buttons-active': flag }" (click)="isRight(true)">
+                      حساب حقیقی
+                    </button>
+                  </div>
+                  <div class="col-md-6 docbutton-left">
+                    <button mat-raised-button 
+                    [ngClass]="{ 'buttons-active': !flag }" (click)="isRight(false)">
+                    حساب حقوقی</button>
+                  </div>
+                </div>
+                <div class="right" *ngIf="flag">
+                  <app-right-document></app-right-document>
+                </div>
+                <div class="left" *ngIf="!flag">
+                    <app-left-document></app-left-document>
+                </div>
               </div>
-              <div class="left">
-                  <h2 mat-dialog-title class="mmatdiagtitle">
-                      افزودن کارت بانکی
-                    </h2>
-      
-                    <mat-dialog-content [formGroup]="">
-      
-                      <mat-form-field class="col-md-6 ml-10">
-                        <input
-                          matInput
-                          formControlName="ownerName"
-                          placeholder="نام صاحب حساب *"
-                        />
-                        <mat-error>این فیلد نمیتواند خالی باشد</mat-error>
-                      </mat-form-field>
-                      
-                    </mat-dialog-content>
-      
-                    <mat-dialog-actions class="float-left">
-                      <button
-                        mat-raised-button
-                        matDialogClose
-                        color="warn"
-                        class="float-left mb-10"
-                      >
-                        <i class="icon-close"></i>
-                        انصراف
-                      </button>
-                      <button
-                        mat-raised-button
-                        color="green"
-                        class="float-left mb-10"
-                      >
-                        <i class="icon-check"></i>
-                        <span>ویرایش کارت بانکی</span>
-                      </button>
-                    </mat-dialog-actions>
-              </div>
-              </div>
-             
             </div>
           </div>
         </section>

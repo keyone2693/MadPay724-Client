@@ -1,0 +1,14 @@
+.icon-fileupload{
+    background: #3f51b5;
+    padding: 8px 9px 9px;
+        padding-top: 8px;
+        padding-right: 9px;
+        padding-bottom: 9px;
+        padding-left: 9px;
+    border-radius: 50px;
+    color: #fff;
+    font-size: 30px;
+}
+.ngxmatfileinput{
+    cursor: pointer;
+}

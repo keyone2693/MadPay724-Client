@@ -1,0 +1,59 @@
+<h2 mat-dialog-title class="mmatdiagtitle">
+  مشخصات شخص حقیقی
+</h2>
+<mat-dialog-content [formGroup]="">
+  <mat-form-field class="col-md-6 ml-10">
+    <input
+      matInput
+      formControlName="ownerName"
+      placeholder="نام و نام خانوادگی *"
+    />
+    <mat-error>این فیلد نمیتواند خالی باشد</mat-error>
+  </mat-form-field>
+  <mat-form-field class="col-md-6 ml-10">
+    <input matInput formControlName="ownerName" placeholder="کد ملی *" />
+    <mat-error>این فیلد نمیتواند خالی باشد</mat-error>
+  </mat-form-field>
+  <mat-form-field class="col-md-6 ml-10">
+    <input matInput formControlName="ownerName" placeholder="نام پدر *" />
+    <mat-error>این فیلد نمیتواند خالی باشد</mat-error>
+  </mat-form-field>
+  <mat-form-field class="col-md-6 ml-10">
+    <input matInput formControlName="ownerName" placeholder="تارخ تولد *" />
+    <mat-error>این فیلد نمیتواند خالی باشد</mat-error>
+  </mat-form-field>
+  <mat-form-field class="col-md-12 ml-10">
+    <input
+      matInput
+      formControlName="ownerName"
+      placeholder="آدرس و کد پستی *"
+    />
+    <mat-error>این فیلد نمیتواند خالی باشد</mat-error>
+  </mat-form-field>
+  <mat-form-field class="col-md-12 ml-10 ngxmatfileinput">
+    <ngx-mat-file-input
+      formControlName="ownerName"
+      placeholder="تصویر کارت ملی *"
+    >
+    </ngx-mat-file-input>
+    <i class="icon-camera float-left icon-fileupload">
+    </i>
+    
+    <mat-error>این فیلد نمیتواند خالی باشد</mat-error>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions class="float-left">
+  <button mat-raised-button color="green" class="float-left mb-10 mx-1">
+    <i class="icon-check"></i>
+    <span>ارسال مدارک</span>
+  </button>
+  <button
+    mat-raised-button
+    matDialogClose
+    color="warn"
+    class="float-left mb-10"
+  >
+    <i class="icon-close"></i>
+    انصراف
+  </button>
+</mat-dialog-actions>

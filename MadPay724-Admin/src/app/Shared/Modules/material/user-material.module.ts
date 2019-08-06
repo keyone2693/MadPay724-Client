@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import * as Material from '@angular/material';
 import { CommonModule } from '@angular/common';
 
+import { MaterialFileInputModule } from 'ngx-material-file-input';
+
 @NgModule({
   imports: [
      CommonModule,
@@ -11,7 +13,8 @@ import { CommonModule } from '@angular/common';
      Material.MatInputModule,
      Material.MatSelectModule,
      Material.MatDialogModule,
-     Material.MatFormFieldModule
+     Material.MatFormFieldModule,
+     MaterialFileInputModule
   ],
   exports: [
      Material.MatCheckboxModule,
@@ -19,7 +22,8 @@ import { CommonModule } from '@angular/common';
      Material.MatInputModule,
      Material.MatSelectModule,
      Material.MatDialogModule,
-     Material.MatFormFieldModule
+     Material.MatFormFieldModule,
+     MaterialFileInputModule
   ]
 })
 export class UserMaterialModule { }

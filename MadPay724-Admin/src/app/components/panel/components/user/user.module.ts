@@ -25,6 +25,8 @@ import { EditBankCardComponent } from './components/manage-bank-card/edit-bank-c
 import { BankCardsService } from 'src/app/Services/panel/user/bankCards.service';
 
 import { DigitOnlyModule } from '@uiowa/digit-only';
+import { RightDocumentComponent } from './components/userinfo/document/components/right-document/right-document.component';
+import { LeftDocumentComponent } from './components/userinfo/document/components/left-document/left-document.component';
 
 @NgModule({
   imports: [
@@ -41,6 +43,8 @@ import { DigitOnlyModule } from '@uiowa/digit-only';
     UserComponent,
     ProfileComponent,
     DocumentComponent,
+    RightDocumentComponent,
+    LeftDocumentComponent,
     UserChangePassComponent,
     UserChangePicComponent,
     UserDashboardComponent,
