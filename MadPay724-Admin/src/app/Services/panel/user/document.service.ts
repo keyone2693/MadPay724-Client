@@ -15,7 +15,7 @@ export class DocumentService {
     return this.http.get<Document[]>(this.baseUrl + 'users/' + id + '/documents');
   }
 
-  addDocument(Document: Document, id: string): Observable<Document> {
-    return this.http.post<Document>(this.baseUrl + 'users/' + id + '/documents', Document);
+  addDocument(id: string, document: any): Observable<Document> {
+    return this.http.post<Document>(this.baseUrl + 'users/' + id + '/documents', document);
   }
 }

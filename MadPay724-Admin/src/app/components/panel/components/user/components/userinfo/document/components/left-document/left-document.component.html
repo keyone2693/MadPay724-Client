@@ -2,27 +2,27 @@
   مشخصات شخص حقوقی
 </h2>
 
-<mat-dialog-content [formGroup]="">
+<mat-dialog-content [formGroup]="docLeftForm">
   <mat-form-field class="col-md-12 ml-10">
     <input
       matInput
-      formControlName="ownerName"
+      formControlName="name"
       placeholder="نام شرکت یا سازمان *"
     />
     <mat-error>این فیلد نمیتواند خالی باشد</mat-error>
   </mat-form-field>
   <mat-form-field class="col-md-12 ml-10">
-    <input matInput formControlName="ownerName" placeholder="شناسه ملی *" />
+    <input matInput formControlName="nationalCode" placeholder="شناسه ملی *" />
     <mat-error>این فیلد نمیتواند خالی باشد</mat-error>
   </mat-form-field>
   <mat-form-field class="col-md-12 ml-10">
-    <input matInput formControlName="ownerName" placeholder="شماره ثبت *" />
+    <input matInput formControlName="fatherNameRegisterCode" placeholder="شماره ثبت *" />
     <mat-error>این فیلد نمیتواند خالی باشد</mat-error>
   </mat-form-field>
   <mat-form-field class="col-md-12 ml-10">
     <input
       matInput
-      formControlName="ownerName"
+      formControlName="birthDay"
       placeholder="تاریخ تولد مدیر عامل *"
     />
     <mat-error>این فیلد نمیتواند خالی باشد</mat-error>
@@ -30,25 +30,27 @@
   <mat-form-field class="col-md-12 ml-10">
     <input
       matInput
-      formControlName="ownerName"
+      formControlName="address"
       placeholder="آدرس و کد پستی *"
     />
     <mat-error>این فیلد نمیتواند خالی باشد</mat-error>
   </mat-form-field>
   <mat-form-field class="col-md-12 ml-10 ngxmatfileinput">
       <ngx-mat-file-input
-        formControlName="ownerName"
+      (change)="onFileSelect($event)"
         placeholder="تصویر کارت ملی مدیرعامل *"
       >
       </ngx-mat-file-input>
       <i class="icon-camera float-left icon-fileupload">
         </i>
-      <mat-error>این فیلد نمیتواند خالی باشد</mat-error>
     </mat-form-field>
 </mat-dialog-content>
 
 <mat-dialog-actions class="float-left">
-  <button mat-raised-button color="green" class="float-left mb-10 mx-1">
+  <button 
+  (click)="onSubmit()"
+  mat-raised-button color="green"
+   class="float-left mb-10 mx-1">
     <i class="icon-check"></i>
     <span>ارسال مدارک</span>
   </button>
