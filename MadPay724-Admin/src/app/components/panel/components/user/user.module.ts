@@ -30,6 +30,9 @@ import { LeftDocumentComponent } from './components/userinfo/document/components
 import { DocumentListComponent } from './components/userinfo/document/components/document-list/document-list.component';
 import { DocumentService } from 'src/app/Services/panel/user/document.service';
 import {JdatePipe} from 'ngx-persian';
+import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from 'src/app/Shared/material.persian-date.adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material';
+
 
 @NgModule({
   imports: [
@@ -66,7 +69,9 @@ import {JdatePipe} from 'ngx-persian';
     UserProfileResolver,
     NotificationResolver,
     BankCardResolver,
-    PreventUnsavedGuard
+    PreventUnsavedGuard,
+    { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },
+    { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS }
   ],
    entryComponents:
   [EditBankCardComponent]

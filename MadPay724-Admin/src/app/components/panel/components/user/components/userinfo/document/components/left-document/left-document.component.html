@@ -18,15 +18,19 @@
   <mat-form-field class="col-md-12 ml-10">
     <input matInput formControlName="fatherNameRegisterCode" placeholder="شماره ثبت *" />
     <mat-error>این فیلد نمیتواند خالی باشد</mat-error>
-  </mat-form-field>
+  </mat-form-field> 
+
   <mat-form-field class="col-md-12 ml-10">
-    <input
-      matInput
-      formControlName="birthDay"
-      placeholder="تاریخ تولد مدیر عامل *"
-    />
+    <input matInput [matDatepicker]="picker"
+     formControlName="birthDay"placeholder="تاریخ تولد مدیر عامل *">
+     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+         <mat-datepicker #picker  startView="multi-year"></mat-datepicker>
+
     <mat-error>این فیلد نمیتواند خالی باشد</mat-error>
-  </mat-form-field>
+
+</mat-form-field>
+
+
   <mat-form-field class="col-md-12 ml-10">
     <input
       matInput
@@ -38,11 +42,12 @@
   <mat-form-field class="col-md-12 ml-10 ngxmatfileinput">
       <ngx-mat-file-input
       (change)="onFileSelect($event)"
+      formControlName="file"
+      accept="image/*"
         placeholder="تصویر کارت ملی مدیرعامل *"
       >
       </ngx-mat-file-input>
-      <i class="icon-camera float-left icon-fileupload">
-        </i>
+      <img [src]="imgUrl" class= "float-left icon-fileupload"/>
     </mat-form-field>
 </mat-dialog-content>
 
