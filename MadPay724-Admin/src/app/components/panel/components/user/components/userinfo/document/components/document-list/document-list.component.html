@@ -18,53 +18,38 @@
                                     <tr>
                                         <th class="border-top-0">وضعیت</th>    
                                         <th class="border-top-0">پاسخ</th>                            
+                                        <th class="border-top-0">تصویر ارسالی</th>                            
                                         <th class="border-top-0">نوع حساب</th>                                
-                                        <th class="border-top-0">نام و نام خانوادگی</th>
+                                        <th class="border-top-0">نام</th>
                                         
                                         <th class="border-top-0">تاریخ درخواست</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="text-truncate"><i class="fa fa-dot-circle-o warning font-medium-1 mr-1"></i> در حال بررسی</td>
-                                        <td class="text-truncate"> پرداخت شده</td>
+                                <tbody *ngIf="documents$ | async as documents">
+                                    <tr *ngFor="let doc of documents">
+                                        <td class="text-truncate" *ngIf="doc.approve === 0"><i class="fa fa-dot-circle-o warning font-medium-1 mr-1"></i> در حال بررسی</td>
+                                        <td class="text-truncate" *ngIf="doc.approve === 1"><i class="fa fa-dot-circle-o success font-medium-1 mr-1"></i> تایید شده</td>
+                                        <td class="text-truncate" *ngIf="doc.approve === 2"><i class="fa fa-dot-circle-o danger font-medium-1 mr-1"></i> رد شده</td>
+
+                                        <td class="text-truncate"> {{doc.message}}</td>
 
                                         <td class="text-truncate">
                                             <span class="avatar avatar-xs">
-                                                <img class="box-shadow-2" src="img/portrait/small/avatar-s-4.jpg" alt="avatar">
+                                                <img class="box-shadow-2" src="{{doc.picUrl}}" alt="avatar">
                                             </span>
-                                            <span>زیبا</span>
                                         </td>
-                                        <td class="text-truncate"> پرداخت شده</td>
-                                        <td class="text-truncate"> پرداخت شده</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-truncate"><i class="fa fa-dot-circle-o success font-medium-1 mr-1"></i> تایید شده</td>
-                                        <td class="text-truncate"> پرداخت شده</td>
 
-                                        <td class="text-truncate">
-                                            <span class="avatar avatar-xs">
-                                                <img class="box-shadow-2" src="img/portrait/small/avatar-s-4.jpg" alt="avatar">
-                                            </span>
-                                            <span>زیبا</span>
-                                        </td>
-                                        <td class="text-truncate"> پرداخت شده</td>
-                                        <td class="text-truncate"> پرداخت شده</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-truncate"><i class="fa fa-dot-circle-o danger font-medium-1 mr-1"></i> تایید نشده</td>
-                                        <td class="text-truncate"> پرداخت شده</td>
+                                        <td class="text-truncate"
+                                        [ngClass]="{'alert alert-success': doc.isTrue}"
+                                        *ngIf="doc.isTrue"> حقیقی</td>
 
-                                        <td class="text-truncate">
-                                            <span class="avatar avatar-xs">
-                                                <img class="box-shadow-2" src="img/portrait/small/avatar-s-4.jpg" alt="avatar">
-                                            </span>
-                                            <span>زیبا</span>
-                                        </td>
-                                        <td class="text-truncate"> پرداخت شده</td>
-                                        <td class="text-truncate"> پرداخت شده</td>
-                                    </tr>
-                                  
+                                        <td class="text-truncate"
+                                        [ngClass]="{'alert alert-info': !doc.isTrue}"
+                                        *ngIf="!doc.isTrue"> حقوقی</td>
+
+                                        <td class="text-truncate">{{doc.name}}</td>
+                                        <td class="text-truncate">{{doc.dateCreated | jdate:'short'}}</td>
+                                    </tr>                                  
                                 </tbody>
                             </table>
                         </div>

@@ -28,6 +28,8 @@ import { DigitOnlyModule } from '@uiowa/digit-only';
 import { RightDocumentComponent } from './components/userinfo/document/components/right-document/right-document.component';
 import { LeftDocumentComponent } from './components/userinfo/document/components/left-document/left-document.component';
 import { DocumentListComponent } from './components/userinfo/document/components/document-list/document-list.component';
+import { DocumentService } from 'src/app/Services/panel/user/document.service';
+import {JdatePipe} from 'ngx-persian';
 
 @NgModule({
   imports: [
@@ -53,12 +55,14 @@ import { DocumentListComponent } from './components/userinfo/document/components
     NotificationComponent,
     BankCardComponent,
     ManageBankCardComponent,
-    EditBankCardComponent
+    EditBankCardComponent,
+    JdatePipe
   ],
   providers: [
     UserService,
     NotificationService,
     BankCardsService,
+    DocumentService,
     UserProfileResolver,
     NotificationResolver,
     BankCardResolver,
