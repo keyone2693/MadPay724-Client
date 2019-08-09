@@ -16,7 +16,7 @@
       && docRightForm.get('name').touched)">این فیلد نمیتواد بیشتر از 100 حرف اشد</mat-error>
     </mat-form-field>
     <mat-form-field class="col-md-12 ml-10">
-      <input matInput formControlName="nationalCode" placeholder="کد ملی *" />
+      <input matInput digitOnly formControlName="nationalCode" placeholder="کد ملی *" />
       <mat-error *ngIf="docRightForm.get('nationalCode').hasError('required')
       && docRightForm.get('nationalCode').touched">این فیلد نمیتواند خالی باشد</mat-error>
   

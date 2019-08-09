@@ -18,11 +18,20 @@ export class DocumentComponent implements OnInit {
   }
   loadDocuments() {
     // this.documents$ =  this.docService.getDocuments(this.authService.decodedToken.nameid);
-      this.route.data.pipe(take(1)).subscribe(data => {
+    this.route.data.pipe(take(1)).subscribe(data => {
       this.documents = data.documents;
     });
   }
   isRight(f: boolean) {
     this.flag = f;
+  }
+  insertDocument(newDoc: Document) {
+    this.documents.push(newDoc);
+    this.goToDocList();
+  }
+  goToDocList() {
+    $('html , body').animate({
+      scrollTop: $('#doclist-place').offset().top + 20
+    }, 500);
   }
 }

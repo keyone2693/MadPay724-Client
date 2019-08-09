@@ -40,12 +40,10 @@
                                         </td>
 
                                         <td class="text-truncate"
-                                        [ngClass]="{'alert alert-success': doc.isTrue}"
-                                        *ngIf="doc.isTrue"> حقیقی</td>
+                                        *ngIf="doc.isTrue"><span class="alert alert-success px-1 py-1">حقیقی</span> </td>
 
                                         <td class="text-truncate"
-                                        [ngClass]="{'alert alert-info': !doc.isTrue}"
-                                        *ngIf="!doc.isTrue"> حقوقی</td>
+                                        *ngIf="!doc.isTrue"><span class="alert alert-info px-1 py-1">حقوقی</span> </td>
 
                                         <td class="text-truncate">{{doc.name}}</td>
                                         <td class="text-truncate">{{doc.dateCreated}}</td>

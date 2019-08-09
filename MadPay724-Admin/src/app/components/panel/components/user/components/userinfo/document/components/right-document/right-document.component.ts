@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/Services/auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { DocumentService } from 'src/app/Services/panel/user/document.service';
 import * as moment from 'moment';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-right-document',
@@ -11,13 +12,13 @@ import * as moment from 'moment';
   styleUrls: ['./right-document.component.css']
 })
 export class RightDocumentComponent implements OnInit {
-
-
-  constructor(private formBuilder: FormBuilder, private docService: DocumentService,
-              private authService: AuthService, private alertService: ToastrService) { }
   docRightForm: FormGroup;
   slectedFile: File;
   imgUrl = '../../../../../../../../../../assets/img/profilepic.png';
+  @Output() newDocument = new EventEmitter<Document>();
+
+  constructor(private formBuilder: FormBuilder, private docService: DocumentService,
+              private authService: AuthService, private alertService: ToastrService) { }
 
   ngOnInit() {
     this.docRightForm = this.formBuilder.group({
@@ -54,10 +55,11 @@ export class RightDocumentComponent implements OnInit {
     document.append('address', this.docRightForm.get('address').value);
 
 
-    this.docService.addDocument(this.authService.decodedToken.nameid, document).subscribe((data) => {
+    this.docService.addDocument(this.authService.decodedToken.nameid, document).pipe(take(1)).subscribe((data) => {
       this.alertService.success('مدارک شما با موفقیت ارسال شد', 'موفق');
       this.alertService.info('مدارک شما در انتظار تایید میباشد', 'توجه');
       this.docRightForm.reset();
+      this.newDocument.emit(data);
     }, error => {
       this.alertService.error(error, 'خطا');
     });
