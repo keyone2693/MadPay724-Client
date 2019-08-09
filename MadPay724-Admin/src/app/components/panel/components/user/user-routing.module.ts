@@ -11,6 +11,7 @@ import { NotificationComponent } from './components/notification/notification.co
 import { NotificationResolver } from 'src/app/resolvers/notification.resolver';
 import { ManageBankCardComponent } from './components/manage-bank-card/manage-bank-card.component';
 import { BankCardResolver } from 'src/app/resolvers/bankcard.resolver';
+import { DocumentResolver } from 'src/app/resolvers/document.resolver';
 
 const routes: Routes = [
    {
@@ -24,7 +25,9 @@ const routes: Routes = [
        data: {roles: ['User', 'Admin', 'Blog', 'Accountant'], title: ['پروفایل کاربری']},
        resolve: {user: UserProfileResolver},
        canDeactivate: [PreventUnsavedGuard]},
-      {path: 'userinfo/documents', canActivate: [AuthGuard], component: DocumentComponent,
+       //
+      {path: 'userinfo/documents', canActivate: [AuthGuard],
+      resolve: {documents: DocumentResolver}, component: DocumentComponent,
        data: {roles: ['User'], title: ['ارسال مدارک شناسایی']}},
       //
       {path: 'notification', canActivate: [AuthGuard],

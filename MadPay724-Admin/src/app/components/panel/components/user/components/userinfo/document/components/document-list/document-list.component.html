@@ -25,7 +25,7 @@
                                         <th class="border-top-0">تاریخ درخواست</th>
                                     </tr>
                                 </thead>
-                                <tbody *ngIf="documents$ | async as documents">
+                                <tbody>
                                     <tr *ngFor="let doc of documents">
                                         <td class="text-truncate" *ngIf="doc.approve === 0"><i class="fa fa-dot-circle-o warning font-medium-1 mr-1"></i> در حال بررسی</td>
                                         <td class="text-truncate" *ngIf="doc.approve === 1"><i class="fa fa-dot-circle-o success font-medium-1 mr-1"></i> تایید شده</td>

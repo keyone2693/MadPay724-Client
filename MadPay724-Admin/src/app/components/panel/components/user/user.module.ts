@@ -32,6 +32,7 @@ import { DocumentService } from 'src/app/Services/panel/user/document.service';
 import {JdatePipe} from 'ngx-persian';
 import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from 'src/app/Shared/material.persian-date.adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material';
+import { DocumentResolver } from 'src/app/resolvers/document.resolver';
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
     UserProfileResolver,
     NotificationResolver,
     BankCardResolver,
+    DocumentResolver,
     PreventUnsavedGuard,
     { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS }
