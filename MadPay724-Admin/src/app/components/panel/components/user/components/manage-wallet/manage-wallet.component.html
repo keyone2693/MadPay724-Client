@@ -1,0 +1,49 @@
+<!-- User Profile Starts-->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/panel/dashboard']">داشبورد</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/panel/user/wallet']">کیف پول </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">
+      مشاهده و ویرایش کیف پول ها
+    </li>
+  </ol>
+</nav>
+<!--Basic User Details Starts-->
+<section id="user-area">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-wrap bar-success">
+            <h4 class="card-title">کیف پول ها</h4>
+          </div>
+          <p>
+            تمام کیف پول های شما در این صفحه نمایش داده می‌شوند
+          </p>
+          <button
+            mat-raised-button
+            (click)="onCreate()"
+            color="green"
+            class="float-left mb-10"
+          >
+            <i class="ft-plus-circle"></i>
+            افزودن کیف پول
+          </button>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <app-wallet *ngFor="let wallet of wallets"
+            [wallet]="wallet"
+            class="col-lg-4 col-md-6 col-12 float-right"
+            (deleteWallet)="removeWallet($event)"></app-wallet>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--User Profile Starts-->

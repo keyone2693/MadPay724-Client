@@ -80,7 +80,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         if (error.status === 403) {
             return throwError(' برای دسترسی به این بخش باید مدارک شما ارسال و تایید شده باشد '
             + ' برای بررسی مدارک به '
-            + ' صفحه مدارک '
+            + ' صفحه ارسال '
             + ' مراجعه کنید !!! ');
         }
         const appError = error.headers.get('App-Error');

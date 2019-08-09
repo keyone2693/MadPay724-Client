@@ -18,10 +18,8 @@ import { UserMaterialModule } from 'src/app/Shared/Modules/material/user-materia
 import { NotificationComponent } from './components/notification/notification.component';
 import { NotificationResolver } from 'src/app/resolvers/notification.resolver';
 import { ManageBankCardComponent } from './components/manage-bank-card/manage-bank-card.component';
-import { BankCardComponent } from './components/manage-bank-card/bank-card/bank-card.component';
 import { BankCardResolver } from 'src/app/resolvers/bankcard.resolver';
 import { NotificationService } from 'src/app/Services/panel/user/notification.service';
-import { EditBankCardComponent } from './components/manage-bank-card/edit-bank-card/edit-bank-card.component';
 import { BankCardsService } from 'src/app/Services/panel/user/bankCards.service';
 
 import { DigitOnlyModule } from '@uiowa/digit-only';
@@ -33,6 +31,11 @@ import {JdatePipe} from 'ngx-persian';
 import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from 'src/app/Shared/material.persian-date.adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material';
 import { DocumentResolver } from 'src/app/resolvers/document.resolver';
+import { ManageWalletComponent } from './components/manage-wallet/manage-wallet.component';
+import { WalletComponent } from './components/manage-wallet/components/wallet/wallet.component';
+import { WalletFormComponent } from './components/manage-wallet/components/wallet-form/wallet-form.component';
+import { BankCardComponent } from './components/manage-bank-card/components/bank-card/bank-card.component';
+import { EditBankCardComponent } from './components/manage-bank-card/components/edit-bank-card/edit-bank-card.component';
 
 
 @NgModule({
@@ -60,6 +63,9 @@ import { DocumentResolver } from 'src/app/resolvers/document.resolver';
     BankCardComponent,
     ManageBankCardComponent,
     EditBankCardComponent,
+    ManageWalletComponent,
+    WalletComponent,
+    WalletFormComponent,
     JdatePipe
   ],
   providers: [
@@ -76,6 +82,7 @@ import { DocumentResolver } from 'src/app/resolvers/document.resolver';
     { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS }
   ],
    entryComponents:
-  [EditBankCardComponent]
+  [EditBankCardComponent,
+  WalletFormComponent]
 })
 export class UserModule { }

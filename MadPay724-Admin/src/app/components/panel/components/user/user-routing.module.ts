@@ -12,6 +12,8 @@ import { NotificationResolver } from 'src/app/resolvers/notification.resolver';
 import { ManageBankCardComponent } from './components/manage-bank-card/manage-bank-card.component';
 import { BankCardResolver } from 'src/app/resolvers/bankcard.resolver';
 import { DocumentResolver } from 'src/app/resolvers/document.resolver';
+import { ManageWalletComponent } from './components/manage-wallet/manage-wallet.component';
+import { WalletResolver } from 'src/app/resolvers/wallet.resolver';
 
 const routes: Routes = [
    {
@@ -36,7 +38,11 @@ const routes: Routes = [
       //
       {path: 'bankcard', canActivate: [AuthGuard],
       resolve: {bankcards: BankCardResolver}, component: ManageBankCardComponent,
-      data: {roles: ['User'], title: ['مدیریت کارت های بانکی']}}
+      data: {roles: ['User'], title: ['مدیریت کارت های بانکی']}},
+       //
+      {path: 'wallet', canActivate: [AuthGuard],
+       resolve: {wallets: WalletResolver}, component: ManageWalletComponent,
+       data: {roles: ['User'], title: ['مدیریت کیف پول']}}
 
     ]
    }
