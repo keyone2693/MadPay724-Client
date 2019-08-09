@@ -15,7 +15,7 @@ export class DocumentResolver implements Resolve<Document[]> {
         return this.documentService.getDocuments(this.authService.decodedToken.nameid).pipe(
             catchError(error => {
                 this.alertService.error('خطا دردریافت اطلاعات', 'خطا');
-                this.router.navigate([this.authService.getDashboardUrl()]);
+                // this.router.navigate([this.authService.getDashboardUrl()]);
                 return of(null);
             })
         );

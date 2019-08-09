@@ -14,6 +14,7 @@ import {
 } from 'ngx-ui-loader';
 import { AuthService } from './Services/auth/auth.service';
 import { TitleService } from './Services/common/title.service';
+import { NotyfToast } from './Shared/Animation/notyf';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   pbColor: 'red',
@@ -38,7 +39,8 @@ export function tokenGet() {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NotyfToast
   ],
   imports: [
     BrowserModule,
@@ -61,6 +63,7 @@ export function tokenGet() {
     TitleService,
     AuthService
   ],
+  entryComponents: [NotyfToast],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -26,8 +26,8 @@ export class ErrorInterceptor implements HttpInterceptor {
                 if (error instanceof HttpErrorResponse) {
                     if ((error as HttpErrorResponse).status === 401) {
                         if (error.error === '0x000keyvanx00') {
-                            this.alertService.error('خطا در اعتبار سنجی خودکار', 'خطا');
-                            return this.authService.logout() as any;
+                            this.authService.logoutRefreshToken();
+                            return throwError('خطا در اعتبار سنجی خودکار');
                         } else if (error.error === '1x111keyvanx11') {
                             return throwError('کاربری با این یوزر و پس وجود ندارد');
                         }
@@ -77,6 +77,12 @@ export class ErrorInterceptor implements HttpInterceptor {
 
     private handelError(error: HttpErrorResponse) {
         // error
+        if (error.status === 403) {
+            return throwError(' برای دسترسی به این بخش باید مدارک شما ارسال و تایید شده باشد '
+            + ' برای بررسی مدارک به '
+            + ' صفحه مدارک '
+            + ' مراجعه کنید !!! ');
+        }
         const appError = error.headers.get('App-Error');
         if (appError) {
             return throwError(appError);

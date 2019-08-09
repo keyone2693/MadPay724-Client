@@ -63,6 +63,16 @@ export class AuthService {
     this.router.navigate(['/auth/login']);
     this.alertService.warning('با موفقیت خارج شدید', 'موفق');
   }
+  logoutRefreshToken() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('refreshToken');
+    this.decodedToken = null;
+    this.currentUser = null;
+    this.router.navigate(['/auth/login']);
+    this.alertService.error('خطا در اعتبار سنجی خودکار', 'خطا');
+    this.alertService.warning('با موفقیت خارج شدید', 'موفق');
+  }
 
 getNewRefreshToken(): Observable<any> {
   const user: User = JSON.parse(localStorage.getItem('user'));
