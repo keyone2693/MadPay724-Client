@@ -9,15 +9,28 @@
         formControlName="name"
         placeholder="نام و نام خانوادگی *"
       />
-      <mat-error>این فیلد نمیتواند خالی باشد</mat-error>
+      <mat-error *ngIf="docRightForm.get('name').hasError('required')
+      && docRightForm.get('name').touched">این فیلد نمیتواند خالی باشد</mat-error>
+  
+      <mat-error *ngIf="(docRightForm.get('name').hasError('maxlength')
+      && docRightForm.get('name').touched)">این فیلد نمیتواد بیشتر از 100 حرف اشد</mat-error>
     </mat-form-field>
     <mat-form-field class="col-md-12 ml-10">
       <input matInput formControlName="nationalCode" placeholder="کد ملی *" />
-      <mat-error>این فیلد نمیتواند خالی باشد</mat-error>
+      <mat-error *ngIf="docRightForm.get('nationalCode').hasError('required')
+      && docRightForm.get('nationalCode').touched">این فیلد نمیتواند خالی باشد</mat-error>
+  
+      <mat-error *ngIf="(docRightForm.get('nationalCode').hasError('maxlength')
+      && docRightForm.get('nationalCode').touched) || (docRightForm.get('nationalCode').hasError('minlength')
+      && docRightForm.get('nationalCode').touched)">کد ملی باید 10 رقمی باشد</mat-error>
     </mat-form-field>
     <mat-form-field class="col-md-12 ml-10">
       <input matInput formControlName="fatherNameRegisterCode" placeholder="نام پدر *" />
-      <mat-error>این فیلد نمیتواند خالی باشد</mat-error>
+      <mat-error *ngIf="docRightForm.get('fatherNameRegisterCode').hasError('required')
+      && docRightForm.get('fatherNameRegisterCode').touched">این فیلد نمیتواند خالی باشد</mat-error>
+  
+      <mat-error *ngIf="(docRightForm.get('fatherNameRegisterCode').hasError('maxlength')
+      && docRightForm.get('fatherNameRegisterCode').touched)">این فیلد نمیتواد بیشتر از 100 حرف اشد</mat-error>
     </mat-form-field> 
   
     <mat-form-field class="col-md-12 ml-10">
@@ -37,7 +50,11 @@
         formControlName="address"
         placeholder="آدرس و کد پستی *"
       />
-      <mat-error>این فیلد نمیتواند خالی باشد</mat-error>
+      <mat-error *ngIf="docRightForm.get('address').hasError('required')
+      && docRightForm.get('address').touched">این فیلد نمیتواند خالی باشد</mat-error>
+  
+      <mat-error *ngIf="(docRightForm.get('address').hasError('maxlength')
+      && docRightForm.get('address').touched)">این فیلد نمیتواد بیشتر از 100 حرف اشد</mat-error>
     </mat-form-field>
     <mat-form-field class="col-md-12 ml-10 ngxmatfileinput">
         <ngx-mat-file-input
@@ -48,6 +65,8 @@
         >
         </ngx-mat-file-input>
         <img [src]="imgUrl" class= "float-left icon-fileupload"/>
+        <mat-error>تصویر کارت ملی را انتخاب کنید</mat-error>
+
       </mat-form-field>
   </mat-dialog-content>
   
@@ -55,6 +74,7 @@
     <button 
     (click)="onSubmit()"
     mat-raised-button color="green"
+    [disabled]="docRightForm.invalid"
      class="float-left mb-10 mx-1">
       <i class="icon-check"></i>
       <span>ارسال مدارک</span>

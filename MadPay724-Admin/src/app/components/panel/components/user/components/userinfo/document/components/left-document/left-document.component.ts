@@ -23,7 +23,7 @@ export class LeftDocumentComponent implements OnInit {
     this.docLeftForm = this.formBuilder.group({
       isTrue: [false],
       name: ['', [Validators.required, Validators.maxLength(100)]],
-      nationalCode: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(10)]],
+      nationalCode: ['', [Validators.required, Validators.maxLength(100)]],
       fatherNameRegisterCode: ['', [Validators.required, Validators.maxLength(100)]],
       birthDay: ['', [Validators.required]],
       address: ['', [Validators.required, Validators.maxLength(100)]],
@@ -57,6 +57,7 @@ export class LeftDocumentComponent implements OnInit {
     this.docService.addDocument(this.authService.decodedToken.nameid, document).subscribe((data) => {
       this.alertService.success('مدارک شما با موفقیت ارسال شد', 'موفق');
       this.alertService.info('مدارک شما در انتظار تایید میباشد', 'توجه');
+      this.docLeftForm.reset();
     }, error => {
       this.alertService.error(error, 'خطا');
     });

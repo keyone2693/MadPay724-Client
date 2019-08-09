@@ -57,6 +57,7 @@ export class RightDocumentComponent implements OnInit {
     this.docService.addDocument(this.authService.decodedToken.nameid, document).subscribe((data) => {
       this.alertService.success('مدارک شما با موفقیت ارسال شد', 'موفق');
       this.alertService.info('مدارک شما در انتظار تایید میباشد', 'توجه');
+      this.docRightForm.reset();
     }, error => {
       this.alertService.error(error, 'خطا');
     });
