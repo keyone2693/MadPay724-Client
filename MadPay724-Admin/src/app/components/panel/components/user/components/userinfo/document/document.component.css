@@ -39,3 +39,16 @@
   border-radius: 5px;
   padding: 8px 0;  
 }
+.colorwihte{
+  color: #fff !important;
+}
+.padding-bot{
+  padding-top: 0 !important
+}
+
+.bggrean{
+ background:  #28D094;
+}
+.bgorange{
+  background: #FF9149;
+}

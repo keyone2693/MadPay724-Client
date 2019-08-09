@@ -18,58 +18,155 @@
     <div class="col-md-12">
       <div class="container">
         <div class="docbuttons row">
-          <div class="col-md-6 docbutton-right">
-            <button
-              mat-raised-button
-              [ngClass]="{ 'buttons-active': flag }"
-              (click)="isRight(true)"
-            >
-              حساب حقیقی
-            </button>
+            <div  *ngIf="!documents.some(isAnyDocCheckingApprove)" class="col-md-6 docbutton-right">
+              <button
+                mat-raised-button
+                [ngClass]="{ 'buttons-active': flag }"
+                (click)="isRight(true)"
+              >
+                حساب حقیقی
+              </button>
+            </div>
+            <div  *ngIf="!documents.some(isAnyDocCheckingApprove)" class="col-md-6 docbutton-left">
+              <button
+                mat-raised-button
+                [ngClass]="{ 'buttons-active': !flag }"
+                (click)="isRight(false)"
+              >
+                حساب حقوقی
+              </button>
+            </div>
+          <div *ngIf="documents.some(isAnyDocChecking)" class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title-wrap bar-warning">
+                  <h4 class="card-title">توجه</h4>
+                </div>
+                <p>
+                  شما قبلا
+                  <code><a (click)="goToDocList()">مدرکی </a></code>
+                  ارسال کرده اید و در حال بررسی میباشد. درصورت رد شدن مدارک شما
+                  امکان ارسال دوباره اطلاعات را خواهید داشت اگر سوالی دارید در
+                  بخش پشتیبانی با ارسال
+                  <code><a (click)="goToDocList()">تیکت </a></code>
+                  با ما در ارتباط باشید
+                </p>
+              </div>
+              <div class="card-body">
+                <div class="card-block text-center padding-bot">
+                  <span class="badge badge-primary bgorange">مدارک شما در حال بررسی میباشد</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="col-md-6 docbutton-left">
-            <button
-              mat-raised-button
-              [ngClass]="{ 'buttons-active': !flag }"
-              (click)="isRight(false)"
-            >
-              حساب حقوقی
-            </button>
+          <div *ngIf="documents.some(isAnyDocApprove)" class="col-md-12">
+              <div class="card">
+                  <div class="card-header">
+                    <div class="card-title-wrap bar-success">
+                      <h4 class="card-title">توجه</h4>
+                    </div>
+                    <p>
+                      شما قبلا
+                      <code><a (click)="goToDocList()">مدرکی </a></code>
+                      ارسال کرده اید که تایید شده است نیازی به ارسال دوباره مدارک نیست
+                      اگر سوالی دارید در بخش پشتیبانی با ارسال
+                      <code><a (click)="goToDocList()">تیکت </a></code>
+                      با ما در ارتباط باشید
+                    </p>
+                  </div>
+                  <div class="card-body">
+                    <div class="card-block text-center padding-bot">
+                      <span class="badge badge-primary bggrean">تبریک میگوییم مدارم شما تایید شده است</span>
+                    </div>
+                  </div>
+                </div>
           </div>
         </div>
-        <div class="right row" *ngIf="flag">
-          <div class="col-md-6"><app-right-document (newDocument)="insertDocument($event)"></app-right-document></div>
-          <div class="col-md-6">
+        <div *ngIf="!documents.some(isAnyDocCheckingApprove)">
+          <div class="right row" *ngIf="flag">
+            <div class="col-md-6">
+              <app-right-document
+                (newDocument)="insertDocument($event)"
+              ></app-right-document>
+            </div>
+            <div class="col-md-6">
               <div class="alert alert-warning palignjust">
                 <h5>توجه!</h5>
-                <p><strong> <i class="icon-check"></i></strong> لطفا تصویر واضحی از روی کارت ملی خود تهیه و ارسال نمایید</p>
-                <p><strong> <i class="icon-check"></i></strong> حداقل سن برای دریافت خدمات تجاری 18 سال تمام است</p>
-                <p><strong> <i class="icon-check"></i></strong> استفاده از مدارک سایرین و مدارک والدین مجاز نمی‌باشد و در صورت مشاهده حساب مسدود می‌گردد</p>
-                <p><strong> <i class="icon-check"></i></strong> در صورت استفاده از مدارک دیگران، حساب کاربری مسدود می‌شود</p>
-                <p><strong> <i class="icon-check"></i></strong> درصورت جعل اسناد هویتی و هرگونه دستکاری در آن‌ها، فرد مذکور به مراجع قضایی معرفی خواهد شد</p>
-                <p><strong> <i class="icon-check"></i></strong> مجازات جعل اسناد طبق ماده 530 قانون تعزیرات 2 ماه تا 2 سال حبس به همراه مجازات نقدی به همراه دارد</p>
-                  
+                <p>
+                  <strong> <i class="icon-check"></i></strong> لطفا تصویر واضحی
+                  از روی کارت ملی خود تهیه و ارسال نمایید
+                </p>
+                <p>
+                  <strong> <i class="icon-check"></i></strong> حداقل سن برای
+                  دریافت خدمات تجاری 18 سال تمام است
+                </p>
+                <p>
+                  <strong> <i class="icon-check"></i></strong> استفاده از مدارک
+                  سایرین و مدارک والدین مجاز نمی‌باشد و در صورت مشاهده حساب
+                  مسدود می‌گردد
+                </p>
+                <p>
+                  <strong> <i class="icon-check"></i></strong> در صورت استفاده
+                  از مدارک دیگران، حساب کاربری مسدود می‌شود
+                </p>
+                <p>
+                  <strong> <i class="icon-check"></i></strong> درصورت جعل اسناد
+                  هویتی و هرگونه دستکاری در آن‌ها، فرد مذکور به مراجع قضایی
+                  معرفی خواهد شد
+                </p>
+                <p>
+                  <strong> <i class="icon-check"></i></strong> مجازات جعل اسناد
+                  طبق ماده 530 قانون تعزیرات 2 ماه تا 2 سال حبس به همراه مجازات
+                  نقدی به همراه دارد
+                </p>
               </div>
+            </div>
           </div>
-        </div>
-        <div class="left row" *ngIf="!flag">
-          <div class="col-md-6"><app-left-document (newDocument)="insertDocument($event)"></app-left-document></div>
-          <div class="col-md-6">
+          <div class="left row" *ngIf="!flag">
+            <div class="col-md-6">
+              <app-left-document
+                (newDocument)="insertDocument($event)"
+              ></app-left-document>
+            </div>
+            <div class="col-md-6">
               <div class="alert alert-warning palignjust">
-                  <h5>توجه!</h5>
-                  <p><strong> <i class="icon-check"></i></strong> لطفا تصویر واضحی از روی کارت ملی خود تهیه و ارسال نمایید</p>
-                  <p><strong> <i class="icon-check"></i></strong> حداقل سن برای دریافت خدمات تجاری 18 سال تمام است</p>
-                  <p><strong> <i class="icon-check"></i></strong> استفاده از مدارک سایرین و مدارک والدین مجاز نمی‌باشد و در صورت مشاهده حساب مسدود می‌گردد</p>
-                  <p><strong> <i class="icon-check"></i></strong> در صورت استفاده از مدارک دیگران، حساب کاربری مسدود می‌شود</p>
-                  <p><strong> <i class="icon-check"></i></strong> درصورت جعل اسناد هویتی و هرگونه دستکاری در آن‌ها، فرد مذکور به مراجع قضایی معرفی خواهد شد</p>
-                  <p><strong> <i class="icon-check"></i></strong> مجازات جعل اسناد طبق ماده 530 قانون تعزیرات 2 ماه تا 2 سال حبس به همراه مجازات نقدی به همراه دارد</p>
-                    
-                </div>
-
+                <h5>توجه!</h5>
+                <p>
+                  <strong> <i class="icon-check"></i></strong> لطفا تصویر واضحی
+                  از روی کارت ملی خود تهیه و ارسال نمایید
+                </p>
+                <p>
+                  <strong> <i class="icon-check"></i></strong> حداقل سن برای
+                  دریافت خدمات تجاری 18 سال تمام است
+                </p>
+                <p>
+                  <strong> <i class="icon-check"></i></strong> استفاده از مدارک
+                  سایرین و مدارک والدین مجاز نمی‌باشد و در صورت مشاهده حساب
+                  مسدود می‌گردد
+                </p>
+                <p>
+                  <strong> <i class="icon-check"></i></strong> در صورت استفاده
+                  از مدارک دیگران، حساب کاربری مسدود می‌شود
+                </p>
+                <p>
+                  <strong> <i class="icon-check"></i></strong> درصورت جعل اسناد
+                  هویتی و هرگونه دستکاری در آن‌ها، فرد مذکور به مراجع قضایی
+                  معرفی خواهد شد
+                </p>
+                <p>
+                  <strong> <i class="icon-check"></i></strong> مجازات جعل اسناد
+                  طبق ماده 530 قانون تعزیرات 2 ماه تا 2 سال حبس به همراه مجازات
+                  نقدی به همراه دارد
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-<app-document-list [documents]="documents" id="doclist-place"></app-document-list>
+<app-document-list
+  [documents]="documents"
+  id="doclist-place"
+></app-document-list>

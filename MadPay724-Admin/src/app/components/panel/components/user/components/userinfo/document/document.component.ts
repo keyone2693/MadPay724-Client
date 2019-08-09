@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
+import { Document } from 'src/app/models/document';
 
 @Component({
   selector: 'app-document',
@@ -33,5 +34,14 @@ export class DocumentComponent implements OnInit {
     $('html , body').animate({
       scrollTop: $('#doclist-place').offset().top + 20
     }, 500);
+  }
+  isAnyDocCheckingApprove(doc: Document) {
+    return doc.approve  === 0 || doc.approve === 1;
+  }
+  isAnyDocChecking(doc: Document) {
+    return doc.approve  === 0;
+  }
+  isAnyDocApprove(doc: Document) {
+    return doc.approve === 1;
   }
 }
