@@ -22,7 +22,7 @@
 
   <mat-form-field class="col-md-12 ml-10">
     <input matInput [matDatepicker]="picker"
-     formControlName="birthDay"placeholder="تاریخ تولد مدیر عامل *">
+     formControlName="birthDay"placeholder="تاریخ تولد مدیر عامل *" readonly>
      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
          <mat-datepicker #picker  startView="multi-year"></mat-datepicker>
 

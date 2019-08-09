@@ -1,0 +1,71 @@
+<h2 mat-dialog-title class="mmatdiagtitle">
+    مشخصات شخص حقیقی
+  </h2>
+  
+  <mat-dialog-content [formGroup]="docRightForm">
+    <mat-form-field class="col-md-12 ml-10">
+      <input
+        matInput
+        formControlName="name"
+        placeholder="نام و نام خانوادگی *"
+      />
+      <mat-error>این فیلد نمیتواند خالی باشد</mat-error>
+    </mat-form-field>
+    <mat-form-field class="col-md-12 ml-10">
+      <input matInput formControlName="nationalCode" placeholder="کد ملی *" />
+      <mat-error>این فیلد نمیتواند خالی باشد</mat-error>
+    </mat-form-field>
+    <mat-form-field class="col-md-12 ml-10">
+      <input matInput formControlName="fatherNameRegisterCode" placeholder="نام پدر *" />
+      <mat-error>این فیلد نمیتواند خالی باشد</mat-error>
+    </mat-form-field> 
+  
+    <mat-form-field class="col-md-12 ml-10">
+      <input matInput [matDatepicker]="picker"
+       formControlName="birthDay"placeholder="تاریخ تولد *"readonly>
+       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+           <mat-datepicker #picker  startView="multi-year"></mat-datepicker>
+  
+      <mat-error>این فیلد نمیتواند خالی باشد</mat-error>
+  
+  </mat-form-field>
+  
+  
+    <mat-form-field class="col-md-12 ml-10">
+      <input
+        matInput
+        formControlName="address"
+        placeholder="آدرس و کد پستی *"
+      />
+      <mat-error>این فیلد نمیتواند خالی باشد</mat-error>
+    </mat-form-field>
+    <mat-form-field class="col-md-12 ml-10 ngxmatfileinput">
+        <ngx-mat-file-input
+        (change)="onFileSelect($event)"
+        formControlName="file"
+        accept="image/*"
+          placeholder="تصویر کارت ملی  *"
+        >
+        </ngx-mat-file-input>
+        <img [src]="imgUrl" class= "float-left icon-fileupload"/>
+      </mat-form-field>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions class="float-left">
+    <button 
+    (click)="onSubmit()"
+    mat-raised-button color="green"
+     class="float-left mb-10 mx-1">
+      <i class="icon-check"></i>
+      <span>ارسال مدارک</span>
+    </button>
+    <button
+      mat-raised-button
+      matDialogClose
+      color="warn"
+      class="float-left mb-10"
+    >
+      <i class="icon-close"></i>
+      انصراف
+    </button>
+  </mat-dialog-actions>

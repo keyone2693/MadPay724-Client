@@ -8,6 +8,10 @@
     border-radius: 50px;
     color: #fff;
     width: 70px;
+    transition: all 0.5s;
+}
+.icon-fileupload:hover{
+    width: 150px;
 }
 .ngxmatfileinput{
     cursor: pointer;

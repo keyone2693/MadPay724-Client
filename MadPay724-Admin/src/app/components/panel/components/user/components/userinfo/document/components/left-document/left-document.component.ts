@@ -21,7 +21,7 @@ export class LeftDocumentComponent implements OnInit {
 
   ngOnInit() {
     this.docLeftForm = this.formBuilder.group({
-      isTrue: [true],
+      isTrue: [false],
       name: ['', [Validators.required, Validators.maxLength(100)]],
       nationalCode: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(10)]],
       fatherNameRegisterCode: ['', [Validators.required, Validators.maxLength(100)]],
