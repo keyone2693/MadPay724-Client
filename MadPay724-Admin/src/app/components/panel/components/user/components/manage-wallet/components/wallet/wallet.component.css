@@ -1,0 +1,187 @@
+
+.section {
+    margin: 10px 0;
+}
+.wallet-color {
+    display: inline-block;
+}
+
+.wallet-color {
+    width: 15px;
+    height: 15px;
+    position: relative;
+    border-radius: 50%;
+}
+
+.color-1 {
+    background-color: #ff5151;
+}
+.color-2 {
+    background-color: #ffd600;
+}
+.color-3 {
+    background-color: #2ecc71;
+}
+.pull-left {
+    float: left!important;
+}
+
+.ta-center {
+    text-align: center!important;
+}
+
+.no-right-margin {
+    padding-right: 0!important;
+    margin-right: 0!important;
+}
+
+.section p {
+    margin: 0;
+}
+
+.section .box {
+    background-color: #fefefe;
+    -webkit-box-shadow: 0 1px 2.5px 0 rgba(0, 0, 0, .15);
+    box-shadow: 0 1px 2.5px 0 rgba(0, 0, 0, .15);
+    border-radius: 5px;
+}
+
+.section .box,
+.section .box:hover {
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.section .box:hover {
+    -webkit-box-shadow: 0 6px 15px rgba(0, 0, 0, .15);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, .15);
+}
+
+.section .box .header {
+    background-color: #ededed;
+    border-radius: 5px 5px 0 0;
+    padding: 0 15px;
+    height: 50px;
+}
+
+.section .box .header .right-box p {
+    margin-top: 9px;
+}
+
+.section .box .header .right-box p .header-title {
+    font-size: 13px;
+    color: #777;
+    display: inline-block;
+    margin-right: 10px;
+    height: 22px;
+    overflow: hidden;
+    position: relative;
+    top: 5px;
+    width: 85px;
+}
+
+.section .box .header .right-box p .zpid-box {
+    font-size: 11px;
+    color: #777;
+    display: inline-block;
+    height: 22px;
+    overflow: hidden;
+    position: relative;
+    top: 5px;
+}
+
+.section .box .body {
+    padding: 15px;
+    color: #424242;
+    font-size: 13px;
+}
+
+.section .box .footer {
+    border-top: 1px solid #ededed;
+}
+
+
+.section .single-purse .header .right-box .wallet-color {
+    position: relative!important;
+    top: 2px!important;
+    margin-right: 4px;
+}
+
+.section .single-purse .body .txt-balance {
+    font-size: 13px;
+    color: #777;
+    margin: 5px auto 0;
+}
+
+.section .single-purse .body .balance-amount {
+    font-size: 35px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.section .single-purse .body .nav-show-chart {
+    width: 100px;
+    color: #458bff;
+    font-size: 13px;
+    cursor: pointer;
+    margin-top: -10px;
+}
+
+.section .single-purse .single-purse-body {
+    cursor: pointer;
+}
+
+.section .single-purse .footer {
+    border-top: 1px solid #ededed;
+}
+
+.section .single-purse .footer .segment {
+    text-align: center;
+    border-left: 1px solid #ededed;
+}
+
+.section .single-purse .footer .segment span {
+    display: block;
+    font-size: 18px;
+    margin: 15px auto 0;
+}
+
+.section .single-purse .footer .segment .txt-daily-balance {
+    color: #505050;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.section .single-purse .footer .segment .amount {
+    display: inline-block!important;
+    vertical-align: middle!important;
+    color: #777;
+    margin-top: 3px;
+    margin-bottom: 6px;
+}
+
+.section .single-purse .footer .segment:last-child {
+    border-left: none;
+}
+
+.section .single-purse .single-purse-footer {
+    cursor: pointer;
+}
+ul{
+    list-style: none;
+}
+
+.bottom-xs-color1{
+    border-bottom: 2px dashed #ff5151;
+}
+.bottom-xs-color2{
+    border-bottom: 2px dashed #ffd600;
+}
+.bottom-xs-color3{
+    border-bottom: 2px dashed #2ecc71;
+}
+.zpid-box{
+    font-size: 15px !important;
+    font-weight: 900 !important;
+    float: left;
+}

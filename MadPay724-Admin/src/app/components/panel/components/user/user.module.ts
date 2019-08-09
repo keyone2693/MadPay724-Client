@@ -36,6 +36,8 @@ import { WalletComponent } from './components/manage-wallet/components/wallet/wa
 import { WalletFormComponent } from './components/manage-wallet/components/wallet-form/wallet-form.component';
 import { BankCardComponent } from './components/manage-bank-card/components/bank-card/bank-card.component';
 import { EditBankCardComponent } from './components/manage-bank-card/components/edit-bank-card/edit-bank-card.component';
+import { WalletResolver } from 'src/app/resolvers/wallet.resolver';
+import { WalletService } from 'src/app/Services/panel/user/wallet.service';
 
 
 @NgModule({
@@ -73,10 +75,12 @@ import { EditBankCardComponent } from './components/manage-bank-card/components/
     NotificationService,
     BankCardsService,
     DocumentService,
+    WalletService,
     UserProfileResolver,
     NotificationResolver,
     BankCardResolver,
     DocumentResolver,
+    WalletResolver,
     PreventUnsavedGuard,
     { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS }

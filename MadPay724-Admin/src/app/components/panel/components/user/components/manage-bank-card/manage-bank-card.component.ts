@@ -3,10 +3,9 @@ import { MatDialog, MatDialogConfig } from '@angular/material';
 import { BankCard } from 'src/app/models/bankcard';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
-import { FormBuilder } from '@angular/forms';
 import { AuthService } from 'src/app/Services/auth/auth.service';
-import { EditBankCardComponent } from './edit-bank-card/edit-bank-card.component';
 import { BankCardsService } from 'src/app/Services/panel/user/bankCards.service';
+import { EditBankCardComponent } from './components/edit-bank-card/edit-bank-card.component';
 @Component({
   selector: 'app-manage-bank-card',
   templateUrl: './manage-bank-card.component.html',

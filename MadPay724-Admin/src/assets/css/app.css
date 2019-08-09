@@ -40084,7 +40084,7 @@ button:hover {
   margin-bottom : 10px;
 }
 .card .card-body {
-  padding : 0;
+  padding : 0 15px;
   height : auto;
 }
 .card .card-block {
