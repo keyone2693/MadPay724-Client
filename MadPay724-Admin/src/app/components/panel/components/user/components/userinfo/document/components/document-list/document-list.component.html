@@ -46,8 +46,12 @@
                                         *ngIf="!doc.isTrue"><span class="alert alert-info px-1 py-1">حقوقی</span> </td>
 
                                         <td class="text-truncate">{{doc.name}}</td>
-                                        <td class="text-truncate">{{doc.dateCreated}}</td>
-                                    </tr>                                  
+                                        <td class="text-truncate">
+                                            ( {{doc.dateCreated | date:'HH:mm'}} )
+                                            {{doc.dateCreated | persianDate}}
+                                            
+                                        </td>
+                                    </tr>                              
                                 </tbody>
                             </table>
                         </div>

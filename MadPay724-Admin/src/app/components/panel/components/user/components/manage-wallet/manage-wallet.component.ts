@@ -16,8 +16,8 @@ export class ManageWalletComponent implements OnInit {
   formTitle: string;
   wallets: Wallet[];
   constructor(private dialog: MatDialog, private route: ActivatedRoute, private alertService: ToastrService,
-              private walletService: WalletService,
-              private authService: AuthService) {}
+    private walletService: WalletService,
+    private authService: AuthService) { }
 
   ngOnInit() {
     this.loadWallets();
@@ -43,10 +43,18 @@ export class ManageWalletComponent implements OnInit {
   }
   insertWallet(wallet: Wallet) {
     this.wallets.push({
-      id: wallet.id
+      id: wallet.id,
+      code: wallet.code,
+      exitMoney: wallet.exitMoney,
+      interMoney: wallet.interMoney,
+      inventory: wallet.inventory,
+      isMain: wallet.isMain,
+      isSms: wallet.isSms,
+      name: wallet.name,
+      onExitMoney: wallet.onExitMoney,
     });
   }
   removeWallet(wallet: Wallet) {
-    this.wallets.splice(this.wallets.indexOf(wallet) , 1);
+    this.wallets.splice(this.wallets.indexOf(wallet), 1);
   }
 }

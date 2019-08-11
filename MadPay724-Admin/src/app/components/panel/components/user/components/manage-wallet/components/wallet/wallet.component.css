@@ -1,6 +1,7 @@
 
 .section {
     margin: 10px 0;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, .12);
 }
 .wallet-color {
     display: inline-block;
@@ -14,7 +15,7 @@
 }
 
 .color-1 {
-    background-color: #ff5151;
+    background-color: #248aff;
 }
 .color-2 {
     background-color: #ffd600;
@@ -70,7 +71,7 @@
 
 .section .box .header .right-box p .header-title {
     font-size: 13px;
-    color: #777;
+    color: #555;
     display: inline-block;
     margin-right: 10px;
     height: 22px;
@@ -82,7 +83,7 @@
 
 .section .box .header .right-box p .zpid-box {
     font-size: 11px;
-    color: #777;
+    color: #555;
     display: inline-block;
     height: 22px;
     overflow: hidden;
@@ -109,7 +110,7 @@
 
 .section .single-purse .body .txt-balance {
     font-size: 13px;
-    color: #777;
+    color: #555;
     margin: 5px auto 0;
 }
 
@@ -155,7 +156,7 @@
 .section .single-purse .footer .segment .amount {
     display: inline-block!important;
     vertical-align: middle!important;
-    color: #777;
+    color: #555;
     margin-top: 3px;
     margin-bottom: 6px;
 }
@@ -171,14 +172,14 @@ ul{
     list-style: none;
 }
 
-.bottom-xs-color1{
-    border-bottom: 2px dashed #ff5151;
+.top-xs-color1{
+    border-top: 8px solid #248aff;
 }
-.bottom-xs-color2{
-    border-bottom: 2px dashed #ffd600;
+.top-xs-color2{
+    border-top: 8px solid #ffd600;
 }
-.bottom-xs-color3{
-    border-bottom: 2px dashed #2ecc71;
+.top-xs-color3{
+    border-top: 8px solid #2ecc71;
 }
 .zpid-box{
     font-size: 15px !important;

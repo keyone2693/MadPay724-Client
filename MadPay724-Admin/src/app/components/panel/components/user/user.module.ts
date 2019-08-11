@@ -27,7 +27,6 @@ import { RightDocumentComponent } from './components/userinfo/document/component
 import { LeftDocumentComponent } from './components/userinfo/document/components/left-document/left-document.component';
 import { DocumentListComponent } from './components/userinfo/document/components/document-list/document-list.component';
 import { DocumentService } from 'src/app/Services/panel/user/document.service';
-import {JdatePipe} from 'ngx-persian';
 import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from 'src/app/Shared/material.persian-date.adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material';
 import { DocumentResolver } from 'src/app/resolvers/document.resolver';
@@ -38,7 +37,8 @@ import { BankCardComponent } from './components/manage-bank-card/components/bank
 import { EditBankCardComponent } from './components/manage-bank-card/components/edit-bank-card/edit-bank-card.component';
 import { WalletResolver } from 'src/app/resolvers/wallet.resolver';
 import { WalletService } from 'src/app/Services/panel/user/wallet.service';
-
+import { PersianDateModule } from 'src/app/Shared/Pipe/PersianDatePipe/persian-date.module';
+import {IRCurrencyPipe, JdatePipe} from 'ngx-persian';
 
 @NgModule({
   imports: [
@@ -48,10 +48,13 @@ import { WalletService } from 'src/app/Services/panel/user/wallet.service';
     FormsModule,
     ReactiveFormsModule,
     UserMaterialModule,
-    DigitOnlyModule
+    DigitOnlyModule,
+    PersianDateModule
   ],
   declarations: [
     PersianTimeAgoPipe,
+    IRCurrencyPipe,
+    JdatePipe,
     UserComponent,
     ProfileComponent,
     DocumentComponent,
@@ -67,8 +70,7 @@ import { WalletService } from 'src/app/Services/panel/user/wallet.service';
     EditBankCardComponent,
     ManageWalletComponent,
     WalletComponent,
-    WalletFormComponent,
-    JdatePipe
+    WalletFormComponent
   ],
   providers: [
     UserService,
