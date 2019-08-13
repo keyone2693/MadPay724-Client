@@ -186,3 +186,28 @@ ul{
     font-weight: 900 !important;
     float: left;
 }
+
+.wallet-main{
+    position: relative;
+}
+.wallet-child{
+    -webkit-filter: blur(1px);
+    -moz-filter: blur(1px);
+    -o-filter: blur(1px);
+    -ms-filter: blur(1px);
+    filter: blur(1px);
+}
+.block-wallet{
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    text-align: center;
+    background: #333;
+    border-radius: 50px;
+    padding: 10px 25px;
+    width: 50% ;
+    top: 45%;
+    color: #fff !important;
+    border-bottom: 2px solid rgb(255, 85, 85);
+}

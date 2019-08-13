@@ -42,17 +42,7 @@ export class ManageWalletComponent implements OnInit {
 
   }
   insertWallet(wallet: Wallet) {
-    this.wallets.push({
-      id: wallet.id,
-      code: wallet.code,
-      exitMoney: wallet.exitMoney,
-      interMoney: wallet.interMoney,
-      inventory: wallet.inventory,
-      isMain: wallet.isMain,
-      isSms: wallet.isSms,
-      name: wallet.name,
-      onExitMoney: wallet.onExitMoney,
-    });
+    this.wallets.push(wallet);
   }
   removeWallet(wallet: Wallet) {
     this.wallets.splice(this.wallets.indexOf(wallet), 1);

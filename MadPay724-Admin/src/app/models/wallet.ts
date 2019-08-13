@@ -3,6 +3,7 @@ export interface Wallet {
     code: string;
     isMain: boolean;
     isSms: boolean;
+    isBlock: boolean;
     name: string;
     inventory: number;
     interMoney: number;

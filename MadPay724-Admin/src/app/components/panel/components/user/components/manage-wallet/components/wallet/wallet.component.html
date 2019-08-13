@@ -1,5 +1,9 @@
-<div class="section">
-  <div class="box single-purse">
+<div 
+[ngClass]="{'wallet-main': wallet.isBlock}"
+class="section "  >
+  <div
+  [ngClass]="{'wallet-child': wallet.isBlock}"
+  class="box single-purse">
     <div 
     [ngClass]="wallet.isMain ? 'top-xs-color3' : wallet.isSms ? 'top-xs-color2' : 'top-xs-color1'"
     class="top-xs header">
@@ -52,5 +56,7 @@
       </div>
     </div>
   </div>
-  <!----><!----><!---->
+  <a
+  *ngIf="wallet.isBlock"
+  class="block-wallet">این کیف پول بلاک شده است</a>
 </div>

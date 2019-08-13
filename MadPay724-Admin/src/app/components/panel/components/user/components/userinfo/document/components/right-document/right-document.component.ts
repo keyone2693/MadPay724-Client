@@ -44,7 +44,7 @@ export class RightDocumentComponent implements OnInit {
   onSubmit() {
     const m = moment();
     const document = new FormData();
-    // document = Object.assign({}, this.docLeftForm.value);
+   // document = Object.assign({}, this.docLeftForm.value);
     document.append('file', this.slectedFile, this.slectedFile.name);
     document.append('isTrue', this.docRightForm.get('isTrue').value);
     document.append('name', this.docRightForm.get('name').value);
