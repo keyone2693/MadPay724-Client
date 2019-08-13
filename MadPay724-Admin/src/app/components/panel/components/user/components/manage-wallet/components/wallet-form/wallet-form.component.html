@@ -28,7 +28,7 @@
   <mat-form-field class="col-md-12">
     <mat-label>یک کیف‌ پول را برای کسر مبلغ مذکور انتخاب کنید *</mat-label>
     <mat-select formControlName="walletId">
-      <mat-option *ngFor="let wallet of wallets" value="wallet.id">{{wallet.name}}</mat-option>
+      <mat-option *ngFor="let wallet of wallets" value="{{wallet.id}}">{{wallet.name}}</mat-option>
     </mat-select>
     <mat-error
       >کیف پول را انتخاب کنید</mat-error

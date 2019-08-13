@@ -32,7 +32,7 @@ export class WalletFormComponent implements OnInit {
       this.walletService.addWallet(this.walletService.walletForm.value, this.authService.decodedToken.nameid).subscribe((data) => {
         this.alertService.success('کیف پول شما با موفقیت ثبت شد', 'موفق');
         this.onClear();
-        this.newWallet.emit(data);
+        this.newWallet.emit();
       }, error => {
         this.alertService.error(error, 'خطا در ثبت کیف پول جدید');
       });
