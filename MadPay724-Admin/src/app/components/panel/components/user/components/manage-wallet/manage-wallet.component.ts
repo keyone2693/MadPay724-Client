@@ -16,8 +16,8 @@ export class ManageWalletComponent implements OnInit {
   formTitle: string;
   wallets: Wallet[];
   constructor(private dialog: MatDialog, private route: ActivatedRoute, private alertService: ToastrService,
-    private walletService: WalletService,
-    private authService: AuthService) { }
+              private walletService: WalletService,
+              private authService: AuthService) { }
 
   ngOnInit() {
     this.loadWallets();
@@ -28,11 +28,12 @@ export class ManageWalletComponent implements OnInit {
     });
   }
   onCreate() {
-    this.formTitle = 'افزودن کارت بانکی جدید';
+    this.formTitle = 'افزودن کیف پول جدید';
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    const dialogRef = this.dialog.open(WalletFormComponent, dialogConfig);
+    dialogConfig.data = this.wallets;
+    const dialogRef = this.dialog.open(WalletFormComponent, dialogConfig );
     const sub = dialogRef.componentInstance.newWallet.subscribe((data) => {
       this.insertWallet(data);
     });
@@ -43,8 +44,5 @@ export class ManageWalletComponent implements OnInit {
   }
   insertWallet(wallet: Wallet) {
     this.wallets.push(wallet);
-  }
-  removeWallet(wallet: Wallet) {
-    this.wallets.splice(this.wallets.indexOf(wallet), 1);
   }
 }

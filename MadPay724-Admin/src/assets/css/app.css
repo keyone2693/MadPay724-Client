@@ -53597,3 +53597,6 @@ input[type='checkbox'].switch, input[type='radio'].switch {
 .main-content .color-palette span.dark {
   color : rgba(0, 0, 0, 0.87);
 }
+.mat-form-field{
+margin: 7px 0;
+}

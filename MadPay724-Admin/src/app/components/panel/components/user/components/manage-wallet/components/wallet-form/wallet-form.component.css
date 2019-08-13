@@ -12,7 +12,13 @@
 
 .mmatdiagtitle{
   background: #333;
-  padding: 15px 25px 25px;
+  padding: 15px 25px 10px;
   border-radius: 5px;
   color:#fff;
+}
+.title-info{
+  font-size: 15px;display: block;
+}
+.mat-dialog-content{
+  padding: 35px 24px;
 }
