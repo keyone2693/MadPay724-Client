@@ -39,6 +39,8 @@ import { WalletResolver } from 'src/app/resolvers/wallet.resolver';
 import { WalletService } from 'src/app/Services/panel/user/wallet.service';
 import { PersianDateModule } from 'src/app/Shared/Pipe/PersianDatePipe/persian-date.module';
 import {IRCurrencyPipe, JdatePipe} from 'ngx-persian';
+import { TicketComponent } from './components/ticket/ticket.component';
+import {TooltipModule} from 'ng2-tooltip-directive';
 
 @NgModule({
   imports: [
@@ -49,7 +51,8 @@ import {IRCurrencyPipe, JdatePipe} from 'ngx-persian';
     ReactiveFormsModule,
     UserMaterialModule,
     DigitOnlyModule,
-    PersianDateModule
+    PersianDateModule,
+    TooltipModule
   ],
   declarations: [
     PersianTimeAgoPipe,
@@ -65,12 +68,16 @@ import {IRCurrencyPipe, JdatePipe} from 'ngx-persian';
     UserChangePicComponent,
     UserDashboardComponent,
     NotificationComponent,
+    //
     BankCardComponent,
     ManageBankCardComponent,
     EditBankCardComponent,
+    //
     ManageWalletComponent,
     WalletComponent,
-    WalletFormComponent
+    WalletFormComponent,
+    //
+    TicketComponent
   ],
   providers: [
     UserService,

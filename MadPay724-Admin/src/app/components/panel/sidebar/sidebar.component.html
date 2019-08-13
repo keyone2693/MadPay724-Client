@@ -103,10 +103,10 @@
         </li>
         <!--#endregion-->
 
-        <li class=" nav-item">
-          <a>
+        <li *appHasRole="['User']" routerLinkActive="active" class=" nav-item">
+          <a [routerLink]="['/panel/user/tickets']">
             <i class="icon-user-following"> </i
-            ><span class="menu-title">ارتباط با ما</span></a
+            ><span class="menu-title">پشتیبانی</span></a
           >
         </li>
       </ul>

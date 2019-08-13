@@ -40991,8 +40991,7 @@ body.chat-page .main-panel {
 }
 .chat-application .chat-sidebar {
   background : white;
-  position : fixed;
-  width : 300px;
+  width : 100%;
   vertical-align : top;
   height : -webkit-calc(100vh - 130px);
   height :    -moz-calc(100vh - 130px);
@@ -41019,12 +41018,10 @@ body.chat-page .main-panel {
 
 }
 .chat-application .chat-name {
-  margin-right : 300px;
   border-bottom : 1px solid #E4E7ED;
 }
 .chat-application .chat-app-window {
   background : url('../img/pages/sativa.png');
-  margin-right : 300px;
   padding : 20px 30px;
   overflow-y : scroll;
   text-align : center;
