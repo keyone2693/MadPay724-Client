@@ -1,0 +1,22 @@
+<!-- User Profile Starts-->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/panel/dashboard']">داشبورد</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/panel/profile']">تنظیمات اطلاع رسانی </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">
+      مشاهده و ویرایش اطلاع رسانی ها
+    </li>
+  </ol>
+</nav>
+<div class="chat-application mt-2 row">
+  <div class="col-md-4 pl-0">
+    <app-list-ticket></app-list-ticket>
+  </div>
+  <div class="col-md-8 pr-0">
+   <app-detail-ticket></app-detail-ticket>
+  </div>
+</div>

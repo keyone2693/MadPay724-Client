@@ -14,7 +14,7 @@ import { BankCardResolver } from 'src/app/resolvers/bankcard.resolver';
 import { DocumentResolver } from 'src/app/resolvers/document.resolver';
 import { ManageWalletComponent } from './components/manage-wallet/manage-wallet.component';
 import { WalletResolver } from 'src/app/resolvers/wallet.resolver';
-import { TicketComponent } from './components/ticket/ticket.component';
+import { ManageTicketComponent } from './components/manage-ticket/manage-ticket.component';
 
 const routes: Routes = [
    {
@@ -45,7 +45,7 @@ const routes: Routes = [
        resolve: {wallets: WalletResolver}, component: ManageWalletComponent,
        data: {roles: ['User'], title: ['مدیریت کیف پول']}},
         //
-        {path: 'tickets', canActivate: [AuthGuard], component: TicketComponent ,
+        {path: 'tickets', canActivate: [AuthGuard], component: ManageTicketComponent ,
         data: {roles: ['User'], title: ['پشتیبانی']}}
     ]
    }

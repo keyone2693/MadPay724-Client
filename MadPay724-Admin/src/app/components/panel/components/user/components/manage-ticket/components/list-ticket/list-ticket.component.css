@@ -1,0 +1,34 @@
+.mat-green {
+    background: #4caf50;
+    color: #fff;
+    font-weight: 900;
+    font-size: 16px;
+    border-radius: 50px;   
+      padding: 20px;
+    float: none !important;
+  }
+  .ft-plus-circle{
+    font-size: 40px;
+  }
+  .mat-red {
+    background: #ff4949;
+    color: #fff;
+    font-weight: 900;
+    font-size: 16px;
+    border-radius: 50px;  
+    border-top-left-radius:4px;        
+    border-bottom-left-radius:4px;            
+    float: right !important;
+  }
+  .mat-blue {
+    background: #197dff;
+    color: #fff;
+    font-weight: 900;
+    font-size: 16px;
+    border-radius: 50px;   
+    border-top-right-radius:4px;        
+    border-bottom-right-radius:4px;           
+    float: left !important;
+  }.btnadd-div{
+    text-align: center;
+}

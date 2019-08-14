@@ -39,9 +39,13 @@ import { WalletResolver } from 'src/app/resolvers/wallet.resolver';
 import { WalletService } from 'src/app/Services/panel/user/wallet.service';
 import { PersianDateModule } from 'src/app/Shared/Pipe/PersianDatePipe/persian-date.module';
 import {IRCurrencyPipe, JdatePipe} from 'ngx-persian';
-import { TicketComponent } from './components/ticket/ticket.component';
 import {TooltipModule} from 'ng2-tooltip-directive';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { ManageTicketComponent } from './components/manage-ticket/manage-ticket.component';
+import { ListTicketComponent } from './components/manage-ticket/components/list-ticket/list-ticket.component';
+import { DetailTicketComponent } from './components/manage-ticket/components/detail-ticket/detail-ticket.component';
+import { ChatTicketComponent } from './components/manage-ticket/components/detail-ticket/components/chat-ticket/chat-ticket.component';
+import { TicketComponent } from './components/manage-ticket/components/list-ticket/components/ticket/ticket.component';
 
 @NgModule({
   imports: [
@@ -79,7 +83,11 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
     WalletComponent,
     WalletFormComponent,
     //
-    TicketComponent
+    TicketComponent,
+    ManageTicketComponent,
+    ListTicketComponent,
+    DetailTicketComponent,
+    ChatTicketComponent
   ],
   providers: [
     UserService,

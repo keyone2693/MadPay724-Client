@@ -1,0 +1,46 @@
+<div class="chat-sidebar float-left d-none d-sm-none d-md-block d-lg-block">
+  <div class="chat-sidebar-content">
+    <div class="chat-fixed-search p-2">
+      <form>
+        <div class="position-relative has-icon-left">
+          <input
+            class="form-control"
+            id="timesheetinput1"
+            name="employeename"
+            type="text"
+          />
+          <div class="form-control-position">
+            <i class="ft-user"></i>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div id="users-list" class="list-group position-relative">
+      <div class="users-list-padding">
+        <app-ticket></app-ticket>
+      </div>
+      <div class="btnadd-div my-4">
+        <button
+          tooltip="افزودن تیکت جدید"
+          placement="top"
+          show-delay="300"
+          mat-raised-button
+          color="green"
+          class="float-left mb-10"
+        >
+          <i class="ft-plus-circle"></i>
+        </button>
+      </div>
+      <div class="btnadd-div">
+        <button mat-raised-button color="red" class="float-left mb-10">
+          <i class="icon-arrow-right"></i>
+          قدیمی تر
+        </button>
+        <button mat-raised-button color="blue" class="float-left mb-10">
+          جدید تر
+          <i class="icon-arrow-left"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
