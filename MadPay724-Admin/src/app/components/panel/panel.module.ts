@@ -7,6 +7,8 @@ import { HasRoleDirective } from 'src/app/directives/hasRole.directive';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
+
+
 @NgModule({
   imports: [
     PanelRoutingModule,

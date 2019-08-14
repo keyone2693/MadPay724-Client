@@ -41021,14 +41021,13 @@ body.chat-page .main-panel {
   border-bottom : 1px solid #E4E7ED;
 }
 .chat-application .chat-app-window {
-  background : url('../img/pages/sativa.png');
-  padding : 20px 30px;
-  overflow-y : scroll;
+  /* background : url('../img/pages/sativa.png'); */
+  padding : 10px;
   text-align : center;
-  height : -webkit-calc(100% - 183px);
+ /* height : -webkit-calc(100% - 183px);
   height :    -moz-calc(100% - 183px);
-  height :         calc(100% - 183px);
-  background-color : #FFFFFF;
+  height :         calc(100% - 183px);*/
+   background-color : #ECEFF1 ;
   position : relative;
 }
 .chat-application .chat-app-form {
@@ -41098,7 +41097,7 @@ body.chat-page .main-panel {
   float : left;
   margin : 0 0 10px 20px;
   color : #000000;
-  background-color : #F4F5FA;
+  background-color : #ECEFF1;
 }
 .chat-application .chats .chat-left .chat-content + .chat-content:before {
   border-color : transparent;

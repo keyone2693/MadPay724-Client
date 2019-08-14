@@ -49,3 +49,32 @@ padding: 2px 10px 3px;
     padding-left: 0 !important;
 
 }
+
+.divtopnav{
+  border-bottom: 1px solid #D9D9D9;
+}
+.divmottnav{
+  padding-top: 15px;
+}
+
+.media-body{
+padding: 0 25px;
+}
+.update-time{
+  margin-left: 25px;
+}
+.chats{
+  background: #fff;
+padding: 25px 15px;
+}.my-scrollbar {
+  --scrollbar-color: transparent;
+  --scrollbar-container-color: transparent;
+  --scrollbar-thumb-color: rgba(0, 0, 0, 0.2);
+  --scrollbar-thumb-hover-color: rgba(0, 0, 0, 0.3);
+  --scrollbar-border-radius: 4px;
+  --scrollbar-size: 6px;
+  --scrollbar-padding: 8px;
+  --scroll-view-margin: 0;
+  --scroll-view-color: transparent;
+  height:500px ;
+}

@@ -41,6 +41,7 @@ import { PersianDateModule } from 'src/app/Shared/Pipe/PersianDatePipe/persian-d
 import {IRCurrencyPipe, JdatePipe} from 'ngx-persian';
 import { TicketComponent } from './components/ticket/ticket.component';
 import {TooltipModule} from 'ng2-tooltip-directive';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @NgModule({
   imports: [
@@ -52,7 +53,8 @@ import {TooltipModule} from 'ng2-tooltip-directive';
     UserMaterialModule,
     DigitOnlyModule,
     PersianDateModule,
-    TooltipModule
+    TooltipModule,
+    NgScrollbarModule
   ],
   declarations: [
     PersianTimeAgoPipe,

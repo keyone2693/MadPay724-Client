@@ -18,7 +18,7 @@
         $sidebar_img_container = $('.sidebar-background'),
         $wrapper = $('.wrapper');
 
-        $sidebar_content.perfectScrollbar();
+        //$sidebar_content.perfectScrollbar();
 
         if( $sidebar_img_container.length !== 0 && $sidebar_img !== undefined ){
             $sidebar_img_container.css('background-image','url("' + $sidebar_img + '")');
@@ -225,7 +225,7 @@
             $sidebar.addClass('hide-sidebar');
         });
 
-        $('.noti-list').perfectScrollbar();
+        //$('.noti-list').perfectScrollbar();
 
 
         // Page full screen
