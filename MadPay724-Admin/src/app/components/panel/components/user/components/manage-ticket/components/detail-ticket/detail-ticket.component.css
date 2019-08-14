@@ -9,3 +9,7 @@
     .update-time{
       margin-left: 25px;
     } 
+    .drltr{
+      direction: ltr !important;
+      text-align: left;
+    }

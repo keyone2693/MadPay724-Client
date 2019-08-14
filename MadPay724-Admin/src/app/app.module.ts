@@ -30,7 +30,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   fgsType: SPINNER.doubleBounce,
   pbDirection: PB_DIRECTION.leftToRight,
   pbThickness: 3
-  // , overlayColor: 'rgba(40,40,40,.95)'
+  // , overlayColor: 'rgba(40,40,40,.1)'
 };
 
 export function tokenGet() {

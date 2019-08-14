@@ -13,3 +13,65 @@
     --scroll-view-color: transparent;
     height:500px ;
   }
+  .dis-inline{
+    display: inline-block;
+  }
+  .tickettitle{
+    background: #ededed;
+
+padding: 4px 25px;
+
+border-radius: 50px;
+
+color: #848484;
+
+font-weight: 900;
+
+margin-right: 25px;
+  }.mat-green {
+    background: #4caf50;
+    color: #fff;
+    font-weight: 900;
+    font-size: 16px;
+    border-radius: 50px;   
+      width: 35%;
+    float: none !important;
+  }
+
+
+  .attach {
+    cursor: pointer;
+    margin-right: 10px;
+}
+.attach {
+  cursor: pointer;
+}
+.attach input[type="file"] {
+  display: none;
+}.msg-success {
+  color: #00c853 !important;
+}
+.msg-info{
+ color: #197dff;
+ font-size: 17px;
+}
+.msgicon{
+  background: #197dff;
+
+padding: 7px;
+
+color: #fff !important;
+
+border-radius: 50px;
+
+margin-left: 10px;
+}
+.msg-danger, .msg-success {
+  margin-bottom: 12px;
+  font-size: 11px;
+  margin-top: 3px;
+  margin-right: 4px;
+}
+.attach {
+  cursor: pointer;
+}

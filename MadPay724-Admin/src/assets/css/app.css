@@ -41031,9 +41031,8 @@ body.chat-page .main-panel {
   position : relative;
 }
 .chat-application .chat-app-form {
-  margin-right: 300px;
   position : relative;
-  padding : 20px 10px;
+  padding : 0px 10px 20px;
   overflow : hidden;
 }
 .chat-application .chats {
