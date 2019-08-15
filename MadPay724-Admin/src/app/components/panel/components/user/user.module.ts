@@ -39,7 +39,7 @@ import { WalletResolver } from 'src/app/resolvers/wallet.resolver';
 import { WalletService } from 'src/app/Services/panel/user/wallet.service';
 import { PersianDateModule } from 'src/app/Shared/Pipe/PersianDatePipe/persian-date.module';
 import {IRCurrencyPipe, JdatePipe} from 'ngx-persian';
-import {TooltipModule} from 'ng2-tooltip-directive';
+// import {TooltipModule} from 'ng2-tooltip-directive';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { ManageTicketComponent } from './components/manage-ticket/manage-ticket.component';
 import { ListTicketComponent } from './components/manage-ticket/components/list-ticket/list-ticket.component';
@@ -57,7 +57,7 @@ import { TicketComponent } from './components/manage-ticket/components/list-tick
     UserMaterialModule,
     DigitOnlyModule,
     PersianDateModule,
-    TooltipModule,
+    // TooltipModule,
     NgScrollbarModule
   ],
   declarations: [

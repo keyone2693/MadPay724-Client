@@ -3,12 +3,10 @@
     color: #fff;
     font-weight: 900;
     font-size: 16px;
-    border-radius: 50px;   
-      padding: 20px;
     float: none !important;
   }
   .ft-plus-circle{
-    font-size: 40px;
+    font-size: 22px;
   }
   .mat-red {
     background: #ff4949;
@@ -31,4 +29,16 @@
     float: left !important;
   }.btnadd-div{
     text-align: center;
+}
+.my-scrollbar {
+  --scrollbar-color: transparent;
+  --scrollbar-container-color: transparent;
+  --scrollbar-thumb-color: rgba(0, 0, 0, 0.2);
+  --scrollbar-thumb-hover-color: rgba(0, 0, 0, 0.3);
+  --scrollbar-border-radius: 4px;
+  --scrollbar-size: 6px;
+  --scrollbar-padding: 8px;
+  --scroll-view-margin: 0;
+  --scroll-view-color: transparent;
+  height:500px ;
 }
