@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from './Services/auth/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { TitleService } from './Services/common/title.service';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

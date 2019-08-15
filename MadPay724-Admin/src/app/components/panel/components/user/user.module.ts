@@ -46,6 +46,9 @@ import { ListTicketComponent } from './components/manage-ticket/components/list-
 import { DetailTicketComponent } from './components/manage-ticket/components/detail-ticket/detail-ticket.component';
 import { ChatTicketComponent } from './components/manage-ticket/components/detail-ticket/components/chat-ticket/chat-ticket.component';
 import { TicketComponent } from './components/manage-ticket/components/list-ticket/components/ticket/ticket.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { NgxUiLoaderModule} from 'ngx-ui-loader';
+
 
 @NgModule({
   imports: [
@@ -58,7 +61,9 @@ import { TicketComponent } from './components/manage-ticket/components/list-tick
     DigitOnlyModule,
     PersianDateModule,
     // TooltipModule,
-    NgScrollbarModule
+    NgScrollbarModule,
+    InfiniteScrollModule,
+    NgxUiLoaderModule,
   ],
   declarations: [
     PersianTimeAgoPipe,

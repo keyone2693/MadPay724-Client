@@ -9,14 +9,34 @@
         >
           <i class="ft-plus-circle"></i> 
                  افزودن تیکت جدید
-
         </button>
     </div>
     <div id="users-list" class="list-group position-relative">
-      <div class="users-list-padding">
-          <ng-scrollbar class="my-scrollbar">
+      <div class="users-list-padding"style="position: relative;">
+          <ng-scrollbar
+          
+          class="search-results"
+          infiniteScroll
+          [infiniteScrollDistance]="2"
+          [infiniteScrollThrottle]="1000"
+          (scrolled)="onScroll()"
+          class="my-scrollbar">
             <app-ticket></app-ticket>
-          </ng-scrollbar>        
+  
+          </ng-scrollbar>  
+          <ngx-ui-loader
+          [pbColor]= "loaders.pbColor"
+[bgsColor]= "loaders.bgsColor"
+[bgsSize]= "loaders.bgsSize"
+[fgsPosition]= "loaders.fgsPosition"
+[fgsSize]= "loaders.fgsSize"
+[fgsColor]= "loaders.fgsColor"
+[bgsType]= "loaders.bgsType"
+[fgsType]= "loaders.fgsType"
+[pbDirection]= "loaders.pbDirection"
+[pbThickness]= "loaders.pbThickness"
+[overlayColor]= "loaders.overlayColor"
+          [loaderId]="'loader-01'"></ngx-ui-loader>    
       </div>
       <div class="btnadd-div my-4">
        

@@ -9,8 +9,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
 import {
-  NgxUiLoaderModule, NgxUiLoaderConfig, POSITION, SPINNER, PB_DIRECTION,
-  NgxUiLoaderRouterModule, NgxUiLoaderHttpModule
+  NgxUiLoaderModule,
+  NgxUiLoaderRouterModule, NgxUiLoaderHttpModule, POSITION, SPINNER, PB_DIRECTION, NgxUiLoaderConfig
 } from 'ngx-ui-loader';
 import { AuthService } from './Services/auth/auth.service';
 import { TitleService } from './Services/common/title.service';
@@ -32,10 +32,6 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   pbThickness: 3
   // , overlayColor: 'rgba(40,40,40,.1)'
 };
-
-export function tokenGet() {
-  return localStorage.getItem('token');
-}
 
 @NgModule({
   declarations: [
