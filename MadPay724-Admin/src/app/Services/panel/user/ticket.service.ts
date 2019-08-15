@@ -15,6 +15,10 @@ export class TicketService {
     return this.http.get<Ticket[]>(this.baseUrl + 'users/' + id + '/tickets/page/' + page);
   }
 
+  getTicket(id: string, ticketId: string): Observable<Ticket> {
+    return this.http.get<Ticket>(this.baseUrl + 'users/' + id + '/tickets/' + ticketId);
+  }
+
   addTicket(ticket: Ticket, id: string): Observable<Ticket> {
     return this.http.post<Ticket>(this.baseUrl + 'users/' + id + '/tickets', ticket);
   }

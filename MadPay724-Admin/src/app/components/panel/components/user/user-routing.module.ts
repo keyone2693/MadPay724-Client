@@ -16,45 +16,66 @@ import { ManageWalletComponent } from './components/manage-wallet/manage-wallet.
 import { WalletResolver } from 'src/app/resolvers/wallet.resolver';
 import { ManageTicketComponent } from './components/manage-ticket/manage-ticket.component';
 import { TicketResolver } from 'src/app/resolvers/ticket.resolver';
+import { DetailTicketComponent } from './components/manage-ticket/components/detail-ticket/detail-ticket.component';
 
 const routes: Routes = [
-   {
+  {
     path: '',
     component: UserComponent,
     children: [
-      {path: 'dashboard', canActivate: [AuthGuard], component: UserDashboardComponent,
-      data: {roles: ['User'], title: ['داشبورد کاربر']}},
+      {
+        path: 'dashboard', canActivate: [AuthGuard], component: UserDashboardComponent,
+        data: { roles: ['User'], title: ['داشبورد کاربر'] }
+      },
       // userinfo
-      {path: 'userinfo/profile', canActivate: [AuthGuard], component: ProfileComponent,
-       data: {roles: ['User', 'Admin', 'Blog', 'Accountant'], title: ['پروفایل کاربری']},
-       resolve: {user: UserProfileResolver},
-       canDeactivate: [PreventUnsavedGuard]},
-       //
-      {path: 'userinfo/documents', canActivate: [AuthGuard],
-      resolve: {documents: DocumentResolver}, component: DocumentComponent,
-       data: {roles: ['User'], title: ['ارسال مدارک شناسایی']}},
+      {
+        path: 'userinfo/profile', canActivate: [AuthGuard], component: ProfileComponent,
+        data: { roles: ['User', 'Admin', 'Blog', 'Accountant'], title: ['پروفایل کاربری'] },
+        resolve: { user: UserProfileResolver },
+        canDeactivate: [PreventUnsavedGuard]
+      },
       //
-      {path: 'notification', canActivate: [AuthGuard],
-      resolve: {notify: NotificationResolver}, component: NotificationComponent,
-      data: {roles: ['User'], title: [' تنظیمات اطلاع رسانی']}},
+      {
+        path: 'userinfo/documents', canActivate: [AuthGuard],
+        resolve: { documents: DocumentResolver }, component: DocumentComponent,
+        data: { roles: ['User'], title: ['ارسال مدارک شناسایی'] }
+      },
       //
-      {path: 'bankcard', canActivate: [AuthGuard],
-      resolve: {bankcards: BankCardResolver}, component: ManageBankCardComponent,
-      data: {roles: ['User'], title: ['مدیریت کارت های بانکی']}},
-       //
-      {path: 'wallet', canActivate: [AuthGuard],
-       resolve: {wallets: WalletResolver}, component: ManageWalletComponent,
-       data: {roles: ['User'], title: ['مدیریت کیف پول']}},
-        //
-        {path: 'tickets', canActivate: [AuthGuard],
-        resolve: {tickets: TicketResolver}, component: ManageTicketComponent ,
-        data: {roles: ['User'], title: ['پشتیبانی']}}
+      {
+        path: 'notification', canActivate: [AuthGuard],
+        resolve: { notify: NotificationResolver }, component: NotificationComponent,
+        data: { roles: ['User'], title: [' تنظیمات اطلاع رسانی'] }
+      },
+      //
+      {
+        path: 'bankcard', canActivate: [AuthGuard],
+        resolve: { bankcards: BankCardResolver }, component: ManageBankCardComponent,
+        data: { roles: ['User'], title: ['مدیریت کارت های بانکی'] }
+      },
+      //
+      {
+        path: 'wallet', canActivate: [AuthGuard],
+        resolve: { wallets: WalletResolver }, component: ManageWalletComponent,
+        data: { roles: ['User'], title: ['مدیریت کیف پول'] }
+      },
+      //
+      {
+        path: 'tickets', canActivate: [AuthGuard],
+        resolve: { tickets: TicketResolver }, component: ManageTicketComponent,
+        data: { roles: ['User'], title: ['پشتیبانی'] },
+        children: [
+          {
+            path: 'overview/:ticketId',
+            component: DetailTicketComponent
+          }
+        ]
+      },
     ]
-   }
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class UserRoutingModule {}
+export class UserRoutingModule { }

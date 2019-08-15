@@ -1,3 +1,5 @@
+import { TicketContent } from './ticketContent';
+
 export interface Ticket {
     id: string;
     dateModified: Date;
@@ -6,4 +8,5 @@ export interface Ticket {
     department: number;
     level: number;
     isAdminSide: boolean;
+    ticketContents: TicketContent[];
 }
