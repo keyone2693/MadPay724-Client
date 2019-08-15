@@ -36,7 +36,10 @@
 [pbDirection]= "loaders.pbDirection"
 [pbThickness]= "loaders.pbThickness"
 [overlayColor]= "loaders.overlayColor"
-          [loaderId]="'loader-01'"></ngx-ui-loader>    
+          [loaderId]="'loader-01'"></ngx-ui-loader>  
+          <div class="alert alert-warning" *ngIf="finished">
+              <strong>توجه! </strong> تیکیتی برای نمایش بیشتر وجود ندارد
+          </div> 
       </div>
       <div class="btnadd-div my-4">
        
