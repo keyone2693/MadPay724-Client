@@ -2,47 +2,47 @@
   <div class="chat-sidebar-content">
     <div class="chat-fixed-search p-2">
       <button
-          show-delay="300"
-          mat-raised-button
-          color="green"
-          class="float-left mb-10"
-        >
-          <i class="ft-plus-circle"></i> 
-                 افزودن تیکت جدید
-        </button>
+        show-delay="300"
+        mat-raised-button
+        color="green"
+        class="float-left mb-10"
+      >
+        <i class="ft-plus-circle"></i>
+        افزودن تیکت جدید
+      </button>
     </div>
     <div id="users-list" class="list-group position-relative">
-      <div class="users-list-padding"style="position: relative;">
-          <ng-scrollbar
-          
-          class="search-results"
-          infiniteScroll
-          [infiniteScrollDistance]="2"
-          [infiniteScrollThrottle]="1000"
-          (scrolled)="onScroll()"
-          class="my-scrollbar">
-            <app-ticket *ngFor="let ticket of tickets | async"></app-ticket>
-          </ng-scrollbar>  
-          <ngx-ui-loader
-          [pbColor]= "loaders.pbColor"
-[bgsColor]= "loaders.bgsColor"
-[bgsSize]= "loaders.bgsSize"
-[fgsPosition]= "loaders.fgsPosition"
-[fgsSize]= "loaders.fgsSize"
-[fgsColor]= "loaders.fgsColor"
-[bgsType]= "loaders.bgsType"
-[fgsType]= "loaders.fgsType"
-[pbDirection]= "loaders.pbDirection"
-[pbThickness]= "loaders.pbThickness"
-[overlayColor]= "loaders.overlayColor"
-          [loaderId]="'loader-01'"></ngx-ui-loader>  
-          <div class="alert alert-warning" *ngIf="finished">
-              <strong>توجه! </strong> تیکیتی برای نمایش بیشتر وجود ندارد
-          </div> 
+      <div class="users-list-padding" style="position: relative;">
+        <ng-scrollbar class="search-results" class="my-scrollbar">
+          <app-ticket *ngFor="let ticket of tickets | async"></app-ticket>
+          <button
+            mat-raised-button
+            color="blue"
+            class="mb-10 btnload"
+            (click)="onScroll()"
+          >
+            بارگزاری تیکت های بیشتر
+          </button>
+        </ng-scrollbar>
+        <!-- <ngx-ui-loader
+          [pbColor]="loaders.pbColor"
+          [bgsColor]="loaders.bgsColor"
+          [bgsSize]="loaders.bgsSize"
+          [fgsPosition]="loaders.fgsPosition"
+          [fgsSize]="loaders.fgsSize"
+          [fgsColor]="loaders.fgsColor"
+          [bgsType]="loaders.bgsType"
+          [fgsType]="loaders.fgsType"
+          [pbDirection]="loaders.pbDirection"
+          [pbThickness]="loaders.pbThickness"
+          [overlayColor]="loaders.overlayColor"
+          [loaderId]="'loader-01'"
+        ></ngx-ui-loader> -->
+        <div class="alert alert-warning" *ngIf="finished">
+          <strong>توجه! </strong> تیکیتی برای نمایش بیشتر وجود ندارد
+        </div>
       </div>
-      <div class="btnadd-div my-4">
-       
-      </div>
+      <div class="btnadd-div my-4"></div>
     </div>
   </div>
 </div>

@@ -23,10 +23,7 @@
     color: #fff;
     font-weight: 900;
     font-size: 16px;
-    border-radius: 50px;   
-    border-top-right-radius:4px;        
-    border-bottom-right-radius:4px;           
-    float: left !important;
+    border-radius: 50px;          
   }.btnadd-div{
     text-align: center;
 }
@@ -40,5 +37,10 @@
   --scrollbar-padding: 8px;
   --scroll-view-margin: 0;
   --scroll-view-color: transparent;
-  height:500px ;
+  height:550px ;
+}
+.btnload{
+margin: 12px auto;
+display: block;
+
 }
