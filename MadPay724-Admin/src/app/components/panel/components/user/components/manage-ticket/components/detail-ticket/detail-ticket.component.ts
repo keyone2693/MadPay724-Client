@@ -1,26 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { TicketService } from 'src/app/Services/panel/user/ticket.service';
-import { TicketContent } from 'src/app/models/ticketContent';
 import { Ticket } from 'src/app/models/ticket';
-import { AuthService } from 'src/app/Services/auth/auth.service';
+import { Subscription } from 'rxjs';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-detail-ticket',
   templateUrl: './detail-ticket.component.html',
   styleUrls: ['./detail-ticket.component.css']
 })
-export class DetailTicketComponent implements OnInit {
+export class DetailTicketComponent implements OnInit , OnDestroy{
   ticket: Ticket;
-  constructor(private route: ActivatedRoute, private ticketService: TicketService, private authService: AuthService) { }
+  subManager = new Subscription();
+  constructor(private route: ActivatedRoute, private title: Title) { }
 
   ngOnInit() {
-
-    const ticketId = this.route.snapshot.paramMap.get('ticketId');
-
-    this.ticketService.getTicket(this.authService.decodedToken.nameid, ticketId).subscribe((data) => {
-      this.ticket = data;
-    });
+    this.loadTickets();
+    this.title.setTitle('مشاهده ی تیکت ' + this.ticket.title);
   }
-
+  ngOnDestroy() {
+    this.subManager.unsubscribe();
+  }
+  loadTickets() {
+    this.subManager.add(
+      this.route.data.subscribe(data => {
+          this.ticket = data.ticket;
+      })
+    );
+  }
 }

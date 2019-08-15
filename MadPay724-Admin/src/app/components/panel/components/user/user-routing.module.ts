@@ -17,6 +17,7 @@ import { WalletResolver } from 'src/app/resolvers/wallet.resolver';
 import { ManageTicketComponent } from './components/manage-ticket/manage-ticket.component';
 import { TicketResolver } from 'src/app/resolvers/ticket.resolver';
 import { DetailTicketComponent } from './components/manage-ticket/components/detail-ticket/detail-ticket.component';
+import { TicketOverviewResolver } from 'src/app/resolvers/ticketOverview.resolver';
 
 const routes: Routes = [
   {
@@ -66,7 +67,9 @@ const routes: Routes = [
         children: [
           {
             path: 'overview/:ticketId',
-            component: DetailTicketComponent
+            component: DetailTicketComponent,
+            resolve: { ticket: TicketOverviewResolver },
+            data: { roles: ['User'], title: ['مشاهده ی تیکت'] }
           }
         ]
       },

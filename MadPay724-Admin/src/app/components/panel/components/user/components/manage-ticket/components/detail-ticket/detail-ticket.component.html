@@ -5,9 +5,8 @@
     ></span>
     <div class="media-body row">
       <div class="col-md-12 divtopnav">
-        <span class="float-right">
-          سارا وزیری
-          <p class="success font-small-2">آنلاین</p>
+        <span class="float-right success">
+            {{ticket.title}}
         </span>
         <a class="float-left drltr"
           ><i class="info font-small-2"># </i>{{ticket.id}}</a
@@ -17,27 +16,42 @@
         <span class="float-right update-time">
           <p class="">
             <strong>به روزرسانی : </strong>
-            <small>23 روز پیش</small>
+            <small>{{ticket.dateModified | persianTimeAgo}}</small>
           </p>
         </span>
         <span class="float-right update-time">
           <p class="">
             <strong>ایجاد شده : </strong>
 
-            <small>5 روز پیش</small>
+            <small>{{ticket.dateCreated | persianTimeAgo}}</small>
             
           </p>
         </span>
         <span class="float-left info">
-          <a class="btn mr-1 btn-round shadow-z-2 btn-warning lbl-show"
-            >مهم</a
-          >
-          <a class="btn mr-1 btn-round shadow-z-2 btn-secondary lbl-show"
-            >بسته شده</a
-          >
+          <a 
+          *ngIf="ticket.level === 1"
+          [ngClass]="{'btn-info': ticket.level === 1}"
+          class="btn mr-1 btn-round shadow-z-2  lbl-show" 
+          >عادی</a>
+
+          <a 
+          *ngIf="ticket.level === 2"
+          [ngClass]="{'btn-warning': ticket.level === 2}"
+          class="btn mr-1 btn-round shadow-z-2  lbl-show" 
+          >مهم</a>
+
+          <a 
+          *ngIf="ticket.level === 3"
+          [ngClass]="{'btn-danger': ticket.level === 3}"
+          class="btn mr-1 btn-round shadow-z-2  lbl-show" 
+          >خیلی مهم</a>
+
+          <a *ngIf="!ticket.closed" class="btn mr-1 btn-round shadow-z-2 btn-secondary lbl-show">بسته شده</a>
+          <a *ngIf="ticket.closed" class="btn mr-1 btn-round shadow-z-2 btn-info lbl-show">باز</a>
+
         </span>
       </div>
     </div>
   </div>
 </div>
-<app-chat-ticket></app-chat-ticket>
+<app-chat-ticket [ticketContents]="ticket.ticketContents"></app-chat-ticket>

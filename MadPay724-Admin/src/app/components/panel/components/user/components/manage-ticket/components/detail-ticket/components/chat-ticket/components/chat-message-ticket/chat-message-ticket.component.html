@@ -1,0 +1,35 @@
+<div
+[ngClass]="{'chat-left': ticketContent.isAdminSide}"
+class="chat">
+    <div class="chat-avatar">
+      <a
+        class="avatar"
+        data-toggle="tooltip"
+        data-placement="right"
+        title=""
+        data-original-title=""
+      >
+        <img
+        [src]="!ticketContent.isAdminSide ? photoUrl : '../../../../../../../assets/img/profilepic.png'"
+          class="width-50 rounded-circle"
+          alt="avatar"
+        />
+       
+      </a>
+    </div>
+    <div class="chat-body">
+      <div class="chat-content">
+        <p>{{ticketContent.text}}</p>
+        
+      </div>
+      <div class="chat-content" *ngIf="ticketContent.fileUrl !== '' || ticketContent.fileUrl !== null">
+          <p>
+              <a
+              [ngClass]="{'whitecolo': !ticketContent.isAdminSide}"
+              href="ticketContent.fileUrl">
+             دانلود فایل
+           </a></p>
+      </div>
+    </div>
+  </div>
+  <p class="time">{{ticketContent.dateCreated | persianTimeAgo}}</p>

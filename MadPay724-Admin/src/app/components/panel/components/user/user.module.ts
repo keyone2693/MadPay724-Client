@@ -46,6 +46,8 @@ import { DetailTicketComponent } from './components/manage-ticket/components/det
 import { ChatTicketComponent } from './components/manage-ticket/components/detail-ticket/components/chat-ticket/chat-ticket.component';
 import { TicketComponent } from './components/manage-ticket/components/list-ticket/components/ticket/ticket.component';
 import { TicketResolver } from 'src/app/resolvers/ticket.resolver';
+import { TicketOverviewResolver } from 'src/app/resolvers/ticketOverview.resolver';
+import { ChatMessageTicketComponent } from './components/manage-ticket/components/detail-ticket/components/chat-ticket/components/chat-message-ticket/chat-message-ticket.component';
 
 @NgModule({
   imports: [
@@ -89,7 +91,8 @@ import { TicketResolver } from 'src/app/resolvers/ticket.resolver';
     ManageTicketComponent,
     ListTicketComponent,
     DetailTicketComponent,
-    ChatTicketComponent
+    ChatTicketComponent,
+    ChatMessageTicketComponent
   ],
   providers: [
     UserService,
@@ -103,6 +106,7 @@ import { TicketResolver } from 'src/app/resolvers/ticket.resolver';
     DocumentResolver,
     WalletResolver,
     TicketResolver,
+    TicketOverviewResolver,
     PreventUnsavedGuard,
     { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS }

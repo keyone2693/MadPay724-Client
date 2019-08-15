@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { TicketContent } from 'src/app/models/ticketContent';
 
 @Component({
   selector: 'app-chat-ticket',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chat-ticket.component.css']
 })
 export class ChatTicketComponent implements OnInit {
+  @Input() ticketContents: TicketContent[];
 
   constructor() { }
 
