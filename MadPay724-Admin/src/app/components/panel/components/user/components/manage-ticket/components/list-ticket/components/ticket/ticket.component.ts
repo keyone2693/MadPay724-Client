@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Ticket } from 'src/app/models/ticket';
 
 @Component({
   selector: 'app-ticket',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ticket.component.css']
 })
 export class TicketComponent implements OnInit {
-
+  @Input() ticket: Ticket;
+  @Input() ticketId: string;
+  @Output() selectedTicketId = new EventEmitter<string>();
   constructor() { }
 
   ngOnInit() {
   }
-
+  onClick(ticketId: string) {
+    this.selectedTicketId.emit(ticketId);
+  }
 }

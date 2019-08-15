@@ -14,7 +14,7 @@
     <div id="users-list" class="list-group position-relative">
       <div class="users-list-padding" style="position: relative;">
         <ng-scrollbar class="search-results" class="my-scrollbar">
-          <app-ticket *ngFor="let ticket of tickets | async"></app-ticket>
+          <app-ticket *ngFor="let ticket of tickets | async" [ticket]="ticket" [ticketId]="selectedTicketId" (selectedTicketId)="changeSelectedTicketId($event)"></app-ticket>
           <button
             mat-raised-button
             color="blue"

@@ -19,7 +19,7 @@ export class ListTicketComponent implements OnInit, OnDestroy {
   finished = false;
   subManager = new Subscription();
   promiseSetBySomeAction: any;
-
+  selectedTicketId: string;
   constructor(private ticketService: TicketService,
               private authService: AuthService) {
   }
@@ -30,11 +30,13 @@ export class ListTicketComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subManager.unsubscribe();
   }
-
+  changeSelectedTicketId(event) {
+    this.selectedTicketId = event;
+  }
   onScroll() {
     this.getTickets(this.page);
   }
-  private getTickets(pageCout: number) {
+  getTickets(pageCout: number) {
     this.promiseSetBySomeAction = new Promise((resolve, reject) => {
       if (this.finished) {
         return;

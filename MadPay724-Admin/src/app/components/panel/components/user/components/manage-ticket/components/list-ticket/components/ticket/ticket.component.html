@@ -1,20 +1,20 @@
 <a
-  class="list-group-item bg-blue-grey bg-lighten-5 border-right-primary border-right-2"
->
+[ngClass]="ticketId === ticket.id ? ' bg-blue-grey bg-lighten-5 border-right-primary border-right-2' : '' "
+(click)="onClick(ticket.id)"
+class="list-group-item">
   <!-- (click)="SetActive($event, 'chat1')" -->
   <span class="media">
     <div class="media-body">
       <h6 class="list-group-item-heading my-2">
-        سارا وزیری
-        <span class="float-left info"> بعد از ظهر</span>
+      {{ticket.title}}
+        <span class="float-left info"> {{ticket.dateModified | persianTimeAgo}}</span>
       </h6>
       <p class="list-group-item-text text-muted my-2">
-        <i class="info font-small-2">#</i> 25698563154
+        <i class="info font-small-2">#</i> {{ticket.id}}
         <span class="float-left info">
           <a class="btn mr-1 btn-round shadow-z-2 btn-warning lbl-show">مهم</a>
-          <a class="btn mr-1 btn-round shadow-z-2 btn-secondary lbl-show"
-            >بسته شده</a
-          >
+          <a *ngIf="!ticket.closed" class="btn mr-1 btn-round shadow-z-2 btn-secondary lbl-show">بسته شده</a>
+          <a *ngIf="ticket.closed" class="btn mr-1 btn-round shadow-z-2 btn-info lbl-show">باز</a>
         </span>
       </p>
     </div>
