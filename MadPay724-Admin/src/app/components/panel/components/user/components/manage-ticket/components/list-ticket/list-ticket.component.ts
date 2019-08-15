@@ -1,21 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { NgxUiLoaderModule, NgxUiLoaderConfig, POSITION, SPINNER, PB_DIRECTION } from 'ngx-ui-loader';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { TicketService } from 'src/app/Services/panel/user/ticket.service';
 import { AuthService } from 'src/app/Services/auth/auth.service';
+import * as _ from 'lodash';
+import { Ticket } from 'src/app/models/ticket';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list-ticket',
   templateUrl: './list-ticket.component.html',
   styleUrls: ['./list-ticket.component.css']
 })
-export class ListTicketComponent implements OnInit {
+export class ListTicketComponent implements OnInit, OnDestroy {
   loaders: any;
-  tickets = new BehaviorSubject([]);
-  lastKey = '';
+  tickets = new BehaviorSubject<Ticket[]>([]);
+  page = 1;
   finished = false;
-  constructor(private ngxService: NgxUiLoaderService, private ticketService: TicketService, private authService: AuthService) {
+  subManager = new Subscription();
+  constructor(private ngxService: NgxUiLoaderService, private ticketService: TicketService,
+              private authService: AuthService, private route: ActivatedRoute) {
     this.loaders = {
       pbColor: '#ff4444',
       bgsColor: '#ff4444',
@@ -33,17 +38,37 @@ export class ListTicketComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getTickets();
+    this.loadTickets();
     // this.ngxService.startLoader('loader-01');
   }
-  onScroll() {
-    this.getTickets();
+  ngOnDestroy() {
+    this.subManager.unsubscribe();
   }
-  private getTickets(key?) {
+  loadTickets() {
+    this.subManager.add(
+      this.route.data.subscribe(data => {
+          this.tickets.next(data.tickets);
+      })
+    );
+  }
+  onScroll() {
+    this.getTickets(this.page);
+  }
+  private getTickets(pageCout: number) {
     if (this.finished) {
       return;
     }
-    this.ticketService.getTickets(this.authService.decodedToken.nameid)
+    const currentTickets = this.tickets.getValue();
+    this.subManager.add(
+      this.ticketService.getTickets(this.authService.decodedToken.nameid, pageCout).subscribe((newTickets) => {
+        if (!newTickets || newTickets.length) {
+          this.finished = true;
+          return;
+        }
+        this.tickets.next(_.concat(currentTickets, newTickets));
+        this.page += 1;
+      })
+    );
   }
 
 }

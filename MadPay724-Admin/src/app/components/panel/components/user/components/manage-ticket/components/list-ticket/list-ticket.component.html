@@ -21,8 +21,7 @@
           [infiniteScrollThrottle]="1000"
           (scrolled)="onScroll()"
           class="my-scrollbar">
-            <app-ticket></app-ticket>
-  
+            <app-ticket *ngFor="let ticket of tickets | async"></app-ticket>
           </ng-scrollbar>  
           <ngx-ui-loader
           [pbColor]= "loaders.pbColor"

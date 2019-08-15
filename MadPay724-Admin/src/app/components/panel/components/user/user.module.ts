@@ -48,6 +48,7 @@ import { ChatTicketComponent } from './components/manage-ticket/components/detai
 import { TicketComponent } from './components/manage-ticket/components/list-ticket/components/ticket/ticket.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxUiLoaderModule} from 'ngx-ui-loader';
+import { TicketResolver } from 'src/app/resolvers/ticket.resolver';
 
 
 @NgModule({
@@ -105,6 +106,7 @@ import { NgxUiLoaderModule} from 'ngx-ui-loader';
     BankCardResolver,
     DocumentResolver,
     WalletResolver,
+    TicketResolver,
     PreventUnsavedGuard,
     { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS }

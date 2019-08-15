@@ -11,8 +11,8 @@ export class TicketService {
   baseUrl = environment.apiUrl + environment.apiV1 + 'site/panel/';
   constructor(private http: HttpClient) { }
 
-  getTickets(id: string, lastKey?): Observable<Ticket[]> {
-    return this.http.get<Ticket[]>(this.baseUrl + 'users/' + id + '/tickets');
+  getTickets(id: string, page: number): Observable<Ticket[]> {
+    return this.http.get<Ticket[]>(this.baseUrl + 'users/' + id + '/tickets/' + page);
   }
 
   addTicket(ticket: Ticket, id: string): Observable<Ticket> {
