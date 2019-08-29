@@ -26,4 +26,9 @@ export class TicketService {
   addTicketContent(ticketContent: any, userId: string, id: string): Observable<TicketContent> {
     return this.http.post<TicketContent>(this.baseUrl + 'users/' + userId + '/tickets/' + id + '/ticketcontents' , ticketContent);
   }
+
+  setTicketClosed(closed: any, userId: string, id: string) {
+    return this.http.put(this.baseUrl + 'users/' + userId + '/tickets/' + id , {closed});
+  }
+
 }

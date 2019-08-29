@@ -1,11 +1,28 @@
-.text-muted{
-    font-size: 12px;
-    }
-    .lbl-show{
-        font-size: 15px;
-    
-    padding: 2px 10px 3px;
-    }
-    .list-group-item{
-margin-bottom: 4px;
+.text-muted {
+  font-size: 12px;
+}
+.lbl-show {
+  font-size: 15px;
+
+  padding: 2px 10px 3px;
+}
+.list-group-item {
+  margin-bottom: 4px;
+}
+
+.bggblack {
+  background: #333;
+}
+
+.bggblackactive {
+  background: #555;
+}
+
+
+.clrwithe{
+color: #fff;
+}
+
+.clrgray{
+    color: #ededed;
     }

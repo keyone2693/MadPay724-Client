@@ -43,4 +43,17 @@
     </div>
   </div>
 </div>
-<app-chat-ticket [ticketContents]="ticket.ticketContents" [ticketId]="ticket.id" (newTicketContent)="addToTicketContentList($event)"></app-chat-ticket>
+<div class="row">
+  <div class="col-md-12">
+      <mat-slide-toggle
+      #closedchk
+      (change)="onSetClosed($event)"
+      class="chkclosed"
+      color="warn"
+      [checked]="ticket.closed">
+     بستن تیکت
+      </mat-slide-toggle>
+  </div>
+</div>
+
+<app-chat-ticket [ticketContents]="ticket.ticketContents" [ticketId]="ticket.id" [ticketClosed]="ticket.closed" (newTicketContent)="addToTicketContentList($event)"></app-chat-ticket>

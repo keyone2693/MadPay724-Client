@@ -13,6 +13,7 @@ import { TicketService } from 'src/app/Services/panel/user/ticket.service';
 export class ChatTicketComponent implements OnInit {
   @Input() ticketContents: TicketContent[];
   @Input() ticketId: string;
+  @Input() ticketClosed: string;
   @Output() newTicketContent = new EventEmitter<TicketContent>();
   slectedFile: File = null;
   selected = false;
