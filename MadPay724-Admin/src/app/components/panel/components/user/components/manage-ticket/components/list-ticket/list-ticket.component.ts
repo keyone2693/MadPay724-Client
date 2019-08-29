@@ -5,6 +5,8 @@ import { AuthService } from 'src/app/Services/auth/auth.service';
 import * as _ from 'lodash';
 import { Ticket } from 'src/app/models/ticket';
 import { NgScrollbar } from 'ngx-scrollbar';
+import { MatDialogConfig, MatDialog } from '@angular/material';
+import { CreateFormTicketComponent } from './components/create-form-ticket/create-form-ticket.component';
 
 @Component({
   selector: 'app-list-ticket',
@@ -21,7 +23,7 @@ export class ListTicketComponent implements OnInit, OnDestroy {
   promiseSetBySomeAction: any;
   selectedTicketId: string;
   constructor(private ticketService: TicketService,
-              private authService: AuthService) {
+              private authService: AuthService, private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -29,6 +31,19 @@ export class ListTicketComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy() {
     this.subManager.unsubscribe();
+  }
+  onCreate() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    const dialogRef = this.dialog.open(CreateFormTicketComponent, dialogConfig);
+    const sub = dialogRef.componentInstance.newTicket.subscribe((data) => {
+       // this.addTicket(data);
+     });
+    dialogRef.afterClosed().subscribe(() => {
+       sub.unsubscribe();
+     });
+
   }
   changeSelectedTicketId(event) {
     this.selectedTicketId = event;

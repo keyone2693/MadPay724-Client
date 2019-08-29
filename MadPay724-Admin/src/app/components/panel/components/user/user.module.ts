@@ -48,6 +48,7 @@ import { TicketComponent } from './components/manage-ticket/components/list-tick
 import { TicketResolver } from 'src/app/resolvers/ticket.resolver';
 import { TicketOverviewResolver } from 'src/app/resolvers/ticketOverview.resolver';
 import { ChatMessageTicketComponent } from './components/manage-ticket/components/detail-ticket/components/chat-ticket/components/chat-message-ticket/chat-message-ticket.component';
+import { CreateFormTicketComponent } from './components/manage-ticket/components/list-ticket/components/create-form-ticket/create-form-ticket.component';
 
 @NgModule({
   imports: [
@@ -92,7 +93,8 @@ import { ChatMessageTicketComponent } from './components/manage-ticket/component
     ListTicketComponent,
     DetailTicketComponent,
     ChatTicketComponent,
-    ChatMessageTicketComponent
+    ChatMessageTicketComponent,
+    CreateFormTicketComponent
   ],
   providers: [
     UserService,
