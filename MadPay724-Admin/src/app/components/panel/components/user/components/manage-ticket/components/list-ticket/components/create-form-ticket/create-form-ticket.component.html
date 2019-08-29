@@ -79,9 +79,15 @@
     >
   </mat-form-field>
   <label class="attach float-right">
-    <input type="file" name="file" />
-    <span class="ft-folder msgicon"></span>
-    <span class="msg-info">انتخاب فایل</span>
+    <input (change)="onFileSelect($event)"
+     type="file" name="file" />
+    <span
+    [ngClass]="selected ? 'msgicon-green' : 'msgicon-blue'"
+     class="ft-folder msgicon"></span>
+    <span *ngIf="!selected" class="msg-info">انتخاب فایل</span>
+    <span *ngIf="selected" class="msg-success">فایل اضافه شد
+      <span class="filename">({{fileName}})</span>
+      </span>
   </label>
 </mat-dialog-content>
 

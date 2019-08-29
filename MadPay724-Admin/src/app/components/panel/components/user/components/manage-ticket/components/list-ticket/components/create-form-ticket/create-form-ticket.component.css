@@ -17,16 +17,18 @@
   color: #fff;
 }
 .msgicon {
-  background: #197dff;
-
   padding: 7px;
-
   color: #fff !important;
-
   border-radius: 50px;
-
   margin-left: 10px;
 }
+.msgicon-blue {
+  background: #197dff;
+}
+.msgicon-green {
+  background: #4caf50;
+}
+
 .attach {
   cursor: pointer;
 }
@@ -39,4 +41,14 @@
 }
 .attach input[type='file'] {
   display: none;
+}
+.msg-success {
+  color: #4caf50 !important;
+}
+.msg-info{
+ color: #197dff;
+ font-size: 17px;
+}.filename{
+  direction: ltr !important;
+  text-align: left;
 }
