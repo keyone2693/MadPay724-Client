@@ -1,3 +1,109 @@
-<p>
-  create-form-ticket works!
-</p>
+<h2 mat-dialog-title class="mmatdiagtitle">ایجاد تیکت</h2>
+
+<mat-dialog-content [formGroup]="ticketForm">
+  <mat-form-field class="col-md-6">
+    <mat-label>دپارتمان مربوطه *</mat-label>
+    <mat-select formControlName="department">
+      <mat-option value="1">پشتیبانی فنی</mat-option>
+      <mat-option value="2">مالی و حسابداری</mat-option>
+      <mat-option value="3">سوالات عمومی</mat-option>
+      <mat-option value="4">انتقادات و پیشنهادات</mat-option>
+      <mat-option value="5">نظارت بر محتوا</mat-option>
+      <mat-option value="6">حل اختلاف</mat-option>
+    </mat-select>
+    <mat-error
+      *ngIf="
+        ticketForm.get('department').hasError('required') &&
+        ticketForm.get('department').touched
+      "
+      >درپارتمان را انتخاب کنید</mat-error
+    >
+  </mat-form-field>
+
+  <mat-form-field class="col-md-6">
+    <mat-label>اولویت *</mat-label>
+    <mat-select formControlName="level">
+      <mat-option value="1">عادی</mat-option>
+      <mat-option value="2">مهم</mat-option>
+      <mat-option value="3">خیلی مهم</mat-option>
+    </mat-select>
+    <mat-error
+      *ngIf="
+        ticketForm.get('level').hasError('required') &&
+        ticketForm.get('level').touched
+      "
+      >اولویت را انتخاب کنید</mat-error
+    >
+  </mat-form-field>
+
+  <mat-form-field class="col-md-12 ml-10">
+    <input matInput formControlName="title" placeholder="عنوان *" />
+    <mat-error
+      *ngIf="
+        ticketForm.get('title').hasError('required') &&
+        ticketForm.get('title').touched
+      "
+      >این فیلد نمیتواند خالی باشد</mat-error
+    >
+
+    <mat-error
+      *ngIf="
+        ticketForm.get('title').hasError('maxlength') &&
+        ticketForm.get('title').touched
+      "
+    >
+      این فیلد نمیتواند بیشتر از 50 کاراکتر باشد</mat-error
+    >
+  </mat-form-field>
+  <mat-form-field class="col-md-12 ml-10">
+    <textarea
+      matInput
+      formControlName="text"
+      placeholder="متن تیکت *"
+    ></textarea>
+    <mat-error
+      *ngIf="
+        ticketForm.get('text').hasError('required') &&
+        ticketForm.get('text').touched
+      "
+      >این فیلد نمیتواند خالی باشد</mat-error
+    >
+
+    <mat-error
+      *ngIf="
+        ticketForm.get('text').hasError('maxlength') &&
+        ticketForm.get('text').touched
+      "
+    >
+      این فیلد نمیتواند بیشتر از 1000 کاراکتر باشد</mat-error
+    >
+  </mat-form-field>
+  <label class="attach float-right">
+    <input type="file" name="file" />
+    <span class="ft-folder msgicon"></span>
+    <span class="msg-info">انتخاب فایل</span>
+  </label>
+</mat-dialog-content>
+
+<mat-dialog-actions class="float-left">
+  <button
+    mat-raised-button
+    matDialogClose
+    (click)="onClear()"
+    color="warn"
+    class="float-left mb-10"
+  >
+    <i class="icon-close"></i>
+    انصراف
+  </button>
+  <button
+    mat-raised-button
+    (click)="onSubmitCreate()"
+    [disabled]="ticketForm.invalid"
+    color="green"
+    class="float-left mb-10"
+  >
+    <i class="icon-check"></i>
+    <span>ایجاد تیکت</span>
+  </button>
+</mat-dialog-actions>

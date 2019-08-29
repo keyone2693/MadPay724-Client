@@ -38,7 +38,7 @@ import { EditBankCardComponent } from './components/manage-bank-card/components/
 import { WalletResolver } from 'src/app/resolvers/wallet.resolver';
 import { WalletService } from 'src/app/Services/panel/user/wallet.service';
 import { PersianDateModule } from 'src/app/Shared/Pipe/PersianDatePipe/persian-date.module';
-import {IRCurrencyPipe, JdatePipe} from 'ngx-persian';
+import { IRCurrencyPipe, JdatePipe } from 'ngx-persian';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { ManageTicketComponent } from './components/manage-ticket/manage-ticket.component';
 import { ListTicketComponent } from './components/manage-ticket/components/list-ticket/list-ticket.component';
@@ -113,8 +113,11 @@ import { CreateFormTicketComponent } from './components/manage-ticket/components
     { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS }
   ],
-   entryComponents:
-  [EditBankCardComponent,
-  WalletFormComponent]
+  entryComponents:
+    [
+      EditBankCardComponent,
+      WalletFormComponent,
+      CreateFormTicketComponent
+    ]
 })
 export class UserModule { }

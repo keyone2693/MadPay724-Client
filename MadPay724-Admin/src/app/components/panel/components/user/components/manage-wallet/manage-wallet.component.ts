@@ -6,7 +6,6 @@ import { MatDialog, MatDialogConfig } from '@angular/material';
 import { WalletService } from 'src/app/Services/panel/user/wallet.service';
 import { AuthService } from 'src/app/Services/auth/auth.service';
 import { WalletFormComponent } from './components/wallet-form/wallet-form.component';
-import { take } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 @Component({

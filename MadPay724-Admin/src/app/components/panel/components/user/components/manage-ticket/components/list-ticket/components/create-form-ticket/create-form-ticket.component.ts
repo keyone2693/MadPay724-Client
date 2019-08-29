@@ -32,7 +32,7 @@ export class CreateFormTicketComponent implements OnInit {
     this.ticketForm.reset();
     this.matdialogRef.close();
   }
-  onSubmitAdd() {
+  onSubmitCreate() {
     if (this.ticketForm.valid) {
       this.ticketService.addTicket(this.ticketForm.value, this.authService.decodedToken.nameid).subscribe((data) => {
         this.alertService.success('تیکتی شما با موفقیت ثبت شد', 'موفق');
