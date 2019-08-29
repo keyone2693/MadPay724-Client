@@ -38,12 +38,16 @@ export class ListTicketComponent implements OnInit, OnDestroy {
     dialogConfig.autoFocus = true;
     const dialogRef = this.dialog.open(CreateFormTicketComponent, dialogConfig);
     const sub = dialogRef.componentInstance.newTicket.subscribe((data) => {
-       // this.addTicket(data);
+        this.addTicket(data);
      });
     dialogRef.afterClosed().subscribe(() => {
        sub.unsubscribe();
      });
 
+  }
+  addTicket(ticket: Ticket) {
+    const currentTickets = this.tickets.getValue();
+    this.tickets.next([ticket].concat(currentTickets));
   }
   changeSelectedTicketId(event) {
     this.selectedTicketId = event;

@@ -22,11 +22,11 @@ class="chat">
         <p>{{ticketContent.text}}</p>
         
       </div>
-      <div class="chat-content" *ngIf="ticketContent.fileUrl !== '' || ticketContent.fileUrl !== null">
+      <div class="chat-content" *ngIf="ticketContent.fileUrl !== ''">
           <p>
               <a
               [ngClass]="{'whitecolo': !ticketContent.isAdminSide}"
-              href="ticketContent.fileUrl">
+              href="{{ticketContent.fileUrl}}">
              دانلود فایل
            </a></p>
       </div>
