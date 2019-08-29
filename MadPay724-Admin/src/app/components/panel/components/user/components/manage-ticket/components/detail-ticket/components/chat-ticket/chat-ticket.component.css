@@ -55,16 +55,17 @@ margin-right: 25px;
  color: #197dff;
  font-size: 17px;
 }
-.msgicon{
+.msgicon {
+  padding: 7px;
+  color: #fff !important;
+  border-radius: 50px;
+  margin-left: 10px;
+}
+.msgicon-blue {
   background: #197dff;
-
-padding: 7px;
-
-color: #fff !important;
-
-border-radius: 50px;
-
-margin-left: 10px;
+}
+.msgicon-green {
+  background: #4caf50;
 }
 .msg-danger, .msg-success {
   margin-bottom: 12px;

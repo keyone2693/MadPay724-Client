@@ -31,19 +31,45 @@
     </div>
     <div class="card-body">
       <div class="card-block text-center row">
-        <form class="chat-app-input col-md-12">
+        <form [formGroup]="ticketContentForm" class="chat-app-input col-md-12">
           <mat-form-field class="col-md-12 ml-10">
             <textarea
+            formControlName="text"
               matInput
               placeholder="متن پاسخ تیکت *"
             ></textarea>
+            <mat-error
+            *ngIf="
+              ticketContentForm.get('text').hasError('required') &&
+              ticketContentForm.get('text').touched
+            "
+            >این فیلد نمیتواند خالی باشد</mat-error
+          >
+      
+          <mat-error
+            *ngIf="
+              ticketContentForm.get('text').hasError('maxlength') &&
+              ticketContentForm.get('text').touched
+            "
+          >
+            این فیلد نمیتواند بیشتر از 1000 کاراکتر باشد</mat-error
+          >
           </mat-form-field>
           <label class="attach float-right">
-            <input type="file" name="file" />
-            <span class="ft-folder msgicon"></span>
-            <span class="msg-info">انتخاب فایل</span>
-          </label>
-          <button mat-raised-button color="green" class="float-left mb-10">
+              <input (change)="onFileSelect($event)"
+               type="file" name="file" />
+              <span
+              [ngClass]="selected ? 'msgicon-green' : 'msgicon-blue'"
+               class="ft-folder msgicon"></span>
+              <span *ngIf="!selected" class="msg-info">انتخاب فایل</span>
+              <span *ngIf="selected" class="msg-success">فایل اضافه شد
+                <span class="filename">({{fileName}})</span>
+                </span>
+            </label>
+          <button
+          (click)="onSubmitCreate()"
+          [disabled]="ticketContentForm.invalid"
+          mat-raised-button color="green" class="float-left mb-10">
             <i class="icon-check"></i>
             <span>ارسال</span>
           </button>

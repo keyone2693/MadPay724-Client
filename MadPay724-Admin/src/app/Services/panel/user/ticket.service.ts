@@ -3,6 +3,7 @@ import { Ticket } from 'src/app/models/ticket';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { TicketContent } from 'src/app/models/ticketContent';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +22,8 @@ export class TicketService {
 
   addTicket(ticket: any, id: string): Observable<Ticket> {
     return this.http.post<Ticket>(this.baseUrl + 'users/' + id + '/tickets', ticket);
+  }
+  addTicketContent(ticketContent: any, userId: string, id: string): Observable<TicketContent> {
+    return this.http.post<TicketContent>(this.baseUrl + 'users/' + userId + '/tickets/' + id + '/ticketcontents' , ticketContent);
   }
 }

@@ -40,4 +40,4 @@
     </div>
   </div>
 </div>
-<app-chat-ticket [ticketContents]="ticket.ticketContents"></app-chat-ticket>
+<app-chat-ticket [ticketContents]="ticket.ticketContents" [ticketId]="ticket.id" (newTicketContent)="addToTicketContentList($event)"></app-chat-ticket>
