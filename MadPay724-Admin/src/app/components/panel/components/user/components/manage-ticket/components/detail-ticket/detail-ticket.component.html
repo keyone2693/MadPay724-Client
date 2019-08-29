@@ -28,13 +28,16 @@
           </p>
         </span>
         <span class="float-left info">
+          
           <a *ngIf="ticket.level === 1" class="btn mr-1 btn-round shadow-z-2 btn-success lbl-show">عادی</a>
           <a *ngIf="ticket.level === 2" class="btn mr-1 btn-round shadow-z-2 btn-warning lbl-show">مهم</a>
           <a *ngIf="ticket.level === 3" class="btn mr-1 btn-round shadow-z-2 btn-danger lbl-show">خیلی مهم</a>
 
           <a *ngIf="ticket.closed" class="btn mr-1 btn-round shadow-z-2 btn-secondary lbl-show">بسته شده</a>
           <a *ngIf="!ticket.closed" class="btn mr-1 btn-round shadow-z-2 btn-info lbl-show">باز</a>
-
+  <a
+            (click)="gotoAdd()"
+            class="btn mr-1 btn-success btnpasokh">پاسخ به تیکت</a>
         </span>
       </div>
     </div>

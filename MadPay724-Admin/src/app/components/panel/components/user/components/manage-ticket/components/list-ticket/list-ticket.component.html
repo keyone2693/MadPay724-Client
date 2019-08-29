@@ -17,6 +17,7 @@
         <ng-scrollbar class="search-results" class="my-scrollbar">
           <app-ticket *ngFor="let ticket of tickets | async" [ticket]="ticket" [ticketId]="selectedTicketId" (selectedTicketId)="changeSelectedTicketId($event)"></app-ticket>
           <button
+          *ngIf="(tickets | async)?.length !== 0"
             mat-raised-button
             color="blue"
             class="mb-10 btnload"

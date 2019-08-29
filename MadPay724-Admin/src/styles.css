@@ -4,3 +4,6 @@
 /* #toast-container > div {
     width: 400px;
     } */
+    .ng-scroll-content{
+        padding-left: 10px !important;
+      }

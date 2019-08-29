@@ -69,7 +69,9 @@
           <button
           (click)="onSubmitCreate()"
           [disabled]="ticketContentForm.invalid"
-          mat-raised-button color="green" class="float-left mb-10">
+          mat-raised-button color="green"
+          id="btnAddTicketContent"
+          class="float-left mb-10">
             <i class="icon-check"></i>
             <span>ارسال</span>
           </button>

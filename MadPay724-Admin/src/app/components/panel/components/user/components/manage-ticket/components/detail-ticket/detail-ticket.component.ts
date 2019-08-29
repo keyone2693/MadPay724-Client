@@ -10,7 +10,7 @@ import { TicketContent } from 'src/app/models/ticketContent';
   templateUrl: './detail-ticket.component.html',
   styleUrls: ['./detail-ticket.component.css']
 })
-export class DetailTicketComponent implements OnInit , OnDestroy{
+export class DetailTicketComponent implements OnInit , OnDestroy {
   ticket: Ticket;
   subManager = new Subscription();
   constructor(private route: ActivatedRoute, private title: Title) { }
@@ -31,5 +31,10 @@ export class DetailTicketComponent implements OnInit , OnDestroy{
   }
   addToTicketContentList(ticketContent: TicketContent) {
     this.ticket.ticketContents.push(ticketContent);
+  }
+  gotoAdd() {
+    $('html , body').animate({
+      scrollTop: $('#btnAddTicketContent').offset().top + 20
+    }, 500);
   }
 }
