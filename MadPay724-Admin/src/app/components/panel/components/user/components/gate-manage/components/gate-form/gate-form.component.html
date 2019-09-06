@@ -1,3 +1,57 @@
-<p>
-  gate-form works!
-</p>
+<h2 mat-dialog-title class="mmatdiagtitle">
+ افزودن درگاه پرداخت
+</h2>
+
+<mat-dialog-content [formGroup]="gateService.gateForm">
+  <mat-form-field class="col-md-12 ml-10">
+    <input matInput formControlName="walletName" placeholder="نام کیف پول *" />
+    <mat-error
+      *ngIf="
+        gateService.gateForm.get('walletName').hasError('required') &&
+        gateService.gateForm.get('walletName').touched
+      "
+      >این فیلد نمیتواند خالی باشد</mat-error
+    >
+
+    <mat-error
+      *ngIf="
+        gateService.gateForm.get('walletName').hasError('maxlength') &&
+        gateService.gateForm.get('walletName').touched
+      "
+    >
+      این فیلد نمیتواند بیشتر از 20 کاراکتر باشد</mat-error
+    >
+  </mat-form-field>
+  <mat-form-field class="col-md-12">
+    <mat-label>یک کیف‌ پول را برای کسر مبلغ مذکور انتخاب کنید *</mat-label>
+    <mat-select formControlName="walletId">
+      <mat-option *ngFor="let wallet of wallets" value="{{wallet.id}}">{{wallet.name}}</mat-option>
+    </mat-select>
+    <mat-error
+      >کیف پول را انتخاب کنید</mat-error
+    >
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions class="float-left">
+  <button
+    mat-raised-button
+    matDialogClose
+    (click)="onClear()"
+    color="warn"
+    class="float-left mb-10"
+  >
+    <i class="icon-close"></i>
+    انصراف
+  </button>
+  <button
+    mat-raised-button
+    (click)="onSubmitAdd()"
+    [disabled]="gateService.gateForm.invalid"
+    color="green"
+    class="float-left mb-10"
+  >
+    <i class="icon-check"></i>
+    <span>افزودن کیف پول</span>
+  </button>
+</mat-dialog-actions>

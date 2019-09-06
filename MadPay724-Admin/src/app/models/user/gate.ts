@@ -1,14 +1,14 @@
 export interface Gate {
     id: string;
-   walletId: number;
-    isActive: string;
+    walletId: string;
+    isActive: boolean;
     isDirect: boolean;
     isIp: boolean;
-    ip: boolean;
-    websiteName: boolean;
+    ip: string;
+    websiteName: string;
     websiteUrl: string;
-    phoneNumber: number;
-    text: number;
-    grouping: number;
-    iconUrl: number;
+    phoneNumber: string;
+    text: string;
+    grouping: string;
+    iconUrl: string;
 }

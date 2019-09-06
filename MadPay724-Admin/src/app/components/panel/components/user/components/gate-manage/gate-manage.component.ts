@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/Services/auth/auth.service';
 import { Wallet } from 'src/app/models/wallet';
 import { GateFormComponent } from './components/gate-form/gate-form.component';
 import { Gate } from 'src/app/models/user/gate';
+import { GatesService } from 'src/app/Services/panel/user/gateService.service';
 
 @Component({
   selector: 'app-gate-manage',
@@ -18,7 +19,7 @@ export class GateManageComponent implements OnInit, OnDestroy {
   wallets: Wallet[];
   subManager = new Subscription();
   constructor(private dialog: MatDialog, private route: ActivatedRoute, private alertService: ToastrService,
-    private gateService: GateService, private authService: AuthService) { }
+              private gateService: GatesService, private authService: AuthService) { }
 
   ngOnInit() {
     this.loadGates();
@@ -29,7 +30,7 @@ export class GateManageComponent implements OnInit, OnDestroy {
   loadGates() {
     this.route.data.subscribe(data => {
       this.gates = data.gates;
-      this.Wallet = data.wallets;
+      this.wallets = data.wallets;
     });
   }
   onCreate() {

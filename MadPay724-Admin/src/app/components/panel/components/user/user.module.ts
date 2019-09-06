@@ -52,6 +52,7 @@ import { CreateFormTicketComponent } from './components/manage-ticket/components
 import { GateManageComponent } from './components/gate-manage/gate-manage.component';
 import { GateComponent } from './components/gate-manage/components/gate/gate.component';
 import { GateFormComponent } from './components/gate-manage/components/gate-form/gate-form.component';
+import { GatesService } from 'src/app/Services/panel/user/gateService.service';
 
 @NgModule({
   imports: [
@@ -109,6 +110,7 @@ import { GateFormComponent } from './components/gate-manage/components/gate-form
     BankCardsService,
     DocumentService,
     WalletService,
+    GatesService,
     UserProfileResolver,
     NotificationResolver,
     BankCardResolver,
@@ -124,7 +126,8 @@ import { GateFormComponent } from './components/gate-manage/components/gate-form
     [
       EditBankCardComponent,
       WalletFormComponent,
-      CreateFormTicketComponent
+      CreateFormTicketComponent,
+      GateFormComponent
     ]
 })
 export class UserModule { }
