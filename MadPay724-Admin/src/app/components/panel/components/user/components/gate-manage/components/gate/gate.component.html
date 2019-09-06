@@ -5,8 +5,8 @@
         <div class="right-box">
           <p>
             <span class="green-small-circle flash"></span
-            ><span title="طراحی وبسایت دات نت تک" class="header-title"
-              >طراحی وبسایت
+            ><span title="{{gate.websiteName}}" class="header-title"
+              >{{gate.websiteName}}
             </span>
           </p>
         </div>
@@ -31,10 +31,10 @@
           </mat-menu>
 
           <!----><a
-            href="http://dotnettech.ir"
+            href="http://{{gate.websiteUrl}}"
             target="blank"
             class="header-link link color-link"
-            >dotnettech.ir</a
+            >{{gate.websiteUrl}}</a
           >
         </div>
       </div>
@@ -51,11 +51,10 @@
                 onfocus="this.select();"
                 readonly="readonly"
                 class="txt-webservice-id"
-                value="889a0e2e-11e6-aa76-005056a205be"
+                value="{{gate.id}}"
               />
             </div>
             <div
-              data-clipboard-text="889a0e2e-11e6-aa76-005056a205be"
               class="ft-copy madicono"
             ></div>
           </div>
@@ -65,22 +64,33 @@
         <div class="ta-right"><span class="label">متصل به کیف‌پول</span></div>
         <div class="col-xs ta-left no-margin">
           <span class="tag-deposit-to pull-left"
-            ><div class="logo" style="background-image: url('../../../../../../../../../assets/img/logos/logo-gate.png');"></div>
-            <span>اصلی مادپی </span></span
+            ><div class="logo" style="background-image: url('{{gate.iconUrl}}');"></div>
+            <span>{{getGateWallet(gate.walletId).name}} </span></span
           >
         </div>
       </div>
       <div class="row box-row">
         <div class="ta-right"><span class="label">محدودیت IP</span></div>
         <div class="col-xs ta-left">
-          <span class="text-value">بدون محدودیت</span>
+          <span
+           *ngIf="gate.isIp"
+           [ngClass]="{'bbred': gate.isIp}"
+           class="text-value">دارای محدودیت</span>
+          <span 
+          *ngIf="!gate.isIp"
+          [ngClass]="{'bbgreen': !gate.isIp}"
+          class="text-value">بدون محدودیت</span>
         </div>
       </div>
       <div class="row box-row">
         <div class="ta-right"><span class="label">مستقیم</span></div>
         <div class="col-xs ta-left no-left-margin">
-          <span class="tag pull-left">غیر‌فعال</span
-          ><span class="pull-left text-activation">فعالسازی</span>
+          <span
+          [ngClass]=" gate.isDirect ? 'bbgreen-dashed' : 'bbred-dashed'"
+          class="tag pull-left">غیر‌فعال</span>
+          <span
+          *ngIf="!gate.isDirect"
+          class="pull-left text-activation">فعالسازی</span>
         </div>
       </div>
     </div>

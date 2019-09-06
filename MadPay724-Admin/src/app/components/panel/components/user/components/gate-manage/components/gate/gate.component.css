@@ -202,7 +202,6 @@ span[class^='madicono-'] {
   border: 1px solid #eceff1;
   border-radius: 3px;
   width: 100%;
-  max-width: 280px;
   text-align: center;
 }
 .label-group .madicono {
@@ -320,4 +319,26 @@ a {
 }
 .pl-5{
     padding-left: 5px;
+}
+input{
+  text-align: left;
+font-size: 15px;
+font-weight: 900;
+letter-spacing: 0.6px;
+}
+.bbred{
+  border-bottom: 1px solid #ff3030;
+}
+
+.bbgreen{
+  border-bottom: 1px solid #0cca5b;
+}
+.bbred-dashed{
+  background: #ff3030;
+  color: #fff;
+}
+
+.bbgreen-dashed{
+  background:  #0cca5b;
+  color: #fff;
 }
