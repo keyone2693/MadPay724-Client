@@ -32,9 +32,6 @@
         data-menu="menu-navigation"
         class="navigation navigation-main"
       >
-       
-
-       
         <!--#region Admin-->
         <li *appHasRole="['Admin']" routerLinkActive="active" class=" nav-item">
           <a [routerLink]="['/panel/admin/dashboard']"
@@ -51,7 +48,10 @@
           </a>
           <ul class="menu-content">
             <li routerLinkActive="active mlisub">
-              <a [routerLink]="['/panel/admin/users/usersmanagement']" class="menu-item">
+              <a
+                [routerLink]="['/panel/admin/users/usersmanagement']"
+                class="menu-item"
+              >
                 <i class="icon-user-following"></i>
                 مدیریت کاربران</a
               >
@@ -69,17 +69,23 @@
           >
         </li>
         <li *appHasRole="['User']" routerLinkActive="active" class=" nav-item">
+          <a [routerLink]="['/panel/user/gate']"
+            ><i class="icon-globe"></i
+            ><span data-i18n="" class="menu-title">درگاه های پرداخت</span></a
+          >
+        </li>
+        <li *appHasRole="['User']" routerLinkActive="active" class=" nav-item">
           <a [routerLink]="['/panel/user/bankcard']"
             ><i class="icon-credit-card"></i
             ><span data-i18n="" class="menu-title">کارت های بانکی</span></a
           >
         </li>
         <li *appHasRole="['User']" routerLinkActive="active" class=" nav-item">
-            <a [routerLink]="['/panel/user/wallet']"
-              ><i class="icon-wallet"></i
-              ><span data-i18n="" class="menu-title">کیف پول</span></a
-            >
-          </li>
+          <a [routerLink]="['/panel/user/wallet']"
+            ><i class="icon-wallet"></i
+            ><span data-i18n="" class="menu-title">کیف پول</span></a
+          >
+        </li>
         <li class="has-sub nav-item">
           <a href="javascript:;">
             <i class="icon-info"></i>
@@ -87,14 +93,23 @@
             <!-- <span class="tag badge badge-pill badge-danger mt-1">2</span> -->
           </a>
           <ul class="menu-content">
-            <li  *appHasRole="['User', 'Admin', 'Blog', 'Accountant' ]" routerLinkActive="active mlisub">
-              <a [routerLink]="['/panel/user/userinfo/profile']" class="menu-item">
+            <li
+              *appHasRole="['User', 'Admin', 'Blog', 'Accountant']"
+              routerLinkActive="active mlisub"
+            >
+              <a
+                [routerLink]="['/panel/user/userinfo/profile']"
+                class="menu-item"
+              >
                 <i class="icon-user-following"></i>
                 پروفایل</a
               >
             </li>
-            <li  *appHasRole="['User']" routerLinkActive="active mlisub">
-              <a [routerLink]="['/panel/user/userinfo/documents']" class="menu-item">
+            <li *appHasRole="['User']" routerLinkActive="active mlisub">
+              <a
+                [routerLink]="['/panel/user/userinfo/documents']"
+                class="menu-item"
+              >
                 <i class="icon-docs"></i>
                 ارسال مدارک</a
               >

@@ -18,6 +18,7 @@ import { ManageTicketComponent } from './components/manage-ticket/manage-ticket.
 import { TicketResolver } from 'src/app/resolvers/ticket.resolver';
 import { DetailTicketComponent } from './components/manage-ticket/components/detail-ticket/detail-ticket.component';
 import { TicketOverviewResolver } from 'src/app/resolvers/ticketOverview.resolver';
+import { GateManageComponent } from './components/gate-manage/gate-manage.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,11 @@ const routes: Routes = [
       {
         path: 'dashboard', canActivate: [AuthGuard], component: UserDashboardComponent,
         data: { roles: ['User'], title: ['داشبورد کاربر'] }
+      },
+      //
+      {
+        path: 'gate', canActivate: [AuthGuard], component: GateManageComponent,
+        data: { roles: ['User'], title: ['مدیریت درگاه های پرداخت'] }
       },
       // userinfo
       {
