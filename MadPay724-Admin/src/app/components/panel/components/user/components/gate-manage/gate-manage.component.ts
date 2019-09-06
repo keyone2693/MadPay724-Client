@@ -8,6 +8,7 @@ import { Wallet } from 'src/app/models/wallet';
 import { GateFormComponent } from './components/gate-form/gate-form.component';
 import { Gate } from 'src/app/models/user/gate';
 import { GatesService } from 'src/app/Services/panel/user/gateService.service';
+import { GatesWallets } from 'src/app/models/user/gatesWallets';
 
 @Component({
   selector: 'app-gate-manage',
@@ -15,8 +16,7 @@ import { GatesService } from 'src/app/Services/panel/user/gateService.service';
   styleUrls: ['./gate-manage.component.css']
 })
 export class GateManageComponent implements OnInit, OnDestroy {
-  gates: Gate[];
-  wallets: Wallet[];
+  gateWallets: GatesWallets;
   subManager = new Subscription();
   constructor(private dialog: MatDialog, private route: ActivatedRoute, private alertService: ToastrService,
               private gateService: GatesService, private authService: AuthService) { }
@@ -29,15 +29,14 @@ export class GateManageComponent implements OnInit, OnDestroy {
   }
   loadGates() {
     this.route.data.subscribe(data => {
-      this.gates = data.gates;
-      this.wallets = data.wallets;
+      this.gateWallets = data.gateswallets;
     });
   }
   onCreate() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.data = this.wallets;
+    dialogConfig.data = this.gateWallets.wallets;
     const dialogRef = this.dialog.open(GateFormComponent, dialogConfig);
     const sub = dialogRef.componentInstance.newGate.subscribe((data) => {
       this.insertBankCard(data);
@@ -47,6 +46,6 @@ export class GateManageComponent implements OnInit, OnDestroy {
     });
   }
   insertBankCard(gate: Gate) {
-    this.gates.push(gate);
+    this.gateWallets.gates.push(gate);
   }
 }

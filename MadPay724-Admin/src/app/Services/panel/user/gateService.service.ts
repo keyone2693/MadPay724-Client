@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Gate } from 'src/app/models/user/gate';
+import { GatesWallets } from 'src/app/models/user/gatesWallets';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +23,8 @@ export class GatesService {
     grouping: ['', [Validators.required, Validators.maxLength(50)]]
   });
 
-  getGates(id: string): Observable<Gate[]> {
-    return this.http.get<Gate[]>(this.baseUrl + 'users/' + id + '/gates');
+  getGates(id: string): Observable<GatesWallets> {
+    return this.http.get<GatesWallets>(this.baseUrl + 'users/' + id + '/gates');
   }
   getGate( id: string, gateId: Gate): Observable<Gate> {
     return this.http.get<Gate>(this.baseUrl + 'users/' + id + '/gates/' + gateId);

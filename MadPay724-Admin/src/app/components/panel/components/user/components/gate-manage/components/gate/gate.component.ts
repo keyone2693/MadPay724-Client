@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Gate } from 'src/app/models/user/gate';
 
 @Component({
   selector: 'app-gate',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./gate.component.css']
 })
 export class GateComponent implements OnInit {
-
+  @Input() gate: Gate;
   constructor() { }
 
   ngOnInit() {
