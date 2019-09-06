@@ -1,0 +1,323 @@
+.row {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 0;
+  -moz-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  -webkit-box-direction: normal;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -0.5rem;
+  margin-left: -0.5rem;
+}
+.row {
+  -webkit-box-orient: horizontal;
+}
+.col-xs {
+  -moz-flex-grow: 0;
+  -ms-flex-positive: 0;
+  flex-grow: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -ms-flex-preferred-size: auto;
+  flex-basis: auto;
+}
+.col-xs {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-box-flex: 0;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+.col-xs {
+  -webkit-box-flex: 1;
+  -moz-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  -ms-flex-preferred-size: 0;
+  flex-basis: 0;
+  max-width: 100%;
+}
+.top-xs {
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  -moz-align-items: flex-start;
+  align-items: flex-start;
+}
+.middle-xs {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -moz-align-items: center;
+  align-items: center;
+}
+
+
+.flash {
+  color: #f2f;
+  -webkit-animation: flash linear 2s infinite;
+  animation: flash linear 2s infinite;
+}
+span[class^='madicono-'] {
+  speak: none;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.color-link {
+  color: #3476f8 !important;
+}
+.pull-left {
+  float: left !important;
+}
+.ta-right {
+  text-align: right !important;
+}
+.ta-left {
+  text-align: left !important;
+}
+.no-margin {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.no-left-margin {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+.section {
+  margin: 10px 0;
+}
+.section p {
+  margin: 0;
+}
+.section .box {
+  background-color: #fefefe;
+  -webkit-box-shadow: 0 1px 2.5px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 2.5px 0 rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+}
+.section .box,
+.section .box:hover {
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+.section .box:hover {
+  -webkit-box-shadow: 0 6px 15px rgba(0, 0, 0, 0.20);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.20);
+}
+.section .box .header {
+  background-color: #f8f9fa;
+  border-radius: 5px 5px 0 0;
+  padding: 0 15px;
+  height: 50px;
+}
+.section .box .header .right-box p {
+  margin-top: 9px;
+}
+.section .box .header .right-box p .header-title {
+  font-size: 13px;
+  color: #777;
+  display: inline-block;
+  margin-right: 10px;
+  height: 22px;
+  overflow: hidden;
+  position: relative;
+  top: 5px;
+  width: 85px;
+}
+.section .box .header .left-box .icon-more {
+  float: left;
+  margin-top: 16px;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 20px;
+  margin-left: 3px;
+}
+.section .box .header .left-box .icon-more:before {
+  content: '\E947';
+  color: #777;
+}
+.section .box .body {
+  padding: 15px;
+  color: #424242;
+  font-size: 13px;
+}
+.section .box .body .box-row {
+  border-bottom: 1px solid #ebeef0;
+  padding: 10px;
+}
+.section .box .body .box-row:last-child {
+  border-bottom: 0 !important;
+  border-bottom: 0;
+}
+.tag {
+  padding: 2px 10px;
+  border-radius: 30px;
+  background-color: #f6f6f6;
+  font-size: 13px;
+  color: #757575;
+  margin: 5px;
+  display: inline-block;
+}
+.header-link {
+  display: inline-block;
+  vertical-align: middle;
+}
+.header-link {
+  font-size: 13px;
+  color: #2962ff;
+  direction: ltr !important;
+  cursor: pointer;
+  float: left;
+  text-align: left !important;
+  width: 70%;
+  overflow: hidden;
+  margin-left: 10px;
+  margin-top: 16px;
+}
+.green-small-circle {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 3px solid #0cca5b;
+  border-radius: 50%;
+  background-color: #adeac8;
+  vertical-align: middle;
+  margin-right: 5px;
+  position: relative;
+  top: -1px;
+}
+.label-group {
+  border: 1px solid #eceff1;
+  border-radius: 3px;
+  width: 100%;
+  max-width: 280px;
+  text-align: center;
+}
+.label-group .madicono {
+border-right: 1px solid #eceff1;
+display: inline-block;
+padding: 7px 4px 6px 5px;
+float: left;
+background-color: #f8f9fa;
+cursor: pointer;
+width: 35px !important;
+}
+.label-group .madicono:before {
+  color: #424242 !important;
+  display: inline-block;
+  vertical-align: middle;
+}
+.label-group .text {
+  color: #424242;
+  display: inline-block;
+  padding: 6px;
+  font-size: 13px;
+  overflow: hidden;
+  height: 32px;
+}
+.label-group .text input {
+  border: none !important;
+}
+.label,
+.text-value {
+  color: #424242;
+  font-size: 13px;
+}
+body a {
+  text-decoration: none;
+}
+input {
+  font-weight: 400;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid #cecece;
+  padding: 6px 10px;
+  color: #676767;
+}
+input {
+  font-size: 13px;
+}
+.tag-deposit-to {
+  border-radius: 30px;
+  background-color: #f6f6f6;
+  padding: 4px 9px;
+}
+.tag-deposit-to .logo {
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+
+}
+.tag-deposit-to > span {
+  position: relative;
+  font-size: 13px;
+  color: #777;
+  display: inline-block;
+}
+.box .body .text-activation {
+  color: #3476f8;
+  cursor: pointer;
+  margin-top: -1px;
+}
+.box .body .txt-webservice-id {
+  border: 0;
+  margin-top: -3px;
+  width: 95%;
+}
+.box .body .box-row .tag {
+  margin-top: -3px;
+  margin-bottom: -3px;
+}
+.box .body .webservice-code-label {
+  padding-top: 8px;
+}
+a {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 200;
+  font-size: 13px;
+  color: #2979ff;
+}
+/*! CSS Used keyframes */
+@-webkit-keyframes flash {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes flash {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.pl-5{
+    padding-left: 5px;
+}

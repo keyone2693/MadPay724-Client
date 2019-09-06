@@ -50,6 +50,7 @@ import { TicketOverviewResolver } from 'src/app/resolvers/ticketOverview.resolve
 import { ChatMessageTicketComponent } from './components/manage-ticket/components/detail-ticket/components/chat-ticket/components/chat-message-ticket/chat-message-ticket.component';
 import { CreateFormTicketComponent } from './components/manage-ticket/components/list-ticket/components/create-form-ticket/create-form-ticket.component';
 import { GateManageComponent } from './components/gate-manage/gate-manage.component';
+import { GateComponent } from './components/gate-manage/components/gate/gate.component';
 
 @NgModule({
   imports: [
@@ -97,7 +98,8 @@ import { GateManageComponent } from './components/gate-manage/gate-manage.compon
     ChatMessageTicketComponent,
     CreateFormTicketComponent,
     //
-    GateManageComponent
+    GateManageComponent,
+    GateComponent
   ],
   providers: [
     UserService,

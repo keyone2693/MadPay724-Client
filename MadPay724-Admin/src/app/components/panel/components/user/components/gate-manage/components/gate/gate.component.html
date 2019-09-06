@@ -1,0 +1,89 @@
+<div class=" section">
+  <div class="box">
+    <div class="top-xs header">
+      <div class="row">
+        <div class="right-box">
+          <p>
+            <span class="green-small-circle flash"></span
+            ><span title="طراحی وبسایت دات نت تک" class="header-title"
+              >طراحی وبسایت
+            </span>
+          </p>
+        </div>
+        <div class="col-xs ta-left-box left-box">
+          <button
+            mat-icon-button
+            [matMenuTriggerFor]="menu"
+            aria-label="Example icon-button with a menu"
+            class="float-left"
+          >
+              <i class="ft-more-vertical"></i>
+          </button>
+          <mat-menu #menu="matMenu" xPosition="before">
+            <button mat-menu-item>
+              <i class="ft-trending-down pl-1"></i>
+              <span>تراکنش ها</span>
+            </button>
+            <button mat-menu-item>
+              <i class="ft-edit pl-1"></i>
+              <span>ویرایش</span>
+            </button>
+          </mat-menu>
+
+          <!----><a
+            href="http://dotnettech.ir"
+            target="blank"
+            class="header-link link color-link"
+            >dotnettech.ir</a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="middle-xs body">
+      <div class="row box-row">
+        <div class="ta-right webservice-code-label">
+          <span class="label">کد درگاه</span>
+        </div>
+        <div class="col-xs ta-left no-margin">
+          <div class="row label-group pull-left">
+            <div class="col-xs text merchant-code">
+              <input
+                onfocus="this.select();"
+                readonly="readonly"
+                class="txt-webservice-id"
+                value="889a0e2e-11e6-aa76-005056a205be"
+              />
+            </div>
+            <div
+              data-clipboard-text="889a0e2e-11e6-aa76-005056a205be"
+              class="ft-copy madicono"
+            ></div>
+          </div>
+        </div>
+      </div>
+      <div class="row box-row">
+        <div class="ta-right"><span class="label">متصل به کیف‌پول</span></div>
+        <div class="col-xs ta-left no-margin">
+          <span class="tag-deposit-to pull-left"
+            ><div class="logo" style="background-image: url('../../../../../../../../../assets/img/logos/logo-gate.png');"></div>
+            <span>اصلی مادپی </span></span
+          >
+        </div>
+      </div>
+      <div class="row box-row">
+        <div class="ta-right"><span class="label">محدودیت IP</span></div>
+        <div class="col-xs ta-left">
+          <span class="text-value">بدون محدودیت</span>
+        </div>
+      </div>
+      <div class="row box-row">
+        <div class="ta-right"><span class="label">مستقیم</span></div>
+        <div class="col-xs ta-left no-left-margin">
+          <span class="tag pull-left">غیر‌فعال</span
+          ><span class="pull-left text-activation">فعالسازی</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!---->
+</div>

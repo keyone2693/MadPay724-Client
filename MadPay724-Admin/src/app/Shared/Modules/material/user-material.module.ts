@@ -4,7 +4,7 @@ import * as Material from '@angular/material';
 import { CommonModule } from '@angular/common';
 
 import { MaterialFileInputModule } from 'ngx-material-file-input';
-import { MatDatepickerModule, MatSlideToggleModule } from '@angular/material';
+import { MatDatepickerModule, MatSlideToggleModule, MatMenuModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -17,7 +17,8 @@ import { MatDatepickerModule, MatSlideToggleModule } from '@angular/material';
      Material.MatFormFieldModule,
      MaterialFileInputModule,
      MatDatepickerModule,
-     MatSlideToggleModule
+      MatSlideToggleModule,
+      MatMenuModule
   ],
   exports: [
      Material.MatCheckboxModule,
@@ -28,7 +29,8 @@ import { MatDatepickerModule, MatSlideToggleModule } from '@angular/material';
      Material.MatFormFieldModule,
      MaterialFileInputModule,
      MatDatepickerModule,
-     MatSlideToggleModule
+     MatSlideToggleModule,
+     MatMenuModule
   ]
 })
 export class UserMaterialModule { }
