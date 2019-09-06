@@ -51,6 +51,7 @@ import { ChatMessageTicketComponent } from './components/manage-ticket/component
 import { CreateFormTicketComponent } from './components/manage-ticket/components/list-ticket/components/create-form-ticket/create-form-ticket.component';
 import { GateManageComponent } from './components/gate-manage/gate-manage.component';
 import { GateComponent } from './components/gate-manage/components/gate/gate.component';
+import { GateFormComponent } from './components/gate-manage/components/gate-form/gate-form.component';
 
 @NgModule({
   imports: [
@@ -99,7 +100,8 @@ import { GateComponent } from './components/gate-manage/components/gate/gate.com
     CreateFormTicketComponent,
     //
     GateManageComponent,
-    GateComponent
+    GateComponent,
+    GateFormComponent
   ],
   providers: [
     UserService,

@@ -12,7 +12,6 @@ import { WalletFormComponent } from '../wallet-form/wallet-form.component';
 })
 export class WalletComponent implements OnInit {
   @Input() wallet: Wallet;
-  @Output() deleteWallet = new EventEmitter<Wallet>();
   approve: boolean;
   constructor() { }
 

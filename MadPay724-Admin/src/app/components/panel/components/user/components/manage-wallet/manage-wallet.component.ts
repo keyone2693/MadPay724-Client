@@ -14,7 +14,6 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./manage-wallet.component.css']
 })
 export class ManageWalletComponent implements OnInit, OnDestroy {
-  formTitle: string;
   wallets: Wallet[];
   subManager = new Subscription();
   constructor(private dialog: MatDialog, private route: ActivatedRoute, private alertService: ToastrService,
@@ -33,7 +32,6 @@ export class ManageWalletComponent implements OnInit, OnDestroy {
     });
   }
   onCreate() {
-    this.formTitle = 'افزودن کیف پول جدید';
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
