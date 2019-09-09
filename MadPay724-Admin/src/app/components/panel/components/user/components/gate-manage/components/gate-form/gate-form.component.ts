@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/Services/auth/auth.service';
 import { Router } from '@angular/router';
 import { Wallet } from 'src/app/models/wallet';
 import { GatesService } from 'src/app/Services/panel/user/gateService.service';
+import { ValidationErrors, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-gate-form',
