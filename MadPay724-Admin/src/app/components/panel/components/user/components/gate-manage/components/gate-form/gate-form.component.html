@@ -1,36 +1,184 @@
 <h2 mat-dialog-title class="mmatdiagtitle">
- افزودن درگاه پرداخت
+  افزودن درگاه پرداخت
 </h2>
 
 <mat-dialog-content [formGroup]="gateService.gateForm">
   <mat-form-field class="col-md-12 ml-10">
-    <input matInput formControlName="walletName" placeholder="نام کیف پول *" />
+    <input matInput formControlName="websiteName" placeholder="نام وبسایت *" />
     <mat-error
       *ngIf="
-        gateService.gateForm.get('walletName').hasError('required') &&
-        gateService.gateForm.get('walletName').touched
+        gateService.gateForm.get('websiteName').hasError('required') &&
+        gateService.gateForm.get('websiteName').touched
       "
       >این فیلد نمیتواند خالی باشد</mat-error
     >
-
     <mat-error
       *ngIf="
-        gateService.gateForm.get('walletName').hasError('maxlength') &&
-        gateService.gateForm.get('walletName').touched
+        gateService.gateForm.get('websiteName').hasError('maxlength') &&
+        gateService.gateForm.get('websiteName').touched
       "
     >
-      این فیلد نمیتواند بیشتر از 20 کاراکتر باشد</mat-error
+      این فیلد نمیتواند بیشتر از 100 کاراکتر باشد</mat-error
+    >
+  </mat-form-field>
+  <mat-form-field class="col-md-12 ml-10">
+    <input
+      matInput
+      formControlName="websiteUrl"
+      placeholder="آدرس وبسایت : domain.ir *"
+    />
+    <mat-error
+      *ngIf="
+        gateService.gateForm.get('websiteUrl').hasError('required') &&
+        gateService.gateForm.get('websiteUrl').touched
+      "
+      >این فیلد نمیتواند خالی باشد</mat-error
+    >
+    <mat-error
+      *ngIf="
+        gateService.gateForm.get('websiteUrl').hasError('maxlength') &&
+        gateService.gateForm.get('websiteUrl').touched
+      "
+    >
+      این فیلد نمیتواند بیشتر از 500 کاراکتر باشد</mat-error
+    >
+  </mat-form-field>
+  <mat-form-field class="col-md-12 ml-10">
+    <input
+      matInput
+      formControlName="phoneNumber"
+      placeholder="شماره تماس پشتیبانی *"
+    />
+    <mat-error
+      *ngIf="
+        gateService.gateForm.get('phoneNumber').hasError('required') &&
+        gateService.gateForm.get('phoneNumber').touched
+      "
+      >این فیلد نمیتواند خالی باشد</mat-error
+    >
+    <mat-error
+      *ngIf="
+        gateService.gateForm.get('phoneNumber').hasError('maxlength') &&
+        gateService.gateForm.get('phoneNumber').touched
+      "
+    >
+      این فیلد نمیتواند بیشتر از 50 کاراکتر باشد</mat-error
+    >
+  </mat-form-field>
+  <mat-form-field class="col-md-12 ml-10">
+    <textarea
+      formControlName="text"
+      matInput
+      placeholder="توضیحات مربوط به فعالیت شما *"
+    ></textarea>
+    <mat-error
+      *ngIf="
+        gateService.gateForm.get('text').hasError('required') &&
+        gateService.gateForm.get('text').touched
+      "
+      >این فیلد نمیتواند خالی باشد</mat-error
+    >
+    <mat-error
+      *ngIf="
+        gateService.gateForm.get('text').hasError('maxlength') &&
+        gateService.gateForm.get('text').touched
+      "
+    >
+      این فیلد نمیتواند بیشتر از 1000 کاراکتر باشد</mat-error
     >
   </mat-form-field>
   <mat-form-field class="col-md-12">
-    <mat-label>یک کیف‌ پول را برای کسر مبلغ مذکور انتخاب کنید *</mat-label>
+    <mat-label>یک کیف‌ پول را جهت واریز درامد انتخاب کنید *</mat-label>
     <mat-select formControlName="walletId">
-      <mat-option *ngFor="let wallet of wallets" value="{{wallet.id}}">{{wallet.name}}</mat-option>
+      <mat-option *ngFor="let wallet of wallets" value="{{ wallet.id }}">{{
+        wallet.name
+      }}</mat-option>
     </mat-select>
-    <mat-error
-      >کیف پول را انتخاب کنید</mat-error
-    >
+    <mat-error>کیف پول را انتخاب کنید</mat-error>
   </mat-form-field>
+  <mat-form-field class="col-md-12">
+    <mat-label>انتخاب دسته بندی وبسایت *</mat-label>
+    <mat-select formControlName="grouping">
+      <mat-option value="" disable>خدمات توریسم و حمل و نقل</mat-option>
+      <mat-option value="خدمات گردشگری">خدمات گردشگری</mat-option>
+      <mat-option value="هتل ها و بلیط">هتل ها و بلیط</mat-option>
+      <mat-option value="آژانس های مسافرتی">آژانس های مسافرتی</mat-option>
+      <mat-option value="خدمات مهاجرتی">خدمات مهاجرتی</mat-option>
+      <mat-option value="خودرو، موتور و قطعات یدکی">خودرو، موتور و قطعات یدکی</mat-option>
+      <mat-option value="" disable>خدمات اینترنت</mat-option>
+      <mat-option value="خدمات ایمیل">خدمات ایمیل</mat-option>
+      <mat-option value="خدمات شبکه و امنیت">خدمات شبکه و امنیت</mat-option>
+      <mat-option value="خدمات بهینه سازی و SEO">خدمات بهینه سازی و SEO</mat-option>
+      <mat-option value="ميزبانی و اشتراک گذاری فایل">ميزبانی و اشتراک گذاری فایل</mat-option>
+      <mat-option value="خدمات میزبانی وب و دامنه">خدمات میزبانی وب و دامنه</mat-option>
+      <mat-option value="" disable>کالاهای دیجیتال</mat-option>
+      <mat-option value="پيامک انبوه تبليغاتی">پيامک انبوه تبليغاتی</mat-option>
+      <mat-option value="سخت افزار رايانه">سخت افزار رايانه</mat-option>
+      <mat-option value="صوت و تصویر">صوت و تصویر</mat-option>
+      <mat-option value="تلفن همراه و تبلت">تلفن همراه و تبلت</mat-option>
+      <mat-option value="شارژ تلفن همراه">شارژ تلفن همراه</mat-option>
+      <mat-option value="نرم افزار رايانه">نرم افزار رايانه</mat-option>
+      <mat-option value="" disable>طراحی و تبلیغات</mat-option>
+      <mat-option value="بازاریابی">بازاریابی</mat-option>
+      <mat-option value="نیازمندی های آنلاين">نیازمندی های آنلاين</mat-option>
+      <mat-option value="چاپ و کالاهای تبلیغاتی">چاپ و کالاهای تبلیغاتی</mat-option>
+      <mat-option value="شبکه های تبلیغاتی آنلاين">شبکه های تبلیغاتی آنلاين</mat-option>
+      <mat-option value="طراحی گرافیکی">طراحی گرافیکی</mat-option>
+      <mat-option value="ایجاد و طراحی وب سایت">ایجاد و طراحی وب سایت</mat-option>
+      <mat-option value="کالا و خدمات" disable>کالا و خدمات</mat-option>
+      <mat-option value="هدیه و کادویی">هدیه و کادویی</mat-option>
+      <mat-option value="محصولات غذایی">محصولات غذایی</mat-option>
+      <mat-option value="حیوانات و گیاهان خانگی">حیوانات و گیاهان خانگی</mat-option>
+      <mat-option value="خانه و اداری">خانه و اداری</mat-option>
+      <mat-option value="کیف، کفش و پوشاک">کیف، کفش و پوشاک</mat-option>
+      <mat-option value="ورزشی، لوازم آرایشی و بهداشتی">ورزشی، لوازم آرایشی و بهداشتی</mat-option>
+      <mat-option value="" disable>خدمات علمی و آموزشی</mat-option>
+      <mat-option value="آموزش از راه دور و آنلاین"></mat-option>
+      <mat-option value="خدمات ترجمه">خدمات ترجمه</mat-option>
+      <mat-option value="دوره های آموزشی">دوره های آموزشی</mat-option>
+      <mat-option value="خدمات آموزشی و کمک آموزشی">خدمات آموزشی و کمک آموزشی</mat-option>
+      <mat-option value="پزشکی و داروئی">پزشکی و داروئی</mat-option>
+      <mat-option value="" disable>فرهنگی و اجتماعی</mat-option>
+      <mat-option value="خبری و اطلاع رسانی">خبری و اطلاع رسانی</mat-option>
+      <mat-option value="مذهبی و دینی">مذهبی و دینی</mat-option>
+      <mat-option value="فعالیت های خیریه">فعالیت های خیریه</mat-option>
+      <mat-option value="شبکه های اجتماعی">شبکه های اجتماعی</mat-option>
+      <mat-option value="گپ و تالارهای گفتگو">گپ و تالارهای گفتگو</mat-option>
+      <mat-option value="کتاب، روزنامه و مجلات">کتاب، روزنامه و مجلات</mat-option>
+      <mat-option value="" disable>کسب و کار و امور مالی</mat-option>
+      <mat-option value="خدمات حقوقی">خدمات حقوقی</mat-option>
+      <mat-option value="استخدام و کاريابی">استخدام و کاريابی</mat-option>
+      <mat-option value="املاک و مستغلات">املاک و مستغلات</mat-option>
+      <mat-option value="خدمات مالی آنلاين">خدمات مالی آنلاين</mat-option>
+      <mat-option value="خدمات بورس و سرمایه گذاری">خدمات بورس و سرمایه گذاری</mat-option>
+      <mat-option value="" disable>تفريح و سرگرمی</mat-option>
+      <mat-option value="طنز و تفریحی">طنز و تفریحی</mat-option>
+      <mat-option value="بازی های فلش"></mat-option>
+      <mat-option value="بازی های ویدئویی">بازی های ویدئویی</mat-option>
+      <mat-option value="بازی های آنلاین">بازی های آنلاین</mat-option>
+      <mat-option value="اسباب بازی و محصولات کودکان">اسباب بازی و محصولات کودکان</mat-option>
+      <mat-option value="تخفیف و خرید گروهی"></mat-option>
+      <div class="ta-center loading"><!----></div>
+    </mat-select>
+    <mat-error>کیف پول را انتخاب کنید</mat-error>
+  </mat-form-field>
+  <mat-radio-group aria-label="Select an option">
+  <mat-radio-button value="true">با محدودیت IP</mat-radio-button>
+  <mat-radio-button value="false" checked>بدون محدودیت IP (پیشنهاد شده)</mat-radio-button>
+</mat-radio-group>
+   <mat-form-field class="col-md-12 ml-10 ngxmatfileinput">
+        <ngx-mat-file-input
+        (change)="onFileSelect($event)"
+        formControlName="file"
+        accept="image/*"
+          placeholder="* توجه:‌ لوگو باید حتما با فرمت PNG و در ابعاد 500*500 پیکسل باشد."
+        >
+        </ngx-mat-file-input>
+        <img [src]="imgUrl" class= "float-left icon-fileupload"/>
+        <mat-error>  لوگوی درگاه را انتخاب کنید</mat-error>
+
+      </mat-form-field>
+
 </mat-dialog-content>
 
 <mat-dialog-actions class="float-left">

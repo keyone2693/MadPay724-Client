@@ -13,14 +13,14 @@ export class GatesService {
   baseUrl = environment.apiUrl + environment.apiV1 + 'site/panel/';
   constructor(private http: HttpClient, private formBuilder: FormBuilder) { }
   gateForm: FormGroup = this.formBuilder.group({
-    id: [],
     walletId: ['', [Validators.required]],
     isIp: [false, [Validators.required]],
     websiteName: ['', [Validators.required, Validators.maxLength(100)]],
     websiteUrl: ['', [Validators.required, Validators.maxLength(500)]],
     phoneNumber: ['', [Validators.required, Validators.maxLength(50)]],
     text: ['', [Validators.required, Validators.maxLength(1000)]],
-    grouping: ['', [Validators.required, Validators.maxLength(50)]]
+    grouping: ['', [Validators.required, Validators.maxLength(50)]],
+    file: [null, [Validators.required]],
   });
 
   getGates(id: string): Observable<GatesWallets> {
@@ -30,7 +30,7 @@ export class GatesService {
     return this.http.get<Gate>(this.baseUrl + 'users/' + id + '/gates/' + gateId);
   }
 
-  addGate(gate: Gate, id: string): Observable<Gate> {
+  addGate(gate: any, id: string): Observable<Gate> {
     return this.http.post<Gate>(this.baseUrl + 'users/' + id + '/gates', gate);
   }
 

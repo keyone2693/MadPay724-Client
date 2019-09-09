@@ -28,7 +28,7 @@ export class RightDocumentComponent implements OnInit {
       fatherNameRegisterCode: ['', [Validators.required, Validators.maxLength(100)]],
       birthDay: ['', [Validators.required]],
       address: ['', [Validators.required, Validators.maxLength(100)]],
-      file: [null, [Validators.required]],
+      file: [null, [Validators.required]]
     });
   }
   onFileSelect(file) {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from './Services/auth/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { TitleService } from './Services/common/title.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,11 +11,14 @@ import { TitleService } from './Services/common/title.service';
 export class AppComponent implements OnInit {
   jwtHelper = new JwtHelperService();
 
-  constructor(private authService: AuthService, private titleService: TitleService) { }
+  constructor(private authService: AuthService, private titleService: TitleService,
+    private route: ActivatedRoute) { }
 
+ 
   ngOnInit() {
     this.titleService.init();
-    this.getDecodedToken();
+    this.getDecodedToken();    console.log(this.route.snapshot.paramMap.get('Authority'));
+
   }
 
   getDecodedToken() {
