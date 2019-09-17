@@ -41,19 +41,19 @@ export class GateFormComponent implements OnInit {
     }
   }
   onSubmitAdd() {
-    const gate = new FormData();
+    const gateForm = new FormData();
     // document = Object.assign({}, this.docLeftForm.value);
-    gate.append('file', this.slectedFile, this.slectedFile.name);
-    gate.append('walletId', this.gateService.gateForm.get('walletId').value);
-    gate.append('isIp', this.gateService.gateForm.get('isIp').value);
-    gate.append('websiteName', this.gateService.gateForm.get('websiteName').value);
-    gate.append('websiteUrl', this.gateService.gateForm.get('websiteUrl').value);
-    gate.append('phoneNumber', this.gateService.gateForm.get('phoneNumber').value);
-    gate.append('text', this.gateService.gateForm.get('text').value);
-    gate.append('grouping', this.gateService.gateForm.get('grouping').value);
+    gateForm.append('file', this.slectedFile, this.slectedFile.name);
+    gateForm.append('walletId', this.gateService.gateForm.get('walletId').value);
+    gateForm.append('isIp', this.gateService.gateForm.get('isIp').value);
+    gateForm.append('websiteName', this.gateService.gateForm.get('websiteName').value);
+    gateForm.append('websiteUrl', this.gateService.gateForm.get('websiteUrl').value);
+    gateForm.append('phoneNumber', this.gateService.gateForm.get('phoneNumber').value);
+    gateForm.append('text', this.gateService.gateForm.get('text').value);
+    gateForm.append('grouping', this.gateService.gateForm.get('grouping').value);
 
     if (this.gateService.gateForm.valid) {
-      this.gateService.addGate(this.gate, this.authService.decodedToken.nameid).subscribe((data) => {
+      this.gateService.addGate(gateForm, this.authService.decodedToken.nameid).subscribe((data) => {
         this.alertService.success(' درگاه پرداخت شما با موفقیت ثبت شد', 'موفق');
         this.onClear();
         this.newGate.emit(data);
