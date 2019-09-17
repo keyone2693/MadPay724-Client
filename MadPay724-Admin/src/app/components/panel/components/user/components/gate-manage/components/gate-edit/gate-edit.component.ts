@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { GatesService } from 'src/app/Services/panel/user/gateService.service';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/Services/auth/auth.service';
 import { GateWallets } from 'src/app/models/user/gateWallets';
 import { Subscription } from 'rxjs';
@@ -19,8 +19,8 @@ export class GateEditComponent implements OnInit, OnDestroy {
   imgUrl: string;
 
   constructor(private gateService: GatesService, private authService: AuthService,
-              private alertService: ToastrService, private route: ActivatedRoute,
-              private formBuilder: FormBuilder) { }
+    private alertService: ToastrService, private route: ActivatedRoute,
+    private formBuilder: FormBuilder, private router: Router) { }
 
   gateForm: FormGroup = this.formBuilder.group({
     walletId: ['', [Validators.required]],
@@ -48,6 +48,29 @@ export class GateEditComponent implements OnInit, OnDestroy {
     this.subManager.unsubscribe();
   }
   onEdit() {
+    const gateForm = new FormData();
+    if (this.slectedFile != null || this.slectedFile !== undefined) {
+      gateForm.append('file', this.slectedFile, this.slectedFile.name);
+    }
+    gateForm.append('walletId', this.gateForm.get('walletId').value);
+    gateForm.append('isIp', this.gateForm.get('isIp').value);
+    gateForm.append('websiteName', this.gateForm.get('websiteName').value);
+    gateForm.append('websiteUrl', this.gateForm.get('websiteUrl').value);
+    gateForm.append('phoneNumber', this.gateForm.get('phoneNumber').value);
+    gateForm.append('text', this.gateForm.get('text').value);
+    gateForm.append('grouping', this.gateForm.get('grouping').value);
+
+    if (this.gateForm.valid) {
+      this.gateService.updateGate(gateForm, this.authService.decodedToken.nameid, this.gatewallets.gate.id)
+        .subscribe(() => {
+          this.alertService.success(' درگاه پرداخت شما با موفقیت ویرایش شد', 'موفق');
+          this.onClear();
+        }, error => {
+          this.alertService.error(error, 'خطا در ویرایش درگاه پرداخت جدید');
+        });
+    } else {
+      this.alertService.warning('اطلاعات درگاه پرداخت را به درستی وارد کنید', 'خطا');
+    }
   }
   createGateForm() {
     this.gateForm.setValue({
@@ -72,5 +95,6 @@ export class GateEditComponent implements OnInit, OnDestroy {
     }
   }
   onClear() {
+    this.router.navigate(['/panel/user/gate']);
   }
 }

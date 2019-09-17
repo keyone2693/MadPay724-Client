@@ -288,10 +288,14 @@
               <mat-error> لوگوی درگاه را انتخاب کنید</mat-error>
             </mat-form-field>
             <mat-radio-group formControlName="isIp" class="col-md-6 radiocss">
-              <mat-radio-button class=" ml-10" value="true"
+              <mat-radio-button
+              [checked] = "gatewallets.gate.isIp"
+              class=" ml-10" value="true"
                 >با محدودیت IP</mat-radio-button
               >
-              <mat-radio-button class=" ml-10" value="false" checked
+              <mat-radio-button
+              [checked] = "!gatewallets.gate.isIp"
+              class=" ml-10" value="false" 
                 >بدون محدودیت IP (پیشنهاد شده)</mat-radio-button
               >
             </mat-radio-group>
@@ -308,7 +312,6 @@
             </button>
             <button
               mat-raised-button
-              matDialogClose
               (click)="onClear()"
               color="warn"
               class="float-left mb-10"

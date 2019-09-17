@@ -36,8 +36,8 @@ export class GatesService {
     return this.http.post<Gate>(this.baseUrl + 'users/' + id + '/gates', gate);
   }
 
-  updateGate(gate: Gate, id: string) {
-    return this.http.put(this.baseUrl + 'users/' + id + '/gates/' + gate.id, gate);
+  updateGate(gate: any, userId: string, id: string) {
+    return this.http.put(this.baseUrl + 'users/' + userId + '/gates/' + id, gate);
   }
 
   populateForm(gate: Gate) {
