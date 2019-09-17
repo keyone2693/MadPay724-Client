@@ -1,0 +1,58 @@
+.ml-10{
+    margin-left: 10px;
+}
+.mat-green {
+  background: #4caf50;
+  color: #fff;
+  width: 250px;
+  float: left;
+  font-weight: 900;
+  font-size: 16px;
+}
+
+.mmatdiagtitle{
+  background: #333;
+  padding: 15px 25px 10px;
+  border-radius: 5px;
+  color:#fff;
+}
+.title-info{
+  font-size: 15px;display: block;
+}
+.mat-dialog-content{
+  padding: 35px 24px;
+}
+
+.icon-fileupload{
+    background: #ededed;
+    padding: 8px 9px 9px;
+        padding-top: 8px;
+        padding-right: 9px;
+        padding-bottom: 9px;
+        padding-left: 9px;
+    border-radius: 50px;
+    color: #fff;
+    width: 70px;
+    transition: all 0.5s;
+}
+.icon-fileupload:hover{
+    width: 150px;
+}
+.ngxmatfileinput{
+    cursor: pointer;
+}
+.radiocss{
+      display: inline-block;
+    padding: 25px 25px 0;
+}
+.urlinpt{
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+button{
+    margin-left: 10px;
+}
+.card{
+padding-bottom: 25px;
+}

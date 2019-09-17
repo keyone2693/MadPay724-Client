@@ -54,6 +54,8 @@ import { GateComponent } from './components/gate-manage/components/gate/gate.com
 import { GateFormComponent } from './components/gate-manage/components/gate-form/gate-form.component';
 import { GatesService } from 'src/app/Services/panel/user/gateService.service';
 import { GateResolver } from 'src/app/resolvers/user/gate.resolver';
+import { GateEditComponent } from './components/gate-manage/components/gate-edit/gate-edit.component';
+import { GateEditResolver } from 'src/app/resolvers/user/gateEdit.resolver';
 
 @NgModule({
   imports: [
@@ -103,7 +105,8 @@ import { GateResolver } from 'src/app/resolvers/user/gate.resolver';
     //
     GateManageComponent,
     GateComponent,
-    GateFormComponent
+    GateFormComponent,
+    GateEditComponent
   ],
   providers: [
     UserService,
@@ -120,6 +123,7 @@ import { GateResolver } from 'src/app/resolvers/user/gate.resolver';
     TicketResolver,
     TicketOverviewResolver,
     GateResolver,
+    GateEditResolver,
     PreventUnsavedGuard,
     { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS }

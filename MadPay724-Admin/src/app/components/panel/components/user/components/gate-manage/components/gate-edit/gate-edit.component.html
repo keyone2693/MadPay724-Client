@@ -26,9 +26,6 @@
           </p>
         </div>
         <div class="card-body">
-          <h2 mat-dialog-title class="mmatdiagtitle">
-            ,dvhda درگاه پرداخت
-          </h2>
 
           <div [formGroup]="gateForm">
             <mat-form-field class="col-md-6">
@@ -39,19 +36,19 @@
               />
               <mat-error
                 *ngIf="
-                  gateService.gateForm
+                  gateForm
                     .get('websiteName')
                     .hasError('required') &&
-                  gateService.gateForm.get('websiteName').touched
+                  gateForm.get('websiteName').touched
                 "
                 >این فیلد نمیتواند خالی باشد</mat-error
               >
               <mat-error
                 *ngIf="
-                  gateService.gateForm
+                  gateForm
                     .get('websiteName')
                     .hasError('maxlength') &&
-                  gateService.gateForm.get('websiteName').touched
+                  gateForm.get('websiteName').touched
                 "
               >
                 این فیلد نمیتواند بیشتر از 100 کاراکتر باشد</mat-error
@@ -67,25 +64,25 @@
 
               <mat-error
                 *ngIf="
-                  gateService.gateForm.get('websiteUrl').hasError('required') &&
-                  gateService.gateForm.get('websiteUrl').touched
+                  gateForm.get('websiteUrl').hasError('required') &&
+                  gateForm.get('websiteUrl').touched
                 "
                 >این فیلد نمیتواند خالی باشد</mat-error
               >
               <mat-error
                 *ngIf="
-                  gateService.gateForm
+                  gateForm
                     .get('websiteUrl')
                     .hasError('maxlength') &&
-                  gateService.gateForm.get('websiteUrl').touched
+                  gateForm.get('websiteUrl').touched
                 "
               >
                 این فیلد نمیتواند بیشتر از 500 کاراکتر باشد</mat-error
               >
               <mat-error
                 *ngIf="
-                  gateService.gateForm.get('websiteUrl').hasError('pattern') &&
-                  gateService.gateForm.get('websiteUrl').touched
+                  gateForm.get('websiteUrl').hasError('pattern') &&
+                  gateForm.get('websiteUrl').touched
                 "
                 >آدرس وب سایت معتبر نمیباشد</mat-error
               >
@@ -100,19 +97,19 @@
               />
               <mat-error
                 *ngIf="
-                  gateService.gateForm
+                  gateForm
                     .get('phoneNumber')
                     .hasError('required') &&
-                  gateService.gateForm.get('phoneNumber').touched
+                  gateForm.get('phoneNumber').touched
                 "
                 >این فیلد نمیتواند خالی باشد</mat-error
               >
               <mat-error
                 *ngIf="
-                  gateService.gateForm
+                  gateForm
                     .get('phoneNumber')
                     .hasError('maxlength') &&
-                  gateService.gateForm.get('phoneNumber').touched
+                  gateForm.get('phoneNumber').touched
                 "
               >
                 این فیلد نمیتواند بیشتر از 50 کاراکتر باشد</mat-error
@@ -126,15 +123,15 @@
               ></textarea>
               <mat-error
                 *ngIf="
-                  gateService.gateForm.get('text').hasError('required') &&
-                  gateService.gateForm.get('text').touched
+                  gateForm.get('text').hasError('required') &&
+                  gateForm.get('text').touched
                 "
                 >این فیلد نمیتواند خالی باشد</mat-error
               >
               <mat-error
                 *ngIf="
-                  gateService.gateForm.get('text').hasError('maxlength') &&
-                  gateService.gateForm.get('text').touched
+                  gateForm.get('text').hasError('maxlength') &&
+                  gateForm.get('text').touched
                 "
               >
                 این فیلد نمیتواند بیشتر از 1000 کاراکتر باشد</mat-error
@@ -146,7 +143,7 @@
               >
               <mat-select formControlName="walletId">
                 <mat-option
-                  *ngFor="let wallet of wallets"
+                  *ngFor="let wallet of gatewallets.wallets"
                   value="{{ wallet.id }}"
                   >{{ wallet.name }}</mat-option
                 >
@@ -299,7 +296,16 @@
               >
             </mat-radio-group>
           </div>
-
+            <button
+              mat-raised-button
+              (click)="onEdit()"
+              [disabled]="gateForm.invalid"
+              color="green"
+              class="float-left mb-10"
+            >
+              <i class="icon-check"></i>
+              <span>ویرایش درگاه پرداخت</span>
+            </button>
             <button
               mat-raised-button
               matDialogClose
@@ -310,16 +316,7 @@
               <i class="icon-close"></i>
               انصراف
             </button>
-            <button
-              mat-raised-button
-              (click)="onSubmitAdd()"
-              [disabled]="gateService.gateForm.invalid"
-              color="green"
-              class="float-left mb-10"
-            >
-              <i class="icon-check"></i>
-              <span>افزودن کیف پول</span>
-            </button>
+         
         </div>
 
       </div>

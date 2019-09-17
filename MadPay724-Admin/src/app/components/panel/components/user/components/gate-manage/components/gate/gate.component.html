@@ -24,7 +24,9 @@
               <i class="ft-trending-down pl-1"></i>
               <span>تراکنش ها</span>
             </button>
-            <button mat-menu-item>
+            <button
+            [routerLink]="['/panel/user/gate/edit/', gate.id]" 
+            mat-menu-item>
               <i class="ft-edit pl-1"></i>
               <span>ویرایش</span>
             </button>

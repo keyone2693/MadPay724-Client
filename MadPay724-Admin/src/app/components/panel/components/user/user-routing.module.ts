@@ -20,6 +20,8 @@ import { DetailTicketComponent } from './components/manage-ticket/components/det
 import { TicketOverviewResolver } from 'src/app/resolvers/ticketOverview.resolver';
 import { GateManageComponent } from './components/gate-manage/gate-manage.component';
 import { GateResolver } from 'src/app/resolvers/user/gate.resolver';
+import { GateEditComponent } from './components/gate-manage/components/gate-edit/gate-edit.component';
+import { GateEditResolver } from 'src/app/resolvers/user/gateEdit.resolver';
 
 const routes: Routes = [
   {
@@ -35,6 +37,12 @@ const routes: Routes = [
         path: 'gate', canActivate: [AuthGuard],
         resolve: { gateswallets: GateResolver }, component: GateManageComponent,
         data: { roles: ['User'], title: ['مدیریت درگاه های پرداخت'] }
+      },
+      {
+        path: 'gate/edit/:gateId', canActivate: [AuthGuard],
+        resolve: { gatewallets: GateEditResolver },
+        component: GateEditComponent,
+        data: { roles: ['User'], title: ['ویرایش در گاه پرداخت'] },
       },
       // userinfo
       {
