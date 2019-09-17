@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Gate } from 'src/app/models/user/gate';
 import { GatesWallets } from 'src/app/models/user/gatesWallets';
+import { GateWallets } from 'src/app/models/user/gateWallets';
 
 @Injectable({
   providedIn: 'root'
@@ -27,8 +28,8 @@ export class GatesService {
   getGates(id: string): Observable<GatesWallets> {
     return this.http.get<GatesWallets>(this.baseUrl + 'users/' + id + '/gates');
   }
-  getGate( id: string, gateId: Gate): Observable<Gate> {
-    return this.http.get<Gate>(this.baseUrl + 'users/' + id + '/gates/' + gateId);
+  getGate(id: string, gateId: Gate): Observable<GateWallets> {
+    return this.http.get<GateWallets>(this.baseUrl + 'users/' + id + '/gates/' + gateId);
   }
 
   addGate(gate: any, id: string): Observable<Gate> {
