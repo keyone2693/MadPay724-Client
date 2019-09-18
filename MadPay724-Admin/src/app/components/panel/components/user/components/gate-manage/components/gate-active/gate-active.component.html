@@ -1,19 +1,24 @@
 <h2 mat-dialog-title class="mmatdiagtitle">
   فعال سازی مادگیت (درگاه مستقیم)
   <span class="title-info"
-    >هزینه ی در خواست درگاه مستقیم مادپی 20,000 تومان میباشد</span
+    >فعال سازی ماد  گیت باعث میشود درگاه شما به صورت مستقیم به بانک متصل شود</span
   >
 </h2>
 
 <mat-dialog-content [formGroup]="gateForm">
+  <div class="alert alert-warning">
+                            <strong>توجه! </strong> هزینه ی در خواست درگاه مستقیم مادپی 20,000 تومان میباشد
+                        </div>
   <mat-form-field class="col-md-12">
     <mat-label>یک کیف‌ پول را برای کسر مبلغ مذکور انتخاب کنید *</mat-label>
     <mat-select formControlName="walletId">
-      <mat-option *ngFor="let wallet of gatewallets.wallets" value="{{wallet.id}}">{{wallet.name}}</mat-option>
+      <mat-option
+        *ngFor="let wallet of gatewallets.wallets"
+        value="{{ wallet.id }}"
+        >{{ wallet.name }}</mat-option
+      >
     </mat-select>
-    <mat-error
-      >کیف پول را انتخاب کنید</mat-error
-    >
+    <mat-error>کیف پول را انتخاب کنید</mat-error>
   </mat-form-field>
 </mat-dialog-content>
 

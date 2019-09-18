@@ -135,7 +135,8 @@ import { GateActiveComponent } from './components/gate-manage/components/gate-ac
       EditBankCardComponent,
       WalletFormComponent,
       CreateFormTicketComponent,
-      GateFormComponent
+      GateFormComponent,
+      GateActiveComponent
     ]
 })
 export class UserModule { }

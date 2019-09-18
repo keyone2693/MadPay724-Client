@@ -1,0 +1,24 @@
+.ml-10{
+    margin-left: 10px;
+}
+.mat-green {
+  background: #4caf50;
+  color: #fff;
+  width: 250px;
+  float: left;
+  font-weight: 900;
+  font-size: 16px;
+}
+
+.mmatdiagtitle{
+  background: #333;
+  padding: 15px 25px 10px;
+  border-radius: 5px;
+  color:#fff;
+}
+.title-info{
+  font-size: 15px;display: block;
+}
+.mat-dialog-content{
+  padding: 35px 24px;
+}
