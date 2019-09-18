@@ -26,6 +26,11 @@ export class GateActiveComponent implements OnInit {
   });
   ngOnInit() {
     this.gateActiveDirect = this.data;
+
+    this.gateForm.get('isDirect').setValue(this.gateActiveDirect.isDirect);
+    if (!this.gateActiveDirect.isDirect) {
+      this.gateForm.get('walletId').setValue(this.gateActiveDirect.wallets[0].id);
+    }
   }
 
   onClear() {
@@ -33,10 +38,7 @@ export class GateActiveComponent implements OnInit {
     this.matdialogRef.close();
   }
   onActive() {
-    if (this.gateForm.valid) {
-
-      this.gateForm.get('isDirect').setValue(this.gateActiveDirect.isDirect);
-
+    if (this.gateForm.valid) {      
       this.gateService.activeGate(
         this.gateForm.value,
         this.authService.decodedToken.nameid,
