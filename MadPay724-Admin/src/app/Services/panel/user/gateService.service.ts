@@ -44,4 +44,8 @@ export class GatesService {
     this.gateForm.setValue(gate);
   }
 
+  activeGate(active: any, userId: string, gateId: string) {
+    return this.http.put(this.baseUrl + 'users/' + userId + '/gates/' + gateId + '/active/', active);
+  }
+
 }

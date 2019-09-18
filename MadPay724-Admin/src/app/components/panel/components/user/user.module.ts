@@ -56,6 +56,7 @@ import { GatesService } from 'src/app/Services/panel/user/gateService.service';
 import { GateResolver } from 'src/app/resolvers/user/gate.resolver';
 import { GateEditComponent } from './components/gate-manage/components/gate-edit/gate-edit.component';
 import { GateEditResolver } from 'src/app/resolvers/user/gateEdit.resolver';
+import { GateActiveComponent } from './components/gate-manage/components/gate-active/gate-active.component';
 
 @NgModule({
   imports: [
@@ -106,7 +107,8 @@ import { GateEditResolver } from 'src/app/resolvers/user/gateEdit.resolver';
     GateManageComponent,
     GateComponent,
     GateFormComponent,
-    GateEditComponent
+    GateEditComponent,
+    GateActiveComponent
   ],
   providers: [
     UserService,
