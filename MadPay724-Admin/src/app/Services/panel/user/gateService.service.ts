@@ -45,7 +45,7 @@ export class GatesService {
   }
 
   activeGate(active: any, userId: string, gateId: string) {
-    return this.http.put(this.baseUrl + 'users/' + userId + '/gates/' + gateId + '/active/', active);
+    return this.http.put(this.baseUrl + 'users/' + userId + '/gates/' + gateId + '/active', active);
   }
 
 }

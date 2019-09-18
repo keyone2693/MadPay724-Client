@@ -2,12 +2,10 @@ import { Component, OnInit, EventEmitter, Inject, Output } from '@angular/core';
 import { AuthService } from 'src/app/Services/auth/auth.service';
 import { GatesService } from 'src/app/Services/panel/user/gateService.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Gate } from 'src/app/models/user/gate';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Wallet } from 'src/app/models/wallet';
-import { GateWallets } from 'src/app/models/user/gateWallets';
+import { GateActiveDirect } from 'src/app/models/user/gateActiveDirect';
 
 @Component({
   selector: 'app-gate-active',
@@ -17,16 +15,17 @@ import { GateWallets } from 'src/app/models/user/gateWallets';
 export class GateActiveComponent implements OnInit {
 
   @Output() activeFlag = new EventEmitter<boolean>();
-  gatewallets: GateWallets;
+  gateActiveDirect: GateActiveDirect;
   constructor(private authService: AuthService, public gateService: GatesService,
               private alertService: ToastrService, private matdialogRef: MatDialogRef<GateActiveComponent>,
-              private router: Router, @Inject(MAT_DIALOG_DATA) private data: GateWallets, private formBuilder: FormBuilder) { }
+    private router: Router, @Inject(MAT_DIALOG_DATA) private data: GateActiveDirect, private formBuilder: FormBuilder) { }
 
   gateForm: FormGroup = this.formBuilder.group({
-    walletId: ['', Validators.required]
+    walletId: ['', Validators.required],
+    isDirect: [true],
   });
   ngOnInit() {
-    this.gatewallets = this.data;
+    this.gateActiveDirect = this.data;
   }
 
   onClear() {
@@ -34,14 +33,21 @@ export class GateActiveComponent implements OnInit {
     this.matdialogRef.close();
   }
   onActive() {
-    if (this.gateService.gateForm.valid) {
+    if (this.gateForm.valid) {
+
+      this.gateForm.get('isDirect').setValue(this.gateActiveDirect.isDirect);
+
       this.gateService.activeGate(
-        this.gateService.gateForm.value,
+        this.gateForm.value,
         this.authService.decodedToken.nameid,
-        this.gatewallets.gate.id).subscribe(() => {
-          this.alertService.success(' در گاه با موفقیت فعال شد', 'موفق');
+        this.gateActiveDirect.gate.id).subscribe(() => {
+          if (this.gateActiveDirect.isDirect) {
+            this.alertService.success(' در گاه با موفقیت مستقیم شد', 'موفق');
+          } else {
+            this.alertService.success(' درگاه مستقیم با موفقیت غیر فعال شد', 'موفق');
+          }
           this.onClear();
-          this.activeFlag.emit(true);
+          this.activeFlag.emit(this.gateActiveDirect.isDirect);
       }, error => {
         this.alertService.error(error, 'خطا');
       });

@@ -1,7 +1,7 @@
 <h2 mat-dialog-title class="mmatdiagtitle">
-  فعال سازی مادگیت (درگاه مستقیم)
+  فعال سازی مادگیت ({{gateActiveDirect.gate.websiteName}}) برای 
   <span class="title-info"
-    >فعال سازی ماد  گیت باعث میشود درگاه شما به صورت مستقیم به بانک متصل شود</span
+    >فعال سازی درگاه مستقیم باعث میشود درگاه شما به صورت مستقیم به بانک متصل شود</span
   >
 </h2>
 
@@ -13,7 +13,7 @@
     <mat-label>یک کیف‌ پول را برای کسر مبلغ مذکور انتخاب کنید *</mat-label>
     <mat-select formControlName="walletId">
       <mat-option
-        *ngFor="let wallet of gatewallets.wallets"
+        *ngFor="let wallet of gateActiveDirect.wallets"
         value="{{ wallet.id }}"
         >{{ wallet.name }}</mat-option
       >

@@ -91,9 +91,13 @@
           [ngClass]=" gate.isDirect ? 'bbgreen-dashed' : 'bbred-dashed'"
           class="tag pull-left">غیر‌فعال</span>
           <span
-          (click)="onActiveDialo()"
+          (click)="onActiveDialo(true)"
           *ngIf="!gate.isDirect"
           class="pull-left text-activation">فعالسازی</span>
+          <span
+          (click)="onActiveDialo(false)"
+          *ngIf="gate.isDirect"
+          class="pull-left text-activation">غیرفعالسازی</span>
         </div>
       </div>
     </div>
