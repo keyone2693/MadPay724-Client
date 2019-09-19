@@ -57,6 +57,8 @@ import { GateResolver } from 'src/app/resolvers/user/gate.resolver';
 import { GateEditComponent } from './components/gate-manage/components/gate-edit/gate-edit.component';
 import { GateEditResolver } from 'src/app/resolvers/user/gateEdit.resolver';
 import { GateActiveComponent } from './components/gate-manage/components/gate-active/gate-active.component';
+import { EasypayManageComponent } from './components/easypay-manage/easypay-manage.component';
+import { EasypayListComponent } from './components/easypay-manage/components/easypay-list/easypay-list.component';
 
 @NgModule({
   imports: [
@@ -108,7 +110,10 @@ import { GateActiveComponent } from './components/gate-manage/components/gate-ac
     GateComponent,
     GateFormComponent,
     GateEditComponent,
-    GateActiveComponent
+    GateActiveComponent,
+    //
+    EasypayManageComponent,
+    EasypayListComponent
   ],
   providers: [
     UserService,

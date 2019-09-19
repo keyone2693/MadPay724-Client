@@ -22,6 +22,7 @@ import { GateManageComponent } from './components/gate-manage/gate-manage.compon
 import { GateResolver } from 'src/app/resolvers/user/gate.resolver';
 import { GateEditComponent } from './components/gate-manage/components/gate-edit/gate-edit.component';
 import { GateEditResolver } from 'src/app/resolvers/user/gateEdit.resolver';
+import { EasypayManageComponent } from './components/easypay-manage/easypay-manage.component';
 
 const routes: Routes = [
   {
@@ -89,6 +90,12 @@ const routes: Routes = [
           }
         ]
       },
+      //
+      {
+        path: 'easypay', canActivate: [AuthGuard],
+        resolve: { wallets: WalletResolver }, component: EasypayManageComponent,
+        data: { roles: ['User'], title: ['مدیریت ایزی پی ها'] }
+      }
     ]
   }
 ];

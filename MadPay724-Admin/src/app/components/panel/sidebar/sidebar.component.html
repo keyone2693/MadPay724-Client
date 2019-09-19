@@ -86,6 +86,12 @@
             ><span data-i18n="" class="menu-title">کیف پول</span></a
           >
         </li>
+         <li *appHasRole="['User']" routerLinkActive="active" class=" nav-item">
+          <a [routerLink]="['/panel/user/easypay']"
+            ><i class="icon-link"></i
+            ><span data-i18n="" class="menu-title">ایزی پی</span></a
+          >
+        </li>
         <li class="has-sub nav-item">
           <a href="javascript:;">
             <i class="icon-info"></i>

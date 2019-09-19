@@ -1,0 +1,60 @@
+<!-- User Profile Starts-->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/panel/dashboard']">داشبورد</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/panel/user/gate']">لینک های ایزی پی </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">
+      مشاهده و ویرایش ایزی پی ها
+    </li>
+  </ol>
+</nav>
+
+<section class="row">
+  <div class="col-md-12">
+    <mat-chip-list aria-label="Fish selection" class="pay-sec-list">
+      <mat-chip class="pay-sec">
+        <span class="btn-pay">لینک شخصی شما :</span>
+        <a href="https://madpay724.ir/5696586" target="_blank" class="link-pay">MadPay724/@keyone4556</a>
+      </mat-chip>
+    </mat-chip-list>
+  </div>
+</section>
+<!--Basic User Details Starts-->
+<section id="user-area">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-wrap bar-success">
+            <h4 class="card-title">لینک های ایزی پی</h4>
+          </div>
+          <p>
+            تمام لینک های شما در این صفحه نمایش داده می‌شوند
+          </p>
+          <!-- <button
+            mat-raised-button
+            (click)="onCreate()"
+            color="blue"
+            class="float-left mb-10"
+          >
+            <i class="ft-plus-circle"></i>
+            افزودن درگاه پرداخت 
+          </button> -->
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <!-- <app-gate Class="col-xs-12 col-sm-6 col-md-4 col-lg-4"
+             *ngFor="let gate of gateWallets.gates"
+             [gate]="gate" [wallets]="gateWallets.wallets"></app-gate> -->
+            <app-easypay-list></app-easypay-list>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--User Profile Starts-->
