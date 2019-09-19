@@ -9,3 +9,11 @@ color: red;
   font-size: 25px;
 color: #111;
 }
+.hide{
+  display: none;
+}
+mat-footer-row mat-footer-cell{
+  justify-content: center;
+  font-style: italic;font-size: 17px;
+font-weight: 900;
+}
