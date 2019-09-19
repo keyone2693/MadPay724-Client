@@ -1,19 +1,31 @@
 table {
   width: 100%;
 }
-.delete-icon{
+.delete-icon {
   font-size: 25px;
-color: red;
+  color: red;
 }
-.edit-icon{
+.edit-icon {
   font-size: 25px;
-color: #111;
+  color: #111;
 }
-.hide{
+.hide {
   display: none;
 }
-mat-footer-row mat-footer-cell{
+mat-footer-row mat-footer-cell {
   justify-content: center;
-  font-style: italic;font-size: 17px;
-font-weight: 900;
+  font-style: italic;
+  font-size: 17px;
+  font-weight: 900;
+}
+.mat-blue {
+  background: #197dff;
+  color: #fff;
+  float: right !important;
+  margin-top: 15px;
+}
+.search-form-field {
+  width: 60%;
+  margin-right: 10px;
+  margin-bottom: 15px;
 }

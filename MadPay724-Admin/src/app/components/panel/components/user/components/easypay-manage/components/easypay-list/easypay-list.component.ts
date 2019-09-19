@@ -15,7 +15,7 @@ export class EasypayListComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'code', 'actions'];
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-
+  searchKey: string;
   constructor(private gs: WalletService, private authService: AuthService) { }
 
   ngOnInit() {
@@ -23,10 +23,22 @@ export class EasypayListComponent implements OnInit {
       this.easyPays = new MatTableDataSource(data);
       this.easyPays.sort = this.sort;
       this.easyPays.paginator = this.paginator;
+      this.easyPays.filterPredicate = (dataa, filter) => {
+        return this.displayedColumns.some(el => {
+          return el !== 'actions' && dataa[el].indexOf(filter) !== -1;
+        });
+      };
     }, error => {
       console.log(error);
     }
     );
-  }
 
+  }
+  onSearchClear() {
+    this.searchKey = '';
+    this.applyFilter();
+  }
+  applyFilter() {
+    this.easyPays.filter = this.searchKey.trim();
+  }
 }

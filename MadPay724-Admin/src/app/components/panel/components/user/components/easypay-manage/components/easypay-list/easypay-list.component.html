@@ -1,3 +1,34 @@
+<div class="search-div">
+  <button
+    mat-raised-button
+    (click)="onCreate()"
+    color="blue"
+    class="float-left mb-10"
+  >
+    <i class="ft-plus-circle"></i>
+    افزودن
+  </button>
+  <mat-form-field class="search-form-field" floatLabel="never">
+    <input
+      matInput
+      type="text"
+      placeholder="جستوجو ..."
+      [(ngModel)]="searchKey"
+      (keyup)="applyFilter()"
+    />
+    <button
+      mat-button
+      *ngIf="searchKey"
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="onSearchClear()"
+    >
+      <i class="ft-x"></i>
+    </button>
+  </mat-form-field>
+</div>
+
 <mat-table [dataSource]="easyPays" matSort class="mat-elevation-z8">
   <ng-container matColumnDef="id">
     <mat-header-cell *matHeaderCellDef mat-sort-header> نام </mat-header-cell>
@@ -10,7 +41,9 @@
   </ng-container>
 
   <ng-container matColumnDef="code">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> متصل به </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      متصل به
+    </mat-header-cell>
     <mat-cell *matCellDef="let easyPay"> {{ easyPay.code }} </mat-cell>
   </ng-container>
 
@@ -22,7 +55,7 @@
     </mat-cell>
   </ng-container>
 
-    <ng-container matColumnDef="loading">
+  <ng-container matColumnDef="loading">
     <mat-footer-cell *matFooterCellDef>
       در حال بارگزاری ...
     </mat-footer-cell>
@@ -30,20 +63,26 @@
 
   <ng-container matColumnDef="noData">
     <mat-footer-cell *matFooterCellDef>
-     چیزی برای نمایش وجود ندارد
+      چیزی برای نمایش وجود ندارد
     </mat-footer-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 
-  <mat-footer-row  *matFooterRowDef="['loading']" 
-   [ngClass]="{'hide': easyPays != null}"></mat-footer-row>
+  <mat-footer-row
+    *matFooterRowDef="['loading']"
+    [ngClass]="{ hide: easyPays != null }"
+  ></mat-footer-row>
 
-  <mat-footer-row  *matFooterRowDef="['noData']" 
-   [ngClass]="{'hide': easyPays != null && easyPays.data.length > 0}"></mat-footer-row>
+  <mat-footer-row
+    *matFooterRowDef="['noData']"
+    [ngClass]="{ hide: easyPays != null && easyPays.data.length > 0 }"
+  ></mat-footer-row>
 </mat-table>
-<mat-paginator [pageSize]="5"
-              [pageSizeOptions]="[5, 10, 25, 100]"
-              showFirstLastButtons>
+<mat-paginator
+  [pageSize]="5"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  showFirstLastButtons
+>
 </mat-paginator>
