@@ -1,0 +1,11 @@
+table {
+  width: 100%;
+}
+.delete-icon{
+  font-size: 25px;
+color: red;
+}
+.edit-icon{
+  font-size: 25px;
+color: #111;
+}

@@ -4,7 +4,7 @@ import * as Material from '@angular/material';
 import { CommonModule } from '@angular/common';
 
 import { MaterialFileInputModule } from 'ngx-material-file-input';
-import { MatDatepickerModule, MatSlideToggleModule, MatMenuModule, MatRadioModule, MAT_RADIO_DEFAULT_OPTIONS, MatChipsModule } from '@angular/material';
+import { MatDatepickerModule, MatSlideToggleModule, MatMenuModule, MatRadioModule, MAT_RADIO_DEFAULT_OPTIONS, MatChipsModule, MatTableModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -20,7 +20,8 @@ import { MatDatepickerModule, MatSlideToggleModule, MatMenuModule, MatRadioModul
       MatSlideToggleModule,
       MatMenuModule,
       MatRadioModule,
-      MatChipsModule
+      MatChipsModule,
+      MatTableModule
   ],
   exports: [
      Material.MatCheckboxModule,
@@ -34,7 +35,8 @@ import { MatDatepickerModule, MatSlideToggleModule, MatMenuModule, MatRadioModul
      MatSlideToggleModule,
      MatMenuModule,
      MatRadioModule,
-     MatChipsModule
+     MatChipsModule,
+     MatTableModule
    ], providers: [{
       provide: MAT_RADIO_DEFAULT_OPTIONS,
       useValue: { color: 'warn' },
