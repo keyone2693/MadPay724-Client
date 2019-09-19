@@ -1,21 +1,21 @@
-<mat-table [dataSource]="easyPays" class="mat-elevation-z8">
+<mat-table [dataSource]="easyPays" matSort class="mat-elevation-z8">
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> نام </mat-header-cell>
+    <mat-cell *matCellDef="let easyPay"> {{ easyPay.id }} </mat-cell>
+  </ng-container>
+
   <ng-container matColumnDef="name">
-    <mat-header-cell *matHeaderCellDef> نام </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> مبلغ </mat-header-cell>
     <mat-cell *matCellDef="let easyPay"> {{ easyPay.name }} </mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="price">
-    <mat-header-cell *matHeaderCellDef> مبلغ </mat-header-cell>
-    <mat-cell *matCellDef="let easyPay"> {{ easyPay.name }} </mat-cell>
+  <ng-container matColumnDef="code">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> متصل به </mat-header-cell>
+    <mat-cell *matCellDef="let easyPay"> {{ easyPay.code }} </mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="connect">
-    <mat-header-cell *matHeaderCellDef> متصل به </mat-header-cell>
-    <mat-cell *matCellDef="let easyPay"> {{ easyPay.name }} </mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="action">
-    <mat-header-cell *matHeaderCellDef> ویرایش/حذف </mat-header-cell>
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef> ویرایش / حذف </mat-header-cell>
     <mat-cell *matCellDef="let easyPay">
       <button mat-button><i class="ft-edit edit-icon"></i></button>
       <button mat-button><i class="ft-trash-2 delete-icon"></i></button>
@@ -41,5 +41,9 @@
    [ngClass]="{'hide': easyPays != null}"></mat-footer-row>
 
   <mat-footer-row  *matFooterRowDef="['noData']" 
-   [ngClass]="{'hide': easyPays != null && easyPays.length > 0}"></mat-footer-row>
+   [ngClass]="{'hide': easyPays != null && easyPays.data.length > 0}"></mat-footer-row>
 </mat-table>
+<mat-paginator [pageSize]="5"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              showFirstLastButtons>
+</mat-paginator>
