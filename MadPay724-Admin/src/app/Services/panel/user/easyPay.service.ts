@@ -14,7 +14,7 @@ export class EasyPayService {
 
  easypayForm: FormGroup = this.formBuilder.group({
    walletId: ['', Validators.required],
-   gateId: ['', Validators.required],
+   easypayId: ['', Validators.required],
    isWallet: [true, Validators.required],
    name: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
    price: ['', Validators.required, Validators.maxLength(15)],
@@ -40,20 +40,20 @@ export class EasyPayService {
   getEasyPays(id: string): Observable<EasyPay[]> {
     return this.http.get<EasyPay[]>(this.baseUrl + 'users/' + id + '/easypays');
   }
-  getEasyPay(id: string, gateId: EasyPay): Observable<EasyPay> {
-    return this.http.get<EasyPay>(this.baseUrl + 'users/' + id + '/easypays/' + gateId);
+  getEasyPay(id: string, easypayId: EasyPay): Observable<EasyPay> {
+    return this.http.get<EasyPay>(this.baseUrl + 'users/' + id + '/easypays/' + easypayId);
   }
 
-  addEasyPay(gate: any, id: string): Observable<EasyPay> {
-    return this.http.post<EasyPay>(this.baseUrl + 'users/' + id + '/easypays', gate);
+  addEasyPay(easypay: any, id: string): Observable<EasyPay> {
+    return this.http.post<EasyPay>(this.baseUrl + 'users/' + id + '/easypays', easypay);
   }
 
-  updateEasyPay(gate: any, userId: string, id: string) {
-    return this.http.put(this.baseUrl + 'users/' + userId + '/easypays/' + id, gate);
+  updateEasyPay(easypay: any, userId: string, id: string) {
+    return this.http.put(this.baseUrl + 'users/' + userId + '/easypays/' + id, easypay);
   }
 
-  populateForm(gate: EasyPay) {
-    this.easypayForm.setValue(gate);
+  populateForm(easypay: EasyPay) {
+    this.easypayForm.setValue(easypay);
   }
 
 }

@@ -72,12 +72,12 @@
 
   <mat-footer-row
     *matFooterRowDef="['loading']"
-    [ngClass]="{ hide: easyPays != null }"
+    [ngClass]="{ hide: loadingHideFlag }"
   ></mat-footer-row>
 
   <mat-footer-row
     *matFooterRowDef="['noData']"
-    [ngClass]="{ hide: easyPays != null && easyPays.data.length > 0 }"
+    [ngClass]="{ hide: noContentHideFlag }"
   ></mat-footer-row>
 </mat-table>
 <mat-paginator

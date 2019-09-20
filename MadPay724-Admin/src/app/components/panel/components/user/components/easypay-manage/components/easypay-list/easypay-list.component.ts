@@ -3,7 +3,11 @@ import { EasyPay } from 'src/app/models/user/easyPay';
 import { Wallet } from 'src/app/models/wallet';
 import { WalletService } from 'src/app/Services/panel/user/wallet.service';
 import { AuthService } from 'src/app/Services/auth/auth.service';
-import { MatSort, MatTableDataSource, MatPaginator } from '@angular/material';
+import { MatSort, MatTableDataSource, MatPaginator, MatDialog, MatDialogConfig } from '@angular/material';
+import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute } from '@angular/router';
+import { EasyPayService } from 'src/app/Services/panel/user/easyPay.service';
+import { EasypayFormComponent } from '../easypay-form/easypay-form.component';
 
 @Component({
   selector: 'app-easypay-list',
@@ -16,10 +20,18 @@ export class EasypayListComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   searchKey: string;
-  constructor(private gs: WalletService, private authService: AuthService) { }
+  formTitle: string;
+  loadingHideFlag = true;
+  noContentHideFlag = false;
+  constructor(private easypayService: EasyPayService, private authService: AuthService,
+              private dialog: MatDialog, private route: ActivatedRoute,
+              private alertService: ToastrService) { }
 
   ngOnInit() {
-    this.gs.getWallets(this.authService.decodedToken.nameid).subscribe((data) => {
+    this.loadEasyPays();
+  }
+  loadEasyPays() {
+    this.easypayService.getEasyPays(this.authService.decodedToken.nameid).subscribe((data) => {
       this.easyPays = new MatTableDataSource(data);
       this.easyPays.sort = this.sort;
       this.easyPays.paginator = this.paginator;
@@ -28,11 +40,15 @@ export class EasypayListComponent implements OnInit {
           return el !== 'actions' && dataa[el].indexOf(filter) !== -1;
         });
       };
+      this.loadingHideFlag = false;
+      if (data.length > 0) {
+        this.noContentHideFlag = true;
+      }
     }, error => {
       console.log(error);
+      this.loadingHideFlag = false;
     }
     );
-
   }
   onSearchClear() {
     this.searchKey = '';
@@ -40,5 +56,26 @@ export class EasypayListComponent implements OnInit {
   }
   applyFilter() {
     this.easyPays.filter = this.searchKey.trim();
+  }
+  onCreate() {
+    this.formTitle = 'افزودن کارت بانکی جدید';
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    const dialogRef = this.dialog.open(EasypayFormComponent, dialogConfig);
+    const sub = dialogRef.componentInstance.newEasyPay.subscribe((data) => {
+      this.insertEasyPay(data);
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      sub.unsubscribe();
+    });
+
+  }
+  insertEasyPay(easypay: EasyPay) {
+    // this.easyPays.push(easypay);
+  }
+  removeEasyPay(easypay: EasyPay) {
+    // this.easypays.filter( p => p.id === easypay.id);
+    // this.easypays.splice(this.easypays.indexOf(easypay), 1);
   }
 }

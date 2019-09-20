@@ -2,10 +2,10 @@
   افزودن کارت بانکی
 </h2>
 <h2 mat-dialog-title class="mmatdiagtitle" *ngIf="!addActive()">
-  ویرایش کارت بانکی {{ easypaySerice.easypayForm.get('cardNumber').value }}
+  ویرایش کارت بانکی {{ easypayService.easypayForm.get('cardNumber').value }}
 </h2>
 
-<mat-dialog-content [formGroup]="easypaySerice.easypayForm">
+<mat-dialog-content [formGroup]="easypayService.easypayForm">
 
   <!--#region info-->
 <mat-form-field class="col-md-6">
@@ -16,23 +16,23 @@
     />
     <mat-error
       *ngIf="
-        easypaySerice.easypayForm.get('name').hasError('required') &&
-        easypaySerice.easypayForm.get('name').touched
+        easypayService.easypayForm.get('name').hasError('required') &&
+        easypayService.easypayForm.get('name').touched
       "
       >این فیلد نمیتواند خالی باشد</mat-error
     >
     <mat-error
       *ngIf="
-        easypaySerice.easypayForm.get('name').hasError('minlength') &&
-        easypaySerice.easypayForm.get('name').touched
+        easypayService.easypayForm.get('name').hasError('minlength') &&
+        easypayService.easypayForm.get('name').touched
       "
     >
       این فیلد نمیتواند کمتر از 4 کاراکتر باشد</mat-error
     >
     <mat-error
       *ngIf="
-        easypaySerice.easypayForm.get('name').hasError('maxlength') &&
-        easypaySerice.easypayForm.get('name').touched
+        easypayService.easypayForm.get('name').hasError('maxlength') &&
+        easypayService.easypayForm.get('name').touched
       "
     >
       این فیلد نمیتواند بیشتر از 50 کاراکتر باشد</mat-error
@@ -47,16 +47,16 @@
     />
     <mat-error
       *ngIf="
-        easypaySerice.easypayForm.get('price').hasError('required') &&
-        easypaySerice.easypayForm.get('price').touched
+        easypayService.easypayForm.get('price').hasError('required') &&
+        easypayService.easypayForm.get('price').touched
       "
       >این فیلد نمیتواند خالی باشد</mat-error
     >
 
     <mat-error
       *ngIf="
-        easypaySerice.easypayForm.get('price').hasError('maxlength') &&
-        easypaySerice.easypayForm.get('price').touched
+        easypayService.easypayForm.get('price').hasError('maxlength') &&
+        easypayService.easypayForm.get('price').touched
       "
     >
       این فیلد نمیتواند بیشتر از 15 کاراکتر باشد</mat-error
@@ -123,10 +123,10 @@
       />
       <mat-error
         *ngIf="
-          easypaySerice.easypayForm
+          easypayService.easypayForm
             .get('userEmailExplain')
             .hasError('maxlength') &&
-          easypaySerice.easypayForm.get('userEmailExplain').touched
+          easypayService.easypayForm.get('userEmailExplain').touched
         "
       >
         این فیلد نمیتواند بیشتر از 25 کاراکتر باشد</mat-error
@@ -159,10 +159,10 @@
       />
       <mat-error
         *ngIf="
-          easypaySerice.easypayForm
+          easypayService.easypayForm
             .get('userNameExplain')
             .hasError('maxlength') &&
-          easypaySerice.easypayForm.get('userNameExplain').touched
+          easypayService.easypayForm.get('userNameExplain').touched
         "
       >
         این فیلد نمیتواند بیشتر از 25 کاراکتر باشد</mat-error
@@ -197,10 +197,10 @@
       />
       <mat-error
         *ngIf="
-          easypaySerice.easypayForm
+          easypayService.easypayForm
             .get('userPhoneExplain')
             .hasError('maxlength') &&
-          easypaySerice.easypayForm.get('userPhoneExplain').touched
+          easypayService.easypayForm.get('userPhoneExplain').touched
         "
       >
         این فیلد نمیتواند بیشتر از 25 کاراکتر باشد</mat-error
@@ -235,10 +235,10 @@
       />
       <mat-error
         *ngIf="
-          easypaySerice.easypayForm
+          easypayService.easypayForm
             .get('userTextExplain')
             .hasError('maxlength') &&
-          easypaySerice.easypayForm.get('userTextExplain').touched
+          easypayService.easypayForm.get('userTextExplain').touched
         "
       >
         این فیلد نمیتواند بیشتر از 25 کاراکتر باشد</mat-error
@@ -298,7 +298,7 @@
   <button
     mat-raised-button
     (click)="onSubmitAdd()"
-    [disabled]="easypaySerice.easypayForm.invalid"
+    [disabled]="easypayService.easypayForm.invalid"
     color="green"
     class="float-left mb-10"
   >
