@@ -8,6 +8,8 @@ import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
 import { EasyPayService } from 'src/app/Services/panel/user/easyPay.service';
 import { EasypayFormComponent } from '../easypay-form/easypay-form.component';
+import { GatesService } from 'src/app/Services/panel/user/gateService.service';
+import { GatesWallets } from 'src/app/models/user/gatesWallets';
 
 @Component({
   selector: 'app-easypay-list',
@@ -24,8 +26,8 @@ export class EasypayListComponent implements OnInit {
   loadingHideFlag = true;
   noContentHideFlag = false;
   constructor(private easypayService: EasyPayService, private authService: AuthService,
-              private dialog: MatDialog, private route: ActivatedRoute,
-              private alertService: ToastrService) { }
+    private dialog: MatDialog, private route: ActivatedRoute,
+    private alertService: ToastrService, private gateService: GatesService) { }
 
   ngOnInit() {
     this.loadEasyPays();
@@ -62,14 +64,20 @@ export class EasypayListComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    const dialogRef = this.dialog.open(EasypayFormComponent, dialogConfig);
-    const sub = dialogRef.componentInstance.newEasyPay.subscribe((data) => {
-      this.insertEasyPay(data);
+    //
+    this.gateService.getGates(this.authService.decodedToken.nameid).subscribe((dt: GatesWallets) => {
+      dialogConfig.data = dt;
+      const dialogRef = this.dialog.open(EasypayFormComponent, dialogConfig);
+      const sub = dialogRef.componentInstance.newEasyPay.subscribe((data) => {
+        this.insertEasyPay(data);
+      });
+      dialogRef.afterClosed().subscribe(() => {
+        sub.unsubscribe();
+      });
+    }, error => {
+        this.alertService.error(error, 'خطا');
+        this.alertService.warning('لیست کیف پول ها و درگاه ها دریافت نشد. دوباره امتحان کنید', 'خطا');
     });
-    dialogRef.afterClosed().subscribe(() => {
-      sub.unsubscribe();
-    });
-
   }
   insertEasyPay(easypay: EasyPay) {
     // this.easyPays.push(easypay);

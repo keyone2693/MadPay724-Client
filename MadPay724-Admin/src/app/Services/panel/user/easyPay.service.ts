@@ -13,6 +13,7 @@ export class EasyPayService {
   constructor(private http: HttpClient, private formBuilder: FormBuilder) { }
 
  easypayForm: FormGroup = this.formBuilder.group({
+   id: [],
    walletId: ['', Validators.required],
    easypayId: ['', Validators.required],
    isWallet: [true, Validators.required],

@@ -1,12 +1,12 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
 import { EasyPayService } from 'src/app/Services/panel/user/easyPay.service';
 import { AuthService } from 'src/app/Services/auth/auth.service';
 import { Gate } from 'src/app/models/user/gate';
-import { Wallet } from 'src/app/models/wallet';
-import { EasyPay } from 'src/app/models/user/easyPay';
-import { MatDialogRef } from '@angular/material';
-import { Router } from '@angular/router';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
+import { GatesWallets } from 'src/app/models/user/gatesWallets';
+import _ from 'lodash';
+import { EasyPay } from 'src/app/models/user/easyPay';
 
 @Component({
   selector: 'app-easypay-form',
@@ -16,14 +16,19 @@ import { ToastrService } from 'ngx-toastr';
 export class EasypayFormComponent implements OnInit {
   @Output() newEasyPay = new EventEmitter<EasyPay>();
   @Output() updateEasyPay = new EventEmitter<EasyPay>();
-  gates: Gate[];
-  wallets: Wallet[];
+  gatesWallets: GatesWallets;
   easypay: EasyPay;
   constructor(public easypayService: EasyPayService, private authService: AuthService,
               private alertService: ToastrService, private matdialogRef: MatDialogRef<EasypayFormComponent>,
-              private router: Router) { }
+              @Inject(MAT_DIALOG_DATA) private data: GatesWallets) { }
 
   ngOnInit() {
+    this.gatesWallets = this.data;
+  }
+  getGates(): Gate[] {
+    return _.filter(this.gatesWallets.gates, function(n) {
+      return n.isActive;
+    });
   }
   onClear() {
     this.easypayService.easypayForm.reset();
