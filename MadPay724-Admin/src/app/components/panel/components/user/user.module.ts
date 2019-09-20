@@ -59,6 +59,8 @@ import { GateEditResolver } from 'src/app/resolvers/user/gateEdit.resolver';
 import { GateActiveComponent } from './components/gate-manage/components/gate-active/gate-active.component';
 import { EasypayManageComponent } from './components/easypay-manage/easypay-manage.component';
 import { EasypayListComponent } from './components/easypay-manage/components/easypay-list/easypay-list.component';
+import { EasypayFormComponent } from './components/easypay-manage/components/easypay-form/easypay-form.component';
+import { EasyPayService } from 'src/app/Services/panel/user/easyPay.service';
 
 @NgModule({
   imports: [
@@ -113,7 +115,8 @@ import { EasypayListComponent } from './components/easypay-manage/components/eas
     GateActiveComponent,
     //
     EasypayManageComponent,
-    EasypayListComponent
+    EasypayListComponent,
+    EasypayFormComponent
   ],
   providers: [
     UserService,
@@ -122,6 +125,8 @@ import { EasypayListComponent } from './components/easypay-manage/components/eas
     DocumentService,
     WalletService,
     GatesService,
+    EasyPayService,
+    //
     UserProfileResolver,
     NotificationResolver,
     BankCardResolver,
@@ -141,7 +146,8 @@ import { EasypayListComponent } from './components/easypay-manage/components/eas
       WalletFormComponent,
       CreateFormTicketComponent,
       GateFormComponent,
-      GateActiveComponent
+      GateActiveComponent,
+      EasypayFormComponent
     ]
 })
 export class UserModule { }
