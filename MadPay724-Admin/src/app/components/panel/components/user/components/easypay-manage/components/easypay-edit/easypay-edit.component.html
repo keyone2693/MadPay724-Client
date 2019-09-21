@@ -7,10 +7,7 @@
     <li class="breadcrumb-item">
       <a [routerLink]="['/panel/user/gate']"> ایزی پی </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page" *ngIf="addActive()">
-      افزودن ایزی پی
-    </li>
-    <li class="breadcrumb-item active" aria-current="page" *ngIf="!addActive()">
+    <li class="breadcrumb-item active" aria-current="page">
   ویرایش ایزی پی {{ easypayService.easypayForm.get('name').value }}
     </li>
   </ol>
@@ -22,13 +19,9 @@
       <div class="card">
         <div class="card-header">
           <div class="card-title-wrap bar-success">
-            <h4 class="card-title" *ngIf="addActive()">افزودن ایزی پی</h4>
-            <h4 class="card-title" *ngIf="!addActive()">{{ easypayService.easypayForm.get('name').value }}</h4>
+            <h4 class="card-title">{{ easypayService.easypayForm.get('name').value }}</h4>
           </div>
-          <p *ngIf="addActive()">
-            ...
-          </p>
-          <p *ngIf="!addActive()">
+          <p>
             اطلاعات ایزی پی برای مشاهده و ویرایش ...
           </p>
         </div>
@@ -455,14 +448,13 @@
          
           <button
             mat-raised-button
-            (click)="onSubmitAdd()"
+            (click)="onSubmit()"
             [disabled]="easypayService.easypayForm.invalid"
             color="green"
             class="float-left mb-10"
           >
             <i class="icon-check"></i>
-            <span *ngIf="addActive()">افزودن ایزی پی</span>
-            <span *ngIf="!addActive()">ویرایش ایزی پی</span>
+            <span>ویرایش ایزی پی</span>
           </button>
            <button
             mat-raised-button

@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { EasyPay } from 'src/app/models/user/easyPay';
 import { Observable } from 'rxjs';
+import { EasyPayGatesWallets } from 'src/app/models/user/easyPayGatesWallets';
 
 @Injectable({
   providedIn: 'root'
@@ -40,10 +41,12 @@ export class EasyPayService {
   getEasyPays(id: string): Observable<EasyPay[]> {
     return this.http.get<EasyPay[]>(this.baseUrl + 'users/' + id + '/easypays');
   }
-  getEasyPay(id: string, easypayId: EasyPay): Observable<EasyPay> {
+  getEasyPay(id: string, easypayId: string): Observable<EasyPay> {
     return this.http.get<EasyPay>(this.baseUrl + 'users/' + id + '/easypays/' + easypayId);
   }
-
+  getEasyPayGatesWallets(id: string, easypayId: string): Observable<EasyPayGatesWallets> {
+    return this.http.get<EasyPayGatesWallets>(this.baseUrl + 'users/' + id + '/easypays/' + easypayId + '/gateswallets');
+  }
   addEasyPay(easypay: any, id: string): Observable<EasyPay> {
     return this.http.post<EasyPay>(this.baseUrl + 'users/' + id + '/easypays', easypay);
   }

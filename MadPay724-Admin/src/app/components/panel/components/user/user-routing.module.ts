@@ -23,7 +23,9 @@ import { GateResolver } from 'src/app/resolvers/user/gate.resolver';
 import { GateEditComponent } from './components/gate-manage/components/gate-edit/gate-edit.component';
 import { GateEditResolver } from 'src/app/resolvers/user/gateEdit.resolver';
 import { EasypayManageComponent } from './components/easypay-manage/easypay-manage.component';
-import { EasypayFormComponent } from './components/easypay-manage/components/easypay-form/easypay-form.component';
+import { EasypayAddComponent } from './components/easypay-manage/components/easypay-add/easypay-add.component';
+import { EasypayEditComponent } from './components/easypay-manage/components/easypay-edit/easypay-edit.component';
+import { EasyPayEditResolver } from 'src/app/resolvers/user/easypayEdit.resolver';
 
 const routes: Routes = [
   {
@@ -98,9 +100,14 @@ const routes: Routes = [
         data: { roles: ['User'], title: ['مدیریت ایزی پی ها'] }
       },
       {
-        path: 'easypay/addedit', canActivate: [AuthGuard],
-        resolve: { gateswallets: GateResolver }, component: EasypayFormComponent,
-        data: { roles: ['User'], title: ['افزودن/ویرایش ایزی پی ها'] }
+        path: 'easypay/add', canActivate: [AuthGuard],
+        resolve: { gateswallets: GateResolver }, component: EasypayAddComponent,
+        data: { roles: ['User'], title: ['افزودن ایزی پی ها'] }
+      },
+      {
+        path: 'easypay/edit/:easypayId', canActivate: [AuthGuard],
+        resolve: { easypayGatesWallets: EasyPayEditResolver }, component: EasypayEditComponent,
+        data: { roles: ['User'], title: ['ویرایش ایزی پی'] },
       }
     ]
   }

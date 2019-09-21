@@ -59,8 +59,9 @@ import { GateEditResolver } from 'src/app/resolvers/user/gateEdit.resolver';
 import { GateActiveComponent } from './components/gate-manage/components/gate-active/gate-active.component';
 import { EasypayManageComponent } from './components/easypay-manage/easypay-manage.component';
 import { EasypayListComponent } from './components/easypay-manage/components/easypay-list/easypay-list.component';
-import { EasypayFormComponent } from './components/easypay-manage/components/easypay-form/easypay-form.component';
 import { EasyPayService } from 'src/app/Services/panel/user/easyPay.service';
+import { EasypayAddComponent } from './components/easypay-manage/components/easypay-add/easypay-add.component';
+import { EasyPayEditResolver } from 'src/app/resolvers/user/easypayEdit.resolver';
 
 @NgModule({
   imports: [
@@ -116,7 +117,7 @@ import { EasyPayService } from 'src/app/Services/panel/user/easyPay.service';
     //
     EasypayManageComponent,
     EasypayListComponent,
-    EasypayFormComponent
+    EasypayAddComponent
   ],
   providers: [
     UserService,
@@ -136,6 +137,7 @@ import { EasyPayService } from 'src/app/Services/panel/user/easyPay.service';
     TicketOverviewResolver,
     GateResolver,
     GateEditResolver,
+    EasyPayEditResolver,
     PreventUnsavedGuard,
     { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS }
@@ -146,8 +148,7 @@ import { EasyPayService } from 'src/app/Services/panel/user/easyPay.service';
       WalletFormComponent,
       CreateFormTicketComponent,
       GateFormComponent,
-      GateActiveComponent,
-      EasypayFormComponent
+      GateActiveComponent
     ]
 })
 export class UserModule { }

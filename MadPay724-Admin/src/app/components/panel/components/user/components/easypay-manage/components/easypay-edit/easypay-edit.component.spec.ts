@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { EasypayFormComponent } from './easypay-form.component';
+import { EasypayEditComponent } from './easypay-edit.component';
 
-describe('EasypayFormComponent', () => {
-  let component: EasypayFormComponent;
-  let fixture: ComponentFixture<EasypayFormComponent>;
+describe('EasypayEditComponent', () => {
+  let component: EasypayEditComponent;
+  let fixture: ComponentFixture<EasypayEditComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EasypayFormComponent ]
+      declarations: [ EasypayEditComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EasypayFormComponent);
+    fixture = TestBed.createComponent(EasypayEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

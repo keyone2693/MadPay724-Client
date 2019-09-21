@@ -1,0 +1,473 @@
+<!-- User Profile Starts-->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/panel/dashboard']">داشبورد</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/panel/user/gate']"> ایزی پی </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">
+      افزودن ایزی پی
+    </li>
+  </ol>
+</nav>
+<!--Basic User Details Starts-->
+<section id="user-area">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-wrap bar-success">
+            <h4 class="card-title">افزودن ایزی پی</h4>
+          </div>
+          <p>
+            ...
+          </p>
+        </div>
+        <div class="card-body">
+          <div [formGroup]="easypayService.easypayForm">
+            <!--#region info-->
+            <mat-form-field class="col-md-4">
+              <input
+                matInput
+                formControlName="name"
+                placeholder="عنوان محصول یا خدمات *"
+              />
+              <mat-error
+                *ngIf="
+                  easypayService.easypayForm.get('name').hasError('required') &&
+                  easypayService.easypayForm.get('name').touched
+                "
+                >این فیلد نمیتواند خالی باشد</mat-error
+              >
+              <mat-error
+                *ngIf="
+                  easypayService.easypayForm
+                    .get('name')
+                    .hasError('minlength') &&
+                  easypayService.easypayForm.get('name').touched
+                "
+              >
+                این فیلد نمیتواند کمتر از 4 کاراکتر باشد</mat-error
+              >
+              <mat-error
+                *ngIf="
+                  easypayService.easypayForm
+                    .get('name')
+                    .hasError('maxlength') &&
+                  easypayService.easypayForm.get('name').touched
+                "
+              >
+                این فیلد نمیتواند بیشتر از 50 کاراکتر باشد</mat-error
+              >
+            </mat-form-field>
+            <mat-form-field class="col-md-4">
+              <input
+                digitOnly
+                matInput
+                formControlName="price"
+                placeholder="مبلغ (به تومان) *"
+              />
+              <mat-error
+                *ngIf="
+                  easypayService.easypayForm
+                    .get('price')
+                    .hasError('required') &&
+                  easypayService.easypayForm.get('price').touched
+                "
+                >این فیلد نمیتواند خالی باشد</mat-error
+              >
+
+              <mat-error
+                *ngIf="
+                  easypayService.easypayForm
+                    .get('price')
+                    .hasError('maxlength') &&
+                  easypayService.easypayForm.get('price').touched
+                "
+              >
+                این فیلد نمیتواند بیشتر از 15 کاراکتر باشد</mat-error
+              >
+            </mat-form-field>
+            <mat-form-field class="col-md-4">
+              <textarea
+                formControlName="text"
+                matInput
+                placeholder="توضیحات *"
+              ></textarea>
+              <mat-error
+                *ngIf="
+                  easypayService.easypayForm.get('text').hasError('required') &&
+                  easypayService.easypayForm.get('text').touched
+                "
+                >این فیلد نمیتواند خالی باشد</mat-error
+              >
+              <mat-error
+                *ngIf="
+                  easypayService.easypayForm
+                    .get('text')
+                    .hasError('maxlength') &&
+                  easypayService.easypayForm.get('text').touched
+                "
+              >
+                این فیلد نمیتواند بیشتر از 250 کاراکتر باشد</mat-error
+              >
+            </mat-form-field>
+
+            <mat-radio-group
+              formControlName="isWallet"
+              class="col-md-6 rdcss"
+            >
+              <div class="row">
+                <mat-radio-button class="col-md-4" value="true" checked
+                  >کیف پول</mat-radio-button
+                >
+                <mat-form-field
+                  class="col-md-8 margintopminus"
+                  *ngIf="
+                    easypayService.easypayForm.get('isWallet').value ===
+                      'true' ||
+                    easypayService.easypayForm.get('isWallet').value === true
+                  "
+                >
+                  <mat-label>انتخاب کیف پول *</mat-label>
+                  <mat-select formControlName="walletGateId">
+                    <mat-option
+                      *ngFor="let wallet of gatesWallets.wallets"
+                      value="{{ wallet.id }}"
+                      >{{ wallet.name }}</mat-option
+                    >
+                  </mat-select>
+                  <mat-error>کیف پول را انتخاب کنید</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="row">
+                <mat-radio-button class="col-md-4 margintopplus" value="false"
+                  >ایزی پی پرداخت</mat-radio-button
+                >
+                <mat-form-field
+                  class="col-md-8"
+                  *ngIf="
+                    easypayService.easypayForm.get('isWallet').value === 'false'
+                  "
+                >
+                  <mat-label>انتخاب ایزی پی *</mat-label>
+                  <mat-select formControlName="walletGateId">
+                    <mat-option
+                      *ngFor="let gate of getGates()"
+                      value="{{ gate.id }}"
+                      >{{ gate.websiteName }}</mat-option
+                    >
+                  </mat-select>
+                  <mat-error> ایزی پی خود را انتخاب کنید</mat-error>
+                </mat-form-field>
+              </div>
+            </mat-radio-group>
+            <!--#endregion-->
+
+            <!--#region inputEmail-->
+            <div class="row">
+              <mat-checkbox class="col-md-3" formControlName="isUserEmail"
+                >ایمیل</mat-checkbox
+              >
+              <mat-radio-group
+                formControlName="isUserEmailRequired"
+                class="col-md-6 radiocss"
+                [ngClass]="{
+                  hide:
+                    easypayService.easypayForm.get('isUserEmail').value ===
+                      'false' ||
+                    easypayService.easypayForm.get('isUserEmail').value ===
+                      false
+                }"
+              >
+                <mat-radio-button class="col-md-6" value="false" checked
+                  >اختیاری</mat-radio-button
+                >
+                <mat-radio-button class="col-md-6" value="true"
+                  >اجباری</mat-radio-button
+                >
+              </mat-radio-group>
+              <mat-form-field
+                class="col-md-3 margintop-18-minus"
+                floatLabel="never"
+                [ngClass]="{
+                  hide:
+                    easypayService.easypayForm.get('isUserEmail').value ===
+                      'false' ||
+                    easypayService.easypayForm.get('isUserEmail').value ===
+                      false
+                }"
+              >
+                <input
+                  matInput
+                  formControlName="userEmailExplain"
+                  placeholder="توضیح کوتاه *"
+                />
+                <mat-error
+                  *ngIf="
+                    easypayService.easypayForm
+                      .get('userEmailExplain')
+                      .hasError('maxlength') &&
+                    easypayService.easypayForm.get('userEmailExplain').touched
+                  "
+                >
+                  این فیلد نمیتواند بیشتر از 25 کاراکتر باشد</mat-error
+                >
+              </mat-form-field>
+            </div>
+
+            <!--#endregion-->
+
+            <!--#region inputName-->
+            <div class="row">
+              <mat-checkbox class="col-md-3" formControlName="isUserName"
+                >نام کاربر</mat-checkbox
+              >
+              <mat-radio-group
+                formControlName="isUserNameRequired"
+                class="col-md-6 radiocss"
+                [ngClass]="{
+                  hide:
+                    easypayService.easypayForm.get('isUserName').value ===
+                      'false' ||
+                    easypayService.easypayForm.get('isUserName').value === false
+                }"
+              >
+                <mat-radio-button class="col-md-6" value="false" checked
+                  >اختیاری</mat-radio-button
+                >
+                <mat-radio-button class="col-md-6" value="true"
+                  >اجباری</mat-radio-button
+                >
+              </mat-radio-group>
+              <mat-form-field
+                class="col-md-3 margintop-18-minus"
+                floatLabel="never"
+                [ngClass]="{
+                  hide:
+                    easypayService.easypayForm.get('isUserName').value ===
+                      'false' ||
+                    easypayService.easypayForm.get('isUserName').value === false
+                }"
+              >
+                <input
+                  matInput
+                  formControlName="userNameExplain"
+                  placeholder="توضیح کوتاه *"
+                />
+                <mat-error
+                  *ngIf="
+                    easypayService.easypayForm
+                      .get('userNameExplain')
+                      .hasError('maxlength') &&
+                    easypayService.easypayForm.get('userNameExplain').touched
+                  "
+                >
+                  این فیلد نمیتواند بیشتر از 25 کاراکتر باشد</mat-error
+                >
+              </mat-form-field>
+            </div>
+
+            <!--#endregion-->
+
+            <!--#region inputPhone-->
+            <div class="row">
+              <mat-checkbox class="col-md-3" formControlName="isUserPhone"
+                >شماره تماس</mat-checkbox
+              >
+              <mat-radio-group
+                formControlName="isUserPhoneRequired"
+                class="col-md-6 radiocss"
+                [ngClass]="{
+                  hide:
+                    easypayService.easypayForm.get('isUserPhone').value ===
+                      'false' ||
+                    easypayService.easypayForm.get('isUserPhone').value ===
+                      false
+                }"
+              >
+                <mat-radio-button class="col-md-6" value="false" checked
+                  >اختیاری</mat-radio-button
+                >
+                <mat-radio-button class="col-md-6" value="true"
+                  >اجباری</mat-radio-button
+                >
+              </mat-radio-group>
+              <mat-form-field
+                class="col-md-3 margintop-18-minus"
+                floatLabel="never"
+                [ngClass]="{
+                  hide:
+                    easypayService.easypayForm.get('isUserPhone').value ===
+                      'false' ||
+                    easypayService.easypayForm.get('isUserPhone').value ===
+                      false
+                }"
+              >
+                <input
+                  matInput
+                  formControlName="userPhoneExplain"
+                  placeholder="توضیح کوتاه *"
+                />
+                <mat-error
+                  *ngIf="
+                    easypayService.easypayForm
+                      .get('userPhoneExplain')
+                      .hasError('maxlength') &&
+                    easypayService.easypayForm.get('userPhoneExplain').touched
+                  "
+                >
+                  این فیلد نمیتواند بیشتر از 25 کاراکتر باشد</mat-error
+                >
+              </mat-form-field>
+            </div>
+
+            <!--#endregion-->
+
+            <!--#region inputText-->
+            <div class="row">
+              <mat-checkbox class="col-md-3" formControlName="isUserText"
+                >توضیحات محصول</mat-checkbox
+              >
+              <mat-radio-group
+                formControlName="isUserTextRequired"
+                class="col-md-6 radiocss"
+                [ngClass]="{
+                  hide:
+                    easypayService.easypayForm.get('isUserText').value ===
+                      'false' ||
+                    easypayService.easypayForm.get('isUserText').value === false
+                }"
+              >
+                <mat-radio-button class="col-md-6" value="false" checked
+                  >اختیاری</mat-radio-button
+                >
+                <mat-radio-button class="col-md-6" value="true"
+                  >اجباری</mat-radio-button
+                >
+              </mat-radio-group>
+              <mat-form-field
+                class="col-md-3 margintop-18-minus"
+                floatLabel="never"
+                [ngClass]="{
+                  hide:
+                    easypayService.easypayForm.get('isUserText').value ===
+                      'false' ||
+                    easypayService.easypayForm.get('isUserText').value === false
+                }"
+              >
+                <input
+                  matInput
+                  formControlName="userTextExplain"
+                  placeholder="توضیح کوتاه *"
+                />
+                <mat-error
+                  *ngIf="
+                    easypayService.easypayForm
+                      .get('userTextExplain')
+                      .hasError('maxlength') &&
+                    easypayService.easypayForm.get('userTextExplain').touched
+                  "
+                >
+                  این فیلد نمیتواند بیشتر از 25 کاراکتر باشد</mat-error
+                >
+              </mat-form-field>
+            </div>
+
+            <!--#endregion-->
+
+            <!--#region Limit-->
+            <div class="row">
+              <mat-checkbox
+                class="col-md-6 margintopplus"
+                formControlName="isCountLimit"
+                >محدودیت تعداد خرید</mat-checkbox
+              >
+              <mat-form-field
+                class="col-md-6"
+                [ngClass]="{
+                  hide:
+                    easypayService.easypayForm.get('isCountLimit').value ===
+                      'false' ||
+                    easypayService.easypayForm.get('isCountLimit').value ===
+                      false
+                }"
+              >
+                <input
+                  matInput
+                  formControlName="countLimit"
+                  placeholder="تعداد *"
+                  value="5"
+                />
+              </mat-form-field>
+            </div>
+            <!--#endregion-->
+
+            <!--#region returnLink-->
+            <div class="row">
+              <mat-form-field class="col-md-6">
+                <input
+                  matInput
+                  formControlName="returnSuccess"
+                  placeholder="لینک بازگشت پرداخت موفق *"
+                />
+                <mat-error
+                  *ngIf="
+                    easypayService.easypayForm
+                      .get('returnSuccess')
+                      .hasError('pattern') &&
+                    easypayService.easypayForm.get('returnSuccess').touched
+                  "
+                >
+                آدرس معتبری وارد کنید</mat-error
+                >
+              </mat-form-field>
+              <mat-form-field class="col-md-6">
+                <input
+                  matInput
+                  formControlName="returnFail"
+                  placeholder="لینک بازگشت پرداخت ناموفق *"
+                />
+                 <mat-error
+                  *ngIf="
+                    easypayService.easypayForm
+                      .get('returnFail')
+                      .hasError('pattern') &&
+                    easypayService.easypayForm.get('returnFail').touched
+                  "
+                >
+                آدرس معتبری وارد کنید</mat-error
+                >
+              </mat-form-field>
+            </div>
+
+            <!--#endregion-->
+          </div>
+         
+          <button
+            mat-raised-button
+            (click)="onSubmit()"
+            [disabled]="easypayService.easypayForm.invalid"
+            color="green"
+            class="float-left mb-10"
+          >
+            <i class="icon-check"></i>
+            <span>افزودن ایزی پی</span>
+          </button>
+           <button
+            mat-raised-button
+            (click)="onClear()"
+            color="warn"
+            class="float-left mb-10"
+          >
+            <i class="icon-close"></i>
+            انصراف
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--User Profile Starts-->
