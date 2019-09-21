@@ -47,8 +47,8 @@ export class EasypayListComponent implements OnInit {
         this.noContentHideFlag = true;
       }
     }, error => {
-      console.log(error);
-      this.loadingHideFlag = false;
+        this.alertService.error(error, 'خطا');
+        this.loadingHideFlag = false;
     }
     );
   }

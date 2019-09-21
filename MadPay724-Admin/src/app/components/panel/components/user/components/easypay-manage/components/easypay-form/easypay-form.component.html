@@ -6,9 +6,8 @@
 </h2>
 
 <mat-dialog-content [formGroup]="easypayService.easypayForm">
-
   <!--#region info-->
-<mat-form-field class="col-md-6">
+  <mat-form-field class="col-md-6">
     <input
       matInput
       formControlName="name"
@@ -62,7 +61,7 @@
       این فیلد نمیتواند بیشتر از 15 کاراکتر باشد</mat-error
     >
   </mat-form-field>
- <mat-form-field class="col-md-12 ">
+  <mat-form-field class="col-md-12 ">
     <textarea
       formControlName="text"
       matInput
@@ -85,63 +84,71 @@
     >
   </mat-form-field>
 
-  <mat-radio-group formControlName="isWallet" class="col-md-6 radiocss">
-    <mat-radio-button class=" ml-10" value="true">کیف پول</mat-radio-button>
-    <mat-radio-button class=" ml-10" value="false" checked
-      >درگاه پرداخت</mat-radio-button
-    >
+  <mat-radio-group formControlName="isWallet" class="col-md-12 radiocss">
+    <div class="row">
+      <mat-radio-button class="col-md-4" value="true" checked>کیف پول</mat-radio-button>
+      <mat-form-field class="col-md-8 margintopminus" 
+      *ngIf="easypayService.easypayForm.get('isWallet').value === 'true' 
+      || easypayService.easypayForm.get('isWallet').value === true ">
+        <mat-label>انتخاب کیف پول *</mat-label>
+        <mat-select formControlName="walletGateId" >
+          <mat-option
+            *ngFor="let wallet of gatesWallets.wallets"
+            value="{{ wallet.id }}"
+            >{{ wallet.name }}</mat-option
+          >
+        </mat-select>
+        <mat-error>کیف پول را انتخاب کنید</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-radio-button class="col-md-4 margintopplus" value="false" 
+        >درگاه پرداخت</mat-radio-button
+      >
+      <mat-form-field class="col-md-8"
+      *ngIf="easypayService.easypayForm.get('isWallet').value === 'false'">
+        <mat-label>انتخاب درگاه *</mat-label>
+        <mat-select formControlName="walletGateId" >
+          <mat-option *ngFor="let gate of getGates()" value="{{ gate.id }}">{{
+            gate.websiteName
+          }}</mat-option>
+        </mat-select>
+        <mat-error> درگاه خود را انتخاب کنید</mat-error>
+      </mat-form-field>
+    </div>
   </mat-radio-group>
   <div class="col-md-6">
     <div class="row">
-      <div class="col-md-12">
-        <mat-form-field class="col-md-6">
-          <mat-label>انتخاب کیف پول *</mat-label>
-          <mat-select formControlName="walletId">
-            <mat-option
-              *ngFor="let wallet of gatesWallets.wallets"
-              value="{{ wallet.id }}"
-              >{{ wallet.name }}</mat-option
-            >
-          </mat-select>
-          <mat-error>کیف پول را انتخاب کنید</mat-error>
-        </mat-form-field>
-      </div>
-      <div class="col-md-12">
-        <mat-form-field class="col-md-6">
-          <mat-label>انتخاب درگاه *</mat-label>
-          <mat-select formControlName="walletId">
-            <mat-option *ngFor="let gate of getGates()" value="{{ gate.id }}">{{
-              gate.websiteName
-            }}</mat-option>
-          </mat-select>
-          <mat-error> درگاه خود را انتخاب کنید</mat-error>
-        </mat-form-field>
-      </div>
+      <div class="col-md-12"></div>
+      <div class="col-md-12"></div>
     </div>
   </div>
   <!--#endregion-->
 
   <!--#region inputEmail-->
-  <div class="col-md-3">
-    <mat-checkbox class="" formControlName="isUserEmail">ایمیل</mat-checkbox>
-  </div>
-  <div class="col-md-6">
+  <div class="row">
+    <mat-checkbox class="col-md-3" formControlName="isUserEmail">ایمیل</mat-checkbox>
     <mat-radio-group
       formControlName="isUserEmailRequired"
       class="col-md-6 radiocss"
+      [ngClass]="{'hide': easypayService.easypayForm.get('isUserEmail').value === 'false' 
+      || easypayService.easypayForm.get('isUserEmail').value === false }"
     >
-      <mat-radio-button class=" ml-10" value="false" checked
+      <mat-radio-button class="col-md-6" value="false" checked
         >اختیاری</mat-radio-button
       >
-      <mat-radio-button class=" ml-10" value="true">اجباری</mat-radio-button>
+      <mat-radio-button class="col-md-6" value="true">اجباری</mat-radio-button>
     </mat-radio-group>
-  </div>
-  <div class="col-md-3">
-    <mat-form-field class="col-md-6">
+    <mat-form-field class="col-md-3 margintop-18-minus"
+    floatLabel="never"
+    [ngClass]="{'hide': easypayService.easypayForm.get('isUserEmail').value === 'false' 
+      || easypayService.easypayForm.get('isUserEmail').value === false }"
+    >
       <input
         matInput
         formControlName="userEmailExplain"
-        placeholder="توضیحات در اینجا *"
+        placeholder="توضیح کوتاه *"
+        
       />
       <mat-error
         *ngIf="
@@ -155,29 +162,33 @@
       >
     </mat-form-field>
   </div>
+  
   <!--#endregion-->
 
   <!--#region inputName-->
-  <div class="col-md-3">
-    <mat-checkbox class="" formControlName="isUserName">نام کاربر</mat-checkbox>
-  </div>
-  <div class="col-md-6">
+  <div class="row">
+      <mat-checkbox class="col-md-3" formControlName="isUserName">نام کاربر</mat-checkbox>
     <mat-radio-group
       formControlName="isUserNameRequired"
       class="col-md-6 radiocss"
+      [ngClass]="{'hide': easypayService.easypayForm.get('isUserName').value === 'false' 
+      || easypayService.easypayForm.get('isUserName').value === false }"
     >
-      <mat-radio-button class=" ml-10" value="false" checked
+      <mat-radio-button class="col-md-6" value="false" checked
         >اختیاری</mat-radio-button
       >
-      <mat-radio-button class=" ml-10" value="true">اجباری</mat-radio-button>
+      <mat-radio-button class="col-md-6" value="true">اجباری</mat-radio-button>
     </mat-radio-group>
-  </div>
-  <div class="col-md-3">
-    <mat-form-field class="col-md-6">
+    <mat-form-field class="col-md-3 margintop-18-minus"
+    floatLabel="never"
+    [ngClass]="{'hide': easypayService.easypayForm.get('isUserName').value === 'false' 
+      || easypayService.easypayForm.get('isUserName').value === false }"
+    >
       <input
         matInput
         formControlName="userNameExplain"
-        placeholder="توضیحات در اینجا *"
+        placeholder="توضیح کوتاه *"
+        
       />
       <mat-error
         *ngIf="
@@ -191,31 +202,34 @@
       >
     </mat-form-field>
   </div>
+  
   <!--#endregion-->
 
   <!--#region inputPhone-->
-  <div class="col-md-3">
-    <mat-checkbox class="" formControlName="isUserPhone"
+   <div class="row">
+        <mat-checkbox class="col-md-3" formControlName="isUserPhone"
       >شماره تماس</mat-checkbox
     >
-  </div>
-  <div class="col-md-6">
     <mat-radio-group
       formControlName="isUserPhoneRequired"
       class="col-md-6 radiocss"
+      [ngClass]="{'hide': easypayService.easypayForm.get('isUserPhone').value === 'false' 
+      || easypayService.easypayForm.get('isUserPhone').value === false }"
     >
-      <mat-radio-button class=" ml-10" value="false" checked
+      <mat-radio-button class="col-md-6" value="false" checked
         >اختیاری</mat-radio-button
       >
-      <mat-radio-button class=" ml-10" value="true">اجباری</mat-radio-button>
+      <mat-radio-button class="col-md-6" value="true">اجباری</mat-radio-button>
     </mat-radio-group>
-  </div>
-  <div class="col-md-3">
-    <mat-form-field class="col-md-6">
+    <mat-form-field class="col-md-3 margintop-18-minus"
+    floatLabel="never"
+     [ngClass]="{'hide': easypayService.easypayForm.get('isUserPhone').value === 'false' 
+      || easypayService.easypayForm.get('isUserPhone').value === false }"
+    >
       <input
         matInput
         formControlName="userPhoneExplain"
-        placeholder="توضیحات در اینجا *"
+        placeholder="توضیح کوتاه *"
       />
       <mat-error
         *ngIf="
@@ -228,32 +242,35 @@
         این فیلد نمیتواند بیشتر از 25 کاراکتر باشد</mat-error
       >
     </mat-form-field>
-  </div>
+   </div>
+ 
   <!--#endregion-->
 
   <!--#region inputText-->
-  <div class="col-md-3">
-    <mat-checkbox class="" formControlName="isUserText"
+   <div class="row">
+      <mat-checkbox class="col-md-3" formControlName="isUserText"
       >توضیحات محصول</mat-checkbox
     >
-  </div>
-  <div class="col-md-6">
     <mat-radio-group
       formControlName="isUserTextRequired"
       class="col-md-6 radiocss"
+        [ngClass]="{'hide': easypayService.easypayForm.get('isUserText').value === 'false' 
+      || easypayService.easypayForm.get('isUserText').value === false }"
     >
-      <mat-radio-button class=" ml-10" value="false" checked
+      <mat-radio-button class="col-md-6" value="false" checked
         >اختیاری</mat-radio-button
       >
-      <mat-radio-button class=" ml-10" value="true">اجباری</mat-radio-button>
+      <mat-radio-button class="col-md-6" value="true">اجباری</mat-radio-button>
     </mat-radio-group>
-  </div>
-  <div class="col-md-3">
-    <mat-form-field class="col-md-6">
+    <mat-form-field class="col-md-3 margintop-18-minus"
+    floatLabel="never"
+     [ngClass]="{'hide': easypayService.easypayForm.get('isUserText').value === 'false' 
+      || easypayService.easypayForm.get('isUserText').value === false }"
+    >
       <input
         matInput
         formControlName="userTextExplain"
-        placeholder="توضیحات در اینجا *"
+        placeholder="توضیح کوتاه *"
       />
       <mat-error
         *ngIf="
@@ -266,17 +283,19 @@
         این فیلد نمیتواند بیشتر از 25 کاراکتر باشد</mat-error
       >
     </mat-form-field>
-  </div>
+   </div>
+
+   
   <!--#endregion-->
 
   <!--#region Limit-->
-
-  <div class="col-md-6">
-    <mat-checkbox class="" formControlName="isCountLimit"
+<div class="row">
+     <mat-checkbox class="col-md-6 margintopplus" formControlName="isCountLimit"
       >محدودیت تعداد خرید</mat-checkbox
     >
-  </div>
-  <mat-form-field class="col-md-6">
+  <mat-form-field class="col-md-6"
+   [ngClass]="{'hide': easypayService.easypayForm.get('isCountLimit').value === 'false' 
+      || easypayService.easypayForm.get('isCountLimit').value === false }">
     <input
       matInput
       formControlName="countLimit"
@@ -284,27 +303,28 @@
       value="5"
     />
   </mat-form-field>
-  <!--#endregion-->
- 
-  <!--#region returnLink-->
-  <mat-form-field class="col-md-6">
-    <input
-      matInput
-      formControlName="countLimit"
-      placeholder="تعداد *"
-      value="5"
-    />
-  </mat-form-field>
-  <mat-form-field class="col-md-6">
-    <input
-      matInput
-      formControlName="countLimit"
-      placeholder="تعداد *"
-      value="5"
-    />
-  </mat-form-field>
+</div>
   <!--#endregion-->
 
+  <!--#region returnLink-->
+  <div class="row">
+     <mat-form-field class="col-md-12">
+    <input
+      matInput
+      formControlName="returnSuccess"
+      placeholder="لینک بازگشت پرداخت موفق *"
+    />
+  </mat-form-field>
+  <mat-form-field class="col-md-12">
+    <input
+      matInput
+      formControlName="returnFail"
+      placeholder="لینک بازگشت پرداخت ناموفق *"
+    />
+  </mat-form-field>
+  </div>
+ 
+  <!--#endregion-->
 </mat-dialog-content>
 <mat-dialog-actions class="float-left">
   <button
