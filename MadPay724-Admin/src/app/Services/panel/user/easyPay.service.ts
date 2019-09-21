@@ -60,5 +60,8 @@ export class EasyPayService {
   populateForm(easypay: EasyPay) {
     this.easypayForm.setValue(easypay);
   }
+  deleteEasyPay(userId: string, easypayId: string) {
+    return this.http.delete(this.baseUrl + 'users/' + userId + '/easypays/' + easypayId);
+  }
 
 }

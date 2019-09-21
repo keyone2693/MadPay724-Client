@@ -34,6 +34,30 @@ export class EasypayAddComponent implements OnInit {
     });
   }
   onClear() {
+    this.easypayService.easypayForm.reset({
+      walletGateId: '',
+      isWallet: true,
+      name: '',
+      price: 0,
+      text: '',
+      isCoupon: false,
+      isUserEmail: true,
+      isUserName: true,
+      isUserPhone: true,
+      isUserText: true,
+      isUserEmailRequired: false,
+      isUserNameRequired: false,
+      isUserPhoneRequired: false,
+      isUserTextRequired: false,
+      userEmailExplain: 'ایمیل',
+      userNameExplain: 'نام',
+      userPhoneExplain: 'شماره تماس',
+      userTextExplain: 'توضیحات',
+      isCountLimit: false,
+      countLimit: 0,
+      returnSuccess: '',
+      returnFail: ''
+    });
     this.router.navigate(['/panel/user/easypay']);
   }
   onSubmit() {
@@ -47,6 +71,14 @@ export class EasypayAddComponent implements OnInit {
       });
     } else {
       this.alertService.warning('اطلاعات ایزی پی را به درستی وارد کنید', 'خطا');
+    }
+  }
+  getIsWallet(): boolean {
+    if (this.easypayService.easypayForm.get('isWallet').value === 'true'
+      || this.easypayService.easypayForm.get('isWallet').value === true) {
+      return true;
+    } else {
+      return false;
     }
   }
 }

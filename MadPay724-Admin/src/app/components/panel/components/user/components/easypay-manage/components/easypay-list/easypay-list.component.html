@@ -51,7 +51,18 @@
     <mat-header-cell *matHeaderCellDef> ویرایش / حذف </mat-header-cell>
     <mat-cell *matCellDef="let easyPay">
       <button mat-button [routerLink]="['/panel/user/easypay/edit/', easyPay.id]" ><i class="ft-edit edit-icon"></i></button>
-      <button mat-button><i class="ft-trash-2 delete-icon"></i></button>
+      <button mat-button [swal]="deleteSwal"><i class="ft-trash-2 delete-icon"></i></button>
+        <swal
+      #deleteSwal
+      title="حذف {{ easyPay.name }} ؟"
+      text="در صورت حذف این لینک تمام تراکنش های مربوط به آن پاک خواهد شد"
+      type="error"
+      [showCancelButton]="true"
+      [confirmButtonText] ="'بله'"
+      [cancelButtonText] ="'خیر'"
+      [focusCancel]="true"
+      (confirm)="onDelete(easyPay)">
+    </swal>
     </mat-cell>
   </ng-container>
 

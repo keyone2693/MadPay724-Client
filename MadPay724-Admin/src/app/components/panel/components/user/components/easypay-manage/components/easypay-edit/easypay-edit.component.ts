@@ -40,6 +40,30 @@ export class EasypayEditComponent implements OnInit, OnDestroy {
     this.subManager.unsubscribe();
   }
   onClear() {
+    this.easypayService.easypayForm.reset({
+      walletGateId: '',
+      isWallet: true,
+      name: '',
+      price: 0,
+      text: '',
+      isCoupon: false,
+      isUserEmail: true,
+      isUserName: true,
+      isUserPhone: true,
+      isUserText: true,
+      isUserEmailRequired: false,
+      isUserNameRequired: false,
+      isUserPhoneRequired: false,
+      isUserTextRequired: false,
+      userEmailExplain: 'ایمیل',
+      userNameExplain: 'نام',
+      userPhoneExplain: 'شماره تماس',
+      userTextExplain: 'توضیحات',
+      isCountLimit: false,
+      countLimit: 0,
+      returnSuccess: '',
+      returnFail: ''
+ });
     this.router.navigate(['/panel/user/easypay']);
   }
   onSubmit() {

@@ -7,3 +7,12 @@
     .ng-scroll-content{
         padding-left: 10px !important;
       }
+      .swal2-actions{
+        direction: ltr !important;
+      }
+      .swal2-styled.swal2-cancel{
+        width: 100px;
+      }
+      .swal2-styled.swal2-confirm{
+        width: 200px;
+      }

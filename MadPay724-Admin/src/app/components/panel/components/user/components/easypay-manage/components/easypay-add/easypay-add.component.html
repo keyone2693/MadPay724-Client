@@ -121,18 +121,16 @@
                   <mat-radio-button class="col-md-12" value="true" checked
                     >کیف پول</mat-radio-button
                   >
-                  <mat-radio-button class="col-md-12 margintopplus" value="false"
+                  <mat-radio-button class="col-md-12 margintopplus"
+                   *ngIf="getGates().length > 0"
+                  value="false"
                     >ایزی پی پرداخت</mat-radio-button
                   >
                 </mat-radio-group>
               <div class="col-md-6 inputradiocss">
                 <mat-form-field
                   class="col-md-12 margintopminus"
-                  *ngIf="
-                    easypayService.easypayForm.get('isWallet').value ===
-                      'true' ||
-                    easypayService.easypayForm.get('isWallet').value === true
-                  "
+                  *ngIf="getIsWallet()"
                 >
                   <mat-label>انتخاب کیف پول *</mat-label>
                   <mat-select formControlName="walletGateId">
@@ -146,9 +144,7 @@
                 </mat-form-field>
                 <mat-form-field
                   class="col-md-12 matradiocsss"
-                  *ngIf="
-                    easypayService.easypayForm.get('isWallet').value === 'false'
-                  "
+                  *ngIf="!getIsWallet()"
                 >
                   <mat-label>انتخاب ایزی پی *</mat-label>
                   <mat-select formControlName="walletGateId">

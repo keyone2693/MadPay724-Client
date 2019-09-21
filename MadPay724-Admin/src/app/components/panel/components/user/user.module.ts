@@ -63,6 +63,7 @@ import { EasyPayService } from 'src/app/Services/panel/user/easyPay.service';
 import { EasypayAddComponent } from './components/easypay-manage/components/easypay-add/easypay-add.component';
 import { EasyPayEditResolver } from 'src/app/resolvers/user/easypayEdit.resolver';
 import { EasypayEditComponent } from './components/easypay-manage/components/easypay-edit/easypay-edit.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   imports: [
@@ -77,7 +78,8 @@ import { EasypayEditComponent } from './components/easypay-manage/components/eas
     // TooltipModule,
     NgScrollbarModule,
     // InfiniteScrollModule,
-    // NgxUiLoaderModule
+    // NgxUiLoaderModule,
+    SweetAlert2Module.forRoot()
   ],
   declarations: [
     PersianTimeAgoPipe,
