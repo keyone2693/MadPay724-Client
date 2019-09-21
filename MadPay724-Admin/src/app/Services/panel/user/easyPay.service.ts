@@ -34,8 +34,8 @@ export class EasyPayService {
    userTextExplain: ['توضیحات', Validators.maxLength(25)],
    isCountLimit: [false, Validators.required],
    countLimit: [0],
-   returnSuccess: ['', Validators.required],
-   returnFail: ['', Validators.required],
+   returnSuccess: [Validators.pattern('(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})')],
+   returnFail: [Validators.pattern('(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})')],
  });
   getEasyPays(id: string): Observable<EasyPay[]> {
     return this.http.get<EasyPay[]>(this.baseUrl + 'users/' + id + '/easypays');

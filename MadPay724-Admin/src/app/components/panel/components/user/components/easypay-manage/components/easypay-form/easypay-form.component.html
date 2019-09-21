@@ -420,6 +420,16 @@
                   formControlName="returnSuccess"
                   placeholder="لینک بازگشت پرداخت موفق *"
                 />
+                <mat-error
+                  *ngIf="
+                    easypayService.easypayForm
+                      .get('returnSuccess')
+                      .hasError('pattern') &&
+                    easypayService.easypayForm.get('returnSuccess').touched
+                  "
+                >
+                آدرس معتبری وارد کنید</mat-error
+                >
               </mat-form-field>
               <mat-form-field class="col-md-6">
                 <input
@@ -427,6 +437,16 @@
                   formControlName="returnFail"
                   placeholder="لینک بازگشت پرداخت ناموفق *"
                 />
+                 <mat-error
+                  *ngIf="
+                    easypayService.easypayForm
+                      .get('returnFail')
+                      .hasError('pattern') &&
+                    easypayService.easypayForm.get('returnFail').touched
+                  "
+                >
+                آدرس معتبری وارد کنید</mat-error
+                >
               </mat-form-field>
             </div>
 
