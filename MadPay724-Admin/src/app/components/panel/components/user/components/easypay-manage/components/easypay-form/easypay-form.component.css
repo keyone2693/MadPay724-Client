@@ -32,3 +32,29 @@
 .hide{
   display: none;
 }
+
+.mmatdiagtitle{
+  background: #333;
+  padding: 15px 25px 10px;
+  border-radius: 5px;
+  color:#fff;
+}
+.title-info{
+  font-size: 15px;display: block;
+}
+
+.rdcss{
+      margin: 35px 0;
+      display: inline-block;
+}
+.urlinpt{
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+button{
+    margin-left: 10px;
+}
+.card{
+padding-bottom: 25px;
+}

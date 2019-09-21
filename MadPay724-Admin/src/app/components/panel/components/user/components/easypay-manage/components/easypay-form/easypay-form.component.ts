@@ -7,6 +7,8 @@ import { ToastrService } from 'ngx-toastr';
 import { GatesWallets } from 'src/app/models/user/gatesWallets';
 import _ from 'lodash';
 import { EasyPay } from 'src/app/models/user/easyPay';
+import { GatesService } from 'src/app/Services/panel/user/gateService.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-easypay-form',
@@ -19,11 +21,16 @@ export class EasypayFormComponent implements OnInit {
   gatesWallets: GatesWallets;
   easypay: EasyPay;
   constructor(public easypayService: EasyPayService, private authService: AuthService,
-              private alertService: ToastrService, private matdialogRef: MatDialogRef<EasypayFormComponent>,
-              @Inject(MAT_DIALOG_DATA) private data: GatesWallets) { }
+              private alertService: ToastrService,
+              private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.gatesWallets = this.data;
+    this.loadGatesWallets();
+  }
+  loadGatesWallets() {
+    this.route.data.subscribe(data => {
+      this.gatesWallets = data.gateswallets;
+    });
   }
   getGates(): Gate[] {
     return _.filter(this.gatesWallets.gates, function(n) {
@@ -31,8 +38,7 @@ export class EasypayFormComponent implements OnInit {
     });
   }
   onClear() {
-    this.easypayService.easypayForm.reset();
-    this.matdialogRef.close();
+    this.router.navigate(['/panel/user/easypay']);
   }
   onSubmitAdd() {
     if (this.easypayService.easypayForm.valid) {
