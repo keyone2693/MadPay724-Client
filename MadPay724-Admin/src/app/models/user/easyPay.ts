@@ -3,7 +3,7 @@ export interface EasyPay {
     walletGateId: string ;
     isWallet: boolean;
     name: string;
-    price: string;
+    price: number;
     text: string;
     isCoupon: boolean;
     isUserEmail: boolean;

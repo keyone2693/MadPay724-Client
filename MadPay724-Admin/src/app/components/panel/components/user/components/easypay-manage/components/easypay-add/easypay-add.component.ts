@@ -9,9 +9,9 @@ import { EasyPay } from 'src/app/models/user/easyPay';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-easypay-form',
-  templateUrl: './easypay-form.component.html',
-  styleUrls: ['./easypay-form.component.css']
+  selector: 'app-easypay-add',
+  templateUrl: './easypay-add.component.html',
+  styleUrls: ['./easypay-add.component.css']
 })
 export class EasypayAddComponent implements OnInit {
   gatesWallets: GatesWallets;

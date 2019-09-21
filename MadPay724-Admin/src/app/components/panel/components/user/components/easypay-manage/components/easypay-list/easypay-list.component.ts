@@ -17,8 +17,8 @@ export class EasypayListComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   searchKey: string;
-  loadingHideFlag = true;
-  noContentHideFlag = false;
+  loadingHideFlag = false;
+  noContentHideFlag = true;
   constructor(private easypayService: EasyPayService, private authService: AuthService,
               private router: Router,
               private alertService: ToastrService) { }
@@ -36,9 +36,9 @@ export class EasypayListComponent implements OnInit {
           return el !== 'actions' && dataa[el].indexOf(filter) !== -1;
         });
       };
-      this.loadingHideFlag = false;
-      if (data.length > 0) {
-        this.noContentHideFlag = true;
+      this.loadingHideFlag = true;
+      if (data.length === 0) {
+        this.noContentHideFlag = false;
       }
     }, error => {
         this.alertService.error(error, 'خطا');
@@ -54,7 +54,7 @@ export class EasypayListComponent implements OnInit {
     this.easyPays.filter = this.searchKey.trim();
   }
   onCreate() {
-    this.router.navigate(['/panel/user/easypay/addedit']);
+    this.router.navigate(['/panel/user/easypay/add']);
   }
   removeEasyPay(easypay: EasyPay) {
     // this.easypays.filter( p => p.id === easypay.id);

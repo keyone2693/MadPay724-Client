@@ -21,9 +21,7 @@
           <div class="card-title-wrap bar-success">
             <h4 class="card-title">افزودن ایزی پی</h4>
           </div>
-          <p>
-            ...
-          </p>
+          <p>...</p>
         </div>
         <div class="card-body">
           <div [formGroup]="easypayService.easypayForm">
@@ -115,16 +113,21 @@
               >
             </mat-form-field>
 
-            <mat-radio-group
-              formControlName="isWallet"
-              class="col-md-6 rdcss"
-            >
-              <div class="row">
-                <mat-radio-button class="col-md-4" value="true" checked
-                  >کیف پول</mat-radio-button
+            <div class="row">
+                <mat-radio-group
+                  formControlName="isWallet"
+                  class="col-md-3 rdcss"
                 >
+                  <mat-radio-button class="col-md-12" value="true" checked
+                    >کیف پول</mat-radio-button
+                  >
+                  <mat-radio-button class="col-md-12 margintopplus" value="false"
+                    >ایزی پی پرداخت</mat-radio-button
+                  >
+                </mat-radio-group>
+              <div class="col-md-6 inputradiocss">
                 <mat-form-field
-                  class="col-md-8 margintopminus"
+                  class="col-md-12 margintopminus"
                   *ngIf="
                     easypayService.easypayForm.get('isWallet').value ===
                       'true' ||
@@ -141,13 +144,8 @@
                   </mat-select>
                   <mat-error>کیف پول را انتخاب کنید</mat-error>
                 </mat-form-field>
-              </div>
-              <div class="row">
-                <mat-radio-button class="col-md-4 margintopplus" value="false"
-                  >ایزی پی پرداخت</mat-radio-button
-                >
                 <mat-form-field
-                  class="col-md-8"
+                  class="col-md-12 matradiocsss"
                   *ngIf="
                     easypayService.easypayForm.get('isWallet').value === 'false'
                   "
@@ -163,7 +161,8 @@
                   <mat-error> ایزی پی خود را انتخاب کنید</mat-error>
                 </mat-form-field>
               </div>
-            </mat-radio-group>
+            </div>
+
             <!--#endregion-->
 
             <!--#region inputEmail-->
@@ -421,7 +420,7 @@
                     easypayService.easypayForm.get('returnSuccess').touched
                   "
                 >
-                آدرس معتبری وارد کنید</mat-error
+                  آدرس معتبری وارد کنید</mat-error
                 >
               </mat-form-field>
               <mat-form-field class="col-md-6">
@@ -430,7 +429,7 @@
                   formControlName="returnFail"
                   placeholder="لینک بازگشت پرداخت ناموفق *"
                 />
-                 <mat-error
+                <mat-error
                   *ngIf="
                     easypayService.easypayForm
                       .get('returnFail')
@@ -438,14 +437,14 @@
                     easypayService.easypayForm.get('returnFail').touched
                   "
                 >
-                آدرس معتبری وارد کنید</mat-error
+                  آدرس معتبری وارد کنید</mat-error
                 >
               </mat-form-field>
             </div>
 
             <!--#endregion-->
           </div>
-         
+
           <button
             mat-raised-button
             (click)="onSubmit()"
@@ -456,7 +455,7 @@
             <i class="icon-check"></i>
             <span>افزودن ایزی پی</span>
           </button>
-           <button
+          <button
             mat-raised-button
             (click)="onClear()"
             color="warn"

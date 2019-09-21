@@ -62,6 +62,7 @@ import { EasypayListComponent } from './components/easypay-manage/components/eas
 import { EasyPayService } from 'src/app/Services/panel/user/easyPay.service';
 import { EasypayAddComponent } from './components/easypay-manage/components/easypay-add/easypay-add.component';
 import { EasyPayEditResolver } from 'src/app/resolvers/user/easypayEdit.resolver';
+import { EasypayEditComponent } from './components/easypay-manage/components/easypay-edit/easypay-edit.component';
 
 @NgModule({
   imports: [
@@ -117,7 +118,8 @@ import { EasyPayEditResolver } from 'src/app/resolvers/user/easypayEdit.resolver
     //
     EasypayManageComponent,
     EasypayListComponent,
-    EasypayAddComponent
+    EasypayAddComponent,
+    EasypayEditComponent
   ],
   providers: [
     UserService,

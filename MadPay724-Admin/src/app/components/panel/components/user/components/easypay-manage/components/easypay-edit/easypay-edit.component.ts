@@ -15,8 +15,8 @@ export class EasypayEditComponent implements OnInit, OnDestroy {
   subManager = new Subscription();
 
   constructor(private authService: AuthService,
-    private alertService: ToastrService, private route: ActivatedRoute,
-     private router: Router) { }
+              private alertService: ToastrService, private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.subManager.add(
