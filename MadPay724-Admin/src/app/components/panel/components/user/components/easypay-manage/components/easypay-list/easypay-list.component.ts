@@ -13,7 +13,7 @@ import { EasyPayService } from 'src/app/Services/panel/user/easyPay.service';
 })
 export class EasypayListComponent implements OnInit {
   easyPays: MatTableDataSource<any>;
-  displayedColumns: string[] = ['id', 'name', 'code', 'actions'];
+  displayedColumns: string[] = ['id', 'name', 'price', 'actions'];
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   searchKey: string;

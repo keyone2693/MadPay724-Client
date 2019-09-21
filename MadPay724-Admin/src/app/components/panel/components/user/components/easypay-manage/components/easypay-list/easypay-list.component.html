@@ -31,26 +31,26 @@
 
 <mat-table [dataSource]="easyPays" matSort class="mat-elevation-z8">
   <ng-container matColumnDef="id">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> نام </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> شناسه </mat-header-cell>
     <mat-cell *matCellDef="let easyPay"> {{ easyPay.id }} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="name">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> مبلغ </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> نام محصول </mat-header-cell>
     <mat-cell *matCellDef="let easyPay"> {{ easyPay.name }} </mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="code">
+  <ng-container matColumnDef="price">
     <mat-header-cell *matHeaderCellDef mat-sort-header>
-      متصل به
+      قیمت
     </mat-header-cell>
-    <mat-cell *matCellDef="let easyPay"> {{ easyPay.code }} </mat-cell>
+    <mat-cell *matCellDef="let easyPay"> {{ (easyPay.price | irc).replace('ریال','تومان') }}  </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="actions">
     <mat-header-cell *matHeaderCellDef> ویرایش / حذف </mat-header-cell>
     <mat-cell *matCellDef="let easyPay">
-      <button mat-button><i class="ft-edit edit-icon"></i></button>
+      <button mat-button [routerLink]="['/panel/user/easypay/edit/', easyPay.id]" ><i class="ft-edit edit-icon"></i></button>
       <button mat-button><i class="ft-trash-2 delete-icon"></i></button>
     </mat-cell>
   </ng-container>

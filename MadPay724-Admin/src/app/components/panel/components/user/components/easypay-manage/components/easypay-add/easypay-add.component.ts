@@ -45,12 +45,6 @@ export class EasypayAddComponent implements OnInit {
       }, error => {
         this.alertService.error(error, 'خطا در ثبت ایزی پی جدید');
       });
-      // this.easypayService.updateEasyPay(this.easypay, this.authService.decodedToken.nameid, this.easypay.id).subscribe(() => {
-      //   this.alertService.success('ایزی پی شما با موفقیت ویرایش شد', 'موفق');
-      //   this.onClear();
-      // }, error => {
-      //   this.alertService.error(error, 'خطا در ثبت ایزی پی جدید');
-      // });
     } else {
       this.alertService.warning('اطلاعات ایزی پی را به درستی وارد کنید', 'خطا');
     }
