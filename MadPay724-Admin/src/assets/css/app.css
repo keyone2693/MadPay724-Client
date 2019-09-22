@@ -46363,7 +46363,7 @@ datetime .form-group {
 .app-sidebar .logo-img, .off-canvas-sidebar .logo-img {
   width : 38px;
   display : inline-block;
-  margin-left : 15px;
+  margin-left : 8px;
 }
 .app-sidebar .logo-img img, .off-canvas-sidebar .logo-img img {
   width : 38px;
@@ -46957,7 +46957,7 @@ margin: 0 auto;
   height : 20px;
   line-height : 20px;
   text-align : center;
-  left : 18px;
+  left : 8px;
   top : 30px;
   color : rgba(255, 255, 255, 0.55);
 }

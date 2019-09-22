@@ -6,11 +6,11 @@
 >
   <div class="sidebar-header">
     <div class="logo clearfix">
-      <a href="index-2.html" class="logo-text float-right">
+      <a [routerLink]="['/panel/user/dashboard']" class="logo-text float-right">
         <div class="logo-img">
-          <img src="../assets/img/logo.png" alt="Convex Logo" />
+          <img src="../../../../assets/img/logos/small-logo.png" alt="madpay 724" />
         </div>
-        <span class="text align-middle">CONVEX</span> </a
+        <span class="text align-middle logomaintext">مادپی 724</span> </a
       ><a
         id="sidebarToggle"
         href="javascript:;"
@@ -99,19 +99,7 @@
             <!-- <span class="tag badge badge-pill badge-danger mt-1">2</span> -->
           </a>
           <ul class="menu-content">
-            <li
-              *appHasRole="['User', 'Admin', 'Blog', 'Accountant']"
-              routerLinkActive="active mlisub"
-            >
-              <a
-                [routerLink]="['/panel/user/userinfo/profile']"
-                class="menu-item"
-              >
-                <i class="icon-user-following"></i>
-                پروفایل</a
-              >
-            </li>
-            <li *appHasRole="['User']" routerLinkActive="active mlisub">
+             <li *appHasRole="['User']" routerLinkActive="active mlisub">
               <a
                 [routerLink]="['/panel/user/userinfo/documents']"
                 class="menu-item"
@@ -120,6 +108,16 @@
                 ارسال مدارک</a
               >
             </li>
+             <li *appHasRole="['User']" routerLinkActive="active mlisub">
+              <a
+                [routerLink]="['/panel/user/notification']"
+                class="menu-item"
+              >
+                <i class="ft-twitter"></i>
+                تنظیمات اطلاع رسانی</a
+              >
+            </li>
+           
           </ul>
         </li>
         <!--#endregion-->
@@ -128,6 +126,16 @@
           <a [routerLink]="['/panel/user/tickets']">
             <i class="icon-bubbles"> </i
             ><span class="menu-title">پشتیبانی</span></a
+          >
+        </li>
+        <li
+        *appHasRole="['User', 'Admin', 'Blog', 'Accountant']"
+              routerLinkActive="active mlisub"
+        class=" nav-item">
+          <a     
+            [routerLink]="['/panel/user/userinfo/profile']">
+            <i class="icon-user-following"></i>
+            <span class="menu-title">پروفایل</span></a
           >
         </li>
       </ul>

@@ -37,8 +37,8 @@
         <div class="card-body">
           <div class="row">
             <app-gate Class="col-xs-12 col-sm-6 col-md-4 col-lg-4"
-             *ngFor="let gate of gateWallets.gates"
-             [gate]="gate" [wallets]="gateWallets.wallets"></app-gate>
+             *ngFor="let gate of gateWallets?.gates"
+             [gate]="gate" [wallets]="gateWallets?.wallets"></app-gate>
           </div>
         </div>
       </div>

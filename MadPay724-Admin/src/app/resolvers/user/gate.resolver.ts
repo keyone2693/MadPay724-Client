@@ -4,7 +4,6 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from 'src/app/Services/auth/auth.service';
-import { Gate } from 'src/app/models/user/gate';
 import { GatesService } from 'src/app/Services/panel/user/gateService.service';
 import { GatesWallets } from 'src/app/models/user/gatesWallets';
 
