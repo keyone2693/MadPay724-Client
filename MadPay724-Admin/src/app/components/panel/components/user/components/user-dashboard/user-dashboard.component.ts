@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {
   IChartistData,
-  ILineChartOptions
+  ILineChartOptions,
+  IPieChartOptions,
+  IBarChartOptions
 } from 'chartist';
 import { ChartEvent, ChartType } from 'ng-chartist';
 import * as Chartist from 'chartist';
@@ -16,7 +18,7 @@ export class UserDashboardComponent implements OnInit {
   WidgetLineChartType: ChartType = 'Line';
   WidgetLineChartData: IChartistData = {
     labels: [1, 2, 3, 4, 5, 6],
-    series: [[0, 13, 6, 30, 18, 28]]
+    series: [[0, 5, 16, 24, 12, 28]]
   };
 
   WidgetLineChartOptions: ILineChartOptions = {
@@ -95,7 +97,7 @@ export class UserDashboardComponent implements OnInit {
   WidgetLineChart1Type: ChartType = 'Line';
   WidgetLineChart1Data: IChartistData = {
     labels: [1, 2, 3, 4, 5, 6],
-    series: [[0, 13, 6, 30, 18, 28]]
+    series: [[0, 17, 2, 30, 35, 48]]
   };
 
   WidgetLineChart1Options: ILineChartOptions = {
@@ -247,6 +249,256 @@ export class UserDashboardComponent implements OnInit {
   };
   //#endregion
 
+
+  //#region Stack-Bar-Chart
+  StackBarChartType: ChartType = 'Bar';
+  StackBarChartData: IChartistData = {
+    labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+    series: [[7, 4, 2, -2, -4, -7, -7, -4, -2, 2, 4, 7]]
+  };
+
+  StackBarChartOptions: Chartist.IBarChartOptions = {
+    axisX: {
+      showGrid: false
+    },
+    axisY: {
+      showGrid: true,
+      showLabel: false,
+      offset: 0
+    }
+  };
+
+  StackBarChartEvents: ChartEvent = {
+    created: (data) => {
+      const defs = data.svg.elem('defs');
+      defs.elem('linearGradient', {
+          id: 'StackbarGradient',
+          x1: 0,
+          y1: 1,
+          x2: 0,
+          y2: 0
+        }).elem('stop', {
+          offset: 0,
+          'stop-color': 'rgba(0, 201, 255,1)'
+        }).parent().elem('stop', {
+          offset: 1,
+          'stop-color': 'rgba(17,228,183, 1)'
+        });
+    },
+     draw: (data) => {
+       if (data.type === 'bar') {
+         data.element.attr({
+           style: 'stroke-width: 5px',
+           x1: data.x1 + 0.001
+         });
+
+         data.group.append(
+           new Chartist.Svg(
+             'circle',
+             {
+               cx: data.x2,
+               cy: data.y2,
+               r: 5
+             },
+             'ct-slice-bar'
+           )
+         );
+       } else if (data.type === 'label') {
+         data.element.attr({
+           y: 270
+         });
+       }
+     }
+  };
+  //#endregion
+
+  //#region Bar-Chart
+  BarChartType: ChartType = 'Bar';
+  BarChartData: IChartistData = {
+    labels: ['ورزشی', 'موزیک', 'مسافرت', 'اخبار', 'وبلاگ'],
+    series: [[35, 20, 30, 45, 55]]
+  };
+
+  BarChartOptions: IBarChartOptions = {
+    axisX: {
+      showGrid: false
+    },
+    axisY: {
+      showGrid: false,
+      showLabel: false,
+      offset: 0
+    },
+    low: 0,
+    high: 60
+  };
+
+  BarChartEvents: ChartEvent = {
+    created: (data) => {
+      const defs = data.svg.elem('defs');
+      defs.elem('linearGradient', {
+          id: 'gradient4',
+          x1: 0,
+          y1: 1,
+          x2: 0,
+          y2: 0
+        }).elem('stop', {
+          offset: 0,
+          'stop-color': 'rgba(238, 9, 121,1)'
+        }).parent().elem('stop', {
+          offset: 1,
+          'stop-color': 'rgba(255, 106, 0, 1)'
+        });
+      defs.elem('linearGradient', {
+          id: 'gradient5',
+          x1: 0,
+          y1: 1,
+          x2: 0,
+          y2: 0
+        }).elem('stop', {
+          offset: 0,
+          'stop-color': 'rgba(0, 75, 145,1)'
+        }).parent().elem('stop', {
+          offset: 1,
+          'stop-color': 'rgba(120, 204, 55, 1)'
+        });
+
+      defs.elem('linearGradient', {
+          id: 'gradient6',
+          x1: 0,
+          y1: 1,
+          x2: 0,
+          y2: 0
+        }).elem('stop', {
+          offset: 0,
+          'stop-color': 'rgba(132, 60, 247,1)'
+        }).parent().elem('stop', {
+          offset: 1,
+          'stop-color': 'rgba(56, 184, 242, 1)'
+        });
+      defs.elem('linearGradient', {
+          id: 'gradient7',
+          x1: 0,
+          y1: 1,
+          x2: 0,
+          y2: 0
+        }).elem('stop', {
+          offset: 0,
+          'stop-color': 'rgba(155, 60, 183,1)'
+        }).parent().elem('stop', {
+          offset: 1,
+          'stop-color': 'rgba(255, 57, 111, 1)'
+        });
+      defs.elem('linearGradient', {
+          id: 'gradient8',
+          x1: 0,
+          y1: 1,
+          x2: 0,
+          y2: 0
+        }).elem('stop', {
+          offset: 0,
+          'stop-color': 'rgba(0, 201, 255,1)'
+        }).parent().elem('stop', {
+          offset: 1,
+          'stop-color': 'rgba(17,228,183, 1)'
+        });
+    },
+    draw: (data) => {
+      if (data.type === 'bar') {
+        data.element.attr({
+          y1: 195,
+          x1: data.x1 + 0.001
+        });
+        data.group.append(
+          new Chartist.Svg(
+            'circle',
+            {
+              cx: data.x2,
+              cy: data.y2,
+              r: 12
+            },'ct-slice-bar'
+          )
+        );
+      }
+    }
+  };
+  //#endregion
+
+   //#region Dashboard-Chart
+  DashboardChartType: ChartType = 'Pie';
+  DashboardChartData: IChartistData = {
+    series: [
+      {
+        name: 'done',
+        className: 'ct-done',
+        value: 35
+      },
+      {
+        name: 'progress',
+        className: 'ct-progress',
+        value: 14
+      },
+      {
+        name: 'outstanding',
+        className: 'ct-outstanding',
+        value: 23
+      }
+    ]
+  };
+
+  DashboardChartOptions: IPieChartOptions = {
+    donut: true,
+    startAngle: 310,
+    donutSolid: true,
+    donutWidth: 30,
+    showLabel: false
+
+  };
+
+  DashboardChartEvents: ChartEvent = {
+    created: (data) => {
+      const defs = data.svg.elem('defs');
+      defs.elem('linearGradient', {
+        id: 'donutGradient1',
+        x1: 0,
+        y1: 1,
+        x2: 0,
+        y2: 0
+      }).elem('stop', {
+        offset: 0,
+        'stop-color': 'rgba(155, 60, 183,1)'
+      }).parent().elem('stop', {
+        offset: 1,
+        'stop-color': 'rgba(255, 57, 111, 1)'
+      });
+      defs.elem('linearGradient', {
+        id: 'donutGradient2',
+        x1: 0,
+        y1: 1,
+        x2: 0,
+        y2: 0
+      }).elem('stop', {
+        offset: 0,
+        'stop-color': 'rgba(0, 75, 145,0.8)'
+      }).parent().elem('stop', {
+        offset: 1,
+        'stop-color': 'rgba(120, 204, 55, 0.8)'
+      });
+      defs.elem('linearGradient', {
+        id: 'donutGradient3',
+        x1: 0,
+        y1: 1,
+        x2: 0,
+        y2: 0
+      }).elem('stop', {
+        offset: 0,
+        'stop-color': 'rgba(132, 60, 247,1)'
+      }).parent().elem('stop', {
+        offset: 1,
+        'stop-color': 'rgba(56, 184, 242, 1)'
+      });
+    }
+  };
+  //#endregion
 
   constructor() { }
 

@@ -607,55 +607,42 @@ export class DashboardComponent implements OnInit {
 
     donut.on('created', function (data) {
       var defs = data.svg.elem('defs');
-      defs
-        .elem('linearGradient', {
+      defs.elem('linearGradient', {
           id: 'donutGradient1',
           x1: 0,
           y1: 1,
           x2: 0,
           y2: 0
-        })
-        .elem('stop', {
+        }).elem('stop', {
           offset: 0,
           'stop-color': 'rgba(155, 60, 183,1)'
-        })
-        .parent()
-        .elem('stop', {
+        }).parent().elem('stop', {
           offset: 1,
           'stop-color': 'rgba(255, 57, 111, 1)'
         });
-      defs
-        .elem('linearGradient', {
+      defs.elem('linearGradient', {
           id: 'donutGradient2',
           x1: 0,
           y1: 1,
           x2: 0,
           y2: 0
-        })
-        .elem('stop', {
+        }).elem('stop', {
           offset: 0,
           'stop-color': 'rgba(0, 75, 145,0.8)'
-        })
-        .parent()
-        .elem('stop', {
+        }).parent().elem('stop', {
           offset: 1,
           'stop-color': 'rgba(120, 204, 55, 0.8)'
         });
-
-      defs
-        .elem('linearGradient', {
+      defs.elem('linearGradient', {
           id: 'donutGradient3',
           x1: 0,
           y1: 1,
           x2: 0,
           y2: 0
-        })
-        .elem('stop', {
+        }).elem('stop', {
           offset: 0,
           'stop-color': 'rgba(132, 60, 247,1)'
-        })
-        .parent()
-        .elem('stop', {
+        }).parent().elem('stop', {
           offset: 1,
           'stop-color': 'rgba(56, 184, 242, 1)'
         });

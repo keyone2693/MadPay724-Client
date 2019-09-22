@@ -181,8 +181,15 @@
                             </div>
                             <div class="card-body">
                                 <p class="font-medium-2 text-muted text-center pb-2">آخرین 12 ماه فروش</p>
-                                <div id="Stack-bar-chart" class="height-300 Stackbarchart mb-2">
-                                </div>
+                               
+                                   <x-chartist
+                                     id="Stack-bar-chart"
+                                     class="height-300 Stackbarchart mb-2"
+                                      [type]="StackBarChartType"
+                                      [data]="StackBarChartData"
+                                      [options]="StackBarChartOptions"
+                                      [events]="StackBarChartEvents"
+                                    ></x-chartist>
                             </div>
                         </div>
                     </div>
@@ -336,8 +343,15 @@
                             <div class="card-body">
 
                                 <p class="font-medium-2 text-muted text-center">سرگرمی</p>
-                                <div id="bar-chart" class="height-250 BarChartShadow BarChart">
-                                </div>
+                               
+                                <x-chartist
+                                     id="bar-chart"
+                                     class="height-250 BarChartShadow BarChart"
+                                      [type]="BarChartType"
+                                      [data]="BarChartData"
+                                      [options]="BarChartOptions"
+                                      [events]="BarChartEvents"
+                                    ></x-chartist>
 
                                 <div class="card-block">
                                     <div class="row">
@@ -381,9 +395,15 @@
                             <div class="card-body">
 
                                 <p class="font-medium-2 text-muted text-center">وظایف پروژه</p>
-                                <div id="donut-dashboard-chart" class="height-250 donut donutShadow">
-                                </div>
-
+                               
+  <x-chartist
+                                     id="donut-dashboard-chart"
+                                     class="height-250 donut donutShadow"
+                                      [type]="DashboardChartType"
+                                      [data]="DashboardChartData"
+                                      [options]="DashboardChartOptions"
+                                      [events]="DashboardChartEvents"
+                                    ></x-chartist>
                                 <div class="card-block">
                                     <div class="row my-3">
                                         <div class="col">
