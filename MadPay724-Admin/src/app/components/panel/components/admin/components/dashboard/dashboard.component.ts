@@ -29,10 +29,10 @@ export class DashboardComponent implements OnInit {
         fullWidth: true,
         showArea: true,
         onlyInteger: true,
-        targetLine: {
-          value: 30,
-          class: 'ct-target-line'
-        },
+         targetLine: {
+           value: 30,
+           class: 'ct-target-line'
+         },
         axisY: {
           showGrid: false,
           low: 0,
