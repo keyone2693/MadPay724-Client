@@ -15,14 +15,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="Widget-line-chart" class="height-150 lineChartWidget WidgetlineChart mb-2">
                                     <x-chartist
+                                     id="Widget-line-chart"
+                                     class="height-150 lineChartWidget WidgetlineChart mb-2"
                                       [type]="WidgetLineChartType"
                                       [data]="WidgetLineChartData"
                                       [options]="WidgetLineChartOptions"
                                       [events]="WidgetLineChartEvents"
                                     ></x-chartist>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -39,9 +39,15 @@
                                             <i class="icon-wallet font-large-1 warning"></i>
                                         </div>
                                     </div>
-                                </div>
-                                <div id="Widget-line-chart1" class="height-150 lineChartWidget WidgetlineChart1 mb-2">
-                                </div>
+                                </div>                               
+                                 <x-chartist
+                                     id="Widget-line-chart1"
+                                     class="height-150 lineChartWidget WidgetlineChart1 mb-2"
+                                      [type]="WidgetLineChart1Type"
+                                      [data]="WidgetLineChart1Data"
+                                      [options]="WidgetLineChart1Options"
+                                      [events]="WidgetLineChart1Events"
+                                    ></x-chartist>
 
                             </div>
                         </div>
@@ -60,8 +66,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="Widget-line-chart2" class="height-150 lineChartWidget WidgetlineChart2 mb-2">
-                                </div>
+                                <x-chartist
+                                     id="Widget-line-chart2"
+                                     class="height-150 lineChartWidget WidgetlineChart2 mb-2"
+                                      [type]="WidgetLineChart2Type"
+                                      [data]="WidgetLineChart2Data"
+                                      [options]="WidgetLineChart2Options"
+                                      [events]="WidgetLineChart2Events"
+                                    ></x-chartist>
                             </div>
                         </div>
                     </div>
@@ -78,8 +90,15 @@
                             </div>
                             <div class="card-body">
                                 <div class="card-block">
-                                    <div id="line-chart" class="height-300 lineChart lineChartShadow">
-                                    </div>
+                                    
+                                    <x-chartist
+                                     id="line-chart"
+                                     class="height-300 lineChart lineChartShadow"
+                                      [type]="LineChartType"
+                                      [data]="LineChartData"
+                                      [options]="LineChartOptions"
+                                      [events]="LineChartEvents"
+                                    ></x-chartist>
                                 </div>
                             </div>
                         </div>
