@@ -19,7 +19,7 @@ export class GateManageComponent implements OnInit, OnDestroy {
   gateWallets: GatesWallets;
   subManager = new Subscription();
   constructor(private dialog: MatDialog, private route: ActivatedRoute, private alertService: ToastrService,
-              private gateService: GatesService, private authService: AuthService) { }
+    private gateService: GatesService, private authService: AuthService) { }
 
   ngOnInit() {
     this.loadGates();
@@ -33,17 +33,25 @@ export class GateManageComponent implements OnInit, OnDestroy {
     });
   }
   onCreate() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.data = this.gateWallets.wallets;
-    const dialogRef = this.dialog.open(GateFormComponent, dialogConfig);
-    const sub = dialogRef.componentInstance.newGate.subscribe((data) => {
-      this.insertBankCard(data);
-    });
-    dialogRef.afterClosed().subscribe(() => {
-      sub.unsubscribe();
-    });
+    if (this.gateWallets === null || this.gateWallets === undefined) {
+      this.alertService.error(' برای دسترسی به این بخش باید مدارک شما ارسال و تایید شده باشد '
+        + ' برای بررسی مدارک به '
+        + ' صفحه ارسال '
+        + ' مراجعه کنید !!! ', 'توجه');
+    } else {
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.disableClose = true;
+      dialogConfig.autoFocus = true;
+      dialogConfig.data = this.gateWallets.wallets;
+      const dialogRef = this.dialog.open(GateFormComponent, dialogConfig);
+      const sub = dialogRef.componentInstance.newGate.subscribe((data) => {
+        this.insertBankCard(data);
+      });
+      dialogRef.afterClosed().subscribe(() => {
+        sub.unsubscribe();
+      });
+    }
+
   }
   insertBankCard(gate: Gate) {
     this.gateWallets.gates.push(gate);

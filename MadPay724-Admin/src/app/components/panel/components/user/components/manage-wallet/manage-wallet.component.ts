@@ -32,19 +32,25 @@ export class ManageWalletComponent implements OnInit, OnDestroy {
     });
   }
   onCreate() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.data = this.wallets;
-    const dialogRef = this.dialog.open(WalletFormComponent, dialogConfig);
-    const sub = dialogRef.componentInstance.newWallet.subscribe((data) => {
-      // this.insertWallet(data);
-      this.refreshWallets();
-    });
-    dialogRef.afterClosed().subscribe(() => {
-      sub.unsubscribe();
-    });
-
+    if (this.wallets === null || this.wallets === undefined) {
+      this.alertService.error(' برای دسترسی به این بخش باید مدارک شما ارسال و تایید شده باشد '
+        + ' برای بررسی مدارک به '
+        + ' صفحه ارسال '
+        + ' مراجعه کنید !!! ', 'توجه');
+    } else {
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.disableClose = true;
+      dialogConfig.autoFocus = true;
+      dialogConfig.data = this.wallets;
+      const dialogRef = this.dialog.open(WalletFormComponent, dialogConfig);
+      const sub = dialogRef.componentInstance.newWallet.subscribe((data) => {
+        // this.insertWallet(data);
+        this.refreshWallets();
+      });
+      dialogRef.afterClosed().subscribe(() => {
+        sub.unsubscribe();
+      });
+    }
   }
   refreshWallets() {
     this.subManager.add(

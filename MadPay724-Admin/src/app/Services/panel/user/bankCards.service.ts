@@ -23,20 +23,20 @@ export class BankCardsService {
     expireDateYear: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(4)]]
   });
 
-  getBankCards(id: string): Observable<BankCard[]> {
-    return this.http.get<BankCard[]>(this.baseUrl + 'users/' + id + '/bankcards');
+  getBankCards(userId: string): Observable<BankCard[]> {
+    return this.http.get<BankCard[]>(this.baseUrl + 'users/' + userId + '/bankcards');
   }
 
-  addBankCard(bankCard: BankCard, id: string): Observable<BankCard> {
-    return this.http.post<BankCard>(this.baseUrl + 'users/' + id + '/bankcards', bankCard);
+  addBankCard(bankCard: BankCard, userId: string): Observable<BankCard> {
+    return this.http.post<BankCard>(this.baseUrl + 'users/' + userId + '/bankcards', bankCard);
   }
 
-  updateBankCard(bankCard: BankCard) {
-    return this.http.put(this.baseUrl + 'bankcards/' + bankCard.id, bankCard);
+  updateBankCard(bankCard: BankCard, userId: string) {
+    return this.http.put(this.baseUrl + 'users/' + userId +  '/bankcards/' + bankCard.id, bankCard);
   }
 
-  deleteBankCard(id: string) {
-    return this.http.delete(this.baseUrl + 'bankcards/' + id);
+  deleteBankCard(id: string, userId: string) {
+    return this.http.delete(this.baseUrl + 'users/' + userId +  '/bankcards/' + id);
   }
 
   populateForm(bankCard: BankCard) {

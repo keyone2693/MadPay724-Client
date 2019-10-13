@@ -42,7 +42,7 @@ export class EditBankCardComponent implements OnInit {
               this.alertService.error(error, 'خطا در ثبت کارت جدید');
             });
       } else {
-        this.bankCardService.updateBankCard(this.bankcard).subscribe(() => {
+        this.bankCardService.updateBankCard(this.bankcard, this.authService.decodedToken.nameid).subscribe(() => {
             this.alertService.success('کارت بانکی شما با موفقیت ویرایش شد', 'موفق');
             this.alertService.info('کارت شما در انتظار تایید میباشد', 'توجه');
             this.onClear();

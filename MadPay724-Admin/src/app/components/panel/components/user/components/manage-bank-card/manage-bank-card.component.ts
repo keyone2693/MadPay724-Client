@@ -15,8 +15,8 @@ export class ManageBankCardComponent implements OnInit {
   formTitle: string;
   bankCards: BankCard[];
   constructor(private dialog: MatDialog, private route: ActivatedRoute, private alertService: ToastrService,
-              private bankcardService: BankCardsService,
-              private authService: AuthService) {}
+    private bankcardService: BankCardsService,
+    private authService: AuthService) { }
 
   ngOnInit() {
     this.loadBankCards();
@@ -27,17 +27,24 @@ export class ManageBankCardComponent implements OnInit {
     });
   }
   onCreate() {
-    this.formTitle = 'افزودن کارت بانکی جدید';
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    const dialogRef = this.dialog.open(EditBankCardComponent, dialogConfig);
-    const sub = dialogRef.componentInstance.newBankCard.subscribe((data) => {
-      this.insertBankCard(data);
-    });
-    dialogRef.afterClosed().subscribe(() => {
-      sub.unsubscribe();
-    });
+    if (this.bankCards === null || this.bankCards === undefined) {
+      this.alertService.error(' برای دسترسی به این بخش باید مدارک شما ارسال و تایید شده باشد '
+        + ' برای بررسی مدارک به '
+        + ' صفحه ارسال '
+        + ' مراجعه کنید !!! ', 'توجه');
+    } else {
+      this.formTitle = 'افزودن کارت بانکی جدید';
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.disableClose = true;
+      dialogConfig.autoFocus = true;
+      const dialogRef = this.dialog.open(EditBankCardComponent, dialogConfig);
+      const sub = dialogRef.componentInstance.newBankCard.subscribe((data) => {
+        this.insertBankCard(data);
+      });
+      dialogRef.afterClosed().subscribe(() => {
+        sub.unsubscribe();
+      });
+    }
 
   }
   insertBankCard(bankCard: BankCard) {
@@ -54,8 +61,8 @@ export class ManageBankCardComponent implements OnInit {
     });
   }
   removeBankCard(bankCard: BankCard) {
-   // this.bankCards.filter( p => p.id === bankCard.id);
-    this.bankCards.splice(this.bankCards.indexOf(bankCard) , 1);
+    // this.bankCards.filter( p => p.id === bankCard.id);
+    this.bankCards.splice(this.bankCards.indexOf(bankCard), 1);
   }
 
 }

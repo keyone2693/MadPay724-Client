@@ -46,10 +46,24 @@ export class EasypayListComponent implements OnInit {
     this.applyFilter();
   }
   applyFilter() {
-    this.easyPays.filter = this.searchKey.trim();
+    if (this.easyPays === null || this.easyPays === undefined) {
+      this.alertService.error(' برای دسترسی به این بخش باید مدارک شما ارسال و تایید شده باشد '
+        + ' برای بررسی مدارک به '
+        + ' صفحه ارسال '
+        + ' مراجعه کنید !!! ', 'توجه');
+    } else {
+      this.easyPays.filter = this.searchKey.trim();
+    }
   }
   onCreate() {
-    this.router.navigate(['/panel/user/easypay/add']);
+    if (this.easyPays === null || this.easyPays === undefined) {
+      this.alertService.error(' برای دسترسی به این بخش باید مدارک شما ارسال و تایید شده باشد '
+        + ' برای بررسی مدارک به '
+        + ' صفحه ارسال '
+        + ' مراجعه کنید !!! ', 'توجه');
+    } else {
+      this.router.navigate(['/panel/user/easypay/add']);
+    }
   }
   onDelete(easypay: EasyPay) {
       this.easypayService.deleteEasyPay(this.authService.decodedToken.nameid, easypay.id).subscribe(() => {
