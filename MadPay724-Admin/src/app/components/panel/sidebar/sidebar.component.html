@@ -8,7 +8,10 @@
     <div class="logo clearfix">
       <a [routerLink]="['/panel/user/dashboard']" class="logo-text float-right">
         <div class="logo-img">
-          <img src="../../../../assets/img/logos/small-logo.png" alt="madpay 724" />
+          <img
+            src="../../../../assets/img/logos/small-logo.png"
+            alt="madpay 724"
+          />
         </div>
         <span class="text align-middle logomaintext">مادپی 724</span> </a
       ><a
@@ -61,6 +64,38 @@
 
         <!--#endregion-->
 
+        <!--#region Blog-->
+        <li *appHasRole="['AdminBlog', 'Blog']" routerLinkActive="active" class=" nav-item">
+          <a [routerLink]="['/panel/blog/dashboard']"
+            ><i class="icon-home"></i
+            ><span data-i18n="" class="menu-title">داشبورد</span></a
+          >
+        </li>
+        <li *appHasRole="['Admin', 'AdminBlog', 'Blog']" class="has-sub nav-item">
+          <a href="javascript:;">
+            <i class="ft-clipboard"></i>
+            <span data-i18n="" class="menu-title">بلاگ</span>
+            <span class="tag badge badge-pill badge-danger mt-1">2</span>
+          </a>
+          <ul class="menu-content">
+            <li routerLinkActive="active mlisub">
+              <a
+                [routerLink]="['/panel/blog/bloggroup']"
+                class="menu-item"
+              >
+                <i class="ft-copy"></i>
+                مدیریت دسته بندی </a
+              >
+            </li>
+            <li  routerLinkActive="active mlisub">
+              <a [routerLink]="['/panel/blog/blogmanagement']" class="menu-item">
+                <i class="ft-airplay"></i>
+                مدیریت بلاگ</a>
+            </li>
+          </ul>
+        </li>
+        <!--#endregion-->
+
         <!--#region User-->
         <li *appHasRole="['User']" routerLinkActive="active" class=" nav-item">
           <a [routerLink]="['/panel/user/dashboard']"
@@ -86,20 +121,20 @@
             ><span data-i18n="" class="menu-title">کیف پول</span></a
           >
         </li>
-         <li *appHasRole="['User']" routerLinkActive="active" class=" nav-item">
+        <li *appHasRole="['User']" routerLinkActive="active" class=" nav-item">
           <a [routerLink]="['/panel/user/easypay']"
             ><i class="icon-link"></i
             ><span data-i18n="" class="menu-title">ایزی پی</span></a
           >
         </li>
-        <li class="has-sub nav-item">
+        <li *appHasRole="['User']" class="has-sub nav-item">
           <a href="javascript:;">
             <i class="icon-info"></i>
             <span data-i18n="" class="menu-title">اطلاعات شما</span>
             <!-- <span class="tag badge badge-pill badge-danger mt-1">2</span> -->
           </a>
           <ul class="menu-content">
-             <li *appHasRole="['User']" routerLinkActive="active mlisub">
+            <li routerLinkActive="active mlisub">
               <a
                 [routerLink]="['/panel/user/userinfo/documents']"
                 class="menu-item"
@@ -108,20 +143,17 @@
                 ارسال مدارک</a
               >
             </li>
-             <li *appHasRole="['User']" routerLinkActive="active mlisub">
-              <a
-                [routerLink]="['/panel/user/notification']"
-                class="menu-item"
-              >
+            <li routerLinkActive="active mlisub">
+              <a [routerLink]="['/panel/user/notification']" class="menu-item">
                 <i class="ft-twitter"></i>
                 تنظیمات اطلاع رسانی</a
               >
             </li>
-           
           </ul>
         </li>
         <!--#endregion-->
-
+     
+        <!--#region Com-->
         <li *appHasRole="['User']" routerLinkActive="active" class=" nav-item">
           <a [routerLink]="['/panel/user/tickets']">
             <i class="icon-bubbles"> </i
@@ -129,15 +161,15 @@
           >
         </li>
         <li
-        *appHasRole="['User', 'Admin', 'Blog', 'Accountant']"
-              routerLinkActive="active mlisub"
-        class=" nav-item">
-          <a     
-            [routerLink]="['/panel/user/userinfo/profile']">
+          *appHasRole="['User', 'Admin', 'AdminBlog', 'Blog', 'Accountant']"
+          routerLinkActive="active mlisub"
+          class=" nav-item"
+        >
+          <a [routerLink]="['/panel/user/userinfo/profile']">
             <i class="icon-user-following"></i>
             <span class="menu-title">پروفایل</span></a
           >
-        </li>
+        <!--#endregion-->
       </ul>
     </div>
   </div>

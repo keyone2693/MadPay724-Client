@@ -81,7 +81,7 @@ import { ChartistModule } from 'ng-chartist';
     // InfiniteScrollModule,
     // NgxUiLoaderModule,
     SweetAlert2Module.forRoot(),
-    ChartistModule 
+    ChartistModule
   ],
   declarations: [
     PersianTimeAgoPipe,

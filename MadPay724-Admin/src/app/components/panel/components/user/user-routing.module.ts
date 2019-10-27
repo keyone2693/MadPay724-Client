@@ -51,7 +51,7 @@ const routes: Routes = [
       // userinfo
       {
         path: 'userinfo/profile', canActivate: [AuthGuard], component: ProfileComponent,
-        data: { roles: ['User', 'Admin', 'Blog', 'Accountant'], title: ['پروفایل کاربری'] },
+        data: { roles: ['User', 'Admin', 'AdminBlog', 'Blog', 'Accountant'], title: ['پروفایل کاربری'] },
         resolve: { user: UserProfileResolver },
         canDeactivate: [PreventUnsavedGuard]
       },

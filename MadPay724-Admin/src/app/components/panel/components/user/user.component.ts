@@ -8,11 +8,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UserComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+  constructor() { }
 
   ngOnInit() {
-    console.log(this.route.snapshot.paramMap.get('Authority'));
-
   }
 
 }
