@@ -1,0 +1,37 @@
+<!-- User Profile Starts-->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/panel/dashboard']">داشبورد</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/panel/user/gate']">دسته بندی بلاگ </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">
+      مشاهده و ویرایش دسته بندیه بلاگ ها
+    </li>
+  </ol>
+</nav>
+<!--Basic User Details Starts-->
+<section id="user-area">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-wrap bar-success">
+            <h4 class="card-title">لینک های دسته بندی</h4>
+          </div>
+          <p>
+            تمام لینک های شما در این صفحه نمایش داده می‌شوند
+          </p>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <app-blog-group-list class="col-md-12"></app-blog-group-list>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--User Profile Starts-->
