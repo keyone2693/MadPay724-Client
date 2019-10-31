@@ -6,18 +6,19 @@ import { AuthGuard } from 'src/app/guards/auth.guard';
 import { HasRoleDirective } from 'src/app/directives/hasRole.directive';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { HasRoleModule } from 'src/app/Shared/Modules/hasRole/hasRole.module';
 
 
 @NgModule({
   imports: [
     PanelRoutingModule,
-    CommonModule
+    CommonModule,
+    HasRoleModule
   ],
   declarations: [
     PanelComponent,
     NavbarComponent,
-    SidebarComponent,
-    HasRoleDirective
+    SidebarComponent
   ],
   providers: [
     AuthGuard

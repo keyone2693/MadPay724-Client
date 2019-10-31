@@ -13,6 +13,11 @@ import { BlogMaterialModule } from 'src/app/Shared/Modules/material/blog-materia
 import { BlogManageComponent } from './components/blog-manage/blog-manage.component';
 import { BlogGroupListComponent } from './components/blog-group-manage/components/blog-group-list/blog-group-list.component';
 import { BlogGroupService } from 'src/app/Services/panel/blog/blogGroup.service';
+import { BlogGroupResolver } from 'src/app/resolvers/user/blogGroup.resolver';
+import { BlogGroupEditComponent } from './components/blog-group-manage/components/blog-group-edit/blog-group-edit.component';
+import { BlogGroupAddComponent } from './components/blog-group-manage/components/blog-group-add/blog-group-add.component';
+import { BlogGroupManageComponent } from './components/blog-group-manage/blog-group-manage.component';
+import { HasRoleModule } from 'src/app/Shared/Modules/hasRole/hasRole.module';
 
 @NgModule({
   imports: [
@@ -25,16 +30,22 @@ import { BlogGroupService } from 'src/app/Services/panel/blog/blogGroup.service'
     DigitOnlyModule,
     PersianDateModule,
     SweetAlert2Module.forRoot(),
-    ChartistModule
+    ChartistModule,
+    HasRoleModule
   ],
   declarations: [
     BlogComponent,
     BlogDashboardComponent,
     BlogManageComponent,
-    BlogGroupListComponent
+    BlogGroupManageComponent,
+    BlogGroupListComponent,
+    BlogGroupAddComponent,
+    BlogGroupEditComponent
   ],
   providers: [
     BlogGroupService,
+    //
+    BlogGroupResolver
     // { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },
     // { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS }
   ],

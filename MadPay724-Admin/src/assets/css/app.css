@@ -5317,11 +5317,11 @@ input[type='submit'].btn-block, input[type='reset'].btn-block, input[type='butto
 }
 
 .badge-success {
-  color : #212529;
+  color : #fff;
   background-color : #28D094;
 }
 .badge-success[href]:hover, .badge-success[href]:focus {
-  color : #212529;
+  color : #fff;
   text-decoration : none;
   background-color : #20A576;
 }

@@ -13,25 +13,25 @@ import { AuthService } from 'src/app/Services/auth/auth.service';
 })
 export class BlogGroupListComponent implements OnInit {
 
- 
-
   blogGroups: MatTableDataSource<BlogGroup>;
+  blogGroupsArray: BlogGroup[];
   displayedColumns: string[] = ['id', 'name', 'price', 'actions'];
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   searchKey: string;
   loadingHideFlag = false;
   noContentHideFlag = true;
-  constructor(private easypayService: BlogGroupService, private authService: AuthService,
-    private router: Router,
-    private alertService: ToastrService) { }
+  constructor(private blogGroupService: BlogGroupService, private authService: AuthService,
+              private router: Router,
+              private alertService: ToastrService) { }
 
   ngOnInit() {
     this.loadBlogGroups();
   }
   loadBlogGroups() {
-    this.easypayService.getBlogGroups(this.authService.decodedToken.nameid).subscribe((data) => {
+    this.blogGroupService.getBlogGroups(this.authService.decodedToken.nameid).subscribe((data) => {
       this.blogGroups = new MatTableDataSource(data);
+      this.blogGroupsArray = data;
       this.blogGroups.sort = this.sort;
       this.blogGroups.paginator = this.paginator;
       this.loadingHideFlag = true;
@@ -49,32 +49,26 @@ export class BlogGroupListComponent implements OnInit {
     this.applyFilter();
   }
   applyFilter() {
-    if (this.blogGroups === null || this.blogGroups === undefined) {
-      this.alertService.error(' برای دسترسی به این بخش باید مدارک شما ارسال و تایید شده باشد '
-        + ' برای بررسی مدارک به '
-        + ' صفحه ارسال '
-        + ' مراجعه کنید !!! ', 'توجه');
-    } else {
       this.blogGroups.filter = this.searchKey.trim();
+  }
+  getBlogGroupById(blogGroupId: string): string {
+    const bg = this.blogGroupsArray.find(p => p.id === blogGroupId);
+    if (bg != null && bg !== undefined) {
+      return bg.name;
+    } else {
+      return 'بدون پرنت';
     }
   }
   onCreate() {
-    if (this.blogGroups === null || this.blogGroups === undefined) {
-      this.alertService.error(' برای دسترسی به این بخش باید مدارک شما ارسال و تایید شده باشد '
-        + ' برای بررسی مدارک به '
-        + ' صفحه ارسال '
-        + ' مراجعه کنید !!! ', 'توجه');
-    } else {
-      this.router.navigate(['/panel/user/easypay/add']);
-    }
+      this.router.navigate(['/panel/blog/bloggroup/add']);
   }
-  onDelete(easypay: BlogGroup) {
-    this.easypayService.deleteBlogGroup(this.authService.decodedToken.nameid, easypay.id).subscribe(() => {
-      this.alertService.success('ایزی پی مورد نظر ب موفقیت حذف شد', 'موفق');
-      this.blogGroups.data.splice(this.blogGroups.data.indexOf(easypay), 1);
+  onDelete(blogGroup: BlogGroup) {
+    this.blogGroupService.deleteBlogGroup(this.authService.decodedToken.nameid, blogGroup.id).subscribe(() => {
+      this.alertService.success('دسته بندی بلاگ مورد نظر ب موفقیت حذف شد', 'موفق');
+      this.blogGroups.data.splice(this.blogGroups.data.indexOf(blogGroup), 1);
       this.blogGroups._updateChangeSubscription();
     }, error => {
-      this.alertService.error(error, 'خطا در حذف ایزی پی');
+      this.alertService.error(error, 'خطا در حذف دسته بندی بلاگ');
     });
   }
 
