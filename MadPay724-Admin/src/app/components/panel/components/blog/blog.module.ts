@@ -18,6 +18,7 @@ import { BlogGroupEditComponent } from './components/blog-group-manage/component
 import { BlogGroupAddComponent } from './components/blog-group-manage/components/blog-group-add/blog-group-add.component';
 import { BlogGroupManageComponent } from './components/blog-group-manage/blog-group-manage.component';
 import { HasRoleModule } from 'src/app/Shared/Modules/hasRole/hasRole.module';
+import { BlogGroupEditResolver } from 'src/app/resolvers/blog/blogGroupEdit.resolver';
 
 @NgModule({
   imports: [
@@ -45,7 +46,8 @@ import { HasRoleModule } from 'src/app/Shared/Modules/hasRole/hasRole.module';
   providers: [
     BlogGroupService,
     //
-    BlogGroupResolver
+    BlogGroupResolver,
+    BlogGroupEditResolver
     // { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },
     // { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS }
   ],

@@ -7,6 +7,7 @@ import { BlogGroupManageComponent } from './components/blog-group-manage/blog-gr
 import { BlogGroupAddComponent } from './components/blog-group-manage/components/blog-group-add/blog-group-add.component';
 import { BlogGroupEditComponent } from './components/blog-group-manage/components/blog-group-edit/blog-group-edit.component';
 import { BlogGroupResolver } from 'src/app/resolvers/blog/blogGroup.resolver';
+import { BlogGroupEditResolver } from 'src/app/resolvers/blog/blogGroupEdit.resolver';
 
 const routes: Routes = [
     {
@@ -29,7 +30,7 @@ const routes: Routes = [
                 data: { roles: ['Admin', 'AdminBlog'], title: ['افزودن دسته بندی بلاگ'] }
             },
             {
-                path: 'bloggroup/edit/:easypayId', canActivate: [AuthGuard],
+                path: 'bloggroup/edit/:bloggroupId', canActivate: [AuthGuard],
                 resolve: { bloggroups: BlogGroupResolver }, component: BlogGroupEditComponent,
                 data: { roles: ['Admin', 'AdminBlog'], title: ['ویرایش دسته بندی بلاگ '] },
             }

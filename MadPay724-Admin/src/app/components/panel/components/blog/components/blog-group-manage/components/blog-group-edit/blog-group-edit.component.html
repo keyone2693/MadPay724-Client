@@ -1,3 +1,99 @@
-<p>
-  blog-group-edit works!
-</p>
+<!-- User Profile Starts-->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/panel/dashboard']">داشبورد</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/panel/user/gate']"> دسته بندی بلاگ </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">
+      ویرایش دسته بندی {{blogGroup?.name}}
+    </li>
+  </ol>
+</nav>
+<!--Basic User Details Starts-->
+<section id="user-area">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-wrap bar-success">
+            <h4 class="card-title">ویرایش دسته بندی {{blogGroup?.name}}</h4>
+          </div>
+          <p>...</p>
+        </div>
+        <div class="card-body">
+          <div [formGroup]="blogGroupEditForm">
+            <!--#region info-->
+           
+           <div class="row">
+              <mat-form-field class="col-md-4">
+              <input
+                matInput
+                formControlName="name"
+                placeholder="عنوان دسته بندی *"
+              />
+              <mat-error
+                *ngIf="
+                  blogGroupEditForm
+                    .get('name')
+                    .hasError('required') &&
+                  blogGroupEditForm.get('name').touched
+                "
+                >این فیلد نمیتواند خالی باشد</mat-error
+              >
+              <mat-error
+                *ngIf="
+                  blogGroupEditForm
+                    .get('name')
+                    .hasError('maxlength') &&
+                  blogGroupEditForm.get('name').touched
+                "
+              >
+                این فیلد نمیتواند بیشتر از 150 کاراکتر باشد</mat-error
+              >
+            </mat-form-field>
+           </div>
+            <div class="row">
+               <mat-form-field class="col-md-6">
+              <mat-label>انتخاب دسته بندی *</mat-label>
+              <mat-select formControlName="parent">
+                <mat-option value="0">
+                  بدون پرنت
+              </mat-option>
+                <mat-option *ngFor="let bg of blogGroups" value="{{ bg.id }}">
+                  {{bg.name}}
+              </mat-option>
+              </mat-select>
+            </mat-form-field>              
+            </div>
+
+            <!--#endregion-->
+
+            <button
+              mat-raised-button
+              (click)="onSubmit()"
+              [disabled]="blogGroupEditForm.invalid"
+              color="green"
+              class="float-left mb-10"
+            >
+              <i class="icon-check"></i>
+              <span>ویرایش دسته بندی</span>
+            </button>
+            <button
+              mat-raised-button
+              (click)="onClear()"
+              color="warn"
+              class="float-left mb-10"
+            >
+              <i class="icon-close"></i>
+              انصراف
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--User Profile Starts-->
