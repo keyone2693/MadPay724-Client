@@ -13,7 +13,7 @@ import { BlogMaterialModule } from 'src/app/Shared/Modules/material/blog-materia
 import { BlogManageComponent } from './components/blog-manage/blog-manage.component';
 import { BlogGroupListComponent } from './components/blog-group-manage/components/blog-group-list/blog-group-list.component';
 import { BlogGroupService } from 'src/app/Services/panel/blog/blogGroup.service';
-import { BlogGroupResolver } from 'src/app/resolvers/user/blogGroup.resolver';
+import { BlogGroupResolver } from 'src/app/resolvers/blog/blogGroup.resolver';
 import { BlogGroupEditComponent } from './components/blog-group-manage/components/blog-group-edit/blog-group-edit.component';
 import { BlogGroupAddComponent } from './components/blog-group-manage/components/blog-group-add/blog-group-add.component';
 import { BlogGroupManageComponent } from './components/blog-group-manage/blog-group-manage.component';

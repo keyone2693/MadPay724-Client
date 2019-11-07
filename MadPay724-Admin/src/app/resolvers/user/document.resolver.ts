@@ -3,8 +3,8 @@ import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { AuthService } from '../Services/auth/auth.service';
-import { DocumentService } from '../Services/panel/user/document.service';
+import { AuthService } from '../../Services/auth/auth.service';
+import { DocumentService } from '../../Services/panel/user/document.service';
 
 @Injectable()
 export class DocumentResolver implements Resolve<Document[]> {

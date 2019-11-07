@@ -3,10 +3,9 @@ import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { AuthService } from '../Services/auth/auth.service';
-import { BankCard } from '../models/bankcard';
-import { BankCardsService } from '../Services/panel/user/bankCards.service';
-import { HttpErrorResponse } from '@angular/common/http';
+import { AuthService } from '../../Services/auth/auth.service';
+import { BankCard } from '../../models/bankcard';
+import { BankCardsService } from '../../Services/panel/user/bankCards.service';
 
 @Injectable()
 export class BankCardResolver implements Resolve<BankCard[]> {

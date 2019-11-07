@@ -6,7 +6,7 @@ import { NgModule } from '@angular/core';
 import { BlogGroupManageComponent } from './components/blog-group-manage/blog-group-manage.component';
 import { BlogGroupAddComponent } from './components/blog-group-manage/components/blog-group-add/blog-group-add.component';
 import { BlogGroupEditComponent } from './components/blog-group-manage/components/blog-group-edit/blog-group-edit.component';
-import { BlogGroupResolver } from 'src/app/resolvers/user/blogGroup.resolver';
+import { BlogGroupResolver } from 'src/app/resolvers/blog/blogGroup.resolver';
 
 const routes: Routes = [
     {
@@ -25,12 +25,12 @@ const routes: Routes = [
             },
             {
                 path: 'bloggroup/add', canActivate: [AuthGuard],
-                resolve: { gateswallets: BlogGroupResolver }, component: BlogGroupAddComponent,
+                resolve: { bloggroups: BlogGroupResolver }, component: BlogGroupAddComponent,
                 data: { roles: ['Admin', 'AdminBlog'], title: ['افزودن دسته بندی بلاگ'] }
             },
             {
                 path: 'bloggroup/edit/:easypayId', canActivate: [AuthGuard],
-                resolve: { easypayGatesWallets: BlogGroupResolver }, component: BlogGroupEditComponent,
+                resolve: { bloggroups: BlogGroupResolver }, component: BlogGroupEditComponent,
                 data: { roles: ['Admin', 'AdminBlog'], title: ['ویرایش دسته بندی بلاگ '] },
             }
         ]

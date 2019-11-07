@@ -3,9 +3,9 @@ import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { AuthService } from '../Services/auth/auth.service';
-import { Wallet } from '../models/wallet';
-import { WalletService } from '../Services/panel/user/wallet.service';
+import { AuthService } from '../../Services/auth/auth.service';
+import { Wallet } from '../../models/wallet';
+import { WalletService } from '../../Services/panel/user/wallet.service';
 
 @Injectable()
 export class WalletResolver implements Resolve<Wallet[]> {

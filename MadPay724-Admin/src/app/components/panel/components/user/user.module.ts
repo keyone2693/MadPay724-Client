@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserComponent } from './user.component';
 import { UserService } from 'src/app/Services/panel/user.service';
-import { UserProfileResolver } from 'src/app/resolvers/userprofile.resolver';
+import { UserProfileResolver } from 'src/app/resolvers/user/userprofile.resolver';
 import { PreventUnsavedGuard } from 'src/app/guards/prevent-unsaved.guard';
 import { FileUploadModule } from 'ng2-file-upload';
 
@@ -16,9 +16,9 @@ import { UserDashboardComponent } from './components/user-dashboard/user-dashboa
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserMaterialModule } from 'src/app/Shared/Modules/material/user-material.module';
 import { NotificationComponent } from './components/notification/notification.component';
-import { NotificationResolver } from 'src/app/resolvers/notification.resolver';
+import { NotificationResolver } from 'src/app/resolvers/user/notification.resolver';
 import { ManageBankCardComponent } from './components/manage-bank-card/manage-bank-card.component';
-import { BankCardResolver } from 'src/app/resolvers/bankcard.resolver';
+import { BankCardResolver } from 'src/app/resolvers/user/bankcard.resolver';
 import { NotificationService } from 'src/app/Services/panel/user/notification.service';
 import { BankCardsService } from 'src/app/Services/panel/user/bankCards.service';
 
@@ -29,13 +29,13 @@ import { DocumentListComponent } from './components/userinfo/document/components
 import { DocumentService } from 'src/app/Services/panel/user/document.service';
 import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from 'src/app/Shared/material.persian-date.adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material';
-import { DocumentResolver } from 'src/app/resolvers/document.resolver';
+import { DocumentResolver } from 'src/app/resolvers/user/document.resolver';
 import { ManageWalletComponent } from './components/manage-wallet/manage-wallet.component';
 import { WalletComponent } from './components/manage-wallet/components/wallet/wallet.component';
 import { WalletFormComponent } from './components/manage-wallet/components/wallet-form/wallet-form.component';
 import { BankCardComponent } from './components/manage-bank-card/components/bank-card/bank-card.component';
 import { EditBankCardComponent } from './components/manage-bank-card/components/edit-bank-card/edit-bank-card.component';
-import { WalletResolver } from 'src/app/resolvers/wallet.resolver';
+import { WalletResolver } from 'src/app/resolvers/user/wallet.resolver';
 import { WalletService } from 'src/app/Services/panel/user/wallet.service';
 import { PersianDateModule } from 'src/app/Shared/Pipe/PersianDatePipe/persian-date.module';
 import { IRCurrencyPipe, JdatePipe } from 'ngx-persian';
@@ -45,8 +45,8 @@ import { ListTicketComponent } from './components/manage-ticket/components/list-
 import { DetailTicketComponent } from './components/manage-ticket/components/detail-ticket/detail-ticket.component';
 import { ChatTicketComponent } from './components/manage-ticket/components/detail-ticket/components/chat-ticket/chat-ticket.component';
 import { TicketComponent } from './components/manage-ticket/components/list-ticket/components/ticket/ticket.component';
-import { TicketResolver } from 'src/app/resolvers/ticket.resolver';
-import { TicketOverviewResolver } from 'src/app/resolvers/ticketOverview.resolver';
+import { TicketResolver } from 'src/app/resolvers/user/ticket.resolver';
+import { TicketOverviewResolver } from 'src/app/resolvers/user/ticketOverview.resolver';
 import { ChatMessageTicketComponent } from './components/manage-ticket/components/detail-ticket/components/chat-ticket/components/chat-message-ticket/chat-message-ticket.component';
 import { CreateFormTicketComponent } from './components/manage-ticket/components/list-ticket/components/create-form-ticket/create-form-ticket.component';
 import { GateManageComponent } from './components/gate-manage/gate-manage.component';
