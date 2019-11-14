@@ -19,6 +19,9 @@ import { BlogGroupAddComponent } from './components/blog-group-manage/components
 import { BlogGroupManageComponent } from './components/blog-group-manage/blog-group-manage.component';
 import { HasRoleModule } from 'src/app/Shared/Modules/hasRole/hasRole.module';
 import { BlogGroupEditResolver } from 'src/app/resolvers/blog/blogGroupEdit.resolver';
+import { BlogListComponent } from './components/blog-manage/components/blog-list/blog-list.component';
+import { BlogAddComponent } from './components/blog-manage/components/blog-add/blog-add.component';
+import { BlogEditComponent } from './components/blog-manage/components/blog-edit/blog-edit.component';
 
 @NgModule({
   imports: [
@@ -37,11 +40,15 @@ import { BlogGroupEditResolver } from 'src/app/resolvers/blog/blogGroupEdit.reso
   declarations: [
     BlogComponent,
     BlogDashboardComponent,
-    BlogManageComponent,
     BlogGroupManageComponent,
     BlogGroupListComponent,
     BlogGroupAddComponent,
-    BlogGroupEditComponent
+    BlogGroupEditComponent,
+    //
+    BlogManageComponent,
+    BlogListComponent,
+    BlogAddComponent,
+    BlogEditComponent,
   ],
   providers: [
     BlogGroupService,
