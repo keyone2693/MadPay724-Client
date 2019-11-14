@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ErrorInterceptorProvider } from './Services/error.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
@@ -12,9 +11,10 @@ import {
   NgxUiLoaderModule,
   NgxUiLoaderRouterModule, NgxUiLoaderHttpModule, POSITION, SPINNER, PB_DIRECTION, NgxUiLoaderConfig
 } from 'ngx-ui-loader';
-import { AuthService } from './Services/auth/auth.service';
-import { TitleService } from './Services/common/title.service';
 import { NotyfToast } from './Shared/Animation/notyf';
+import { ErrorInterceptorProvider } from './core/_config/error.interceptor';
+import { TitleService } from './core/_services/common/title.service';
+import { AuthService } from './core/_services/auth/auth.service';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   pbColor: 'red',
