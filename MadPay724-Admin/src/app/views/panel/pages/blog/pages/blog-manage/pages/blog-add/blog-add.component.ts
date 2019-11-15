@@ -50,7 +50,7 @@ export class BlogAddComponent implements OnInit {
     //   name: '',
     //   parent: '0'
     // });
-    this.router.navigate(['/panel/blog/bloggroup']);
+    this.router.navigate(['/panel/blog/blog']);
   }
   onSubmit() {
     if (this.blogAddForm.valid) {

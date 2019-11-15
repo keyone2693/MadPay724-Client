@@ -41,17 +41,17 @@ const routes: Routes = [
             {
                 path: 'blog', canActivate: [AuthGuard],
                 component: BlogManageComponent,
-                data: { roles: ['Admin', 'AdminBlog', 'Blog'], title: ['مدیریت دسته بدنی های بلاگ'] }
+                data: { roles: ['Admin', 'AdminBlog', 'Blog'], title: ['مدیریت بلاگ ها'] }
             },
             {
                 path: 'blog/add', canActivate: [AuthGuard],
                 resolve: { bloggroups: BlogGroupResolver }, component: BlogAddComponent,
-                data: { roles: ['Admin', 'AdminBlog'], title: ['افزودن دسته بندی بلاگ'] }
+                data: { roles: ['Admin', 'AdminBlog'], title: ['افزودن بلاگ'] }
             },
             {
                 path: 'blog/edit/:blogId', canActivate: [AuthGuard],
-                resolve: { blogs: BlogResolver }, component: BlogEditComponent,
-                data: { roles: ['Admin', 'AdminBlog'], title: ['ویرایش دسته بندی بلاگ '] },
+                resolve: { bloggroups: BlogGroupResolver }, component: BlogEditComponent,
+                data: { roles: ['Admin', 'AdminBlog'], title: ['ویرایش بلاگ '] },
             }
         ]
     }

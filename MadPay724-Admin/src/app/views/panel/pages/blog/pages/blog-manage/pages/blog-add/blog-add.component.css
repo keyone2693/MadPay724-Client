@@ -65,3 +65,21 @@ padding-bottom: 25px;
 .matradiocsss{
   margin-top: 25px;
 }
+
+.icon-fileupload{
+    background: #3f51b5;
+    padding: 5px 5px 5px;
+    border-radius: 20px;
+    color: #fff;
+    width: 100%;
+    margin-top: 25px;
+    transition: all 0.5s;
+    
+}
+.icon-fileupload:hover{
+  -webkit-filter: opacity(.8);
+  filter: opacity(.8);
+}
+.ngxmatfileinput{
+    cursor: pointer;
+}

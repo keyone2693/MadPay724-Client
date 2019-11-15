@@ -27,17 +27,102 @@
           <div [formGroup]="blogAddForm">
             <!--#region info-->
             <div class="row">
-              <mat-form-field class="col-md-6">
-                <mat-label>انتخاب دسته بندی *</mat-label>
-                <mat-select formControlName="blogGroupId">
-                  <mat-option *ngFor="let bg of blogGroups" value="{{ bg.id }}">
-                    {{ bg.name }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-            <div class="row">
-              <mat-form-field class="col-md-12 ml-10 ngxmatfileinput">
+              <div class="col-md-7">
+                  <mat-form-field class="col-md-12">
+                    <mat-label>انتخاب دسته بندی *</mat-label>
+                    <mat-select formControlName="blogGroupId">
+                      <mat-option
+                        *ngFor="let bg of blogGroups"
+                        value="{{ bg.id }}"
+                      >
+                        {{ bg.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field class="col-md-12">
+                    <input
+                      matInput
+                      formControlName="title"
+                      placeholder="عنوان  *"
+                    />
+                    <mat-error
+                      *ngIf="
+                        blogAddForm.get('title').hasError('required') &&
+                        blogAddForm.get('title').touched
+                      "
+                      >این فیلد نمیتواند خالی باشد</mat-error
+                    >
+                    <mat-error
+                      *ngIf="
+                        blogAddForm.get('title').hasError('maxlength') &&
+                        blogAddForm.get('title').touched
+                      "
+                    >
+                      این فیلد نمیتواند بیشتر از 500 کاراکتر باشد</mat-error
+                    >
+                  </mat-form-field>
+
+                  <mat-form-field class="col-md-12">
+                    <input
+                      matInput
+                      formControlName="tags"
+                      placeholder="تگ ها  *"
+                    />
+                    <mat-error
+                      *ngIf="
+                        blogAddForm.get('tags').hasError('required') &&
+                        blogAddForm.get('tags').touched
+                      "
+                      >این فیلد نمیتواند خالی باشد</mat-error
+                    >
+                    <mat-error
+                      *ngIf="
+                        blogAddForm.get('tags').hasError('maxlength') &&
+                        blogAddForm.get('tags').touched
+                      "
+                    >
+                      این فیلد نمیتواند بیشتر از 500 کاراکتر باشد</mat-error
+                    >
+                  </mat-form-field>
+                    <mat-form-field class="col-md-12">
+                      <textarea
+                        matInput
+                        formControlName="summerText"
+                        placeholder="خلاصه ی متن بلاگ  *"
+                      ></textarea>
+                      <mat-error
+                        *ngIf="
+                          blogAddForm.get('summerText').hasError('required') &&
+                          blogAddForm.get('summerText').touched
+                        "
+                        >این فیلد نمیتواند خالی باشد</mat-error
+                      >
+                      <mat-error
+                        *ngIf="
+                          blogAddForm.get('summerText').hasError('maxlength') &&
+                          blogAddForm.get('summerText').touched
+                        "
+                      >
+                        این فیلد نمیتواند بیشتر از 1000 کاراکتر باشد</mat-error
+                      >
+                    </mat-form-field>
+                    <mat-form-field class="col-md-12">
+                      <textarea
+                        matInput
+                        formControlName="text"
+                        placeholder="متن کامل بلاگ  *"
+                      ></textarea>
+                      <mat-error
+                        *ngIf="
+                          blogAddForm.get('text').hasError('required') &&
+                          blogAddForm.get('text').touched
+                        "
+                        >این فیلد نمیتواند خالی باشد</mat-error
+                      >
+                    </mat-form-field>
+              </div>
+              <div class="col-md-5">
+                 <mat-form-field class="col-md-12 ml-10 ngxmatfileinput">
                 <ngx-mat-file-input
                   (change)="onFileSelect($event)"
                   formControlName="file"
@@ -48,95 +133,8 @@
                 <img [src]="imgUrl" class="float-left icon-fileupload" />
                 <mat-error>عکس بلاگ را انتخاب کنید</mat-error>
               </mat-form-field>
+              </div>
             </div>
-
-            <div class="row">
-              <mat-form-field class="col-md-12">
-                <input
-                  matInput
-                  formControlName="title"
-                  placeholder="عنوان  *"
-                />
-                <mat-error
-                  *ngIf="
-                    blogAddForm.get('title').hasError('required') &&
-                    blogAddForm.get('title').touched
-                  "
-                  >این فیلد نمیتواند خالی باشد</mat-error
-                >
-                <mat-error
-                  *ngIf="
-                    blogAddForm.get('title').hasError('maxlength') &&
-                    blogAddForm.get('title').touched
-                  "
-                >
-                  این فیلد نمیتواند بیشتر از 500 کاراکتر باشد</mat-error
-                >
-              </mat-form-field>
-            </div>
-            <div class="row">
-              <mat-form-field class="col-md-12">
-                <input matInput formControlName="tags" placeholder="تگ ها  *" />
-                <mat-error
-                  *ngIf="
-                    blogAddForm.get('tags').hasError('required') &&
-                    blogAddForm.get('tags').touched
-                  "
-                  >این فیلد نمیتواند خالی باشد</mat-error
-                >
-                <mat-error
-                  *ngIf="
-                    blogAddForm.get('tags').hasError('maxlength') &&
-                    blogAddForm.get('tags').touched
-                  "
-                >
-                  این فیلد نمیتواند بیشتر از 500 کاراکتر باشد</mat-error
-                >
-              </mat-form-field>
-            </div>
-            <div class="row">
-              <mat-form-field class="col-md-6">
-                <mat-form-field class="col-md-12">
-                  <textarea
-                    matInput
-                    formControlName="summerText"
-                    placeholder="خلاصه ی متن بلاگ  *"
-                  ></textarea>
-                  <mat-error
-                    *ngIf="
-                      blogAddForm.get('summerText').hasError('required') &&
-                      blogAddForm.get('summerText').touched
-                    "
-                    >این فیلد نمیتواند خالی باشد</mat-error
-                  >
-                  <mat-error
-                    *ngIf="
-                      blogAddForm.get('summerText').hasError('maxlength') &&
-                      blogAddForm.get('summerText').touched
-                    "
-                  >
-                    این فیلد نمیتواند بیشتر از 1000 کاراکتر باشد</mat-error
-                  >
-                </mat-form-field>
-              </mat-form-field>
-              <mat-form-field class="col-md-6">
-                <mat-form-field class="col-md-12">
-                  <textarea
-                    matInput
-                    formControlName="text"
-                    placeholder="متن کامل بلاگ  *"
-                  ></textarea>
-                  <mat-error
-                    *ngIf="
-                      blogAddForm.get('text').hasError('required') &&
-                      blogAddForm.get('text').touched
-                    "
-                    >این فیلد نمیتواند خالی باشد</mat-error
-                  >
-                </mat-form-field>
-              </mat-form-field>
-            </div>
-
             <!--#endregion-->
 
             <button

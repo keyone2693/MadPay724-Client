@@ -22,6 +22,7 @@ import { BlogGroupService } from 'src/app/core/_services/panel/blog/blogGroup.se
 import { BlogGroupResolver } from 'src/app/core/_base/resolvers/blog/blogGroup.resolver';
 import { BlogGroupEditResolver } from 'src/app/core/_base/resolvers/blog/blogGroupEdit.resolver';
 import { HasRoleModule } from 'src/app/Shared/Modules/hasRole/hasRole.module';
+import { BlogResolver } from 'src/app/core/_base/resolvers/blog/blog.resolver';
 
 @NgModule({
   imports: [
@@ -54,7 +55,8 @@ import { HasRoleModule } from 'src/app/Shared/Modules/hasRole/hasRole.module';
     BlogGroupService,
     //
     BlogGroupResolver,
-    BlogGroupEditResolver
+    BlogGroupEditResolver,
+    BlogResolver
     // { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },
     // { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS }
   ],
