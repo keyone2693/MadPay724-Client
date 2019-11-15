@@ -45,7 +45,7 @@ const routes: Routes = [
             },
             {
                 path: 'blog/add', canActivate: [AuthGuard],
-                resolve: { blogs: BlogResolver }, component: BlogAddComponent,
+                resolve: { bloggroups: BlogGroupResolver }, component: BlogAddComponent,
                 data: { roles: ['Admin', 'AdminBlog'], title: ['افزودن دسته بندی بلاگ'] }
             },
             {
