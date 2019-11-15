@@ -13,7 +13,9 @@ export interface Blog {
     viewCount: number;
 
     userId: string;
+    userName: string;
+    name: string;
+
     blogGroupId: string;
-    user: User;
-    blogGroup: BlogGroup;
+    blogGroupName: string;
 }
