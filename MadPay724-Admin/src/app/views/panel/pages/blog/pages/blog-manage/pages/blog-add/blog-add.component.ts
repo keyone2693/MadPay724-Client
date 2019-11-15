@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { BlogService } from 'src/app/core/_services/panel/blog/blog.service';
 import { BlogGroup } from 'src/app/data/models/blog/blogGroup';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-blog-add',
@@ -16,6 +17,11 @@ export class BlogAddComponent implements OnInit {
   blogGroups: BlogGroup[];
   slectedFile: File;
   imgUrl = '../../../../../../../../../../assets/img/profilepic.png';
+  public Editor = ClassicEditor;
+  public config = {
+    language: 'fa'
+  };
+
   constructor(private formBuilder: FormBuilder, private alertService: ToastrService,
               private router: Router, private route: ActivatedRoute,
               private blogService: BlogService, private authService: AuthService) { }

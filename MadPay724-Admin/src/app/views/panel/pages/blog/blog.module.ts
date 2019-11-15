@@ -23,6 +23,9 @@ import { BlogGroupResolver } from 'src/app/core/_base/resolvers/blog/blogGroup.r
 import { BlogGroupEditResolver } from 'src/app/core/_base/resolvers/blog/blogGroupEdit.resolver';
 import { HasRoleModule } from 'src/app/Shared/Modules/hasRole/hasRole.module';
 import { BlogResolver } from 'src/app/core/_base/resolvers/blog/blog.resolver';
+import { SharedTagInputModule } from 'src/app/shared/modules/textEditor/sharedTagInput.module';
+import { SharedCkEditorModule } from 'src/app/shared/modules/textEditor/sharedCkEditor.module';
+
 
 @NgModule({
   imports: [
@@ -36,7 +39,9 @@ import { BlogResolver } from 'src/app/core/_base/resolvers/blog/blog.resolver';
     PersianDateModule,
     SweetAlert2Module.forRoot(),
     ChartistModule,
-    HasRoleModule
+    HasRoleModule,
+    SharedTagInputModule,
+    SharedCkEditorModule
   ],
   declarations: [
     BlogComponent,
