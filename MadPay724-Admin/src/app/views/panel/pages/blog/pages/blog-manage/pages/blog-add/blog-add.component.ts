@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { BlogService } from 'src/app/core/_services/panel/blog/blog.service';
 import { BlogGroup } from 'src/app/data/models/blog/blogGroup';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-blog-add',
@@ -17,9 +18,11 @@ export class BlogAddComponent implements OnInit {
   blogGroups: BlogGroup[];
   slectedFile: File;
   imgUrl = '../../../../../../../../../../assets/img/profilepic.png';
-  public Editor = ClassicEditor;
+  public Editor = ClassicEditor.;
   public config = {
-    language: 'fa'
+    language: 'fa',
+    filebrowserImageUploadUrl: environment.apiUrl + environment.apiV1 + 'site/panel/' +
+      'users/' + this.authService.decodedToken.nameid + '/blogs/upload'
   };
 
   constructor(private formBuilder: FormBuilder, private alertService: ToastrService,
