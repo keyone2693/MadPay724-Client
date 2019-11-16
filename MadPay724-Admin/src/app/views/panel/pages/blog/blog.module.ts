@@ -24,7 +24,7 @@ import { BlogGroupEditResolver } from 'src/app/core/_base/resolvers/blog/blogGro
 import { HasRoleModule } from 'src/app/Shared/Modules/hasRole/hasRole.module';
 import { BlogResolver } from 'src/app/core/_base/resolvers/blog/blog.resolver';
 import { SharedTagInputModule } from 'src/app/shared/modules/textEditor/sharedTagInput.module';
-import { SharedCkEditorModule } from 'src/app/shared/modules/textEditor/sharedCkEditor.module';
+import { SharedEJTextEditorModule } from 'src/app/shared/modules/textEditor/sharedEJTextEditor.module';
 
 
 @NgModule({
@@ -41,7 +41,7 @@ import { SharedCkEditorModule } from 'src/app/shared/modules/textEditor/sharedCk
     ChartistModule,
     HasRoleModule,
     SharedTagInputModule,
-    SharedCkEditorModule
+    SharedEJTextEditorModule
   ],
   declarations: [
     BlogComponent,
