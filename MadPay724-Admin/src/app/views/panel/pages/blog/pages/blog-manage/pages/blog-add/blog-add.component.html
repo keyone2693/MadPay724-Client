@@ -27,7 +27,7 @@
           <div [formGroup]="blogAddForm">
             <!--#region info-->
             <div class="row">
-              <div class="col-md-7">
+              <div class="col-md-8">
                 <mat-form-field class="col-md-12">
                   <mat-label>انتخاب دسته بندی *</mat-label>
                   <mat-select formControlName="blogGroupId">
@@ -108,32 +108,8 @@
                     این فیلد نمیتواند بیشتر از 1000 کاراکتر باشد</mat-error
                   >
                 </mat-form-field>
-                <div class="col-md-12">
-                  <mat-label>متن کامل بلاگ *</mat-label>
-                  <!-- <ckeditor formControlName="text"
-                      [config]="config"
-                       data="<p>متن کامل بلاگ  *</p>"></ckeditor> -->
-                  <ejs-richtexteditor
-                    #toolsRTE
-                    id="alltoolRTE"
-                    [toolbarSettings]="tools"
-                    [showCharCount]="true"
-                    (actionBegin)="handleFullScreen($event)"
-                    (actionComplete)="actionCompleteHandler($event)"
-                    [maxLength]="maxLength"
-                  >
-                    <ng-template #valueTemplate> </ng-template>
-                  </ejs-richtexteditor>
-                  <mat-error
-                    *ngIf="
-                      blogAddForm.get('text').hasError('required') &&
-                      blogAddForm.get('text').touched
-                    "
-                    >این فیلد نمیتواند خالی باشد</mat-error
-                  >
-                </div>
               </div>
-              <div class="col-md-5">
+              <div class="col-md-4">
                 <mat-form-field class="col-md-12 ml-10 ngxmatfileinput">
                   <ngx-mat-file-input
                     (change)="onFileSelect($event)"
@@ -146,7 +122,31 @@
                   <mat-error>عکس بلاگ را انتخاب کنید</mat-error>
                 </mat-form-field>
               </div>
+              <div class="col-md-12 pb-txtedit">
+                <mat-label>متن کامل بلاگ *</mat-label>
+                <!-- <ckeditor formControlName="text"
+                      [config]="config"
+                       data="<p>متن کامل بلاگ  *</p>"></ckeditor> -->
+                <ejs-richtexteditor
+                  #toolsRTE
+                  id="alltoolRTE"
+                  [toolbarSettings]="tools"
+                  [showCharCount]="true"
+                  (actionBegin)="handleFullScreen($event)"
+                  [maxLength]="maxLength"
+                >
+                  <ng-template #valueTemplate> متن بلاگ</ng-template>
+                </ejs-richtexteditor>
+                <mat-error
+                  *ngIf="
+                    blogAddForm.get('text').hasError('required') &&
+                    blogAddForm.get('text').touched
+                  "
+                  >این فیلد نمیتواند خالی باشد</mat-error
+                >
+              </div>
             </div>
+            <div class="row"></div>
             <!--#endregion-->
 
             <button

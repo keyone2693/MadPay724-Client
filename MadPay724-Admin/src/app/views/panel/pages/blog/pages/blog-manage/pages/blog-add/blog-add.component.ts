@@ -13,14 +13,17 @@ import {
   ToolbarService, LinkService, ImageService, HtmlEditorService,
   RichTextEditorComponent, TableService
 } from '@syncfusion/ej2-angular-richtexteditor';
+
 import { createElement, addClass, removeClass, Browser } from '@syncfusion/ej2-base';
+
 import { ToolbarModule } from '@syncfusion/ej2-angular-navigations';
 
 @Component({
   selector: 'app-blog-add',
   templateUrl: './blog-add.component.html',
   styleUrls: ['./blog-add.component.css'],
-  providers: [ToolbarService, LinkService, ImageService, HtmlEditorService, TableService]
+  providers: [ToolbarService, LinkService, ImageService,
+    HtmlEditorService, TableService ]
 })
 export class BlogAddComponent implements OnInit {
   blogGroups: BlogGroup[];
@@ -40,6 +43,7 @@ export class BlogAddComponent implements OnInit {
 
   public maxLength = 1000;
   public textArea: HTMLElement;
+  public myCodeMirror: any;
   // public Editor = ClassicEditor.;
   // public config = {
   //   language: 'fa',
@@ -107,34 +111,6 @@ export class BlogAddComponent implements OnInit {
 
   }
 
-
-  ngAfterViewInit(): void {
-    const rteObj: RichTextEditorComponent = this.rteObj;
-    setTimeout(() => { this.textArea = rteObj.contentModule.getEditPanel() as HTMLElement; }, 600);
-  }
-  public mirrorConversion(e?: any): void {
-    const id: string = this.rteObj.getID() + 'mirror-view';
-    let mirrorView: HTMLElement = this.rteObj.element.querySelector('#' + id) as HTMLElement;
-    const charCount: HTMLElement = this.rteObj.element.querySelector('.e-rte-character-count') as HTMLElement;
-    if (e.targetItem === 'Preview') {
-      this.textArea.style.display = 'block';
-      mirrorView.style.display = 'none';
-      this.textArea.innerHTML = this.myCodeMirror.getValue();
-      charCount.style.display = 'block';
-    } else {
-      if (!mirrorView) {
-        mirrorView = createElement('div', { className: 'e-content' });
-        mirrorView.id = id;
-        this.textArea.parentNode.appendChild(mirrorView);
-      } else {
-        mirrorView.innerHTML = '';
-      }
-      this.textArea.style.display = 'none';
-      mirrorView.style.display = 'block';
-      this.renderCodeMirror(mirrorView, this.rteObj.value);
-      charCount.style.display = 'none';
-    }
-  }
   public handleFullScreen(e: any): void {
     const sbCntEle: HTMLElement = document.querySelector('.sb-content.e-view');
     const sbHdrEle: HTMLElement = document.querySelector('.sb-header.e-view');
@@ -155,15 +131,5 @@ export class BlogAddComponent implements OnInit {
       }
     }
   }
-  public actionCompleteHandler(e: any): void {
-    if (e.targetItem && (e.targetItem === 'SourceCode' || e.targetItem === 'Preview')) {
-      (this.rteObj.sourceCodeModule.getPanel() as HTMLTextAreaElement).style.display = 'none';
-      this.mirrorConversion(e);
-    } else {
-      setTimeout(() => { this.rteObj.toolbarModule.refreshToolbarOverflow(); }, 400);
-    }
-  }
-
-
-
+ 
 }
