@@ -29,4 +29,7 @@ export class BlogService {
   deleteBlog(userId: string, blogId: string) {
     return this.http.delete(this.baseUrl + 'users/' + userId + '/blogs/' + blogId);
   }
+  deleteImgBlog(userId: string, imgUrl: string) {
+    return this.http.post(this.baseUrl + 'users/' + userId + '/blogs/deleteupload', { imgUrl });
+  }
 }

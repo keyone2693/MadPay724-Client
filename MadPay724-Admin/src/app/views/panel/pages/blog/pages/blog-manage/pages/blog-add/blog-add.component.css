@@ -1,6 +1,6 @@
 
-  @import "../../../../../../../../../../node_modules/@syncfusion/ej2/material.css";
- 
+  /* @import "../../../../../../../../../../node_modules/@syncfusion/ej2/material.css"; */
+
     .e-code-mirror::before {
         content: '\e345';
     }

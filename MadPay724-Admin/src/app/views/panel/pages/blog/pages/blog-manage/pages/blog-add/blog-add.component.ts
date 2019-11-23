@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Blog } from 'src/app/data/models/blog/blog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -7,14 +6,14 @@ import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { BlogService } from 'src/app/core/_services/panel/blog/blog.service';
 import { BlogGroup } from 'src/app/data/models/blog/blogGroup';
 // import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-// import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment';
 
 import {
   ToolbarService, LinkService, ImageService, HtmlEditorService,
-  RichTextEditorComponent, TableService
+  RichTextEditorComponent, TableService, NodeSelection, QuickToolbarService, ActionBeginEventArgs
 } from '@syncfusion/ej2-angular-richtexteditor';
 
-import { createElement, addClass, removeClass, Browser } from '@syncfusion/ej2-base';
+import { addClass, removeClass, Browser } from '@syncfusion/ej2-base';
 
 import { ToolbarModule } from '@syncfusion/ej2-angular-navigations';
 
@@ -23,13 +22,13 @@ import { ToolbarModule } from '@syncfusion/ej2-angular-navigations';
   templateUrl: './blog-add.component.html',
   styleUrls: ['./blog-add.component.css'],
   providers: [ToolbarService, LinkService, ImageService,
-    HtmlEditorService, TableService ]
+    HtmlEditorService, TableService, QuickToolbarService ]
 })
 export class BlogAddComponent implements OnInit {
   blogGroups: BlogGroup[];
   slectedFile: File;
   imgUrl = '../../../../../../../../../../assets/img/profilepic.png';
-  @ViewChild('toolsRTE', {static: true})
+  @ViewChild('toolsRTE', { static: true })
   public rteObj: RichTextEditorComponent;
   public tools: ToolbarModule = {
     items: ['Bold', 'Italic', 'Underline', 'StrikeThrough',
@@ -40,17 +39,23 @@ export class BlogAddComponent implements OnInit {
       'CreateTable', 'CreateLink', 'Image', '|', 'ClearFormat', 'Print',
       'SourceCode', 'FullScreen', '|', 'Undo', 'Redo']
   };
-
-  public maxLength = 1000;
-  public textArea: HTMLElement;
-  public myCodeMirror: any;
-  // public Editor = ClassicEditor.;
-  // public config = {
-  //   language: 'fa',
-  //   filebrowserImageUploadUrl: environment.apiUrl + environment.apiV1 + 'site/panel/' +
-  //     'users/' + this.authService.decodedToken.nameid + '/blogs/upload'
-  // };
-
+  public toolbarSettings: ToolbarModule = {
+    image: [
+      'Replace', 'Align', 'Caption', 'Remove', 'InsertLink', 'OpenImageLink', '-',
+      'EditImageLink', 'RemoveImageLink', 'Display', 'AltText', 'Dimension',
+      {
+        tooltipText: 'Rotate Right',
+        template:
+        '<button class="e-tbar-btn e-btn" style="background:#fff;border:none" id="roatateLeft"><span style="color:#000;font-weight:900;font-size: 15px;" class="e-btn-icon e-icons ft-corner-up-right"></span>'
+      },
+      {
+        tooltipText: 'Rotate Left',
+        template:
+          '<button class="e-tbar-btn e-btn" style="background:#fff;border:none" id="roatateRight"><span  style="color:#000;font-weight:900;font-size: 15px;" class="e-btn-icon e-icons ft-corner-up-left"></span>'
+      }
+    ]
+  };
+ currentImgUrl: '';
   constructor(private formBuilder: FormBuilder, private alertService: ToastrService,
               private router: Router, private route: ActivatedRoute,
               private blogService: BlogService, private authService: AuthService) { }
@@ -64,6 +69,8 @@ export class BlogAddComponent implements OnInit {
   });
   ngOnInit() {
     this.loadBlogs();
+    this.rteObj.insertImageSettings.saveUrl = environment.apiUrl + environment.apiV1 + 'site/panel/' +
+      'users/' + this.authService.decodedToken.nameid + '/blogs/upload';
   }
   loadBlogs() {
     this.route.data.subscribe(data => {
@@ -110,8 +117,21 @@ export class BlogAddComponent implements OnInit {
 
 
   }
-
-  public handleFullScreen(e: any): void {
+  onToolbarClick(e: any): void {
+    const nodeObj: NodeSelection = new NodeSelection();
+    const range: Range = nodeObj.getRange(this.rteObj.contentModule.getDocument());
+    const imgEle: HTMLElement = nodeObj.getNodeCollection(range)[0] as HTMLElement;
+    if (e.item.tooltipText === 'Rotate Right') {
+      const transform: number = (imgEle.style.transform === '') ? 0 :
+        parseInt(imgEle.style.transform.split('(')[1].split(')')[0], 10);
+      imgEle.style.transform = 'rotate(' + (transform + 90) + 'deg)';
+    } else if (e.item.tooltipText === 'Rotate Left') {
+      const transform: number = (imgEle.style.transform === '') ? 0 :
+        Math.abs(parseInt(imgEle.style.transform.split('(')[1].split(')')[0], 10));
+      imgEle.style.transform = 'rotate(-' + (transform + 90) + 'deg)';
+    }
+  }
+  handleFullScreen(e: any): void {
     const sbCntEle: HTMLElement = document.querySelector('.sb-content.e-view');
     const sbHdrEle: HTMLElement = document.querySelector('.sb-header.e-view');
     const leftBar: HTMLElement = document.querySelector('#left-sidebar');
@@ -131,5 +151,25 @@ export class BlogAddComponent implements OnInit {
       }
     }
   }
- 
+  imageUploading(args: any) {
+    args.currentRequest.setRequestHeader('Authorization', `Bearer ${localStorage.getItem('token')}`);
+  }
+  imageUploadSuccess(args: any) {
+    if (args.e.currentTarget.getResponseHeader('ejUrl') != null) {
+      this.rteObj.insertImageSettings.path = args.e.currentTarget.getResponseHeader('ejUrl');
+      this.currentImgUrl = args.e.currentTarget.getResponseHeader('ejUrl');
+      args.file.name = '';//args.e.currentTarget.getResponseHeader('name');
+
+      // let filename: any = document.querySelectorAll(".e-file-name")[0];
+      // filename.innerHTML = args.file.name.replace(document.querySelectorAll(".e-file-type")[0].innerHTML, '');
+      // filename.title = args.file.name;
+    }
+  }
+  imageRemoving(args: any) {
+    this.blogService.deleteImgBlog(this.authService.decodedToken.nameid, this.currentImgUrl).subscribe(() => {
+      this.alertService.success('موفق', 'عکس مورد نظر حذف شد');
+    }, error => {
+        this.alertService.error('ناموفق', 'تصویر مورد نظر حذف نشد');
+    })
+  }
 }

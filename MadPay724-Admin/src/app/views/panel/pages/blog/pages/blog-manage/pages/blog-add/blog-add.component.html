@@ -129,11 +129,15 @@
                        data="<p>متن کامل بلاگ  *</p>"></ckeditor> -->
                 <ejs-richtexteditor
                   #toolsRTE
-                  id="alltoolRTE"
-                  [toolbarSettings]="tools"
-                  [showCharCount]="true"
-                  (actionBegin)="handleFullScreen($event)"
-                  [maxLength]="maxLength"
+                   formControlName="text"
+                  [toolbarSettings]='tools'
+                   [(quickToolbarSettings)]='toolbarSettings'
+                  [showCharCount]='true'
+                  (actionBegin)='handleFullScreen($event)'
+                  (toolbarClick)='onToolbarClick($event)'
+                  (imageUploading)='imageUploading($event)'
+                  (imageUploadSuccess)='imageUploadSuccess($event)'
+                  (imageRemoving)='imageRemoving($event)'
                 >
                   <ng-template #valueTemplate> متن بلاگ</ng-template>
                 </ejs-richtexteditor>
