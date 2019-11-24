@@ -5,17 +5,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { BlogService } from 'src/app/core/_services/panel/blog/blog.service';
 import { BlogGroup } from 'src/app/data/models/blog/blogGroup';
-// import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { environment } from 'src/environments/environment';
-
 import {
   ToolbarService, LinkService, ImageService, HtmlEditorService,
   RichTextEditorComponent, TableService, NodeSelection, QuickToolbarService, ActionBeginEventArgs
 } from '@syncfusion/ej2-angular-richtexteditor';
-
 import { addClass, removeClass, Browser } from '@syncfusion/ej2-base';
-
 import { ToolbarModule } from '@syncfusion/ej2-angular-navigations';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-blog-add',
@@ -62,7 +59,7 @@ export class BlogAddComponent implements OnInit {
   blogAddForm: FormGroup = this.formBuilder.group({
     blogGroupId: ['', [Validators.required]],
     title: ['0', [Validators.required, Validators.maxLength(500)]],
-    tags: ['', [Validators.required, Validators.maxLength(500)]],
+    tags: [[], [Validators.required, Validators.maxLength(500)]],
     text: ['', [Validators.required]],
     summerText: ['', [Validators.required, Validators.maxLength(1000)]],
     file: [null, [Validators.required]]
@@ -96,11 +93,19 @@ export class BlogAddComponent implements OnInit {
   }
   onSubmit() {
     if (this.blogAddForm.valid) {
+      let allTags = '';
+      const tagsss = this.blogAddForm.get('tags').value;
+
+      tagsss.forEach(tag => {
+        allTags += tag.value + ','
+      });
+      allTags = allTags.slice(0, -1);
+
       const blog = new FormData();
       blog.append('file', this.slectedFile, this.slectedFile.name);
       blog.append('blogGroupId', this.blogAddForm.get('blogGroupId').value);
       blog.append('title', this.blogAddForm.get('title').value);
-      blog.append('tags', this.blogAddForm.get('tags').value);
+      blog.append('tags', allTags);
       blog.append('text', this.blogAddForm.get('text').value);
       blog.append('summerText', this.blogAddForm.get('summerText').value);
 

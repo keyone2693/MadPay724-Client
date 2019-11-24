@@ -1,0 +1,128 @@
+/* @import "../../../../../../../../../../node_modules/@syncfusion/ej2/material.css"; */
+
+
+.highcontrast .cm-s-default .cm-tag {
+  color: #00ff00;
+}
+
+.highcontrast .cm-s-default .cm-string {
+  color: #ffd939;
+}
+
+.highcontrast .cm-s-default .cm-attribute {
+  color: #f00;
+}
+
+.highcontrast .CodeMirror {
+  background: black;
+}
+
+.sb-content.e-view.hide-header {
+  top: 0 !important;
+}
+
+.sb-header.e-view.hide-header {
+  display: none;
+}
+
+.ml-10 {
+  margin-left: 10px;
+}
+
+.mat-green {
+  background: #4caf50;
+  color: #fff;
+  width: 250px;
+  float: left;
+  font-weight: 900;
+  font-size: 16px;
+}
+
+.mmatdiagtitle {
+  background: #333;
+  padding: 15px 25px 25px;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.margintopplus {
+  margin-top: 30px;
+
+}
+
+.margintopminus {
+  margin-top: -30px;
+
+}
+
+.margintop-18-minus {
+  margin-top: -18px;
+
+}
+
+.hide {
+  display: none;
+}
+
+.mmatdiagtitle {
+  background: #333;
+  padding: 15px 25px 10px;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.title-info {
+  font-size: 15px;
+  display: block;
+}
+
+.rdcss {
+  margin: 30px 0 35px;
+  display: inline-block;
+}
+
+.urlinpt {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+button {
+  margin-left: 10px;
+}
+
+.card {
+  padding-bottom: 25px;
+}
+
+.inputradiocss {
+  padding-top: 30px;
+
+}
+
+.matradiocsss {
+  margin-top: 25px;
+}
+
+.icon-fileupload {
+  background: #3f51b5;
+  padding: 5px 5px 5px;
+  border-radius: 20px;
+  color: #fff;
+  height: 250px;
+  margin-top: 25px;
+  transition: all 0.5s;
+
+}
+
+.icon-fileupload:hover {
+  -webkit-filter: opacity(.8);
+  filter: opacity(.8);
+}
+
+.ngxmatfileinput {
+  cursor: pointer;
+}
+
+.pb-txtedit {
+  padding-bottom: 35px;
+}

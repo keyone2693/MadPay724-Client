@@ -83,19 +83,19 @@
 
   <ng-container matColumnDef="actions">
     <mat-header-cell *matHeaderCellDef> ویرایش / حذف </mat-header-cell>
-    <mat-cell *matCellDef="let blogGroup">
-      <button mat-button [routerLink]="['/panel/blog/blog/edit/', blogGroup.id]" ><i class="ft-edit edit-icon"></i></button>
+    <mat-cell *matCellDef="let blog">
+      <button mat-button [routerLink]="['/panel/blog/blog/edit/', blog.id]" ><i class="ft-edit edit-icon"></i></button>
       <button *appHasRole="['Admin', 'AdminBlog']" mat-button [swal]="deleteSwal"><i class="ft-trash-2 delete-icon"></i></button>
         <swal
       #deleteSwal
-      title="حذف {{ blogGroup.name }} ؟"
+      title="حذف {{ blog.name }} ؟"
       text="آیا مطمن هستید"
       type="error"
       [showCancelButton]="true"
       [confirmButtonText] ="'بله'"
       [cancelButtonText] ="'خیر'"
       [focusCancel]="true"
-      (confirm)="onDelete(blogGroup)">
+      (confirm)="onDelete(blog)">
     </swal>
     </mat-cell>
   </ng-container>

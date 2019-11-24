@@ -1,3 +1,177 @@
-<p>
-  blog-edit works!
-</p>
+<!-- User Profile Starts-->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/panel/dashboard']">داشبورد</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/panel/user/gate']"> بلاگ </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">
+      ویرایش بلاگ {{blog?.title}}
+    </li>
+  </ol>
+</nav>
+<!--Basic User Details Starts-->
+<section id="user-area">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-wrap bar-success">
+            <h4 class="card-title">ویرایش</h4>
+          </div>
+          <p>...</p>
+        </div>
+        <div class="card-body">
+          <div [formGroup]="blogEditForm">
+            <!--#region info-->
+            <div class="row">
+              <div class="col-md-8">
+                <mat-form-field class="col-md-12">
+                  <mat-label>انتخاب دسته بندی *</mat-label>
+                  <mat-select formControlName="blogGroupId">
+                    <mat-option *ngFor="let bg of blogGroups" value="{{ bg.id }}" >
+                      {{ bg.name }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field class="col-md-12">
+                  <input
+                    matInput
+                    formControlName="title"
+                    placeholder="عنوان  *"
+                  />
+                  <mat-error
+                    *ngIf="
+                      blogEditForm.get('title').hasError('required') &&
+                      blogEditForm.get('title').touched
+                    "
+                    >این فیلد نمیتواند خالی باشد</mat-error
+                  >
+                  <mat-error
+                    *ngIf="
+                      blogEditForm.get('title').hasError('maxlength') &&
+                      blogEditForm.get('title').touched
+                    "
+                  >
+                    این فیلد نمیتواند بیشتر از 500 کاراکتر باشد</mat-error
+                  >
+                </mat-form-field>
+
+                <div class="col-md-12">
+                  <tag-input
+                    formControlName="tags"
+                    [theme]="'bootstrap'"
+                    placeholder="تگ ها  *"
+                    [placeholder]="'تگ ها  *'"
+                    [secondaryPlaceholder]="'تگ ها  *'"
+                  ></tag-input>
+                  <mat-error
+                    *ngIf="
+                      blogEditForm.get('tags').hasError('required') &&
+                      blogEditForm.get('tags').touched
+                    "
+                    >این فیلد نمیتواند خالی باشد</mat-error
+                  >
+                  <mat-error
+                    *ngIf="
+                      blogEditForm.get('tags').hasError('maxlength') &&
+                      blogEditForm.get('tags').touched
+                    "
+                  >
+                    این فیلد نمیتواند بیشتر از 500 کاراکتر باشد</mat-error
+                  >
+                </div>
+                <mat-form-field class="col-md-12">
+                  <textarea
+                    matInput
+                    formControlName="summerText"
+                    placeholder="خلاصه ی متن بلاگ  *"
+                  ></textarea>
+                  <mat-error
+                    *ngIf="
+                      blogEditForm.get('summerText').hasError('required') &&
+                      blogEditForm.get('summerText').touched
+                    "
+                    >این فیلد نمیتواند خالی باشد</mat-error
+                  >
+                  <mat-error
+                    *ngIf="
+                      blogEditForm.get('summerText').hasError('maxlength') &&
+                      blogEditForm.get('summerText').touched
+                    "
+                  >
+                    این فیلد نمیتواند بیشتر از 1000 کاراکتر باشد</mat-error
+                  >
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field class="col-md-12 ml-10 ngxmatfileinput">
+                  <ngx-mat-file-input
+                    (change)="onFileSelect($event)"
+                    formControlName="file"
+                    accept="image/*"
+                    placeholder="عکس اصلی بلاگ  *"
+                  >
+                  </ngx-mat-file-input>
+                  <img [src]="imgUrl" class="float-left icon-fileupload" />
+                </mat-form-field>
+              </div>
+              <div class="col-md-12 pb-txtedit">
+                <mat-label>متن کامل بلاگ *</mat-label>
+                <!-- <ckeditor formControlName="text"
+                      [config]="config"
+                       data="<p>متن کامل بلاگ  *</p>"></ckeditor> -->
+                <ejs-richtexteditor
+                  #toolsRTE
+                   formControlName="text"
+                  [toolbarSettings]='tools'
+                   [(quickToolbarSettings)]='toolbarSettings'
+                  [showCharCount]='true'
+                  (actionBegin)='handleFullScreen($event)'
+                  (toolbarClick)='onToolbarClick($event)'
+                  (imageUploading)='imageUploading($event)'
+                  (imageUploadSuccess)='imageUploadSuccess($event)'
+                  (imageRemoving)='imageRemoving($event)'
+                >
+                  <ng-template #valueTemplate> متن بلاگ</ng-template>
+                </ejs-richtexteditor>
+                <mat-error
+                  *ngIf="
+                    blogEditForm.get('text').hasError('required') &&
+                    blogEditForm.get('text').touched
+                  "
+                  >این فیلد نمیتواند خالی باشد</mat-error
+                >
+              </div>
+            </div>
+            <div class="row"></div>
+            <!--#endregion-->
+
+            <button
+              mat-raised-button
+              (click)="onSubmit()"
+              [disabled]="blogEditForm.invalid"
+              color="green"
+              class="float-left mb-10"
+            >
+              <i class="icon-check"></i>
+              <span>ویرایش </span>
+            </button>
+            <button
+              mat-raised-button
+              (click)="onClear()"
+              color="warn"
+              class="float-left mb-10"
+            >
+              <i class="icon-close"></i>
+              انصراف
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--User Profile Starts-->
