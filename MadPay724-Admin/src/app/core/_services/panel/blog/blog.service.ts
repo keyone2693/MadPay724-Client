@@ -16,7 +16,7 @@ export class BlogService {
 
   
 
-  getBlogs(id: string, page?, itemPerPage?, filter?): Observable<PaginationResult<Blog[]>> {
+  getBlogs(id: string, page?, itemPerPage?, filter?, sortHe?, sortDir?): Observable<PaginationResult<Blog[]>> {
     const paginatedResult: PaginationResult<Blog[]> = new PaginationResult<Blog[]>();
     let params = new HttpParams();
 
@@ -24,6 +24,8 @@ export class BlogService {
       params = params.append('pageNumber', page);
       params = params.append('pageSize', itemPerPage);
       params = params.append('filter', filter);
+      params = params.append('sortHe', sortHe);
+      params = params.append('sortDir', sortDir);
     }
     return this.http.get<Blog[]>(this.baseUrl + 'users/' + id + '/blogs', { observe: 'response', params })
       .pipe(

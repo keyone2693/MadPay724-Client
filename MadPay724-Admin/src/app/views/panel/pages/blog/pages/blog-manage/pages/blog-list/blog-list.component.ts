@@ -6,8 +6,8 @@ import { BlogService } from 'src/app/core/_services/panel/blog/blog.service';
 import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { PaginationResult } from 'src/app/data/models/common/paginationResult';
 import { Pagination } from 'src/app/data/models/common/pagination';
+import { FilterSortOrderBy } from 'src/app/data/models/common/filterSortOrderBy';
 
 @Component({
   selector: 'app-blog-list',
@@ -23,7 +23,13 @@ export class BlogListComponent implements OnInit, OnDestroy {
     'status', 'isSelected', 'viewCount', 'dateModified', 'actions'];
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  searchKey: string;
+
+  filterSortOrderBy: FilterSortOrderBy = {
+    sortDirection:'',
+    sortHeader:'',
+    searchKey:''
+  };
+
   loadingHideFlag = false;
   noContentHideFlag = true;
   constructor(private blogService: BlogService, private authService: AuthService,
@@ -49,13 +55,23 @@ export class BlogListComponent implements OnInit, OnDestroy {
     });
 
   }
-  paginatorEvent(event: any) {
-    if (this.searchKey === undefined || this.searchKey == null) {
-      this.searchKey = '';
+  paginatorEvent(filter: any) {
+
+    let { searchKey, sortDirection, sortHeader } = this.filterSortOrderBy;
+
+    if (searchKey === undefined || searchKey == null) {
+      searchKey = '';
+    }
+    if (sortDirection === undefined || sortDirection == null) {
+      sortDirection = '';
+    }
+    if (sortHeader === undefined || sortHeader == null) {
+      sortHeader = '';
     }
     this.subManager.add(
       this.blogService.getBlogs(this.authService.decodedToken.nameid,
-        event.pageIndex, event.pageSize, this.searchKey.trim())
+        filter.pageIndex, filter.pageSize,
+        searchKey.trim(), sortHeader, sortDirection)
         .subscribe((data) => {
           this.blogs = new MatTableDataSource(data.result);
           this.pagination = data.pagination;
@@ -66,18 +82,30 @@ export class BlogListComponent implements OnInit, OnDestroy {
         })
     )
   }
+  sortDataEvent(sort: any) {
+    this.filterSortOrderBy.sortHeader = sort.active;
+    this.filterSortOrderBy.sortDirection = sort.direction;
+    this.applyFilter();
+  }
   onSearchClear() {
-    this.searchKey = '';
+    this.filterSortOrderBy.searchKey = '';
     this.applyFilter();
   }
   applyFilter() {
-    //this.blogs.filter = this.searchKey.trim();
-    if (this.searchKey === undefined || this.searchKey == null) {
-      this.searchKey = '';
+    let { searchKey, sortDirection, sortHeader } = this.filterSortOrderBy;
+    if (searchKey === undefined || searchKey == null) {
+      searchKey = '';
+    }
+    if (sortDirection === undefined || sortDirection == null) {
+      sortDirection = '';
+    }
+    if (sortHeader === undefined || sortHeader == null) {
+      sortHeader = '';
     }
     this.subManager.add(
       this.blogService.getBlogs(this.authService.decodedToken.nameid,
-        this.pagination.currentPage, this.pagination.itemsPerPage, this.searchKey.trim())
+        this.pagination.currentPage, this.pagination.itemsPerPage,
+        searchKey.trim(), sortHeader, sortDirection)
         .subscribe((data) => {
           this.blogs = new MatTableDataSource(data.result);
           this.pagination = data.pagination;
