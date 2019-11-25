@@ -11,7 +11,7 @@ import { PaginationResult } from 'src/app/data/models/common/paginationResult';
 
 @Injectable()
 export class BlogResolver implements Resolve<Blog[]> {
-    pageNumber = 1;
+    pageNumber = 0;
     pageSize = 5;
     constructor(private blogService: BlogService, private router: Router,
                 private alertService: ToastrService, private authService: AuthService) { }

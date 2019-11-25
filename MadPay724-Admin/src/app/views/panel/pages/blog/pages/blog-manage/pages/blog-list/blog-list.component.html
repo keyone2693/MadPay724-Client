@@ -129,8 +129,11 @@
 
 </mat-table>
 <mat-paginator
-  [pageSize]="5"
+  [pageIndex]="pagination.currentPage"
+  [length]="pagination.totalItems"
+  [pageSize]="pagination.itemsPerPage"
   [pageSizeOptions]="[5, 10, 25, 50]"
+  (page)="paginatorEvent($event)"
   showFirstLastButtons
 >
 </mat-paginator>

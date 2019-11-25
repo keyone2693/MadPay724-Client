@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { PaginationResult } from 'src/app/data/models/common/paginationResult';
+import { Pagination } from 'src/app/data/models/common/pagination';
 
 @Component({
   selector: 'app-blog-list',
@@ -17,6 +18,7 @@ export class BlogListComponent implements OnInit, OnDestroy {
   subManager = new Subscription();
   blogs: MatTableDataSource<Blog>;
   blogsArray: Blog[];
+  pagination: Pagination;
   displayedColumns: string[] = ['id', 'blogGroupName', 'picAddress', 'title',
     'status', 'isSelected', 'summerText', 'viewCount', 'actions'];
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -26,7 +28,7 @@ export class BlogListComponent implements OnInit, OnDestroy {
   noContentHideFlag = true;
   constructor(private blogService: BlogService, private authService: AuthService,
     private router: Router, private route: ActivatedRoute,
-              private alertService: ToastrService) { }
+    private alertService: ToastrService) { }
 
   ngOnInit() {
     this.loadBlogs();
@@ -37,15 +39,35 @@ export class BlogListComponent implements OnInit, OnDestroy {
   loadBlogs() {
     this.route.data.subscribe(data => {
       this.blogs = new MatTableDataSource(data.blogs.result);
+      this.pagination = data.blogs.pagination;
       this.blogsArray = data.blogs.result;
       this.blogs.sort = this.sort;
-      this.blogs.paginator = this.paginator;
+      //pagination
+      // this.paginator.length = this.pagination.totalItems;
+      // this.paginator.pageSize = this.pagination.itemsPerPage;
+      // this.paginator.pageIndex = this.pagination.currentPage;
+      // this.blogs.paginator = this.paginator;
+      //pagination
       this.loadingHideFlag = true;
       if (data.blogs.result.length === 0) {
         this.noContentHideFlag = false;
       }
     });
 
+  }
+  paginatorEvent(event: any) {
+    console.log(event);
+    this.subManager.add(
+      this.blogService.getBlogs(this.authService.decodedToken.nameid, event.pageIndex, event.pageSize)
+        .subscribe((data) => {
+          this.blogs = new MatTableDataSource(data.result);
+          this.pagination = data.pagination;
+          this.blogsArray = data.result;
+          this.blogs.sort = this.sort;
+        }, error => {
+            this.alertService.error(error);
+        })
+    )
   }
   onSearchClear() {
     this.searchKey = '';
