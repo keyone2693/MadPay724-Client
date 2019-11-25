@@ -16,13 +16,14 @@ export class BlogService {
 
   
 
-  getBlogs(id: string, page?, itemPerPage?): Observable<PaginationResult<Blog[]>> {
+  getBlogs(id: string, page?, itemPerPage?, filter?): Observable<PaginationResult<Blog[]>> {
     const paginatedResult: PaginationResult<Blog[]> = new PaginationResult<Blog[]>();
     let params = new HttpParams();
 
     if (page != null && itemPerPage != null) {
       params = params.append('pageNumber', page);
       params = params.append('pageSize', itemPerPage);
+      params = params.append('filter', filter);
     }
     return this.http.get<Blog[]>(this.baseUrl + 'users/' + id + '/blogs', { observe: 'response', params })
       .pipe(

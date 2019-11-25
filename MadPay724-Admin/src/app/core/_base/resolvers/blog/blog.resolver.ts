@@ -13,10 +13,11 @@ import { PaginationResult } from 'src/app/data/models/common/paginationResult';
 export class BlogResolver implements Resolve<Blog[]> {
     pageNumber = 0;
     pageSize = 5;
+    filter = '';
     constructor(private blogService: BlogService, private router: Router,
                 private alertService: ToastrService, private authService: AuthService) { }
     resolve(route: ActivatedRouteSnapshot): Observable<Blog[]> {
-        return this.blogService.getBlogs(this.authService.decodedToken.nameid,this.pageNumber,this.pageSize).pipe(
+        return this.blogService.getBlogs(this.authService.decodedToken.nameid, this.pageNumber, this.pageSize, this.filter).pipe(
             catchError(error => {
                 this.alertService.error(error, 'خطا');
                 this.router.navigate(['/panel/blog/blog']);
