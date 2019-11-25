@@ -40,7 +40,7 @@ const routes: Routes = [
             //
             {
                 path: 'blog', canActivate: [AuthGuard],
-                component: BlogManageComponent,
+                resolve: { blogs: BlogResolver },component: BlogManageComponent,
                 data: { roles: ['Admin', 'AdminBlog', 'Blog'], title: ['مدیریت بلاگ ها'] }
             },
             {

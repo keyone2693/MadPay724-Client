@@ -4,8 +4,9 @@ import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { Blog } from 'src/app/data/models/blog/blog';
 import { BlogService } from 'src/app/core/_services/panel/blog/blog.service';
 import { AuthService } from 'src/app/core/_services/auth/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { PaginationResult } from 'src/app/data/models/common/paginationResult';
 
 @Component({
   selector: 'app-blog-list',
@@ -24,7 +25,7 @@ export class BlogListComponent implements OnInit, OnDestroy {
   loadingHideFlag = false;
   noContentHideFlag = true;
   constructor(private blogService: BlogService, private authService: AuthService,
-              private router: Router,
+    private router: Router, private route: ActivatedRoute,
               private alertService: ToastrService) { }
 
   ngOnInit() {
@@ -34,22 +35,16 @@ export class BlogListComponent implements OnInit, OnDestroy {
     this.subManager.unsubscribe();
   }
   loadBlogs() {
-    this.subManager.add(
-      this.blogService.getBlogs(this.authService.decodedToken.nameid).subscribe((data) => {
-        this.blogs = new MatTableDataSource(data);
-        this.blogsArray = data;
-        this.blogs.sort = this.sort;
-        this.blogs.paginator = this.paginator;
-        this.loadingHideFlag = true;
-        if (data.length === 0) {
-          this.noContentHideFlag = false;
-        }
-      }, error => {
-        this.alertService.error(error, 'خطا');
-        this.loadingHideFlag = false;
+    this.route.data.subscribe(data => {
+      this.blogs = new MatTableDataSource(data.blogs.result);
+      this.blogsArray = data.blogs.result;
+      this.blogs.sort = this.sort;
+      this.blogs.paginator = this.paginator;
+      this.loadingHideFlag = true;
+      if (data.blogs.result.length === 0) {
+        this.noContentHideFlag = false;
       }
-      )
-    );
+    });
 
   }
   onSearchClear() {

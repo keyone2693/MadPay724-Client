@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Blog } from 'src/app/data/models/blog/blog';
+import { PaginationResult } from 'src/app/data/models/common/paginationResult';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +14,26 @@ export class BlogService {
 
   constructor(private http: HttpClient) { }
 
-  getBlogs(id: string): Observable<Blog[]> {
-    return this.http.get<Blog[]>(this.baseUrl + 'users/' + id + '/blogs');
+  
+
+  getBlogs(id: string, page?, itemPerPage?): Observable<PaginationResult<Blog[]>> {
+    const paginatedResult: PaginationResult<Blog[]> = new PaginationResult<Blog[]>();
+    let params = new HttpParams();
+
+    if (page != null && itemPerPage != null) {
+      params = params.append('pageNumber', page);
+      params = params.append('pageSize', itemPerPage);
+    }
+    return this.http.get<Blog[]>(this.baseUrl + 'users/' + id + '/blogs', { observe: 'response', params })
+      .pipe(
+        map(response => {
+          paginatedResult.result = response.body;
+          if (response.headers.get('Pagination') != null) {
+            paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
+          }
+          return paginatedResult;
+        })
+      );
   }
   getBlog(id: string, blogId: string): Observable<Blog> {
     return this.http.get<Blog>(this.baseUrl + 'users/' + id + '/blogs/' + blogId);
