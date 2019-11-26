@@ -12,15 +12,12 @@ export class EditTitle implements Action {
 
 export class IncreaseCounter implements Action {
     readonly type = INCREASECOUNTER;
-    constructor() { }
 }
 export class DecreaseCounter implements Action {
     readonly type = DECREASECOUNTER;
-    constructor() { }
 }
 export class ResetCounter implements Action {
     readonly type = RESETCOUNTER;
-    constructor() { }
 }
 
 export type All = EditTitle | IncreaseCounter | DecreaseCounter | ResetCounter;

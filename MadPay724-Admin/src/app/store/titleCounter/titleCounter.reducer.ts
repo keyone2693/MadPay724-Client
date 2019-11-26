@@ -4,21 +4,19 @@ import { TitleCounter } from './titleCounter';
 export type Action = TitleCounterAction.All;
 
 const defaultState: TitleCounter = {
-    text: 'سلام من تایتل هستم',
+    title: 'سلام من تایتل هستم',
     counter: 0
 }
 
 const newState = (state, newData) => {
-    return [...state, newState]
-    //return Object.assign({}, state, newState);
+    //return [...state, newData];
+    return Object.assign({}, state, newData);
 }
 
 export function titleCounterReducer(state: TitleCounter = defaultState, action: Action) {
-    console.log(action.type, state);
-    
     switch (action.type) {
         case TitleCounterAction.EDIT_TITLE:
-            return newState(state, { text: action.payload });
+            return newState(state, { title: action.payload });
         case TitleCounterAction.INCREASECOUNTER:
             return newState(state, { counter: state.counter + 1 });
         case TitleCounterAction.DECREASECOUNTER:
@@ -28,5 +26,5 @@ export function titleCounterReducer(state: TitleCounter = defaultState, action: 
         default:
             return state
     }
-    
+
 }

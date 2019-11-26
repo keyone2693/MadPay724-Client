@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { HelloMessageState } from 'src/app/store/helloMessage/helloMessageState';
+import { HelloMessage } from 'src/app/store/helloMessage/helloMessage';
+import * as TitleCounterAction from '../../../../../../store/titleCounter/titleCounter.action';
+import { TitleCounter } from 'src/app/store/titleCounter/titleCounter';
+
+interface AppState {
+  helloMessage: HelloMessage,
+  titleCounter: TitleCounter
+}
 
 @Component({
   selector: 'app-blog-dashboard',
@@ -10,12 +17,15 @@ import { HelloMessageState } from 'src/app/store/helloMessage/helloMessageState'
 })
 export class BlogDashboardComponent implements OnInit {
 
-  helloMessage$: Observable<string>;
+  helloMessage$: Observable<HelloMessage>;
+  titleCounter$: Observable<TitleCounter>;
+  title: string;
 
-  constructor(private store: Store<HelloMessageState>) { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
     this.helloMessage$ = this.store.select('helloMessage');
+    this.titleCounter$ = this.store.select('titleCounter');
   }
   onPersian() {
     this.store.dispatch({ type: 'PERSIAN' });
@@ -23,5 +33,16 @@ export class BlogDashboardComponent implements OnInit {
   onEnglish() {
     this.store.dispatch({ type: 'ENGLISH' });
   }
-
+  editTitle() {
+    this.store.dispatch(new TitleCounterAction.EditTitle(this.title));
+  }
+  increaseCounter() {
+    this.store.dispatch(new TitleCounterAction.IncreaseCounter());
+  }
+  decreaseCounter() {
+    this.store.dispatch(new TitleCounterAction.DecreaseCounter());
+  }
+  resetCounter() {
+    this.store.dispatch(new TitleCounterAction.ResetCounter());
+  }
 }

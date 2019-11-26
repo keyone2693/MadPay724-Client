@@ -1,12 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-
 import {
   NgxUiLoaderModule,
   NgxUiLoaderRouterModule, NgxUiLoaderHttpModule, POSITION, SPINNER, PB_DIRECTION, NgxUiLoaderConfig
@@ -17,6 +15,8 @@ import { TitleService } from './core/_services/common/title.service';
 import { AuthService } from './core/_services/auth/auth.service';
 import { StoreModule } from '@ngrx/store';
 import { helloMessageReducer } from './store/helloMessage/helloMessage.reducer';
+import { titleCounterReducer } from './store/titleCounter/titleCounter.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   pbColor: 'red',
@@ -55,7 +55,13 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     NgxUiLoaderRouterModule,
     NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
-    StoreModule.forRoot({ helloMessage: helloMessageReducer })
+    StoreModule.forRoot({
+      helloMessage: helloMessageReducer,
+      titleCounter: titleCounterReducer
+    }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 10
+    })
   ],
   providers: [
     ErrorInterceptorProvider,

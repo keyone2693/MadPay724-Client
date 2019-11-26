@@ -1,4 +1,4 @@
 export interface TitleCounter {
-    text: string,
+    title: string,
     counter: number;
 }
