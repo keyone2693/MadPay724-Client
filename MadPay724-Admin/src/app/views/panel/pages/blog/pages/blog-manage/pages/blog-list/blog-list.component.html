@@ -53,22 +53,30 @@
 
   <ng-container matColumnDef="status" *appHasRole="['Admin', 'AdminBlog']">
     <mat-header-cell *matHeaderCellDef mat-sort-header> تایید نمایش </mat-header-cell>
-    <mat-cell *matCellDef="let blog"> <mat-checkbox ></mat-checkbox> </mat-cell>
+    <mat-cell *matCellDef="let blog">
+       <mat-checkbox [checked]="blog.status" (change)="onApproveChange($event, blog.id)"></mat-checkbox>
+       </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="isSelected" *appHasRole="['Admin', 'AdminBlog']">
     <mat-header-cell *matHeaderCellDef mat-sort-header> محبوب شده </mat-header-cell>
-    <mat-cell *matCellDef="let blog"><mat-checkbox color='primary' ></mat-checkbox></mat-cell>
+    <mat-cell *matCellDef="let blog">
+      <mat-checkbox [checked]="blog.isSelected" (change)="onSelectChange($event, blog.id)" color='primary' ></mat-checkbox>
+    </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="status" *appHasRole="['Blog']">
     <mat-header-cell *matHeaderCellDef mat-sort-header> تایید نمایش </mat-header-cell>
-    <mat-cell *matCellDef="let blog"> <mat-checkbox disabled></mat-checkbox> </mat-cell>
+    <mat-cell *matCellDef="let blog">
+       <mat-checkbox [checked]="blog.status" [disabled]="true"></mat-checkbox> 
+      </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="isSelected" *appHasRole="['Blog']">
     <mat-header-cell *matHeaderCellDef mat-sort-header> محبوب شده </mat-header-cell>
-    <mat-cell *matCellDef="let blog"><mat-checkbox color='primary' disabled></mat-checkbox></mat-cell>
+    <mat-cell *matCellDef="let blog">
+      <mat-checkbox  [checked]="blog.isSelected" color='primary' [disabled]="true"></mat-checkbox>
+    </mat-cell>
   </ng-container>
 
 

@@ -131,5 +131,32 @@ export class BlogListComponent implements OnInit, OnDestroy {
     );
 
   }
-
+  onApproveChange(event: any,blogId: string) {
+    this.subManager.add(
+      this.blogService.approveBlog(event.checked, this.authService.decodedToken.nameid, blogId)
+        .subscribe(() => {
+          if (event.checked === true) {
+            this.alertService.success('بلاگ مورد نظر با موفقیت تایید شد', 'موفق');
+          } else {
+            this.alertService.success('بلاگ شما با موفقیت از حالت تاییدی خارج شد', 'موفق');
+          }
+        }, error => {
+          this.alertService.error(error);
+        })
+    )
+  }
+  onSelectChange(event: any, blogId: string) {
+    this.subManager.add(
+      this.blogService.selectBlog(event.checked, this.authService.decodedToken.nameid, blogId)
+        .subscribe(() => {
+          if (event.checked === true) {
+            this.alertService.success('بلاگ مورد نظر با موفقیت محبوب شد', 'موفق');
+          } else {
+            this.alertService.success('بلاگ شما با موفقیت از حالت محبوبی خارج شد', 'موفق');
+          }          
+        }, error => {
+            this.alertService.error(error);
+        })
+    )
+  }
 }

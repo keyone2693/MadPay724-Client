@@ -14,8 +14,6 @@ export class BlogService {
 
   constructor(private http: HttpClient) { }
 
-  
-
   getBlogs(id: string, page?, itemPerPage?, filter?, sortHe?, sortDir?): Observable<PaginationResult<Blog[]>> {
     const paginatedResult: PaginationResult<Blog[]> = new PaginationResult<Blog[]>();
     let params = new HttpParams();
@@ -48,7 +46,12 @@ export class BlogService {
   updateBlog(blog: any, userId: string, id: string) {
     return this.http.put(this.baseUrl + 'users/' + userId + '/blogs/' + id, blog);
   }
-
+  approveBlog(flag: boolean, userId: string, id: string) {
+    return this.http.put(this.baseUrl + 'users/' + userId + '/blogs/' + id + '/approveBlog', { flag });
+  }
+  selectBlog(flag: any, userId: string, id: string) {
+    return this.http.put(this.baseUrl + 'users/' + userId + '/blogs/' + id + '/selectBlog', { flag });
+  }
   deleteBlog(userId: string, blogId: string) {
     return this.http.delete(this.baseUrl + 'users/' + userId + '/blogs/' + blogId);
   }
