@@ -15,6 +15,8 @@ import { NotyfToast } from './Shared/Animation/notyf';
 import { ErrorInterceptorProvider } from './core/_config/error.interceptor';
 import { TitleService } from './core/_services/common/title.service';
 import { AuthService } from './core/_services/auth/auth.service';
+import { StoreModule } from '@ngrx/store';
+import { helloMessageReducer } from './store/helloMessage/helloMessage.reducer';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   pbColor: 'red',
@@ -52,7 +54,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     HttpClientModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     NgxUiLoaderRouterModule,
-    NgxUiLoaderHttpModule.forRoot({ showForeground: true })
+    NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
+    StoreModule.forRoot({ helloMessage: helloMessageReducer })
   ],
   providers: [
     ErrorInterceptorProvider,

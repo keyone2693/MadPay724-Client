@@ -4,6 +4,6 @@
 
 <div class="col-md-12 text-center">
   <button (click)="onPersian()" class="btn success ml-2">فارسی</button>
-  <label class="label ml-2">سلام انگولار</label>
+  <label class="label ml-2"> {{helloMessage$ | async }}</label>
   <button (click)="onEnglish()" class="btn danger ml-2">English</button>
 </div>
