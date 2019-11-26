@@ -3,9 +3,6 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { User } from 'src/app/data/models/user';
-import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
-import { HelloMessageState } from 'src/app/store/helloMessage/helloMessageState';
 
 @Component({
   selector: 'app-navbar',
@@ -14,13 +11,10 @@ import { HelloMessageState } from 'src/app/store/helloMessage/helloMessageState'
 })
 export class NavbarComponent implements OnInit {
   photoUrl: string;
-  helloMessage$: Observable<string>;
-  constructor(private router: Router, private store: Store<HelloMessageState>,
-    private alertService: ToastrService, public authService: AuthService) {
+  constructor(private router: Router, private alertService: ToastrService, public authService: AuthService) {
   }
 
   ngOnInit() {
-    this.helloMessage$ = this.store.select('helloMessage');
     this.authService.currentPhotoUrl.subscribe(pu => this.photoUrl = pu);
     this.loadUser();
   }
