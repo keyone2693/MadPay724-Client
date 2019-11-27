@@ -18,4 +18,4 @@ export class LoadUsersFail implements Action {
     constructor(public payload: any) { }
 }
 
-export type UsersActions = LoadUsers | LoadUsersSuccess | LoadUsersFail;
+export type All = LoadUsers | LoadUsersSuccess | LoadUsersFail;

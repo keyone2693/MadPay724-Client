@@ -26,5 +26,4 @@ export function titleCounterReducer(state: TitleCounter = defaultState, action: 
         default:
             return state
     }
-
 }

@@ -26,6 +26,7 @@ export class BlogDashboardComponent implements OnInit {
   ngOnInit() {
     this.helloMessage$ = this.store.select('helloMessage');
     this.titleCounter$ = this.store.select('titleCounter');
+    
   }
   onPersian() {
     this.store.dispatch({ type: 'PERSIAN' });
