@@ -9,7 +9,7 @@ const defaultState: TitleCounter = {
 }
 
 const newState = (state, newData) => {
-    //return [...state, newData];
+   // return {...state, newData };
     return Object.assign({}, state, newData);
 }
 
