@@ -26,7 +26,7 @@ import { BlogResolver } from 'src/app/core/_base/resolvers/blog/blog.resolver';
 import { SharedTagInputModule } from 'src/app/shared/modules/textEditor/sharedTagInput.module';
 import { SharedEJTextEditorModule } from 'src/app/shared/modules/textEditor/sharedEJTextEditor.module';
 import { StoreModule } from '@ngrx/store';
-import { userReducer } from '../../../../store/user/users.reducer';
+import { reducers } from '../../../../store';
 
 
 @NgModule({
@@ -44,7 +44,7 @@ import { userReducer } from '../../../../store/user/users.reducer';
     HasRoleModule,
     SharedTagInputModule,
     SharedEJTextEditorModule,
-    StoreModule.forFeature('blog', { userReducer })
+    StoreModule.forFeature('info',  reducers )
   ],
   declarations: [
     BlogComponent,

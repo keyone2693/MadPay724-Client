@@ -6,13 +6,18 @@ import { HasRoleModule } from 'src/app/Shared/Modules/hasRole/hasRole.module';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { AuthGuard } from 'src/app/core/_base/guards/auth.guard';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment.prod';
 
 
 @NgModule({
   imports: [
     PanelRoutingModule,
     CommonModule,
-    HasRoleModule
+    HasRoleModule,
+    StoreModule.forRoot({}),
+    environment.development ? StoreDevtoolsModule.instrument({maxAge: 10}) : []
   ],
   declarations: [
     PanelComponent,
