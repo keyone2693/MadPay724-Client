@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import * as fromStore from '../../../../../../store'
-import { UserState } from 'src/app/store/reducers/users.reducer';
 import { User } from 'src/app/data/models/user';
 
 @Component({
@@ -20,7 +19,8 @@ export class BlogDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.users$ = this.store.select(fromStore.getAllUsers);
-    
+    this.store.dispatch(new fromStore.LoadUsers());
+
   }
  
   resetCounter() {
