@@ -17,7 +17,7 @@ import { environment } from 'src/environments/environment.prod';
     CommonModule,
     HasRoleModule,
     StoreModule.forRoot({}),
-    environment.development ? StoreDevtoolsModule.instrument({maxAge: 10}) : []
+    environment.development ? StoreDevtoolsModule.instrument({ maxAge: 10 }) : []
   ],
   declarations: [
     PanelComponent,

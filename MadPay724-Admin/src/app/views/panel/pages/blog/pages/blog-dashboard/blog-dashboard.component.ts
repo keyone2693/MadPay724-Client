@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 
 import * as fromStore from '../../../../../../store'
 import { UserState } from 'src/app/store/reducers/users.reducer';
+import { User } from 'src/app/data/models/user';
 
 @Component({
   selector: 'app-blog-dashboard',
@@ -12,15 +13,13 @@ import { UserState } from 'src/app/store/reducers/users.reducer';
 })
 export class BlogDashboardComponent implements OnInit {
 
-  users$: Observable<UserState>;
+  users$: Observable<User[]>;
   title: string;
 
   constructor(private store: Store<fromStore.InfoState>) { }
 
   ngOnInit() {
-    this.store.select('users').subscribe(state => {
-      console.log(state);
-    });
+    this.users$ = this.store.select(fromStore.getAllUsers);
     
   }
  

@@ -20,7 +20,7 @@ export const defaultState: UserState ={
         age: 15,
         lastActive: new Date(),
         city: "Cowiche",
-        photoUrl: "Cowiche",
+        photoUrl: "https://randomuser.me/api/portraits/men/40.jpg",
         photo: [
             {
                 id: "1",
@@ -47,3 +47,7 @@ export function userReducer(state = defaultState, action: Action) {
             return state;
     }
 }
+
+export const getUsersLoading = (state: UserState) => state.loading;
+export const getUsersLoaded = (state: UserState) => state.loaded;
+export const getUsers = (state: UserState) => state.data;

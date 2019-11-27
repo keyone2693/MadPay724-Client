@@ -1,36 +1,29 @@
 <p>
   blog-dashboard works!
 </p>
-
-<div *ngIf="helloMessage$ | async as hm">
-  <div class="col-md-12 text-center">
-    <button (click)="onPersian()" class="btn success ml-2">فارسی</button>
-    <label class="label ml-2"> {{ hm.helloMessage }}</label>
-    <button (click)="onEnglish()" class="btn danger ml-2">English</button>
-  </div>
-</div>
-
-<div *ngIf="titleCounter$ | async as tc">
-  <div class="col-md-12 text-center">
-    <label class="label mb-2 mt-5"> {{ tc.title }} </label>
-  </div>
-  <div class="col-md-12 text-center">
-    <button class="btn btn-primary mb-2 ">{{ tc.counter }}</button>
-  </div>
-  <div class="col-md-12 text-center">
-    <button (click)="increaseCounter()" class="btn btn-success ml-2">
-      (+) افزایش
-    </button>
-    <button (click)="resetCounter()" class="btn btn-warning ml-2">ریست</button>
-    <button (click)="decreaseCounter()" class="btn btn-danger ml-2">
-      (-) کاهش
-    </button>
-  </div>
-
-  <div class="col-md-12 text-center">
-    <div class="form-group">
-      <input [(ngModel)]="title" type="email" class="form-control" />
+<div class="row">
+  <div class="col-md-12">
+    <div
+      *ngFor="let user of users$ | async as users"
+      class="card"
+      style="width: 18rem;"
+    >
+      <img [src]="user.photoUrl" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">{{ user.name }}</h5>
+        <p class="card-text">
+          {{ user.address }}
+        </p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">{{ user.age }}</li>
+        <li class="list-group-item">{{ user.city }}</li>
+        <li class="list-group-item">{{ user.phoneNumber }}</li>
+      </ul>
+      <div class="card-body">
+        <a href="#" class="card-link">Card link</a>
+        <a href="#" class="card-link">Another link</a>
+      </div>
     </div>
-    <button (click)="editTitle()" class="btn btn-info">تغییر عنوان</button>
   </div>
 </div>
