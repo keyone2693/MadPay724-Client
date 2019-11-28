@@ -1,43 +1,41 @@
 import { User } from 'src/app/data/models/user';
 import * as UserAction from '../actions/users.action';
+import { createEntityAdapter, EntityState, EntityAdapter } from '@ngrx/entity'
 
 export type Action = UserAction.All;
 
-export interface UserState{
-    entities: { [id:number]: User },
+export interface UserState extends EntityState<User> {
+    selectedUserId: string | null,
     loaded: boolean,
     loading: boolean
 }
+export const usersAdaptor: EntityAdapter<User> = createEntityAdapter<User>();
 
-export const defaultState: UserState ={
+export const defaultUser: UserState = {
+    ids: [],
     entities: {},
+    selectedUserId: null,
     loaded: false,
     loading: false
 }
 
-export function userReducer(state = defaultState, action: Action) {
+export const initState = usersAdaptor.getInitialState(defaultUser);
+
+
+
+export function userReducer(state = initState, action: Action) {
     switch (action.type) {
         case UserAction.LOAD_USERS:
             return { ...state, loading: true };
         case UserAction.LOAD_USERS_SUCCESS: {
-
-            const users = action.payload;
-
-            const entities = users.reduce((enties: { [id: number]: User }, user: User) => {
-                return {
-                    ...enties, [user.id]: user
-                }
-            },
-                {
-                    ...state.entities
-                }
-            );
-
-            return { ...state, entities, loading: false, loaded:true };
-
+            return usersAdaptor.addAll(action.payload, {
+                ...state,
+                loading: false,
+                loaded: true
+            });
         }
         case UserAction.LOAD_USERS_FAIL:
-            return { ...state, loading: false, loaded: false };
+            return { ...state, entities: {}, loading: false, loaded: false };
         default:
             return state;
     }

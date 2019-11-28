@@ -14,11 +14,9 @@ export const getInfoState = createFeatureSelector<InfoState>('info');
 export const getUserState = createSelector(getInfoState, (state: InfoState) => state.users);
 
 export const getAllUsersEntities = createSelector(getUserState, fromUsers.getUsersEntities);
-export const getAllUsers = createSelector(getAllUsersEntities,
-    (entities) => {
-        return Object.keys(entities).map(
-            id => entities[id]
-        )
-    });
+
+export const getAllUsers = createSelector(getUserState,
+    fromUsers.usersAdaptor.getSelectors().selectAll);
+
 export const getUsersLoaded = createSelector(getUserState, fromUsers.getUsersLoaded);
 export const getUsersLoading = createSelector(getUserState, fromUsers.getUsersLoading);
