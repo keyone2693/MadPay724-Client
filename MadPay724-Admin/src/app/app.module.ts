@@ -19,6 +19,7 @@ import { environment } from 'src/environments/environment.prod';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store';
 import { CustomRouteSerializer } from './shared/helpers/customRouteSerializer';
+import { reducers } from './store';
 
 
 
@@ -59,8 +60,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     NgxUiLoaderRouterModule,
     NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
-    StoreModule.forRoot({}),
-    StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
+    StoreModule.forRoot(reducers),
+    //StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
     EffectsModule.forRoot([]),
     environment.development ? StoreDevtoolsModule.instrument({ maxAge: 10 }) : []
   ],
@@ -68,7 +69,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     ErrorInterceptorProvider,
     TitleService,
     AuthService,
-    { provide: RouterStateSerializer, useClass: CustomRouteSerializer } 
+    //{ provide: RouterStateSerializer, useClass: CustomRouteSerializer } 
   ],
   entryComponents: [NotyfToast],
   bootstrap: [AppComponent]
