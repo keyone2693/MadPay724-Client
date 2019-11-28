@@ -61,15 +61,16 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgxUiLoaderRouterModule,
     NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
     StoreModule.forRoot(reducers),
-    //StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
+    StoreRouterConnectingModule.forRoot({
+      serializer: CustomRouteSerializer
+    }),
     EffectsModule.forRoot([]),
     environment.development ? StoreDevtoolsModule.instrument({ maxAge: 10 }) : []
   ],
   providers: [
     ErrorInterceptorProvider,
     TitleService,
-    AuthService,
-    //{ provide: RouterStateSerializer, useClass: CustomRouteSerializer } 
+    AuthService
   ],
   entryComponents: [NotyfToast],
   bootstrap: [AppComponent]

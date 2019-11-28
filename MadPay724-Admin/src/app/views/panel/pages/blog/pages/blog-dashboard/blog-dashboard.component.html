@@ -1,26 +1,3 @@
 <p>
   blog-dashboard works!
 </p>
-<a (click)="adduser()" class="btn btn-info">اضافه کردن یوزر</a>
-<div class="row">
-    <div *ngIf="error$ | async as error" class="card-body">
-      <h5 class="card-title mt-1">{{error}}</h5>
-    </div>
-    <div *ngIf="selectedUser$ | async as selectedUser" class="card-body">
-      <h5 class="card-title mt-1">{{selectedUser | json}}</h5>
-    </div>
-  <div
-    *ngFor="let user of users$ | async as users"
-    class="card col-md-2"
-    style="width: 18rem;"
-  >
-    <img [src]="user.photoUrl" class="card-img-top" alt="..." />
-    <div class="card-body">
-      <h5 class="card-title mt-1">{{ user.name }}</h5>
-    </div>
-    <div class="card-body">
-      <a href="javascript:;" (click)="updateuser(user)" class="btn btn-success ml-2">ویرایش</a>
-      <a href="javascript:;" (click)="deleteuser(user)" class="btn btn-danger">حذف</a>
-    </div>
-  </div>
-</div>

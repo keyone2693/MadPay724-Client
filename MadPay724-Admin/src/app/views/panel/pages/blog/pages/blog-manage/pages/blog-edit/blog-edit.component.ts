@@ -13,8 +13,10 @@ import {
 import { addClass, removeClass, Browser } from '@syncfusion/ej2-base';
 import { ToolbarModule } from '@syncfusion/ej2-angular-navigations';
 import { Blog } from 'src/app/data/models/blog/blog';
-import { filter, take, map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { RouterStateUrl } from 'src/app/store/_model/routerStateUrl';
+import * as fromStore from '../../../../store';
 
 @Component({
   selector: 'app-blog-edit',
@@ -59,7 +61,8 @@ export class BlogEditComponent implements OnInit, OnDestroy {
   };
   constructor(private formBuilder: FormBuilder, private alertService: ToastrService,
     private router: Router, private route: ActivatedRoute,
-    private blogService: BlogService, private authService: AuthService) { this.loadBlogAndBlogGroups();}
+    private blogService: BlogService, private authService: AuthService,
+    private store: Store<RouterStateUrl>) { this.loadBlogAndBlogGroups(); }
 
   blogEditForm: FormGroup = this.formBuilder.group({
     blogGroupId: ['', [Validators.required]],
@@ -70,9 +73,9 @@ export class BlogEditComponent implements OnInit, OnDestroy {
     file: [null]
   });
   ngOnInit() {
-    
+
     this.rteObj.insertImageSettings.saveUrl = environment.apiUrl + environment.apiV1 + 'site/panel/' +
-      'users/' + this.authService.decodedToken.nameid + '/blogs/upload';    
+      'users/' + this.authService.decodedToken.nameid + '/blogs/upload';
   }
   ngOnDestroy() {
     this.subManager.unsubscribe();
@@ -83,22 +86,28 @@ export class BlogEditComponent implements OnInit, OnDestroy {
         this.blogGroups = data.bloggroups;
       })
     );
+
+    this.store.select(fromStore.getRouterBlogId).subscribe((data) => {
+      console.log(data);
+    })
+
     let blogId = '';
     this.subManager.add(
       this.route.params.subscribe(params => {
         blogId = params['blogId']
       })
-    );    
-     this.subManager.add(
-        this.blogService.getBlog(this.authService.decodedToken.nameid, blogId).subscribe( data => {
-          this.blog = data;
-          this.populateEditForm(data);
-       })
-     );
+    );
+
+    this.subManager.add(
+      this.blogService.getBlog(this.authService.decodedToken.nameid, blogId).subscribe(data => {
+        this.blog = data;
+        this.populateEditForm(data);
+      })
+    );
 
   }
-  populateEditForm(blog: Blog) {  
-    
+  populateEditForm(blog: Blog) {
+
     let tagArr = [];
     const tArr = blog.tags.split(',');
 
@@ -114,7 +123,7 @@ export class BlogEditComponent implements OnInit, OnDestroy {
       summerText: blog.summerText,
       file: null
     });
-    
+
     //this.blogEditForm.get('blogGroupId').setValue(blog.blogGroupId);
     //this.blogEditForm.get('tags').setValue(tagArr);
     this.imgUrl = blog.picAddress;
@@ -143,8 +152,8 @@ export class BlogEditComponent implements OnInit, OnDestroy {
 
       const blog = new FormData();
       if (this.slectedFile) {
-          blog.append('file', this.slectedFile, this.slectedFile.name);
-      }     
+        blog.append('file', this.slectedFile, this.slectedFile.name);
+      }
       blog.append('blogGroupId', this.blogEditForm.get('blogGroupId').value);
       blog.append('title', this.blogEditForm.get('title').value);
       blog.append('tags', allTags);
@@ -157,7 +166,7 @@ export class BlogEditComponent implements OnInit, OnDestroy {
           this.alertService.success('بلاگ شما با موفقیت ویرایش شد', 'موفق');
           this.onClear();
         }, error => {
-            this.alertService.error(error, 'خطا در ویرایش بلاگ ');
+          this.alertService.error(error, 'خطا در ویرایش بلاگ ');
         })
       );
 
