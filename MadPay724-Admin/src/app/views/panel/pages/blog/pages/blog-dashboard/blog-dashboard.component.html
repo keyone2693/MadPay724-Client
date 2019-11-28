@@ -2,18 +2,21 @@
   blog-dashboard works!
 </p>
 <div class="row">
-    <div
-      *ngFor="let user of users$ | async as users"
-      class="card col-md-2"
-      style="width: 18rem;"
-    >
-      <img [src]="user.photoUrl" class="card-img-top" alt="..." />
-      <div class="card-body">
-        <h5 class="card-title mt-1">{{ user.name }}</h5>
-      </div>
-      <div class="card-body">
-        <a href="#" class="btn danger">ویرایش</a>
-        <a href="#" class="btn success">حذف</a>
-      </div>
+    <div *ngIf="error$ | async as error" class="card-body">
+      <h5 class="card-title mt-1">{{error}}</h5>
     </div>
+  <div
+    *ngFor="let user of users$ | async as users"
+    class="card col-md-2"
+    style="width: 18rem;"
+  >
+    <img [src]="user.photoUrl" class="card-img-top" alt="..." />
+    <div class="card-body">
+      <h5 class="card-title mt-1">{{ user.name }}</h5>
+    </div>
+    <div class="card-body">
+      <a href="#" class="btn danger">ویرایش</a>
+      <a href="#" class="btn success">حذف</a>
+    </div>
+  </div>
 </div>
