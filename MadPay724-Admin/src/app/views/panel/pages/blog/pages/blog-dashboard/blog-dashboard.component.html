@@ -1,9 +1,13 @@
 <p>
   blog-dashboard works!
 </p>
+<a (click)="adduser()" class="btn btn-info">اضافه کردن یوزر</a>
 <div class="row">
     <div *ngIf="error$ | async as error" class="card-body">
       <h5 class="card-title mt-1">{{error}}</h5>
+    </div>
+    <div *ngIf="selectedUser$ | async as selectedUser" class="card-body">
+      <h5 class="card-title mt-1">{{selectedUser | json}}</h5>
     </div>
   <div
     *ngFor="let user of users$ | async as users"
@@ -15,8 +19,8 @@
       <h5 class="card-title mt-1">{{ user.name }}</h5>
     </div>
     <div class="card-body">
-      <a href="#" class="btn btn-danger">ویرایش</a>
-      <a href="#" class="btn btn-success">حذف</a>
+      <a href="javascript:;" (click)="updateuser(user)" class="btn btn-success ml-2">ویرایش</a>
+      <a href="javascript:;" (click)="deleteuser(user)" class="btn btn-danger">حذف</a>
     </div>
   </div>
 </div>

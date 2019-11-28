@@ -22,3 +22,11 @@ export const getAllUsers = createSelector(getUserState,
 export const getUsersLoaded = createSelector(getUserState, fromUsers.getUsersLoaded);
 export const getUsersLoading = createSelector(getUserState, fromUsers.getUsersLoading);
 export const getUsersError = createSelector(getUserState, fromUsers.getUsersError);
+
+export const getSelectedUserId = createSelector(getUserState,
+    fromUsers.getSelectedUserId);
+
+export const getSelectedUser = createSelector(getUserState,
+    getSelectedUserId,
+    fromUsers.getSelectedUserId,
+    state => state.entities[state.selectedUserId]);

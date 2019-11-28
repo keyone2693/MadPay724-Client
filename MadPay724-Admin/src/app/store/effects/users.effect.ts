@@ -52,8 +52,7 @@ export class UsersEffects {
                     map((updatedUser: User) => new userActions.UpdateUserSuccess({
                         id: updatedUser.id,
                         changes: updatedUser
-                    })
-                    ),
+                    })),
                     catchError(error => of(new userActions.UpdateUserFail(error)))
                 );
             })
@@ -64,7 +63,7 @@ export class UsersEffects {
             map((action: userActions.DeleteUser) => action.payload),
             mergeMap((id: string) => {
                 return this.userService.smDeleteUser(id).pipe(
-                    map((str: string) => new userActions.DeleteUserSuccess(str)),
+                    map(() => new userActions.DeleteUserSuccess(id)),
                     catchError(error => of(new userActions.DeleteUserFail(error)))
                 );
             })

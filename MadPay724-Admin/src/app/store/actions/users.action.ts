@@ -3,21 +3,21 @@ import { User } from 'src/app/data/models/user';
 import { Update } from '@ngrx/entity';
 
 
-export const LOAD_USERS = '[Uaers] Load Users';
-export const LOAD_USERS_SUCCESS = '[Uaers] Load Users Success';
-export const LOAD_USERS_FAIL = '[Uaers] Load Users Fail';
-export const LOAD_USER = '[Uaers] Load User';
-export const LOAD_USER_SUCCESS = '[Uaers] Load User Success';
-export const LOAD_USER_FAIL = '[Uaers] Load User Fail';
-export const CREATE_USER = '[Uaers] Create User';
-export const CREATE_USER_SUCCESS = '[Uaers] Create User Success';
-export const CREATE_USER_FAIL = '[Uaers] Create User Fail';
-export const UPDATE_USER = '[Uaers] Update User';
-export const UPDATE_USER_SUCCESS = '[Uaers] Update User Success';
-export const UPDATE_USER_FAIL = '[Uaers] Update User Fail';
-export const DELETE_USER = '[Uaers] Delete User';
-export const DELETE_USER_SUCCESS = '[Uaers] Delete User Success';
-export const DELETE_USER_FAIL = '[Uaers] Delete User Fail';
+export const LOAD_USERS = '[Users] Load Users';
+export const LOAD_USERS_SUCCESS = '[Users] Load Users Success';
+export const LOAD_USERS_FAIL = '[Users] Load Users Fail';
+export const LOAD_USER = '[Users] Load User';
+export const LOAD_USER_SUCCESS = '[Users] Load User Success';
+export const LOAD_USER_FAIL = '[Users] Load User Fail';
+export const CREATE_USER = '[Users] Create User';
+export const CREATE_USER_SUCCESS = '[Users] Create User Success';
+export const CREATE_USER_FAIL = '[Users] Create User Fail';
+export const UPDATE_USER = '[Users] Update User';
+export const UPDATE_USER_SUCCESS = '[Users] Update User Success';
+export const UPDATE_USER_FAIL = '[Users] Update User Fail';
+export const DELETE_USER = '[Users] Delete User';
+export const DELETE_USER_SUCCESS = '[Users] Delete User Success';
+export const DELETE_USER_FAIL = '[Users] Delete User Fail';
 
 //LoadUsers
 export class LoadUsers implements Action{
