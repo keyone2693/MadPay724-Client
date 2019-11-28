@@ -13,9 +13,27 @@ export class UserService {
 
 constructor(private http: HttpClient) { }
 
-getUsers(): Observable<User[]> {
-  return this.http.get<User[]>(this.baseUrl);
-}
+  smGetUsers(): Observable<User[]> {
+    return this.http.post<User[]>(this.baseUrl, { flag: 1 });
+  }
+  smGetUser(id: string): Observable<User> {
+    return this.http.post<User>(this.baseUrl, { flag: 2 });
+  }
+  smCreateUser(user: User): Observable<User> {
+    return this.http.post<User>(this.baseUrl,{flag:3});
+  }
+  smUpdateUser(user: User): Observable<User> {
+    return this.http.post<User>(this.baseUrl, { flag: 4 });
+  }
+  smDeleteUser(id:string): Observable<string> {
+    return this.http.post<string>(this.baseUrl, { flag: 5 });
+  }
+  
+  
+  
+  
+  
+  
 
 getUser(id: string): Observable<User> {
   return this.http.get<User>(this.baseUrl + id);
@@ -28,4 +46,5 @@ updateUserInfo(id: string, user: User) {
 updateUserPass(id: string, passModel: any) {
   return this.http.put(this.baseUrl + 'ChangeUserPassword/' + id, passModel);
 }
+  
 }

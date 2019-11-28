@@ -60,11 +60,11 @@ export class CreateUserFail implements Action {
 //UpdateUser
 export class UpdateUser implements Action {
     readonly type = UPDATE_USER;
-    constructor(public payload: Update<User>) { }
+    constructor(public payload: User) { }
 }
 export class UpdateUserSuccess implements Action {
     readonly type = UPDATE_USER_SUCCESS;
-    constructor(public payload: User) { }
+    constructor(public payload: Update<User>) { }
 }
 export class UpdateUserFail implements Action {
     readonly type = UPDATE_USER_FAIL;
