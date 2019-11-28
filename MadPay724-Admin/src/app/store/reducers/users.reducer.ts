@@ -4,13 +4,13 @@ import * as UserAction from '../actions/users.action';
 export type Action = UserAction.All;
 
 export interface UserState{
-    data: User[],
+    entities: { [id:number]: User },
     loaded: boolean,
     loading: boolean
 }
 
 export const defaultState: UserState ={
-    data: [],
+    entities: {},
     loaded: false,
     loading: false
 }
@@ -20,8 +20,20 @@ export function userReducer(state = defaultState, action: Action) {
         case UserAction.LOAD_USERS:
             return { ...state, loading: true };
         case UserAction.LOAD_USERS_SUCCESS: {
-            const data = action.payload;
-            return { ...state, data, loading: false, loaded:true };
+
+            const users = action.payload;
+
+            const entities = users.reduce((enties: { [id: number]: User }, user: User) => {
+                return {
+                    ...enties, [user.id]: user
+                }
+            },
+                {
+                    ...state.entities
+                }
+            );
+
+            return { ...state, entities, loading: false, loaded:true };
 
         }
         case UserAction.LOAD_USERS_FAIL:
@@ -31,6 +43,6 @@ export function userReducer(state = defaultState, action: Action) {
     }
 }
 
+export const getUsersEntities = (state: UserState) => state.entities;
 export const getUsersLoading = (state: UserState) => state.loading;
 export const getUsersLoaded = (state: UserState) => state.loaded;
-export const getUsers = (state: UserState) => state.data;
