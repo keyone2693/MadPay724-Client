@@ -13,6 +13,14 @@ import { NotyfToast } from './Shared/Animation/notyf';
 import { ErrorInterceptorProvider } from './core/_config/error.interceptor';
 import { TitleService } from './core/_services/common/title.service';
 import { AuthService } from './core/_services/auth/auth.service';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { environment } from 'src/environments/environment.prod';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store';
+import { CustomRouteSerializer } from './shared/helpers/customRouteSerializer';
+
+
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   pbColor: 'red',
@@ -50,12 +58,17 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     HttpClientModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     NgxUiLoaderRouterModule,
-    NgxUiLoaderHttpModule.forRoot({ showForeground: true })
+    NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
+    StoreModule.forRoot({}),
+    StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
+    EffectsModule.forRoot([]),
+    environment.development ? StoreDevtoolsModule.instrument({ maxAge: 10 }) : []
   ],
   providers: [
     ErrorInterceptorProvider,
     TitleService,
-    AuthService
+    AuthService,
+    { provide: RouterStateSerializer, useClass: CustomRouteSerializer } 
   ],
   entryComponents: [NotyfToast],
   bootstrap: [AppComponent]
