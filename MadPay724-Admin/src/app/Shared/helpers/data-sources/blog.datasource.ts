@@ -9,21 +9,21 @@ import { catchError, tap } from 'rxjs/operators';
 export class BlogDataSource implements DataSource<Blog> {
     private blogSubject = new BehaviorSubject<Blog[]>([]);
 
-    constructor(private store: Store<fromBlogStore.BlogState>) { }
-    loadBlogs(page: fromBlogStore.PageQuery) {
-        this.store
-            .pipe(
-                select(fromBlogStore.getBlogsPage(page)),
-                tap(blogs => {
-                    if (blogs.length > 0) {
-                        this.blogSubject.next(blogs);
-                    } else {
-                        this.store.dispatch(new fromBlogStore.LoadBlogs(page));
-                    }
-                }),
-                catchError(err => of([]))
-            ).subscribe();
-    }   
+    //constructor(private store: Store<fromBlogStore.BlogState>) { }
+    // loadBlogs(page: fromBlogStore.PageQuery) {
+    //     this.store
+    //         .pipe(
+    //             select(fromBlogStore.getBlogsPage(page)),
+    //             tap(blogs => {
+    //                 if (blogs.length > 0) {
+    //                     this.blogSubject.next(blogs);
+    //                 } else {
+    //                     this.store.dispatch(new fromBlogStore.LoadBlogs(page));
+    //                 }
+    //             }),
+    //             catchError(err => of([]))
+    //         ).subscribe();
+    // }   
     connect(collectionViewer: CollectionViewer): Observable<Blog[]>{
         console.log("connecting data source");
         return this.blogSubject.asObservable();

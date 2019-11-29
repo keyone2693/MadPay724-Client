@@ -1,22 +1,19 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute, Router, ActivatedRouteSnapshot, ChildActivationEnd, ResolveStart, ActivationStart } from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { BlogService } from 'src/app/core/_services/panel/blog/blog.service';
 import { BlogGroup } from 'src/app/data/models/blog/blogGroup';
 import { environment } from 'src/environments/environment';
 import {
   ToolbarService, LinkService, ImageService, HtmlEditorService,
-  RichTextEditorComponent, TableService, NodeSelection, QuickToolbarService, ActionBeginEventArgs
+  RichTextEditorComponent, TableService, NodeSelection, QuickToolbarService
 } from '@syncfusion/ej2-angular-richtexteditor';
 import { addClass, removeClass, Browser } from '@syncfusion/ej2-base';
 import { ToolbarModule } from '@syncfusion/ej2-angular-navigations';
 import { Blog } from 'src/app/data/models/blog/blog';
 import { Subscription } from 'rxjs';
-import { Store } from '@ngrx/store';
-import { RouterStateUrl } from 'src/app/store/_model/routerStateUrl';
-import * as fromStore from '../../../../store';
 
 @Component({
   selector: 'app-blog-edit',
@@ -62,7 +59,7 @@ export class BlogEditComponent implements OnInit, OnDestroy {
   constructor(private formBuilder: FormBuilder, private alertService: ToastrService,
     private router: Router, private route: ActivatedRoute,
     private blogService: BlogService, private authService: AuthService,
-    private store: Store<RouterStateUrl>) { this.loadBlogAndBlogGroups(); }
+   ) { this.loadBlogAndBlogGroups(); }
 
   blogEditForm: FormGroup = this.formBuilder.group({
     blogGroupId: ['', [Validators.required]],
@@ -86,10 +83,6 @@ export class BlogEditComponent implements OnInit, OnDestroy {
         this.blogGroups = data.bloggroups;
       })
     );
-
-    this.store.select(fromStore.getRouterBlogId).subscribe((data) => {
-      console.log(data);
-    })
 
     let blogId = '';
     this.subManager.add(

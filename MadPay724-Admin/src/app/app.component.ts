@@ -11,14 +11,12 @@ import { TitleService } from './core/_services/common/title.service';
 export class AppComponent implements OnInit {
   jwtHelper = new JwtHelperService();
 
-  constructor(private authService: AuthService, private titleService: TitleService,
-    private route: ActivatedRoute) { }
+  constructor(private authService: AuthService, private titleService: TitleService) { }
 
  
   ngOnInit() {
     this.titleService.init();
-    this.getDecodedToken();    console.log(this.route.snapshot.paramMap.get('Authority'));
-
+    this.getDecodedToken();
   }
 
   getDecodedToken() {
