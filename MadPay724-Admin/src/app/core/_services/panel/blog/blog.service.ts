@@ -36,6 +36,23 @@ export class BlogService {
         })
       );
   }
+  testgetBlogs(id: string, page?, itemPerPage?, filter?, sortHe?, sortDir?): Observable<Blog[]> {
+    let params = new HttpParams();
+
+    if (page != null && itemPerPage != null) {
+      params = params.append('pageNumber', page);
+      params = params.append('pageSize', itemPerPage);
+      params = params.append('filter', filter);
+      params = params.append('sortHe', sortHe);
+      params = params.append('sortDir', sortDir);
+    }
+    return this.http.get<Blog[]>(this.baseUrl + 'users/' + id + '/blogs', { observe: 'response', params })
+      .pipe(
+        map(response => {
+          return response.body;
+        })
+      );
+  }
   getBlog(id: string, blogId: string): Observable<Blog> {
     return this.http.get<Blog>(this.baseUrl + 'users/' + id + '/blogs/' + blogId);
   }

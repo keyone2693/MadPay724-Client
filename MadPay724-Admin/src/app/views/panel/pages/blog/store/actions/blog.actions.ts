@@ -10,12 +10,12 @@ export enum BlogActionTypes {
 
 export class LoadBlogs implements Action {
     readonly type = BlogActionTypes.LOADBLOGS;
-    constructor(public payload: { page: PageQuery }) {}
+    constructor(public payload: PageQuery) {}
 }
 
 export class LoadBlogsSuccess implements Action {
     readonly type = BlogActionTypes.LOADBLOGS_SUCCESS;
-    constructor(public payload: { blogs: Blog[] }) { }
+    constructor(public payload:  Blog[]) { }
 }
 
 export class LoadBlogsFail implements Action {

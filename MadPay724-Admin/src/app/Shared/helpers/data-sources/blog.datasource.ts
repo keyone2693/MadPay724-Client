@@ -18,7 +18,7 @@ export class BlogDataSource implements DataSource<Blog> {
                     if (blogs.length > 0) {
                         this.blogSubject.next(blogs);
                     } else {
-                        this.store.dispatch(new fromBlogStore.LoadBlogs({page}));
+                        this.store.dispatch(new fromBlogStore.LoadBlogs(page));
                     }
                 }),
                 catchError(err => of([]))

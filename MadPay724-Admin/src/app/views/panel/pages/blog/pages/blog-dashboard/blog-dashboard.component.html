@@ -1,6 +1,11 @@
 <p>
   blog-dashboard works!
 </p>
+<div
+*ngIf="loading$ | async"
+class="spinner-container">
+  <h1 style="font-size: 65px;">loading</h1>
+</div>
 <mat-table [dataSource]="blogsDataSource"  matSort class="mat-elevation-z8">
   
   <ng-container matColumnDef="id">
@@ -10,7 +15,7 @@
 
   <ng-container matColumnDef="picAddress">
     <mat-header-cell *matHeaderCellDef mat-sort-header> عکس </mat-header-cell>
-    <mat-cell *matCellDef="let blog"> <img class="blog-img" src="{{ blog.picAddress }}" alt="{{blog.title}}">  </mat-cell>
+    <mat-cell *matCellDef="let blog"> {{blog.picAddress }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="title">

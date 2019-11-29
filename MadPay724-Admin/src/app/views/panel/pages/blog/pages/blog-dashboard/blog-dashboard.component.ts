@@ -5,6 +5,7 @@ import { BlogDataSource } from 'src/app/shared/helpers/data-sources/blog.datasou
 import { Store } from '@ngrx/store';
 
 import * as fromBlogStore from '../../store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-blog-dashboard',
@@ -14,19 +15,22 @@ import * as fromBlogStore from '../../store';
 export class BlogDashboardComponent implements OnInit {
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
+  loading$: Observable<boolean>;
   blogsDataSource: BlogDataSource;
   //dataSourceBlogs: MatTableDataSource<Blog>;
   displayedColumns = ["id", "title", "picAddress"];
   constructor(private store: Store<fromBlogStore.BlogState>) { }
 
   ngOnInit() {
+
+    this.loading$ = this.store.select(fromBlogStore.getBlogsLoading);
+
     this.blogsDataSource = new BlogDataSource(this.store);
 
     const initPage: fromBlogStore.PageQuery = {
       pageIbdex: 0,
-      pageSize:5
+      pageSize:1
     }
-
     this.blogsDataSource.loadBlogs(initPage);
   }
 }
