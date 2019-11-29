@@ -3,23 +3,23 @@ import { PageQuery } from '../_models/PageQuery';
 import { Blog } from 'src/app/data/models/blog/blog';
 
 export enum BlogActionTypes {
-    LOADBLOG = '[Blog] Load Blogs',
-    LOADBLOG_SUCCESS = '[Blog] Load Blogs Success',
-    LOADBLOG_FAIL ='[Blog] Load Blogs Fail'
+    LOADBLOGS = '[Blogs] Load Blogs',
+    LOADBLOGS_SUCCESS = '[Blogs] Load Blogs Success',
+    LOADBLOGS_FAIL ='[Blogs] Load Blogs Fail'
 }
 
-export class LoadUsers implements Action {
-    readonly type = BlogActionTypes.LOADBLOG;
+export class LoadBlogs implements Action {
+    readonly type = BlogActionTypes.LOADBLOGS;
     constructor(public payload: { blogId: string, page: PageQuery }) {}
 }
 
-export class LoadUsersSuccess implements Action {
-    readonly type = BlogActionTypes.LOADBLOG_SUCCESS;
+export class LoadBlogsSuccess implements Action {
+    readonly type = BlogActionTypes.LOADBLOGS_SUCCESS;
     constructor(public payload: { blogs: Blog[] }) { }
 }
 
-export class LoadUsersFail implements Action {
-    readonly type = BlogActionTypes.LOADBLOG_FAIL;
+export class LoadBlogsFail implements Action {
+    readonly type = BlogActionTypes.LOADBLOGS_FAIL;
 }
 
-export type All = LoadUsers | LoadUsersSuccess | LoadUsersFail;
+export type All = LoadBlogs | LoadBlogsSuccess | LoadBlogsFail;
