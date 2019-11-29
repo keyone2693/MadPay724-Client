@@ -10,7 +10,7 @@ export enum BlogActionTypes {
 
 export class LoadBlogs implements Action {
     readonly type = BlogActionTypes.LOADBLOGS;
-    constructor(public payload: { blogId: string, page: PageQuery }) {}
+    constructor(public payload: { page: PageQuery }) {}
 }
 
 export class LoadBlogsSuccess implements Action {

@@ -1,3 +1,50 @@
 <p>
   blog-dashboard works!
 </p>
+<mat-table [dataSource]="blogsDataSource"  matSort class="mat-elevation-z8">
+  
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> شناسه </mat-header-cell>
+    <mat-cell *matCellDef="let blog"> {{ blog.id }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="picAddress">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> عکس </mat-header-cell>
+    <mat-cell *matCellDef="let blog"> <img class="blog-img" src="{{ blog.picAddress }}" alt="{{blog.title}}">  </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="title">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> عنوان </mat-header-cell>
+    <mat-cell *matCellDef="let blog"> {{ blog.title }} </mat-cell>
+  </ng-container>
+
+  <!-- <ng-container matColumnDef="loading">
+    <mat-footer-cell *matFooterCellDef>
+      در حال بارگزاری ...
+    </mat-footer-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="noData">
+    <mat-footer-cell *matFooterCellDef>
+      چیزی برای نمایش وجود ندارد
+    </mat-footer-cell>
+  </ng-container> -->
+
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  <!-- <mat-footer-row
+    *matFooterRowDef="['loading']"
+    [ngClass]="{ hide: loadingHideFlag }"
+  ></mat-footer-row>
+
+  <mat-footer-row
+    *matFooterRowDef="['noData']"
+    [ngClass]="{ hide: noContentHideFlag }"
+  ></mat-footer-row> -->
+</mat-table>
+<mat-paginator
+  [pageSizeOptions]="[5, 10, 25, 50]"
+  showFirstLastButtons
+>
+</mat-paginator>

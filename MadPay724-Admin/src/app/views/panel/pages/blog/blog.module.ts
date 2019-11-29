@@ -46,7 +46,7 @@ import { EffectsModule } from '@ngrx/effects';
     SharedTagInputModule,
     SharedEJTextEditorModule,
     StoreModule.forFeature('blogSection', reducers),
-     EffectsModule.forFeature(effects),
+    EffectsModule.forFeature(effects),
   ],
   declarations: [
     BlogComponent,
