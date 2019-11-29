@@ -25,9 +25,9 @@ export class BlogListComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   filterSortOrderBy: FilterSortOrderBy = {
-    sortDirection:'',
-    sortHeader:'',
-    searchKey:''
+    sortDirection: '',
+    sortHeader: '',
+    searchKey: ''
   };
 
   loadingHideFlag = false;
@@ -153,10 +153,10 @@ export class BlogListComponent implements OnInit, OnDestroy {
             this.alertService.success('بلاگ مورد نظر با موفقیت محبوب شد', 'موفق');
           } else {
             this.alertService.success('بلاگ شما با موفقیت از حالت محبوبی خارج شد', 'موفق');
-          }          
+          }
         }, error => {
             this.alertService.error(error);
         })
-    )
+    );
   }
 }
