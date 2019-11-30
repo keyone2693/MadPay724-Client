@@ -3,11 +3,11 @@ import { AuthTokenState } from '../_model/authTokenState';
 
 export type AuthTokenActions = authTokenAction.AllAuthTokenAction;
 
-export const initAuthToken: AuthTokenState = {
+export const initAuthTokenState: AuthTokenState = {
     decodedToken:''
 }
 
-export function authTokenReducer(state = initAuthToken, action: AuthTokenActions) {
+export function authTokenReducer(state = initAuthTokenState, action: AuthTokenActions) {
     switch (action.type) {
         case authTokenAction.AuthTokenActionTypes.EDIT_DECODEDTOKEN:
             return { ...state, decodedToken: action.payload };

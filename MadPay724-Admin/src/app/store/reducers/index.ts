@@ -3,12 +3,16 @@ import { ActionReducerMap, createFeatureSelector } from '@ngrx/store';
 import { RouterStateUrl } from '../_model/routerStateUrl';
 import { AuthTokenState } from '../_model/authTokenState';
 import { authTokenReducer } from './authToken.reducers';
+import { User } from 'src/app/data/models/user';
+import { loggedUserReducer } from './loggedUser.reducers';
 
 export interface State {
     routerReducer: fromRouter.RouterReducerState<RouterStateUrl>;
-    authToken: AuthTokenState
+    authToken: AuthTokenState,
+    loggedUser: User
 }
 export const reducers: ActionReducerMap<State> = {
     routerReducer: fromRouter.routerReducer,
-    authToken: authTokenReducer
+    authToken: authTokenReducer,
+    loggedUser: loggedUserReducer
 }
