@@ -7,12 +7,12 @@ import { User } from 'src/app/data/models/user';
 import { loggedUserReducer } from './loggedUser.reducers';
 
 export interface State {
-    routerReducer: fromRouter.RouterReducerState<RouterStateUrl>;
+    router: fromRouter.RouterReducerState<RouterStateUrl>;
     authToken: AuthTokenState,
     loggedUser: User
 }
 export const reducers: ActionReducerMap<State> = {
-    routerReducer: fromRouter.routerReducer,
+    router: fromRouter.routerReducer,
     authToken: authTokenReducer,
     loggedUser: loggedUserReducer
 }
