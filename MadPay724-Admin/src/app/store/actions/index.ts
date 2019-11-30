@@ -1,2 +1,2 @@
-export * from './LoggedUser.actions';
-export * from './decodedToken.actions';
+export * from './loggedUser.actions';
+export * from './authToken.actions';
