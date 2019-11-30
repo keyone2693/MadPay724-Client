@@ -3,6 +3,10 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { User } from 'src/app/data/models/user';
+import { Store } from '@ngrx/store';
+
+import * as fromStore from '../../../../store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -11,10 +15,16 @@ import { User } from 'src/app/data/models/user';
 })
 export class NavbarComponent implements OnInit {
   photoUrl: string;
-  constructor(private router: Router, private alertService: ToastrService, public authService: AuthService) {
+  user$: Observable<User>;
+  constructor(private router: Router,
+    private alertService: ToastrService,
+    public authService: AuthService,
+    private store: Store<fromStore.State>) {
   }
 
   ngOnInit() {
+    this.user$ = this.store.select(fromStore.getLoggedUserState);
+    //
     this.authService.currentPhotoUrl.subscribe(pu => this.photoUrl = pu);
     this.loadUser();
   }

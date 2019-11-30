@@ -154,16 +154,17 @@
           </li>
           <li class="dropdown nav-item mr-0">
             <a
+             *ngIf="user$ | async as user"
               id="dropdownBasic3"
               href="#"
               data-toggle="dropdown"
               class="nav-link position-relative dropdown-user-link dropdown-toggle"
             >
               <span class="avatar avatar-online"
-                ><img id="navbar-avatar" src="{{ photoUrl }}" alt="avatar"
+                ><img id="navbar-avatar" src="{{ user.photoUrl }}" alt="avatar"
               /></span>
               <span style="padding:0 8px;">{{
-                authService.currentUser.name
+                user.name
               }}</span>
               <p class="d-none">تنظیمات کاربر</p>
             </a>

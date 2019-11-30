@@ -9,6 +9,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { User } from 'src/app/data/models/user';
 
+import * as fromStore from '../../../store';
+import { Store } from '@ngrx/store';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +23,9 @@ export class AuthService {
   photoUrl = new BehaviorSubject<string>('../../../assets/img/profilepic.png');
   currentPhotoUrl = this.photoUrl.asObservable();
 
-  constructor(private http: HttpClient, private alertService: ToastrService, private router: Router) { }
+  constructor(private http: HttpClient, private alertService: ToastrService,
+    private router: Router,
+    private store: Store<fromStore.State>) { }
 
   changeUserPhoto(photoUrl: string) {
     this.photoUrl.next(photoUrl);
@@ -31,6 +35,9 @@ export class AuthService {
       map((resp: any) => {
         const user = resp;
         if (user) {
+          //store
+          this.store.dispatch(new fromStore.EditLoggedUser(user.user));
+
           localStorage.setItem('token', user.token);
           localStorage.setItem('refreshToken', user.refresh_token);
           localStorage.setItem('user', JSON.stringify(user.user));
