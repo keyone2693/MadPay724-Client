@@ -19,9 +19,6 @@ export class AuthService {
   baseUrl = environment.apiUrl + environment.apiV1 + 'site/panel/auth/';
   jwtHelper = new JwtHelperService();
   userRoles: string[] =[];
-  currentUser: User;
-  photoUrl = new BehaviorSubject<string>('../../../assets/img/profilepic.png');
-  currentPhotoUrl = this.photoUrl.asObservable();
 
   constructor(private http: HttpClient, private alertService: ToastrService,
     private router: Router,
@@ -32,9 +29,6 @@ export class AuthService {
     }    
   }
 
-  changeUserPhoto(photoUrl: string) {
-    this.photoUrl.next(photoUrl);
-  }
   login(model: any) {
     return this.http.post(this.baseUrl + 'login', model).pipe(
       map((resp: any) => {
@@ -48,9 +42,6 @@ export class AuthService {
 
           localStorage.setItem('token', user.token);
           localStorage.setItem('refreshToken', user.refresh_token);
-          localStorage.setItem('user', JSON.stringify(user.user));
-          this.currentUser = user.user;
-          this.changeUserPhoto(this.currentUser.photoUrl);
         }
       })
     );
@@ -61,32 +52,27 @@ export class AuthService {
 
   loggedIn() {
     const token = localStorage.getItem('token');
-    // tslint:disable-next-line: triple-equals
     if (token != null || token != undefined) {
-      return true; // !this.jwtHelper.isTokenExpired(token);
+      return true;
     } else {
       return false;
     }
   }
   logout() {
     localStorage.removeItem('token');
-    localStorage.removeItem('user');
     localStorage.removeItem('refreshToken');
-    //this.decodedToken = null;
     this.store.dispatch(new fromStore.ResetDecodedToken());
+    this.store.dispatch(new fromStore.ResetLoggedUser());
     this.userRoles = [];
-    this.currentUser = null;
     this.router.navigate(['/auth/login']);
     this.alertService.warning('با موفقیت خارج شدید', 'موفق');
   }
   logoutRefreshToken() {
     localStorage.removeItem('token');
-    localStorage.removeItem('user');
     localStorage.removeItem('refreshToken');
-    //this.decodedToken = null;
     this.store.dispatch(new fromStore.ResetDecodedToken());
+    this.store.dispatch(new fromStore.ResetLoggedUser());
     this.userRoles = [];
-    this.currentUser = null;
     this.router.navigate(['/auth/login']);
     this.alertService.error('خطا در اعتبار سنجی خودکار', 'خطا');
     this.alertService.warning('با موفقیت خارج شدید', 'موفق');
@@ -101,13 +87,9 @@ export class AuthService {
       map(result => {
         if (result && result.token) {
           localStorage.setItem('token', result.token);
-          // localStorage.setItem('refreshToken', result.refresh_token);
-          // localStorage.setItem('user', JSON.stringify(result.user));
           const decodedToken = this.jwtHelper.decodeToken(result.token);
           this.store.dispatch(new fromStore.EditDecodedToken(decodedToken));
           this.userRoles = decodedToken.role as Array<string>;
-          //  this.currentUser = result.user;
-          //  this.changeUserPhoto(this.currentUser.photoUrl);
         }
         return result as any;
       })
@@ -118,7 +100,6 @@ export class AuthService {
   roleMatch(allowedRoles): boolean {
     let isMatch = false;
     const userRoles = this.userRoles;
-    //as Array<string>;
     if (Array.isArray(userRoles)) {
       allowedRoles.forEach(element => {
         if (userRoles.includes(element)) {
@@ -139,8 +120,6 @@ export class AuthService {
 
   getDashboardUrl(): string {
     const userRoles = this.userRoles;
-    //as Array<string>;
-
     if (Array.isArray(userRoles)) {
       if (userRoles.includes('Admin')) {
         return 'panel/admin/dashboard';

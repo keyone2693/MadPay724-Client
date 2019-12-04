@@ -14,7 +14,6 @@ import { Observable } from 'rxjs';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  photoUrl: string;
   user$: Observable<User>;
   constructor(private router: Router,
     private alertService: ToastrService,
@@ -25,24 +24,22 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this.user$ = this.store.select(fromStore.getLoggedUserState);
     //
-    this.authService.currentPhotoUrl.subscribe(pu => this.photoUrl = pu);
     this.loadUser();
   }
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('refreshToken');
-    localStorage.removeItem('user');
     this.store.dispatch(new fromStore.ResetDecodedToken());
+    this.store.dispatch(new fromStore.ResetLoggedUser());
     this.authService.userRoles = [];
-    this.authService.currentUser = null;
     this.router.navigate(['/auth/login']);
     this.alertService.warning('با موفقیت خارج شدید', 'موفق');
   }
   loadUser() {
     const user: User = JSON.parse(localStorage.getItem('user'));
     if (user) {
-      this.authService.currentUser = user;
-      this.authService.changeUserPhoto(user.photoUrl);
+      console.log("navbar");
+      
     }
   }
 }

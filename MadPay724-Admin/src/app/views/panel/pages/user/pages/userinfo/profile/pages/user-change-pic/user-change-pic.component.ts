@@ -49,12 +49,7 @@ export class UserChangePicComponent implements OnInit {
     if (response) {
       this.alertService.success('عکس پروفایل تغییر کرد', 'موفق');
       const res: Photo = JSON.parse(response);
-     // this.user.photoUrl = res.url;
-     // this.getUserPhotoUrl.emit(res.url);
-      this.authService.currentUser.photoUrl = res.url;
-      this.authService.changeUserPhoto(res.url);
-
-      localStorage.setItem('user', JSON.stringify(this.authService.currentUser));
+      this.store.dispatch(new fromStore.EditLoggedUserPhotoUrl(res.url));
     }
   };
 

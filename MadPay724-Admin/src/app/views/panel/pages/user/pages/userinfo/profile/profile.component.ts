@@ -5,6 +5,10 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { UserService } from 'src/app/core/_services/panel/user.service';
 import { User } from 'src/app/data/models/user';
+import { Store } from '@ngrx/store';
+
+import * as fromStore from '../../../../../../../store';
+import { Observable, from } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -12,12 +16,15 @@ import { User } from 'src/app/data/models/user';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
-  constructor(private route: ActivatedRoute, private userService: UserService, private alertService: ToastrService,
-              private authService: AuthService, private formBuilder: FormBuilder) {}
   user: User;
-  photoUrl: string;
+  photoUrl$: Observable<string>;
   editForm: FormGroup;
+  constructor(private route: ActivatedRoute, private userService: UserService,
+    private alertService: ToastrService,
+    private authService: AuthService,
+    private formBuilder: FormBuilder,
+    private store: Store<fromStore.State>) { }
+
   @HostListener('window:beforeunload', ['$event'])
   unloadNotification($event: any) {
     if (this.editForm.dirty) {
@@ -26,7 +33,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authService.currentPhotoUrl.subscribe(pu => this.photoUrl = pu);
+    this.photoUrl$ = this.store.select(fromStore.getLoggedUserPhotoUrl);
     this.loadUser();
     this.createEditUserInfoForm();
   }
@@ -51,22 +58,14 @@ export class ProfileComponent implements OnInit {
     this.userService.updateUserInfo(this.user).subscribe(next => {
       this.alertService.success('اطلاعات کاربری با موفیقیت ویرایش شد', 'موفق');
       this.editForm.reset(this.user);
-          }, error => {
-            this.alertService.error(error, 'خطا در ویرایش');
+      this.store.dispatch(new fromStore.UpdateInfoLoggedUserName(this.user));
+    }, error => {
+      this.alertService.error(error, 'خطا در ویرایش');
     });
   }
-
-//   updateUserPhotoUrl(photoUrl) {
-//   this.user.photoUrl = photoUrl;
-//   }
   loadUser() {
     this.route.data.subscribe(data => {
       this.user = data.user;
     });
-    // this.userService.getUser(this.authService.decodedToken.nameid).subscribe((user: User) => {
-    //   this.user = user;
-    // }, error => {
-    //   this.alertService.error(error);
-    // });
-   }
+  }
 }

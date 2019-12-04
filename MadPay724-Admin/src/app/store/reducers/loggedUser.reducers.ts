@@ -13,28 +13,38 @@ export const initLoggedUserState: User = {
     age: 0,
     lastActive: null,
     city: '',
-    photoUrl: ''
+    photoUrl: '../../../assets/img/profilepic.png'
 }
 export function loggedUserReducer(state = initLoggedUserState, action: LoggedUserActions) {
     switch (action.type) {
         case loggedUserAction.LoggedUserActionTypes.EDIT_LOGGEDUSER:
-            return {
-                ...state, id: action.payload.id ,
-                name: action.payload.name ,
-                userName: action.payload.userName,
-                phoneNumber: action.payload.phoneNumber,
-                address: action.payload.address,
-                gender: action.payload.gender,
-                age: action.payload.age,
-                lastActive: action.payload.lastActive,
-                city: action.payload.city,
-                photoUrl: action.payload.photoUrl}
+             return {
+                 ...state, id: action.payload.id ,
+                 name: action.payload.name ,
+                 userName: action.payload.userName,
+                 phoneNumber: action.payload.phoneNumber,
+                 address: action.payload.address,
+                 gender: action.payload.gender,
+                 age: action.payload.age,
+                 lastActive: action.payload.lastActive,
+                 city: action.payload.city,
+                 photoUrl: action.payload.photoUrl}
+            //return Object.assign({}, state, action.payload);
         case loggedUserAction.LoggedUserActionTypes.EDIT_LOGGEDUSERNAME:
             return { ...state, name: action.payload }
         case loggedUserAction.LoggedUserActionTypes.EDIT_LOGGEDUSERPHOTOURL:
             return { ...state, photoUrl: action.payload }
         case loggedUserAction.LoggedUserActionTypes.RESET_LOGGEDUSER:
             return initLoggedUserState;
+        case loggedUserAction.LoggedUserActionTypes.UPDATEINFO_LOGGEDUSER:
+            return {
+                ...state,
+                name: action.payload.name,
+                phoneNumber: action.payload.phoneNumber,
+                address: action.payload.address,
+                gender: action.payload.gender,
+                city: action.payload.city
+            }
         default:
             return state;
     }

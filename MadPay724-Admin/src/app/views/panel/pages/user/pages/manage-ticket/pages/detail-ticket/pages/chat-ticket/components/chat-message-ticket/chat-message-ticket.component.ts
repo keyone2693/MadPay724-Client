@@ -1,7 +1,10 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { TicketContent } from 'src/app/data/models/ticketContent';
+import { Store } from '@ngrx/store';
+
+import * as fromStore from '../../../../../../../../../../../../store';
 
 @Component({
   selector: 'app-chat-message-ticket',
@@ -10,17 +13,14 @@ import { TicketContent } from 'src/app/data/models/ticketContent';
 })
 export class ChatMessageTicketComponent implements OnInit, OnDestroy {
   @Input() ticketContent: TicketContent;
-  photoUrl: string;
-  manageSub = new Subscription();
-  constructor(public authService: AuthService) { }
+  photoUrl$: Observable<string>;
+  constructor(public authService: AuthService,
+    private store: Store<fromStore.State>) { }
 
   ngOnInit() {
-    this.manageSub.add(
-      this.authService.currentPhotoUrl.subscribe(pu => this.photoUrl = pu)
-    );
+    this.photoUrl$ = this.store.select(fromStore.getLoggedUserPhotoUrl);
   }
   ngOnDestroy() {
-     this.manageSub.unsubscribe();
   }
 
 }
