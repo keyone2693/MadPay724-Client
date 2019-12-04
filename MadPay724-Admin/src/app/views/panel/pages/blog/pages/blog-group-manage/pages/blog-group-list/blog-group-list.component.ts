@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { BlogGroup } from 'src/app/data/models/blog/blogGroup';
 import { BlogGroupService } from 'src/app/core/_services/panel/blog/blogGroup.service';
-import { AuthService } from 'src/app/core/_services/auth/auth.service';
 
 @Component({
   selector: 'app-blog-group-list',
@@ -22,7 +21,7 @@ export class BlogGroupListComponent implements OnInit, OnDestroy {
   searchKey: string;
   loadingHideFlag = false;
   noContentHideFlag = true;
-  constructor(private blogGroupService: BlogGroupService, private authService: AuthService,
+  constructor(private blogGroupService: BlogGroupService,
     private router: Router,
     private alertService: ToastrService) { }
 
@@ -34,7 +33,7 @@ export class BlogGroupListComponent implements OnInit, OnDestroy {
   }
   loadBlogGroups() {
     this.subManager.add(
-      this.blogGroupService.getBlogGroups(this.authService.decodedToken.nameid).subscribe((data) => {
+      this.blogGroupService.getBlogGroups().subscribe((data) => {
         this.blogGroups = new MatTableDataSource(data);
         this.blogGroupsArray = data;
         this.blogGroups.sort = this.sort;
@@ -71,7 +70,7 @@ export class BlogGroupListComponent implements OnInit, OnDestroy {
   }
   onDelete(blogGroup: BlogGroup) {
     this.subManager.add(
-      this.blogGroupService.deleteBlogGroup(this.authService.decodedToken.nameid, blogGroup.id).subscribe(() => {
+      this.blogGroupService.deleteBlogGroup(blogGroup.id).subscribe(() => {
         this.alertService.success('دسته بندی بلاگ مورد نظر با موفقیت حذف شد', 'موفق');
         this.blogGroups.data.splice(this.blogGroups.data.indexOf(blogGroup), 1);
         this.blogGroups._updateChangeSubscription();

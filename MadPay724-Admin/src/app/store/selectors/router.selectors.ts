@@ -28,9 +28,11 @@ export const getRouterUrlState = createSelector(getRouterState,
 
        //-----------------------AuthToken----------------------------
 export const selectDecodedToken = (state: AuthTokenState) => state.decodedToken;
+export const selectUserId = (state: any) => state.nameid;
 
 export const getAuthTokenState = createFeatureSelector<AuthTokenState>('authToken');
-export const getDecodedToken = createSelector(getAuthTokenState,selectDecodedToken);
+export const getDecodedToken = createSelector(getAuthTokenState, selectDecodedToken);
+export const getUserId = createSelector(getDecodedToken, selectUserId);
 
     //-----------------------LoggedUser----------------------------
 export const selectLoggedUserName = (state: User) => state.name;

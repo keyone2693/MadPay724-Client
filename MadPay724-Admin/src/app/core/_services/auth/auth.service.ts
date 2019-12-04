@@ -37,6 +37,8 @@ export class AuthService {
         if (user) {
           //store
           this.store.dispatch(new fromStore.EditLoggedUser(user.user));
+          const detoken = this.jwtHelper.decodeToken(user.token);
+          this.store.dispatch(new fromStore.EditDecodedToken(detoken));
 
           localStorage.setItem('token', user.token);
           localStorage.setItem('refreshToken', user.refresh_token);

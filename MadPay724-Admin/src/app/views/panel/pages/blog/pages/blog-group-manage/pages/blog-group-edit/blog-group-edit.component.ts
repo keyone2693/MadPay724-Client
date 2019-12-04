@@ -4,7 +4,6 @@ import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { BlogGroup } from 'src/app/data/models/blog/blogGroup';
-import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { BlogGroupService } from 'src/app/core/_services/panel/blog/blogGroup.service';
 
 @Component({
@@ -16,7 +15,7 @@ export class BlogGroupEditComponent implements OnInit, OnDestroy {
   blogGroups: BlogGroup[];
   blogGroup: BlogGroup;
   subManager = new Subscription();
-  constructor(private formBuilder: FormBuilder, private authService: AuthService,
+  constructor(private formBuilder: FormBuilder,
     private alertService: ToastrService, private route: ActivatedRoute,
     private router: Router, public bloggroupService: BlogGroupService) { }
   blogGroupEditForm: FormGroup = this.formBuilder.group({
@@ -58,7 +57,7 @@ export class BlogGroupEditComponent implements OnInit, OnDestroy {
   onSubmit() {
     if (this.blogGroupEditForm.valid) {
       const blogGroup = Object.assign({}, this.blogGroupEditForm.value);
-      this.bloggroupService.updateBlogGroup(blogGroup, this.authService.decodedToken.nameid, blogGroup.id).subscribe((data) => {
+      this.bloggroupService.updateBlogGroup(blogGroup, blogGroup.id).subscribe((data) => {
         this.alertService.success('دسته بندی شما با موفقیت ویرایش شد', 'موفق');
         this.onClear();
       }, error => {

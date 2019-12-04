@@ -8,7 +8,7 @@ export enum AuthTokenActionTypes {
 
 export class EditDecodedToken implements Action{
     readonly type = AuthTokenActionTypes.EDIT_DECODEDTOKEN;
-    constructor(public payload: string){}
+    constructor(public payload: any){}
 }
 export class ResetDecodedToken implements Action {
     readonly type = AuthTokenActionTypes.RESET_DECODEDTOKEN;

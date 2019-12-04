@@ -29,12 +29,12 @@ export function loggedUserReducer(state = initLoggedUserState, action: LoggedUse
                 lastActive: action.payload.lastActive,
                 city: action.payload.city,
                 photoUrl: action.payload.photoUrl}
-        case loggedUserAction.LoggedUserActionTypes.RESET_LOGGEDUSER:
-            return initLoggedUserState;
         case loggedUserAction.LoggedUserActionTypes.EDIT_LOGGEDUSERNAME:
             return { ...state, name: action.payload }
         case loggedUserAction.LoggedUserActionTypes.EDIT_LOGGEDUSERPHOTOURL:
             return { ...state, photoUrl: action.payload }
+        case loggedUserAction.LoggedUserActionTypes.RESET_LOGGEDUSER:
+            return initLoggedUserState;
         default:
             return state;
     }

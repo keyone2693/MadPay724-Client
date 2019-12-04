@@ -3,30 +3,40 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { BlogGroup } from 'src/app/data/models/blog/blogGroup';
+import { Store } from '@ngrx/store';
+
+import * as fromStore from '../../../../store';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BlogGroupService {
   baseUrl = environment.apiUrl + environment.apiV1 + 'site/panel/';
+  userId: any;
+  constructor(private http: HttpClient, private store: Store<fromStore.State>) { 
+    this.store.select(fromStore.getUserId).subscribe(data => {
+      this.userId = data;
+    });
+    
 
-  constructor(private http: HttpClient) { }
+  }
  
-  getBlogGroups(id: string): Observable<BlogGroup[]> {
-    return this.http.get<BlogGroup[]>(this.baseUrl + 'users/' + id + '/blogGroups');
+  getBlogGroups(userId: string = this.userId): Observable<BlogGroup[]> {
+    return this.http.get<BlogGroup[]>(this.baseUrl + 'users/' + userId + '/blogGroups');
   }
-  getBlogGroup(id: string, blogGroupId: string): Observable<BlogGroup> {
-    return this.http.get<BlogGroup>(this.baseUrl + 'users/' + id + '/blogGroups/' + blogGroupId);
+  getBlogGroup(userId: string = this.userId, blogGroupId: string): Observable<BlogGroup> {
+    return this.http.get<BlogGroup>(this.baseUrl + 'users/' + userId + '/blogGroups/' + blogGroupId);
   }
-  addBlogGroup(blogGroup: any, id: string): Observable<BlogGroup> {
-    return this.http.post<BlogGroup>(this.baseUrl + 'users/' + id + '/blogGroups', blogGroup);
+  addBlogGroup(blogGroup: any, userId: string = this.userId): Observable<BlogGroup> {
+    return this.http.post<BlogGroup>(this.baseUrl + 'users/' + userId + '/blogGroups', blogGroup);
   }
 
-  updateBlogGroup(blogGroup: any, userId: string, id: string) {
+  updateBlogGroup(blogGroup: any, id: string, userId: string = this.userId) {
     return this.http.put(this.baseUrl + 'users/' + userId + '/blogGroups/' + id, blogGroup);
   }
 
-  deleteBlogGroup(userId: string, blogGroupId: string) {
+  deleteBlogGroup( blogGroupId: string, userId: string = this.userId) {
     return this.http.delete(this.baseUrl + 'users/' + userId + '/blogGroups/' + blogGroupId);
   }
 }

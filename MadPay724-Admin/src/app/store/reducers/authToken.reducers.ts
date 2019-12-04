@@ -4,7 +4,7 @@ import { AuthTokenState } from '../_model/authTokenState';
 export type AuthTokenActions = authTokenAction.AllAuthTokenAction;
 
 export const initAuthTokenState: AuthTokenState = {
-    decodedToken:''
+    decodedToken: null
 }
 
 export function authTokenReducer(state = initAuthTokenState, action: AuthTokenActions) {
@@ -12,7 +12,7 @@ export function authTokenReducer(state = initAuthTokenState, action: AuthTokenAc
         case authTokenAction.AuthTokenActionTypes.EDIT_DECODEDTOKEN:
             return { ...state, decodedToken: action.payload };
         case authTokenAction.AuthTokenActionTypes.RESET_DECODEDTOKEN:
-            return { ...state, decodedToken:'' };
+            return initAuthTokenState;
         default:
             return state;
     }

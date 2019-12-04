@@ -1,3 +1,3 @@
 export interface AuthTokenState {
-    decodedToken: string
+    decodedToken: any
 }
