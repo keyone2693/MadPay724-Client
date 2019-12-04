@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { BlogService } from 'src/app/core/_services/panel/blog/blog.service';
 import { BlogGroup } from 'src/app/data/models/blog/blogGroup';
@@ -14,7 +14,9 @@ import { addClass, removeClass, Browser } from '@syncfusion/ej2-base';
 import { ToolbarModule } from '@syncfusion/ej2-angular-navigations';
 import { Blog } from 'src/app/data/models/blog/blog';
 import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
 
+import * as fromStore from '../../../../../../../../store';
 @Component({
   selector: 'app-blog-edit',
   templateUrl: './blog-edit.component.html',
@@ -56,11 +58,6 @@ export class BlogEditComponent implements OnInit, OnDestroy {
       }
     ]
   };
-  constructor(private formBuilder: FormBuilder, private alertService: ToastrService,
-    private router: Router, private route: ActivatedRoute,
-    private blogService: BlogService, private authService: AuthService,
-   ) { this.loadBlogAndBlogGroups(); }
-
   blogEditForm: FormGroup = this.formBuilder.group({
     blogGroupId: ['', [Validators.required]],
     title: ['0', [Validators.required, Validators.maxLength(500)]],
@@ -69,10 +66,24 @@ export class BlogEditComponent implements OnInit, OnDestroy {
     summerText: ['', [Validators.required, Validators.maxLength(1000)]],
     file: [null]
   });
-  ngOnInit() {
+  constructor(private formBuilder: FormBuilder, private alertService: ToastrService,
+    private router: Router, private route: ActivatedRoute,
+    private blogService: BlogService,
+    private store: Store<fromStore.State>
+  ) {
+    this.loadBlogAndBlogGroups();
+  }
 
+
+  ngOnInit() {
+    let userId = '';
+    this.subManager.add(
+      this.store.select(fromStore.getUserId).subscribe(data => {
+        userId = data;
+      })
+    );
     this.rteObj.insertImageSettings.saveUrl = environment.apiUrl + environment.apiV1 + 'site/panel/' +
-      'users/' + this.authService.decodedToken.nameid + '/blogs/upload';
+      'users/' + userId + '/blogs/upload';
   }
   ngOnDestroy() {
     this.subManager.unsubscribe();
@@ -92,7 +103,7 @@ export class BlogEditComponent implements OnInit, OnDestroy {
     );
 
     this.subManager.add(
-      this.blogService.getBlog(this.authService.decodedToken.nameid, blogId).subscribe(data => {
+      this.blogService.getBlog(blogId).subscribe(data => {
         this.blog = data;
         this.populateEditForm(data);
       })
@@ -155,7 +166,7 @@ export class BlogEditComponent implements OnInit, OnDestroy {
 
       // const blog = Object.assign({}, this.blogAddForm.value);      
       this.subManager.add(
-        this.blogService.updateBlog(blog, this.authService.decodedToken.nameid, this.blog.id).subscribe((data) => {
+        this.blogService.updateBlog(blog, this.blog.id).subscribe((data) => {
           this.alertService.success('بلاگ شما با موفقیت ویرایش شد', 'موفق');
           this.onClear();
         }, error => {
@@ -219,7 +230,7 @@ export class BlogEditComponent implements OnInit, OnDestroy {
   }
   imageRemoving(args: any) {
     this.subManager.add(
-      this.blogService.deleteImgBlog(this.authService.decodedToken.nameid, this.currentImgUrl).subscribe(() => {
+      this.blogService.deleteImgBlog(this.currentImgUrl).subscribe(() => {
         this.alertService.success('موفق', 'عکس مورد نظر حذف شد');
       }, error => {
         this.alertService.error('ناموفق', 'تصویر مورد نظر حذف نشد');

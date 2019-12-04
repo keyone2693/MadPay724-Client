@@ -5,7 +5,6 @@ import { NgScrollbar } from 'ngx-scrollbar';
 import { MatDialogConfig, MatDialog } from '@angular/material';
 import { Ticket } from 'src/app/data/models/ticket';
 import { TicketService } from 'src/app/core/_services/panel/user/ticket.service';
-import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { CreateFormTicketComponent } from './pages/create-form-ticket/create-form-ticket.component';
 
 @Component({
@@ -23,7 +22,7 @@ export class ListTicketComponent implements OnInit, OnDestroy {
   promiseSetBySomeAction: any;
   selectedTicketId: string;
   constructor(private ticketService: TicketService,
-              private authService: AuthService, private dialog: MatDialog) {
+               private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -62,7 +61,7 @@ export class ListTicketComponent implements OnInit, OnDestroy {
       }
       const currentTickets = this.tickets.getValue();
       this.subManager.add(
-        this.ticketService.getTickets(this.authService.decodedToken.nameid, pageCout).subscribe((newTickets) => {
+        this.ticketService.getTickets( pageCout).subscribe((newTickets) => {
           if (newTickets.length === 0) {
             this.finished = true;
             return;

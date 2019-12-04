@@ -48,7 +48,7 @@ export class ProfileComponent implements OnInit {
   }
   updateUserInfo() {
     this.user = Object.assign({}, this.editForm.value);
-    this.userService.updateUserInfo(this.authService.decodedToken.nameid, this.user).subscribe(next => {
+    this.userService.updateUserInfo(this.user).subscribe(next => {
       this.alertService.success('اطلاعات کاربری با موفیقیت ویرایش شد', 'موفق');
       this.editForm.reset(this.user);
           }, error => {

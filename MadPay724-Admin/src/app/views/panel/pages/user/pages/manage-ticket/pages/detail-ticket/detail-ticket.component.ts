@@ -4,7 +4,6 @@ import { Subscription } from 'rxjs';
 import { Title } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
 import { Ticket } from 'src/app/data/models/ticket';
-import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { TicketService } from 'src/app/core/_services/panel/user/ticket.service';
 import { TicketContent } from 'src/app/data/models/ticketContent';
 
@@ -18,7 +17,7 @@ export class DetailTicketComponent implements OnInit, OnDestroy {
   ticket: Ticket;
   subManager = new Subscription();
   constructor(private route: ActivatedRoute, private title: Title, private ticketService: TicketService,
-              private authService: AuthService, private alertService: ToastrService) { }
+              private alertService: ToastrService) { }
 
   ngOnInit() {
     this.loadTickets();
@@ -30,7 +29,6 @@ export class DetailTicketComponent implements OnInit, OnDestroy {
   onSetClosed() {
     this.ticketService.setTicketClosed(
       this.closedck.checked ,
-      this.authService.decodedToken.nameid,
       this.ticket.id
     ).subscribe(() => {
       this.alertService.success('وضعیت تیکت با موفیت تغییر کرد', 'موفق');

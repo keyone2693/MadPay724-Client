@@ -5,14 +5,13 @@ import { Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Ticket } from 'src/app/data/models/ticket';
 import { TicketService } from 'src/app/core/_services/panel/user/ticket.service';
-import { AuthService } from 'src/app/core/_services/auth/auth.service';
 @Injectable()
 export class TicketOverviewResolver implements Resolve<Ticket> {
     constructor(private ticketService: TicketService, private router: Router,
-                private alertService: ToastrService, private authService: AuthService) {}
+                private alertService: ToastrService) {}
 
     resolve(route: ActivatedRouteSnapshot): Observable<Ticket> {
-        return this.ticketService.getTicket(this.authService.decodedToken.nameid, route.params['ticketId']).pipe(
+        return this.ticketService.getTicket(route.params['ticketId']).pipe(
             catchError(error => {
                 this.alertService.error(error, 'خطا');
                 return of(null);

@@ -5,13 +5,22 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { EasyPay } from 'src/app/data/models/user/easyPay';
 import { EasyPayGatesWallets } from 'src/app/data/models/user/easyPayGatesWallets';
+import { Store } from '@ngrx/store';
+
+import * as fromStore from '../../../../store';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EasyPayService {
   baseUrl = environment.apiUrl + environment.apiV1 + 'site/panel/';
-  constructor(private http: HttpClient, private formBuilder: FormBuilder) { }
+  userId: string;
+
+  constructor(private http: HttpClient, private formBuilder: FormBuilder,
+    private store: Store<fromStore.State>) {
+    this.store.select(fromStore.getUserId).subscribe(data => {
+      this.userId = data;
+    }); }
 
  easypayForm: FormGroup = this.formBuilder.group({
    id: [],
@@ -40,27 +49,27 @@ export class EasyPayService {
    returnFail: ['',
      Validators.pattern('(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})')],
  });
-  getEasyPays(id: string): Observable<EasyPay[]> {
-    return this.http.get<EasyPay[]>(this.baseUrl + 'users/' + id + '/easypays');
+  getEasyPays(userId: string = this.userId): Observable<EasyPay[]> {
+    return this.http.get<EasyPay[]>(this.baseUrl + 'users/' + userId + '/easypays');
   }
-  getEasyPay(id: string, easypayId: string): Observable<EasyPay> {
-    return this.http.get<EasyPay>(this.baseUrl + 'users/' + id + '/easypays/' + easypayId);
+  getEasyPay(easypayId: string, userId: string = this.userId): Observable<EasyPay> {
+    return this.http.get<EasyPay>(this.baseUrl + 'users/' + userId + '/easypays/' + easypayId);
   }
-  getEasyPayGatesWallets(id: string, easypayId: string): Observable<EasyPayGatesWallets> {
-    return this.http.get<EasyPayGatesWallets>(this.baseUrl + 'users/' + id + '/easypays/' + easypayId + '/gateswallets');
+  getEasyPayGatesWallets(easypayId: string, userId: string = this.userId): Observable<EasyPayGatesWallets> {
+    return this.http.get<EasyPayGatesWallets>(this.baseUrl + 'users/' + userId + '/easypays/' + easypayId + '/gateswallets');
   }
-  addEasyPay(easypay: any, id: string): Observable<EasyPay> {
-    return this.http.post<EasyPay>(this.baseUrl + 'users/' + id + '/easypays', easypay);
+  addEasyPay(easypay: any,userId: string = this.userId): Observable<EasyPay> {
+    return this.http.post<EasyPay>(this.baseUrl + 'users/' + userId + '/easypays', easypay);
   }
 
-  updateEasyPay(easypay: any, userId: string, id: string) {
+  updateEasyPay(easypay: any, id: string, userId: string = this.userId) {
     return this.http.put(this.baseUrl + 'users/' + userId + '/easypays/' + id, easypay);
   }
 
   populateForm(easypay: EasyPay) {
     this.easypayForm.setValue(easypay);
   }
-  deleteEasyPay(userId: string, easypayId: string) {
+  deleteEasyPay(easypayId: string, userId: string = this.userId) {
     return this.http.delete(this.baseUrl + 'users/' + userId + '/easypays/' + easypayId);
   }
 

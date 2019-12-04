@@ -5,7 +5,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { GatesWallets } from 'src/app/data/models/user/gatesWallets';
 import { EasyPay } from 'src/app/data/models/user/easyPay';
 import { EasyPayService } from 'src/app/core/_services/panel/user/easyPay.service';
-import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { Gate } from 'src/app/data/models/user/gate';
 
 @Component({
@@ -16,7 +15,7 @@ import { Gate } from 'src/app/data/models/user/gate';
 export class EasypayAddComponent implements OnInit {
   gatesWallets: GatesWallets;
   easypay: EasyPay;
-  constructor(public easypayService: EasyPayService, private authService: AuthService,
+  constructor(public easypayService: EasyPayService,
               private alertService: ToastrService,
               private router: Router, private route: ActivatedRoute) { }
 
@@ -63,7 +62,7 @@ export class EasypayAddComponent implements OnInit {
   onSubmit() {
     if (this.easypayService.easypayForm.valid) {
       this.easypay = Object.assign({}, this.easypayService.easypayForm.value);
-      this.easypayService.addEasyPay(this.easypay, this.authService.decodedToken.nameid).subscribe((data) => {
+      this.easypayService.addEasyPay(this.easypay).subscribe((data) => {
         this.alertService.success('ایزی پی شما با موفقیت ثبت شد', 'موفق');
         this.onClear();
       }, error => {

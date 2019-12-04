@@ -4,7 +4,10 @@ import { AuthTokenState } from '../_model/authTokenState';
 export type AuthTokenActions = authTokenAction.AllAuthTokenAction;
 
 export const initAuthTokenState: AuthTokenState = {
-    decodedToken: null
+    decodedToken: {
+        nameid: '',
+        role:[]
+    }
 }
 
 export function authTokenReducer(state = initAuthTokenState, action: AuthTokenActions) {

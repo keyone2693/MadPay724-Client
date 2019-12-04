@@ -4,6 +4,9 @@ import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { Photo } from 'src/app/data/models/photo';
+import { Store } from '@ngrx/store';
+
+import * as fromStore from '../../../../../../../../../store';
 
 @Component({
   selector: 'app-user-change-pic',
@@ -15,7 +18,9 @@ export class UserChangePicComponent implements OnInit {
   uploader: FileUploader;
   hasBaseDropZoneOver = false;
   baseUrl = environment.apiUrl + environment.apiV1;
-  constructor(private authService: AuthService, private alertService: ToastrService) { }
+  constructor(private authService: AuthService,
+    private alertService: ToastrService,
+    private store: Store<fromStore.State>) { }
 
   ngOnInit() {
   this.initializeUplaoder();
@@ -24,9 +29,13 @@ export class UserChangePicComponent implements OnInit {
     this.hasBaseDropZoneOver = e;
   }
 
-initializeUplaoder() {
+  initializeUplaoder() {
+    let userId = '';
+    this.store.select(fromStore.getUserId).subscribe(data => {
+      userId = data;
+    });
   this.uploader = new FileUploader({
-      url: this.baseUrl + 'site/panel/users/' + this.authService.decodedToken.nameid + '/photos',
+    url: this.baseUrl + 'site/panel/users/' + userId + '/photos',
       authToken: 'Bearer ' + localStorage.getItem('token'),
       allowedFileType: ['image'],
       removeAfterUpload: true,

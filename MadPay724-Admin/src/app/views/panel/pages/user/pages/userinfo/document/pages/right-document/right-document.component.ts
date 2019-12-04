@@ -3,7 +3,6 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import * as moment from 'moment';
 import { take } from 'rxjs/operators';
-import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { DocumentService } from 'src/app/core/_services/panel/user/document.service';
 
 @Component({
@@ -18,7 +17,7 @@ export class RightDocumentComponent implements OnInit {
   @Output() newDocument = new EventEmitter<Document>();
 
   constructor(private formBuilder: FormBuilder, private docService: DocumentService,
-              private authService: AuthService, private alertService: ToastrService) { }
+               private alertService: ToastrService) { }
 
   ngOnInit() {
     this.docRightForm = this.formBuilder.group({
@@ -55,7 +54,7 @@ export class RightDocumentComponent implements OnInit {
     document.append('address', this.docRightForm.get('address').value);
 
 
-    this.docService.addDocument(this.authService.decodedToken.nameid, document).pipe(take(1)).subscribe((data) => {
+    this.docService.addDocument( document).pipe(take(1)).subscribe((data) => {
       this.alertService.success('مدارک شما با موفقیت ارسال شد', 'موفق');
       this.alertService.info('مدارک شما در انتظار تایید میباشد', 'توجه');
       this.docRightForm.reset();

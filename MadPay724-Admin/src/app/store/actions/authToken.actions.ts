@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+import { DecodedToken } from '../_model/decodedToken';
 
 
 export enum AuthTokenActionTypes {
@@ -8,7 +9,7 @@ export enum AuthTokenActionTypes {
 
 export class EditDecodedToken implements Action{
     readonly type = AuthTokenActionTypes.EDIT_DECODEDTOKEN;
-    constructor(public payload: any){}
+    constructor(public payload: DecodedToken){}
 }
 export class ResetDecodedToken implements Action {
     readonly type = AuthTokenActionTypes.RESET_DECODEDTOKEN;

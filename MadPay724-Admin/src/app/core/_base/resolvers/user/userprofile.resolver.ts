@@ -10,10 +10,10 @@ import { AuthService } from 'src/app/core/_services/auth/auth.service';
 @Injectable()
 export class UserProfileResolver implements Resolve<User> {
     constructor(private userService: UserService, private router: Router,
-                private alertService: ToastrService, private authService: AuthService) {}
+                private alertService: ToastrService,private authService: AuthService) {}
 
     resolve(route: ActivatedRouteSnapshot): Observable<User> {
-        return this.userService.getUser(this.authService.decodedToken.nameid).pipe(
+        return this.userService.getUser().pipe(
             catchError(error => {
                 this.alertService.error('خطا دردریافت اطلاعات', 'خطا');
                 this.router.navigate([this.authService.getDashboardUrl()]);

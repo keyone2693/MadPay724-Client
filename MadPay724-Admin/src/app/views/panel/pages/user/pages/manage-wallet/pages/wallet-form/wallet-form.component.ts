@@ -3,7 +3,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { Wallet } from 'src/app/data/models/wallet';
-import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { WalletService } from 'src/app/core/_services/panel/user/wallet.service';
 
 @Component({
@@ -15,7 +14,7 @@ export class WalletFormComponent implements OnInit {
 
   @Output() newWallet = new EventEmitter<Wallet>();
   wallets: Wallet[];
-  constructor(private authService: AuthService, public walletService: WalletService,
+  constructor( public walletService: WalletService,
               private alertService: ToastrService, private matdialogRef: MatDialogRef<WalletFormComponent>,
               private router: Router, @Inject(MAT_DIALOG_DATA) private data: Wallet[]) { }
 
@@ -29,7 +28,7 @@ export class WalletFormComponent implements OnInit {
   }
   onSubmitAdd() {
     if (this.walletService.walletForm.valid) {
-      this.walletService.addWallet(this.walletService.walletForm.value, this.authService.decodedToken.nameid).subscribe((data) => {
+      this.walletService.addWallet(this.walletService.walletForm.value).subscribe((data) => {
         this.alertService.success('کیف پول شما با موفقیت ثبت شد', 'موفق');
         this.onClear();
         this.newWallet.emit(data);

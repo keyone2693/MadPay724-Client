@@ -2,7 +2,6 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { TicketService } from 'src/app/core/_services/panel/user/ticket.service';
 import { Ticket } from 'src/app/data/models/ticket';
 
@@ -17,7 +16,7 @@ export class CreateFormTicketComponent implements OnInit {
   selected = false;
   fileName = '';
   constructor(private formBuilder: FormBuilder, private matdialogRef: MatDialogRef<CreateFormTicketComponent>,
-              private ticketService: TicketService, private authService: AuthService,
+              private ticketService: TicketService,
               private alertService: ToastrService) { }
 
   ticketForm: FormGroup = this.formBuilder.group({
@@ -53,7 +52,7 @@ export class CreateFormTicketComponent implements OnInit {
       ticket.append('department', this.ticketForm.get('department').value);
       ticket.append('level', this.ticketForm.get('level').value);
       ticket.append('text', this.ticketForm.get('text').value);
-      this.ticketService.addTicket(ticket, this.authService.decodedToken.nameid).subscribe((data) => {
+      this.ticketService.addTicket(ticket).subscribe((data) => {
         this.alertService.success('تیکتی شما با موفقیت ثبت شد', 'موفق');
         this.onClear();
         this.newTicket.emit(data);

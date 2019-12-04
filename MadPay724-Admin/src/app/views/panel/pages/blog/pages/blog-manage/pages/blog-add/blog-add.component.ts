@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { BlogService } from 'src/app/core/_services/panel/blog/blog.service';
 import { BlogGroup } from 'src/app/data/models/blog/blogGroup';
 import { environment } from 'src/environments/environment';
@@ -12,20 +11,25 @@ import {
 } from '@syncfusion/ej2-angular-richtexteditor';
 import { addClass, removeClass, Browser } from '@syncfusion/ej2-base';
 import { ToolbarModule } from '@syncfusion/ej2-angular-navigations';
-import { Observable, of } from 'rxjs';
+import { Store } from '@ngrx/store';
+
+import * as fromStore from '../../../../../../../../store';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-blog-add',
   templateUrl: './blog-add.component.html',
   styleUrls: ['./blog-add.component.css'],
   providers: [ToolbarService, LinkService, ImageService,
-    HtmlEditorService, TableService, QuickToolbarService ]
+    HtmlEditorService, TableService, QuickToolbarService]
 })
-export class BlogAddComponent implements OnInit {
+export class BlogAddComponent implements OnInit, OnDestroy {
+  @ViewChild('toolsRTE', { static: true })
   blogGroups: BlogGroup[];
   slectedFile: File;
   imgUrl = '../../../../../../../../../../assets/img/profilepic.png';
-  @ViewChild('toolsRTE', { static: true })
+  subManager = new Subscription();
+
   public rteObj: RichTextEditorComponent;
   public tools: ToolbarModule = {
     items: ['Bold', 'Italic', 'Underline', 'StrikeThrough',
@@ -43,7 +47,7 @@ export class BlogAddComponent implements OnInit {
       {
         tooltipText: 'Rotate Right',
         template:
-        '<button class="e-tbar-btn e-btn" style="background:#fff;border:none" id="roatateLeft"><span style="color:#000;font-weight:900;font-size: 15px;" class="e-btn-icon e-icons ft-corner-up-right"></span>'
+          '<button class="e-tbar-btn e-btn" style="background:#fff;border:none" id="roatateLeft"><span style="color:#000;font-weight:900;font-size: 15px;" class="e-btn-icon e-icons ft-corner-up-right"></span>'
       },
       {
         tooltipText: 'Rotate Left',
@@ -52,10 +56,7 @@ export class BlogAddComponent implements OnInit {
       }
     ]
   };
- currentImgUrl: '';
-  constructor(private formBuilder: FormBuilder, private alertService: ToastrService,
-              private router: Router, private route: ActivatedRoute,
-              private blogService: BlogService, private authService: AuthService) { }
+  currentImgUrl: '';
   blogAddForm: FormGroup = this.formBuilder.group({
     blogGroupId: ['', [Validators.required]],
     title: ['0', [Validators.required, Validators.maxLength(500)]],
@@ -64,10 +65,26 @@ export class BlogAddComponent implements OnInit {
     summerText: ['', [Validators.required, Validators.maxLength(1000)]],
     file: [null, [Validators.required]]
   });
+  constructor(private formBuilder: FormBuilder, private alertService: ToastrService,
+    private router: Router, private route: ActivatedRoute,
+    private blogService: BlogService,
+    private store: Store<fromStore.State>) { }
+
+
+
   ngOnInit() {
     this.loadBlogs();
+    let userId = '';
+    this.subManager.add(
+      this.store.select(fromStore.getUserId).subscribe(data => {
+        userId = data;
+      })
+    );
     this.rteObj.insertImageSettings.saveUrl = environment.apiUrl + environment.apiV1 + 'site/panel/' +
-      'users/' + this.authService.decodedToken.nameid + '/blogs/upload';
+      'users/' + userId + '/blogs/upload';
+  }
+  ngOnDestroy() {
+    this.subManager.unsubscribe();
   }
   loadBlogs() {
     this.route.data.subscribe(data => {
@@ -110,7 +127,7 @@ export class BlogAddComponent implements OnInit {
       blog.append('summerText', this.blogAddForm.get('summerText').value);
 
       // const blog = Object.assign({}, this.blogAddForm.value);
-      this.blogService.addBlog(blog, this.authService.decodedToken.nameid).subscribe((data) => {
+      this.blogService.addBlog(blog).subscribe((data) => {
         this.alertService.success('بلاگ شما با موفقیت ثبت شد', 'موفق');
         this.onClear();
       }, error => {
@@ -171,10 +188,10 @@ export class BlogAddComponent implements OnInit {
     }
   }
   imageRemoving(args: any) {
-    this.blogService.deleteImgBlog(this.authService.decodedToken.nameid, this.currentImgUrl).subscribe(() => {
+    this.blogService.deleteImgBlog(this.currentImgUrl).subscribe(() => {
       this.alertService.success('موفق', 'عکس مورد نظر حذف شد');
     }, error => {
-        this.alertService.error('ناموفق', 'تصویر مورد نظر حذف نشد');
+      this.alertService.error('ناموفق', 'تصویر مورد نظر حذف نشد');
     })
   }
 }

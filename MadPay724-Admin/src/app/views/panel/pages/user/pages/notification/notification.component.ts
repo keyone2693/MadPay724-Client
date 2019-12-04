@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
 import { Notify } from 'src/app/data/models/notify';
-import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { NotificationService } from 'src/app/core/_services/panel/user/notification.service';
 
 @Component({
@@ -16,8 +15,7 @@ export class NotificationComponent implements OnInit {
   notifyForm: FormGroup;
   notify: Notify;
   constructor(private route: ActivatedRoute, private alertService: ToastrService,
-              private formBuilder: FormBuilder, private notifyService: NotificationService,
-              private authService: AuthService) {}
+              private formBuilder: FormBuilder, private notifyService: NotificationService) {}
 
   ngOnInit() {
     this.loadNotify();
@@ -57,7 +55,7 @@ export class NotificationComponent implements OnInit {
 
   updateNotify() {
     this.notify = Object.assign({}, this.notifyForm.value);
-    this.notifyService.updateNotify(this.authService.decodedToken.nameid, this.notify)
+    this.notifyService.updateNotify(this.notify)
     .subscribe(next => {
       this.alertService.success('تنظیمات اطلاع رسانی با موفقیت اپدیت شد', 'موفق');
       this.notifyForm.reset(this.notify);

@@ -5,7 +5,6 @@ import { Subscription } from 'rxjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { GateWallets } from 'src/app/data/models/user/gateWallets';
 import { GatesService } from 'src/app/core/_services/panel/user/gateService.service';
-import { AuthService } from 'src/app/core/_services/auth/auth.service';
 
 @Component({
   selector: 'app-gate-edit',
@@ -18,7 +17,7 @@ export class GateEditComponent implements OnInit, OnDestroy {
   slectedFile: File;
   imgUrl: string;
 
-  constructor(private gateService: GatesService, private authService: AuthService,
+  constructor(private gateService: GatesService,
     private alertService: ToastrService, private route: ActivatedRoute,
     private formBuilder: FormBuilder, private router: Router) { }
 
@@ -61,7 +60,7 @@ export class GateEditComponent implements OnInit, OnDestroy {
     gateForm.append('grouping', this.gateForm.get('grouping').value);
 
     if (this.gateForm.valid) {
-      this.gateService.updateGate(gateForm, this.authService.decodedToken.nameid, this.gatewallets.gate.id)
+      this.gateService.updateGate(gateForm, this.gatewallets.gate.id)
         .subscribe(() => {
           this.alertService.success(' درگاه پرداخت شما با موفقیت ویرایش شد', 'موفق');
           this.onClear();

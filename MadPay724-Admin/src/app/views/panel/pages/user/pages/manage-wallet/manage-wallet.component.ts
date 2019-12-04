@@ -4,7 +4,6 @@ import { ToastrService } from 'ngx-toastr';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { Subscription } from 'rxjs';
 import { WalletService } from 'src/app/core/_services/panel/user/wallet.service';
-import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { Wallet } from 'src/app/data/models/wallet';
 import { WalletFormComponent } from './pages/wallet-form/wallet-form.component';
 
@@ -17,8 +16,7 @@ export class ManageWalletComponent implements OnInit, OnDestroy {
   wallets: Wallet[];
   subManager = new Subscription();
   constructor(private dialog: MatDialog, private route: ActivatedRoute, private alertService: ToastrService,
-              private walletService: WalletService,
-              private authService: AuthService) { }
+              private walletService: WalletService) { }
 
   ngOnInit() {
     this.loadWallets();
@@ -54,7 +52,7 @@ export class ManageWalletComponent implements OnInit, OnDestroy {
   }
   refreshWallets() {
     this.subManager.add(
-      this.walletService.getWallets(this.authService.decodedToken.nameid).subscribe((data) => {
+      this.walletService.getWallets().subscribe((data) => {
         this.wallets = data;
       })
     );

@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { MatDialogRef } from '@angular/material';
 import { BankCard } from 'src/app/data/models/bankcard';
 import { BankCardsService } from 'src/app/core/_services/panel/user/bankCards.service';
-import { AuthService } from 'src/app/core/_services/auth/auth.service';
 
 
 @Component({
@@ -17,7 +16,7 @@ export class EditBankCardComponent implements OnInit {
   @Output() newBankCard = new EventEmitter<BankCard>();
   @Output() updateBankCard = new EventEmitter<BankCard>();
   bankcard: BankCard;
-  constructor(private authService: AuthService, public bankCardService: BankCardsService,
+  constructor( public bankCardService: BankCardsService,
               private alertService: ToastrService, private matdialogRef: MatDialogRef<EditBankCardComponent>,
               private router: Router) {}
 
@@ -33,7 +32,7 @@ export class EditBankCardComponent implements OnInit {
       this.bankcard = Object.assign({}, this.bankCardService.bankcardForm.value);
       if (this.addActive()) {
 
-          this.bankCardService.addBankCard(this.bankcard, this.authService.decodedToken.nameid).subscribe((data) => {
+          this.bankCardService.addBankCard(this.bankcard).subscribe((data) => {
               this.alertService.success('کارت بانکی شما با موفقیت ثبت شد', 'موفق');
               this.alertService.info('کارت شما در انتظار تایید میباشد', 'توجه');
               this.onClear();
@@ -42,7 +41,7 @@ export class EditBankCardComponent implements OnInit {
               this.alertService.error(error, 'خطا در ثبت کارت جدید');
             });
       } else {
-        this.bankCardService.updateBankCard(this.bankcard, this.authService.decodedToken.nameid).subscribe(() => {
+        this.bankCardService.updateBankCard(this.bankcard).subscribe(() => {
             this.alertService.success('کارت بانکی شما با موفقیت ویرایش شد', 'موفق');
             this.alertService.info('کارت شما در انتظار تایید میباشد', 'توجه');
             this.onClear();

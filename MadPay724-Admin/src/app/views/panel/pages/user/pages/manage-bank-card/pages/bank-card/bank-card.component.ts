@@ -4,7 +4,6 @@ import { EditBankCardComponent } from '../edit-bank-card/edit-bank-card.componen
 import { ToastrService } from 'ngx-toastr';
 import { BankCard } from 'src/app/data/models/bankcard';
 import { BankCardsService } from 'src/app/core/_services/panel/user/bankCards.service';
-import { AuthService } from 'src/app/core/_services/auth/auth.service';
 
 @Component({
   selector: 'app-bank-card',
@@ -15,7 +14,7 @@ export class BankCardComponent implements OnInit {
   @Input() bankcard: BankCard;
   @Output() deleteBankCard = new EventEmitter<BankCard>();
   approve: boolean;
-  constructor(private authService: AuthService, private banCardSercise: BankCardsService,
+  constructor( private banCardSercise: BankCardsService,
     private dialog: MatDialog, private alertService: ToastrService) { }
 
   ngOnInit() {
@@ -73,7 +72,7 @@ export class BankCardComponent implements OnInit {
   }
   onDelete(bankCard: BankCard) {
     if (confirm('آیا از حذف این کارت مطمن هستید ؟')) {
-      this.banCardSercise.deleteBankCard(bankCard.id, this.authService.decodedToken.nameid).subscribe(() => {
+      this.banCardSercise.deleteBankCard(bankCard.id).subscribe(() => {
         this.alertService.success('کارت بانکی شما با موفقیت حذف شد', 'موفق');
         this.deleteBankCard.emit(bankCard);
       }, error => {

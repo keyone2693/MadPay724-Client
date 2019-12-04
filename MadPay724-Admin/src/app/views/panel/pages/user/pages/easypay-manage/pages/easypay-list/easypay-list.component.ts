@@ -4,7 +4,6 @@ import { ToastrService } from 'ngx-toastr';
 import {  Router } from '@angular/router';
 import { EasyPay } from 'src/app/data/models/user/easyPay';
 import { EasyPayService } from 'src/app/core/_services/panel/user/easyPay.service';
-import { AuthService } from 'src/app/core/_services/auth/auth.service';
 
 @Component({
   selector: 'app-easypay-list',
@@ -19,7 +18,7 @@ export class EasypayListComponent implements OnInit {
   searchKey: string;
   loadingHideFlag = false;
   noContentHideFlag = true;
-  constructor(private easypayService: EasyPayService, private authService: AuthService,
+  constructor(private easypayService: EasyPayService,
     private router: Router,
     private alertService: ToastrService) { }
 
@@ -27,7 +26,7 @@ export class EasypayListComponent implements OnInit {
     this.loadEasyPays();
   }
   loadEasyPays() {
-    this.easypayService.getEasyPays(this.authService.decodedToken.nameid).subscribe((data) => {
+    this.easypayService.getEasyPays().subscribe((data) => {
       this.easyPays = new MatTableDataSource(data);
       this.easyPays.sort = this.sort;
       this.easyPays.paginator = this.paginator;
@@ -66,7 +65,7 @@ export class EasypayListComponent implements OnInit {
     }
   }
   onDelete(easypay: EasyPay) {
-      this.easypayService.deleteEasyPay(this.authService.decodedToken.nameid, easypay.id).subscribe(() => {
+      this.easypayService.deleteEasyPay( easypay.id).subscribe(() => {
         this.alertService.success('ایزی پی مورد نظر ب موفقیت حذف شد', 'موفق');
         this.easyPays.data.splice(this.easyPays.data.indexOf(easypay), 1);
         this.easyPays._updateChangeSubscription();

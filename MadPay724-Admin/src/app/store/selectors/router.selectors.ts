@@ -15,7 +15,7 @@ export const getRouterNavigationId =
     (state: fromRouter.RouterReducerState<RouterStateUrl>) => state.navigationId;
 
 export const getRouterState = createFeatureSelector
-    <fromRouter.RouterReducerState<RouterStateUrl>>('routerReducer');
+    <fromRouter.RouterReducerState<RouterStateUrl>>('router');
 
 export const getRouterParamasState = createSelector(getRouterState,
     getRouterParamas);
@@ -25,19 +25,3 @@ export const getRouterQueryParamsState = createSelector(getRouterState,
 
 export const getRouterUrlState = createSelector(getRouterState,
     getRouterUrl);
-
-       //-----------------------AuthToken----------------------------
-export const selectDecodedToken = (state: AuthTokenState) => state.decodedToken;
-export const selectUserId = (state: any) => state.nameid;
-
-export const getAuthTokenState = createFeatureSelector<AuthTokenState>('authToken');
-export const getDecodedToken = createSelector(getAuthTokenState, selectDecodedToken);
-export const getUserId = createSelector(getDecodedToken, selectUserId);
-
-    //-----------------------LoggedUser----------------------------
-export const selectLoggedUserName = (state: User) => state.name;
-export const selectLoggedUserPhotoUrl = (state: User) => state.phoneNumber;
-
-export const getLoggedUserState = createFeatureSelector<User>('loggedUser');
-export const getLoggedUserName = createSelector(getLoggedUserState, selectLoggedUserName);
-export const getLoggedUserPhotoUrl = createSelector(getLoggedUserState, selectLoggedUserPhotoUrl);

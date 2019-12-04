@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { TicketContent } from 'src/app/data/models/ticketContent';
-import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { TicketService } from 'src/app/core/_services/panel/user/ticket.service';
 
 @Component({
@@ -18,7 +17,7 @@ export class ChatTicketComponent implements OnInit {
   slectedFile: File = null;
   selected = false;
   fileName = '';
-  constructor(private formBuilder: FormBuilder, private authService: AuthService,
+  constructor(private formBuilder: FormBuilder,
               private alertService: ToastrService, private ticketService: TicketService) { }
 
   ticketContentForm: FormGroup = this.formBuilder.group({
@@ -48,7 +47,6 @@ export class ChatTicketComponent implements OnInit {
       ticketContent.append('text', this.ticketContentForm.get('text').value);
       this.ticketService.addTicketContent(
          ticketContent,
-         this.authService.decodedToken.nameid,
          this.ticketId
          ).subscribe((data) => {
         this.alertService.success('  با موفقیت ارسال شد', 'موفق');

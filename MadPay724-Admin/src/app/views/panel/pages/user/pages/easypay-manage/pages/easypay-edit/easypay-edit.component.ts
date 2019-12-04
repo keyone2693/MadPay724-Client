@@ -5,7 +5,6 @@ import { Subscription } from 'rxjs';
 import _ from 'lodash';
 import { EasyPayGatesWallets } from 'src/app/data/models/user/easyPayGatesWallets';
 import { EasyPay } from 'src/app/data/models/user/easyPay';
-import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { EasyPayService } from 'src/app/core/_services/panel/user/easyPay.service';
 import { Gate } from 'src/app/data/models/user/gate';
 
@@ -19,7 +18,7 @@ export class EasypayEditComponent implements OnInit, OnDestroy {
   subManager = new Subscription();
   easypay: EasyPay;
 
-  constructor(private authService: AuthService,
+  constructor(
     private alertService: ToastrService, private route: ActivatedRoute,
     private router: Router, public easypayService: EasyPayService) { }
 
@@ -69,7 +68,7 @@ export class EasypayEditComponent implements OnInit, OnDestroy {
   onSubmit() {
     if (this.easypayService.easypayForm.valid) {
       this.easypay = Object.assign({}, this.easypayService.easypayForm.value);
-      this.easypayService.updateEasyPay(this.easypay, this.authService.decodedToken.nameid, this.easypay.id).subscribe(() => {
+      this.easypayService.updateEasyPay(this.easypay, this.easypay.id).subscribe(() => {
         this.alertService.success('ایزی پی شما با موفقیت ویرایش شد', 'موفق');
         this.onClear();
       }, error => {

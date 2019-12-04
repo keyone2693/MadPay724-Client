@@ -6,13 +6,21 @@ import { environment } from 'src/environments/environment';
 import { GatesWallets } from 'src/app/data/models/user/gatesWallets';
 import { GateWallets } from 'src/app/data/models/user/gateWallets';
 import { Gate } from 'src/app/data/models/user/gate';
+import { Store } from '@ngrx/store';
+
+import * as fromStore from '../../../../store';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GatesService {
   baseUrl = environment.apiUrl + environment.apiV1 + 'site/panel/';
-  constructor(private http: HttpClient, private formBuilder: FormBuilder) { }
+  userId: string;
+  constructor(private http: HttpClient, private formBuilder: FormBuilder,
+    private store: Store<fromStore.State>) {
+    this.store.select(fromStore.getUserId).subscribe(data => {
+      this.userId = data;
+    });  }
   gateForm: FormGroup = this.formBuilder.group({
     walletId: ['', [Validators.required]],
     isIp: [false, [Validators.required]],
@@ -25,27 +33,25 @@ export class GatesService {
     file: [null, [Validators.required]],
   });
 
-  getGates(id: string): Observable<GatesWallets> {
-    return this.http.get<GatesWallets>(this.baseUrl + 'users/' + id + '/gates');
+  getGates(userId: string = this.userId): Observable<GatesWallets> {
+    return this.http.get<GatesWallets>(this.baseUrl + 'users/' + userId + '/gates');
   }
-  getGate(id: string, gateId: Gate): Observable<GateWallets> {
-    return this.http.get<GateWallets>(this.baseUrl + 'users/' + id + '/gates/' + gateId);
-  }
-
-  addGate(gate: any, id: string): Observable<Gate> {
-    return this.http.post<Gate>(this.baseUrl + 'users/' + id + '/gates', gate);
+  getGate(gateId: Gate, userId: string = this.userId): Observable<GateWallets> {
+    return this.http.get<GateWallets>(this.baseUrl + 'users/' + userId + '/gates/' + gateId);
   }
 
-  updateGate(gate: any, userId: string, id: string) {
-    return this.http.put(this.baseUrl + 'users/' + userId + '/gates/' + id, gate);
+  addGate(gate: any, userId: string = this.userId): Observable<Gate> {
+    return this.http.post<Gate>(this.baseUrl + 'users/' + userId + '/gates', gate);
   }
 
+  updateGate(gate: any, gateId: string, userId: string = this.userId) {
+    return this.http.put(this.baseUrl + 'users/' + userId + '/gates/' + gateId, gate);
+  }
+  
+  activeGate(active: any, gateId: string, userId: string = this.userId) {
+    return this.http.put(this.baseUrl + 'users/' + userId + '/gates/' + gateId + '/active', active);
+  }
   populateForm(gate: Gate) {
     this.gateForm.setValue(gate);
   }
-
-  activeGate(active: any, userId: string, gateId: string) {
-    return this.http.put(this.baseUrl + 'users/' + userId + '/gates/' + gateId + '/active', active);
-  }
-
 }

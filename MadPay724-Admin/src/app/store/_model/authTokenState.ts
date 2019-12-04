@@ -1,3 +1,5 @@
+import { DecodedToken } from './decodedToken';
+
 export interface AuthTokenState {
-    decodedToken: any
+    decodedToken: DecodedToken
 }

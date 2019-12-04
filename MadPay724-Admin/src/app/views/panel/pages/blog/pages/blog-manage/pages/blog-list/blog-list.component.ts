@@ -3,7 +3,6 @@ import { Subscription } from 'rxjs';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { Blog } from 'src/app/data/models/blog/blog';
 import { BlogService } from 'src/app/core/_services/panel/blog/blog.service';
-import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Pagination } from 'src/app/data/models/common/pagination';
@@ -32,7 +31,7 @@ export class BlogListComponent implements OnInit, OnDestroy {
 
   loadingHideFlag = false;
   noContentHideFlag = true;
-  constructor(private blogService: BlogService, private authService: AuthService,
+  constructor(private blogService: BlogService,
     private router: Router, private route: ActivatedRoute,
     private alertService: ToastrService) { }
 
@@ -69,7 +68,7 @@ export class BlogListComponent implements OnInit, OnDestroy {
       sortHeader = '';
     }
     this.subManager.add(
-      this.blogService.getBlogs(this.authService.decodedToken.nameid,
+      this.blogService.getBlogs(
         filter.pageIndex, filter.pageSize,
         searchKey.trim(), sortHeader, sortDirection)
         .subscribe((data) => {
@@ -103,7 +102,7 @@ export class BlogListComponent implements OnInit, OnDestroy {
       sortHeader = '';
     }
     this.subManager.add(
-      this.blogService.getBlogs(this.authService.decodedToken.nameid,
+      this.blogService.getBlogs(
         this.pagination.currentPage, this.pagination.itemsPerPage,
         searchKey.trim(), sortHeader, sortDirection)
         .subscribe((data) => {
@@ -121,7 +120,7 @@ export class BlogListComponent implements OnInit, OnDestroy {
   }
   onDelete(blog: Blog) {
     this.subManager.add(
-      this.blogService.deleteBlog(this.authService.decodedToken.nameid, blog.id).subscribe(() => {
+      this.blogService.deleteBlog(blog.id).subscribe(() => {
         this.alertService.success('دسته بندی بلاگ مورد نظر با موفقیت حذف شد', 'موفق');
         this.blogs.data.splice(this.blogs.data.indexOf(blog), 1);
         this.blogs._updateChangeSubscription();
@@ -133,7 +132,7 @@ export class BlogListComponent implements OnInit, OnDestroy {
   }
   onApproveChange(event: any,blogId: string) {
     this.subManager.add(
-      this.blogService.approveBlog(event.checked, this.authService.decodedToken.nameid, blogId)
+      this.blogService.approveBlog(event.checked, blogId)
         .subscribe(() => {
           if (event.checked === true) {
             this.alertService.success('بلاگ مورد نظر با موفقیت تایید شد', 'موفق');
@@ -147,7 +146,7 @@ export class BlogListComponent implements OnInit, OnDestroy {
   }
   onSelectChange(event: any, blogId: string) {
     this.subManager.add(
-      this.blogService.selectBlog(event.checked, this.authService.decodedToken.nameid, blogId)
+      this.blogService.selectBlog(event.checked, blogId)
         .subscribe(() => {
           if (event.checked === true) {
             this.alertService.success('بلاگ مورد نظر با موفقیت محبوب شد', 'موفق');

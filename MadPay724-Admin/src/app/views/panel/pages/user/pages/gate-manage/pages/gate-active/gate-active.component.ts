@@ -3,7 +3,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { GateActiveDirect } from 'src/app/data/models/user/gateActiveDirect';
 import { GatesService } from 'src/app/core/_services/panel/user/gateService.service';
 
@@ -16,7 +15,7 @@ export class GateActiveComponent implements OnInit {
 
   @Output() activeFlag = new EventEmitter<boolean>();
   gateActiveDirect: GateActiveDirect;
-  constructor(private authService: AuthService, public gateService: GatesService,
+  constructor( public gateService: GatesService,
               private alertService: ToastrService, private matdialogRef: MatDialogRef<GateActiveComponent>,
     private router: Router, @Inject(MAT_DIALOG_DATA) private data: GateActiveDirect, private formBuilder: FormBuilder) { }
 
@@ -41,7 +40,6 @@ export class GateActiveComponent implements OnInit {
     if (this.gateForm.valid) {      
       this.gateService.activeGate(
         this.gateForm.value,
-        this.authService.decodedToken.nameid,
         this.gateActiveDirect.gate.id).subscribe(() => {
           if (this.gateActiveDirect.isDirect) {
             this.alertService.success(' در گاه با موفقیت مستقیم شد', 'موفق');

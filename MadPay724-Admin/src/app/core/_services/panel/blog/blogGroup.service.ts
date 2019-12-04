@@ -6,26 +6,23 @@ import { BlogGroup } from 'src/app/data/models/blog/blogGroup';
 import { Store } from '@ngrx/store';
 
 import * as fromStore from '../../../../store';
-import { switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BlogGroupService {
   baseUrl = environment.apiUrl + environment.apiV1 + 'site/panel/';
-  userId: any;
+  userId: string;
   constructor(private http: HttpClient, private store: Store<fromStore.State>) { 
     this.store.select(fromStore.getUserId).subscribe(data => {
       this.userId = data;
-    });
-    
-
+    }); 
   }
  
   getBlogGroups(userId: string = this.userId): Observable<BlogGroup[]> {
     return this.http.get<BlogGroup[]>(this.baseUrl + 'users/' + userId + '/blogGroups');
   }
-  getBlogGroup(userId: string = this.userId, blogGroupId: string): Observable<BlogGroup> {
+  getBlogGroup(blogGroupId: string,userId: string = this.userId): Observable<BlogGroup> {
     return this.http.get<BlogGroup>(this.baseUrl + 'users/' + userId + '/blogGroups/' + blogGroupId);
   }
   addBlogGroup(blogGroup: any, userId: string = this.userId): Observable<BlogGroup> {
