@@ -3,6 +3,7 @@
 class="chat">
     <div class="chat-avatar">
       <a
+       *ngIf="photoUrl$ | async as photoUrl"
         class="avatar"
         data-toggle="tooltip"
         data-placement="right"

@@ -26,7 +26,7 @@
                 <div class="card-body">
                   <div class="card-block">
                     <div class="align-self-center halfway-fab text-center">
-                      <a class="profile-image">
+                      <a class="profile-image" *ngIf="photoUrl$ | async as photoUrl">
                         <img
                           src="{{photoUrl}}"
                           class="rounded-circle img-border gradient-summer width-200"
@@ -211,7 +211,7 @@
                                             <option value="true"
                                               >مرد</option
                                             >
-                                            <option value="fasle"
+                                            <option value="false"
                                               >زن</option
                                             >
                                           </select>

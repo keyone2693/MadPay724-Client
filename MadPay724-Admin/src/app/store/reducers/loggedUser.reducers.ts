@@ -17,19 +17,37 @@ export const initLoggedUserState: User = {
 }
 export function loggedUserReducer(state = initLoggedUserState, action: LoggedUserActions) {
     switch (action.type) {
+        case loggedUserAction.LoggedUserActionTypes.LOADLOGGEDUSER:
+            return state;
+        case loggedUserAction.LoggedUserActionTypes.LOADLOGGEDUSER_SUCCESS:
+            return {
+                ...state, id: action.payload.id,
+                name: action.payload.name,
+                userName: action.payload.userName,
+                phoneNumber: action.payload.phoneNumber,
+                address: action.payload.address,
+                gender: action.payload.gender,
+                age: action.payload.age,
+                lastActive: action.payload.lastActive,
+                city: action.payload.city,
+                photoUrl: action.payload.photoUrl
+            }
+        case loggedUserAction.LoggedUserActionTypes.LOADLOGGEDUSER_FAIL:
+            return state;
         case loggedUserAction.LoggedUserActionTypes.EDIT_LOGGEDUSER:
-             return {
-                 ...state, id: action.payload.id ,
-                 name: action.payload.name ,
-                 userName: action.payload.userName,
-                 phoneNumber: action.payload.phoneNumber,
-                 address: action.payload.address,
-                 gender: action.payload.gender,
-                 age: action.payload.age,
-                 lastActive: action.payload.lastActive,
-                 city: action.payload.city,
-                 photoUrl: action.payload.photoUrl}
-            //return Object.assign({}, state, action.payload);
+            return {
+                ...state, id: action.payload.id,
+                name: action.payload.name,
+                userName: action.payload.userName,
+                phoneNumber: action.payload.phoneNumber,
+                address: action.payload.address,
+                gender: action.payload.gender,
+                age: action.payload.age,
+                lastActive: action.payload.lastActive,
+                city: action.payload.city,
+                photoUrl: action.payload.photoUrl
+            }
+        //return Object.assign({}, state, action.payload);
         case loggedUserAction.LoggedUserActionTypes.EDIT_LOGGEDUSERNAME:
             return { ...state, name: action.payload }
         case loggedUserAction.LoggedUserActionTypes.EDIT_LOGGEDUSERPHOTOURL:

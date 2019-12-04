@@ -20,6 +20,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store';
 import { CustomRouteSerializer } from './shared/helpers/customRouteSerializer';
 import { reducers } from './store';
+import { effects } from './store/effects';
 
 
 
@@ -64,7 +65,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     StoreRouterConnectingModule.forRoot({
       serializer: CustomRouteSerializer
     }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot(effects),
     environment.development ? StoreDevtoolsModule.instrument({ maxAge: 10 }) : []
   ],
   providers: [

@@ -1,8 +1,7 @@
 import { OnInit, ViewChild, HostListener, Input, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { UserService } from 'src/app/core/_services/panel/user.service';
 import { User } from 'src/app/data/models/user';
 import { Store } from '@ngrx/store';
@@ -21,7 +20,6 @@ export class ProfileComponent implements OnInit {
   editForm: FormGroup;
   constructor(private route: ActivatedRoute, private userService: UserService,
     private alertService: ToastrService,
-    private authService: AuthService,
     private formBuilder: FormBuilder,
     private store: Store<fromStore.State>) { }
 
@@ -33,9 +31,10 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.photoUrl$ = this.store.select(fromStore.getLoggedUserPhotoUrl);
     this.loadUser();
     this.createEditUserInfoForm();
+    this.photoUrl$ = this.store.select(fromStore.getLoggedUserPhotoUrl);
+
   }
 
   createEditUserInfoForm() {
