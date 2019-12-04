@@ -19,7 +19,7 @@ export class BankCardsService {
     private store: Store<fromStore.State>) { 
     this.store.select(fromStore.getUserId).subscribe(data => {
       this.userId = data;
-    }); 
+    });
    }
   bankcardForm: FormGroup = this.formBuilder.group({
     id: [],

@@ -20,7 +20,8 @@ export class GatesService {
     private store: Store<fromStore.State>) {
     this.store.select(fromStore.getUserId).subscribe(data => {
       this.userId = data;
-    });  }
+    });
+  }
   gateForm: FormGroup = this.formBuilder.group({
     walletId: ['', [Validators.required]],
     isIp: [false, [Validators.required]],

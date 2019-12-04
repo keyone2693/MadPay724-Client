@@ -17,7 +17,7 @@ export class TicketService {
   constructor(private http: HttpClient, private store: Store<fromStore.State>) {
     this.store.select(fromStore.getUserId).subscribe(data => {
       this.userId = data;
-    }); }
+    });}
 
   getTickets(page: number, userId: string = this.userId): Observable<Ticket[]> {
     return this.http.get<Ticket[]>(this.baseUrl + 'users/' + userId + '/tickets/page/' + page);

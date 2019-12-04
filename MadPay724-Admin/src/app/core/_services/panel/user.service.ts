@@ -17,8 +17,8 @@ export class UserService {
   constructor(private http: HttpClient, private store: Store<fromStore.State>) {
     this.store.select(fromStore.getUserId).subscribe(data => {
       this.userId = data;
-    });  }
-
+    });
+  }
   getUser(userId: string = this.userId): Observable<User> {
     return this.http.get<User>(this.baseUrl + userId);
 }

@@ -18,7 +18,7 @@ import { Store } from '@ngrx/store';
 export class AuthService {
   baseUrl = environment.apiUrl + environment.apiV1 + 'site/panel/auth/';
   jwtHelper = new JwtHelperService();
-  userRoles: Array<string>;
+  userRoles: string[] =[];
   currentUser: User;
   photoUrl = new BehaviorSubject<string>('../../../assets/img/profilepic.png');
   currentPhotoUrl = this.photoUrl.asObservable();
@@ -27,9 +27,9 @@ export class AuthService {
     private router: Router,
     private store: Store<fromStore.State>) {
     const token = localStorage.getItem('token');
-    if (token) {
-          this.userRoles = this.jwtHelper.decodeToken(token).role as Array<string>;
-    }
+    if (token != null || token != undefined) {
+            this.userRoles = this.jwtHelper.decodeToken(token).role as Array<string>;
+    }    
   }
 
   changeUserPhoto(photoUrl: string) {
@@ -44,6 +44,7 @@ export class AuthService {
           this.store.dispatch(new fromStore.EditLoggedUser(user.user));
           const decodedToken = this.jwtHelper.decodeToken(user.token);
           this.store.dispatch(new fromStore.EditDecodedToken(decodedToken));
+          this.userRoles = decodedToken.role as Array<string>;
 
           localStorage.setItem('token', user.token);
           localStorage.setItem('refreshToken', user.refresh_token);
@@ -73,7 +74,7 @@ export class AuthService {
     localStorage.removeItem('refreshToken');
     //this.decodedToken = null;
     this.store.dispatch(new fromStore.ResetDecodedToken());
-
+    this.userRoles = [];
     this.currentUser = null;
     this.router.navigate(['/auth/login']);
     this.alertService.warning('با موفقیت خارج شدید', 'موفق');
@@ -84,6 +85,7 @@ export class AuthService {
     localStorage.removeItem('refreshToken');
     //this.decodedToken = null;
     this.store.dispatch(new fromStore.ResetDecodedToken());
+    this.userRoles = [];
     this.currentUser = null;
     this.router.navigate(['/auth/login']);
     this.alertService.error('خطا در اعتبار سنجی خودکار', 'خطا');
@@ -103,6 +105,7 @@ export class AuthService {
           // localStorage.setItem('user', JSON.stringify(result.user));
           const decodedToken = this.jwtHelper.decodeToken(result.token);
           this.store.dispatch(new fromStore.EditDecodedToken(decodedToken));
+          this.userRoles = decodedToken.role as Array<string>;
           //  this.currentUser = result.user;
           //  this.changeUserPhoto(this.currentUser.photoUrl);
         }
@@ -111,7 +114,6 @@ export class AuthService {
     );
 
   }
-
 
   roleMatch(allowedRoles): boolean {
     let isMatch = false;

@@ -33,6 +33,7 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('user');
     this.store.dispatch(new fromStore.ResetDecodedToken());
+    this.authService.userRoles = [];
     this.authService.currentUser = null;
     this.router.navigate(['/auth/login']);
     this.alertService.warning('با موفقیت خارج شدید', 'موفق');

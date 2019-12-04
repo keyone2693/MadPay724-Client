@@ -30,8 +30,6 @@ export class LoginComponent implements OnInit {
       if (this.returnUrl === null || this.returnUrl === undefined) {
         this.returnUrl = this.authService.getDashboardUrl();
       }
-
-
       this.router.navigate([this.returnUrl]);
       this.alertService.success('با موفقیت وارد شدید', 'موفق');
     }, error => {

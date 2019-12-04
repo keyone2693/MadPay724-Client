@@ -16,7 +16,7 @@ export class BlogGroupService {
   constructor(private http: HttpClient, private store: Store<fromStore.State>) { 
     this.store.select(fromStore.getUserId).subscribe(data => {
       this.userId = data;
-    }); 
+    });
   }
  
   getBlogGroups(userId: string = this.userId): Observable<BlogGroup[]> {

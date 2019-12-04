@@ -20,7 +20,8 @@ export class EasyPayService {
     private store: Store<fromStore.State>) {
     this.store.select(fromStore.getUserId).subscribe(data => {
       this.userId = data;
-    }); }
+    });
+  }
 
  easypayForm: FormGroup = this.formBuilder.group({
    id: [],

@@ -15,7 +15,8 @@ export class NotificationService {
   constructor(private http: HttpClient, private store: Store<fromStore.State>) {
     this.store.select(fromStore.getUserId).subscribe(data => {
       this.userId = data;
-    });  }
+    });
+  }
 
   getNotify(userId: string = this.userId): Observable<Notify> {
     return this.http.get<Notify>(this.baseUrl + 'notifications/' + userId);

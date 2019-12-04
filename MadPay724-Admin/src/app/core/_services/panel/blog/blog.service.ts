@@ -16,9 +16,9 @@ export class BlogService  {
   baseUrl = environment.apiUrl + environment.apiV1 + 'site/panel/';
   userId: string;
   constructor(private http: HttpClient, private store: Store<fromStore.State>) { 
-    this.store.select(fromStore.getUserRoles).subscribe(data => {
+    this.store.select(fromStore.getUserId).subscribe(data => {
       this.userId = data;
-    }); 
+    });
   }
   getBlogs(page?, itemPerPage?, filter?, sortHe?, sortDir?,userId: string = this.userId): Observable<PaginationResult<Blog[]>> {
     const paginatedResult: PaginationResult<Blog[]> = new PaginationResult<Blog[]>();
