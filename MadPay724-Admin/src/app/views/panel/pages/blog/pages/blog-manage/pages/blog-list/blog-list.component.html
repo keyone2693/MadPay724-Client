@@ -98,7 +98,7 @@
       <button *appHasRole="['Admin', 'AdminBlog']" mat-button [swal]="deleteSwal"><i class="ft-trash-2 delete-icon"></i></button>
         <swal
       #deleteSwal
-      title="حذف {{ blog.name }} ؟"
+      title="حذف {{ blog.title }} ؟"
       text="آیا مطمن هستید"
       type="error"
       [showCancelButton]="true"

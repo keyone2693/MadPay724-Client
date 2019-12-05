@@ -65,38 +65,47 @@
         <!--#endregion-->
 
         <!--#region Blog-->
-        <li *appHasRole="['AdminBlog', 'Blog']" routerLinkActive="active" class=" nav-item">
+        <li
+          *appHasRole="['AdminBlog', 'Blog']"
+          routerLinkActive="active"
+          class=" nav-item"
+        >
           <a [routerLink]="['/panel/blog/dashboard']"
             ><i class="icon-home"></i
             ><span data-i18n="" class="menu-title">داشبورد</span></a
           >
         </li>
-        <li *appHasRole="['Admin', 'AdminBlog', 'Blog']" class="has-sub nav-item">
+        <li
+          *appHasRole="['Admin', 'AdminBlog', 'Blog']"
+          class="has-sub nav-item"
+        >
           <a href="javascript:;">
             <i class="ft-clipboard"></i>
             <span data-i18n="" class="menu-title">بلاگ</span>
-            <span
-            *ngIf="notifyBlogUnverifiedCount$ | async as notifyBlogUnverifiedCount"
-             *appHasRole="['Admin', 'AdminBlog']"
-            class="tag badge badge-pill badge-danger mt-1">{{notifyBlogUnverifiedCount}}</span>
+            <ng-container *ngIf=" notifyBlogUnverifiedCount$ | async as notifyBlogUnverifiedCount">
+              <span
+                *appHasRole="['Admin', 'AdminBlog']"
+                class="tag badge badge-pill badge-danger mt-1"
+                >{{ notifyBlogUnverifiedCount }}</span
+              >
+            </ng-container>
           </a>
           <ul class="menu-content">
             <li routerLinkActive="active mlisub">
-              <a
-                [routerLink]="['/panel/blog/bloggroup']"
-                class="menu-item"
-              >
+              <a [routerLink]="['/panel/blog/bloggroup']" class="menu-item">
                 <i class="ft-copy"></i>
-                مدیریت دسته بندی </a
-              >
+                مدیریت دسته بندی
+              </a>
             </li>
-            <li  routerLinkActive="active mlisub">
+            <li routerLinkActive="active mlisub">
               <a [routerLink]="['/panel/blog/blog']" class="menu-item">
                 <i class="ft-airplay"></i>
-                <span 
-                *ngIf="notifyBlogUnverifiedCount$ | async as notifyBlogUnverifiedCount"
-                *appHasRole="['Admin', 'AdminBlog']"
-                 class="tag badge badge-pill badge-success mt-1">{{notifyBlogUnverifiedCount}}</span>
+                <ng-container *ngIf="notifyBlogUnverifiedCount$| async as notifyBlogUnverifiedCount">
+                  <span *appHasRole="['Admin', 'AdminBlog']"
+                    class="tag badge badge-pill badge-success mt-1 madpaynotifybadge"
+                    >{{ notifyBlogUnverifiedCount }}</span
+                  >
+                </ng-container>
                 مدیریت بلاگ</a>
             </li>
           </ul>
@@ -159,7 +168,7 @@
           </ul>
         </li>
         <!--#endregion-->
-     
+
         <!--#region Com-->
         <li *appHasRole="['User']" routerLinkActive="active" class=" nav-item">
           <a [routerLink]="['/panel/user/tickets']">
@@ -176,7 +185,8 @@
             <i class="icon-user-following"></i>
             <span class="menu-title">پروفایل</span></a
           >
-        <!--#endregion-->
+          <!--#endregion-->
+        </li>
       </ul>
     </div>
   </div>

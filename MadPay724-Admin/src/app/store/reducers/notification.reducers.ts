@@ -16,6 +16,10 @@ export function NotificationReducer(state = initNotificationState, action: Notif
             return { ...state, blogUnverifiedCount: action.payload }
         case fromAction.NotificationActionTypes.LOADBLOGUNVERIFIEDCOUNT_FAIL:
             return { ...state, error: action.payload }
+        case fromAction.NotificationActionTypes.INC_BLOGUNVERIFIEDCOUNT:
+            return { ...state, blogUnverifiedCount: state.blogUnverifiedCount + 1 }
+        case fromAction.NotificationActionTypes.DEC_USDBLOGUNVERIFIEDCOUNT:
+            return { ...state, blogUnverifiedCount: state.blogUnverifiedCount - 1  }
         default:
             return state;
     }

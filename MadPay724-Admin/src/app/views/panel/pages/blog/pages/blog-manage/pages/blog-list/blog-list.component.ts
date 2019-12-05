@@ -7,6 +7,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Pagination } from 'src/app/data/models/common/pagination';
 import { FilterSortOrderBy } from 'src/app/data/models/common/filterSortOrderBy';
+import * as fromStore from '../../../../../../../../store';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-blog-list',
@@ -14,14 +16,14 @@ import { FilterSortOrderBy } from 'src/app/data/models/common/filterSortOrderBy'
   styleUrls: ['./blog-list.component.css']
 })
 export class BlogListComponent implements OnInit, OnDestroy {
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   subManager = new Subscription();
   blogs: MatTableDataSource<Blog>;
   blogsArray: Blog[];
   pagination: Pagination;
   displayedColumns: string[] = ['id', 'blogGroupName', 'picAddress', 'title',
     'status', 'isSelected', 'viewCount', 'dateModified', 'actions'];
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   filterSortOrderBy: FilterSortOrderBy = {
     sortDirection: '',
@@ -33,7 +35,7 @@ export class BlogListComponent implements OnInit, OnDestroy {
   noContentHideFlag = true;
   constructor(private blogService: BlogService,
     private router: Router, private route: ActivatedRoute,
-    private alertService: ToastrService) { }
+    private alertService: ToastrService, private store: Store<fromStore.State>) { }
 
   ngOnInit() {
     this.loadBlogs();
@@ -135,8 +137,10 @@ export class BlogListComponent implements OnInit, OnDestroy {
       this.blogService.approveBlog(event.checked, blogId)
         .subscribe(() => {
           if (event.checked === true) {
+            this.store.dispatch(new fromStore.DecUnverifiedBlogCount());
             this.alertService.success('بلاگ مورد نظر با موفقیت تایید شد', 'موفق');
           } else {
+            this.store.dispatch(new fromStore.IncUnverifiedBlogCount());
             this.alertService.success('بلاگ شما با موفقیت از حالت تاییدی خارج شد', 'موفق');
           }
         }, error => {

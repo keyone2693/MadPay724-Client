@@ -15,10 +15,14 @@ export class SidebarComponent implements OnInit {
   loadAPI: any;
   notifyBlogUnverifiedCount$: Observable<number>;
   constructor(private store: Store<fromStore.State>) {
+    this.loadBlogNotify();
+  }
+  loadBlogNotify() {
+    this.store.dispatch(new fromStore.LoadUnverifiedBlogCount());
+
     this.notifyBlogUnverifiedCount$ =
       this.store.select(fromStore.getNotificationBlogUnverifiedCount);
-   }
-
+  }
   ngOnInit() {
     this.loadAPI = new Promise(resolve => {
       this.loadScript();
@@ -32,6 +36,6 @@ export class SidebarComponent implements OnInit {
     node.async = true;
     node.charset = 'utf-8';
     document.getElementsByTagName('head')[0].appendChild(node);
-}
+  }
 
 }

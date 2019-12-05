@@ -16,3 +16,7 @@
       .swal2-styled.swal2-confirm{
         width: 200px;
       }
+
+      .madpaynotifybadge{
+            left: 0.7rem !important;
+      }
