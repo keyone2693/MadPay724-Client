@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "compodoc": "compodoc -p src/tsconfig.app.json"
   },
   "private": true,
   "dependencies": {
@@ -148,6 +149,7 @@
     "@angular/cli": "^8.3.19",
     "@angular/compiler-cli": "~8.2.14",
     "@angular/language-service": "~8.2.14",
+    "@compodoc/compodoc": "^1.1.11",
     "@types/chartist": "^0.9.46",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "^2.0.8",

@@ -1,0 +1,1191 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>mad-pay724-admin documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">mad-pay724-admin documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>ProfileComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/views/panel/pages/user/pages/userinfo/profile/profile.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-profile</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./profile.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./profile.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#editForm">editForm</a>
+                            </li>
+                            <li>
+                                <a href="#photoUrl$">photoUrl$</a>
+                            </li>
+                            <li>
+                                <a href="#user">user</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#createEditUserInfoForm">createEditUserInfoForm</a>
+                            </li>
+                            <li>
+                                <a href="#goToSaveBtn">goToSaveBtn</a>
+                            </li>
+                            <li>
+                                <a href="#loadUser">loadUser</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#updateUserInfo">updateUserInfo</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostListeners</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#window:beforeunload">window:beforeunload</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, userService: <a href="../injectables/UserService.html">UserService</a>, alertService: ToastrService, formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, store: <a href="../interfaces/State.html">Store<fromStore.State></a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/views/panel/pages/user/pages/userinfo/profile/profile.component.ts:20</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>userService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>alertService</td>
+                                                  
+                                                        <td>
+                                                                    <code>ToastrService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>formBuilder</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>store</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/State.html" target="_self" >Store&lt;fromStore.State&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+    <section>
+    <h3>HostListeners</h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="window:beforeunload"></a>
+                    <span class="name">
+                        <b>
+                            window:beforeunload
+                        </b>
+                        <a href="#window:beforeunload"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <i>Arguments : </i><code>'$event' </code>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>window:beforeunload($event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/app/views/panel/pages/user/pages/userinfo/profile/profile.component.ts:27</a></div>
+                </td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createEditUserInfoForm"></a>
+                    <span class="name">
+                        <b>
+                            createEditUserInfoForm
+                        </b>
+                        <a href="#createEditUserInfoForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createEditUserInfoForm()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/app/views/panel/pages/user/pages/userinfo/profile/profile.component.ts:40</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goToSaveBtn"></a>
+                    <span class="name">
+                        <b>
+                            goToSaveBtn
+                        </b>
+                        <a href="#goToSaveBtn"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goToSaveBtn()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/app/views/panel/pages/user/pages/userinfo/profile/profile.component.ts:50</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadUser"></a>
+                    <span class="name">
+                        <b>
+                            loadUser
+                        </b>
+                        <a href="#loadUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>loadUser()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="65"
+                            class="link-to-prism">src/app/views/panel/pages/user/pages/userinfo/profile/profile.component.ts:65</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">src/app/views/panel/pages/user/pages/userinfo/profile/profile.component.ts:33</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateUserInfo"></a>
+                    <span class="name">
+                        <b>
+                            updateUserInfo
+                        </b>
+                        <a href="#updateUserInfo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateUserInfo()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/app/views/panel/pages/user/pages/userinfo/profile/profile.component.ts:55</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="editForm"></a>
+                        <span class="name">
+                            <b>
+                            editForm</b>
+                            <a href="#editForm"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/views/panel/pages/user/pages/userinfo/profile/profile.component.ts:20</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="photoUrl$"></a>
+                        <span class="name">
+                            <b>
+                            photoUrl$</b>
+                            <a href="#photoUrl$"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Observable&lt;string&gt;</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/views/panel/pages/user/pages/userinfo/profile/profile.component.ts:19</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="user"></a>
+                        <span class="name">
+                            <b>
+                            user</b>
+                            <a href="#user"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/User.html" target="_self" >User</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/views/panel/pages/user/pages/userinfo/profile/profile.component.ts:18</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { OnInit, ViewChild, HostListener, Input, Component } from &#x27;@angular/core&#x27;;
+import { ActivatedRoute } from &#x27;@angular/router&#x27;;
+import { FormBuilder, FormGroup, Validators } from &#x27;@angular/forms&#x27;;
+import { ToastrService } from &#x27;ngx-toastr&#x27;;
+import { UserService } from &#x27;src/app/core/_services/panel/user.service&#x27;;
+import { User } from &#x27;src/app/data/models/user&#x27;;
+import { Store } from &#x27;@ngrx/store&#x27;;
+
+import * as fromStore from &#x27;../../../../../../../store&#x27;;
+import { Observable, from } from &#x27;rxjs&#x27;;
+
+@Component({
+  selector: &#x27;app-profile&#x27;,
+  templateUrl: &#x27;./profile.component.html&#x27;,
+  styleUrls: [&#x27;./profile.component.css&#x27;]
+})
+export class ProfileComponent implements OnInit {
+  user: User;
+  photoUrl$: Observable&lt;string&gt;;
+  editForm: FormGroup;
+  constructor(private route: ActivatedRoute, private userService: UserService,
+    private alertService: ToastrService,
+    private formBuilder: FormBuilder,
+    private store: Store&lt;fromStore.State&gt;) { }
+
+  @HostListener(&#x27;window:beforeunload&#x27;, [&#x27;$event&#x27;])
+  unloadNotification($event: any) {
+    if (this.editForm.dirty) {
+      $event.returnValue &#x3D; true;
+    }
+  }
+
+  ngOnInit() {
+    this.loadUser();
+    this.createEditUserInfoForm();
+    this.photoUrl$ &#x3D; this.store.select(fromStore.getLoggedUserPhotoUrl);
+
+  }
+
+  createEditUserInfoForm() {
+    this.editForm &#x3D; this.formBuilder.group({
+      name: [this.user.name, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      phoneNumber: [this.user.phoneNumber, Validators.required],
+      gender: [this.user.gender],
+      city: [this.user.city],
+      address: [this.user.address]
+    });
+  }
+
+  goToSaveBtn() {
+    $(&#x27;html , body&#x27;).animate({
+      scrollTop: $(&#x27;#btnsave&#x27;).offset().top + 20
+    }, 500);
+  }
+  updateUserInfo() {
+    this.user &#x3D; Object.assign({}, this.editForm.value);
+    this.userService.updateUserInfo(this.user).subscribe(next &#x3D;&gt; {
+      this.alertService.success(&#x27;اطلاعات کاربری با موفیقیت ویرایش شد&#x27;, &#x27;موفق&#x27;);
+      this.editForm.reset(this.user);
+      this.store.dispatch(new fromStore.UpdateInfoLoggedUserName(this.user));
+    }, error &#x3D;&gt; {
+      this.alertService.error(error, &#x27;خطا در ویرایش&#x27;);
+    });
+  }
+  loadUser() {
+    this.route.data.subscribe(data &#x3D;&gt; {
+      this.user &#x3D; data.user;
+    });
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">
+        &lt;!-- User Profile Starts--&gt;
+        &lt;nav aria-label&#x3D;&quot;breadcrumb&quot;&gt;
+          &lt;ol class&#x3D;&quot;breadcrumb&quot;&gt;
+            &lt;li class&#x3D;&quot;breadcrumb-item&quot;&gt;
+              &lt;a [routerLink]&#x3D;&quot;[&#x27;/panel/dashboard&#x27;]&quot;&gt;داشبورد&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li class&#x3D;&quot;breadcrumb-item&quot;&gt;
+              &lt;a [routerLink]&#x3D;&quot;[&#x27;/panel/user/userinfo/profile&#x27;]&quot;&gt;پروفایل کاربری&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li class&#x3D;&quot;breadcrumb-item active&quot; aria-current&#x3D;&quot;page&quot;&gt;
+              مشاهده و ویرایش اطلاعات
+            &lt;/li&gt;
+          &lt;/ol&gt;
+        &lt;/nav&gt;
+        &lt;!--Basic User Details Starts--&gt;
+        &lt;section id&#x3D;&quot;user-area&quot;&gt;
+          &lt;div class&#x3D;&quot;row&quot;&gt;
+            &lt;div class&#x3D;&quot;col-xl-3 col-lg-12&quot;&gt;
+              &lt;div class&#x3D;&quot;card mb-4&quot;&gt;
+                &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                  &lt;div class&#x3D;&quot;card-title-wrap bar-primary&quot;&gt;
+                    &lt;div class&#x3D;&quot;card-title&quot;&gt;اطلاعات شخصی&lt;/div&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                  &lt;div class&#x3D;&quot;card-block&quot;&gt;
+                    &lt;div class&#x3D;&quot;align-self-center halfway-fab text-center&quot;&gt;
+                      &lt;a class&#x3D;&quot;profile-image&quot; *ngIf&#x3D;&quot;photoUrl$ | async as photoUrl&quot;&gt;
+                        &lt;img
+                          src&#x3D;&quot;{{photoUrl}}&quot;
+                          class&#x3D;&quot;rounded-circle img-border gradient-summer width-200&quot;
+                          alt&#x3D;&quot;Card image&quot;
+                        /&gt;
+                      &lt;/a&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                      &lt;span class&#x3D;&quot;font-medium-2 text-uppercase&quot;
+                        &gt;{{user.name}}&lt;/span
+                      &gt;
+                      &lt;p class&#x3D;&quot;grey font-small-2&quot;&gt;ادمین سایت&lt;/p&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;row&quot;&gt;
+                      &lt;div class&#x3D;&quot;col-12 col-sm-12&quot;&gt;
+                        &lt;ul class&#x3D;&quot;no-list-style pr-0 text-center&quot;&gt;
+                          &lt;li class&#x3D;&quot;mb-2&quot;&gt;
+                            &lt;span class&#x3D;&quot;text-bold-500 primary&quot;
+                              &gt;&lt;a
+                                &gt;&lt;i class&#x3D;&quot;icon-present font-small-3&quot;&gt;&lt;/i&gt; آخرین ورود :&lt;/a
+                              &gt;&lt;/span
+                            &gt;
+                            &lt;span class&#x3D;&quot;display-block overflow-hidden&quot;
+                              &gt;{{user.lastActive | persianTimeAgo}}&lt;/span
+                            &gt;
+                          &lt;/li&gt;
+                        &lt;/ul&gt;
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;col-xl-9 col-lg-12&quot;&gt;
+              &lt;!--About div starts--&gt;
+              &lt;div id&#x3D;&quot;about&quot;&gt;
+                &lt;div class&#x3D;&quot;row&quot;&gt;
+                  &lt;div class&#x3D;&quot;col-sm-12&quot;&gt;
+                    &lt;div class&#x3D;&quot;card&quot;&gt;
+                      &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                        &lt;div class&#x3D;&quot;card-title-wrap bar-info&quot;&gt;
+                          &lt;h4 class&#x3D;&quot;card-title&quot;&gt;ویرایش پروفایل کاربری&lt;/h4&gt;
+                        &lt;/div&gt;
+                      &lt;/div&gt;
+                      &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                        &lt;div class&#x3D;&quot;card-block&quot;&gt;
+                          &lt;ul class&#x3D;&quot;nav nav-tabs nav-justified&quot;&gt;
+                            &lt;li class&#x3D;&quot;nav-item&quot;&gt;
+                              &lt;a
+                                class&#x3D;&quot;nav-link active show&quot;
+                                id&#x3D;&quot;active-tab&quot;
+                                data-toggle&#x3D;&quot;tab&quot;
+                                href&#x3D;&quot;#active&quot;
+                                aria-controls&#x3D;&quot;active&quot;
+                                aria-expanded&#x3D;&quot;true&quot;
+                                &gt;عکس پروفایل&lt;/a
+                              &gt;
+                            &lt;/li&gt;
+                            &lt;li class&#x3D;&quot;nav-item&quot;&gt;
+                              &lt;a
+                                class&#x3D;&quot;nav-link&quot;
+                                id&#x3D;&quot;link-tab&quot;
+                                data-toggle&#x3D;&quot;tab&quot;
+                                href&#x3D;&quot;#link&quot;
+                                aria-controls&#x3D;&quot;link&quot;
+                                aria-expanded&#x3D;&quot;false&quot;
+                                &gt;مشخصات کاربری&lt;/a
+                              &gt;
+                            &lt;/li&gt;
+                            &lt;li class&#x3D;&quot;nav-item&quot;&gt;
+                              &lt;a
+                                class&#x3D;&quot;nav-link&quot;
+                                id&#x3D;&quot;click-tab&quot;
+                                data-toggle&#x3D;&quot;tab&quot;
+                                href&#x3D;&quot;#click&quot;
+                                aria-controls&#x3D;&quot;click&quot;
+                                aria-expanded&#x3D;&quot;false&quot;
+                                &gt;بازیابی پسورد&lt;/a
+                              &gt;
+                            &lt;/li&gt;
+                            &lt;!-- &lt;li class&#x3D;&quot;nav-item&quot;&gt;
+                              &lt;a
+                                class&#x3D;&quot;nav-link&quot;
+                                id&#x3D;&quot;click-tab&quot;
+                                data-toggle&#x3D;&quot;tab&quot;
+                                href&#x3D;&quot;#bankkart&quot;
+                                aria-controls&#x3D;&quot;click&quot;
+                                aria-expanded&#x3D;&quot;false&quot;
+                                &gt;کارت بانکی&lt;/a
+                              &gt;
+                            &lt;/li&gt; --&gt;
+                          &lt;/ul&gt;
+                          &lt;div class&#x3D;&quot;tab-content px-1 pt-1&quot;&gt;
+                            &lt;div
+                              role&#x3D;&quot;tabpanel&quot;
+                              class&#x3D;&quot;tab-pane active show&quot;
+                              id&#x3D;&quot;active&quot;
+                              aria-labelledby&#x3D;&quot;active-tab&quot;
+                              aria-expanded&#x3D;&quot;true&quot;
+                            &gt;
+                            &lt;!-- (getUserPhotoUrl)&#x3D;&quot;updateUserPhotoUrl($event)&quot; --&gt;
+                            &lt;app-user-change-pic &gt;&lt;/app-user-change-pic&gt;
+                            &lt;/div&gt;
+                            &lt;div
+                              class&#x3D;&quot;tab-pane&quot;
+                              id&#x3D;&quot;link&quot;
+                              role&#x3D;&quot;tabpanel&quot;
+                              aria-labelledby&#x3D;&quot;link-tab&quot;
+                              aria-expanded&#x3D;&quot;false&quot;
+                            &gt;
+                            
+                            &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                              &lt;div class&#x3D;&quot;card-title-wrap bar-success&quot;&gt;
+                                &lt;h4 class&#x3D;&quot;card-title&quot; id&#x3D;&quot;basic-layout-form&quot;&gt;
+                                  ویرایش اطلاعات
+                                &lt;/h4&gt;
+                              &lt;/div&gt;
+                              &lt;p class&#x3D;&quot;mb-0&quot;&gt;
+                                در این بخش میتوانید اطلاعات پروفایل خودرا
+                                ویرایش کنید.
+                              &lt;/p&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;alert alert-warning&quot; *ngIf&#x3D;&quot;editForm.dirty&quot;&gt;
+                              &lt;strong&gt;هشدار! &lt;/strong&gt;                              
+                              شما تغییری در اطلاعات وارد کرده اید لطفا تغییرات را   &lt;a class&#x3D;&quot;btn-flat btn-primary&quot; (click)&#x3D;&quot;goToSaveBtn()&quot;&gt;ذخیره&lt;/a&gt; کنید.
+                          &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                              &lt;div class&#x3D;&quot;px-3&quot;&gt;
+                                &lt;form [formGroup]&#x3D;&quot;editForm&quot; (ngSubmit)&#x3D;&quot;updateUserInfo()&quot; class&#x3D;&quot;form&quot;&gt;
+                                  &lt;div class&#x3D;&quot;form-body&quot;&gt;
+                                    &lt;h4 class&#x3D;&quot;form-section&quot;&gt;
+                                      &lt;i class&#x3D;&quot;icon-user&quot;&gt;&lt;/i&gt; اطلاعات شخصی
+                                    &lt;/h4&gt;
+                                    &lt;div class&#x3D;&quot;row&quot;&gt;
+                                      &lt;div class&#x3D;&quot;col-md-6&quot;&gt;
+                                        &lt;div class&#x3D;&quot;form-group&quot;
+                                        [ngClass]&#x3D;&quot;{&#x27;error&#x27;: editForm.get(&#x27;name&#x27;).errors
+                                        &amp;&amp; editForm.get(&#x27;name&#x27;).touched}&quot;&gt;
+                                          &lt;label for&#x3D;&quot;projectinput1&quot;
+                                            &gt;نام&lt;/label
+                                          &gt;
+                                          &lt;div class&#x3D;&quot;controls&quot;&gt;
+                                            &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; formControlName&#x3D;&quot;name&quot; aria-invalid&#x3D;&quot;true&quot;&gt;
+                                        &lt;div class&#x3D;&quot;help-block&quot;&gt;
+                                          &lt;ul role&#x3D;&quot;alert&quot;&gt;
+                                            &lt;li *ngIf&#x3D;&quot;editForm.get(&#x27;name&#x27;).hasError(&#x27;required&#x27;)
+                                            &amp;&amp; editForm.get(&#x27;name&#x27;).touched&quot;&gt;این فیلد نمیتواند خالی باشد&lt;/li&gt;
+                                            &lt;li *ngIf&#x3D;&quot;editForm.get(&#x27;name&#x27;).hasError(&#x27;minlength&#x27;)
+                                            &amp;&amp; editForm.get(&#x27;name&#x27;).touched&quot;&gt;نام شما باید بیشتر از دو حرف باشد&lt;/li&gt;
+                                            &lt;li *ngIf&#x3D;&quot;editForm.get(&#x27;name&#x27;).hasError(&#x27;maxlength&#x27;)
+                                            &amp;&amp; editForm.get(&#x27;name&#x27;).touched&quot;&gt;نام شما باید کمتر از 100 حرف باشد&lt;/li&gt;
+                                          &lt;/ul&gt;
+                                        &lt;/div&gt;&lt;/div&gt;
+                                        &lt;/div&gt;
+                                      &lt;/div&gt;
+                                      &lt;div class&#x3D;&quot;col-md-6&quot;&gt;
+                                        &lt;div class&#x3D;&quot;form-group&quot;
+                                        [ngClass]&#x3D;&quot;{&#x27;error&#x27;: editForm.get(&#x27;phoneNumber&#x27;).errors
+                                        &amp;&amp; editForm.get(&#x27;phoneNumber&#x27;).touched}&quot;&gt;
+                                          &lt;label for&#x3D;&quot;projectinput2&quot;
+                                            &gt;شماره موبایل&lt;/label
+                                          &gt;
+                                          &lt;div class&#x3D;&quot;controls&quot;&gt;
+                                            &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;noChar&quot; class&#x3D;&quot;form-control&quot; formControlName&#x3D;&quot;phoneNumber&quot; aria-invalid&#x3D;&quot;true&quot;&gt;
+                                        &lt;div class&#x3D;&quot;help-block&quot;&gt;&lt;ul role&#x3D;&quot;alert&quot;&gt;
+                                            &lt;li *ngIf&#x3D;&quot;editForm.get(&#x27;phoneNumber&#x27;).errors
+                                            &amp;&amp; editForm.get(&#x27;phoneNumber&#x27;).touched&quot;&gt;این فیلد نمیتواند خالی باشد&lt;/li&gt;
+                                          &lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;
+                                        &lt;/div&gt;
+                                      &lt;/div&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;row&quot;&gt;
+                                      &lt;div class&#x3D;&quot;col-md-6&quot;&gt;
+                                        &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                                          &lt;label for&#x3D;&quot;projectinput5&quot;
+                                            &gt;جنسیت&lt;/label
+                                          &gt;
+                                          &lt;select
+                                            class&#x3D;&quot;form-control&quot;
+                                            formControlName&#x3D;&quot;gender&quot;
+                                          &gt;
+                                            &lt;option value&#x3D;&quot;true&quot;
+                                              &gt;مرد&lt;/option
+                                            &gt;
+                                            &lt;option value&#x3D;&quot;false&quot;
+                                              &gt;زن&lt;/option
+                                            &gt;
+                                          &lt;/select&gt;
+                                        &lt;/div&gt;
+                                      &lt;/div&gt;
+                                    &lt;/div&gt;
+
+                                    &lt;h4 class&#x3D;&quot;form-section&quot;&gt;
+                                      &lt;i class&#x3D;&quot;icon-book-open&quot;&gt;&lt;/i&gt;محل سکونت
+                                    &lt;/h4&gt;
+
+                                    &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                                      &lt;label for&#x3D;&quot;companyName&quot;&gt;شهر&lt;/label&gt;
+                                      &lt;div class&#x3D;&quot;controls&quot;&gt;
+                                        &lt;div class&#x3D;&quot;controls&quot;&gt;
+                                          &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;noChar&quot; class&#x3D;&quot;form-control&quot; formControlName&#x3D;&quot;city&quot; aria-invalid&#x3D;&quot;true&quot;&gt;
+                                      &lt;/div&gt;
+                                      &lt;/div&gt;
+                                     
+                                    &lt;/div&gt;
+                                    
+
+                                    &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                                      &lt;label for&#x3D;&quot;projectinput8&quot;&gt;آدرس&lt;/label&gt;
+                                      &lt;textarea
+                                        rows&#x3D;&quot;5&quot;
+                                        class&#x3D;&quot;form-control&quot;
+                                        formControlName&#x3D;&quot;address&quot;
+                                      &gt;&lt;/textarea&gt;
+                                    &lt;/div&gt;
+                                  &lt;/div&gt;
+
+                                  &lt;div class&#x3D;&quot;form-actions&quot; id&#x3D;&quot;btnsave&quot;&gt;
+                                    &lt;!-- &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-danger mr-1&quot;&gt;
+                &lt;i class&#x3D;&quot;icon-trash&quot;&gt;&lt;/i&gt; لغو
+              &lt;/button&gt; --&gt;
+                                    &lt;button
+                                      type&#x3D;&quot;submit&quot; [disabled]&#x3D;&quot;!editForm.dirty || !editForm.valid&quot; 
+                                      class&#x3D;&quot;btn btn-success&quot;
+                                    &gt;
+                                      &lt;i class&#x3D;&quot;icon-note&quot;&gt;&lt;/i&gt; تغییر اطلاعات کاربری
+                                    &lt;/button&gt;
+                                  &lt;/div&gt;
+                                &lt;/form&gt;
+                              &lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;div
+                              class&#x3D;&quot;tab-pane&quot;
+                              id&#x3D;&quot;click&quot;
+                              role&#x3D;&quot;tabpanel&quot;
+                              aria-labelledby&#x3D;&quot;click-tab&quot;
+                              aria-expanded&#x3D;&quot;false&quot;
+                            &gt;
+                            &lt;app-user-change-pass&gt;&lt;/app-user-change-pass&gt;
+                            &lt;/div&gt;
+                          &lt;!--   &lt;div
+                              class&#x3D;&quot;tab-pane&quot;
+                              id&#x3D;&quot;bankkart&quot;
+                              role&#x3D;&quot;tabpanel&quot;
+                              aria-labelledby&#x3D;&quot;linkOpt-tab&quot;
+                              aria-expanded&#x3D;&quot;false&quot;
+                            &gt;
+                              &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                                &lt;div class&#x3D;&quot;card-title-wrap bar-success&quot;&gt;
+                                  &lt;h4 class&#x3D;&quot;card-title&quot; id&#x3D;&quot;basic-layout-form&quot;&gt;
+                                    کارت بانکی
+                                  &lt;/h4&gt;
+                                &lt;/div&gt;
+                                &lt;div class&#x3D;&quot;alert alert-info&quot;&gt;
+                                    &lt;strong&gt;اطلاع! &lt;/strong&gt;  الزاما باید حساب بانکی شخصی که مدارک ایشان
+                                    ارسال شده ثبت شود.
+                                &lt;/div&gt;
+                                &lt;div class&#x3D;&quot;alert alert-warning&quot;&gt;
+                                    &lt;strong&gt;هشدار! &lt;/strong&gt; هیچگونه مسئولیتی در قبال واریز وجه به حساب
+                                    افراد ثالث را نمی‌پذیرد.
+                                &lt;/div&gt;
+                             
+                              &lt;/div&gt;
+                              &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                                &lt;div class&#x3D;&quot;px-3&quot;&gt;
+                                  &lt;form class&#x3D;&quot;form&quot;&gt;
+                                    &lt;div class&#x3D;&quot;form-body&quot;&gt;
+                                      &lt;h4 class&#x3D;&quot;form-section&quot;&gt;
+                                        &lt;i class&#x3D;&quot;icon-user&quot;&gt;&lt;/i&gt; مشخصات کارت
+                                      &lt;/h4&gt;
+                                      &lt;div class&#x3D;&quot;row&quot;&gt;
+                                        &lt;div class&#x3D;&quot;col-md-6&quot;&gt;
+                                          &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                                            &lt;label for&#x3D;&quot;projectinput1&quot;
+                                              &gt;نام بانک&lt;/label
+                                            &gt;
+                                            &lt;input
+                                              type&#x3D;&quot;text&quot;
+                                              id&#x3D;&quot;projectinput1&quot;
+                                              class&#x3D;&quot;form-control&quot;
+                                              name&#x3D;&quot;fname&quot;
+                                            /&gt;
+                                          &lt;/div&gt;
+                                        &lt;/div&gt;
+                                        &lt;div class&#x3D;&quot;col-md-6&quot;&gt;
+                                            &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                                              &lt;label for&#x3D;&quot;projectinput1&quot;
+                                                &gt;نام صاحب کارت&lt;/label
+                                              &gt; 
+                                              &lt;input
+                                                type&#x3D;&quot;text&quot;
+                                                id&#x3D;&quot;projectinput1&quot;
+                                                class&#x3D;&quot;form-control&quot;
+                                                name&#x3D;&quot;fname&quot;
+                                              /&gt;
+                                            &lt;/div&gt;
+                                          &lt;/div&gt;
+                                      &lt;/div&gt;
+                                      &lt;div class&#x3D;&quot;row&quot;&gt;
+                                        &lt;div class&#x3D;&quot;col-md-12&quot;&gt;
+                                          &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                                            &lt;label for&#x3D;&quot;projectinput1&quot;
+                                              &gt;شماره شبا&lt;/label
+                                            &gt;
+                                            &lt;input
+                                              type&#x3D;&quot;text&quot;
+                                              id&#x3D;&quot;projectinput1&quot;
+                                              class&#x3D;&quot;form-control&quot;
+                                              name&#x3D;&quot;fname&quot;
+                                            /&gt;
+                                          &lt;/div&gt;
+                                        &lt;/div&gt;
+                                        &lt;div class&#x3D;&quot;col-md-6&quot;&gt;
+                                          &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                                            &lt;label for&#x3D;&quot;projectinput2&quot;
+                                              &gt;شماره کارت&lt;/label
+                                            &gt;
+                                            &lt;input
+                                              type&#x3D;&quot;text&quot;
+                                              id&#x3D;&quot;projectinput2&quot;
+                                              class&#x3D;&quot;form-control&quot;
+                                              name&#x3D;&quot;lname&quot;
+                                            /&gt;
+                                          &lt;/div&gt;
+                                        &lt;/div&gt;
+                                      &lt;/div&gt;
+                                    &lt;/div&gt;
+
+                                    &lt;div class&#x3D;&quot;form-actions&quot;&gt;
+                                       &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-danger mr-1&quot;&gt;
+									&lt;i class&#x3D;&quot;icon-trash&quot;&gt;&lt;/i&gt; لغو
+								&lt;/button&gt; 
+                                      &lt;button
+                                        type&#x3D;&quot;button&quot;
+                                        class&#x3D;&quot;btn btn-success&quot;
+                                      &gt;
+                                        &lt;i class&#x3D;&quot;icon-note&quot;&gt;&lt;/i&gt; ذخیره
+                                      &lt;/button&gt;
+                                    &lt;/div&gt;
+                                  &lt;/form&gt;
+                                &lt;/div&gt;
+                              &lt;/div&gt;
+                            &lt;/div&gt; --&gt;
+                          &lt;/div&gt;
+                        &lt;/div&gt;
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;!--About div ends--&gt;
+              &lt;!--User Timeline div starts--&gt;
+
+              &lt;!--User Timeline div ends--&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/section&gt;
+        &lt;!--User Profile Starts--&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./profile.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div>        <!-- User Profile Starts-->        <nav aria-label="breadcrumb">          <ol class="breadcrumb">            <li class="breadcrumb-item">              <a [routerLink]="[\'/panel/dashboard\']">داشبورد</a>            </li>            <li class="breadcrumb-item">              <a [routerLink]="[\'/panel/user/userinfo/profile\']">پروفایل کاربری</a>            </li>            <li class="breadcrumb-item active" aria-current="page">              مشاهده و ویرایش اطلاعات            </li>          </ol>        </nav>        <!--Basic User Details Starts-->        <section id="user-area">          <div class="row">            <div class="col-xl-3 col-lg-12">              <div class="card mb-4">                <div class="card-header">                  <div class="card-title-wrap bar-primary">                    <div class="card-title">اطلاعات شخصی</div>                  </div>                </div>                <div class="card-body">                  <div class="card-block">                    <div class="align-self-center halfway-fab text-center">                      <a class="profile-image" *ngIf="photoUrl$ | async as photoUrl">                        <img                          src="{{photoUrl}}"                          class="rounded-circle img-border gradient-summer width-200"                          alt="Card image"                        />                      </a>                    </div>                    <div class="text-center">                      <span class="font-medium-2 text-uppercase"                        >{{user.name}}</span                      >                      <p class="grey font-small-2">ادمین سایت</p>                    </div>                    <div class="row">                      <div class="col-12 col-sm-12">                        <ul class="no-list-style pr-0 text-center">                          <li class="mb-2">                            <span class="text-bold-500 primary"                              ><a                                ><i class="icon-present font-small-3"></i> آخرین ورود :</a                              ></span                            >                            <span class="display-block overflow-hidden"                              >{{user.lastActive | persianTimeAgo}}</span                            >                          </li>                        </ul>                      </div>                    </div>                  </div>                </div>              </div>            </div>            <div class="col-xl-9 col-lg-12">              <!--About div starts-->              <div id="about">                <div class="row">                  <div class="col-sm-12">                    <div class="card">                      <div class="card-header">                        <div class="card-title-wrap bar-info">                          <h4 class="card-title">ویرایش پروفایل کاربری</h4>                        </div>                      </div>                      <div class="card-body">                        <div class="card-block">                          <ul class="nav nav-tabs nav-justified">                            <li class="nav-item">                              <a                                class="nav-link active show"                                id="active-tab"                                data-toggle="tab"                                href="#active"                                aria-controls="active"                                aria-expanded="true"                                >عکس پروفایل</a                              >                            </li>                            <li class="nav-item">                              <a                                class="nav-link"                                id="link-tab"                                data-toggle="tab"                                href="#link"                                aria-controls="link"                                aria-expanded="false"                                >مشخصات کاربری</a                              >                            </li>                            <li class="nav-item">                              <a                                class="nav-link"                                id="click-tab"                                data-toggle="tab"                                href="#click"                                aria-controls="click"                                aria-expanded="false"                                >بازیابی پسورد</a                              >                            </li>                            <!-- <li class="nav-item">                              <a                                class="nav-link"                                id="click-tab"                                data-toggle="tab"                                href="#bankkart"                                aria-controls="click"                                aria-expanded="false"                                >کارت بانکی</a                              >                            </li> -->                          </ul>                          <div class="tab-content px-1 pt-1">                            <div                              role="tabpanel"                              class="tab-pane active show"                              id="active"                              aria-labelledby="active-tab"                              aria-expanded="true"                            >                            <!-- (getUserPhotoUrl)="updateUserPhotoUrl($event)" -->                            <app-user-change-pic ></app-user-change-pic>                            </div>                            <div                              class="tab-pane"                              id="link"                              role="tabpanel"                              aria-labelledby="link-tab"                              aria-expanded="false"                            >                                                        <div class="card-header">                              <div class="card-title-wrap bar-success">                                <h4 class="card-title" id="basic-layout-form">                                  ویرایش اطلاعات                                </h4>                              </div>                              <p class="mb-0">                                در این بخش میتوانید اطلاعات پروفایل خودرا                                ویرایش کنید.                              </p>                            </div>                            <div class="alert alert-warning" *ngIf="editForm.dirty">                              <strong>هشدار! </strong>                                                            شما تغییری در اطلاعات وارد کرده اید لطفا تغییرات را   <a class="btn-flat btn-primary" (click)="goToSaveBtn()">ذخیره</a> کنید.                          </div>                            <div class="card-body">                              <div class="px-3">                                <form [formGroup]="editForm" (ngSubmit)="updateUserInfo()" class="form">                                  <div class="form-body">                                    <h4 class="form-section">                                      <i class="icon-user"></i> اطلاعات شخصی                                    </h4>                                    <div class="row">                                      <div class="col-md-6">                                        <div class="form-group"                                        [ngClass]="{\'error\': editForm.get(\'name\').errors                                        && editForm.get(\'name\').touched}">                                          <label for="projectinput1"                                            >نام</label                                          >                                          <div class="controls">                                            <input type="text" class="form-control" formControlName="name" aria-invalid="true">                                        <div class="help-block">                                          <ul role="alert">                                            <li *ngIf="editForm.get(\'name\').hasError(\'required\')                                            && editForm.get(\'name\').touched">این فیلد نمیتواند خالی باشد</li>                                            <li *ngIf="editForm.get(\'name\').hasError(\'minlength\')                                            && editForm.get(\'name\').touched">نام شما باید بیشتر از دو حرف باشد</li>                                            <li *ngIf="editForm.get(\'name\').hasError(\'maxlength\')                                            && editForm.get(\'name\').touched">نام شما باید کمتر از 100 حرف باشد</li>                                          </ul>                                        </div></div>                                        </div>                                      </div>                                      <div class="col-md-6">                                        <div class="form-group"                                        [ngClass]="{\'error\': editForm.get(\'phoneNumber\').errors                                        && editForm.get(\'phoneNumber\').touched}">                                          <label for="projectinput2"                                            >شماره موبایل</label                                          >                                          <div class="controls">                                            <input type="text" name="noChar" class="form-control" formControlName="phoneNumber" aria-invalid="true">                                        <div class="help-block"><ul role="alert">                                            <li *ngIf="editForm.get(\'phoneNumber\').errors                                            && editForm.get(\'phoneNumber\').touched">این فیلد نمیتواند خالی باشد</li>                                          </ul></div></div>                                        </div>                                      </div>                                    </div>                                    <div class="row">                                      <div class="col-md-6">                                        <div class="form-group">                                          <label for="projectinput5"                                            >جنسیت</label                                          >                                          <select                                            class="form-control"                                            formControlName="gender"                                          >                                            <option value="true"                                              >مرد</option                                            >                                            <option value="false"                                              >زن</option                                            >                                          </select>                                        </div>                                      </div>                                    </div>                                    <h4 class="form-section">                                      <i class="icon-book-open"></i>محل سکونت                                    </h4>                                    <div class="form-group">                                      <label for="companyName">شهر</label>                                      <div class="controls">                                        <div class="controls">                                          <input type="text" name="noChar" class="form-control" formControlName="city" aria-invalid="true">                                      </div>                                      </div>                                                                         </div>                                                                        <div class="form-group">                                      <label for="projectinput8">آدرس</label>                                      <textarea                                        rows="5"                                        class="form-control"                                        formControlName="address"                                      ></textarea>                                    </div>                                  </div>                                  <div class="form-actions" id="btnsave">                                    <!-- <button type="button" class="btn btn-danger mr-1">                <i class="icon-trash"></i> لغو              </button> -->                                    <button                                      type="submit" [disabled]="!editForm.dirty || !editForm.valid"                                       class="btn btn-success"                                    >                                      <i class="icon-note"></i> تغییر اطلاعات کاربری                                    </button>                                  </div>                                </form>                              </div>                            </div>                            </div>                            <div                              class="tab-pane"                              id="click"                              role="tabpanel"                              aria-labelledby="click-tab"                              aria-expanded="false"                            >                            <app-user-change-pass></app-user-change-pass>                            </div>                          <!--   <div                              class="tab-pane"                              id="bankkart"                              role="tabpanel"                              aria-labelledby="linkOpt-tab"                              aria-expanded="false"                            >                              <div class="card-header">                                <div class="card-title-wrap bar-success">                                  <h4 class="card-title" id="basic-layout-form">                                    کارت بانکی                                  </h4>                                </div>                                <div class="alert alert-info">                                    <strong>اطلاع! </strong>  الزاما باید حساب بانکی شخصی که مدارک ایشان                                    ارسال شده ثبت شود.                                </div>                                <div class="alert alert-warning">                                    <strong>هشدار! </strong> هیچگونه مسئولیتی در قبال واریز وجه به حساب                                    افراد ثالث را نمی‌پذیرد.                                </div>                                                           </div>                              <div class="card-body">                                <div class="px-3">                                  <form class="form">                                    <div class="form-body">                                      <h4 class="form-section">                                        <i class="icon-user"></i> مشخصات کارت                                      </h4>                                      <div class="row">                                        <div class="col-md-6">                                          <div class="form-group">                                            <label for="projectinput1"                                              >نام بانک</label                                            >                                            <input                                              type="text"                                              id="projectinput1"                                              class="form-control"                                              name="fname"                                            />                                          </div>                                        </div>                                        <div class="col-md-6">                                            <div class="form-group">                                              <label for="projectinput1"                                                >نام صاحب کارت</label                                              >                                               <input                                                type="text"                                                id="projectinput1"                                                class="form-control"                                                name="fname"                                              />                                            </div>                                          </div>                                      </div>                                      <div class="row">                                        <div class="col-md-12">                                          <div class="form-group">                                            <label for="projectinput1"                                              >شماره شبا</label                                            >                                            <input                                              type="text"                                              id="projectinput1"                                              class="form-control"                                              name="fname"                                            />                                          </div>                                        </div>                                        <div class="col-md-6">                                          <div class="form-group">                                            <label for="projectinput2"                                              >شماره کارت</label                                            >                                            <input                                              type="text"                                              id="projectinput2"                                              class="form-control"                                              name="lname"                                            />                                          </div>                                        </div>                                      </div>                                    </div>                                    <div class="form-actions">                                       <button type="button" class="btn btn-danger mr-1">									<i class="icon-trash"></i> لغو								</button>                                       <button                                        type="button"                                        class="btn btn-success"                                      >                                        <i class="icon-note"></i> ذخیره                                      </button>                                    </div>                                  </form>                                </div>                              </div>                            </div> -->                          </div>                        </div>                      </div>                    </div>                  </div>                </div>              </div>              <!--About div ends-->              <!--User Timeline div starts-->              <!--User Timeline div ends-->            </div>          </div>        </section>        <!--User Profile Starts--></div>'
+    var COMPONENTS = [{'name': 'AccountantComponent', 'selector': 'app-accountant'},{'name': 'AdminComponent', 'selector': 'app-admin'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'BankCardComponent', 'selector': 'app-bank-card'},{'name': 'BlogAddComponent', 'selector': 'app-blog-add'},{'name': 'BlogComponent', 'selector': 'app-blog'},{'name': 'BlogDashboardComponent', 'selector': 'app-blog-dashboard'},{'name': 'BlogEditComponent', 'selector': 'app-blog-edit'},{'name': 'BlogGroupAddComponent', 'selector': 'app-blog-group-add'},{'name': 'BlogGroupEditComponent', 'selector': 'app-blog-group-edit'},{'name': 'BlogGroupListComponent', 'selector': 'app-blog-group-list'},{'name': 'BlogGroupManageComponent', 'selector': 'app-blog-group-manage'},{'name': 'BlogListComponent', 'selector': 'app-blog-list'},{'name': 'BlogManageComponent', 'selector': 'app-blog-manage'},{'name': 'ChatMessageTicketComponent', 'selector': 'app-chat-message-ticket'},{'name': 'ChatTicketComponent', 'selector': 'app-chat-ticket'},{'name': 'CreateFormTicketComponent', 'selector': 'app-create-form-ticket'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DetailTicketComponent', 'selector': 'app-detail-ticket'},{'name': 'DocumentComponent', 'selector': 'app-document'},{'name': 'DocumentListComponent', 'selector': 'app-document-list'},{'name': 'EasypayAddComponent', 'selector': 'app-easypay-add'},{'name': 'EasypayEditComponent', 'selector': 'app-easypay-edit'},{'name': 'EasypayListComponent', 'selector': 'app-easypay-list'},{'name': 'EasypayManageComponent', 'selector': 'app-easypay-manage'},{'name': 'EditBankCardComponent', 'selector': 'app-edit-bank-card'},{'name': 'GateActiveComponent', 'selector': 'app-gate-active'},{'name': 'GateComponent', 'selector': 'app-gate'},{'name': 'GateEditComponent', 'selector': 'app-gate-edit'},{'name': 'GateFormComponent', 'selector': 'app-gate-form'},{'name': 'GateManageComponent', 'selector': 'app-gate-manage'},{'name': 'LeftDocumentComponent', 'selector': 'app-left-document'},{'name': 'ListTicketComponent', 'selector': 'app-list-ticket'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'ManageBankCardComponent', 'selector': 'app-manage-bank-card'},{'name': 'ManageTicketComponent', 'selector': 'app-manage-ticket'},{'name': 'ManageWalletComponent', 'selector': 'app-manage-wallet'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NotificationComponent', 'selector': 'app-notification'},{'name': 'NotyfToast', 'selector': '[notyf-toast-component]'},{'name': 'PanelComponent', 'selector': 'app-panel'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'RightDocumentComponent', 'selector': 'app-right-document'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'TicketComponent', 'selector': 'app-ticket'},{'name': 'UserChangePassComponent', 'selector': 'app-user-change-pass'},{'name': 'UserChangePicComponent', 'selector': 'app-user-change-pic'},{'name': 'UserComponent', 'selector': 'app-user'},{'name': 'UserDashboardComponent', 'selector': 'app-user-dashboard'},{'name': 'UsersManagementComponent', 'selector': 'app-users-management'},{'name': 'WalletComponent', 'selector': 'app-wallet'},{'name': 'WalletFormComponent', 'selector': 'app-wallet-form'}];
+    var DIRECTIVES = [{'name': 'HasRoleDirective', 'selector': '[appHasRole]'}];
+    var ACTUAL_COMPONENT = {'name': 'ProfileComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ProfileComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

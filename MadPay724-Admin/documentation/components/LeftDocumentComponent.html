@@ -1,0 +1,830 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>mad-pay724-admin documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">mad-pay724-admin documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>LeftDocumentComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/views/panel/pages/user/pages/userinfo/document/pages/left-document/left-document.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-left-document</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./left-document.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./left-document.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#docLeftForm">docLeftForm</a>
+                            </li>
+                            <li>
+                                <a href="#imgUrl">imgUrl</a>
+                            </li>
+                            <li>
+                                <a href="#slectedFile">slectedFile</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onFileSelect">onFileSelect</a>
+                            </li>
+                            <li>
+                                <a href="#onSubmit">onSubmit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#newDocument">newDocument</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, docService: <a href="../injectables/DocumentService.html">DocumentService</a>, alertService: ToastrService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/views/panel/pages/user/pages/userinfo/document/pages/left-document/left-document.component.ts:18</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>formBuilder</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>docService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DocumentService.html" target="_self" >DocumentService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>alertService</td>
+                                                  
+                                                        <td>
+                                                                    <code>ToastrService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="newDocument"></a>
+                        <b>newDocument</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/views/panel/pages/user/pages/userinfo/document/pages/left-document/left-document.component.ts:18</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/app/views/panel/pages/user/pages/userinfo/document/pages/left-document/left-document.component.ts:24</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onFileSelect"></a>
+                    <span class="name">
+                        <b>
+                            onFileSelect
+                        </b>
+                        <a href="#onFileSelect"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onFileSelect(file)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">src/app/views/panel/pages/user/pages/userinfo/document/pages/left-document/left-document.component.ts:35</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>file</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSubmit"></a>
+                    <span class="name">
+                        <b>
+                            onSubmit
+                        </b>
+                        <a href="#onSubmit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSubmit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="45"
+                            class="link-to-prism">src/app/views/panel/pages/user/pages/userinfo/document/pages/left-document/left-document.component.ts:45</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="docLeftForm"></a>
+                        <span class="name">
+                            <b>
+                            docLeftForm</b>
+                            <a href="#docLeftForm"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/views/panel/pages/user/pages/userinfo/document/pages/left-document/left-document.component.ts:15</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="imgUrl"></a>
+                        <span class="name">
+                            <b>
+                            imgUrl</b>
+                            <a href="#imgUrl"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;../../../../../../../../../../assets/img/profilepic.png&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/views/panel/pages/user/pages/userinfo/document/pages/left-document/left-document.component.ts:17</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="slectedFile"></a>
+                        <span class="name">
+                            <b>
+                            slectedFile</b>
+                            <a href="#slectedFile"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>File</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/views/panel/pages/user/pages/userinfo/document/pages/left-document/left-document.component.ts:16</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, Output, EventEmitter } from &#x27;@angular/core&#x27;;
+import { FormBuilder, FormGroup, Validators } from &#x27;@angular/forms&#x27;;
+import { ToastrService } from &#x27;ngx-toastr&#x27;;
+import * as moment from &#x27;moment&#x27;;
+import { take } from &#x27;rxjs/operators&#x27;;
+import { DocumentService } from &#x27;src/app/core/_services/panel/user/document.service&#x27;;
+
+
+@Component({
+  selector: &#x27;app-left-document&#x27;,
+  templateUrl: &#x27;./left-document.component.html&#x27;,
+  styleUrls: [&#x27;./left-document.component.css&#x27;]
+})
+export class LeftDocumentComponent implements OnInit {
+  docLeftForm: FormGroup;
+  slectedFile: File;
+  imgUrl &#x3D; &#x27;../../../../../../../../../../assets/img/profilepic.png&#x27;;
+  @Output() newDocument &#x3D; new EventEmitter&lt;Document&gt;();
+
+  constructor(private formBuilder: FormBuilder, private docService: DocumentService,
+               private alertService: ToastrService) { }
+
+
+  ngOnInit() {
+    this.docLeftForm &#x3D; this.formBuilder.group({
+      isTrue: [false],
+      name: [&#x27;&#x27;, [Validators.required, Validators.maxLength(100)]],
+      nationalCode: [&#x27;&#x27;, [Validators.required, Validators.maxLength(100)]],
+      fatherNameRegisterCode: [&#x27;&#x27;, [Validators.required, Validators.maxLength(100)]],
+      birthDay: [&#x27;&#x27;, [Validators.required]],
+      address: [&#x27;&#x27;, [Validators.required, Validators.maxLength(100)]],
+      file: [null, [Validators.required]],
+    });
+  }
+  onFileSelect(file) {
+    if (file.target.files[0]) {
+      this.slectedFile &#x3D; file.target.files[0] as File;
+      const reader &#x3D; new FileReader();
+      reader.readAsDataURL(this.slectedFile);
+      reader.onload &#x3D; (event: any) &#x3D;&gt; {
+        this.imgUrl &#x3D; event.target.result;
+      };
+    }
+  }
+  onSubmit() {
+    const m &#x3D; moment();
+    const document &#x3D; new FormData();
+    // document &#x3D; Object.assign({}, this.docLeftForm.value);
+    document.append(&#x27;file&#x27;, this.slectedFile, this.slectedFile.name);
+    document.append(&#x27;isTrue&#x27;, this.docLeftForm.get(&#x27;isTrue&#x27;).value);
+    document.append(&#x27;name&#x27;, this.docLeftForm.get(&#x27;name&#x27;).value);
+    document.append(&#x27;nationalCode&#x27;, this.docLeftForm.get(&#x27;nationalCode&#x27;).value);
+    document.append(&#x27;fatherNameRegisterCode&#x27;, this.docLeftForm.get(&#x27;fatherNameRegisterCode&#x27;).value);
+    document.append(&#x27;birthDay&#x27;, moment(this.docLeftForm.get(&#x27;birthDay&#x27;).value)
+    .format(&#x27;YYYY/MM/DD HH:mm:ss&#x27;));
+    document.append(&#x27;address&#x27;, this.docLeftForm.get(&#x27;address&#x27;).value);
+
+
+    this.docService.addDocument( document).pipe(take(1)).subscribe((data) &#x3D;&gt; {
+      this.alertService.success(&#x27;مدارک شما با موفقیت ارسال شد&#x27;, &#x27;موفق&#x27;);
+      this.alertService.info(&#x27;مدارک شما در انتظار تایید میباشد&#x27;, &#x27;توجه&#x27;);
+      this.docLeftForm.reset();
+      this.newDocument.emit(data);
+    }, error &#x3D;&gt; {
+      this.alertService.error(error, &#x27;خطا&#x27;);
+    });
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;h2 mat-dialog-title class&#x3D;&quot;mmatdiagtitle&quot;&gt;
+  مشخصات شخص حقوقی
+&lt;/h2&gt;
+
+&lt;mat-dialog-content [formGroup]&#x3D;&quot;docLeftForm&quot;&gt;
+  &lt;mat-form-field class&#x3D;&quot;col-md-12 ml-10&quot;&gt;
+    &lt;input
+      matInput
+      formControlName&#x3D;&quot;name&quot;
+      placeholder&#x3D;&quot;نام شرکت یا سازمان *&quot;
+    /&gt;
+    &lt;mat-error&gt;این فیلد نمیتواند خالی باشد&lt;/mat-error&gt;
+    
+    &lt;mat-error *ngIf&#x3D;&quot;docLeftForm.get(&#x27;name&#x27;).hasError(&#x27;required&#x27;)
+    &amp;&amp; docLeftForm.get(&#x27;name&#x27;).touched&quot;&gt;این فیلد نمیتواند خالی باشد&lt;/mat-error&gt;
+
+    &lt;mat-error *ngIf&#x3D;&quot;(docLeftForm.get(&#x27;name&#x27;).hasError(&#x27;maxlength&#x27;)
+    &amp;&amp; docLeftForm.get(&#x27;name&#x27;).touched)&quot;&gt;این فیلد نمیتواد بیشتر از 100 حرف اشد&lt;/mat-error&gt;
+  &lt;/mat-form-field&gt;
+  &lt;mat-form-field class&#x3D;&quot;col-md-12 ml-10&quot;&gt;
+    &lt;input matInput formControlName&#x3D;&quot;nationalCode&quot; placeholder&#x3D;&quot;شناسه ملی *&quot; /&gt;
+    &lt;mat-error *ngIf&#x3D;&quot;docLeftForm.get(&#x27;nationalCode&#x27;).hasError(&#x27;required&#x27;)
+    &amp;&amp; docLeftForm.get(&#x27;nationalCode&#x27;).touched&quot;&gt;این فیلد نمیتواند خالی باشد&lt;/mat-error&gt;
+
+    &lt;mat-error *ngIf&#x3D;&quot;(docLeftForm.get(&#x27;nationalCode&#x27;).hasError(&#x27;maxlength&#x27;)
+    &amp;&amp; docLeftForm.get(&#x27;nationalCode&#x27;).touched)&quot;&gt;این فیلد نمیتواد بیشتر از 100 حرف اشد&lt;/mat-error&gt;
+  &lt;/mat-form-field&gt;
+  &lt;mat-form-field class&#x3D;&quot;col-md-12 ml-10&quot;&gt;
+    &lt;input matInput formControlName&#x3D;&quot;fatherNameRegisterCode&quot; placeholder&#x3D;&quot;شماره ثبت *&quot; /&gt;
+    &lt;mat-error *ngIf&#x3D;&quot;docLeftForm.get(&#x27;fatherNameRegisterCode&#x27;).hasError(&#x27;required&#x27;)
+    &amp;&amp; docLeftForm.get(&#x27;fatherNameRegisterCode&#x27;).touched&quot;&gt;این فیلد نمیتواند خالی باشد&lt;/mat-error&gt;
+
+    &lt;mat-error *ngIf&#x3D;&quot;(docLeftForm.get(&#x27;fatherNameRegisterCode&#x27;).hasError(&#x27;maxlength&#x27;)
+    &amp;&amp; docLeftForm.get(&#x27;fatherNameRegisterCode&#x27;).touched)&quot;&gt;این فیلد نمیتواد بیشتر از 100 حرف اشد&lt;/mat-error&gt;
+  &lt;/mat-form-field&gt; 
+
+  &lt;mat-form-field class&#x3D;&quot;col-md-12 ml-10&quot;&gt;
+    &lt;input matInput [matDatepicker]&#x3D;&quot;picker&quot;
+     formControlName&#x3D;&quot;birthDay&quot;placeholder&#x3D;&quot;تاریخ تولد مدیر عامل *&quot; readonly&gt;
+     &lt;mat-datepicker-toggle matSuffix [for]&#x3D;&quot;picker&quot;&gt;&lt;/mat-datepicker-toggle&gt;
+         &lt;mat-datepicker #picker  startView&#x3D;&quot;multi-year&quot;&gt;&lt;/mat-datepicker&gt;
+
+    &lt;mat-error&gt;این فیلد نمیتواند خالی باشد&lt;/mat-error&gt;
+
+&lt;/mat-form-field&gt;
+
+
+  &lt;mat-form-field class&#x3D;&quot;col-md-12 ml-10&quot;&gt;
+    &lt;input
+      matInput
+      formControlName&#x3D;&quot;address&quot;
+      placeholder&#x3D;&quot;آدرس و کد پستی *&quot;
+    /&gt;
+    &lt;mat-error *ngIf&#x3D;&quot;docLeftForm.get(&#x27;address&#x27;).hasError(&#x27;required&#x27;)
+    &amp;&amp; docLeftForm.get(&#x27;address&#x27;).touched&quot;&gt;این فیلد نمیتواند خالی باشد&lt;/mat-error&gt;
+
+    &lt;mat-error *ngIf&#x3D;&quot;(docLeftForm.get(&#x27;address&#x27;).hasError(&#x27;maxlength&#x27;)
+    &amp;&amp; docLeftForm.get(&#x27;address&#x27;).touched)&quot;&gt;این فیلد نمیتواد بیشتر از 100 حرف اشد&lt;/mat-error&gt;
+  &lt;/mat-form-field&gt;
+  &lt;mat-form-field class&#x3D;&quot;col-md-12 ml-10 ngxmatfileinput&quot;&gt;
+      &lt;ngx-mat-file-input
+      (change)&#x3D;&quot;onFileSelect($event)&quot;
+      formControlName&#x3D;&quot;file&quot;
+      accept&#x3D;&quot;image/*&quot;
+        placeholder&#x3D;&quot;تصویر کارت ملی مدیرعامل *&quot;
+      &gt;
+      &lt;/ngx-mat-file-input&gt;
+      &lt;img [src]&#x3D;&quot;imgUrl&quot; class&#x3D; &quot;float-left icon-fileupload&quot;/&gt;
+      &lt;mat-error&gt;تصویر کارت ملی را انتخاب کنید&lt;/mat-error&gt;
+    &lt;/mat-form-field&gt;
+&lt;/mat-dialog-content&gt;
+
+&lt;mat-dialog-actions class&#x3D;&quot;float-left&quot;&gt;
+    &lt;button 
+    (click)&#x3D;&quot;onSubmit()&quot;
+    mat-raised-button color&#x3D;&quot;green&quot;
+    [disabled]&#x3D;&quot;docLeftForm.invalid&quot;
+     class&#x3D;&quot;float-left mb-10 mx-1&quot;&gt;
+      &lt;i class&#x3D;&quot;icon-check&quot;&gt;&lt;/i&gt;
+      &lt;span&gt;ارسال مدارک&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;button
+    mat-raised-button
+    matDialogClose
+    color&#x3D;&quot;warn&quot;
+    class&#x3D;&quot;float-left mb-10&quot;
+  &gt;
+    &lt;i class&#x3D;&quot;icon-close&quot;&gt;&lt;/i&gt;
+    انصراف
+  &lt;/button&gt;
+
+&lt;/mat-dialog-actions&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./left-document.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.icon-fileupload{
+    background: #3f51b5;
+    padding: 8px 9px 9px;
+        padding-top: 8px;
+        padding-right: 9px;
+        padding-bottom: 9px;
+        padding-left: 9px;
+    border-radius: 50px;
+    color: #fff;
+    width: 70px;
+    transition: all 0.5s;
+}
+.icon-fileupload:hover{
+    width: 150px;
+}
+.ngxmatfileinput{
+    cursor: pointer;
+}
+.mat-green {
+    background: #4caf50;
+    color: #fff;
+    width: 250px;
+    float: left;
+    font-weight: 900;
+    font-size: 16px;
+  }</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><h2 mat-dialog-title class="mmatdiagtitle">  مشخصات شخص حقوقی</h2><mat-dialog-content [formGroup]="docLeftForm">  <mat-form-field class="col-md-12 ml-10">    <input      matInput      formControlName="name"      placeholder="نام شرکت یا سازمان *"    />    <mat-error>این فیلد نمیتواند خالی باشد</mat-error>        <mat-error *ngIf="docLeftForm.get(\'name\').hasError(\'required\')    && docLeftForm.get(\'name\').touched">این فیلد نمیتواند خالی باشد</mat-error>    <mat-error *ngIf="(docLeftForm.get(\'name\').hasError(\'maxlength\')    && docLeftForm.get(\'name\').touched)">این فیلد نمیتواد بیشتر از 100 حرف اشد</mat-error>  </mat-form-field>  <mat-form-field class="col-md-12 ml-10">    <input matInput formControlName="nationalCode" placeholder="شناسه ملی *" />    <mat-error *ngIf="docLeftForm.get(\'nationalCode\').hasError(\'required\')    && docLeftForm.get(\'nationalCode\').touched">این فیلد نمیتواند خالی باشد</mat-error>    <mat-error *ngIf="(docLeftForm.get(\'nationalCode\').hasError(\'maxlength\')    && docLeftForm.get(\'nationalCode\').touched)">این فیلد نمیتواد بیشتر از 100 حرف اشد</mat-error>  </mat-form-field>  <mat-form-field class="col-md-12 ml-10">    <input matInput formControlName="fatherNameRegisterCode" placeholder="شماره ثبت *" />    <mat-error *ngIf="docLeftForm.get(\'fatherNameRegisterCode\').hasError(\'required\')    && docLeftForm.get(\'fatherNameRegisterCode\').touched">این فیلد نمیتواند خالی باشد</mat-error>    <mat-error *ngIf="(docLeftForm.get(\'fatherNameRegisterCode\').hasError(\'maxlength\')    && docLeftForm.get(\'fatherNameRegisterCode\').touched)">این فیلد نمیتواد بیشتر از 100 حرف اشد</mat-error>  </mat-form-field>   <mat-form-field class="col-md-12 ml-10">    <input matInput [matDatepicker]="picker"     formControlName="birthDay"placeholder="تاریخ تولد مدیر عامل *" readonly>     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>         <mat-datepicker #picker  startView="multi-year"></mat-datepicker>    <mat-error>این فیلد نمیتواند خالی باشد</mat-error></mat-form-field>  <mat-form-field class="col-md-12 ml-10">    <input      matInput      formControlName="address"      placeholder="آدرس و کد پستی *"    />    <mat-error *ngIf="docLeftForm.get(\'address\').hasError(\'required\')    && docLeftForm.get(\'address\').touched">این فیلد نمیتواند خالی باشد</mat-error>    <mat-error *ngIf="(docLeftForm.get(\'address\').hasError(\'maxlength\')    && docLeftForm.get(\'address\').touched)">این فیلد نمیتواد بیشتر از 100 حرف اشد</mat-error>  </mat-form-field>  <mat-form-field class="col-md-12 ml-10 ngxmatfileinput">      <ngx-mat-file-input      (change)="onFileSelect($event)"      formControlName="file"      accept="image/*"        placeholder="تصویر کارت ملی مدیرعامل *"      >      </ngx-mat-file-input>      <img [src]="imgUrl" class= "float-left icon-fileupload"/>      <mat-error>تصویر کارت ملی را انتخاب کنید</mat-error>    </mat-form-field></mat-dialog-content><mat-dialog-actions class="float-left">    <button     (click)="onSubmit()"    mat-raised-button color="green"    [disabled]="docLeftForm.invalid"     class="float-left mb-10 mx-1">      <i class="icon-check"></i>      <span>ارسال مدارک</span>    </button>  <button    mat-raised-button    matDialogClose    color="warn"    class="float-left mb-10"  >    <i class="icon-close"></i>    انصراف  </button></mat-dialog-actions></div>'
+    var COMPONENTS = [{'name': 'AccountantComponent', 'selector': 'app-accountant'},{'name': 'AdminComponent', 'selector': 'app-admin'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'BankCardComponent', 'selector': 'app-bank-card'},{'name': 'BlogAddComponent', 'selector': 'app-blog-add'},{'name': 'BlogComponent', 'selector': 'app-blog'},{'name': 'BlogDashboardComponent', 'selector': 'app-blog-dashboard'},{'name': 'BlogEditComponent', 'selector': 'app-blog-edit'},{'name': 'BlogGroupAddComponent', 'selector': 'app-blog-group-add'},{'name': 'BlogGroupEditComponent', 'selector': 'app-blog-group-edit'},{'name': 'BlogGroupListComponent', 'selector': 'app-blog-group-list'},{'name': 'BlogGroupManageComponent', 'selector': 'app-blog-group-manage'},{'name': 'BlogListComponent', 'selector': 'app-blog-list'},{'name': 'BlogManageComponent', 'selector': 'app-blog-manage'},{'name': 'ChatMessageTicketComponent', 'selector': 'app-chat-message-ticket'},{'name': 'ChatTicketComponent', 'selector': 'app-chat-ticket'},{'name': 'CreateFormTicketComponent', 'selector': 'app-create-form-ticket'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DetailTicketComponent', 'selector': 'app-detail-ticket'},{'name': 'DocumentComponent', 'selector': 'app-document'},{'name': 'DocumentListComponent', 'selector': 'app-document-list'},{'name': 'EasypayAddComponent', 'selector': 'app-easypay-add'},{'name': 'EasypayEditComponent', 'selector': 'app-easypay-edit'},{'name': 'EasypayListComponent', 'selector': 'app-easypay-list'},{'name': 'EasypayManageComponent', 'selector': 'app-easypay-manage'},{'name': 'EditBankCardComponent', 'selector': 'app-edit-bank-card'},{'name': 'GateActiveComponent', 'selector': 'app-gate-active'},{'name': 'GateComponent', 'selector': 'app-gate'},{'name': 'GateEditComponent', 'selector': 'app-gate-edit'},{'name': 'GateFormComponent', 'selector': 'app-gate-form'},{'name': 'GateManageComponent', 'selector': 'app-gate-manage'},{'name': 'LeftDocumentComponent', 'selector': 'app-left-document'},{'name': 'ListTicketComponent', 'selector': 'app-list-ticket'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'ManageBankCardComponent', 'selector': 'app-manage-bank-card'},{'name': 'ManageTicketComponent', 'selector': 'app-manage-ticket'},{'name': 'ManageWalletComponent', 'selector': 'app-manage-wallet'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NotificationComponent', 'selector': 'app-notification'},{'name': 'NotyfToast', 'selector': '[notyf-toast-component]'},{'name': 'PanelComponent', 'selector': 'app-panel'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'RightDocumentComponent', 'selector': 'app-right-document'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'TicketComponent', 'selector': 'app-ticket'},{'name': 'UserChangePassComponent', 'selector': 'app-user-change-pass'},{'name': 'UserChangePicComponent', 'selector': 'app-user-change-pic'},{'name': 'UserComponent', 'selector': 'app-user'},{'name': 'UserDashboardComponent', 'selector': 'app-user-dashboard'},{'name': 'UsersManagementComponent', 'selector': 'app-users-management'},{'name': 'WalletComponent', 'selector': 'app-wallet'},{'name': 'WalletFormComponent', 'selector': 'app-wallet-form'}];
+    var DIRECTIVES = [{'name': 'HasRoleDirective', 'selector': '[appHasRole]'}];
+    var ACTUAL_COMPONENT = {'name': 'LeftDocumentComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'LeftDocumentComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

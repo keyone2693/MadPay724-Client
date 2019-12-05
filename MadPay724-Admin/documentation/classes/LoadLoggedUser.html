@@ -1,0 +1,265 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>mad-pay724-admin documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">mad-pay724-admin documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content class">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Classes</li>
+  <li>LoadLoggedUser</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/store/actions/loggedUser.actions.ts</code>
+        </p>
+
+
+
+            <p class="comment">
+                <h3>Implements</h3>
+            </p>
+            <p class="comment">
+                        <code>Action</code>
+            </p>
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#type">type</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+            <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="type"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Readonly</span>
+                            type</b>
+                            <a href="#type"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>LoggedUserActionTypes.LOADLOGGEDUSER</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/store/actions/loggedUser.actions.ts:18</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Action } from &#x27;@ngrx/store&#x27;;
+import { User } from &#x27;src/app/data/models/user&#x27;;
+
+export enum LoggedUserActionTypes{
+    LOADLOGGEDUSER &#x3D; &#x27;[Logged User] Load&#x27;,
+    LOADLOGGEDUSER_SUCCESS &#x3D; &#x27;[Logged User] Load success&#x27;,
+    LOADLOGGEDUSER_FAIL &#x3D; &#x27;[Logged User] Load Fail&#x27;,
+
+    EDIT_LOGGEDUSER &#x3D; &#x27;[Logged User] Edit&#x27;,
+    EDIT_LOGGEDUSERPHOTOURL &#x3D; &#x27;[Logged User PhotoUrl] Edit &#x27;,
+    EDIT_LOGGEDUSERNAME &#x3D; &#x27;[Logged User Name] Edit &#x27;,
+    RESET_LOGGEDUSER &#x3D; &#x27;[Logged User] Reset&#x27;,
+
+    UPDATEINFO_LOGGEDUSER &#x3D; &#x27;[Logged User] Update Info&#x27;,
+
+}
+export class LoadLoggedUser implements Action {
+    readonly type &#x3D; LoggedUserActionTypes.LOADLOGGEDUSER;
+}
+export class LoadLoggedUserSuccess implements Action {
+    readonly type &#x3D; LoggedUserActionTypes.LOADLOGGEDUSER_SUCCESS;
+    constructor(public payload: User) { }
+}
+export class LoadLoggedUserFail implements Action {
+    readonly type &#x3D; LoggedUserActionTypes.LOADLOGGEDUSER_FAIL;
+    constructor(public payload: string) { }
+}
+
+
+export class EditLoggedUser implements Action{
+    readonly type &#x3D; LoggedUserActionTypes.EDIT_LOGGEDUSER;
+    constructor(public payload: User){}
+}
+export class ResetLoggedUser implements Action {
+    readonly type &#x3D; LoggedUserActionTypes.RESET_LOGGEDUSER;
+}
+
+export class EditLoggedUserPhotoUrl implements Action {
+    readonly type &#x3D; LoggedUserActionTypes.EDIT_LOGGEDUSERPHOTOURL;
+    constructor(public payload: string) { }
+}
+export class EditLoggedUserName implements Action {
+    readonly type &#x3D; LoggedUserActionTypes.EDIT_LOGGEDUSERNAME;
+    constructor(public payload: string) { }
+}
+
+export class UpdateInfoLoggedUserName implements Action {
+    readonly type &#x3D; LoggedUserActionTypes.UPDATEINFO_LOGGEDUSER;
+    constructor(public payload: User) { }
+}
+
+
+export type AllLoggedUserAction &#x3D;
+    EditLoggedUser | ResetLoggedUser | EditLoggedUserPhotoUrl |
+    EditLoggedUserName | UpdateInfoLoggedUserName |
+    LoadLoggedUser | LoadLoggedUserSuccess | LoadLoggedUserFail ;</code></pre>
+    </div>
+</div>
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'LoadLoggedUser.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

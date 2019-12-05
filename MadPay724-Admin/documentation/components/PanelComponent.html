@@ -1,0 +1,274 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>mad-pay724-admin documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">mad-pay724-admin documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>PanelComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/views/panel/panel.component.ts</code>
+</p>
+
+
+
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-panel</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./panel.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./panel.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+
+@Component({
+  selector: &#x27;app-panel&#x27;,
+  templateUrl: &#x27;./panel.component.html&#x27;,
+  styleUrls: [&#x27;./panel.component.css&#x27;]
+})
+export class PanelComponent {
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;wrapper&quot;&gt;
+  &lt;app-navbar&gt;&lt;/app-navbar&gt;
+  &lt;app-sidebar&gt;&lt;/app-sidebar&gt;
+  &lt;div class&#x3D;&quot;main-panel&quot;&gt;
+    &lt;div class&#x3D;&quot;main-content&quot;&gt;
+      &lt;div class&#x3D;&quot;content-wrapper&quot;&gt;
+        &lt;div class&#x3D;&quot;container-fluid&quot;&gt;
+          &lt;router-outlet&gt; &lt;/router-outlet&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;footer class&#x3D;&quot;footer footer-static footer-light float-left&quot;&gt;
+      &lt;p class&#x3D;&quot;clearfix text-muted text-center px-2&quot;&gt;
+        &lt;span&gt;
+          copyright &amp;copy; 2019
+          &lt;a
+            href&#x3D;&quot;...&quot;
+            id&#x3D;&quot;pixinventLink&quot;
+            target&#x3D;&quot;_blank&quot;
+            class&#x3D;&quot;text-bold-800 primary darken-2&quot;
+          &gt;
+            keyone2693 &lt;/a
+          &gt;all right reserved
+        &lt;/span&gt;
+      &lt;/p&gt;
+    &lt;/footer&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./panel.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="wrapper">  <app-navbar></app-navbar>  <app-sidebar></app-sidebar>  <div class="main-panel">    <div class="main-content">      <div class="content-wrapper">        <div class="container-fluid">          <router-outlet> </router-outlet>        </div>      </div>    </div>    <footer class="footer footer-static footer-light float-left">      <p class="clearfix text-muted text-center px-2">        <span>          copyright &copy; 2019          <a            href="..."            id="pixinventLink"            target="_blank"            class="text-bold-800 primary darken-2"          >            keyone2693 </a          >all right reserved        </span>      </p>    </footer>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AccountantComponent', 'selector': 'app-accountant'},{'name': 'AdminComponent', 'selector': 'app-admin'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'BankCardComponent', 'selector': 'app-bank-card'},{'name': 'BlogAddComponent', 'selector': 'app-blog-add'},{'name': 'BlogComponent', 'selector': 'app-blog'},{'name': 'BlogDashboardComponent', 'selector': 'app-blog-dashboard'},{'name': 'BlogEditComponent', 'selector': 'app-blog-edit'},{'name': 'BlogGroupAddComponent', 'selector': 'app-blog-group-add'},{'name': 'BlogGroupEditComponent', 'selector': 'app-blog-group-edit'},{'name': 'BlogGroupListComponent', 'selector': 'app-blog-group-list'},{'name': 'BlogGroupManageComponent', 'selector': 'app-blog-group-manage'},{'name': 'BlogListComponent', 'selector': 'app-blog-list'},{'name': 'BlogManageComponent', 'selector': 'app-blog-manage'},{'name': 'ChatMessageTicketComponent', 'selector': 'app-chat-message-ticket'},{'name': 'ChatTicketComponent', 'selector': 'app-chat-ticket'},{'name': 'CreateFormTicketComponent', 'selector': 'app-create-form-ticket'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DetailTicketComponent', 'selector': 'app-detail-ticket'},{'name': 'DocumentComponent', 'selector': 'app-document'},{'name': 'DocumentListComponent', 'selector': 'app-document-list'},{'name': 'EasypayAddComponent', 'selector': 'app-easypay-add'},{'name': 'EasypayEditComponent', 'selector': 'app-easypay-edit'},{'name': 'EasypayListComponent', 'selector': 'app-easypay-list'},{'name': 'EasypayManageComponent', 'selector': 'app-easypay-manage'},{'name': 'EditBankCardComponent', 'selector': 'app-edit-bank-card'},{'name': 'GateActiveComponent', 'selector': 'app-gate-active'},{'name': 'GateComponent', 'selector': 'app-gate'},{'name': 'GateEditComponent', 'selector': 'app-gate-edit'},{'name': 'GateFormComponent', 'selector': 'app-gate-form'},{'name': 'GateManageComponent', 'selector': 'app-gate-manage'},{'name': 'LeftDocumentComponent', 'selector': 'app-left-document'},{'name': 'ListTicketComponent', 'selector': 'app-list-ticket'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'ManageBankCardComponent', 'selector': 'app-manage-bank-card'},{'name': 'ManageTicketComponent', 'selector': 'app-manage-ticket'},{'name': 'ManageWalletComponent', 'selector': 'app-manage-wallet'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NotificationComponent', 'selector': 'app-notification'},{'name': 'NotyfToast', 'selector': '[notyf-toast-component]'},{'name': 'PanelComponent', 'selector': 'app-panel'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'RightDocumentComponent', 'selector': 'app-right-document'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'TicketComponent', 'selector': 'app-ticket'},{'name': 'UserChangePassComponent', 'selector': 'app-user-change-pass'},{'name': 'UserChangePicComponent', 'selector': 'app-user-change-pic'},{'name': 'UserComponent', 'selector': 'app-user'},{'name': 'UserDashboardComponent', 'selector': 'app-user-dashboard'},{'name': 'UsersManagementComponent', 'selector': 'app-users-management'},{'name': 'WalletComponent', 'selector': 'app-wallet'},{'name': 'WalletFormComponent', 'selector': 'app-wallet-form'}];
+    var DIRECTIVES = [{'name': 'HasRoleDirective', 'selector': '[appHasRole]'}];
+    var ACTUAL_COMPONENT = {'name': 'PanelComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'PanelComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,1038 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>mad-pay724-admin documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">mad-pay724-admin documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>BankCardComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/views/panel/pages/user/pages/manage-bank-card/pages/bank-card/bank-card.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-bank-card</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./bank-card.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./bank-card.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#approve">approve</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#getBankName">getBankName</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onDelete">onDelete</a>
+                            </li>
+                            <li>
+                                <a href="#onEdit">onEdit</a>
+                            </li>
+                            <li>
+                                <a href="#updateBankCard">updateBankCard</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#bankcard">bankcard</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#deleteBankCard">deleteBankCard</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(banCardSercise: <a href="../injectables/BankCardsService.html">BankCardsService</a>, dialog: MatDialog, alertService: ToastrService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/views/panel/pages/user/pages/manage-bank-card/pages/bank-card/bank-card.component.ts:16</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>banCardSercise</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BankCardsService.html" target="_self" >BankCardsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>dialog</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatDialog</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>alertService</td>
+                                                  
+                                                        <td>
+                                                                    <code>ToastrService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="bankcard"></a>
+                        <b>bankcard</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/BankCard.html" target="_self" >BankCard</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/views/panel/pages/user/pages/manage-bank-card/pages/bank-card/bank-card.component.ts:14</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="deleteBankCard"></a>
+                        <b>deleteBankCard</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/views/panel/pages/user/pages/manage-bank-card/pages/bank-card/bank-card.component.ts:15</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getBankName"></a>
+                    <span class="name">
+                        <b>
+                            getBankName
+                        </b>
+                        <a href="#getBankName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getBankName(bn: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/app/views/panel/pages/user/pages/manage-bank-card/pages/bank-card/bank-card.component.ts:24</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>bn</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">src/app/views/panel/pages/user/pages/manage-bank-card/pages/bank-card/bank-card.component.ts:20</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onDelete"></a>
+                    <span class="name">
+                        <b>
+                            onDelete
+                        </b>
+                        <a href="#onDelete"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onDelete(bankCard: <a href="../interfaces/BankCard.html">BankCard</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="73"
+                            class="link-to-prism">src/app/views/panel/pages/user/pages/manage-bank-card/pages/bank-card/bank-card.component.ts:73</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>bankCard</td>
+                                    <td>
+                                                <code><a href="../interfaces/BankCard.html" target="_self" >BankCard</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onEdit"></a>
+                    <span class="name">
+                        <b>
+                            onEdit
+                        </b>
+                        <a href="#onEdit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onEdit(bankCard: <a href="../interfaces/BankCard.html">BankCard</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="58"
+                            class="link-to-prism">src/app/views/panel/pages/user/pages/manage-bank-card/pages/bank-card/bank-card.component.ts:58</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>bankCard</td>
+                                    <td>
+                                                <code><a href="../interfaces/BankCard.html" target="_self" >BankCard</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateBankCard"></a>
+                    <span class="name">
+                        <b>
+                            updateBankCard
+                        </b>
+                        <a href="#updateBankCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateBankCard(bankCard: <a href="../interfaces/BankCard.html">BankCard</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="84"
+                            class="link-to-prism">src/app/views/panel/pages/user/pages/manage-bank-card/pages/bank-card/bank-card.component.ts:84</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>bankCard</td>
+                                    <td>
+                                                <code><a href="../interfaces/BankCard.html" target="_self" >BankCard</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="approve"></a>
+                        <span class="name">
+                            <b>
+                            approve</b>
+                            <a href="#approve"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/views/panel/pages/user/pages/manage-bank-card/pages/bank-card/bank-card.component.ts:16</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {  OnInit, Input, EventEmitter, Output, Component } from &#x27;@angular/core&#x27;;
+import { MatDialog, MatDialogConfig } from &#x27;@angular/material&#x27;;
+import { EditBankCardComponent } from &#x27;../edit-bank-card/edit-bank-card.component&#x27;;
+import { ToastrService } from &#x27;ngx-toastr&#x27;;
+import { BankCard } from &#x27;src/app/data/models/bankcard&#x27;;
+import { BankCardsService } from &#x27;src/app/core/_services/panel/user/bankCards.service&#x27;;
+
+@Component({
+  selector: &#x27;app-bank-card&#x27;,
+  templateUrl: &#x27;./bank-card.component.html&#x27;,
+  styleUrls: [&#x27;./bank-card.component.css&#x27;]
+})
+export class BankCardComponent implements OnInit {
+  @Input() bankcard: BankCard;
+  @Output() deleteBankCard &#x3D; new EventEmitter&lt;BankCard&gt;();
+  approve: boolean;
+  constructor( private banCardSercise: BankCardsService,
+    private dialog: MatDialog, private alertService: ToastrService) { }
+
+  ngOnInit() {
+    this.approve &#x3D; true;
+  }
+
+  getBankName(bn: string): string {
+    switch (bn) {
+      case &#x27;bsi&#x27;: return &#x27;بانک صادرات&#x27;;
+      case &#x27;mellat&#x27;: return &#x27;بانک ملت&#x27;;
+      case &#x27;tejarat&#x27;: return &#x27;بانک تجارت&#x27;;
+      case &#x27;bmi&#x27;: return &#x27;بانک ملی ایران&#x27;;
+      case &#x27;sepah&#x27;: return &#x27;بانک سپه&#x27;;
+      case &#x27;bki&#x27;: return &#x27;بانک کشاورزی&#x27;;
+      case &#x27;parsian&#x27;: return &#x27;بانک پارسیان&#x27;;
+      case &#x27;maskan&#x27;: return &#x27;بانک مسکن&#x27;;
+      case &#x27;rb&#x27;: return &#x27;بانک رفاه کارگران&#x27;;
+      case &#x27;en&#x27;: return &#x27;بانک اقتصاد نوین&#x27;;
+      case &#x27;post&#x27;: return &#x27;بانک پست بانک&#x27;;
+      case &#x27;sina&#x27;: return &#x27;بانک سینا&#x27;;
+      case &#x27;bpi&#x27;: return &#x27;بانک سامان&#x27;;
+      case &#x27;bpi&#x27;: return &#x27;بانک پاسارگاد&#x27;;
+      case &#x27;ansar&#x27;: return &#x27;بانک انصار&#x27;;
+      case &#x27;sarmayeh&#x27;: return &#x27;بانک سرمایه&#x27;;
+      case &#x27;ba&#x27;: return &#x27;بانک آینده&#x27;;
+      case &#x27;shahr&#x27;: return &#x27;بانک شهر&#x27;;
+      case &#x27;tt&#x27;: return &#x27;بانک توسعه تعاون&#x27;;
+      case &#x27;ghbi&#x27;: return &#x27;بانک قوامین&#x27;;
+      case &#x27;tourism&#x27;: return &#x27;بانک گردشگری&#x27;;
+      case &#x27;kar&#x27;: return &#x27;بانک کارآفرین&#x27;;
+      case &#x27;iz&#x27;: return &#x27;بانک ایران زمین&#x27;;
+      case &#x27;hi&#x27;: return &#x27;بانک حکمت ایرانیان&#x27;;
+      case &#x27;day&#x27;: return &#x27;بانک دی&#x27;;
+      case &#x27;ivbb&#x27;: return &#x27;بانک صنعت و معدن&#x27;;
+      case &#x27;me&#x27;: return &#x27;بانک توسعه صادرات&#x27;;
+      case &#x27;edbi&#x27;: return &#x27;بانک خاورمیانه&#x27;;
+      case &#x27;bim&#x27;: return &#x27;بانک ایران و ونزولا&#x27;;
+    }
+  }
+
+  onEdit(bankCard: BankCard) {
+    this.banCardSercise.populateForm(bankCard);
+    const dialogConfig &#x3D; new MatDialogConfig();
+    dialogConfig.disableClose &#x3D; true;
+    dialogConfig.autoFocus &#x3D; true;
+    const dialogRef &#x3D; this.dialog.open(EditBankCardComponent, dialogConfig);
+
+    const sub &#x3D; dialogRef.componentInstance.updateBankCard.subscribe((data) &#x3D;&gt; {
+      this.updateBankCard(data);
+    });
+    dialogRef.afterClosed().subscribe(() &#x3D;&gt; {
+      sub.unsubscribe();
+    });
+
+  }
+  onDelete(bankCard: BankCard) {
+    if (confirm(&#x27;آیا از حذف این کارت مطمن هستید ؟&#x27;)) {
+      this.banCardSercise.deleteBankCard(bankCard.id).subscribe(() &#x3D;&gt; {
+        this.alertService.success(&#x27;کارت بانکی شما با موفقیت حذف شد&#x27;, &#x27;موفق&#x27;);
+        this.deleteBankCard.emit(bankCard);
+      }, error &#x3D;&gt; {
+        this.alertService.error(error, &#x27;خطا در حذف کارت جدید&#x27;);
+      });
+    }
+
+}
+updateBankCard(bankCard: BankCard) {
+  this.bankcard &#x3D; bankCard;
+}
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">  
+  &lt;div
+    class&#x3D;&quot;card  carhover&quot;
+    [ngClass]&#x3D;&quot;bankcard.approve ? &#x27;bg-success&#x27; : &#x27;bg-danger&#x27;&quot;&gt;
+    &lt;div class&#x3D;&quot;card-body&quot;&gt;
+        &lt;button mat-mini-fab (click)&#x3D;&quot;onDelete(bankcard)&quot; class&#x3D;&quot;btnDelete&quot;&gt;
+            &lt;i class&#x3D;&quot;icon-close px-1&quot;&gt;&lt;/i&gt;
+          &lt;/button&gt;
+      
+      &lt;div class&#x3D;&quot;px-1 my-3&quot; [ngClass]&#x3D;&quot;{blurcard : !bankcard.approve}&quot;&gt;
+        &lt;div class&#x3D;&quot;row text-white&quot;&gt;
+          &lt;div class&#x3D;&quot;col-4&quot;&gt;
+            &lt;p class&#x3D;&quot;banktiilte&quot;&gt;
+              &lt;span class&#x3D;&quot;bankicon&quot;&gt;&lt;i class&#x3D;&quot;ibl64 ibl-{{bankcard.bankName}}&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+              &lt;span class&#x3D;&quot;pt-1 m-0 text-white&quot;&gt;
+               {{getBankName(bankcard.bankName)}}
+              &lt;/span&gt;
+            &lt;/p&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;col-8 text-right pr-0&quot;&gt;
+            &lt;small class&#x3D;&quot;float-left&quot; *ngIf&#x3D;&quot;bankcard.approve&quot;
+              &gt;تایید شده&lt;i class&#x3D;&quot;icon-check px-1&quot;&gt;&lt;/i
+            &gt;&lt;/small&gt;
+            &lt;small class&#x3D;&quot;float-left&quot; *ngIf&#x3D;&quot;!bankcard.approve&quot;
+              &gt;تایید نشده&lt;i class&#x3D;&quot;icon-close px-1&quot;&gt;&lt;/i
+            &gt;&lt;/small&gt;
+            &lt;h5 class&#x3D;&quot;text-white cardnum&quot;&gt;
+              {{bankcard.cardNumber | slice:0:4}}-{{bankcard.cardNumber | slice:4:8}}-{{bankcard.cardNumber | slice:8:12}}-{{bankcard.cardNumber | slice:12:16}}
+            &lt;/h5&gt;
+            &lt;span class&#x3D;&quot;float-right lblhesab&quot;
+              &gt;&lt;small&gt;شماره حساب : &lt;/small&gt;&lt;small&gt;{{bankcard.hesabNumber}}&lt;/small&gt;&lt;/span
+            &gt;
+            &lt;span class&#x3D;&quot;float-left lblexpire&quot;
+              &gt;&lt;small&gt;انقضا : &lt;/small&gt;&lt;small&gt;{{bankcard.expireDateYear}}/{{bankcard.expireDateMonth}}&lt;/small&gt;&lt;/span
+            &gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;col-12&quot;&gt;
+        &lt;button mat-raised-button (click)&#x3D;&quot;onEdit(bankcard)&quot; class&#x3D;&quot;float-left mb-10&quot;&gt;
+          &lt;i class&#x3D;&quot;icon-note&quot;&gt;&lt;/i&gt;
+          ویرایش کارت بانکی
+        &lt;/button&gt;
+        &lt;span class&#x3D;&quot;float-right lblownname&quot;  [ngClass]&#x3D;&quot;{blurcard : !bankcard.approve}&quot;&gt;
+          &lt;small&gt;نام صاحب حساب : &lt;/small&gt;&lt;small&gt;{{bankcard.ownerName}}&lt;/small&gt;
+        &lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./bank-card.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@import &#x27;../../../../../../../../../assets/plugin/iranianbanklogos/dist/ibl.min.css&#x27;;
+
+.banktiilte {
+  padding: 0 !important;
+  margin: 0 !important;
+  text-align: center;
+  width: 100%;
+}
+.banktiilte span {
+  display: block;
+}
+.bankicon {
+  background: #fff;
+  border-radius: 100px;
+  width: 90px;
+  vertical-align: middle;
+  padding: 15px 0px 0px;
+  margin: 0 auto;
+}
+@font-face {
+  font-family: ocra;
+  src: url(&#x27;../../../../../../../../../assets/fonts/OCRA.ttf&#x27;) format(&#x27;truetype&#x27;);
+  font-style: normal;
+  font-weight: 300;
+}
+.cardnum {
+  background: #f6f6f6;
+  color: #333 !important;
+  padding: 15px 10px;
+  border-radius: 5px;
+  margin-top: 45px;
+  font-family: ocra;
+  text-align: center;
+  direction: ltr !important;
+}
+
+.lblhesab small:last-child {
+  padding: 4px 5px 1px;
+
+  border-radius: 5px;
+
+  color: #fdfdfd;
+
+  font-size: 15px;
+
+  font-weight: 900;
+}
+
+.lblexpire small:last-child {
+  padding: 4px 5px 1px;
+
+  border-radius: 5px;
+
+  color: #fdfdfd;
+
+  font-size: 15px;
+
+  font-weight: 900;
+}
+.carhover {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+.carhover:hover {
+  -webkit-box-shadow: 0 6px 15px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.35);
+}
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.mat-green {
+  background: #4caf50;
+  color: #fff;
+  width: 250px;
+  float: left;
+  font-weight: 900;
+  font-size: 16px;
+}
+.lblownname {
+  color: #fff !important;
+  padding-top: 14px;
+  vertical-align: middle;
+}
+.blurcard {
+  -webkit-filter: blur(1px);
+  -moz-filter: blur(1px);
+  -o-filter: blur(1px);
+  -ms-filter: blur(1px);
+  filter: blur(1px);
+}
+.btnDelete {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  font-size: 25px;
+  color: #ff4a62;
+  top: -22px;
+  background: #fff;
+}
+.card-body {
+  position: relative;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div>    <div    class="card  carhover"    [ngClass]="bankcard.approve ? \'bg-success\' : \'bg-danger\'">    <div class="card-body">        <button mat-mini-fab (click)="onDelete(bankcard)" class="btnDelete">            <i class="icon-close px-1"></i>          </button>            <div class="px-1 my-3" [ngClass]="{blurcard : !bankcard.approve}">        <div class="row text-white">          <div class="col-4">            <p class="banktiilte">              <span class="bankicon"><i class="ibl64 ibl-{{bankcard.bankName}}"></i></span>              <span class="pt-1 m-0 text-white">               {{getBankName(bankcard.bankName)}}              </span>            </p>          </div>          <div class="col-8 text-right pr-0">            <small class="float-left" *ngIf="bankcard.approve"              >تایید شده<i class="icon-check px-1"></i            ></small>            <small class="float-left" *ngIf="!bankcard.approve"              >تایید نشده<i class="icon-close px-1"></i            ></small>            <h5 class="text-white cardnum">              {{bankcard.cardNumber | slice:0:4}}-{{bankcard.cardNumber | slice:4:8}}-{{bankcard.cardNumber | slice:8:12}}-{{bankcard.cardNumber | slice:12:16}}            </h5>            <span class="float-right lblhesab"              ><small>شماره حساب : </small><small>{{bankcard.hesabNumber}}</small></span            >            <span class="float-left lblexpire"              ><small>انقضا : </small><small>{{bankcard.expireDateYear}}/{{bankcard.expireDateMonth}}</small></span            >          </div>        </div>      </div>      <div class="col-12">        <button mat-raised-button (click)="onEdit(bankcard)" class="float-left mb-10">          <i class="icon-note"></i>          ویرایش کارت بانکی        </button>        <span class="float-right lblownname"  [ngClass]="{blurcard : !bankcard.approve}">          <small>نام صاحب حساب : </small><small>{{bankcard.ownerName}}</small>        </span>      </div>    </div>  </div></div>'
+    var COMPONENTS = [{'name': 'AccountantComponent', 'selector': 'app-accountant'},{'name': 'AdminComponent', 'selector': 'app-admin'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'BankCardComponent', 'selector': 'app-bank-card'},{'name': 'BlogAddComponent', 'selector': 'app-blog-add'},{'name': 'BlogComponent', 'selector': 'app-blog'},{'name': 'BlogDashboardComponent', 'selector': 'app-blog-dashboard'},{'name': 'BlogEditComponent', 'selector': 'app-blog-edit'},{'name': 'BlogGroupAddComponent', 'selector': 'app-blog-group-add'},{'name': 'BlogGroupEditComponent', 'selector': 'app-blog-group-edit'},{'name': 'BlogGroupListComponent', 'selector': 'app-blog-group-list'},{'name': 'BlogGroupManageComponent', 'selector': 'app-blog-group-manage'},{'name': 'BlogListComponent', 'selector': 'app-blog-list'},{'name': 'BlogManageComponent', 'selector': 'app-blog-manage'},{'name': 'ChatMessageTicketComponent', 'selector': 'app-chat-message-ticket'},{'name': 'ChatTicketComponent', 'selector': 'app-chat-ticket'},{'name': 'CreateFormTicketComponent', 'selector': 'app-create-form-ticket'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DetailTicketComponent', 'selector': 'app-detail-ticket'},{'name': 'DocumentComponent', 'selector': 'app-document'},{'name': 'DocumentListComponent', 'selector': 'app-document-list'},{'name': 'EasypayAddComponent', 'selector': 'app-easypay-add'},{'name': 'EasypayEditComponent', 'selector': 'app-easypay-edit'},{'name': 'EasypayListComponent', 'selector': 'app-easypay-list'},{'name': 'EasypayManageComponent', 'selector': 'app-easypay-manage'},{'name': 'EditBankCardComponent', 'selector': 'app-edit-bank-card'},{'name': 'GateActiveComponent', 'selector': 'app-gate-active'},{'name': 'GateComponent', 'selector': 'app-gate'},{'name': 'GateEditComponent', 'selector': 'app-gate-edit'},{'name': 'GateFormComponent', 'selector': 'app-gate-form'},{'name': 'GateManageComponent', 'selector': 'app-gate-manage'},{'name': 'LeftDocumentComponent', 'selector': 'app-left-document'},{'name': 'ListTicketComponent', 'selector': 'app-list-ticket'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'ManageBankCardComponent', 'selector': 'app-manage-bank-card'},{'name': 'ManageTicketComponent', 'selector': 'app-manage-ticket'},{'name': 'ManageWalletComponent', 'selector': 'app-manage-wallet'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NotificationComponent', 'selector': 'app-notification'},{'name': 'NotyfToast', 'selector': '[notyf-toast-component]'},{'name': 'PanelComponent', 'selector': 'app-panel'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'RightDocumentComponent', 'selector': 'app-right-document'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'TicketComponent', 'selector': 'app-ticket'},{'name': 'UserChangePassComponent', 'selector': 'app-user-change-pass'},{'name': 'UserChangePicComponent', 'selector': 'app-user-change-pic'},{'name': 'UserComponent', 'selector': 'app-user'},{'name': 'UserDashboardComponent', 'selector': 'app-user-dashboard'},{'name': 'UsersManagementComponent', 'selector': 'app-users-management'},{'name': 'WalletComponent', 'selector': 'app-wallet'},{'name': 'WalletFormComponent', 'selector': 'app-wallet-form'}];
+    var DIRECTIVES = [{'name': 'HasRoleDirective', 'selector': '[appHasRole]'}];
+    var ACTUAL_COMPONENT = {'name': 'BankCardComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'BankCardComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

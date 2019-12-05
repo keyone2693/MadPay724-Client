@@ -1,0 +1,261 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>mad-pay724-admin documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">mad-pay724-admin documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content module">
+                   <div class="content-data">
+
+
+
+<ol class="breadcrumb">
+    <li>Modules</li>
+    <li>UserRoutingModule</li>
+</ol>
+
+
+<ul class="nav nav-tabs" role="tablist">
+    <li  class="active" >
+        <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+    </li>
+    <li >
+        <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/views/panel/pages/user/user-routing.module.ts</code>
+        </p>
+
+
+
+
+        <div class="container-fluid module">
+            <div class="row">
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
+import { Routes, RouterModule } from &#x27;@angular/router&#x27;;
+import { UserComponent } from &#x27;./user.component&#x27;;
+import { AuthGuard } from &#x27;src/app/core/_base/guards/auth.guard&#x27;;
+import { UserDashboardComponent } from &#x27;./pages/user-dashboard/user-dashboard.component&#x27;;
+import { GateResolver } from &#x27;src/app/core/_base/resolvers/user/gate.resolver&#x27;;
+import { GateManageComponent } from &#x27;./pages/gate-manage/gate-manage.component&#x27;;
+import { GateEditResolver } from &#x27;src/app/core/_base/resolvers/user/gateEdit.resolver&#x27;;
+import { GateEditComponent } from &#x27;./pages/gate-manage/pages/gate-edit/gate-edit.component&#x27;;
+import { ProfileComponent } from &#x27;./pages/userinfo/profile/profile.component&#x27;;
+import { UserProfileResolver } from &#x27;src/app/core/_base/resolvers/user/userprofile.resolver&#x27;;
+import { PreventUnsavedGuard } from &#x27;src/app/core/_base/guards/prevent-unsaved.guard&#x27;;
+import { DocumentComponent } from &#x27;./pages/userinfo/document/document.component&#x27;;
+import { DocumentResolver } from &#x27;src/app/core/_base/resolvers/user/document.resolver&#x27;;
+import { NotificationResolver } from &#x27;src/app/core/_base/resolvers/user/notification.resolver&#x27;;
+import { NotificationComponent } from &#x27;./pages/notification/notification.component&#x27;;
+import { ManageBankCardComponent } from &#x27;./pages/manage-bank-card/manage-bank-card.component&#x27;;
+import { BankCardResolver } from &#x27;src/app/core/_base/resolvers/user/bankcard.resolver&#x27;;
+import { ManageWalletComponent } from &#x27;./pages/manage-wallet/manage-wallet.component&#x27;;
+import { WalletResolver } from &#x27;src/app/core/_base/resolvers/user/wallet.resolver&#x27;;
+import { ManageTicketComponent } from &#x27;./pages/manage-ticket/manage-ticket.component&#x27;;
+import { TicketResolver } from &#x27;src/app/core/_base/resolvers/user/ticket.resolver&#x27;;
+import { DetailTicketComponent } from &#x27;./pages/manage-ticket/pages/detail-ticket/detail-ticket.component&#x27;;
+import { TicketOverviewResolver } from &#x27;src/app/core/_base/resolvers/user/ticketOverview.resolver&#x27;;
+import { EasypayManageComponent } from &#x27;./pages/easypay-manage/easypay-manage.component&#x27;;
+import { EasyPayEditResolver } from &#x27;src/app/core/_base/resolvers/user/easyPayEdit.resolver&#x27;;
+import { EasypayAddComponent } from &#x27;./pages/easypay-manage/pages/easypay-add/easypay-add.component&#x27;;
+import { EasypayEditComponent } from &#x27;./pages/easypay-manage/pages/easypay-edit/easypay-edit.component&#x27;;
+
+
+const routes: Routes &#x3D; [
+  {
+    path: &#x27;&#x27;,
+    component: UserComponent,
+    children: [
+      {
+        path: &#x27;dashboard&#x27;, canActivate: [AuthGuard], component: UserDashboardComponent,
+        data: { roles: [&#x27;User&#x27;], title: [&#x27;داشبورد کاربر&#x27;] }
+      },
+      //
+      {
+        path: &#x27;gate&#x27;, canActivate: [AuthGuard],
+        resolve: { gateswallets: GateResolver }, component: GateManageComponent,
+        data: { roles: [&#x27;User&#x27;], title: [&#x27;مدیریت درگاه های پرداخت&#x27;] }
+      },
+      {
+        path: &#x27;gate/edit/:gateId&#x27;, canActivate: [AuthGuard],
+        resolve: { gatewallets: GateEditResolver },
+        component: GateEditComponent,
+        data: { roles: [&#x27;User&#x27;], title: [&#x27;ویرایش در گاه پرداخت&#x27;] },
+      },
+      // userinfo
+      {
+        path: &#x27;userinfo/profile&#x27;, canActivate: [AuthGuard], component: ProfileComponent,
+        data: { roles: [&#x27;User&#x27;, &#x27;Admin&#x27;, &#x27;AdminBlog&#x27;, &#x27;Blog&#x27;, &#x27;Accountant&#x27;], title: [&#x27;پروفایل کاربری&#x27;] },
+        resolve: { user: UserProfileResolver },
+        canDeactivate: [PreventUnsavedGuard]
+      },
+      //
+      {
+        path: &#x27;userinfo/documents&#x27;, canActivate: [AuthGuard],
+        resolve: { documents: DocumentResolver }, component: DocumentComponent,
+        data: { roles: [&#x27;User&#x27;], title: [&#x27;ارسال مدارک شناسایی&#x27;] }
+      },
+      //
+      {
+        path: &#x27;notification&#x27;, canActivate: [AuthGuard],
+        resolve: { notify: NotificationResolver }, component: NotificationComponent,
+        data: { roles: [&#x27;User&#x27;], title: [&#x27; تنظیمات اطلاع رسانی&#x27;] }
+      },
+      //
+      {
+        path: &#x27;bankcard&#x27;, canActivate: [AuthGuard],
+        resolve: { bankcards: BankCardResolver }, component: ManageBankCardComponent,
+        data: { roles: [&#x27;User&#x27;], title: [&#x27;مدیریت کارت های بانکی&#x27;] }
+      },
+      //
+      {
+        path: &#x27;wallet&#x27;, canActivate: [AuthGuard],
+        resolve: { wallets: WalletResolver }, component: ManageWalletComponent,
+        data: { roles: [&#x27;User&#x27;], title: [&#x27;مدیریت کیف پول&#x27;] }
+      },
+      //
+      {
+        path: &#x27;tickets&#x27;, canActivate: [AuthGuard],
+        resolve: { tickets: TicketResolver }, component: ManageTicketComponent,
+        data: { roles: [&#x27;User&#x27;], title: [&#x27;پشتیبانی&#x27;] },
+        children: [
+          {
+            path: &#x27;overview/:ticketId&#x27;,
+            component: DetailTicketComponent,
+            resolve: { ticket: TicketOverviewResolver },
+            data: { roles: [&#x27;User&#x27;], title: [&#x27;مشاهده ی تیکت&#x27;] }
+          }
+        ]
+      },
+      //
+      {
+        path: &#x27;easypay&#x27;, canActivate: [AuthGuard],
+        component: EasypayManageComponent,
+        data: { roles: [&#x27;User&#x27;], title: [&#x27;مدیریت ایزی پی ها&#x27;] }
+      },
+      {
+        path: &#x27;easypay/add&#x27;, canActivate: [AuthGuard],
+        resolve: { gateswallets: GateResolver }, component: EasypayAddComponent,
+        data: { roles: [&#x27;User&#x27;], title: [&#x27;افزودن ایزی پی ها&#x27;] }
+      },
+      {
+        path: &#x27;easypay/edit/:easypayId&#x27;, canActivate: [AuthGuard],
+        resolve: { easypayGatesWallets: EasyPayEditResolver }, component: EasypayEditComponent ,
+        data: { roles: [&#x27;User&#x27;], title: [&#x27;ویرایش ایزی پی&#x27;] },
+      }
+    ]
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class UserRoutingModule { }
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'module';
+            var COMPODOC_CURRENT_PAGE_URL = 'UserRoutingModule.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
