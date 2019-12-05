@@ -46,7 +46,7 @@ import { FaMatPaginatorIntl } from './FaMatPaginatorIntl';
         MatChipsModule,
         MatTableModule,
         MatPaginatorModule,
-        MatSortModule,
+        MatSortModule
     ], providers: [{
         provide: MAT_RADIO_DEFAULT_OPTIONS,
         useValue: { color: 'warn' },

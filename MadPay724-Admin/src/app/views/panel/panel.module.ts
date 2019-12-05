@@ -6,13 +6,15 @@ import { HasRoleModule } from 'src/app/Shared/Modules/hasRole/hasRole.module';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { AuthGuard } from 'src/app/core/_base/guards/auth.guard';
+import { MatTooltipModule } from '@angular/material';
 
 
 @NgModule({
   imports: [
     PanelRoutingModule,
     CommonModule,
-    HasRoleModule
+    HasRoleModule,
+    MatTooltipModule
   ],
   declarations: [
     PanelComponent,

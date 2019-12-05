@@ -85,6 +85,8 @@
             <ng-container *ngIf=" notifyBlogUnverifiedCount$ | async as notifyBlogUnverifiedCount">
               <span
                 *appHasRole="['Admin', 'AdminBlog']"
+                matTooltip="بلاگ های تایید نشده"
+                matTooltipPosition="left"
                 class="tag badge badge-pill badge-danger mt-1"
                 >{{ notifyBlogUnverifiedCount }}</span
               >
@@ -102,6 +104,8 @@
                 <i class="ft-airplay"></i>
                 <ng-container *ngIf="notifyBlogUnverifiedCount$| async as notifyBlogUnverifiedCount">
                   <span *appHasRole="['Admin', 'AdminBlog']"
+                  matTooltipPosition="left"
+                  matTooltip="بلاگ های تایید نشده"
                     class="tag badge badge-pill badge-success mt-1 madpaynotifybadge"
                     >{{ notifyBlogUnverifiedCount }}</span
                   >
