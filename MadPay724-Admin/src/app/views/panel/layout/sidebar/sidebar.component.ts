@@ -13,13 +13,13 @@ export class SidebarComponent implements OnInit {
 
   url = '../../../../../assets/js/app-sidebar.js';
   loadAPI: any;
-  notifyBlogUnverifiedCount$: Observable<number>;
+  notifications$: Observable<NotificationStateModel>
   constructor(private store: Store<fromStore.State>) {
     this.loadBlogNotify();
   }
   loadBlogNotify() {
-    this.notifyBlogUnverifiedCount$ =
-      this.store.select(fromStore.getNotificationBlogUnverifiedCount);
+    this.notifications$ =
+      this.store.select(fromStore.getNotificationState);
   }
   ngOnInit() {
     this.loadAPI = new Promise(resolve => {

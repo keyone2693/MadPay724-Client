@@ -6,7 +6,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Ticket } from 'src/app/data/models/ticket';
 import { TicketService } from 'src/app/core/_services/panel/user/ticket.service';
 import { TicketContent } from 'src/app/data/models/ticketContent';
-
+import * as fromStore from '../../../../../../../../store';
+import { Store } from '@ngrx/store';
 @Component({
   selector: 'app-detail-ticket',
   templateUrl: './detail-ticket.component.html',
@@ -17,7 +18,7 @@ export class DetailTicketComponent implements OnInit, OnDestroy {
   ticket: Ticket;
   subManager = new Subscription();
   constructor(private route: ActivatedRoute, private title: Title, private ticketService: TicketService,
-              private alertService: ToastrService) { }
+    private alertService: ToastrService, private store: Store<fromStore.State>) { }
 
   ngOnInit() {
     this.loadTickets();
@@ -33,6 +34,11 @@ export class DetailTicketComponent implements OnInit, OnDestroy {
     ).subscribe(() => {
       this.alertService.success('وضعیت تیکت با موفیت تغییر کرد', 'موفق');
       this.ticket.closed = this.closedck.checked;
+      if (this.closedck.checked === true) {
+        this.store.dispatch(new fromStore.DecUnClosedTicketCount());
+      } else {
+        this.store.dispatch(new fromStore.IncUnClosedTicketCount());
+      }
     }, error => {
       this.alertService.error(error, 'خطا در تغییر وضعیت');
     });

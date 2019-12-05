@@ -31,6 +31,7 @@
   <div class="sidebar-content">
     <div class="nav-container">
       <ul
+      *ngIf="notifications$ | async as notifications"
         id="main-menu-navigation"
         data-menu="menu-navigation"
         class="navigation navigation-main"
@@ -82,15 +83,14 @@
           <a href="javascript:;">
             <i class="ft-clipboard"></i>
             <span data-i18n="" class="menu-title">بلاگ</span>
-            <ng-container *ngIf=" notifyBlogUnverifiedCount$ | async as notifyBlogUnverifiedCount">
               <span
                 *appHasRole="['Admin', 'AdminBlog']"
+                [hidden] = "notifications.unverifiedBlogCount ===0"
                 matTooltip="بلاگ های تایید نشده"
                 matTooltipPosition="left"
                 class="tag badge badge-pill badge-danger mt-1"
-                >{{ notifyBlogUnverifiedCount }}</span
+                >{{ notifications.unverifiedBlogCount }}</span
               >
-            </ng-container>
           </a>
           <ul class="menu-content">
             <li routerLinkActive="active mlisub">
@@ -102,14 +102,13 @@
             <li routerLinkActive="active mlisub">
               <a [routerLink]="['/panel/blog/blog']" class="menu-item">
                 <i class="ft-airplay "></i>
-                <ng-container *ngIf="notifyBlogUnverifiedCount$| async as notifyBlogUnverifiedCount">
                   <span *appHasRole="['Admin', 'AdminBlog']"
+                  [hidden] = "notifications.unverifiedBlogCount ===0"
                   matTooltipPosition="left"
                   matTooltip="بلاگ های تایید نشده"
                     class="tag badge badge-pill badge-success mt-1 madpaynotifybadge"
-                    >{{ notifyBlogUnverifiedCount }}</span
+                    >{{ notifications.unverifiedBlogCount }}</span
                   >
-                </ng-container>
                 مدیریت بلاگ</a>
             </li>
           </ul>
@@ -177,7 +176,16 @@
         <li *appHasRole="['User']" routerLinkActive="active" class=" nav-item">
           <a [routerLink]="['/panel/user/tickets']">
             <i class="icon-bubbles"> </i
-            ><span class="menu-title">پشتیبانی</span></a
+            ><span class="menu-title">پشتیبانی</span>
+            <span
+            [hidden] = "notifications.unClosedTicketCount ===0"
+                *appHasRole="['User']"
+                matTooltip="تیکت های باز"
+                matTooltipPosition="left"
+                class="tag badge badge-pill badge-danger mt-1"
+                >{{ notifications.unClosedTicketCount }}</span
+              >
+            </a
           >
         </li>
         <li

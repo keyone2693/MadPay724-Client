@@ -7,7 +7,10 @@ export enum NotificationActionTypes {
     LOAD_NOTIFICATION_FAIL = '[Notification] Load Fail',
 
     INC_BLOGUNVERIFIEDCOUNT = '[Blog] Inc Unverified Count',
-    DEC_USDBLOGUNVERIFIEDCOUNT = '[Blog] Dec Unverified Count',
+    DEC_BLOGUNVERIFIEDCOUNT = '[Blog] Dec Unverified Count',
+
+    INC_UNCLOSEDTICKETCOUNT = '[Ticket] Inc UnClosed Count',
+    DEC_UNCLOSEDTICKETCOUNT = '[Ticket] Dec UnClosed Count',
 }
 
 export class LoadNotification implements Action {
@@ -26,9 +29,17 @@ export class IncUnverifiedBlogCount implements Action {
     readonly type = NotificationActionTypes.INC_BLOGUNVERIFIEDCOUNT;
 }
 export class DecUnverifiedBlogCount implements Action {
-    readonly type = NotificationActionTypes.DEC_USDBLOGUNVERIFIEDCOUNT;
+    readonly type = NotificationActionTypes.DEC_BLOGUNVERIFIEDCOUNT;
+}
+
+export class IncUnClosedTicketCount implements Action {
+    readonly type = NotificationActionTypes.INC_UNCLOSEDTICKETCOUNT;
+}
+export class DecUnClosedTicketCount implements Action {
+    readonly type = NotificationActionTypes.DEC_UNCLOSEDTICKETCOUNT;
 }
 
 export type AllNotificationActoions =
     | IncUnverifiedBlogCount | DecUnverifiedBlogCount
-    | LoadNotification | LoadNotificationSuccess |LoadNotificationFail;
+    | LoadNotification | LoadNotificationSuccess | LoadNotificationFail
+    | IncUnClosedTicketCount | DecUnClosedTicketCount;

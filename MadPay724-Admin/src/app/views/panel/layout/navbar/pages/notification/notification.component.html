@@ -6,8 +6,11 @@
     class="nav-link position-relative dropdown-toggle"
   >
     <i class="ft-bell blue-grey darken-4"></i
-    ><span *ngIf="allNotifications(notifications) > 0"
-       class="notification badge badge-pill badge-danger">{{allNotifications(notifications)}}</span>
+    ><span
+      *ngIf="allNotifications(notifications) > 0"
+      class="notification badge badge-pill badge-danger"
+      >{{ allNotifications(notifications) }}</span
+    >
     <p class="d-none">اطلاعیه</p>
   </a>
   <div
@@ -33,15 +36,44 @@
               بلاگ در انتظار تایید نمایش
             </span>
             <span class="noti-text">
-              برای تایید بلاگ ها کلیک کنید
+              برای تایید بلاگ ها کلیک کنید !!!
             </span>
           </span>
           <span
-            *ngIf="notifications.unverifiedBlogCount == 0"
+            *ngIf="notifications.unverifiedBlogCount === 0"
             class="noti-wrapper"
           >
             <span class="noti-title line-height-1 d-block text-bold-400 danger">
               بلاگی برای تایید وجود ندارد
+            </span>
+          </span>
+        </a>
+        <a
+          *appHasRole="['Admin', 'User']"
+          (click)="goToTicket()"
+          class="dropdown-item noti-container py-2"
+        >
+          <i
+            class="icon-bubbles warning  float-right d-block font-medium-4 mt-1 ml-2 "
+          ></i>
+          <span
+            *ngIf="notifications.unClosedTicketCount > 0"
+            class="noti-wrapper"
+          >
+            <span class="noti-title line-height-1 d-block text-bold-400 warning ">
+              <strong>{{ notifications.unClosedTicketCount }}</strong>
+              تیکت باز دارید
+            </span>
+            <span class="noti-text">
+              برای بررسی تیکت های باز کلیک کنید !!!
+            </span>
+          </span>
+          <span
+            *ngIf="notifications.unClosedTicketCount === 0"
+            class="noti-wrapper"
+          >
+            <span class="noti-title line-height-1 d-block text-bold-400 warning ">
+              تیکت بازی وجود ندارد !!!
             </span>
           </span>
         </a>
