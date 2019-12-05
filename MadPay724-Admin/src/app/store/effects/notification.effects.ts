@@ -22,16 +22,4 @@ export class NotificationEffects {
                 );
             })
     );
-    
-    @Effect()
-    LoadUnverifiedBlogCount$ = this.action$
-        .pipe(ofType(notificationActions.NotificationActionTypes.LOADBLOGUNVERIFIEDCOUNT))
-        .pipe(
-            switchMap(() => {
-                return this.blogService.getUnverifiedBlogCount().pipe(
-                    map(count => new notificationActions.LoadUnverifiedBlogCountSuccess(count)),
-                    catchError(error => of(new notificationActions.LoadUnverifiedBlogCountFail(error)))
-                );
-            })
-        );
 }

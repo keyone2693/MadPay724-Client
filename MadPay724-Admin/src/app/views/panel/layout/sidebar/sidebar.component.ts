@@ -18,8 +18,6 @@ export class SidebarComponent implements OnInit {
     this.loadBlogNotify();
   }
   loadBlogNotify() {
-    this.store.dispatch(new fromStore.LoadUnverifiedBlogCount());
-
     this.notifyBlogUnverifiedCount$ =
       this.store.select(fromStore.getNotificationBlogUnverifiedCount);
   }

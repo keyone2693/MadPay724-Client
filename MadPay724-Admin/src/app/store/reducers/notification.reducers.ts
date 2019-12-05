@@ -5,32 +5,24 @@ import { NotificationStateModel } from '../_model/notificationsStateModel';
 export type NotificationActoions = fromAction.AllNotificationActoions;
 
 export const initNotificationState: NotificationStateModel = {
-    blogUnverifiedCount: 0,
-    error: ''
+    unverifiedBlogCount: 0
 }
 export function NotificationReducer(state = initNotificationState, action: NotificationActoions) {
     switch (action.type) {
         case fromAction.NotificationActionTypes.LOAD_NOTIFICATION:
             return state;
-        case fromAction.NotificationActionTypes.LOAD_NOTIFICATION_SUCCESS:
+        case fromAction.NotificationActionTypes.LOAD_NOTIFICATION_SUCCESS:            
             return {
                 ...state,
-                blogUnverifiedCount: action.payload.blogUnverifiedCount
+                unverifiedBlogCount: action.payload.unverifiedBlogCount
             }
         case fromAction.NotificationActionTypes.LOAD_NOTIFICATION_FAIL:
-            return { ...state, error: action.payload }
-        //--------------------------------------------
-        case fromAction.NotificationActionTypes.LOADBLOGUNVERIFIEDCOUNT:
-            return state;
-        case fromAction.NotificationActionTypes.LOADBLOGUNVERIFIEDCOUNT_SUCCESS:
-            return { ...state, blogUnverifiedCount: action.payload }
-        case fromAction.NotificationActionTypes.LOADBLOGUNVERIFIEDCOUNT_FAIL:
-            return { ...state, error: action.payload }        
+            return { ...state, error: action.payload }      
         //--------------------------------------------
         case fromAction.NotificationActionTypes.INC_BLOGUNVERIFIEDCOUNT:
-            return { ...state, blogUnverifiedCount: state.blogUnverifiedCount + 1 }
+            return { ...state, unverifiedBlogCount: state.unverifiedBlogCount + 1 }
         case fromAction.NotificationActionTypes.DEC_USDBLOGUNVERIFIEDCOUNT:
-            return { ...state, blogUnverifiedCount: state.blogUnverifiedCount - 1 }
+            return { ...state, unverifiedBlogCount: state.unverifiedBlogCount - 1 }
         //--------------------------------------------
         default:
             return state;

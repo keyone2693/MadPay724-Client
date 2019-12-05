@@ -6,10 +6,6 @@ export enum NotificationActionTypes {
     LOAD_NOTIFICATION_SUCCESS = '[Notification] Load success',
     LOAD_NOTIFICATION_FAIL = '[Notification] Load Fail',
 
-    LOADBLOGUNVERIFIEDCOUNT = '[Blog] Load Unverified Count',
-    LOADBLOGUNVERIFIEDCOUNT_SUCCESS = '[Blog] Load Unverified Count success',
-    LOADBLOGUNVERIFIEDCOUNT_FAIL = '[Blog] Load Unverified Count Fail',
-
     INC_BLOGUNVERIFIEDCOUNT = '[Blog] Inc Unverified Count',
     DEC_USDBLOGUNVERIFIEDCOUNT = '[Blog] Dec Unverified Count',
 }
@@ -26,18 +22,6 @@ export class LoadNotificationFail implements Action {
     constructor(public payload: string) { }
 }
 
-export class LoadUnverifiedBlogCount implements Action {
-    readonly type = NotificationActionTypes.LOADBLOGUNVERIFIEDCOUNT;
-}
-export class LoadUnverifiedBlogCountSuccess implements Action {
-    readonly type = NotificationActionTypes.LOADBLOGUNVERIFIEDCOUNT_SUCCESS;
-    constructor(public payload: number) { }
-}
-export class LoadUnverifiedBlogCountFail implements Action {
-    readonly type = NotificationActionTypes.LOADBLOGUNVERIFIEDCOUNT_FAIL;
-    constructor(public payload: string) { }
-}
-
 export class IncUnverifiedBlogCount implements Action {
     readonly type = NotificationActionTypes.INC_BLOGUNVERIFIEDCOUNT;
 }
@@ -46,6 +30,5 @@ export class DecUnverifiedBlogCount implements Action {
 }
 
 export type AllNotificationActoions =
-    LoadUnverifiedBlogCount | LoadUnverifiedBlogCountSuccess | LoadUnverifiedBlogCountFail
     | IncUnverifiedBlogCount | DecUnverifiedBlogCount
     | LoadNotification | LoadNotificationSuccess |LoadNotificationFail;

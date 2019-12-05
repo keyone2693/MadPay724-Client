@@ -1,4 +1,4 @@
 export interface NotificationStateModel {
-    blogUnverifiedCount: number;
-    error: string;
+    unverifiedBlogCount: number;
+    error?: string;
 }
