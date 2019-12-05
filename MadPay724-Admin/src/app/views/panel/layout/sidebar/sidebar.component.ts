@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import * as fromStore from '../../../../store';
+import { Store } from '@ngrx/store';
+import { NotificationStateModel } from 'src/app/store/_model/notificationsStateModel';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,7 +13,11 @@ export class SidebarComponent implements OnInit {
 
   url = '../../../../../assets/js/app-sidebar.js';
   loadAPI: any;
-  constructor() { }
+  notifyBlogUnverifiedCount$: Observable<number>;
+  constructor(private store: Store<fromStore.State>) {
+    this.notifyBlogUnverifiedCount$ =
+      this.store.select(fromStore.getNotificationBlogUnverifiedCount);
+   }
 
   ngOnInit() {
     this.loadAPI = new Promise(resolve => {

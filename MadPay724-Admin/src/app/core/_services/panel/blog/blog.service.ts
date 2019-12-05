@@ -81,4 +81,8 @@ export class BlogService  {
   deleteImgBlog(imgUrl: string, userId: string = this.userId) {
     return this.http.post(this.baseUrl + 'users/' + userId + '/blogs/deleteupload', { imgUrl });
   }
+
+  getUnverifiedBlogCount(userId: string = this.userId): Observable<number> {
+    return this.http.get<number>(this.baseUrl + 'users/' + userId + '/blogs/unverifiedcount');
+  }
 }

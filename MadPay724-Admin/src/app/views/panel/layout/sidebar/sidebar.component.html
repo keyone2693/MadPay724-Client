@@ -75,7 +75,10 @@
           <a href="javascript:;">
             <i class="ft-clipboard"></i>
             <span data-i18n="" class="menu-title">بلاگ</span>
-            <span *appHasRole="['Admin', 'AdminBlog']" class="tag badge badge-pill badge-danger mt-1">2</span>
+            <span
+            *ngIf="notifyBlogUnverifiedCount$ | async as notifyBlogUnverifiedCount"
+             *appHasRole="['Admin', 'AdminBlog']"
+            class="tag badge badge-pill badge-danger mt-1">{{notifyBlogUnverifiedCount}}</span>
           </a>
           <ul class="menu-content">
             <li routerLinkActive="active mlisub">
@@ -90,7 +93,10 @@
             <li  routerLinkActive="active mlisub">
               <a [routerLink]="['/panel/blog/blog']" class="menu-item">
                 <i class="ft-airplay"></i>
-                <span *appHasRole="['Admin', 'AdminBlog']" class="tag badge badge-pill badge-success mt-1">2</span>
+                <span 
+                *ngIf="notifyBlogUnverifiedCount$ | async as notifyBlogUnverifiedCount"
+                *appHasRole="['Admin', 'AdminBlog']"
+                 class="tag badge badge-pill badge-success mt-1">{{notifyBlogUnverifiedCount}}</span>
                 مدیریت بلاگ</a>
             </li>
           </ul>

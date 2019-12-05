@@ -15,7 +15,7 @@ export const getRouterNavigationId =
     (state: fromRouter.RouterReducerState<RouterStateUrl>) => state.navigationId;
 
 export const getRouterState = createFeatureSelector
-    <fromRouter.RouterReducerState<RouterStateUrl>>('routerReducer');
+    <fromRouter.RouterReducerState<RouterStateUrl>>('router');
 
 export const getRouterParamasState = createSelector(getRouterState,
     getRouterParamas);
