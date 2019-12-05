@@ -7,6 +7,7 @@ import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { AuthGuard } from 'src/app/core/_base/guards/auth.guard';
 import { MatTooltipModule } from '@angular/material';
+import { NotificationComponent } from './layout/navbar/pages/notification/notification.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { MatTooltipModule } from '@angular/material';
   declarations: [
     PanelComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    NotificationComponent
   ],
   providers: [
     AuthGuard

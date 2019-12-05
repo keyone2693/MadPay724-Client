@@ -101,7 +101,7 @@
             </li>
             <li routerLinkActive="active mlisub">
               <a [routerLink]="['/panel/blog/blog']" class="menu-item">
-                <i class="ft-airplay"></i>
+                <i class="ft-airplay "></i>
                 <ng-container *ngIf="notifyBlogUnverifiedCount$| async as notifyBlogUnverifiedCount">
                   <span *appHasRole="['Admin', 'AdminBlog']"
                   matTooltipPosition="left"

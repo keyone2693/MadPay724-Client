@@ -1,0 +1,44 @@
+<a
+  id="dropdownBasic2"
+  href="#"
+  data-toggle="dropdown"
+  class="nav-link position-relative dropdown-toggle"
+>
+  <i class="ft-bell blue-grey darken-4"></i
+  ><span class="notification badge badge-pill badge-danger">4</span>
+  <p class="d-none">اطلاعیه</p>
+</a>
+<div
+  *ngIf="role$ | async as role"
+  class="notification-dropdown dropdown-menu dropdown-menu-left"
+>
+  <div class="arrow_box_right">
+    <div class="noti-list">
+      <ng-container *ngIf="notifications$| async as notifications">
+        <a *appHasRole="['Admin', 'AdminBlog']"
+          [routerLink]="['/panel/blog/blog']"
+          class="dropdown-item noti-container py-2" >
+            <i class="ft-share info float-right d-block font-medium-4 mt-2 ml-2 "></i>
+            <span
+            *ngIf="notifications.blogUnverifiedCount > 0"
+            class="noti-wrapper">
+              <span class="noti-title line-height-1 d-block text-bold-400 info">
+                <strong>{{notifications.blogUnverifiedCount}}</strong>
+                بلاگ در انتظار تایید نمایش
+              </span>
+              <span class="noti-text">
+                برای تایید بلاگ ها کلیک کنید
+              </span>
+            </span>
+            <span
+            *ngIf="notifications.blogUnverifiedCount === 0"
+            class="noti-wrapper">
+              <span class="noti-title line-height-1 d-block text-bold-400 info">
+                بلاگی برای تایید وجود ندارد
+              </span>
+            </span>
+        </a>
+      </ng-container>
+    </div>
+  </div>
+</div>

@@ -10,16 +10,28 @@ export const initNotificationState: NotificationStateModel = {
 }
 export function NotificationReducer(state = initNotificationState, action: NotificationActoions) {
     switch (action.type) {
+        case fromAction.NotificationActionTypes.LOAD_NOTIFICATION:
+            return state;
+        case fromAction.NotificationActionTypes.LOAD_NOTIFICATION_SUCCESS:
+            return {
+                ...state,
+                blogUnverifiedCount: action.payload.blogUnverifiedCount
+            }
+        case fromAction.NotificationActionTypes.LOAD_NOTIFICATION_FAIL:
+            return { ...state, error: action.payload }
+        //--------------------------------------------
         case fromAction.NotificationActionTypes.LOADBLOGUNVERIFIEDCOUNT:
             return state;
         case fromAction.NotificationActionTypes.LOADBLOGUNVERIFIEDCOUNT_SUCCESS:
             return { ...state, blogUnverifiedCount: action.payload }
         case fromAction.NotificationActionTypes.LOADBLOGUNVERIFIEDCOUNT_FAIL:
-            return { ...state, error: action.payload }
+            return { ...state, error: action.payload }        
+        //--------------------------------------------
         case fromAction.NotificationActionTypes.INC_BLOGUNVERIFIEDCOUNT:
             return { ...state, blogUnverifiedCount: state.blogUnverifiedCount + 1 }
         case fromAction.NotificationActionTypes.DEC_USDBLOGUNVERIFIEDCOUNT:
-            return { ...state, blogUnverifiedCount: state.blogUnverifiedCount - 1  }
+            return { ...state, blogUnverifiedCount: state.blogUnverifiedCount - 1 }
+        //--------------------------------------------
         default:
             return state;
     }

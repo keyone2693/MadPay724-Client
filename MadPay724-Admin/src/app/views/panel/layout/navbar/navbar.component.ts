@@ -20,6 +20,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private alertService: ToastrService,
     public authService: AuthService,
     private store: Store<fromStore.State>) {
+    this.store.dispatch(new fromStore.LoadNotification())
   }
 
   ngOnInit() {
