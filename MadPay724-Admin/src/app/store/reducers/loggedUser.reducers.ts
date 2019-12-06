@@ -32,8 +32,10 @@ export function loggedUserReducer(state = initLoggedUserState, action: LoggedUse
                 city: action.payload.city,
                 photoUrl: action.payload.photoUrl
             }
-        case loggedUserAction.LoggedUserActionTypes.LOADLOGGEDUSER_FAIL:
+        case loggedUserAction.LoggedUserActionTypes.LOADLOGGEDUSER_FAIL: {
             return state;
+        }
+            
         case loggedUserAction.LoggedUserActionTypes.EDIT_LOGGEDUSER:
             return {
                 ...state, id: action.payload.id,

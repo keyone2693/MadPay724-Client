@@ -18,14 +18,17 @@ import { Store } from '@ngrx/store';
 export class AuthService {
   baseUrl = environment.apiUrl + environment.apiV1 + 'site/panel/auth/';
   jwtHelper = new JwtHelperService();
-  userRoles: string[] =[];
+  userRoles: string[] = [];
+  userName: string = '';
 
   constructor(private http: HttpClient, private alertService: ToastrService,
     private router: Router,
     private store: Store<fromStore.State>) {
     const token = localStorage.getItem('token');
     if (token != null || token != undefined) {
-            this.userRoles = this.jwtHelper.decodeToken(token).role as Array<string>;
+      const decode = this.jwtHelper.decodeToken(token);
+      this.userRoles = decode.role as Array<string>;
+      this.userName = decode.unique_name;
     }    
   }
 
@@ -79,10 +82,9 @@ export class AuthService {
   }
 
   getNewRefreshToken(): Observable<any> {
-    const user: User = JSON.parse(localStorage.getItem('user'));
-    const username = user.userName;
     const refreshToken = localStorage.getItem('refreshToken');
     const granttype = 'refresh_token';
+    const username = this.userName;
     return this.http.post<any>(this.baseUrl + 'login', { username, refreshToken, granttype }).pipe(
       map(result => {
         if (result && result.token) {

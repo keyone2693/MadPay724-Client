@@ -18,7 +18,6 @@ export class AppComponent implements OnInit {
   constructor(private authService: AuthService,
     private titleService: TitleService, private store: Store<fromStore.State>) {
         this.getDecodedToken();
-
      }
 
  
