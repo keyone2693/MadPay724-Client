@@ -7,6 +7,10 @@ import { AccountantInventoryComponent } from './pages/accountant-inventory/accou
 import { AccountantFactorsReportComponent } from './pages/accountant-factors/accountant-factorsreport/accountant-factorsreport.component';
 import { AccountantManageFactorsComponent } from './pages/accountant-factors/accountant-manage-factors/accountant-manage-factors.component';
 import { InventoryResolver } from 'src/app/core/_base/resolvers/accountant/inventory.resolver';
+import { InventoryWalletResolver } from 'src/app/core/_base/resolvers/accountant/inventoryWallet.resolver';
+import { InventoryBankCardResolver } from 'src/app/core/_base/resolvers/accountant/inventoryBankCard.resolver';
+import { InventoryWalletListComponent } from './pages/accountant-inventory/pages/inventory-wallet-list/inventory-wallet-list.component';
+import { InventoryBankCardListComponent } from './pages/accountant-inventory/pages/inventory-bankcard-list/inventory-bankcard-list.component';
 
 const routes: Routes = [
     {
@@ -17,12 +21,26 @@ const routes: Routes = [
                 path: 'dashboard', canActivate: [AuthGuard], component: AccountantDashboardComponent,
                 data: { roles: ['Accountant', 'Admin'], title: ['داشبورد حسابدار'] }
             },
+            //
             {
                 path: 'inventory', canActivate: [AuthGuard], 
                 resolve: { inventories: InventoryResolver},
                 component: AccountantInventoryComponent,
                 data: { roles: ['Accountant', 'Admin'], title: ['مدیریت موجودی ها'] }
             },
+            {
+                path: 'inventorywallet/:userId', canActivate: [AuthGuard],
+                resolve: { inventorywallets: InventoryWalletResolver },
+                component: InventoryWalletListComponent,
+                data: { roles: ['Accountant', 'Admin'], title: ['کیف پول های'] }
+            },
+            {
+                path: 'inventorybankcard/:userId', canActivate: [AuthGuard],
+                resolve: { inventorybankcard: InventoryBankCardResolver },
+                component: InventoryBankCardListComponent,
+                data: { roles: ['Accountant', 'Admin'], title: ['کارت های بانکی'] }
+            },
+            //
             {
                 path: 'factorsreport', canActivate: [AuthGuard], component: AccountantFactorsReportComponent,
                 data: { roles: ['Accountant', 'Admin'], title: ['گزارش فاکتورها'] }

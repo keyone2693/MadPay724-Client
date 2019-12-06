@@ -8,6 +8,8 @@ import { Observable } from 'rxjs';
 import { Inventory } from 'src/app/data/models/accountant/inventory';
 import { PaginationResult } from 'src/app/data/models/common/paginationResult';
 import { map } from 'rxjs/operators';
+import { Wallet } from 'src/app/data/models/wallet';
+import { BankCard } from 'src/app/data/models/bankcard';
 
 @Injectable({
   providedIn: 'root'
@@ -44,5 +46,13 @@ export class InventoryService {
           return paginatedResult;
         })
       );
+  }
+
+  getInventoryWallets(userId: string): Observable<Wallet[]> {
+    return this.http.get<Wallet[]>(this.baseUrl + 'wallets/' + userId );
+  }
+
+  getInventoryBankCards(userId: string): Observable<BankCard[]> {
+    return this.http.get<BankCard[]>(this.baseUrl + 'bankcards/' + userId);
   }
 }

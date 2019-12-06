@@ -17,6 +17,10 @@ import { DigitOnlyModule } from '@uiowa/digit-only';
 import { IRCurrencyPipe } from 'ngx-persian';
 import { AccountantMaterialModule } from 'src/app/shared/modules/material/accountant-material.module';
 import { ClipboardModule } from 'ngx-clipboard';
+import { InventoryWalletListComponent } from './pages/accountant-inventory/pages/inventory-wallet-list/inventory-wallet-list.component';
+import { InventoryBankCardResolver } from 'src/app/core/_base/resolvers/accountant/inventoryBankCard.resolver';
+import { InventoryWalletResolver } from 'src/app/core/_base/resolvers/accountant/inventoryWallet.resolver';
+import { InventoryBankCardListComponent } from './pages/accountant-inventory/pages/inventory-bankcard-list/inventory-bankcard-list.component';
 
 @NgModule({
   imports: [
@@ -38,12 +42,16 @@ import { ClipboardModule } from 'ngx-clipboard';
     AccountantInventoryComponent,
     AccountantManageFactorsComponent,
     InventoryListComponent,
+    InventoryWalletListComponent,
+    InventoryBankCardListComponent,
     IRCurrencyPipe
   ],
   providers: [
     InventoryService,
     //
-    InventoryResolver
+    InventoryResolver,
+    InventoryWalletResolver,
+    InventoryBankCardResolver
   ]
 })
 export class AccountantModule { }
