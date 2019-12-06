@@ -29,6 +29,12 @@ mat-footer-row mat-footer-cell {
   float: right !important;
   margin-top: 15px;
 }
+.mat-red {
+  background: #ff4081;
+  color: #fff;
+  float: right !important;
+  margin-top: 15px;
+}
 
 .search-form-field {
   width: 60%;
@@ -47,13 +53,13 @@ mat-footer-row mat-footer-cell {
 }
 
 .mat-column-id{
-  flex: 0 0 200px;
+  flex: 0 0 180px;
 }
 .mat-column-userName {
-  flex: 0 0 150px;
+  flex: 0 0 120px;
 }
 .mat-column-phoneNumber {
-  flex: 0 0 130px;
+  flex: 0 0 100px;
 }
 
 .col-fontsize-10{
@@ -61,11 +67,41 @@ mat-footer-row mat-footer-cell {
   font-weight: 900;
 }
 .monytoman{
-      font-size: 8px;
-      background: #f14a4a;
-      color: #fff;
+      font-size: 7px;
+      color: #ff4081;
       padding: 0px 2px;
       border-radius: 25px;
       line-height: 2;
       margin-right: 2px;
+}
+.btn-action{
+min-width: 20px;
+}
+.btn-action i{
+  font-size: 20px;
+}
+
+.btncomy-green{
+  color: #ff4081;
+}
+
+.txt-price-blue{
+  font-weight: 900;
+  color: rgb(0, 68, 255);
+  border-bottom: 2px solid rgb(0, 68, 255);
+}
+.txt-price-green {
+font-weight: 900;
+color: green(0, 255, 34);
+border-bottom: 2px solid rgb(2, 119, 2);
+}
+.txt-price-red {
+font-weight: 900;
+color: rgb(255, 0, 64);
+border-bottom: 2px solid rgb(255, 0, 64);
+}
+.txt-price-org {
+font-weight: 900;
+color: rgb(255, 187, 0);
+border-bottom: 2px solid rgb(255, 187, 0);
 }

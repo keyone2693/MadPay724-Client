@@ -53,7 +53,7 @@
           mat-button
           matSuffix
           mat-icon-button
-          color="primary"
+          class="btncomy-green"
           [ngxClipboard]="userId"
           (cbOnSuccess)="copied()"
         >
@@ -88,9 +88,10 @@
           mat-button
           matSuffix
           mat-icon-button
-          color="primary"
+          class="btncomy-green"
           [ngxClipboard]="userId"
           (cbOnSuccess)="copied()"
+         
         >
           <i class="ft-copy col-fontsize-10"></i>
         </button>
@@ -114,7 +115,7 @@
           mat-button
           matSuffix
           mat-icon-button
-          color="primary"
+          class="btncomy-green"
           [ngxClipboard]="userId"
           (cbOnSuccess)="copied()"
         >
@@ -139,7 +140,7 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>
       موجودی <span class="monytoman">تومان</span>
     </mat-header-cell>
-    <mat-cell *matCellDef="let inventory">
+    <mat-cell *matCellDef="let inventory" class="txt-price-blue">
       {{ (inventory.inventorySum | irc).replace("ریال", "") }}
     </mat-cell>
   </ng-container>
@@ -148,7 +149,7 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>
       درامد <span class="monytoman">تومان</span>
     </mat-header-cell>
-    <mat-cell *matCellDef="let inventory">
+    <mat-cell *matCellDef="let inventory"class="txt-price-green">
       {{ (inventory.interMoneySum | irc).replace("ریال", "") }}
     </mat-cell>
   </ng-container>
@@ -157,7 +158,7 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>
       برداشتی <span class="monytoman">تومان</span>
     </mat-header-cell>
-    <mat-cell *matCellDef="let inventory">
+    <mat-cell *matCellDef="let inventory"class="txt-price-red">
       {{ (inventory.exitMoneySum | irc).replace("ریال", "") }}
     </mat-cell>
   </ng-container>
@@ -166,16 +167,25 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>
       در حال برداشت <span class="monytoman">تومان</span>
     </mat-header-cell>
-    <mat-cell *matCellDef="let inventory">
+    <mat-cell *matCellDef="let inventory"class="txt-price-org">
       {{ (inventory.onExitMoneySum | irc).replace("ریال", "") }}
     </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="actions">
-    <mat-header-cell *matHeaderCellDef> ویرایش / حذف </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef> کیف پول/کارت بانک </mat-header-cell>
     <mat-cell *matCellDef="let inventory">
-      <button mat-button [routerLink]="['/panel/blog/blog/edit/', blog.id]">
-        <i class="ft-edit edit-icon"></i>
+      <button mat-button
+       matTooltip="برای مشاهده کیف پول های کاربر کلیک کنید"
+              
+        color="primary" class="btn-action">
+        <i class="icon-wallet"></i>
+      </button>
+      <button mat-button
+       matTooltip="برای مشاهده کارت های بانکی کاربر کلیک کنید"
+              
+        color="warn" class="btn-action">
+        <i class="icon-credit-card"></i>
       </button>
     </mat-cell>
   </ng-container>

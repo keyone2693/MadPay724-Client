@@ -23,7 +23,8 @@ export class InventoryListComponent implements OnInit, OnDestroy {
   inventoriesArray: Inventory[];
   pagination: Pagination;
   displayedColumns: string[] = ['photoUrl','id',  'name', 'userName',
-    'phoneNumber', 'age', 'inventorySum', 'interMoneySum', 'exitMoneySum', 'onExitMoneySum'];
+    'phoneNumber', 'age', 'inventorySum', 'interMoneySum',
+    'exitMoneySum', 'onExitMoneySum', 'actions'];
 
   filterSortOrderBy: FilterSortOrderBy = {
     sortDirection: '',
