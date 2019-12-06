@@ -9,7 +9,6 @@ import { AuthGuard } from 'src/app/core/_base/guards/auth.guard';
 import { MatTooltipModule } from '@angular/material';
 import { NotificationComponent } from './layout/navbar/pages/notification/notification.component';
 
-
 @NgModule({
   imports: [
     PanelRoutingModule,

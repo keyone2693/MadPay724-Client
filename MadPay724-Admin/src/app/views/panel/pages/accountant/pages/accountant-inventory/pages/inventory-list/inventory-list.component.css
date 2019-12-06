@@ -36,8 +36,36 @@ mat-footer-row mat-footer-cell {
   margin-bottom: 15px;
 }
 
-.blog-img {
-  width: 60px;
+.user-img {
+  width: 35px;
   border-radius: 53px;
   border: 2px solid #ededed;
+}
+
+.mat-column-photoUrl {
+  flex: 0 0 60px;
+}
+
+.mat-column-id{
+  flex: 0 0 200px;
+}
+.mat-column-userName {
+  flex: 0 0 150px;
+}
+.mat-column-phoneNumber {
+  flex: 0 0 130px;
+}
+
+.col-fontsize-10{
+  font-size: 10px;
+  font-weight: 900;
+}
+.monytoman{
+      font-size: 8px;
+      background: #f14a4a;
+      color: #fff;
+      padding: 0px 2px;
+      border-radius: 25px;
+      line-height: 2;
+      margin-right: 2px;
 }

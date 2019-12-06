@@ -130,6 +130,7 @@
     "ng2-file-upload": "^1.4.0",
     "ng2-tooltip-directive": "^2.8.17",
     "ngx-chips": "^2.1.0",
+    "ngx-clipboard": "^12.3.0",
     "ngx-infinite-scroll": "^8.0.1",
     "ngx-material-file-input": "^1.1.1",
     "ngx-perfect-scrollbar": "^8.0.0",

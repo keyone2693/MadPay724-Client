@@ -6,6 +6,7 @@ import { AccountantDashboardComponent } from './pages/accountant-dashboard/accou
 import { AccountantInventoryComponent } from './pages/accountant-inventory/accountant-inventory.component';
 import { AccountantFactorsReportComponent } from './pages/accountant-factors/accountant-factorsreport/accountant-factorsreport.component';
 import { AccountantManageFactorsComponent } from './pages/accountant-factors/accountant-manage-factors/accountant-manage-factors.component';
+import { InventoryResolver } from 'src/app/core/_base/resolvers/accountant/inventory.resolver';
 
 const routes: Routes = [
     {
@@ -17,7 +18,9 @@ const routes: Routes = [
                 data: { roles: ['Accountant', 'Admin'], title: ['داشبورد حسابدار'] }
             },
             {
-                path: 'inventory', canActivate: [AuthGuard], component: AccountantInventoryComponent,
+                path: 'inventory', canActivate: [AuthGuard], 
+                resolve: { inventories: InventoryResolver},
+                component: AccountantInventoryComponent,
                 data: { roles: ['Accountant', 'Admin'], title: ['مدیریت موجودی ها'] }
             },
             {

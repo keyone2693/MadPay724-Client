@@ -7,7 +7,7 @@ import {
     MatDatepickerModule, MatSlideToggleModule, MatMenuModule, MatRadioModule,
     MAT_RADIO_DEFAULT_OPTIONS, MatChipsModule, MatTableModule, MatCheckboxModule,
     MatPaginatorModule, MatSortModule, MatFormFieldModule, MatDialogModule,
-    MatSelectModule, MatInputModule, MatButtonModule, MatPaginatorIntl, MatTooltipModule
+    MatSelectModule, MatInputModule, MatButtonModule, MatPaginatorIntl, MatBadgeModule, MatTooltipModule
 } from '@angular/material';
 import { FaMatPaginatorIntl } from './faMatPaginatorIntl';
 
@@ -28,6 +28,7 @@ import { FaMatPaginatorIntl } from './faMatPaginatorIntl';
         MatTableModule,
         MatPaginatorModule,
         MatSortModule,
+        MatBadgeModule,
         MatTooltipModule
     ],
     exports: [
@@ -46,6 +47,7 @@ import { FaMatPaginatorIntl } from './faMatPaginatorIntl';
         MatTableModule,
         MatPaginatorModule,
         MatSortModule,
+        MatBadgeModule,
         MatTooltipModule
     ], providers: [{
         provide: MAT_RADIO_DEFAULT_OPTIONS,
@@ -55,4 +57,4 @@ import { FaMatPaginatorIntl } from './faMatPaginatorIntl';
         provide: MatPaginatorIntl, useClass: FaMatPaginatorIntl
     }]
 })
-export class BlogMaterialModule { }
+export class AccountantMaterialModule { }

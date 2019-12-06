@@ -1,19 +1,17 @@
 import { NgModule } from '@angular/core';
 
-import * as Material from '@angular/material';
 import { CommonModule } from '@angular/common';
 
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { MatDatepickerModule, MatSlideToggleModule, MatMenuModule, MatRadioModule,
    MAT_RADIO_DEFAULT_OPTIONS, MatChipsModule, MatTableModule, MatCheckboxModule,
    MatPaginatorModule, MatSortModule, MatFormFieldModule, MatDialogModule,
-   MatSelectModule, MatInputModule, MatButtonModule, MatPaginatorIntl
+   MatSelectModule, MatInputModule, MatButtonModule, MatPaginatorIntl, MatTooltipModule
 } from '@angular/material';
-import { FaMatPaginatorIntl } from './FaMatPaginatorIntl';
+import { FaMatPaginatorIntl } from './faMatPaginatorIntl';
 
 @NgModule({
   imports: [
-     CommonModule,
      MatCheckboxModule,
      MatButtonModule,
      MatInputModule,
@@ -27,8 +25,9 @@ import { FaMatPaginatorIntl } from './FaMatPaginatorIntl';
       MatRadioModule,
       MatChipsModule,
       MatTableModule,
-      Material.MatPaginatorModule,
-      Material.MatSortModule
+      MatPaginatorModule,
+      MatSortModule,
+      MatTooltipModule
   ],
   exports: [
      MatCheckboxModule,
@@ -46,6 +45,7 @@ import { FaMatPaginatorIntl } from './FaMatPaginatorIntl';
      MatTableModule,
      MatPaginatorModule,
      MatSortModule,
+     MatTooltipModule
    ], providers: [{
       provide: MAT_RADIO_DEFAULT_OPTIONS,
       useValue: { color: 'warn' },

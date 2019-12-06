@@ -29,114 +29,159 @@
   </mat-form-field>
 </div>
 
-<mat-table [dataSource]="blogs" (matSortChange)="sortDataEvent($event)" matSort class="mat-elevation-z8">
-  
+<mat-table
+  [dataSource]="inventories"
+  (matSortChange)="sortDataEvent($event)"
+  matSort
+  class="mat-elevation-z8"
+> 
+ <ng-container matColumnDef="photoUrl">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> عکس </mat-header-cell>
+    <mat-cell *matCellDef="let inventory">
+      <img
+        class="user-img "
+        src="{{ inventory.photoUrl }}"
+        alt="{{ inventory.name }}"
+      />
+    </mat-cell>
+  </ng-container>
   <ng-container matColumnDef="id">
     <mat-header-cell *matHeaderCellDef mat-sort-header> شناسه </mat-header-cell>
-    <mat-cell *matCellDef="let blog"> {{ blog.id }} </mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="blogGroupName">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> دسته بندی </mat-header-cell>
-    <mat-cell *matCellDef="let blog"> {{ blog.blogGroupName }} </mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="picAddress">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> عکس </mat-header-cell>
-    <mat-cell *matCellDef="let blog"> <img class="blog-img" src="{{ blog.picAddress }}" alt="{{blog.title}}">  </mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="title">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> عنوان </mat-header-cell>
-    <mat-cell *matCellDef="let blog"> {{ blog.title }} </mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="status" *appHasRole="['Admin', 'AdminBlog']">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> تایید نمایش </mat-header-cell>
-    <mat-cell *matCellDef="let blog">
-       <mat-checkbox [checked]="blog.status" (change)="onApproveChange($event, blog.id)"></mat-checkbox>
-       </mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="isSelected" *appHasRole="['Admin', 'AdminBlog']">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> محبوب شده </mat-header-cell>
-    <mat-cell *matCellDef="let blog">
-      <mat-checkbox [checked]="blog.isSelected" (change)="onSelectChange($event, blog.id)" color='primary' ></mat-checkbox>
-    </mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="status" *appHasRole="['Blog']">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> تایید نمایش </mat-header-cell>
-    <mat-cell *matCellDef="let blog">
-       <mat-checkbox [checked]="blog.status" [disabled]="true"></mat-checkbox> 
-      </mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="isSelected" *appHasRole="['Blog']">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> محبوب شده </mat-header-cell>
-    <mat-cell *matCellDef="let blog">
-      <mat-checkbox  [checked]="blog.isSelected" color='primary' [disabled]="true"></mat-checkbox>
+    <mat-cell *matCellDef="let inventory">
+      <mat-form-field class="col-md-12">
+        <button
+          mat-button
+          matSuffix
+          mat-icon-button
+          color="primary"
+          [ngxClipboard]="userId"
+          (cbOnSuccess)="copied()"
+        >
+          <i class="ft-copy col-fontsize-10"></i>
+        </button>
+        <input
+          #userId
+          matInput
+          value="{{ inventory.id }}"
+          class="col-fontsize-10"
+        />
+      </mat-form-field>
     </mat-cell>
   </ng-container>
 
 
 
-  <ng-container matColumnDef="viewCount">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> تعداد بازدید </mat-header-cell>
-    <mat-cell *matCellDef="let blog"> {{ blog.viewCount }} </mat-cell>
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> نام </mat-header-cell>
+    <mat-cell *matCellDef="let inventory">
+      {{ inventory.name }}
+    </mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="dateModified">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> تاریخ ثبت </mat-header-cell>
-    <mat-cell *matCellDef="let blog">  ({{blog.dateModified | date:'HH:mm'}})
-                                            {{blog.dateModified | persianDate}} </mat-cell>
+  <ng-container matColumnDef="userName">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      نام کاربری
+    </mat-header-cell>
+    <mat-cell *matCellDef="let inventory">
+      <mat-form-field class="col-md-12">
+        <button
+          mat-button
+          matSuffix
+          mat-icon-button
+          color="primary"
+          [ngxClipboard]="userId"
+          (cbOnSuccess)="copied()"
+        >
+          <i class="ft-copy col-fontsize-10"></i>
+        </button>
+        <input
+          #userId
+          matInput
+          value="{{ inventory.userName }}"
+          class="col-fontsize-10"
+        />
+      </mat-form-field>
+    </mat-cell>
   </ng-container>
+
+  <ng-container matColumnDef="phoneNumber">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      موبایل
+    </mat-header-cell>
+    <mat-cell *matCellDef="let inventory">
+      <mat-form-field class="col-md-12">
+        <button
+          mat-button
+          matSuffix
+          mat-icon-button
+          color="primary"
+          [ngxClipboard]="userId"
+          (cbOnSuccess)="copied()"
+        >
+          <i class="ft-copy col-fontsize-10"></i>
+        </button>
+        <input
+          #userId
+          matInput
+          value="{{ inventory.phoneNumber }}"
+          class="col-fontsize-10"
+        />
+      </mat-form-field>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="age">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> سن </mat-header-cell>
+    <mat-cell *matCellDef="let inventory"> {{ inventory.age }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="inventorySum">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      موجودی <span class="monytoman">تومان</span>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let inventory">
+      {{ (inventory.inventorySum | irc).replace("ریال", "") }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="interMoneySum">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      درامد <span class="monytoman">تومان</span>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let inventory">
+      {{ (inventory.interMoneySum | irc).replace("ریال", "") }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="exitMoneySum">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      برداشتی <span class="monytoman">تومان</span>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let inventory">
+      {{ (inventory.exitMoneySum | irc).replace("ریال", "") }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="onExitMoneySum">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      در حال برداشت <span class="monytoman">تومان</span>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let inventory">
+      {{ (inventory.onExitMoneySum | irc).replace("ریال", "") }}
+    </mat-cell>
+  </ng-container>
+
   <ng-container matColumnDef="actions">
     <mat-header-cell *matHeaderCellDef> ویرایش / حذف </mat-header-cell>
-    <mat-cell *matCellDef="let blog">
-      <button mat-button [routerLink]="['/panel/blog/blog/edit/', blog.id]" ><i class="ft-edit edit-icon"></i></button>
-      <button *appHasRole="['Admin', 'AdminBlog']" mat-button [swal]="deleteSwal"><i class="ft-trash-2 delete-icon"></i></button>
-        <swal
-      #deleteSwal
-      title="حذف {{ blog.title }} ؟"
-      text="آیا مطمن هستید"
-      type="error"
-      [showCancelButton]="true"
-      [confirmButtonText] ="'بله'"
-      [cancelButtonText] ="'خیر'"
-      [focusCancel]="true"
-      (confirm)="onDelete(blog)">
-    </swal>
+    <mat-cell *matCellDef="let inventory">
+      <button mat-button [routerLink]="['/panel/blog/blog/edit/', blog.id]">
+        <i class="ft-edit edit-icon"></i>
+      </button>
     </mat-cell>
   </ng-container>
-
-  <ng-container matColumnDef="loading">
-    <mat-footer-cell *matFooterCellDef>
-      در حال بارگزاری ...
-    </mat-footer-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="noData">
-    <mat-footer-cell *matFooterCellDef>
-      چیزی برای نمایش وجود ندارد
-    </mat-footer-cell>
-  </ng-container>
-
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-
-  <mat-footer-row
-    *matFooterRowDef="['loading']"
-    [ngClass]="{ hide: loadingHideFlag }"
-  ></mat-footer-row>
-
-  <mat-footer-row
-    *matFooterRowDef="['noData']"
-    [ngClass]="{ hide: noContentHideFlag }"
-  ></mat-footer-row>
-
-
 </mat-table>
 <mat-paginator
   [pageIndex]="pagination.currentPage"

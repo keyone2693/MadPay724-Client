@@ -22,7 +22,7 @@ export class InventoryListComponent implements OnInit, OnDestroy {
   inventories: MatTableDataSource<Inventory>;
   inventoriesArray: Inventory[];
   pagination: Pagination;
-  displayedColumns: string[] = ['id', 'photoUrl', 'name', 'userName',
+  displayedColumns: string[] = ['photoUrl','id',  'name', 'userName',
     'phoneNumber', 'age', 'inventorySum', 'interMoneySum', 'exitMoneySum', 'onExitMoneySum'];
 
   filterSortOrderBy: FilterSortOrderBy = {
@@ -42,6 +42,9 @@ export class InventoryListComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy() {
     this.subManager.unsubscribe();
+  }
+  copied() {
+    this.alertService.info('', 'کپی شد');
   }
   loadgetInventories() {
     this.route.data.subscribe(data => {

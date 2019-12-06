@@ -7,11 +7,29 @@ import { AccountantInventoryComponent } from './pages/accountant-inventory/accou
 import { AccountantManageFactorsComponent } from './pages/accountant-factors/accountant-manage-factors/accountant-manage-factors.component';
 import { AccountantFactorsReportComponent } from './pages/accountant-factors/accountant-factorsreport/accountant-factorsreport.component';
 import { InventoryListComponent } from './pages/accountant-inventory/pages/inventory-list/inventory-list.component';
+import { InventoryService } from 'src/app/core/_services/panel/accountant/Inventory.service';
+import { InventoryResolver } from 'src/app/core/_base/resolvers/accountant/inventory.resolver';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { HasRoleModule } from 'src/app/Shared/Modules/hasRole/hasRole.module';
+import { PersianDateModule } from 'src/app/core/_base/pipe/PersianDatePipe/persian-date.module';
+import { DigitOnlyModule } from '@uiowa/digit-only';
+import { IRCurrencyPipe } from 'ngx-persian';
+import { AccountantMaterialModule } from 'src/app/shared/modules/material/accountant-material.module';
+import { ClipboardModule } from 'ngx-clipboard';
 
 @NgModule({
   imports: [
     CommonModule,
-    AccountantRoutingModule
+    AccountantRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AccountantMaterialModule,
+    DigitOnlyModule,
+    PersianDateModule,
+    SweetAlert2Module.forRoot(),
+    HasRoleModule,
+    ClipboardModule
   ],
   declarations: [
     AccountantComponent,
@@ -19,7 +37,13 @@ import { InventoryListComponent } from './pages/accountant-inventory/pages/inven
     AccountantFactorsReportComponent,
     AccountantInventoryComponent,
     AccountantManageFactorsComponent,
-    InventoryListComponent
+    InventoryListComponent,
+    IRCurrencyPipe
+  ],
+  providers: [
+    InventoryService,
+    //
+    InventoryResolver
   ]
 })
 export class AccountantModule { }
