@@ -55,4 +55,8 @@ export class InventoryService {
   getInventoryBankCards(userId: string): Observable<BankCard[]> {
     return this.http.get<BankCard[]>(this.baseUrl + 'bankcards/' + userId);
   }
+
+  blockInventoryWallet(walletId: string, block: boolean) {
+    return this.http.patch(this.baseUrl + 'blockwallet/' + walletId, { block });
+  }
 }

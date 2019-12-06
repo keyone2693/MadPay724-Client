@@ -1,3 +1,149 @@
-<p>
-  inventory-wallet-list works!
-</p>
+<div class="search-div">
+  <button *appHasRole="['Admin', 'AdminBlog']"
+    mat-raised-button
+    [routerLink]="['/panel/accountant/inventory']"
+    color="red"
+    class="float-left mb-10"
+  >
+    <i class="ft-chevrons-right"></i>
+    بازگشت به مدیریت موجودی
+  </button>
+  <mat-form-field class="search-form-field" floatLabel="never">
+    <input
+      matInput
+      type="text"
+      placeholder="جستوجو ..."
+      [(ngModel)]="searchKey"
+      (keyup)="applyFilter()"
+    />
+    <button
+      mat-button
+      *ngIf="searchKey"
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="onSearchClear()"
+    >
+      <i class="ft-x"></i>
+    </button>
+  </mat-form-field>
+</div>
+
+<mat-table [dataSource]="wallets" matSort class="mat-elevation-z8">
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> شناسه </mat-header-cell>
+    <mat-cell *matCellDef="let wallet"> {{ wallet.id }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> نام  </mat-header-cell>
+    <mat-cell *matCellDef="let wallet"> {{ wallet.name }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="isBlock">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> بلاک </mat-header-cell>
+    <mat-cell *matCellDef="let wallet">
+       <mat-checkbox [checked]="wallet.isBlock" (change)="onBlockChange($event, wallet.id)"></mat-checkbox>
+       </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="isMain">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> اصلی </mat-header-cell>
+    <mat-cell *matCellDef="let wallet">
+      <mat-checkbox [checked]="wallet.isMain" [disabled]="true"></mat-checkbox>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="isSms">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> اس ام اس </mat-header-cell>
+    <mat-cell *matCellDef="let wallet">
+      <mat-checkbox [checked]="wallet.isSms" [disabled]="true" ></mat-checkbox>
+    </mat-cell>
+  </ng-container>
+
+
+  <ng-container matColumnDef="inventory">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      موجودی <span class="monytoman">تومان</span>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let wallet" class="txt-price-blue">
+      {{ (wallet.inventory | irc).replace("ریال", "") }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="interMoney">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      درامد <span class="monytoman">تومان</span>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let wallet"class="txt-price-green">
+      {{ (wallet.interMoney | irc).replace("ریال", "") }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="exitMoney">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      برداشتی <span class="monytoman">تومان</span>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let wallet"class="txt-price-red">
+      {{ (wallet.exitMoney | irc).replace("ریال", "") }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="onExitMoney">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      در حال برداشت <span class="monytoman">تومان</span>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let wallet"class="txt-price-org">
+      {{ (wallet.onExitMoney | irc).replace("ریال", "") }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef> عملیات </mat-header-cell>
+    <mat-cell *matCellDef="let wallet">
+      <button *appHasRole="['Admin', 'AdminBlog']"
+        mat-raised-button
+        [routerLink]="['/panel/accountant/inventory']"
+        color="red"
+        class="float-left mb-10"
+      >
+        <i class="icon-bag"></i>
+        نمایش فاکتور و جزییات
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="loading">
+    <mat-footer-cell *matFooterCellDef>
+      در حال بارگزاری ...
+    </mat-footer-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="noData">
+    <mat-footer-cell *matFooterCellDef>
+      چیزی برای نمایش وجود ندارد
+    </mat-footer-cell>
+  </ng-container>
+
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+  <mat-footer-row
+    *matFooterRowDef="['loading']"
+    [ngClass]="{ hide: loadingHideFlag }"
+  ></mat-footer-row>
+
+  <mat-footer-row
+    *matFooterRowDef="['noData']"
+    [ngClass]="{ hide: noContentHideFlag }"
+  ></mat-footer-row>
+
+
+</mat-table>
+<mat-paginator
+  [pageSize]="5"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  showFirstLastButtons
+>
+</mat-paginator>
