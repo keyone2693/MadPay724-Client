@@ -6,6 +6,7 @@ import { AccountantRoutingModule } from './accountant-routing.module';
 import { AccountantInventoryComponent } from './pages/accountant-inventory/accountant-inventory.component';
 import { AccountantManageFactorsComponent } from './pages/accountant-factors/accountant-manage-factors/accountant-manage-factors.component';
 import { AccountantFactorsReportComponent } from './pages/accountant-factors/accountant-factorsreport/accountant-factorsreport.component';
+import { InventoryListComponent } from './pages/accountant-inventory/pages/inventory-list/inventory-list.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { AccountantFactorsReportComponent } from './pages/accountant-factors/acc
     AccountantDashboardComponent,
     AccountantFactorsReportComponent,
     AccountantInventoryComponent,
-    AccountantManageFactorsComponent
+    AccountantManageFactorsComponent,
+    InventoryListComponent
   ]
 })
 export class AccountantModule { }

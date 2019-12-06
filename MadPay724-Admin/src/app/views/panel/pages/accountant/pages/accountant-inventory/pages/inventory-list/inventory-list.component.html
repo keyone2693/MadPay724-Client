@@ -1,0 +1,149 @@
+<div class="search-div">
+  <button
+    mat-raised-button
+    (click)="onCreate()"
+    color="blue"
+    class="float-left mb-10"
+  >
+    <i class="ft-plus-circle"></i>
+    افزودن بلاگ
+  </button>
+  <mat-form-field class="search-form-field" floatLabel="never">
+    <input
+      matInput
+      type="text"
+      placeholder="جستوجو ..."
+      [(ngModel)]="filterSortOrderBy.searchKey"
+      (keyup)="applyFilter()"
+    />
+    <button
+      mat-button
+      *ngIf="filterSortOrderBy.searchKey"
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="onSearchClear()"
+    >
+      <i class="ft-x"></i>
+    </button>
+  </mat-form-field>
+</div>
+
+<mat-table [dataSource]="blogs" (matSortChange)="sortDataEvent($event)" matSort class="mat-elevation-z8">
+  
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> شناسه </mat-header-cell>
+    <mat-cell *matCellDef="let blog"> {{ blog.id }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="blogGroupName">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> دسته بندی </mat-header-cell>
+    <mat-cell *matCellDef="let blog"> {{ blog.blogGroupName }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="picAddress">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> عکس </mat-header-cell>
+    <mat-cell *matCellDef="let blog"> <img class="blog-img" src="{{ blog.picAddress }}" alt="{{blog.title}}">  </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="title">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> عنوان </mat-header-cell>
+    <mat-cell *matCellDef="let blog"> {{ blog.title }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="status" *appHasRole="['Admin', 'AdminBlog']">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> تایید نمایش </mat-header-cell>
+    <mat-cell *matCellDef="let blog">
+       <mat-checkbox [checked]="blog.status" (change)="onApproveChange($event, blog.id)"></mat-checkbox>
+       </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="isSelected" *appHasRole="['Admin', 'AdminBlog']">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> محبوب شده </mat-header-cell>
+    <mat-cell *matCellDef="let blog">
+      <mat-checkbox [checked]="blog.isSelected" (change)="onSelectChange($event, blog.id)" color='primary' ></mat-checkbox>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="status" *appHasRole="['Blog']">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> تایید نمایش </mat-header-cell>
+    <mat-cell *matCellDef="let blog">
+       <mat-checkbox [checked]="blog.status" [disabled]="true"></mat-checkbox> 
+      </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="isSelected" *appHasRole="['Blog']">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> محبوب شده </mat-header-cell>
+    <mat-cell *matCellDef="let blog">
+      <mat-checkbox  [checked]="blog.isSelected" color='primary' [disabled]="true"></mat-checkbox>
+    </mat-cell>
+  </ng-container>
+
+
+
+  <ng-container matColumnDef="viewCount">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> تعداد بازدید </mat-header-cell>
+    <mat-cell *matCellDef="let blog"> {{ blog.viewCount }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="dateModified">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> تاریخ ثبت </mat-header-cell>
+    <mat-cell *matCellDef="let blog">  ({{blog.dateModified | date:'HH:mm'}})
+                                            {{blog.dateModified | persianDate}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef> ویرایش / حذف </mat-header-cell>
+    <mat-cell *matCellDef="let blog">
+      <button mat-button [routerLink]="['/panel/blog/blog/edit/', blog.id]" ><i class="ft-edit edit-icon"></i></button>
+      <button *appHasRole="['Admin', 'AdminBlog']" mat-button [swal]="deleteSwal"><i class="ft-trash-2 delete-icon"></i></button>
+        <swal
+      #deleteSwal
+      title="حذف {{ blog.title }} ؟"
+      text="آیا مطمن هستید"
+      type="error"
+      [showCancelButton]="true"
+      [confirmButtonText] ="'بله'"
+      [cancelButtonText] ="'خیر'"
+      [focusCancel]="true"
+      (confirm)="onDelete(blog)">
+    </swal>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="loading">
+    <mat-footer-cell *matFooterCellDef>
+      در حال بارگزاری ...
+    </mat-footer-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="noData">
+    <mat-footer-cell *matFooterCellDef>
+      چیزی برای نمایش وجود ندارد
+    </mat-footer-cell>
+  </ng-container>
+
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+  <mat-footer-row
+    *matFooterRowDef="['loading']"
+    [ngClass]="{ hide: loadingHideFlag }"
+  ></mat-footer-row>
+
+  <mat-footer-row
+    *matFooterRowDef="['noData']"
+    [ngClass]="{ hide: noContentHideFlag }"
+  ></mat-footer-row>
+
+
+</mat-table>
+<mat-paginator
+  [pageIndex]="pagination.currentPage"
+  [length]="pagination.totalItems"
+  [pageSize]="pagination.itemsPerPage"
+  [pageSizeOptions]="[5, 10, 25, 50]"
+  (page)="paginatorEvent($event)"
+  showFirstLastButtons
+>
+</mat-paginator>
