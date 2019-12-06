@@ -1,1 +1,1 @@
-export * from './blog.selectors';
+export * from './currentTitle.selectors';

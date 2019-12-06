@@ -1,10 +1,16 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { Wallet } from 'src/app/data/models/wallet';
 import { Router, ActivatedRoute } from '@angular/router';
 import { InventoryService } from 'src/app/core/_services/panel/accountant/Inventory.service';
 import { ToastrService } from 'ngx-toastr';
+import { Store } from '@ngrx/store';
+import { AccountantStateModel } from '../../../../store/_models/accountantStateModel';
+
+import * as fromAccountantStore from '../../../../store';
+import { CurrentTitleStateModel } from '../../../../store/_models/currentTitleStateModel';
+
 
 @Component({
   selector: 'app-inventory-wallet-list',
@@ -23,9 +29,12 @@ export class InventoryWalletListComponent implements OnInit, OnDestroy {
   searchKey: string;
   loadingHideFlag = false;
   noContentHideFlag = true;
+  userInfo$: Observable<CurrentTitleStateModel>;
   constructor(private inventoryService: InventoryService,
     private router: Router, private route: ActivatedRoute,
-    private alertService: ToastrService) { }
+    private alertService: ToastrService, private store: Store<AccountantStateModel>) {
+      this.userInfo$ = this.store.select(fromAccountantStore.getCurrentTitle);
+  }
 
   ngOnInit() {
     this.loadwallets();
@@ -72,5 +81,8 @@ export class InventoryWalletListComponent implements OnInit, OnDestroy {
           this.alertService.error(error);
         })
     )
+  }
+  copied() {
+    this.alertService.info('', 'کپی شد');
   }
 }

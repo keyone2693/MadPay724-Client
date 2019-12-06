@@ -6,9 +6,11 @@ import { FilterSortOrderBy } from 'src/app/data/models/common/filterSortOrderBy'
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Store } from '@ngrx/store';
-import * as fromStore from '../../../../../../../../store';
 import { Inventory } from 'src/app/data/models/accountant/inventory';
 import { InventoryService } from 'src/app/core/_services/panel/accountant/Inventory.service';
+import { AccountantStateModel } from '../../../../store/_models/accountantStateModel';
+
+import * as fromAccountantStore from '../../../../store';
 
 @Component({
   selector: 'app-inventory-list',
@@ -36,7 +38,7 @@ export class InventoryListComponent implements OnInit, OnDestroy {
   noContentHideFlag = true;
   constructor(private inventoryService: InventoryService,
     private router: Router, private route: ActivatedRoute,
-    private alertService: ToastrService, private store: Store<fromStore.State>) { }
+    private alertService: ToastrService, private store: Store<AccountantStateModel>) { }
 
   ngOnInit() {
     this.loadgetInventories();
@@ -120,5 +122,13 @@ export class InventoryListComponent implements OnInit, OnDestroy {
           this.alertService.error(error);
         })
     )
+  }
+
+  //----------------------------
+  onWallet(user: Inventory) {
+    this.store.dispatch(new fromAccountantStore.EditCurrentTitle({
+      id: user.id,
+      title: user.name
+    }))
   }
 }

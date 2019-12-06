@@ -24,12 +24,17 @@ mat-footer-row mat-footer-cell {
 }
 
 .mat-red {
-  background: #ff3838;
+  background: #e24a4a;
   color: #fff;
   float: right !important;
   margin-top: 15px;
 }
+.mat-green {
+  background: #09a84c;
+  color: #fff;
+    margin-right: 5px !important;
 
+}
 .search-form-field {
   width: 60%;
   margin-right: 10px;
@@ -38,6 +43,9 @@ mat-footer-row mat-footer-cell {
 
 .mat-column-id {
   flex: 0 0 180px;
+}
+.mat-column-actions {
+  flex: 0 0 200px;
 }
 
 .col-fontsize-10 {
