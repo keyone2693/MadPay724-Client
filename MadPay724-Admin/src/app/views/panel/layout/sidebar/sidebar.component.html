@@ -31,7 +31,7 @@
   <div class="sidebar-content">
     <div class="nav-container">
       <ul
-      *ngIf="notifications$ | async as notifications"
+        *ngIf="notifications$ | async as notifications"
         id="main-menu-navigation"
         data-menu="menu-navigation"
         class="navigation navigation-main"
@@ -64,6 +64,67 @@
         </li>
 
         <!--#endregion-->
+        <!--#region Accountant-->
+        <li
+          *appHasRole="['Admin', 'Accountant']"
+          routerLinkActive="active"
+          class=" nav-item"
+        >
+          <a [routerLink]="['/panel/accountant/dashboard']"
+            ><i class="icon-home"></i
+            ><span data-i18n="" class="menu-title">داشبورد</span></a
+          >
+        </li>
+         <li
+          *appHasRole="['Admin', 'Accountant']"
+          routerLinkActive="active"
+          class=" nav-item"
+        >
+          <a [routerLink]="['/panel/accountant/inventory']"
+            ><i class="ft-credit-card"></i
+            ><span data-i18n="" class="menu-title">مدیریت موجودی</span></a
+          >
+        </li>
+        <li
+          *appHasRole="['Admin', 'Accountant']"
+          class="has-sub nav-item"
+        >
+          <a href="javascript:;">
+            <i class="ft-shopping-cart"></i>
+            <span data-i18n="" class="menu-title">فاکتور ها</span>
+            <span
+              *appHasRole="['Admin', 'Accountant']"
+              [hidden]="notifications.unverifiedBlogCount === 0"
+              matTooltip="بلاگ های تایید نشده"
+              matTooltipPosition="left"
+              class="tag badge badge-pill badge-danger mt-1"
+              >{{ notifications.unverifiedBlogCount }}</span
+            >
+          </a>
+          <ul class="menu-content">
+            <li routerLinkActive="active mlisub">
+              <a [routerLink]="['/panel/accountant/factorsreport']" class="menu-item">
+                <i class="ft-bar-chart-2"></i>
+                گزارش فاکتور ها
+              </a>
+            </li>
+            <li routerLinkActive="active mlisub">
+              <a [routerLink]="['/panel/accountant/factors']" class="menu-item">
+                <i class="icon-bag"></i>
+                <span
+                  *appHasRole="['Admin', 'Accountant']"
+                  [hidden]="notifications.unverifiedBlogCount === 0"
+                  matTooltipPosition="left"
+                  matTooltip="بلاگ های تایید نشده"
+                  class="tag badge badge-pill badge-success mt-1 madpaynotifybadge"
+                  >{{ notifications.unverifiedBlogCount }}</span
+                >
+                مدیریت فاکتور ها</a
+              >
+            </li>
+          </ul>
+        </li>
+        <!--#endregion-->
 
         <!--#region Blog-->
         <li
@@ -83,14 +144,14 @@
           <a href="javascript:;">
             <i class="ft-clipboard"></i>
             <span data-i18n="" class="menu-title">بلاگ</span>
-              <span
-                *appHasRole="['Admin', 'AdminBlog']"
-                [hidden] = "notifications.unverifiedBlogCount ===0"
-                matTooltip="بلاگ های تایید نشده"
-                matTooltipPosition="left"
-                class="tag badge badge-pill badge-danger mt-1"
-                >{{ notifications.unverifiedBlogCount }}</span
-              >
+            <span
+              *appHasRole="['Admin', 'AdminBlog']"
+              [hidden]="notifications.unverifiedBlogCount === 0"
+              matTooltip="بلاگ های تایید نشده"
+              matTooltipPosition="left"
+              class="tag badge badge-pill badge-danger mt-1"
+              >{{ notifications.unverifiedBlogCount }}</span
+            >
           </a>
           <ul class="menu-content">
             <li routerLinkActive="active mlisub">
@@ -102,14 +163,16 @@
             <li routerLinkActive="active mlisub">
               <a [routerLink]="['/panel/blog/blog']" class="menu-item">
                 <i class="ft-airplay "></i>
-                  <span *appHasRole="['Admin', 'AdminBlog']"
-                  [hidden] = "notifications.unverifiedBlogCount ===0"
+                <span
+                  *appHasRole="['Admin', 'AdminBlog']"
+                  [hidden]="notifications.unverifiedBlogCount === 0"
                   matTooltipPosition="left"
                   matTooltip="بلاگ های تایید نشده"
-                    class="tag badge badge-pill badge-success mt-1 madpaynotifybadge"
-                    >{{ notifications.unverifiedBlogCount }}</span
-                  >
-                مدیریت بلاگ</a>
+                  class="tag badge badge-pill badge-success mt-1 madpaynotifybadge"
+                  >{{ notifications.unverifiedBlogCount }}</span
+                >
+                مدیریت بلاگ</a
+              >
             </li>
           </ul>
         </li>
@@ -178,15 +241,14 @@
             <i class="icon-bubbles"> </i
             ><span class="menu-title">پشتیبانی</span>
             <span
-            [hidden] = "notifications.unClosedTicketCount ===0"
-                *appHasRole="['User']"
-                matTooltip="تیکت های باز"
-                matTooltipPosition="left"
-                class="tag badge badge-pill badge-danger mt-1"
-                >{{ notifications.unClosedTicketCount }}</span
-              >
-            </a
-          >
+              [hidden]="notifications.unClosedTicketCount === 0"
+              *appHasRole="['User']"
+              matTooltip="تیکت های باز"
+              matTooltipPosition="left"
+              class="tag badge badge-pill badge-danger mt-1"
+              >{{ notifications.unClosedTicketCount }}</span
+            >
+          </a>
         </li>
         <li
           *appHasRole="['User', 'Admin', 'AdminBlog', 'Blog', 'Accountant']"
