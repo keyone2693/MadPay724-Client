@@ -21,6 +21,8 @@ import { InventoryWalletListComponent } from './pages/accountant-inventory/pages
 import { InventoryBankCardResolver } from 'src/app/core/_base/resolvers/accountant/inventoryBankCard.resolver';
 import { InventoryWalletResolver } from 'src/app/core/_base/resolvers/accountant/inventoryWallet.resolver';
 import { InventoryBankCardListComponent } from './pages/accountant-inventory/pages/inventory-bankcard-list/inventory-bankcard-list.component';
+import { StoreModule } from '@ngrx/store';
+import { accountantReducers } from './store/reducers';
 
 @NgModule({
   imports: [
@@ -33,7 +35,8 @@ import { InventoryBankCardListComponent } from './pages/accountant-inventory/pag
     PersianDateModule,
     SweetAlert2Module.forRoot(),
     HasRoleModule,
-    ClipboardModule
+    ClipboardModule,
+    StoreModule.forFeature('accountantSection',accountantReducers),
   ],
   declarations: [
     AccountantComponent,
