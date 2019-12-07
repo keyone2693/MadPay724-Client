@@ -32,8 +32,7 @@ mat-footer-row mat-footer-cell {
 .mat-green {
   background: #09a84c;
   color: #fff;
-   margin: 0 auto;
-  float: none;
+    margin-right: 5px !important;
 
 }
 .search-form-field {

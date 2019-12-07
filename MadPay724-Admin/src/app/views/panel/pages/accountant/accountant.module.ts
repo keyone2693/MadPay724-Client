@@ -28,6 +28,9 @@ import { InventoryBankCardListComponent } from './pages/accountant-financial/acc
 import { AccountantBankCardsComponent } from './pages/accountant-financial/accountant-bankCards/accountant-bankCards.component';
 import { AccountantWalletsComponent } from './pages/accountant-financial/accountant-wallets/accountant-wallets.component';
 import { AccountantBankCardsListComponent } from './pages/accountant-financial/accountant-bankCards/pages/accountant-bankCards-list/accountant-bankCards-list.component';
+import { AccountantWalletsListComponent } from './pages/accountant-financial/accountant-wallets/pages/accountant-wallets-list/accountant-wallets-list.component';
+import { AccountantEntryComponent } from './pages/accountant-entry/accountant-entry/accountant-entry.component';
+import { AccountantEntryAddComponent } from './pages/accountant-entry/accountant-entry-add/accountant-entry-add.component';
 
 @NgModule({
   imports: [
@@ -55,6 +58,9 @@ import { AccountantBankCardsListComponent } from './pages/accountant-financial/a
     AccountantWalletsComponent,
     AccountantBankCardsComponent,
     AccountantBankCardsListComponent,
+    AccountantWalletsListComponent,
+    AccountantEntryAddComponent,
+    AccountantEntryComponent,
     IRCurrencyPipe
   ],
   providers: [

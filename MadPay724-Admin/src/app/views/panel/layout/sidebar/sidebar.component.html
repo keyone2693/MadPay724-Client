@@ -75,6 +75,32 @@
             ><span data-i18n="" class="menu-title">داشبورد</span></a
           >
         </li>
+         <li *appHasRole="['Admin', 'Accountant']" class="has-sub nav-item">
+          <a href="javascript:;">
+            <i class="icon-logout"></i>
+            <span data-i18n="" class="menu-title">مدیریت واریزی</span>
+          </a>
+          <ul class="menu-content">
+            <li routerLinkActive="active mlisub">
+              <a
+                [routerLink]="['/panel/accountant/entryadd']"
+                class="menu-item"
+              >
+                <i class="icon-control-start"></i>
+                 انجام واریزی</a
+              >
+            </li>
+            <li routerLinkActive="active mlisub">
+              <a
+                [routerLink]="['/panel/accountant/entry']"
+                class="menu-item"
+              >
+                <i class="ft-command"></i>
+                مدیریت واریزی ها</a
+              >
+            </li>
+          </ul>
+        </li>
         <li *appHasRole="['Admin', 'Accountant']" class="has-sub nav-item">
           <a href="javascript:;">
             <i class="icon-pie-chart"></i>
@@ -107,8 +133,6 @@
             </li>
           </ul>
         </li>
-      
-        
         <li
           *appHasRole="['Admin', 'Accountant']"
           class="has-sub nav-item"

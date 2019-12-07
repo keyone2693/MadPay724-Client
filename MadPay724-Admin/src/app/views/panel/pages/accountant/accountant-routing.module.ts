@@ -15,6 +15,8 @@ import { InventoryWalletListComponent } from './pages/accountant-financial/accou
 import { InventoryBankCardListComponent } from './pages/accountant-financial/accountant-inventory/pages/inventory-bankCard-list/inventory-bankCard-list.component';
 import { AccountantWalletsComponent } from './pages/accountant-financial/accountant-wallets/accountant-wallets.component';
 import { AccountantBankCardsComponent } from './pages/accountant-financial/accountant-bankCards/accountant-bankCards.component';
+import { AccountantEntryComponent } from './pages/accountant-entry/accountant-entry/accountant-entry.component';
+import { AccountantEntryAddComponent } from './pages/accountant-entry/accountant-entry-add/accountant-entry-add.component';
 
 const routes: Routes = [
     {
@@ -24,6 +26,18 @@ const routes: Routes = [
             {
                 path: 'dashboard', canActivate: [AuthGuard], component: AccountantDashboardComponent,
                 data: { roles: ['Accountant', 'Admin'], title: ['داشبورد حسابدار'] }
+            },
+            //
+            {
+                path: 'entry', canActivate: [AuthGuard],
+                //resolve: { inventories: InventoryResolver },
+                component: AccountantEntryComponent,
+                data: { roles: ['Accountant', 'Admin'], title: ['گزارش فاکتورها'] }
+            },
+            {
+                path: 'entryadd', canActivate: [AuthGuard],
+                component: AccountantEntryAddComponent,
+                data: { roles: ['Accountant', 'Admin'], title: ['گزارش فاکتورها'] }
             },
             //
             {
@@ -44,7 +58,6 @@ const routes: Routes = [
                 component: InventoryBankCardListComponent,
                 data: { roles: ['Accountant', 'Admin'], title: ['کارت های بانکی'] }
             },
-            //-----------------
             {
                 path: 'bankcards', canActivate: [AuthGuard],
                 resolve: { bankcards: AccBankCardResolver},
@@ -57,6 +70,7 @@ const routes: Routes = [
                 component: AccountantWalletsComponent,
                 data: { roles: ['Accountant', 'Admin'], title: ['مدیریت کارت های بانکی'] }
             },
+            
             //-----------------
             {
                 path: 'factorsreport', canActivate: [AuthGuard], component: AccountantFactorsReportComponent,
