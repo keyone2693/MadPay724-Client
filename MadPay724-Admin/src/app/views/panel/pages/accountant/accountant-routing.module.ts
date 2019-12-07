@@ -36,7 +36,7 @@ const routes: Routes = [
             },
             {
                 path: 'inventorybankcard/:userId', canActivate: [AuthGuard],
-                resolve: { inventorybankcard: InventoryBankCardResolver },
+                resolve: { inventorybankcards: InventoryBankCardResolver },
                 component: InventoryBankCardListComponent,
                 data: { roles: ['Accountant', 'Admin'], title: ['کارت های بانکی'] }
             },

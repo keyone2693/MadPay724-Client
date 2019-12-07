@@ -131,4 +131,10 @@ export class InventoryListComponent implements OnInit, OnDestroy {
       title: user.name
     }))
   }
+  onBankCard(user: Inventory) {
+    this.store.dispatch(new fromAccountantStore.EditCurrentTitle({
+      id: user.id,
+      title: user.name
+    }))
+  }
 }

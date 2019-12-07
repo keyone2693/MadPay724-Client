@@ -3,8 +3,8 @@ import { CurrentTitleStateModel } from '../_models/currentTitleStateModel';
 
 
 export const initCurrentTitle: CurrentTitleStateModel = {
-    id: '',
-    title: ''
+    id: '...',
+    title: '...'
 }
 
 export function CurrentTitleReducer(state = initCurrentTitle,

@@ -59,4 +59,8 @@ export class InventoryService {
   blockInventoryWallet(walletId: string, block: boolean) {
     return this.http.patch(this.baseUrl + 'blockwallet/' + walletId, { block });
   }
+
+  approveInventoryBankCard(bankcardId: string, approve: boolean) {
+    return this.http.patch(this.baseUrl + 'approvebankcard/' + bankcardId, { approve });
+  }
 }

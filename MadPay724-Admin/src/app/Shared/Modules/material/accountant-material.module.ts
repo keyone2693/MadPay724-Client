@@ -49,12 +49,6 @@ import { FaMatPaginatorIntl } from './faMatPaginatorIntl';
         MatSortModule,
         MatBadgeModule,
         MatTooltipModule
-    ], providers: [{
-        provide: MAT_RADIO_DEFAULT_OPTIONS,
-        useValue: { color: 'warn' },
-    },
-    {
-        provide: MatPaginatorIntl, useClass: FaMatPaginatorIntl
-    }]
+    ]
 })
 export class AccountantMaterialModule { }
