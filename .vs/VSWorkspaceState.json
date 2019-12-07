@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\MadPay724-Admin",
+    "\\MadPay724-Admin\\src",
+    "\\MadPay724-Admin\\src\\app",
+    "\\MadPay724-Admin\\src\\app\\views",
+    "\\MadPay724-Admin\\src\\app\\views\\panel",
+    "\\MadPay724-Admin\\src\\app\\views\\panel\\pages",
+    "\\MadPay724-Admin\\src\\app\\views\\panel\\pages\\accountant",
+    "\\MadPay724-Admin\\src\\app\\views\\panel\\pages\\accountant\\store",
+    "\\MadPay724-Admin\\src\\app\\views\\panel\\pages\\accountant\\store\\reducers"
+  ],
+  "SelectedNode": "\\MadPay724-Admin\\src\\app\\views\\panel\\pages\\accountant\\pages\\accountant-inventory\\pages\\inventory-bankCard-list\\inventory-bankCard-list.component.ts",
+  "PreviewInSolutionExplorer": false
+}

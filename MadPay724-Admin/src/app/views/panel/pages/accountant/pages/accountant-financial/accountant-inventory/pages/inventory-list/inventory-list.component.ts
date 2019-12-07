@@ -8,9 +8,9 @@ import { ToastrService } from 'ngx-toastr';
 import { Store } from '@ngrx/store';
 import { Inventory } from 'src/app/data/models/accountant/inventory';
 import { InventoryService } from 'src/app/core/_services/panel/accountant/Inventory.service';
-import { AccountantStateModel } from '../../../../store/_models/accountantStateModel';
 
-import * as fromAccountantStore from '../../../../store';
+import * as fromAccountantStore from '../../../../../store';
+import { AccountantStateModel } from '../../../../../store/_models/accountantStateModel';
 
 @Component({
   selector: 'app-inventory-list',

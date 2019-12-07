@@ -1,14 +1,14 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
-import { BankCard } from '../../../../../../../../data/models/bankcard';
-import { CurrentTitleStateModel } from '../../../../store/_models/currentTitleStateModel';
-import { InventoryService } from '../../../../../../../../core/_services/panel/accountant/Inventory.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Store } from '@ngrx/store';
-import { AccountantStateModel } from '../../../../store/_models/accountantStateModel';
-import * as fromAccountantStore from '../../../../store';
+import * as fromAccountantStore from '../../../../../store';
+import { CurrentTitleStateModel } from '../../../../../store/_models/currentTitleStateModel';
+import { InventoryService } from 'src/app/core/_services/panel/accountant/Inventory.service';
+import { AccountantStateModel } from '../../../../../store/_models/accountantStateModel';
+import { BankCard } from 'src/app/data/models/bankcard';
 
 @Component({
   selector: 'app-inventory-bankCard-list',

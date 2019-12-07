@@ -6,10 +6,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { InventoryService } from 'src/app/core/_services/panel/accountant/Inventory.service';
 import { ToastrService } from 'ngx-toastr';
 import { Store } from '@ngrx/store';
-import { AccountantStateModel } from '../../../../store/_models/accountantStateModel';
 
-import * as fromAccountantStore from '../../../../store';
-import { CurrentTitleStateModel } from '../../../../store/_models/currentTitleStateModel';
+import * as fromAccountantStore from '../../../../../store';
+import { CurrentTitleStateModel } from '../../../../../store/_models/currentTitleStateModel';
+import { AccountantStateModel } from '../../../../../store/_models/accountantStateModel';
 
 
 @Component({

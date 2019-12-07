@@ -63,4 +63,59 @@ export class InventoryService {
   approveInventoryBankCard(bankcardId: string, approve: boolean) {
     return this.http.patch(this.baseUrl + 'approvebankcard/' + bankcardId, { approve });
   }
+
+
+
+  getWallets(page?, itemPerPage?, filter?, sortHe?, sortDir?, userId: string = this.userId):
+    Observable<PaginationResult<Wallet[]>> {
+    
+    const paginatedResult: PaginationResult<Wallet[]> = new PaginationResult<Wallet[]>();
+    let params = new HttpParams();
+
+    if (page != null && itemPerPage != null) {
+      params = params.append('pageNumber', page);
+      params = params.append('pageSize', itemPerPage);
+      params = params.append('filter', filter);
+      params = params.append('sortHe', sortHe);
+      params = params.append('sortDir', sortDir);
+    }
+    return this.http.get<Wallet[]>
+      (this.baseUrl + 'allwallets', { observe: 'response', params })
+      .pipe(
+        map(response => {
+          paginatedResult.result = response.body;
+          if (response.headers.get('Pagination') != null) {
+            paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
+          }
+          return paginatedResult;
+        })
+      );
+  }
+
+  getBankCards(page?, itemPerPage?, filter?, sortHe?, sortDir?, userId: string = this.userId):
+    Observable<PaginationResult<BankCard[]>> {
+
+    const paginatedResult: PaginationResult<BankCard[]> = new PaginationResult<BankCard[]>();
+    let params = new HttpParams();
+
+    if (page != null && itemPerPage != null) {
+      params = params.append('pageNumber', page);
+      params = params.append('pageSize', itemPerPage);
+      params = params.append('filter', filter);
+      params = params.append('sortHe', sortHe);
+      params = params.append('sortDir', sortDir);
+    }
+    return this.http.get<BankCard[]>
+      (this.baseUrl + 'allbankcards', { observe: 'response', params })
+      .pipe(
+        map(response => {
+          paginatedResult.result = response.body;
+          if (response.headers.get('Pagination') != null) {
+            paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
+          }
+          return paginatedResult;
+        })
+      );
+  }
+
 }

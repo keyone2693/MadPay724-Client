@@ -75,16 +75,40 @@
             ><span data-i18n="" class="menu-title">داشبورد</span></a
           >
         </li>
-         <li
-          *appHasRole="['Admin', 'Accountant']"
-          routerLinkActive="active"
-          class=" nav-item"
-        >
-          <a [routerLink]="['/panel/accountant/inventory']"
-            ><i class="ft-credit-card"></i
-            ><span data-i18n="" class="menu-title">مدیریت موجودی</span></a
-          >
+        <li *appHasRole="['Admin', 'Accountant']" class="has-sub nav-item">
+          <a href="javascript:;">
+            <i class="icon-pie-chart"></i>
+            <span data-i18n="" class="menu-title">مدیریت مالی</span>
+          </a>
+          <ul class="menu-content">
+            <li routerLinkActive="active mlisub">
+              <a
+                [routerLink]="['/panel/accountant/bankcards']"
+                class="menu-item"
+              >
+                <i class="icon-credit-card"></i>
+                مدیریت کارت های بانکی</a
+              >
+            </li>
+            <li routerLinkActive="active mlisub">
+              <a
+                [routerLink]="['/panel/accountant/wallets']"
+                class="menu-item"
+              >
+                <i class="icon-wallet"></i>
+                مدیریت کیف پول ها</a
+              >
+            </li>
+            <li routerLinkActive="active mlisub">
+              <a [routerLink]="['/panel/accountant/inventory']" class="menu-item">
+                <i class="icon-calculator"></i>
+                مدیریت موجودی</a
+              >
+            </li>
+          </ul>
         </li>
+      
+        
         <li
           *appHasRole="['Admin', 'Accountant']"
           class="has-sub nav-item"

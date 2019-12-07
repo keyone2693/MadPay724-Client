@@ -3,14 +3,18 @@ import { NgModule } from '@angular/core';
 import { AuthGuard } from 'src/app/core/_base/guards/auth.guard';
 import { AccountantComponent } from './accountant.component';
 import { AccountantDashboardComponent } from './pages/accountant-dashboard/accountant-dashboard.component';
-import { AccountantInventoryComponent } from './pages/accountant-inventory/accountant-inventory.component';
 import { AccountantFactorsReportComponent } from './pages/accountant-factors/accountant-factorsreport/accountant-factorsreport.component';
 import { AccountantManageFactorsComponent } from './pages/accountant-factors/accountant-manage-factors/accountant-manage-factors.component';
 import { InventoryResolver } from 'src/app/core/_base/resolvers/accountant/inventory.resolver';
 import { InventoryWalletResolver } from 'src/app/core/_base/resolvers/accountant/inventoryWallet.resolver';
 import { InventoryBankCardResolver } from 'src/app/core/_base/resolvers/accountant/inventoryBankCard.resolver';
-import { InventoryWalletListComponent } from './pages/accountant-inventory/pages/inventory-wallet-list/inventory-wallet-list.component';
-import { InventoryBankCardListComponent } from './pages/accountant-inventory/pages/inventory-bankcard-list/inventory-bankcard-list.component';
+import { AccBankCardResolver } from 'src/app/core/_base/resolvers/accountant/accBankcard.resolver';
+import { AccWalletResolver } from 'src/app/core/_base/resolvers/accountant/accWallet.resolver';
+import { AccountantInventoryComponent } from './pages/accountant-financial/accountant-inventory/accountant-inventory.component';
+import { InventoryWalletListComponent } from './pages/accountant-financial/accountant-inventory/pages/inventory-wallet-list/inventory-wallet-list.component';
+import { InventoryBankCardListComponent } from './pages/accountant-financial/accountant-inventory/pages/inventory-bankCard-list/inventory-bankCard-list.component';
+import { AccountantWalletsComponent } from './pages/accountant-financial/accountant-wallets/accountant-wallets.component';
+import { AccountantBankCardsComponent } from './pages/accountant-financial/accountant-bankCards/accountant-bankCards.component';
 
 const routes: Routes = [
     {
@@ -40,7 +44,20 @@ const routes: Routes = [
                 component: InventoryBankCardListComponent,
                 data: { roles: ['Accountant', 'Admin'], title: ['کارت های بانکی'] }
             },
-            //
+            //-----------------
+            {
+                path: 'bankcards', canActivate: [AuthGuard],
+                resolve: { bankcards: AccBankCardResolver},
+                component: AccountantWalletsComponent ,
+                data: { roles: ['Accountant', 'Admin'], title: ['مدیریت کیف پول ها'] }
+            },
+            {
+                path: 'wallets', canActivate: [AuthGuard],
+                resolve: { wallets: AccWalletResolver },
+                component: AccountantBankCardsComponent,
+                data: { roles: ['Accountant', 'Admin'], title: ['مدیریت کارت های بانکی'] }
+            },
+            //-----------------
             {
                 path: 'factorsreport', canActivate: [AuthGuard], component: AccountantFactorsReportComponent,
                 data: { roles: ['Accountant', 'Admin'], title: ['گزارش فاکتورها'] }

@@ -3,10 +3,8 @@ import { CommonModule } from '@angular/common';
 import { AccountantComponent } from './accountant.component';
 import { AccountantDashboardComponent } from './pages/accountant-dashboard/accountant-dashboard.component';
 import { AccountantRoutingModule } from './accountant-routing.module';
-import { AccountantInventoryComponent } from './pages/accountant-inventory/accountant-inventory.component';
 import { AccountantManageFactorsComponent } from './pages/accountant-factors/accountant-manage-factors/accountant-manage-factors.component';
 import { AccountantFactorsReportComponent } from './pages/accountant-factors/accountant-factorsreport/accountant-factorsreport.component';
-import { InventoryListComponent } from './pages/accountant-inventory/pages/inventory-list/inventory-list.component';
 import { InventoryService } from 'src/app/core/_services/panel/accountant/Inventory.service';
 import { InventoryResolver } from 'src/app/core/_base/resolvers/accountant/inventory.resolver';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -17,12 +15,18 @@ import { DigitOnlyModule } from '@uiowa/digit-only';
 import { IRCurrencyPipe } from 'ngx-persian';
 import { AccountantMaterialModule } from 'src/app/shared/modules/material/accountant-material.module';
 import { ClipboardModule } from 'ngx-clipboard';
-import { InventoryWalletListComponent } from './pages/accountant-inventory/pages/inventory-wallet-list/inventory-wallet-list.component';
 import { InventoryBankCardResolver } from 'src/app/core/_base/resolvers/accountant/inventoryBankCard.resolver';
 import { InventoryWalletResolver } from 'src/app/core/_base/resolvers/accountant/inventoryWallet.resolver';
-import { InventoryBankCardListComponent } from './pages/accountant-inventory/pages/inventory-bankcard-list/inventory-bankcard-list.component';
 import { StoreModule } from '@ngrx/store';
 import { accountantReducers } from './store/reducers';
+import { AccWalletResolver } from 'src/app/core/_base/resolvers/accountant/accWallet.resolver';
+import { AccBankCardResolver } from 'src/app/core/_base/resolvers/accountant/accBankcard.resolver';
+import { AccountantInventoryComponent } from './pages/accountant-financial/accountant-inventory/accountant-inventory.component';
+import { InventoryWalletListComponent } from './pages/accountant-financial/accountant-inventory/pages/inventory-wallet-list/inventory-wallet-list.component';
+import { InventoryListComponent } from './pages/accountant-financial/accountant-inventory/pages/inventory-list/inventory-list.component';
+import { InventoryBankCardListComponent } from './pages/accountant-financial/accountant-inventory/pages/inventory-bankCard-list/inventory-bankCard-list.component';
+import { AccountantBankCardsComponent } from './pages/accountant-financial/accountant-bankCards/accountant-bankCards.component';
+import { AccountantWalletsComponent } from './pages/accountant-financial/accountant-wallets/accountant-wallets.component';
 
 @NgModule({
   imports: [
@@ -47,6 +51,8 @@ import { accountantReducers } from './store/reducers';
     InventoryListComponent,
     InventoryWalletListComponent,
     InventoryBankCardListComponent,
+    AccountantWalletsComponent,
+    AccountantBankCardsComponent,
     IRCurrencyPipe
   ],
   providers: [
@@ -54,7 +60,9 @@ import { accountantReducers } from './store/reducers';
     //
     InventoryResolver,
     InventoryWalletResolver,
-    InventoryBankCardResolver
+    InventoryBankCardResolver,
+    AccWalletResolver,
+    AccBankCardResolver
   ]
 })
 export class AccountantModule { }
