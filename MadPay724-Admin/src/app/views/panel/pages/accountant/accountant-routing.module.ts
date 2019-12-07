@@ -48,13 +48,13 @@ const routes: Routes = [
             {
                 path: 'bankcards', canActivate: [AuthGuard],
                 resolve: { bankcards: AccBankCardResolver},
-                component: AccountantWalletsComponent ,
+                component: AccountantBankCardsComponent,
                 data: { roles: ['Accountant', 'Admin'], title: ['مدیریت کیف پول ها'] }
             },
             {
                 path: 'wallets', canActivate: [AuthGuard],
                 resolve: { wallets: AccWalletResolver },
-                component: AccountantBankCardsComponent,
+                component: AccountantWalletsComponent,
                 data: { roles: ['Accountant', 'Admin'], title: ['مدیریت کارت های بانکی'] }
             },
             //-----------------

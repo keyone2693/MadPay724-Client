@@ -1,3 +1,40 @@
-<p>
-  accountant-bankCards works!
-</p>
+<!-- User Profile Starts-->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/panel/dashboard']">داشبورد</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a>حسابدار </a>
+    </li>
+    <li class="breadcrumb-item">
+      <a>مدیریت مالی </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">
+      مدیریت کارت های بانکی
+    </li>
+  </ol>
+</nav>
+<!--Basic User Details Starts-->
+<section id="user-area">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-wrap bar-success">
+            <h4 class="card-title">کارت های بانکی</h4>
+          </div>
+          <p>
+            تمام کارت های بانکی در این صفحه نمایش داده می‌شوند
+          </p>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <app-accountant-bankCards-list class="col-md-12"></app-accountant-bankCards-list>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--User Profile Starts-->

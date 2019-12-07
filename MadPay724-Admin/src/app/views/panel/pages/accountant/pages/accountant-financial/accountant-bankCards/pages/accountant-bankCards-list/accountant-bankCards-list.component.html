@@ -1,0 +1,213 @@
+<div class="search-div">
+  <!-- <button
+    *appHasRole="['Admin', 'Accountant']"
+    mat-raised-button
+    [routerLink]="['/panel/accountant/inventory']"
+    color="red"
+    class="float-left mb-10"
+  >
+    <i class="ft-chevrons-right"></i>
+    بازگشت به مدیریت موجودی
+  </button> -->
+  <mat-form-field class="search-form-field" floatLabel="never">
+    <input
+      matInput
+      type="text"
+      placeholder="جستوجو ..."
+      [(ngModel)]="filterSortOrderBy.searchKey"
+      (keyup)="applyFilter()"
+    />
+    <button
+      mat-button
+     *ngIf="filterSortOrderBy.searchKey"
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="onSearchClear()"
+    >
+      <i class="ft-x"></i>
+    </button>
+  </mat-form-field>
+</div>
+
+<mat-table 
+[dataSource]="bankCards"
+(matSortChange)="sortDataEvent($event)"
+matSort class="mat-elevation-z8">
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      شناسه
+    </mat-header-cell>
+    <mat-cell *matCellDef="let bankCard">
+      <mat-form-field class="col-md-12">
+        <button
+          mat-button
+          matSuffix
+          mat-icon-button
+          class="btncomy-green"
+          [ngxClipboard]="userId"
+          (cbOnSuccess)="copied()"
+        >
+          <i class="ft-copy col-fontsize-10"></i>
+        </button>
+        <input
+          #userId
+          matInput
+          value="{{ bankCard.id }}"
+          class="col-fontsize-10"
+        />
+      </mat-form-field>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="ownerName">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      نام
+    </mat-header-cell>
+    <mat-cell *matCellDef="let bankCard">
+      {{ bankCard.ownerName }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="approve">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      تاییدی
+    </mat-header-cell>
+    <mat-cell *matCellDef="let bankCard">
+      <mat-checkbox
+        [checked]="bankCard.approve"
+        (change)="onApproveChange($event, bankCard.id)"
+      ></mat-checkbox>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="bankName">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      بانک
+    </mat-header-cell>
+    <mat-cell *matCellDef="let bankCard">
+      {{ bankCard.bankName }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="cardNumber">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      شماره کارت
+    </mat-header-cell>
+    <mat-cell *matCellDef="let bankCard">
+      <mat-form-field class="col-md-12">
+        <button
+          mat-button
+          matSuffix
+          mat-icon-button
+          class="btncomy-green"
+          [ngxClipboard]="userId"
+          (cbOnSuccess)="copied()"
+        >
+          <i class="ft-copy col-fontsize-10"></i>
+        </button>
+        <input
+          #userId
+          matInput
+          value="{{ bankCard.cardNumber }}"
+          class="col-fontsize-10"
+        />
+      </mat-form-field>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="hesabNumber">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      شماره حساب
+    </mat-header-cell>
+    <mat-cell *matCellDef="let bankCard">
+      {{ bankCard.hesabNumber }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="shaba">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      شبا
+    </mat-header-cell>
+    <mat-cell *matCellDef="let bankCard">
+      <mat-form-field class="col-md-12">
+        <button
+          mat-button
+          matSuffix
+          mat-icon-button
+          class="btncomy-green"
+          [ngxClipboard]="userId"
+          (cbOnSuccess)="copied()"
+        >
+          <i class="ft-copy col-fontsize-10"></i>
+        </button>
+        <input
+          #userId
+          matInput
+          value="{{ bankCard.shaba }}"
+          class="col-fontsize-10"
+        />
+      </mat-form-field>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="exDate">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      انقضا
+    </mat-header-cell>
+    <mat-cell *matCellDef="let bankCard" class="exdate">
+      {{ bankCard.expireDateYear }}/{{ bankCard.expireDateMonth }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef>
+      عملیات
+    </mat-header-cell>
+    <mat-cell *matCellDef="let bankCard">
+      <button
+        *appHasRole="['Admin', 'Accountant']"
+        mat-raised-button
+        [routerLink]="['/panel/accountant/inventory']"
+        color="green"
+      >
+        <i class="icon-screen-tablet"></i>
+        نمایش واریزی ها
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="loading">
+    <mat-footer-cell *matFooterCellDef>
+      در حال بارگزاری ...
+    </mat-footer-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="noData">
+    <mat-footer-cell *matFooterCellDef>
+      چیزی برای نمایش وجود ندارد
+    </mat-footer-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+  <mat-footer-row
+    *matFooterRowDef="['loading']"
+    [ngClass]="{ hide: loadingHideFlag }"
+  ></mat-footer-row>
+
+  <mat-footer-row
+    *matFooterRowDef="['noData']"
+    [ngClass]="{ hide: noContentHideFlag }"
+  ></mat-footer-row>
+</mat-table>
+<mat-paginator
+  [pageIndex]="pagination.currentPage"
+  [length]="pagination.totalItems"
+  [pageSize]="pagination.itemsPerPage"
+  [pageSizeOptions]="[5, 10, 25, 50]"
+  (page)="paginatorEvent($event)"
+  showFirstLastButtons
+>
+</mat-paginator>
