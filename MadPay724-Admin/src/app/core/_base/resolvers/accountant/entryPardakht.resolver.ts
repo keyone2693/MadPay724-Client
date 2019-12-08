@@ -5,19 +5,21 @@ import { Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { InventoryService } from 'src/app/core/_services/panel/accountant/Inventory.service';
 import { Inventory } from 'src/app/data/models/accountant/inventory';
+import { EntryService } from 'src/app/core/_services/panel/accountant/entry.service';
+import { Entry } from 'src/app/data/models/accountant/entry';
 
 
 @Injectable()
-export class InventoryResolver implements Resolve<Inventory[]> {
+export class EntryPardakhtResolver implements Resolve<Entry[]> {
     pageNumber = 0;
     pageSize = 5;
     filter = '';
     sortHe = '';
     sortDir = '';
-    constructor(private inventoryService: InventoryService, private router: Router,
+    constructor(private entryService: EntryService, private router: Router,
                 private alertService: ToastrService) { }
-    resolve(route: ActivatedRouteSnapshot): Observable<Inventory[]> {
-        return this.inventoryService.getInventories(this.pageNumber, this.pageSize, this.filter, this.sortHe, this.sortDir).pipe(
+    resolve(route: ActivatedRouteSnapshot): Observable<Entry[]> {
+        return this.entryService.getEntriesPardakht(this.pageNumber, this.pageSize, this.filter, this.sortHe, this.sortDir).pipe(
             catchError(error => {
                 this.alertService.error(error, 'خطا');
                 return of(null);

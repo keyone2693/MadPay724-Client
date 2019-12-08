@@ -20,6 +20,9 @@ import { AccountantEntryAddComponent } from './pages/accountant-entry/accountant
 import { AccountantEntryPardakhtComponent } from './pages/accountant-entry/accountant-entry-pardakht/accountant-entry-pardakht.component';
 import { AccountantEntryApproveComponent } from './pages/accountant-entry/accountant-entry-approve/accountant-entry-approve.component';
 import { AccountantEntryArchiveComponent } from './pages/accountant-entry/accountant-entry-archive/accountant-entry-archive.component';
+import { EntryApproveResolver } from 'src/app/core/_base/resolvers/accountant/entryApprove.resolver';
+import { EntryPardakhtResolver } from 'src/app/core/_base/resolvers/accountant/entryPardakht.resolver';
+import { EntryArchiveResolver } from 'src/app/core/_base/resolvers/accountant/entryArchive.resolver';
 
 const routes: Routes = [
     {

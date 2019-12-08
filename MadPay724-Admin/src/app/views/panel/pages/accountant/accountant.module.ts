@@ -34,6 +34,12 @@ import { AccountantEntryAddComponent } from './pages/accountant-entry/accountant
 import { AccountantEntryPardakhtComponent } from './pages/accountant-entry/accountant-entry-pardakht/accountant-entry-pardakht.component';
 import { AccountantEntryArchiveComponent } from './pages/accountant-entry/accountant-entry-archive/accountant-entry-archive.component';
 import { AccountantEntryApproveComponent } from './pages/accountant-entry/accountant-entry-approve/accountant-entry-approve.component';
+import { EntryService } from 'src/app/core/_services/panel/accountant/entry.service';
+import { FactorService } from 'src/app/core/_services/panel/accountant/factor.service';
+import { EntryApproveResolver } from 'src/app/core/_base/resolvers/accountant/entryApprove.resolver';
+import { EntryArchiveResolver } from 'src/app/core/_base/resolvers/accountant/entryArchive.resolver';
+import { EntryPardakhtResolver } from 'src/app/core/_base/resolvers/accountant/entryPardakht.resolver';
+import { FactorResolver } from 'src/app/core/_base/resolvers/accountant/factor.resolver';
 
 @NgModule({
   imports: [
@@ -71,12 +77,18 @@ import { AccountantEntryApproveComponent } from './pages/accountant-entry/accoun
   ],
   providers: [
     InventoryService,
+    EntryService,
+    FactorService,
     //
     InventoryResolver,
     InventoryWalletResolver,
     InventoryBankCardResolver,
     AccWalletResolver,
-    AccBankCardResolver
+    AccBankCardResolver,
+    FactorResolver,
+    EntryApproveResolver,
+    EntryArchiveResolver,
+    EntryPardakhtResolver,
   ]
 })
 export class AccountantModule { }
