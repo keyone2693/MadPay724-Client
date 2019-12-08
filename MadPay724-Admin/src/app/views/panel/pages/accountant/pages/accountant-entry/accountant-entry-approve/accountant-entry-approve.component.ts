@@ -123,8 +123,8 @@ export class AccountantEntryApproveComponent implements OnInit, OnDestroy {
     this.subManager.add(
       this.entryService.changeApproveEntry(entryId, event.checked)
         .subscribe(() => {
+          this.applyFilter();
           if (event.checked === true) {
-            this.applyFilter();
             this.alertService.success('واریزی تایید شد', 'موفق');
           } else {
             this.alertService.success('واریزی از حالت تایید خارج شد', 'موفق');
@@ -138,8 +138,8 @@ export class AccountantEntryApproveComponent implements OnInit, OnDestroy {
     this.subManager.add(
       this.entryService.changePardakhtEntry(entryId, event.checked)
         .subscribe(() => {
+          this.applyFilter();
           if (event.checked === true) {
-            this.applyFilter();
             this.alertService.success('واریزی پرداخت شد', 'موفق');
           } else {
             this.alertService.success('واریزی از حالت پرداخت خارج شد', 'موفق');
@@ -153,8 +153,8 @@ export class AccountantEntryApproveComponent implements OnInit, OnDestroy {
     this.subManager.add(
       this.entryService.changeRejectEntry(entryId, event.checked)
         .subscribe(() => {
+          this.applyFilter();
           if (event.checked === true) {
-            this.applyFilter();
             this.alertService.success('واریزی رد شد', 'موفق');
           } else {
             this.alertService.success('واریزی از حالت رد خارج شد', 'موفق');

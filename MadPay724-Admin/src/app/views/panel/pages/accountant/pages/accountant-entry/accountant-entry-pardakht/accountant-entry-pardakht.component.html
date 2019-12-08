@@ -1,3 +1,217 @@
-<p>
-  accountant-entry-pardakht works!
-</p>
+<!-- User Profile Starts-->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/panel/accountant/dashboard']">داشبورد</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a>حسابدار </a>
+    </li>
+    <li class="breadcrumb-item">
+      <a>مدیریت واریزی </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">
+      واریزی های پرداخت نشده
+    </li>
+  </ol>
+</nav>
+<!--Basic User Details Starts-->
+<section id="user-area">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-wrap bar-success">
+            <h4 class="card-title">واریزی کاربران</h4>
+          </div>
+          <p>
+            تمام واریزی در این صفحه نمایش داده می‌شوند
+          </p>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="search-div">
+                <mat-form-field class="search-form-field" floatLabel="never">
+                  <input
+                    matInput
+                    type="text"
+                    placeholder="جستوجو ..."
+                    [(ngModel)]="filterSortOrderBy.searchKey"
+                    (keyup)="applyFilter()"
+                  />
+                  <button
+                    mat-button
+                    *ngIf="filterSortOrderBy.searchKey"
+                    matSuffix
+                    mat-icon-button
+                    aria-label="Clear"
+                    (click)="onSearchClear()"
+                  >
+                    <i class="ft-x"></i>
+                  </button>
+                </mat-form-field>
+              </div>
+
+              <mat-table
+                [dataSource]="entries"
+                (matSortChange)="sortDataEvent($event)"
+                matSort
+                class="mat-elevation-z8"
+              >
+                <ng-container matColumnDef="id">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    شناسه
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let entry">
+                    <mat-form-field class="col-md-12">
+                      <button
+                        mat-button
+                        matSuffix
+                        mat-icon-button
+                        class="btncomy-green"
+                        [ngxClipboard]="userId"
+                        (cbOnSuccess)="copied()"
+                      >
+                        <i class="ft-copy col-fontsize-10"></i>
+                      </button>
+                      <input
+                        #userId
+                        matInput
+                        value="{{ entry.id }}"
+                        class="col-fontsize-10"
+                      />
+                    </mat-form-field>
+                  </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="ownerName">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    نام
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let entry">
+                    {{ entry.ownerName }}
+                  </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="isApprove">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    تاییدی
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let entry">
+                    <mat-checkbox
+                      [checked]="entry.isApprove"
+                      (change)="onApproveChange($event, entry.id)"
+                    ></mat-checkbox>
+                  </mat-cell>
+                </ng-container>
+
+<ng-container matColumnDef="isPardakht">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    پرداختی
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let entry">
+                    <mat-checkbox
+                      [checked]="entry.isPardakht"
+                      (change)="onPardakhtChange($event, entry.id)"
+                    ></mat-checkbox>
+                  </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="isReject">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    رد
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let entry">
+                    <mat-checkbox
+                      [checked]="entry.isReject"
+                      (change)="onRejectChange($event, entry.id)"
+                    ></mat-checkbox>
+                  </mat-cell>
+                </ng-container>
+
+              
+
+                <ng-container matColumnDef="price">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    مبلغ <span class="monytoman">تومان</span>
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let entry" class="txt-price-green">
+                    {{ (entry.price | irc).replace("ریال", "") }}
+                  </mat-cell>
+                </ng-container>
+
+                
+                <ng-container matColumnDef="textForUser">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    متن پاسخ
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let entry">
+                    <p matTooltip="{{entry.textForUser}}" class="txtwxp">
+                     نمایش متن
+                    </p>
+                  </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="actions">
+                  <mat-header-cell *matHeaderCellDef>
+                    عملیات
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let entry">
+                    <button
+                      mat-raised-button
+                      [routerLink]="['/panel/accountant/inventory']"
+                      color="green"
+                    >
+                      <i class="ft-alert-octagon"></i>
+                      جزییات واریزی
+                    </button>
+                  </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="loading">
+                  <mat-footer-cell *matFooterCellDef>
+                    در حال بارگزاری ...
+                  </mat-footer-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="noData">
+                  <mat-footer-cell *matFooterCellDef>
+                    چیزی برای نمایش وجود ندارد
+                  </mat-footer-cell>
+                </ng-container>
+
+                <mat-header-row
+                  *matHeaderRowDef="displayedColumns"
+                ></mat-header-row>
+                <mat-row
+                  *matRowDef="let row; columns: displayedColumns"
+                ></mat-row>
+
+                <mat-footer-row
+                  *matFooterRowDef="['loading']"
+                  [ngClass]="{ hide: loadingHideFlag }"
+                ></mat-footer-row>
+
+                <mat-footer-row
+                  *matFooterRowDef="['noData']"
+                  [ngClass]="{ hide: noContentHideFlag }"
+                ></mat-footer-row>
+              </mat-table>
+              <mat-paginator
+                [pageIndex]="pagination.currentPage"
+                [length]="pagination.totalItems"
+                [pageSize]="pagination.itemsPerPage"
+                [pageSizeOptions]="[5, 10, 25, 50]"
+                (page)="paginatorEvent($event)"
+                showFirstLastButtons
+              >
+              </mat-paginator>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--User Profile Starts-->

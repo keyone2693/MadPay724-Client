@@ -113,6 +113,7 @@
                   <mat-cell *matCellDef="let entry">
                     <mat-checkbox
                       [checked]="entry.isPardakht"
+                      [disabled]="true"
                       (change)="onPardakhtChange($event, entry.id)"
                     ></mat-checkbox>
                   </mat-cell>
@@ -125,6 +126,7 @@
                   <mat-cell *matCellDef="let entry">
                     <mat-checkbox
                       [checked]="entry.isReject"
+                      [disabled]="true"
                       (change)="onRejectChange($event, entry.id)"
                     ></mat-checkbox>
                   </mat-cell>
