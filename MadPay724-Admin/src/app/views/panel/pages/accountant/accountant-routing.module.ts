@@ -17,6 +17,9 @@ import { AccountantWalletsComponent } from './pages/accountant-financial/account
 import { AccountantBankCardsComponent } from './pages/accountant-financial/accountant-bankCards/accountant-bankCards.component';
 import { AccountantEntryComponent } from './pages/accountant-entry/accountant-entry/accountant-entry.component';
 import { AccountantEntryAddComponent } from './pages/accountant-entry/accountant-entry-add/accountant-entry-add.component';
+import { AccountantEntryPardakhtComponent } from './pages/accountant-entry/accountant-entry-pardakht/accountant-entry-pardakht.component';
+import { AccountantEntryApproveComponent } from './pages/accountant-entry/accountant-entry-approve/accountant-entry-approve.component';
+import { AccountantEntryArchiveComponent } from './pages/accountant-entry/accountant-entry-archive/accountant-entry-archive.component';
 
 const routes: Routes = [
     {
@@ -29,14 +32,21 @@ const routes: Routes = [
             },
             //
             {
-                path: 'entry', canActivate: [AuthGuard],
-                //resolve: { inventories: InventoryResolver },
-                component: AccountantEntryComponent,
+                path: 'entryapprove', canActivate: [AuthGuard],
+                resolve: { entriesapprove: EntryApproveResolver },
+                component: AccountantEntryApproveComponent,
                 data: { roles: ['Accountant', 'Admin'], title: ['گزارش فاکتورها'] }
             },
             {
-                path: 'entryadd', canActivate: [AuthGuard],
-                component: AccountantEntryAddComponent,
+                path: 'entrypardakht', canActivate: [AuthGuard],
+                resolve: { entriespardakht: EntryPardakhtResolver },
+                component: AccountantEntryPardakhtComponent,
+                data: { roles: ['Accountant', 'Admin'], title: ['گزارش فاکتورها'] }
+            },
+            {
+                path: 'entryarchive', canActivate: [AuthGuard],
+                resolve: { entriesarchive: EntryArchiveResolver },
+                component: AccountantEntryArchiveComponent,
                 data: { roles: ['Accountant', 'Admin'], title: ['گزارش فاکتورها'] }
             },
             //

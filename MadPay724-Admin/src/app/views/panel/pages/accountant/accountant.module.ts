@@ -31,6 +31,9 @@ import { AccountantBankCardsListComponent } from './pages/accountant-financial/a
 import { AccountantWalletsListComponent } from './pages/accountant-financial/accountant-wallets/pages/accountant-wallets-list/accountant-wallets-list.component';
 import { AccountantEntryComponent } from './pages/accountant-entry/accountant-entry/accountant-entry.component';
 import { AccountantEntryAddComponent } from './pages/accountant-entry/accountant-entry-add/accountant-entry-add.component';
+import { AccountantEntryPardakhtComponent } from './pages/accountant-entry/accountant-entry-pardakht/accountant-entry-pardakht.component';
+import { AccountantEntryArchiveComponent } from './pages/accountant-entry/accountant-entry-archive/accountant-entry-archive.component';
+import { AccountantEntryApproveComponent } from './pages/accountant-entry/accountant-entry-approve/accountant-entry-approve.component';
 
 @NgModule({
   imports: [
@@ -61,6 +64,9 @@ import { AccountantEntryAddComponent } from './pages/accountant-entry/accountant
     AccountantWalletsListComponent,
     AccountantEntryAddComponent,
     AccountantEntryComponent,
+    AccountantEntryPardakhtComponent,
+    AccountantEntryArchiveComponent,
+    AccountantEntryApproveComponent,
     IRCurrencyPipe
   ],
   providers: [

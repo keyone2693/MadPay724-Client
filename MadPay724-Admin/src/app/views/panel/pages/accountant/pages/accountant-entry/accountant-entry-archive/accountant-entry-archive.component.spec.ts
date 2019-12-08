@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { AccountantEntryAddComponent } from './accountant-entry-add.component';
+import { AccountantEntryArchiveComponent } from './accountant-entry-archive.component';
 
-describe('AccountantEntryAddComponent', () => {
-  let component: AccountantEntryAddComponent;
-  let fixture: ComponentFixture<AccountantEntryAddComponent>;
+describe('AccountantEntryArchiveComponent', () => {
+  let component: AccountantEntryArchiveComponent;
+  let fixture: ComponentFixture<AccountantEntryArchiveComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AccountantEntryAddComponent ]
+      declarations: [ AccountantEntryArchiveComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AccountantEntryAddComponent);
+    fixture = TestBed.createComponent(AccountantEntryArchiveComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -83,20 +83,29 @@
           <ul class="menu-content">
             <li routerLinkActive="active mlisub">
               <a
-                [routerLink]="['/panel/accountant/entryadd']"
+                [routerLink]="['/panel/accountant/entryapprove']"
                 class="menu-item"
               >
-                <i class="icon-control-start"></i>
-                 انجام واریزی</a
+                <i class="icon-shield"></i>
+                 واریز تایید نشده</a
               >
             </li>
             <li routerLinkActive="active mlisub">
               <a
-                [routerLink]="['/panel/accountant/entry']"
+                [routerLink]="['/panel/accountant/entrypardakht']"
+                class="menu-item"
+              >
+                <i class="icon-share-alt"></i>
+                 واریز پرداخت نشده</a
+              >
+            </li>
+            <li routerLinkActive="active mlisub">
+              <a
+                [routerLink]="['/panel/accountant/entryarchive']"
                 class="menu-item"
               >
                 <i class="ft-command"></i>
-                مدیریت واریزی ها</a
+                آرشیو واریزی ها</a
               >
             </li>
           </ul>
