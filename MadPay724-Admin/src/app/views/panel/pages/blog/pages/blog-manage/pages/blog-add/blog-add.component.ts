@@ -25,12 +25,13 @@ import { Subscription } from 'rxjs';
 })
 export class BlogAddComponent implements OnInit, OnDestroy {
   @ViewChild('toolsRTE', { static: true })
+  public rteObj: RichTextEditorComponent;
   blogGroups: BlogGroup[];
   slectedFile: File;
   imgUrl = '../../../../../../../../../../assets/img/profilepic.png';
   subManager = new Subscription();
 
-  public rteObj: RichTextEditorComponent;
+  
   public tools: ToolbarModule = {
     items: ['Bold', 'Italic', 'Underline', 'StrikeThrough',
       'FontName', 'FontSize', 'FontColor', 'BackgroundColor',

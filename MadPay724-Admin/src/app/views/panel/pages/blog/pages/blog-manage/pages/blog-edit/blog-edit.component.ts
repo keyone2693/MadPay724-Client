@@ -25,14 +25,15 @@ import * as fromStore from '../../../../../../../../store';
     HtmlEditorService, TableService, QuickToolbarService]
 })
 export class BlogEditComponent implements OnInit, OnDestroy {
+  @ViewChild('toolsRTE', { static: true })
+  public rteObj: RichTextEditorComponent;
   blogGroups: BlogGroup[];
   blog: Blog;
   slectedFile: File;
   currentImgUrl: '';
   subManager = new Subscription();
   imgUrl = '../../../../../../../../../../assets/img/profilepic.png';
-  @ViewChild('toolsRTE', { static: true })
-  public rteObj: RichTextEditorComponent;
+  
   public tools: ToolbarModule = {
     items: ['Bold', 'Italic', 'Underline', 'StrikeThrough',
       'FontName', 'FontSize', 'FontColor', 'BackgroundColor',
