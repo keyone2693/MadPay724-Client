@@ -1,18 +1,19 @@
 export interface Entry {
-    Id: string;
-    DateCreated: Date;
-    DateModified: Date;
-    IsApprove: boolean;
-    IsPardakht: boolean;
-    IsReject: boolean;
-    Price: number;
-    TextForUser: string;
-    BankName: string;
-    OwnerName: string;
-    Shaba: string;
-    CardNumber: string;
-    WalletName: string;
-    UserId: string;
-    BankCardId: string;
-    WalletId: string;
+    id: string;
+    dateCreated: Date;
+    dateModified: Date;
+    isApprove: boolean;
+    isPardakht: boolean;
+    isReject: boolean;
+    price: number;
+    textForUser: string;
+    bankName: string;
+    ownerName: string;
+    shaba: string;
+    cardNumber: string;
+    walletName: string;
+    bankTrackingCode: string;
+    userId: string;
+    bankCardId: string;
+    walletId: string;
 }

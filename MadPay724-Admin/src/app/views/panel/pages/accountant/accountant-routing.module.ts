@@ -53,10 +53,10 @@ const routes: Routes = [
                 data: { roles: ['Accountant', 'Admin'], title: ['ارشیو واریزی ها'] }
             },
             {
-                path: 'entryEdit:entryId', canActivate: [AuthGuard],
+                path: 'entryedit/:entryId', canActivate: [AuthGuard],
                 resolve: { entry: EntryResolver },
                 component: EntryEditComponent,
-                data: { roles: ['Accountant', 'Admin'], title: ['ویرایش واریزی'] }
+                data: { roles: ['Accountant', 'Admin'], title: ['جزییات،ویرایش واریزی'] }
             },
             //
             {

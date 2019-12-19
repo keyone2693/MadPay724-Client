@@ -163,11 +163,11 @@
                   <mat-cell *matCellDef="let entry">
                     <button
                       mat-raised-button
-                      [routerLink]="['/panel/accountant/inventory']"
+                       [routerLink]="['/panel/accountant/entryedit/', entry.id]"
                       color="green"
                     >
                       <i class="ft-alert-octagon"></i>
-                      جزییات واریزی
+                      جزییات و ویرایش
                     </button>
                   </mat-cell>
                 </ng-container>

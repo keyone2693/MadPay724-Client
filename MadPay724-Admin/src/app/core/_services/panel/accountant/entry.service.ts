@@ -5,6 +5,7 @@ import { PaginationResult } from 'src/app/data/models/common/paginationResult';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Entry } from 'src/app/data/models/accountant/entry';
+import { EntryForUpdate } from 'src/app/data/models/accountant/entryForUpdate';
 
 @Injectable({
   providedIn: 'root'
@@ -99,8 +100,8 @@ export class EntryService {
   changeRejectEntry(entryId: string, isReject: boolean) {
     return this.http.patch(this.baseUrl + entryId + '/reject', { isReject });
   }
-  updateEntry(entryId: string, textForUser: string) {
-    return this.http.patch(this.baseUrl + entryId + '/update', { textForUser });
+  updateEntry(entryId: string, entry: any) {
+    return this.http.patch(this.baseUrl + entryId + '/update', entry);
   }
 
 }
