@@ -14,7 +14,7 @@ import { Store } from '@ngrx/store';
   styleUrls: ['./detail-ticket.component.css']
 })
 export class DetailTicketComponent implements OnInit, OnDestroy {
-  @ViewChild('closedchk', {static: false}) private closedck;
+  @ViewChild('closedchk') private closedck;
   ticket: Ticket;
   subManager = new Subscription();
   constructor(private route: ActivatedRoute, private title: Title, private ticketService: TicketService,

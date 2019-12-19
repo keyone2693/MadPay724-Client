@@ -14,7 +14,7 @@ import { CreateFormTicketComponent } from './pages/create-form-ticket/create-for
 })
 export class ListTicketComponent implements OnInit, OnDestroy {
   @Input() firstTickets;
-  @ViewChild(NgScrollbar, {static: false}) ticketScrollbar: NgScrollbar;
+  @ViewChild(NgScrollbar) ticketScrollbar: NgScrollbar;
   tickets = new BehaviorSubject<Ticket[]>([]);
   page = 1;
   finished = false;

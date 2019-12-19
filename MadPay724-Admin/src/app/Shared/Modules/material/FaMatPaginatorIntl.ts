@@ -1,5 +1,7 @@
 import { MatPaginatorIntl } from '@angular/material';
+import { Injectable } from "@angular/core";
 
+@Injectable()
 export class FaMatPaginatorIntl extends MatPaginatorIntl {
     itemsPerPageLabel = 'تعداد نمایش';
     nextPageLabel = 'بعدی';
