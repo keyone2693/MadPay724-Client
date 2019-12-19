@@ -12,7 +12,6 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { HasRoleModule } from 'src/app/Shared/Modules/hasRole/hasRole.module';
 import { PersianDateModule } from 'src/app/core/_base/pipe/PersianDatePipe/persian-date.module';
 import { DigitOnlyModule } from '@uiowa/digit-only';
-import { IRCurrencyPipe } from 'ngx-persian';
 import { AccountantMaterialModule } from 'src/app/shared/modules/material/accountant-material.module';
 import { ClipboardModule } from 'ngx-clipboard';
 import { InventoryBankCardResolver } from 'src/app/core/_base/resolvers/accountant/inventoryBankCard.resolver';
@@ -38,6 +37,7 @@ import { EntryApproveResolver } from 'src/app/core/_base/resolvers/accountant/en
 import { EntryArchiveResolver } from 'src/app/core/_base/resolvers/accountant/entryArchive.resolver';
 import { EntryPardakhtResolver } from 'src/app/core/_base/resolvers/accountant/entryPardakht.resolver';
 import { FactorResolver } from 'src/app/core/_base/resolvers/accountant/factor.resolver';
+import { PersianPipeModule } from 'src/app/shared/modules/common/persianPipe.module';
 
 @NgModule({
   imports: [
@@ -51,7 +51,8 @@ import { FactorResolver } from 'src/app/core/_base/resolvers/accountant/factor.r
     SweetAlert2Module.forRoot(),
     HasRoleModule,
     ClipboardModule,
-    StoreModule.forFeature('accountantSection',accountantReducers),
+    StoreModule.forFeature('accountantSection', accountantReducers),
+    PersianPipeModule
   ],
   declarations: [
     AccountantComponent,
@@ -69,7 +70,6 @@ import { FactorResolver } from 'src/app/core/_base/resolvers/accountant/factor.r
     AccountantEntryPardakhtComponent,
     AccountantEntryArchiveComponent,
     AccountantEntryApproveComponent,
-    IRCurrencyPipe
   ],
   providers: [
     InventoryService,

@@ -4,13 +4,11 @@ import { UserComponent } from './user.component';
 import { FileUploadModule } from 'ng2-file-upload';
 
 import { UserRoutingModule } from './user-routing.module';
-import { PersianTimeAgoPipe } from 'persian-time-ago-pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserMaterialModule } from 'src/app/Shared/Modules/material/user-material.module';
 
 import { DigitOnlyModule } from '@uiowa/digit-only';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material';
-import { IRCurrencyPipe, JdatePipe } from 'ngx-persian';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ChartistModule } from 'ng-chartist';
@@ -65,6 +63,7 @@ import { GateEditResolver } from 'src/app/core/_base/resolvers/user/gateEdit.res
 import { EasyPayEditResolver } from 'src/app/core/_base/resolvers/user/easyPayEdit.resolver';
 import { PreventUnsavedGuard } from 'src/app/core/_base/guards/prevent-unsaved.guard';
 import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from 'src/app/core/_config/material.persian-date.adapter';
+import { PersianPipeModule } from 'src/app/shared/modules/common/persianPipe.module';
 
 @NgModule({
   imports: [
@@ -81,12 +80,10 @@ import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from 'src/app/core/_
     // InfiniteScrollModule,
     // NgxUiLoaderModule,
     SweetAlert2Module.forRoot(),
-    ChartistModule
+    ChartistModule,
+    PersianPipeModule
   ],
   declarations: [
-    PersianTimeAgoPipe,
-    IRCurrencyPipe,
-    JdatePipe,
     UserComponent,
     ProfileComponent,
     DocumentComponent,
