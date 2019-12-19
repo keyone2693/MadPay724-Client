@@ -8,9 +8,6 @@ import { GateResolver } from 'src/app/core/_base/resolvers/user/gate.resolver';
 import { GateManageComponent } from './pages/gate-manage/gate-manage.component';
 import { GateEditResolver } from 'src/app/core/_base/resolvers/user/gateEdit.resolver';
 import { GateEditComponent } from './pages/gate-manage/pages/gate-edit/gate-edit.component';
-import { ProfileComponent } from './pages/userinfo/profile/profile.component';
-import { UserProfileResolver } from 'src/app/core/_base/resolvers/user/userprofile.resolver';
-import { PreventUnsavedGuard } from 'src/app/core/_base/guards/prevent-unsaved.guard';
 import { DocumentComponent } from './pages/userinfo/document/document.component';
 import { DocumentResolver } from 'src/app/core/_base/resolvers/user/document.resolver';
 import { NotificationResolver } from 'src/app/core/_base/resolvers/user/notification.resolver';
@@ -49,13 +46,6 @@ const routes: Routes = [
         resolve: { gatewallets: GateEditResolver },
         component: GateEditComponent,
         data: { roles: ['User'], title: ['ویرایش در گاه پرداخت'] },
-      },
-      // userinfo
-      {
-        path: 'userinfo/profile', canActivate: [AuthGuard], component: ProfileComponent,
-        data: { roles: ['User', 'Admin', 'AdminBlog', 'Blog', 'Accountant'], title: ['پروفایل کاربری'] },
-        resolve: { user: UserProfileResolver },
-        canDeactivate: [PreventUnsavedGuard]
       },
       //
       {

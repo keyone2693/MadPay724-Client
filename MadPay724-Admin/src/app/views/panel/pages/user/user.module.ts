@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserComponent } from './user.component';
-import { FileUploadModule } from 'ng2-file-upload';
 
 import { UserRoutingModule } from './user-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -13,13 +12,10 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ChartistModule } from 'ng-chartist';
 import { PersianDateModule } from 'src/app/core/_base/pipe/PersianDatePipe/persian-date.module';
-import { ProfileComponent } from './pages/userinfo/profile/profile.component';
 import { DocumentComponent } from './pages/userinfo/document/document.component';
 import { RightDocumentComponent } from './pages/userinfo/document/pages/right-document/right-document.component';
 import { LeftDocumentComponent } from './pages/userinfo/document/pages/left-document/left-document.component';
 import { DocumentListComponent } from './pages/userinfo/document/pages/document-list/document-list.component';
-import { UserChangePassComponent } from './pages/userinfo/profile/pages/user-change-pass/user-change-pass.component';
-import { UserChangePicComponent } from './pages/userinfo/profile/pages/user-change-pic/user-change-pic.component';
 import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
 import { NotificationComponent } from './pages/notification/notification.component';
 import { BankCardComponent } from './pages/manage-bank-card/pages/bank-card/bank-card.component';
@@ -44,14 +40,12 @@ import { EasypayManageComponent } from './pages/easypay-manage/easypay-manage.co
 import { EasypayListComponent } from './pages/easypay-manage/pages/easypay-list/easypay-list.component';
 import { EasypayAddComponent } from './pages/easypay-manage/pages/easypay-add/easypay-add.component';
 import { EasypayEditComponent } from './pages/easypay-manage/pages/easypay-edit/easypay-edit.component';
-import { UserService } from 'src/app/core/_services/panel/user.service';
 import { NotificationService } from 'src/app/core/_services/panel/user/notification.service';
 import { BankCardsService } from 'src/app/core/_services/panel/user/bankCards.service';
 import { DocumentService } from 'src/app/core/_services/panel/user/document.service';
 import { WalletService } from 'src/app/core/_services/panel/user/wallet.service';
 import { GatesService } from 'src/app/core/_services/panel/user/gateService.service';
 import { EasyPayService } from 'src/app/core/_services/panel/user/easyPay.service';
-import { UserProfileResolver } from 'src/app/core/_base/resolvers/user/userprofile.resolver';
 import { NotificationResolver } from 'src/app/core/_base/resolvers/user/notification.resolver';
 import { BankCardResolver } from 'src/app/core/_base/resolvers/user/bankcard.resolver';
 import { DocumentResolver } from 'src/app/core/_base/resolvers/user/document.resolver';
@@ -61,14 +55,12 @@ import { TicketOverviewResolver } from 'src/app/core/_base/resolvers/user/ticket
 import { GateResolver } from 'src/app/core/_base/resolvers/user/gate.resolver';
 import { GateEditResolver } from 'src/app/core/_base/resolvers/user/gateEdit.resolver';
 import { EasyPayEditResolver } from 'src/app/core/_base/resolvers/user/easyPayEdit.resolver';
-import { PreventUnsavedGuard } from 'src/app/core/_base/guards/prevent-unsaved.guard';
 import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from 'src/app/core/_config/material.persian-date.adapter';
 import { PersianPipeModule } from 'src/app/shared/modules/common/persianPipe.module';
 
 @NgModule({
   imports: [
     UserRoutingModule,
-    FileUploadModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -85,13 +77,11 @@ import { PersianPipeModule } from 'src/app/shared/modules/common/persianPipe.mod
   ],
   declarations: [
     UserComponent,
-    ProfileComponent,
     DocumentComponent,
     RightDocumentComponent,
     LeftDocumentComponent,
     DocumentListComponent,
-    UserChangePassComponent,
-    UserChangePicComponent,
+
     UserDashboardComponent,
     NotificationComponent,
     //
@@ -123,15 +113,13 @@ import { PersianPipeModule } from 'src/app/shared/modules/common/persianPipe.mod
     EasypayEditComponent
   ],
   providers: [
-    UserService,
     NotificationService,
     BankCardsService,
     DocumentService,
     WalletService,
     GatesService,
     EasyPayService,
-    //
-    UserProfileResolver,
+   
     NotificationResolver,
     BankCardResolver,
     DocumentResolver,
@@ -141,7 +129,6 @@ import { PersianPipeModule } from 'src/app/shared/modules/common/persianPipe.mod
     GateResolver,
     GateEditResolver,
     EasyPayEditResolver,
-    PreventUnsavedGuard,
     { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS }
   ],

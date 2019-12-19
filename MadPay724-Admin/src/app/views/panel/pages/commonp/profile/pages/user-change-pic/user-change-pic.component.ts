@@ -6,7 +6,7 @@ import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { Photo } from 'src/app/data/models/photo';
 import { Store } from '@ngrx/store';
 
-import * as fromStore from '../../../../../../../../../store';
+import * as fromStore from '../../../../../../../store';
 
 @Component({
   selector: 'app-user-change-pic',

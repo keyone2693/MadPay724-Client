@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanDeactivate} from '@angular/router';
-import { ProfileComponent } from 'src/app/views/panel/pages/user/pages/userinfo/profile/profile.component';
+import { ProfileComponent } from 'src/app/views/panel/pages/commonp/profile/profile.component';
 
 @Injectable({
   providedIn: 'root'

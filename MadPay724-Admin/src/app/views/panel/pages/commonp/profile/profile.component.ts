@@ -1,4 +1,4 @@
-import { OnInit, ViewChild, HostListener, Input, Component } from '@angular/core';
+import { OnInit, HostListener, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -6,8 +6,8 @@ import { UserService } from 'src/app/core/_services/panel/user.service';
 import { User } from 'src/app/data/models/user';
 import { Store } from '@ngrx/store';
 
-import * as fromStore from '../../../../../../../store';
-import { Observable, from } from 'rxjs';
+import * as fromStore from '../../../../../store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-profile',

@@ -9,6 +9,7 @@ import { AuthGuard } from 'src/app/core/_base/guards/auth.guard';
 import { MatTooltipModule, MatPaginatorIntl, MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material';
 import { NotificationComponent } from './layout/navbar/pages/notification/notification.component';
 import { FaMatPaginatorIntl } from '../../Shared/Modules/material/faMatPaginatorIntl';
+import { CommonpComponent } from './pages/commonp/commonp.component';
 
 @NgModule({
   imports: [
