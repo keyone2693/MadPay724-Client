@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { WalletFormComponent } from '../wallet-form/wallet-form.component';
 import { Wallet } from 'src/app/data/models/wallet';

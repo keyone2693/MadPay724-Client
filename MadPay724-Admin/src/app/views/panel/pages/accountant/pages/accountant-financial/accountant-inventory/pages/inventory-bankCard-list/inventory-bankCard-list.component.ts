@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
-import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Store } from '@ngrx/store';

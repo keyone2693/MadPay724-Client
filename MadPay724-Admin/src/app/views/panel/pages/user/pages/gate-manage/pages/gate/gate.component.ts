@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { MatDialogConfig, MatDialog } from '@angular/material';
+import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { GateActiveComponent } from '../gate-active/gate-active.component';
 import { Gate } from 'src/app/data/models/user/gate';
 import { Wallet } from 'src/app/data/models/wallet';

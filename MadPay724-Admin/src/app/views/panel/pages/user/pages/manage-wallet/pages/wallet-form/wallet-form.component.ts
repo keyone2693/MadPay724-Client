@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { Wallet } from 'src/app/data/models/wallet';

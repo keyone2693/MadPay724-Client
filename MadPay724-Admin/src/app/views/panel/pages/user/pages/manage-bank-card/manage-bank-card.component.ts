@@ -1,5 +1,5 @@
 import { Component, OnInit, DefaultIterableDiffer } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
 import { BankCard } from 'src/app/data/models/bankcard';

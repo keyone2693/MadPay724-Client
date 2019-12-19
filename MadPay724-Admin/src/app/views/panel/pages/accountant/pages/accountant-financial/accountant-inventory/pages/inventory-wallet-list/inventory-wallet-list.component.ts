@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Wallet } from 'src/app/data/models/wallet';
 import { Router, ActivatedRoute } from '@angular/router';
 import { InventoryService } from 'src/app/core/_services/panel/accountant/Inventory.service';

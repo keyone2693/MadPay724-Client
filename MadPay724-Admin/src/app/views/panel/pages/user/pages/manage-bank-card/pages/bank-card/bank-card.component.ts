@@ -1,5 +1,5 @@
 import {  OnInit, Input, EventEmitter, Output, Component } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { EditBankCardComponent } from '../edit-bank-card/edit-bank-card.component';
 import { ToastrService } from 'ngx-toastr';
 import { BankCard } from 'src/app/data/models/bankcard';

@@ -9,7 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserMaterialModule } from 'src/app/Shared/Modules/material/user-material.module';
 
 import { DigitOnlyModule } from '@uiowa/digit-only';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { IRCurrencyPipe, JdatePipe } from 'ngx-persian';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
