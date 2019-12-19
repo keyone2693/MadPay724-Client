@@ -1,3 +1,143 @@
-<p>
-  entry-edit works!
-</p>
+<!-- User Profile Starts-->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/panel/accountant/dashboard']">داشبورد</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a>حسابدار </a>
+    </li>
+    <li class="breadcrumb-item">
+      <a>مدیریت واریزی </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">
+      جزییات،ویرایش واریزی
+    </li>
+  </ol>
+</nav>
+<!--Basic User Details Starts-->
+<section id="kb">
+  <div class="row">
+    <div class="col-12">
+      <div class="card gradient-crystal-clear white text-center p-4">
+        <div class="card-header">
+          <h1 class="white">جزییات،ویرایش واریزی</h1>
+          <p>
+            <em
+              >با شناسه {{ entry.id }} و برای کاربر با نام {{ entry.ownerName }}
+            </em>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="px-3 py-3">
+            <div class="media">
+              <div class="media-left align-self-center">
+                <i class="icon-rocket danger font-large-2 float-left"></i>
+              </div>
+              <div class="media-body text-center">
+                <h5 class="mb-1 text-bold-500">نام بانک</h5>
+                <span class="text-muted">{{ entry.bankName }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="px-3 py-3">
+            <div class="media">
+              <div class="media-left align-self-center">
+                <i class="icon-bubble danger font-large-2 float-left"></i>
+              </div>
+              <div class="media-body text-center">
+                <h5 class="mb-1 text-bold-500">نام صاحب حساب</h5>
+                <span class="text-muted">{{ entry.ownerName }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="px-3 py-3">
+            <div class="media">
+              <div class="media-left align-self-center">
+                <i class="icon-bulb danger font-large-2 float-left"></i>
+              </div>
+              <div class="media-body text-center">
+                <h5 class="mb-1 text-bold-500">شماره شبا</h5>
+                <span class="text-muted">{{ entry.shaba }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="px-3 py-3">
+            <div class="media">
+              <div class="media-left align-self-center">
+                <i class="icon-support danger font-large-2 float-left"></i>
+              </div>
+              <div class="media-body text-center">
+                <h5 class="mb-1 text-bold-500">شماره کارت</h5>
+                <span class="text-muted">{{ entry.cardNumber }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-wrap bar-success">
+            <h4 class="card-title mb-0">ویرایش کد پیگیری</h4>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-block"></div>
+        </div>
+        <div class="card-footer">
+          <a class="card-link info">See all articles (50)</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div
+      [ngClass]="entry.isPardakht ? 'bg-success' : 'bg-danger'"
+      class="card card-inverse  text-center">
+        <div class="card-header">
+          <i 
+          [ngClass]="entry.isPardakht ? 'icon-like' : 'icon-dislike'"
+          class=" font-large-1 float-left mr-2"></i>
+          <h4 class="card-title">مبلغ برای پرداخت</h4>
+        </div>
+        <div class="card-body">
+          <div class="card-block">
+            <h3 class="white">
+              {{ (entry.price | irc).replace("ریال", "تومان") }}
+            </h3>
+          </div>
+        </div>
+      </div
+      >
+    </div>
+  </div>
+  <!-- Convex template Knowledge Base Ends -->
+</section>
+<!--User Profile Starts-->
