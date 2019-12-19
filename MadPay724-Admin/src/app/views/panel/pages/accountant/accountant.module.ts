@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AccountantComponent } from './accountant.component';
-import { AccountantDashboardComponent } from './pages/accountant-dashboard/accountant-dashboard.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AccountantRoutingModule } from './accountant-routing.module';
-import { AccountantManageFactorsComponent } from './pages/accountant-factors/accountant-manage-factors/accountant-manage-factors.component';
-import { AccountantFactorsReportComponent } from './pages/accountant-factors/accountant-factorsreport/accountant-factorsreport.component';
+import { ManageFactorsComponent } from './pages/factors/manage-factors/manage-factors.component';
+import { FactorsReportComponent } from './pages/factors/factorsreport/factorsreport.component';
 import { InventoryService } from 'src/app/core/_services/panel/accountant/Inventory.service';
 import { InventoryResolver } from 'src/app/core/_base/resolvers/accountant/inventory.resolver';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -20,17 +20,17 @@ import { StoreModule } from '@ngrx/store';
 import { accountantReducers } from './store/reducers';
 import { AccWalletResolver } from 'src/app/core/_base/resolvers/accountant/accWallet.resolver';
 import { AccBankCardResolver } from 'src/app/core/_base/resolvers/accountant/accBankcard.resolver';
-import { AccountantInventoryComponent } from './pages/accountant-financial/accountant-inventory/accountant-inventory.component';
-import { InventoryWalletListComponent } from './pages/accountant-financial/accountant-inventory/pages/inventory-wallet-list/inventory-wallet-list.component';
-import { InventoryListComponent } from './pages/accountant-financial/accountant-inventory/pages/inventory-list/inventory-list.component';
-import { InventoryBankCardListComponent } from './pages/accountant-financial/accountant-inventory/pages/inventory-bankCard-list/inventory-bankCard-list.component';
-import { AccountantBankCardsComponent } from './pages/accountant-financial/accountant-bankCards/accountant-bankCards.component';
-import { AccountantWalletsComponent } from './pages/accountant-financial/accountant-wallets/accountant-wallets.component';
-import { AccountantBankCardsListComponent } from './pages/accountant-financial/accountant-bankCards/pages/accountant-bankCards-list/accountant-bankCards-list.component';
-import { AccountantWalletsListComponent } from './pages/accountant-financial/accountant-wallets/pages/accountant-wallets-list/accountant-wallets-list.component';
-import { AccountantEntryPardakhtComponent } from './pages/accountant-entry/accountant-entry-pardakht/accountant-entry-pardakht.component';
-import { AccountantEntryArchiveComponent } from './pages/accountant-entry/accountant-entry-archive/accountant-entry-archive.component';
-import { AccountantEntryApproveComponent } from './pages/accountant-entry/accountant-entry-approve/accountant-entry-approve.component';
+import { InventoryComponent } from './pages/financial/inventory/inventory.component';
+import { InventoryWalletListComponent } from './pages/financial/inventory/pages/inventory-wallet-list/inventory-wallet-list.component';
+import { InventoryListComponent } from './pages/financial/inventory/pages/inventory-list/inventory-list.component';
+import { InventoryBankCardListComponent } from './pages/financial/inventory/pages/inventory-bankCard-list/inventory-bankCard-list.component';
+import { BankCardsComponent } from './pages/financial/bankCards/bankCards.component';
+import { WalletsComponent } from './pages/financial/wallets/wallets.component';
+import { BankCardsListComponent } from './pages/financial/bankCards/pages/bankCards-list/bankCards-list.component';
+import { WalletsListComponent } from './pages/financial/wallets/pages/wallets-list/wallets-list.component';
+import { EntryPardakhtComponent } from './pages/entry/entry-pardakht/entry-pardakht.component';
+import { EntryArchiveComponent } from './pages/entry/entry-archive/entry-archive.component';
+import { EntryApproveComponent } from './pages/entry/entry-approve/entry-approve.component';
 import { EntryService } from 'src/app/core/_services/panel/accountant/entry.service';
 import { FactorService } from 'src/app/core/_services/panel/accountant/factor.service';
 import { EntryApproveResolver } from 'src/app/core/_base/resolvers/accountant/entryApprove.resolver';
@@ -38,6 +38,8 @@ import { EntryArchiveResolver } from 'src/app/core/_base/resolvers/accountant/en
 import { EntryPardakhtResolver } from 'src/app/core/_base/resolvers/accountant/entryPardakht.resolver';
 import { FactorResolver } from 'src/app/core/_base/resolvers/accountant/factor.resolver';
 import { PersianPipeModule } from 'src/app/shared/modules/common/persianPipe.module';
+import { EntryResolver } from 'src/app/core/_base/resolvers/accountant/entry.resolver';
+import { EntryEditComponent } from './pages/entry/entry-edit/entry-edit.component';
 
 @NgModule({
   imports: [
@@ -56,20 +58,21 @@ import { PersianPipeModule } from 'src/app/shared/modules/common/persianPipe.mod
   ],
   declarations: [
     AccountantComponent,
-    AccountantDashboardComponent,
-    AccountantFactorsReportComponent,
-    AccountantInventoryComponent,
-    AccountantManageFactorsComponent,
+    DashboardComponent,
+    FactorsReportComponent,
+    InventoryComponent,
+    ManageFactorsComponent,
     InventoryListComponent,
     InventoryWalletListComponent,
     InventoryBankCardListComponent,
-    AccountantWalletsComponent,
-    AccountantBankCardsComponent,
-    AccountantBankCardsListComponent,
-    AccountantWalletsListComponent,
-    AccountantEntryPardakhtComponent,
-    AccountantEntryArchiveComponent,
-    AccountantEntryApproveComponent,
+    WalletsComponent,
+    BankCardsComponent,
+    BankCardsListComponent,
+    WalletsListComponent,
+    EntryPardakhtComponent,
+    EntryArchiveComponent,
+    EntryApproveComponent,
+    EntryEditComponent
   ],
   providers: [
     InventoryService,
@@ -85,6 +88,7 @@ import { PersianPipeModule } from 'src/app/shared/modules/common/persianPipe.mod
     EntryApproveResolver,
     EntryArchiveResolver,
     EntryPardakhtResolver,
+    EntryResolver
   ]
 })
 export class AccountantModule { }

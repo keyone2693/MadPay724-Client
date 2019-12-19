@@ -2,25 +2,27 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { AuthGuard } from 'src/app/core/_base/guards/auth.guard';
 import { AccountantComponent } from './accountant.component';
-import { AccountantDashboardComponent } from './pages/accountant-dashboard/accountant-dashboard.component';
-import { AccountantFactorsReportComponent } from './pages/accountant-factors/accountant-factorsreport/accountant-factorsreport.component';
-import { AccountantManageFactorsComponent } from './pages/accountant-factors/accountant-manage-factors/accountant-manage-factors.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { FactorsReportComponent } from './pages/factors/factorsreport/factorsreport.component';
+import { ManageFactorsComponent } from './pages/factors/manage-factors/manage-factors.component';
 import { InventoryResolver } from 'src/app/core/_base/resolvers/accountant/inventory.resolver';
 import { InventoryWalletResolver } from 'src/app/core/_base/resolvers/accountant/inventoryWallet.resolver';
 import { InventoryBankCardResolver } from 'src/app/core/_base/resolvers/accountant/inventoryBankCard.resolver';
 import { AccBankCardResolver } from 'src/app/core/_base/resolvers/accountant/accBankcard.resolver';
 import { AccWalletResolver } from 'src/app/core/_base/resolvers/accountant/accWallet.resolver';
-import { AccountantInventoryComponent } from './pages/accountant-financial/accountant-inventory/accountant-inventory.component';
-import { InventoryWalletListComponent } from './pages/accountant-financial/accountant-inventory/pages/inventory-wallet-list/inventory-wallet-list.component';
-import { InventoryBankCardListComponent } from './pages/accountant-financial/accountant-inventory/pages/inventory-bankCard-list/inventory-bankCard-list.component';
-import { AccountantWalletsComponent } from './pages/accountant-financial/accountant-wallets/accountant-wallets.component';
-import { AccountantBankCardsComponent } from './pages/accountant-financial/accountant-bankCards/accountant-bankCards.component';
-import { AccountantEntryPardakhtComponent } from './pages/accountant-entry/accountant-entry-pardakht/accountant-entry-pardakht.component';
-import { AccountantEntryApproveComponent } from './pages/accountant-entry/accountant-entry-approve/accountant-entry-approve.component';
-import { AccountantEntryArchiveComponent } from './pages/accountant-entry/accountant-entry-archive/accountant-entry-archive.component';
+import { InventoryComponent } from './pages/financial/inventory/inventory.component';
+import { InventoryWalletListComponent } from './pages/financial/inventory/pages/inventory-wallet-list/inventory-wallet-list.component';
+import { InventoryBankCardListComponent } from './pages/financial/inventory/pages/inventory-bankCard-list/inventory-bankCard-list.component';
+import { WalletsComponent } from './pages/financial/wallets/wallets.component';
+import { BankCardsComponent } from './pages/financial/bankCards/bankCards.component';
+import { EntryPardakhtComponent } from './pages/entry/entry-pardakht/entry-pardakht.component';
+import { EntryApproveComponent } from './pages/entry/entry-approve/entry-approve.component';
+import { EntryArchiveComponent } from './pages/entry/entry-archive/entry-archive.component';
 import { EntryApproveResolver } from 'src/app/core/_base/resolvers/accountant/entryApprove.resolver';
 import { EntryPardakhtResolver } from 'src/app/core/_base/resolvers/accountant/entryPardakht.resolver';
 import { EntryArchiveResolver } from 'src/app/core/_base/resolvers/accountant/entryArchive.resolver';
+import { EntryResolver } from 'src/app/core/_base/resolvers/accountant/entry.resolver';
+import { EntryEditComponent } from './pages/entry/entry-edit/entry-edit.component';
 
 const routes: Routes = [
     {
@@ -28,33 +30,39 @@ const routes: Routes = [
         component: AccountantComponent,
         children: [
             {
-                path: 'dashboard', canActivate: [AuthGuard], component: AccountantDashboardComponent,
+                path: 'dashboard', canActivate: [AuthGuard], component: DashboardComponent,
                 data: { roles: ['Accountant', 'Admin'], title: ['داشبورد حسابدار'] }
             },
             //
             {
                 path: 'entryapprove', canActivate: [AuthGuard],
                 resolve: { entriesapprove: EntryApproveResolver },
-                component: AccountantEntryApproveComponent,
+                component: EntryApproveComponent,
                 data: { roles: ['Accountant', 'Admin'], title: ['واریزی های تایید نشده'] }
             },
             {
                 path: 'entrypardakht', canActivate: [AuthGuard],
                 resolve: { entriespardakht: EntryPardakhtResolver },
-                component: AccountantEntryPardakhtComponent,
+                component: EntryPardakhtComponent,
                 data: { roles: ['Accountant', 'Admin'], title: ['واریزی های پرداخت نشده'] }
             },
             {
                 path: 'entryarchive', canActivate: [AuthGuard],
                 resolve: { entriesarchive: EntryArchiveResolver },
-                component: AccountantEntryArchiveComponent,
+                component: EntryArchiveComponent,
                 data: { roles: ['Accountant', 'Admin'], title: ['ارشیو واریزی ها'] }
+            },
+            {
+                path: 'entryEdit:entryId', canActivate: [AuthGuard],
+                resolve: { entry: EntryResolver },
+                component: EntryEditComponent,
+                data: { roles: ['Accountant', 'Admin'], title: ['ویرایش واریزی'] }
             },
             //
             {
                 path: 'inventory', canActivate: [AuthGuard], 
                 resolve: { inventories: InventoryResolver},
-                component: AccountantInventoryComponent,
+                component: InventoryComponent,
                 data: { roles: ['Accountant', 'Admin'], title: ['مدیریت موجودی ها'] }
             },
             {
@@ -72,32 +80,32 @@ const routes: Routes = [
             {
                 path: 'bankcards', canActivate: [AuthGuard],
                 resolve: { bankcards: AccBankCardResolver},
-                component: AccountantBankCardsComponent,
+                component: BankCardsComponent,
                 data: { roles: ['Accountant', 'Admin'], title: ['مدیریت کیف پول ها'] }
             },
             {
                 path: 'wallets', canActivate: [AuthGuard],
                 resolve: { wallets: AccWalletResolver },
-                component: AccountantWalletsComponent,
+                component: WalletsComponent,
                 data: { roles: ['Accountant', 'Admin'], title: ['مدیریت کارت های بانکی'] }
             },
             
             //-----------------
             {
-                path: 'factorsreport', canActivate: [AuthGuard], component: AccountantFactorsReportComponent,
+                path: 'factorsreport', canActivate: [AuthGuard], component: FactorsReportComponent,
                 data: { roles: ['Accountant', 'Admin'], title: ['گزارش فاکتورها'] }
             },
             //
             {
                 path: 'factors', canActivate: [AuthGuard],
                 //  resolve: { blogs:  },
-                component: AccountantManageFactorsComponent,
+                component: ManageFactorsComponent,
                 data: { roles: ['Admin', 'Accountant'], title: ['مدیریت فاکتورها'] }
             },
             {
                 path: 'factors/edit/:factId', canActivate: [AuthGuard],
                 //  resolve: { blogs:  },
-                component: AccountantManageFactorsComponent,
+                component: ManageFactorsComponent,
                 data: { roles: ['Admin', 'Accountant'], title: ['ویرایش فاکتور '] },
             }
         ]
