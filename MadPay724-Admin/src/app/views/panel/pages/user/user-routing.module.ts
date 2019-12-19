@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import { UserComponent } from './user.component';
 import { AuthGuard } from 'src/app/core/_base/guards/auth.guard';
 import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
