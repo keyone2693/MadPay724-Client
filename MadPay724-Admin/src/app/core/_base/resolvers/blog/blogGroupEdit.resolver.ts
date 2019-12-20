@@ -13,6 +13,7 @@ export class BlogGroupEditResolver implements Resolve<BlogGroup> {
     resolve(route: ActivatedRouteSnapshot): Observable<BlogGroup> {
         return this.blogGroupService.getBlogGroup( route.params['bloggroupId']).pipe(
             catchError(error => {
+                
                 this.alertService.error(error, 'خطا');
                 this.router.navigate(['/panel/user/easypay']);
                 return of(null);

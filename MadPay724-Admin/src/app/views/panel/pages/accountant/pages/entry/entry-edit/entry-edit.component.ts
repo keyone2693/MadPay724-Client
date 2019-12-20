@@ -25,7 +25,7 @@ export class EntryEditComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadEntry();
-    this.title.setTitle('ویرایش،جزییات واریزی ' + this.entry.ownerName);
+   // this.title.setTitle('ویرایش،جزییات واریزی ' + this.entry.ownerName);
     this.populateForm();
   }
   loadEntry() {
@@ -57,12 +57,9 @@ export class EntryEditComponent implements OnInit, OnDestroy {
   }
   onSubmitEditEntry() {
     if (this.entryEditForm.valid) {
-      const entryForUpdate = new FormData();
-      entryForUpdate.append('textForUser', this.entryEditForm.get('textForUser').value);
-      entryForUpdate.append('bankTrackingCode', this.entryEditForm.get('bankTrackingCode').value);
-
+      const entryForUpdate = Object.assign({}, this.entryEditForm.value)
       this.subManager.add(
-        this.entrySerrvice.updateEntry(this.entry.id, entryForUpdate).subscribe(data => {
+        this.entrySerrvice.updateEntry(this.entry.id, entryForUpdate).subscribe((data) => {
           this.alertService.success('واریزی ویرایش شد', 'موفق');
           this.onClear();
         }, error => {
@@ -72,7 +69,6 @@ export class EntryEditComponent implements OnInit, OnDestroy {
     } else {
       this.alertService.warning('اطلاعات را به درستی وارد کنید !', 'هشدار')
     }
-    this.subManager.unsubscribe();
   }
   onStateChange(entry: Entry) {
     if (!entry.isApprove) {

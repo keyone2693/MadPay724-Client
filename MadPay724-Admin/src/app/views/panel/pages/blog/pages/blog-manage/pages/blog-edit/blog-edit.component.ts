@@ -106,6 +106,15 @@ export class BlogEditComponent implements OnInit, OnDestroy {
       this.blogService.getBlog(blogId).subscribe(data => {
         this.blog = data;
         this.populateEditForm(data);
+      }, error => {
+          console.log(error);
+          if (error.status === 401) {
+            this.alertService.error('عدم دسترسی', 'ناموفق');
+          } else {
+            this.alertService.error('خطا در دریافت بلاگ', 'ناموفق');
+          }
+        
+        this.router.navigate(['/panel/blog/blog']);
       })
     );
 
