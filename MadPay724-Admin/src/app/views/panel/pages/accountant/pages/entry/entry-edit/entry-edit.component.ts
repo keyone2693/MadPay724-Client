@@ -16,8 +16,8 @@ export class EntryEditComponent implements OnInit, OnDestroy {
   subManager = new Subscription();
   entry: Entry;
   entryEditForm: FormGroup = this.formBuilder.group({
-    textForUser: ['', [Validators.required]],
-    bankTrackingCode: ['', [Validators.required]],
+    textForUser: ['', [Validators.required, Validators.maxLength(1000)]],
+    bankTrackingCode: ['', [Validators.required, Validators.maxLength(200)]],
   })
   constructor(private route: ActivatedRoute, private title: Title,
     private formBuilder: FormBuilder, private alertService: ToastrService,
@@ -73,5 +73,16 @@ export class EntryEditComponent implements OnInit, OnDestroy {
       this.alertService.warning('اطلاعات را به درستی وارد کنید !', 'هشدار')
     }
     this.subManager.unsubscribe();
+  }
+  onStateChange(entry: Entry) {
+    if (!entry.isApprove) {
+      this.router.navigate(['/panel/accountant/entryapprove']);
+    } else if (entry.isApprove && !entry.isPardakht && !entry.isReject) {
+      this.router.navigate(['/panel/accountant/entrypardakht']);
+    } else if (entry.isApprove && (entry.isPardakht || entry.isReject)) {
+      this.router.navigate(['/panel/accountant/entryarchive']);
+    } else {
+      this.router.navigate(['/panel/accountant/entryarchive']);
+    } 
   }
 }
