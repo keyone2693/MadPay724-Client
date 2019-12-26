@@ -42,6 +42,7 @@ export class BankCardsListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadgetBankCards();
+
   }
   ngOnDestroy() {
     this.subManager.unsubscribe();
@@ -137,6 +138,12 @@ export class BankCardsListComponent implements OnInit, OnDestroy {
           this.alertService.error(error);
         })
     )
+  }
+
+  onBankCardClick(bancard: BankCard) {
+    this.store.dispatch(new fromAccountantStore.EditCurrentTitle(
+      { id: bancard.id, title: bancard.cardNumber }));
+    this.router.navigate(['/panel/accountant/bankcards', bancard.id, 'entry'])
   }
 
 }

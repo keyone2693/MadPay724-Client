@@ -25,3 +25,15 @@
         top: -2.6px !important;
         right: 22px !important;
       }
+ .mat-raised-button.mat-primary {
+     background-color: #09a84c !important;
+  color: #fff !important;
+  margin: 0 auto;
+  float: none;
+}
+.mat-raised-button.mat-accent{
+  background: #197dff;
+  color: #fff;
+   margin: 0 auto;
+  float: none;
+}

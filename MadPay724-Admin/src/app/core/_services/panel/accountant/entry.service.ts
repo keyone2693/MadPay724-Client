@@ -5,7 +5,6 @@ import { PaginationResult } from 'src/app/data/models/common/paginationResult';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Entry } from 'src/app/data/models/accountant/entry';
-import { EntryForUpdate } from 'src/app/data/models/accountant/entryForUpdate';
 
 @Injectable({
   providedIn: 'root'
