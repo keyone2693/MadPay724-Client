@@ -1,0 +1,19 @@
+.mat-green {
+  background: #09a84c;
+  color: #fff;
+  margin: 0 auto;
+  float: none;
+}
+
+.mat-red {
+  background: #e24a4a;
+  color: #fff;
+  margin: 0 auto;
+  float: none;
+}
+.mat-blue {
+  background: #197dff;
+  color: #fff;
+  margin: 0 auto;
+  float: none;
+}

@@ -43,6 +43,8 @@ import { EntryEditComponent } from './pages/entry/entry-edit/entry-edit.componen
 import { BankCardEntryResolver } from 'src/app/core/_base/resolvers/accountant/bankCardEntry.resolver';
 import { BankCardsEntryComponent } from './pages/financial/bankCards/pages/bankCards-entry/bankCards-entry.component';
 import { SimplemattableModule } from 'simplemattable';
+import { ButtonMPComponent } from 'src/app/shared/component/button-mp/button-mp.component';
+import { CheckboxMPComponent } from 'src/app/shared/component/checkbox-mp/checkbox-mp.component';
 
 @NgModule({
   imports: [
@@ -77,7 +79,10 @@ import { SimplemattableModule } from 'simplemattable';
     EntryArchiveComponent,
     EntryApproveComponent,
     EntryEditComponent,
-    BankCardsEntryComponent
+    BankCardsEntryComponent,
+    //
+    ButtonMPComponent,
+    CheckboxMPComponent
   ],
   providers: [
     InventoryService,
@@ -95,6 +100,6 @@ import { SimplemattableModule } from 'simplemattable';
     EntryPardakhtResolver,
     EntryResolver,
     BankCardEntryResolver
-  ]
+  ], entryComponents: [ButtonMPComponent, CheckboxMPComponent]
 })
 export class AccountantModule { }
