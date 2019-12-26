@@ -40,7 +40,7 @@ import { FactorResolver } from 'src/app/core/_base/resolvers/accountant/factor.r
 import { PersianPipeModule } from 'src/app/shared/modules/common/persianPipe.module';
 import { EntryResolver } from 'src/app/core/_base/resolvers/accountant/entry.resolver';
 import { EntryEditComponent } from './pages/entry/entry-edit/entry-edit.component';
-import { BankCardEntryResolver } from 'src/app/core/_base/resolvers/accountant/bankCardEntryResolver.resolver';
+import { BankCardEntryResolver } from 'src/app/core/_base/resolvers/accountant/bankCardEntry.resolver';
 import { BankCardsEntryComponent } from './pages/financial/bankCards/pages/bankCards-entry/bankCards-entry.component';
 
 @NgModule({

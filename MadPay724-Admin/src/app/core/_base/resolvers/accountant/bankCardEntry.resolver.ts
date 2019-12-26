@@ -14,10 +14,10 @@ export class BankCardEntryResolver implements Resolve<Entry[]> {
     filter = '';
     sortHe = '';
     sortDir = '';
-    constructor(private entryService: EntryService, private router: Router,
+    constructor(private entryService: EntryService,
                 private alertService: ToastrService) { }
     resolve(route: ActivatedRouteSnapshot): Observable<Entry[]> {
-        return this.entryService.getBankCardEntries(route.params['entryId'],this.pageNumber,
+        return this.entryService.getBankCardEntries(route.params['bankcardId'],this.pageNumber,
             this.pageSize,
             this.filter,
             this.sortHe,

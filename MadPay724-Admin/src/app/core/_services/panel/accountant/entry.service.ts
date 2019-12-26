@@ -12,6 +12,7 @@ import { EntryForUpdate } from 'src/app/data/models/accountant/entryForUpdate';
 })
 export class EntryService {
   baseUrl = environment.apiUrl + environment.apiV1 + 'site/panel/entries/';
+  bancardEntrybaseUrl = environment.apiUrl + environment.apiV1 + 'site/panel/bankcards/';
 
   constructor(private http: HttpClient) { }
 
@@ -100,7 +101,7 @@ export class EntryService {
       params = params.append('sortDir', sortDir);
     }
     return this.http.get<Entry[]>
-      (this.baseUrl + 'archive', { observe: 'response', params })
+      (this.bancardEntrybaseUrl + bankcardId + '/entries/', { observe: 'response', params })
       .pipe(
         map(response => {
           paginatedResult.result = response.body;

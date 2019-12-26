@@ -168,7 +168,7 @@ matSort class="mat-elevation-z8">
       <button
         *appHasRole="['Admin', 'Accountant']"
         mat-raised-button
-        [routerLink]="['/panel/accountant/bankcards/entry/', bankCard.id]"
+        [routerLink]="['/panel/accountant/bankcards', bankCard.id ,'entry']"
         color="green"
       >
         <i class="icon-screen-tablet"></i>
