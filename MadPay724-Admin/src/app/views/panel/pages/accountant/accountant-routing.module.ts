@@ -23,6 +23,8 @@ import { EntryPardakhtResolver } from 'src/app/core/_base/resolvers/accountant/e
 import { EntryArchiveResolver } from 'src/app/core/_base/resolvers/accountant/entryArchive.resolver';
 import { EntryResolver } from 'src/app/core/_base/resolvers/accountant/entry.resolver';
 import { EntryEditComponent } from './pages/entry/entry-edit/entry-edit.component';
+import { BankCardEntryResolver } from 'src/app/core/_base/resolvers/accountant/bankCardEntryResolver.resolver';
+import { BankCardsEntryComponent } from './pages/financial/bankCards/pages/bankCards-entry/bankCards-entry.component';
 
 const routes: Routes = [
     {
@@ -58,6 +60,7 @@ const routes: Routes = [
                 component: EntryEditComponent,
                 data: { roles: ['Accountant', 'Admin'], title: ['جزییات،ویرایش واریزی'] }
             },
+
             //
             {
                 path: 'inventory', canActivate: [AuthGuard], 
@@ -82,6 +85,12 @@ const routes: Routes = [
                 resolve: { bankcards: AccBankCardResolver},
                 component: BankCardsComponent,
                 data: { roles: ['Accountant', 'Admin'], title: ['مدیریت کیف پول ها'] }
+            },
+            {
+                path: 'entry:bankcardId', canActivate: [AuthGuard],
+                resolve: { entries: BankCardEntryResolver },
+                component: BankCardsEntryComponent,
+                data: { roles: ['Accountant', 'Admin'], title: ['واریزی های کارت بانکی'] }
             },
             {
                 path: 'wallets', canActivate: [AuthGuard],

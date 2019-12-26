@@ -87,7 +87,30 @@ export class EntryService {
         })
       );
   }
+  getBankCardEntries(bankcardId: string,page?, itemPerPage?, filter?, sortHe?, sortDir?):
+    Observable<PaginationResult<Entry[]>> {
+    const paginatedResult: PaginationResult<Entry[]> = new PaginationResult<Entry[]>();
+    let params = new HttpParams();
 
+    if (page != null && itemPerPage != null) {
+      params = params.append('pageNumber', page);
+      params = params.append('pageSize', itemPerPage);
+      params = params.append('filter', filter);
+      params = params.append('sortHe', sortHe);
+      params = params.append('sortDir', sortDir);
+    }
+    return this.http.get<Entry[]>
+      (this.baseUrl + 'archive', { observe: 'response', params })
+      .pipe(
+        map(response => {
+          paginatedResult.result = response.body;
+          if (response.headers.get('Pagination') != null) {
+            paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
+          }
+          return paginatedResult;
+        })
+      );
+  }
   getEntry(entryId: string): Observable<Entry> {
     return this.http.get<Entry>(this.baseUrl + entryId );
   }
