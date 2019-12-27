@@ -107,6 +107,15 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy {
   }
   getPage(offset: number, limit: number): Observable<Entry[]> {
     let { searchKey, sortDirection, sortHeader } = this.filterSortOrderBy;
+    if (searchKey === undefined || searchKey == null) {
+      searchKey = '';
+    }
+    if (sortDirection === undefined || sortDirection == null) {
+      sortDirection = '';
+    }
+    if (sortHeader === undefined || sortHeader == null) {
+      sortHeader = '';
+    }
     //offset : page index
     //limit : page size
     let bankcardId = ''

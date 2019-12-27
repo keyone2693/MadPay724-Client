@@ -31,6 +31,27 @@
         <div class="card-body">
           <div class="row">
             <div class="col-md-12">
+              <div class="search-div">
+                <mat-form-field class="search-form-field" floatLabel="never">
+                  <input
+                    matInput
+                    type="text"
+                    placeholder="جستوجو ..."
+                    [(ngModel)]="filterSortOrderBy.searchKey"
+                    (keyup)="getPage(this.pagination.currentPage, this.pagination.itemsPerPage)"
+                  />
+                  <button
+                    mat-button
+                    *ngIf="filterSortOrderBy.searchKey"
+                    matSuffix
+                    mat-icon-button
+                    aria-label="Clear"
+                    (click)="onSearchClear()"
+                  >
+                    <i class="ft-x"></i>
+                  </button>
+                </mat-form-field>
+              </div>
               <smc-simplemattable class="mysimplemattable" 
               [data]="bankcardEntries" [columns]="columns"
               [paginator]="true" [backendPagination]="true"
