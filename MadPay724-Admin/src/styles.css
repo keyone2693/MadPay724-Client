@@ -1,51 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
 /* @import 'MadPay724-Admin/src/assets/fonts/materialfont.css'; */
 /* #toast-container > div {
     width: 400px;
     } */
-    .ng-scroll-content{
-        padding-left: 10px !important;
-      }
-      .swal2-actions{
-        direction: ltr !important;
-      }
-      .swal2-styled.swal2-cancel{
-        width: 100px;
-      }
-      .swal2-styled.swal2-confirm{
-        width: 200px;
-      }
-
-      .madpaynotifybadge{
-            left: 0.7rem !important;
-      }
-
-      .navbar .notification {
-        top: -2.6px !important;
-        right: 22px !important;
-      }
-
-   .mat-table {
-  overflow-x: scroll;
+.ng-scroll-content {
+  padding-left: 10px !important;
+}
+.swal2-actions {
+  direction: ltr !important;
+}
+.swal2-styled.swal2-cancel {
+  width: 100px;
+}
+.swal2-styled.swal2-confirm {
+  width: 200px;
 }
 
-.mat-cell,
-.mat-header-cell {
-  word-wrap: initial;
-  display: table-cell;
-  padding: 0px 5px;
-  line-break: unset;
-  white-space: nowrap;
-  overflow: hidden;
-  vertical-align: middle;
+.madpaynotifybadge {
+  left: 0.7rem !important;
 }
 
-.mat-row,
-.mat-header-row {
-  display: table-row;
+.navbar .notification {
+  top: -2.6px !important;
+  right: 22px !important;
 }
+@media screen and (max-width: 960px) {
+  .mat-table {
+    overflow-x: scroll;
+  }
 
-   .mysimplemattable {
-  overflow-x: scroll;
+  .mat-cell,
+  .mat-header-cell {
+    word-wrap: initial;
+    display: table-cell;
+    padding: 0px 5px;
+    line-break: unset;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: middle;
+  }
+
+  .mat-row,
+  .mat-header-row {
+    display: table-row;
+  }
+
+  .mysimplemattable {
+    overflow-x: scroll;
+  }
 }

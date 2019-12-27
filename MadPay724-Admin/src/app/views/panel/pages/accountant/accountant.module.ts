@@ -10,7 +10,6 @@ import { InventoryResolver } from 'src/app/core/_base/resolvers/accountant/inven
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { HasRoleModule } from 'src/app/Shared/Modules/hasRole/hasRole.module';
-import { PersianDateModule } from 'src/app/core/_base/pipe/PersianDatePipe/persian-date.module';
 import { DigitOnlyModule } from '@uiowa/digit-only';
 import { AccountantMaterialModule } from 'src/app/shared/modules/material/accountant-material.module';
 import { ClipboardModule } from 'ngx-clipboard';
@@ -55,7 +54,6 @@ import { InputMpComponent } from 'src/app/shared/component/input-mp/input-mp.com
     ReactiveFormsModule,
     AccountantMaterialModule,
     DigitOnlyModule,
-    PersianDateModule,
     SweetAlert2Module.forRoot(),
     HasRoleModule,
     ClipboardModule,

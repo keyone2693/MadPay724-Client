@@ -8,7 +8,6 @@ import { DigitOnlyModule } from '@uiowa/digit-only';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FileUploadModule } from 'ng2-file-upload';
 import { BlogMaterialModule } from 'src/app/Shared/Modules/material/blog-material.module';
-import { PersianDateModule } from 'src/app/core/_base/pipe/PersianDatePipe/persian-date.module';
 import { BlogDashboardComponent } from './pages/blog-dashboard/blog-dashboard.component';
 import { BlogGroupManageComponent } from './pages/blog-group-manage/blog-group-manage.component';
 import { BlogGroupListComponent } from './pages/blog-group-manage/pages/blog-group-list/blog-group-list.component';
@@ -37,7 +36,6 @@ import { StoreModule } from '@ngrx/store';
     ReactiveFormsModule,
     BlogMaterialModule,
     DigitOnlyModule,
-    PersianDateModule,
     SweetAlert2Module.forRoot(),
     ChartistModule,
     HasRoleModule,

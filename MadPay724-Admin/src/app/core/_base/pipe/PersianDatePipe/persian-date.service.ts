@@ -37,7 +37,7 @@ export class PersianCalendarService {
   constructor() {
   }
   PersianCalendar(gregorianDate: Date): string {
-    this.today = gregorianDate;
+    this.today = new Date(gregorianDate) ;
     this.gregorianYear = this.today.getFullYear();
     this.gregorianMonth = this.today.getMonth() + 1;
     this.gregorianDate = this.today.getDate();

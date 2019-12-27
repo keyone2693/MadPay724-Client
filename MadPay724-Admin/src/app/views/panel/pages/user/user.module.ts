@@ -11,7 +11,6 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ChartistModule } from 'ng-chartist';
-import { PersianDateModule } from 'src/app/core/_base/pipe/PersianDatePipe/persian-date.module';
 import { DocumentComponent } from './pages/userinfo/document/document.component';
 import { RightDocumentComponent } from './pages/userinfo/document/pages/right-document/right-document.component';
 import { LeftDocumentComponent } from './pages/userinfo/document/pages/left-document/left-document.component';
@@ -66,7 +65,6 @@ import { PersianPipeModule } from 'src/app/shared/modules/common/persianPipe.mod
     ReactiveFormsModule,
     UserMaterialModule,
     DigitOnlyModule,
-    PersianDateModule,
     // TooltipModule,
     NgScrollbarModule,
     // InfiniteScrollModule,

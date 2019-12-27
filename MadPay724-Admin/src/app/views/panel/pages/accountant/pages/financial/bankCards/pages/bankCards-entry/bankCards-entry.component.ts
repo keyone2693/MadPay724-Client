@@ -13,6 +13,10 @@ import { UiType } from 'src/app/data/enums/uiType.enum';
 import { CheckboxMPComponent } from 'src/app/shared/component/checkbox-mp/checkbox-mp.component';
 import { ButtonMPComponent } from 'src/app/shared/component/button-mp/button-mp.component';
 import { InputMpComponent } from 'src/app/shared/component/input-mp/input-mp.component';
+import { IRCurrencyPipe, JdatePipe } from 'ngx-persian';
+import { PersianDate } from 'src/app/core/_base/pipe/PersianDatePipe/persian-date.pipe';
+import { PersianCalendarService } from 'src/app/core/_base/pipe/PersianDatePipe/persian-date.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-bankCards-entry',
@@ -36,7 +40,14 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy {
         component.isForCopy = true;
         component.icon = "ft-copy";
       }),
+    
+    
+    
     new TableColumn<Entry, 'ownerName'>('صاحب حساب', 'ownerName'),
+      // .withTransform((data) =>
+      //   this.PersianCalendarService.PersianCalendar(data)
+      //   + ' ' +
+      //   this.DatePipe.transform(data, 'HH:mm')),
     new TableColumn<Entry, 'isApprove'>('تاییدی', 'isApprove')
       .withNgComponent(CheckboxMPComponent)
       .withNgComponentInput((component: CheckboxMPComponent, isApprove) => {
@@ -61,7 +72,8 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy {
         component.disabled = false;
         component.type = UiType.Error;
       }),
-    new TableColumn<Entry, 'price'>('مبلغ', 'price'),
+    new TableColumn<Entry, 'price'>('مبلغ', 'price')
+      .withTransform((data) => this.irCurrencyPipe.transform(data).replace("ریال", "تومان")),
     new TableColumn<Entry, 'textForUser'>(' نمایش متن', 'textForUser'),
     new TableColumn<Entry, 'id'>('عملیات', 'id')
       .withNgComponent(ButtonMPComponent)
@@ -73,7 +85,9 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy {
       })
   ];
   constructor(private route: ActivatedRoute, private alertService: ToastrService
-    , private entryService: EntryService, private store: Store<AccountantStateModel>, private router: Router) { }
+    , private entryService: EntryService, private store: Store<AccountantStateModel>,
+    private router: Router, private irCurrencyPipe: IRCurrencyPipe,
+    private perDatePipe: PersianCalendarService, private aa: DatePipe) { }
 
   ngOnInit() {
     this.loadBancardEntries();
