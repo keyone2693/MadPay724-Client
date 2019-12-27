@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Entry } from 'src/app/data/models/accountant/entry';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { EntryService } from 'src/app/core/_services/panel/accountant/entry.service';
-import { Subscription, Observable, Subject } from 'rxjs';
+import { Subscription, Observable, Subject, fromEvent } from 'rxjs';
 import { TableColumn, Width } from 'simplemattable';
 import { CurrentTitleStateModel } from '../../../../../store/_models/currentTitleStateModel';
 import { Store } from '@ngrx/store';
@@ -16,13 +16,15 @@ import { InputMpComponent } from 'src/app/shared/component/input-mp/input-mp.com
 import { IRCurrencyPipe } from 'ngx-persian';
 import { Pagination } from 'src/app/data/models/common/pagination';
 import { FilterSortOrderBy } from 'src/app/data/models/common/filterSortOrderBy';
+import { debounceTime, switchMap, map, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-bankCards-entry',
   templateUrl: './bankCards-entry.component.html',
   styleUrls: ['./bankCards-entry.component.css']
 })
-export class BankCardsEntryComponent implements OnInit, OnDestroy {
+export class BankCardsEntryComponent implements OnInit, OnDestroy, AfterViewInit {
+  @ViewChild('searchKey', { static: false}) filter: ElementRef;
   subManager = new Subscription();
   bankcardEntries: Entry[];
   pagination: Pagination = {
@@ -95,7 +97,19 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy {
     private router: Router, private irCurrencyPipe: IRCurrencyPipe) { }
 
   ngOnInit() {
+    
     this.bankcardInfo$ = this.store.select(fromAccountantStore.getCurrentTitle);
+  }
+  ngAfterViewInit() {
+    this.subManager.add(
+      fromEvent(this.filter.nativeElement, 'keyup')
+        .pipe(
+          debounceTime(1000),
+          map((event: Event) => (<HTMLInputElement>event.target).value),
+          distinctUntilChanged(),
+          switchMap(value => this.getPage(this.pagination.currentPage, this.pagination.itemsPerPage, value)),
+        ).subscribe()
+     );
   }
   ngOnDestroy() {
     this.subManager.unsubscribe();
@@ -105,10 +119,10 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy {
     this.filterSortOrderBy.sortDirection = data.direction;
     this.getPage(this.pagination.currentPage, this.pagination.itemsPerPage);
   }
-  getPage(offset: number, limit: number): Observable<Entry[]> {
-    let { searchKey, sortDirection, sortHeader } = this.filterSortOrderBy;
-    if (searchKey === undefined || searchKey == null) {
-      searchKey = '';
+  getPage(offset: number, limit: number,filter?: string): Observable<Entry[]> {
+    let {sortDirection, sortHeader } = this.filterSortOrderBy;
+    if (filter === undefined || filter == null) {
+      filter = '';
     }
     if (sortDirection === undefined || sortDirection == null) {
       sortDirection = '';
@@ -129,7 +143,7 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy {
       this.subManager.add(
         this.entryService.getBankCardEntries(bankcardId,
           offset, limit,
-          searchKey.trim(), sortHeader, sortDirection)
+          filter.trim(), sortHeader, sortDirection)
           .subscribe((data) => {
             this.bankcardEntries = data.result;
             this.pagination = data.pagination;

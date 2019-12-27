@@ -34,11 +34,10 @@
               <div class="search-div">
                 <mat-form-field class="search-form-field" floatLabel="never">
                   <input
+                   #searchKey
                     matInput
                     type="text"
                     placeholder="جستوجو ..."
-                    [(ngModel)]="filterSortOrderBy.searchKey"
-                    (keyup)="getPage(this.pagination.currentPage, this.pagination.itemsPerPage)"
                   />
                   <button
                     mat-button
