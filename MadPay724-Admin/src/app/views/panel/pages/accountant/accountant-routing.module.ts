@@ -88,7 +88,7 @@ const routes: Routes = [
             },
             {
                 path: 'bankcards/:bankcardId/entry', canActivate: [AuthGuard],
-                resolve: { entries: BankCardEntryResolver },
+                //resolve: { entries: BankCardEntryResolver },
                 component: BankCardsEntryComponent,
                 data: { roles: ['Accountant', 'Admin'], title: ['واریزی های کارت بانکی'] }
             },

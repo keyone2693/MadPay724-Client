@@ -3,8 +3,8 @@ import { Entry } from 'src/app/data/models/accountant/entry';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { EntryService } from 'src/app/core/_services/panel/accountant/entry.service';
-import { Subscription, Observable } from 'rxjs';
-import { TableColumn, ButtonType, Align, Width } from 'simplemattable';
+import { Subscription, Observable, Subject } from 'rxjs';
+import { TableColumn, Width } from 'simplemattable';
 import { CurrentTitleStateModel } from '../../../../../store/_models/currentTitleStateModel';
 import { Store } from '@ngrx/store';
 import { AccountantStateModel } from '../../../../../store/_models/accountantStateModel';
@@ -13,10 +13,9 @@ import { UiType } from 'src/app/data/enums/uiType.enum';
 import { CheckboxMPComponent } from 'src/app/shared/component/checkbox-mp/checkbox-mp.component';
 import { ButtonMPComponent } from 'src/app/shared/component/button-mp/button-mp.component';
 import { InputMpComponent } from 'src/app/shared/component/input-mp/input-mp.component';
-import { IRCurrencyPipe, JdatePipe } from 'ngx-persian';
-import { PersianDate } from 'src/app/core/_base/pipe/PersianDatePipe/persian-date.pipe';
-import { PersianCalendarService } from 'src/app/core/_base/pipe/PersianDatePipe/persian-date.service';
-import { DatePipe } from '@angular/common';
+import { IRCurrencyPipe } from 'ngx-persian';
+import { Pagination } from 'src/app/data/models/common/pagination';
+import { FilterSortOrderBy } from 'src/app/data/models/common/filterSortOrderBy';
 
 @Component({
   selector: 'app-bankCards-entry',
@@ -26,10 +25,20 @@ import { DatePipe } from '@angular/common';
 export class BankCardsEntryComponent implements OnInit, OnDestroy {
   subManager = new Subscription();
   bankcardEntries: Entry[];
+  pagination: Pagination = {
+    currentPage: 0,
+    itemsPerPage: 5,
+    totalItems: 0,
+    totalPages: 0
+  };
+  filterSortOrderBy: FilterSortOrderBy = {
+    sortDirection: '',
+    sortHeader: '',
+    searchKey: ''
+  };
   bankcardInfo$: Observable<CurrentTitleStateModel>
-  columnsSimple = [
+  columns = [
     new TableColumn<Entry, 'id'>('شناسه', 'id')
-      //.isSticky(true)
       .withWidth(Width.px(50))
       .withNgComponent(InputMpComponent)
       .withNgComponentInput((component: InputMpComponent, id) => {
@@ -40,18 +49,15 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy {
         component.isForCopy = true;
         component.icon = "ft-copy";
       }),
-    
-    
-    
     new TableColumn<Entry, 'ownerName'>('صاحب حساب', 'ownerName'),
-      // .withTransform((data) =>
-      //   this.PersianCalendarService.PersianCalendar(data)
-      //   + ' ' +
-      //   this.DatePipe.transform(data, 'HH:mm')),
+    // .withTransform((data) =>
+    //   this.PersianCalendarService.PersianCalendar(data)
+    //   + ' ' +
+    //   this.DatePipe.transform(data, 'HH:mm')),
     new TableColumn<Entry, 'isApprove'>('تاییدی', 'isApprove')
       .withNgComponent(CheckboxMPComponent)
       .withNgComponentInput((component: CheckboxMPComponent, isApprove) => {
-        component.event = () => {  };
+        component.event = () => { };
         component.checked = isApprove;
         component.disabled = false;
         component.type = UiType.Info;
@@ -59,7 +65,7 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy {
     new TableColumn<Entry, 'isPardakht'>('پرداختی', 'isPardakht')
       .withNgComponent(CheckboxMPComponent)
       .withNgComponentInput((component: CheckboxMPComponent, isPardakht) => {
-        component.event = () => {  };
+        component.event = () => { };
         component.checked = isPardakht;
         component.disabled = false;
         component.type = UiType.Success;
@@ -67,7 +73,7 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy {
     new TableColumn<Entry, 'isReject'>('ردی', 'isReject')
       .withNgComponent(CheckboxMPComponent)
       .withNgComponentInput((component: CheckboxMPComponent, isReject) => {
-        component.event = () => {  };
+        component.event = () => { };
         component.checked = isReject;
         component.disabled = false;
         component.type = UiType.Error;
@@ -86,22 +92,45 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy {
   ];
   constructor(private route: ActivatedRoute, private alertService: ToastrService
     , private entryService: EntryService, private store: Store<AccountantStateModel>,
-    private router: Router, private irCurrencyPipe: IRCurrencyPipe,
-    private perDatePipe: PersianCalendarService, private aa: DatePipe) { }
+    private router: Router, private irCurrencyPipe: IRCurrencyPipe) { }
 
   ngOnInit() {
-    this.loadBancardEntries();
     this.bankcardInfo$ = this.store.select(fromAccountantStore.getCurrentTitle);
   }
   ngOnDestroy() {
     this.subManager.unsubscribe();
   }
-  loadBancardEntries() {
+  sortEvent(data: any) {
+    this.filterSortOrderBy.sortHeader = data.active.split('_')[1];
+    this.filterSortOrderBy.sortDirection = data.direction;
+    this.getPage(this.pagination.currentPage, this.pagination.itemsPerPage);
+  }
+  getPage(offset: number, limit: number): Observable<Entry[]> {
+    let { searchKey, sortDirection, sortHeader } = this.filterSortOrderBy;
+    //offset : page index
+    //limit : page size
+    let bankcardId = ''
     this.subManager.add(
-      this.route.data.subscribe(data => {
-        this.bankcardEntries = data.entries;
-       
+      this.route.params.subscribe(params => {
+        bankcardId = params['bankcardId'];
       })
     );
+    const observable = new Subject<Entry[]>();
+    setTimeout(() => {
+      this.subManager.add(
+        this.entryService.getBankCardEntries(bankcardId,
+          offset, limit,
+          searchKey.trim(), sortHeader, sortDirection)
+          .subscribe((data) => {
+            this.bankcardEntries = data.result;
+            this.pagination = data.pagination;
+          }, error => {
+            this.alertService.error(error);
+          })
+      );
+      observable.next(this.bankcardEntries);
+    }, 0);
+
+    return observable;
   }
 }

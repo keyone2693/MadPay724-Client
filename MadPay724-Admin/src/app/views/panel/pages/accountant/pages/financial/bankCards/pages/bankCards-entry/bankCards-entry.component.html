@@ -31,7 +31,16 @@
         <div class="card-body">
           <div class="row">
             <div class="col-md-12">
-              <smc-simplemattable class="mysimplemattable" [data]="bankcardEntries.result" [columns]="columnsSimple"></smc-simplemattable>
+              <smc-simplemattable class="mysimplemattable" 
+              [data]="bankcardEntries" [columns]="columns"
+              [paginator]="true" [backendPagination]="true"
+              [paginatorLength]="pagination.totalItems"
+              [paginatorPageSize]="pagination.itemsPerPage"
+              [paginatorPageSizeOptions]="[5, 10, 25, 50]"
+              [sorting]="true"
+               [getPage]="getPage.bind(this)"
+               (sortedData) = 'sortEvent($event)'
+              ></smc-simplemattable>
             </div>
           </div>
         </div>
