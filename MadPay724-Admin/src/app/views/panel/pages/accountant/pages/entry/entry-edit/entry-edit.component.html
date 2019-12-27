@@ -48,7 +48,9 @@
           <div *ngIf="entry.isReject" class="alert alert-danger">
             <strong>رد شده</strong>
             برای تغییر وضعیت ردی به این
-            <code class="a-pointer white" (click)="onStateChange(entry)">لینک</code>
+            <code class="a-pointer white" (click)="onStateChange(entry)"
+              >لینک</code
+            >
             مربوطه مراجعه کنید
           </div>
           <div *ngIf="!entry.isReject" class="alert alert-secondary">
@@ -68,6 +70,19 @@
             و برای کاربر با نام :
             <code>{{ entry.ownerName }}</code>
           </h4>
+          <div *ngIf="!entry.isPardakht" class="alert alert-secondary">
+              <strong>زمان ثبت درخواست :</strong>
+              <code>
+                ( {{ entry.dateCreated | date: "HH:mm" }} )
+                {{ entry.dateCreated | persianDate }}
+              </code>
+            <br/>
+              <strong>زمان اخرین تغییر درخواست :</strong>
+              <code>
+                ( {{ entry.dateModified | date: "HH:mm" }} )
+                {{ entry.dateModified | persianDate }}
+              </code>
+          </div>
         </div>
       </div>
     </div>
@@ -96,7 +111,9 @@
           <div class="px-0 py-3">
             <div class="media">
               <div class="media-left align-self-center">
-                <i class="icon-user-following danger font-large-2 float-left"></i>
+                <i
+                  class="icon-user-following danger font-large-2 float-left"
+                ></i>
               </div>
               <div class="media-body text-center">
                 <h5 class="mb-1 text-bold-500">{{ entry.ownerName }}</h5>
@@ -163,14 +180,18 @@
                     />
                     <mat-error
                       *ngIf="
-                        entryEditForm.get('bankTrackingCode').hasError('required') &&
+                        entryEditForm
+                          .get('bankTrackingCode')
+                          .hasError('required') &&
                         entryEditForm.get('bankTrackingCode').touched
                       "
                       >این فیلد نمیتواند خالی باشد</mat-error
                     >
                     <mat-error
                       *ngIf="
-                        entryEditForm.get('bankTrackingCode').hasError('maxlength') &&
+                        entryEditForm
+                          .get('bankTrackingCode')
+                          .hasError('maxlength') &&
                         entryEditForm.get('bankTrackingCode').touched
                       "
                     >
@@ -192,7 +213,9 @@
                     >
                     <mat-error
                       *ngIf="
-                        entryEditForm.get('textForUser').hasError('maxlength') &&
+                        entryEditForm
+                          .get('textForUser')
+                          .hasError('maxlength') &&
                         entryEditForm.get('textForUser').touched
                       "
                     >

@@ -86,7 +86,7 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy, AfterViewInit
     new TableColumn<Entry, 'id'>('عملیات', 'id')
       .withNgComponent(ButtonMPComponent)
       .withNgComponentInput((component: ButtonMPComponent, id) => {
-        component.event = () => { this.router.navigate(['/panel/accountant/bankcards']) };
+        component.event = () => { this.router.navigate(['/panel/accountant/entryedit/', id]) };
         component.icon = "ft-alert-octagon";
         component.text = " جزییات و ویرایش";
         component.type = UiType.Success;
