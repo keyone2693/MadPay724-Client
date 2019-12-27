@@ -25,15 +25,27 @@
         top: -2.6px !important;
         right: 22px !important;
       }
- .mat-raised-button.mat-primary {
-     background-color: #09a84c !important;
-  color: #fff !important;
-  margin: 0 auto;
-  float: none;
+
+   .mat-table {
+  overflow-x: scroll;
 }
-.mat-raised-button.mat-accent{
-  background: #197dff;
-  color: #fff;
-   margin: 0 auto;
-  float: none;
+
+.mat-cell,
+.mat-header-cell {
+  word-wrap: initial;
+  display: table-cell;
+  padding: 0px 5px;
+  line-break: unset;
+  white-space: nowrap;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.mat-row,
+.mat-header-row {
+  display: table-row;
+}
+
+   .mysimplemattable {
+  overflow-x: scroll;
 }

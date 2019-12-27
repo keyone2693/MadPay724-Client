@@ -1,0 +1,14 @@
+<mat-form-field class="col-md-12" [ngClass]="type">
+  <button
+    mat-button
+    matSuffix
+    mat-icon-button
+    [ngxClipboard]="copy"
+    
+    (cbOnSuccess)="onCopied()"
+  >
+    <i *ngIf="isForCopy" [ngClass]="[icon,iconColor]" class="col-fontsize-10"></i>
+  </button>
+  <input #copy matInput value="{{ text }}"
+  placeholder="{{ placeHolder }}" class="col-fontsize-10" [disabled]="disabled"/>
+</mat-form-field>

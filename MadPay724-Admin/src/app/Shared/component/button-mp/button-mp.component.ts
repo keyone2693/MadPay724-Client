@@ -13,7 +13,6 @@ export class ButtonMPComponent{
   @Input() event: Function;
 
   onClick() {
-    console.log(this.type)
     this.event();
   }
 

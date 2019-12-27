@@ -1,0 +1,19 @@
+::ng-deep .mat-green .mat-form-field-underline .mat-form-field-ripple {
+  background-color: #09a84c ;
+}
+::ng-deep .mat-red .mat-form-field-underline .mat-form-field-ripple {
+  background-color: #e24a4a ;
+}
+::ng-deep .mat-blue .mat-form-field-underline .mat-form-field-ripple {
+  background-color: #197dff ;
+}
+
+::ng-deep .mat-green {
+  color: #09a84c ;
+}
+::ng-deep .mat-red {
+  color: #e24a4a ;
+}
+::ng-deep .mat-blue  {
+  color: #197dff ;
+}

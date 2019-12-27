@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { EntryService } from 'src/app/core/_services/panel/accountant/entry.service';
 import { Subscription, Observable } from 'rxjs';
-import { TableColumn, ButtonType, Align } from 'simplemattable';
+import { TableColumn, ButtonType, Align, Width } from 'simplemattable';
 import { CurrentTitleStateModel } from '../../../../../store/_models/currentTitleStateModel';
 import { Store } from '@ngrx/store';
 import { AccountantStateModel } from '../../../../../store/_models/accountantStateModel';
@@ -12,6 +12,7 @@ import * as fromAccountantStore from '../../../../../store';
 import { UiType } from 'src/app/data/enums/uiType.enum';
 import { CheckboxMPComponent } from 'src/app/shared/component/checkbox-mp/checkbox-mp.component';
 import { ButtonMPComponent } from 'src/app/shared/component/button-mp/button-mp.component';
+import { InputMpComponent } from 'src/app/shared/component/input-mp/input-mp.component';
 
 @Component({
   selector: 'app-bankCards-entry',
@@ -23,12 +24,23 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy {
   bankcardEntries: Entry[];
   bankcardInfo$: Observable<CurrentTitleStateModel>
   columnsSimple = [
-    new TableColumn<Entry, 'id'>('شناسه', 'id'),
+    new TableColumn<Entry, 'id'>('شناسه', 'id')
+      //.isSticky(true)
+      .withWidth(Width.px(50))
+      .withNgComponent(InputMpComponent)
+      .withNgComponentInput((component: InputMpComponent, id) => {
+        component.event = () => { };
+        component.disabled = false;
+        component.iconColor = UiType.InputInfo;
+        component.text = id;
+        component.isForCopy = true;
+        component.icon = "ft-copy";
+      }),
     new TableColumn<Entry, 'ownerName'>('صاحب حساب', 'ownerName'),
     new TableColumn<Entry, 'isApprove'>('تاییدی', 'isApprove')
       .withNgComponent(CheckboxMPComponent)
       .withNgComponentInput((component: CheckboxMPComponent, isApprove) => {
-        component.event = () => { console.log(isApprove) };
+        component.event = () => {  };
         component.checked = isApprove;
         component.disabled = false;
         component.type = UiType.Info;
@@ -36,7 +48,7 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy {
     new TableColumn<Entry, 'isPardakht'>('پرداختی', 'isPardakht')
       .withNgComponent(CheckboxMPComponent)
       .withNgComponentInput((component: CheckboxMPComponent, isPardakht) => {
-        component.event = () => { console.log(isPardakht) };
+        component.event = () => {  };
         component.checked = isPardakht;
         component.disabled = false;
         component.type = UiType.Success;
@@ -44,7 +56,7 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy {
     new TableColumn<Entry, 'isReject'>('ردی', 'isReject')
       .withNgComponent(CheckboxMPComponent)
       .withNgComponentInput((component: CheckboxMPComponent, isReject) => {
-        component.event = () => { console.log(isReject) };
+        component.event = () => {  };
         component.checked = isReject;
         component.disabled = false;
         component.type = UiType.Error;
@@ -54,7 +66,7 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy {
     new TableColumn<Entry, 'id'>('عملیات', 'id')
       .withNgComponent(ButtonMPComponent)
       .withNgComponentInput((component: ButtonMPComponent, id) => {
-        component.event = () => { console.log(id); this.router.navigate(['/panel/accountant/bankcards']) };
+        component.event = () => { this.router.navigate(['/panel/accountant/bankcards']) };
         component.icon = "ft-alert-octagon";
         component.text = " جزییات و ویرایش";
         component.type = UiType.Success;
