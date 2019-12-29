@@ -14,7 +14,7 @@ export class CheckboxMPComponent  {
   @Input() event: Function;
 
   onChange($event) {
-    this.event();
+    this.event($event);
   }
 
 }

@@ -25,7 +25,7 @@ import { Sort } from '@angular/material';
   styleUrls: ['./bankCards-entry.component.css']
 })
 export class BankCardsEntryComponent implements OnInit, OnDestroy, AfterViewInit {
-  @ViewChild('searchKey', { static: false}) filter: ElementRef;
+  @ViewChild('searchKey', { static: false }) filter: ElementRef;
   subManager = new Subscription();
   bankcardEntries: Entry[];
   pagination: Pagination = {
@@ -39,7 +39,7 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy, AfterViewInit
     sortHeader: '',
     searchKey: ''
   };
-  bankcardInfo$: Observable<CurrentTitleStateModel>
+
   columns = [
     new TableColumn<Entry, 'id'>('شناسه', 'id')
       .withWidth(Width.px(50))
@@ -57,28 +57,35 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy, AfterViewInit
     //   this.PersianCalendarService.PersianCalendar(data)
     //   + ' ' +
     //   this.DatePipe.transform(data, 'HH:mm')),
-    new TableColumn<Entry, 'isApprove'>('تاییدی', 'isApprove')
+    new TableColumn<Entry, 'isApprove', 'isPardakht', 'isReject', 'id'>('تاییدی', 'isApprove', 'isPardakht', 'isReject', 'id')
       .withNgComponent(CheckboxMPComponent)
-      .withNgComponentInput((component: CheckboxMPComponent, isApprove) => {
-        component.event = () => { };
+      .withNgComponentInput((component: CheckboxMPComponent,isApprove, isPardakht, isReject, id) => {
+        component.event = (data) => {
+          this.onApproveChange(data, id);
+        };
         component.checked = isApprove;
-        component.disabled = false;
+        component.disabled = isReject || isPardakht;
         component.type = UiType.Info;
       }),
-    new TableColumn<Entry, 'isPardakht'>('پرداختی', 'isPardakht')
+    new TableColumn<Entry, 'isPardakht', 'isApprove', 'isReject', 'id'>('پرداختی', 'isPardakht', 'isApprove', 'isReject', 'id')
       .withNgComponent(CheckboxMPComponent)
-      .withNgComponentInput((component: CheckboxMPComponent, isPardakht) => {
-        component.event = () => { };
+      .withNgComponentInput((component: CheckboxMPComponent,  isPardakht, isApprove, isReject, id) => {
+        component.event = (data) => {
+          this.onPardakhtChange(data, id);
+          
+        };
         component.checked = isPardakht;
-        component.disabled = false;
+        component.disabled = !isApprove || isReject;
         component.type = UiType.Success;
       }),
-    new TableColumn<Entry, 'isReject'>('ردی', 'isReject')
+    new TableColumn<Entry, 'isReject', 'isApprove', 'isPardakht', 'id'>('ردی', 'isReject', 'isApprove', 'isPardakht', 'id')
       .withNgComponent(CheckboxMPComponent)
-      .withNgComponentInput((component: CheckboxMPComponent, isReject) => {
-        component.event = () => { };
+      .withNgComponentInput((component: CheckboxMPComponent, isReject, isApprove, isPardakht, id) => {
+        component.event = (data) => {
+          this.onRejectChange(data, id);
+        };
         component.checked = isReject;
-        component.disabled = false;
+        component.disabled = isPardakht;
         component.type = UiType.Error;
       }),
     new TableColumn<Entry, 'price'>('مبلغ', 'price')
@@ -93,12 +100,16 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy, AfterViewInit
         component.type = UiType.Success;
       })
   ];
+
+  bankcardInfo$: Observable<CurrentTitleStateModel>
+
   constructor(private route: ActivatedRoute, private alertService: ToastrService
     , private entryService: EntryService, private store: Store<AccountantStateModel>,
     private router: Router, private irCurrencyPipe: IRCurrencyPipe) { }
 
   ngOnInit() {
-    
+
+
     this.bankcardInfo$ = this.store.select(fromAccountantStore.getCurrentTitle);
   }
   ngAfterViewInit() {
@@ -108,9 +119,9 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy, AfterViewInit
           debounceTime(1000),
           map((event: Event) => (<HTMLInputElement>event.target).value),
           distinctUntilChanged(),
-          switchMap(value => this.getPage(this.pagination.currentPage, this.pagination.itemsPerPage, value)),
+          switchMap(value => this.onPageChange(this.pagination.currentPage, this.pagination.itemsPerPage, value)),
         ).subscribe()
-     );
+    );
   }
   ngOnDestroy() {
     this.subManager.unsubscribe();
@@ -118,10 +129,10 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy, AfterViewInit
   sortEvent(data: Sort) {
     this.filterSortOrderBy.sortHeader = data.active.split('_')[1];
     this.filterSortOrderBy.sortDirection = data.direction;
-    this.getPage(this.pagination.currentPage, this.pagination.itemsPerPage);
+    this.onPageChange(this.pagination.currentPage, this.pagination.itemsPerPage);
   }
-  getPage(offset: number, limit: number,filter?: string): Observable<Entry[]> {
-    let {sortDirection, sortHeader } = this.filterSortOrderBy;
+  onPageChange(offset: number, limit: number, filter?: string): Observable<Entry[]> {
+    let { sortDirection, sortHeader } = this.filterSortOrderBy;
     if (filter === undefined || filter == null) {
       filter = '';
     }
@@ -156,5 +167,50 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy, AfterViewInit
     }, 0);
 
     return observable;
+  }
+  onApproveChange(event: any, entryId: string) {
+    this.subManager.add(
+      this.entryService.changeApproveEntry(entryId, event.checked)
+        .subscribe(() => {
+          this.onPageChange(this.pagination.currentPage, this.pagination.itemsPerPage);
+          if (event.checked === true) {
+            this.alertService.success('واریزی تایید شد', 'موفق');
+          } else {
+            this.alertService.success('واریزی از حالت تایید خارج شد', 'موفق');
+          }
+        }, error => {
+            this.alertService.error(error);
+        })
+    )
+  }
+  onPardakhtChange(event: any, entryId: string) {
+    this.subManager.add(
+      this.entryService.changePardakhtEntry(entryId, event.checked)
+        .subscribe(() => {
+          this.onPageChange(this.pagination.currentPage, this.pagination.itemsPerPage);
+          if (event.checked === true) {
+            this.alertService.success('واریزی پرداخت شد', 'موفق');
+          } else {
+            this.alertService.success('واریزی از حالت پرداخت خارج شد', 'موفق');
+          }
+        }, error => {
+            this.alertService.error(error);
+        })
+    )
+  }
+  onRejectChange(event: any, entryId: string) {
+    this.subManager.add(
+      this.entryService.changeRejectEntry(entryId, event.checked)
+        .subscribe(() => {
+          this.onPageChange(this.pagination.currentPage, this.pagination.itemsPerPage);
+          if (event.checked === true) {
+            this.alertService.success('واریزی رد شد', 'موفق');
+          } else {
+            this.alertService.success('واریزی از حالت رد خارج شد', 'موفق');
+          }
+        }, error => {
+            this.alertService.error(error);
+        })
+    )
   }
 }

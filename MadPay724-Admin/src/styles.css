@@ -50,3 +50,6 @@
     overflow-x: scroll;
   }
 }
+.mat-checkbox-disabled{
+  cursor: no-drop !important;
+}

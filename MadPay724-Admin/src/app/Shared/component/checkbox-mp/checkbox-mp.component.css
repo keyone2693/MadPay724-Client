@@ -1,13 +1,13 @@
 
 
 ::ng-deep .mat-checkbox-checked.mat-green .mat-checkbox-background, .mat-checkbox-indeterminate .mat-checkbox-background {
-  background-color: #09a84c !important;
+  background-color: #09a84c ;
 }
 
 ::ng-deep .mat-checkbox-checked.mat-red .mat-checkbox-background, .mat-checkbox-indeterminate .mat-checkbox-background {
-  background-color: #e24a4a !important;
+  background-color: #e24a4a ;
 }
 
 ::ng-deep .mat-checkbox-checked.mat-blue .mat-checkbox-background, .mat-checkbox-indeterminate .mat-checkbox-background {
-  background-color: #197dff !important;
+  background-color: #197dff ;
 }
