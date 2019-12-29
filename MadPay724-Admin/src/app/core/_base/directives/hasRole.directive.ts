@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 @Directive({
   selector: '[appHasRole]'
 })
+  
 export class HasRoleDirective implements OnInit, OnDestroy {
   @Input() appHasRole: string[];
   isVisible = false;

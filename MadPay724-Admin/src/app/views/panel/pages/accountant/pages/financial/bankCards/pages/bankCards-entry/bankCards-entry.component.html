@@ -58,8 +58,8 @@
               [paginatorPageSize]="pagination.itemsPerPage"
               [paginatorPageSizeOptions]="[5, 10, 25, 50]"
               [sorting]="true"
-               [getPage]="getPage.bind(this)"
-               (sortedData) = 'sortEvent($event)'
+              [getPage]="getPage.bind(this)"
+              (sort) = 'sortEvent($event)'
               ></smc-simplemattable>
             </div>
           </div>

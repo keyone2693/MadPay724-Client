@@ -17,6 +17,7 @@ import { IRCurrencyPipe } from 'ngx-persian';
 import { Pagination } from 'src/app/data/models/common/pagination';
 import { FilterSortOrderBy } from 'src/app/data/models/common/filterSortOrderBy';
 import { debounceTime, switchMap, map, distinctUntilChanged } from 'rxjs/operators';
+import { Sort } from '@angular/material';
 
 @Component({
   selector: 'app-bankCards-entry',
@@ -114,7 +115,7 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy, AfterViewInit
   ngOnDestroy() {
     this.subManager.unsubscribe();
   }
-  sortEvent(data: any) {
+  sortEvent(data: Sort) {
     this.filterSortOrderBy.sortHeader = data.active.split('_')[1];
     this.filterSortOrderBy.sortDirection = data.direction;
     this.getPage(this.pagination.currentPage, this.pagination.itemsPerPage);
