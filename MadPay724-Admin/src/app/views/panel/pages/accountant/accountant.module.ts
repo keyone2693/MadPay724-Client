@@ -45,6 +45,7 @@ import { SimplemattableModule } from 'simplemattable';
 import { ButtonMPComponent } from 'src/app/shared/component/button-mp/button-mp.component';
 import { CheckboxMPComponent } from 'src/app/shared/component/checkbox-mp/checkbox-mp.component';
 import { InputMpComponent } from 'src/app/shared/component/input-mp/input-mp.component';
+import { HtmlMpComponent } from 'src/app/shared/component/html-mp/html-mp.component';
 
 @NgModule({
   imports: [
@@ -82,7 +83,8 @@ import { InputMpComponent } from 'src/app/shared/component/input-mp/input-mp.com
     //
     ButtonMPComponent,
     CheckboxMPComponent,
-    InputMpComponent
+    InputMpComponent,
+    HtmlMpComponent
   ],
   providers: [
     InventoryService,
@@ -100,6 +102,6 @@ import { InputMpComponent } from 'src/app/shared/component/input-mp/input-mp.com
     EntryPardakhtResolver,
     EntryResolver,
     BankCardEntryResolver
-  ], entryComponents: [ButtonMPComponent, CheckboxMPComponent, InputMpComponent]
+  ], entryComponents: [ButtonMPComponent, CheckboxMPComponent, InputMpComponent, HtmlMpComponent]
 })
 export class AccountantModule { }

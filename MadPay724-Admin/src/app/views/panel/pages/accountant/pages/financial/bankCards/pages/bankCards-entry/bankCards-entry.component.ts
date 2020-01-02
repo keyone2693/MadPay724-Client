@@ -18,6 +18,8 @@ import { Pagination } from 'src/app/data/models/common/pagination';
 import { FilterSortOrderBy } from 'src/app/data/models/common/filterSortOrderBy';
 import { debounceTime, switchMap, map, distinctUntilChanged } from 'rxjs/operators';
 import { Sort } from '@angular/material';
+import { HtmlMpComponent } from 'src/app/shared/component/html-mp/html-mp.component';
+import { TooltipPosition } from 'src/app/data/enums/tooltipPosition.enum';
 
 @Component({
   selector: 'app-bankCards-entry',
@@ -57,40 +59,48 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy, AfterViewInit
     //   this.PersianCalendarService.PersianCalendar(data)
     //   + ' ' +
     //   this.DatePipe.transform(data, 'HH:mm')),
-    new TableColumn<Entry, 'isApprove', 'isPardakht', 'isReject', 'id'>('تاییدی', 'isApprove', 'isPardakht', 'isReject', 'id')
+    new TableColumn<Entry, 'isApprove'>('تاییدی', 'isApprove')
       .withNgComponent(CheckboxMPComponent)
-      .withNgComponentInput((component: CheckboxMPComponent,isApprove, isPardakht, isReject, id) => {
+      .withNgComponentInput((component: CheckboxMPComponent,isApprove,entry) => {
         component.event = (data) => {
-          this.onApproveChange(data, id);
+          this.onApproveChange(data, entry.id);
         };
         component.checked = isApprove;
-        component.disabled = isReject || isPardakht;
+        component.disabled = entry.isReject || entry.isPardakht;
         component.type = UiType.Info;
       }),
-    new TableColumn<Entry, 'isPardakht', 'isApprove', 'isReject', 'id'>('پرداختی', 'isPardakht', 'isApprove', 'isReject', 'id')
+    new TableColumn<Entry, 'isPardakht'>('پرداختی', 'isPardakht')
       .withNgComponent(CheckboxMPComponent)
-      .withNgComponentInput((component: CheckboxMPComponent,  isPardakht, isApprove, isReject, id) => {
+      .withNgComponentInput((component: CheckboxMPComponent, isPardakht, entry) => {
         component.event = (data) => {
-          this.onPardakhtChange(data, id);
+          this.onPardakhtChange(data, entry.id);
           
         };
         component.checked = isPardakht;
-        component.disabled = !isApprove || isReject;
+        component.disabled = !entry.isApprove || entry.isReject;
         component.type = UiType.Success;
       }),
-    new TableColumn<Entry, 'isReject', 'isApprove', 'isPardakht', 'id'>('ردی', 'isReject', 'isApprove', 'isPardakht', 'id')
+    new TableColumn<Entry, 'isReject'>('ردی', 'isReject')
       .withNgComponent(CheckboxMPComponent)
-      .withNgComponentInput((component: CheckboxMPComponent, isReject, isApprove, isPardakht, id) => {
+      .withNgComponentInput((component: CheckboxMPComponent, isReject, entry) => {
         component.event = (data) => {
-          this.onRejectChange(data, id);
+          this.onRejectChange(data, entry.id);
         };
         component.checked = isReject;
-        component.disabled = isPardakht;
+        component.disabled = entry.isPardakht;
         component.type = UiType.Error;
       }),
     new TableColumn<Entry, 'price'>('مبلغ', 'price')
       .withTransform((data) => this.irCurrencyPipe.transform(data).replace("ریال", "تومان")),
-    new TableColumn<Entry, 'textForUser'>(' نمایش متن', 'textForUser'),
+    new TableColumn<Entry, 'textForUser'>('متن پاسخ', 'textForUser')
+      .withNgComponent(HtmlMpComponent)
+      .withNgComponentInput((component: HtmlMpComponent, textForUser) => {
+        component.isTooltip = true;
+        component.tooltipText = textForUser;
+        component.tooltipPosition = TooltipPosition.Below;
+        component.class = 'txtwxp';
+        component.text = textForUser.substring(0,10) + ' ...'
+      }),
     new TableColumn<Entry, 'id'>('عملیات', 'id')
       .withNgComponent(ButtonMPComponent)
       .withNgComponentInput((component: ButtonMPComponent, id) => {

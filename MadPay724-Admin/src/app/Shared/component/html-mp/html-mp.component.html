@@ -1,0 +1,12 @@
+<div 
+*ngIf="!isTooltip"
+[ngClass]="class"
+[innerHTML]="html"  
+></div>
+
+<p 
+*ngIf="isTooltip"
+[ngClass]="class"
+matTooltip="{{tooltipText}}"
+[matTooltipPosition]="tooltipPosition"
+>{{text}}</p>
