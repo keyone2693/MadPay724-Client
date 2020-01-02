@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { AccountantComponent } from './accountant.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AccountantRoutingModule } from './accountant-routing.module';
@@ -89,6 +89,7 @@ import { WalletsEntryComponent } from './pages/financial/wallets/pages/wallets-e
     HtmlMpComponent
   ],
   providers: [
+    DatePipe,
     InventoryService,
     EntryService,
     FactorService,

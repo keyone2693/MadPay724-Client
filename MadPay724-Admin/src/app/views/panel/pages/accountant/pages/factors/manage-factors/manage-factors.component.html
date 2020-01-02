@@ -1,3 +1,73 @@
-<p>
-  accountant-manage-factors works!
-</p>
+<!-- User Profile Starts-->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/panel/accountant/dashboard']">داشبورد</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a>حسابدار </a>
+    </li>
+    <li class="breadcrumb-item">
+      <a>فاکتور ها </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page" *ngIf="walletInfo$ | async as walletInfo">
+      مدیریت فاکتور ها
+    </li>
+  </ol>
+</nav>
+<!--Basic User Details Starts-->
+<section id="user-area" *ngIf="walletInfo$ | async as walletInfo">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-wrap bar-success">
+            <h4 class="card-title"> مدیریت فاکتور ها</h4>
+          </div>
+          <p>
+            تمام فاکتورها در این صفحه نمایش داده می‌شوند
+          </p>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="search-div">
+                <mat-form-field class="search-form-field" floatLabel="never">
+                  <input
+                   #searchKey
+                    matInput
+                    type="text"
+                    [(ngModel)]="filterSortOrderBy.searchKey"
+                    placeholder="جستوجو ..."
+                  />
+                  <button
+                    mat-button
+                    *ngIf="filterSortOrderBy.searchKey"
+                    matSuffix
+                    mat-icon-button
+                    aria-label="Clear"
+                    
+                    (click)="onSearchClear()"
+                  >
+                    <i class="ft-x"></i>
+                  </button>
+                </mat-form-field>
+              </div>
+              <smc-simplemattable class="mysimplemattable" 
+              [data]="factors" [columns]="columns"
+              [paginator]="true" [backendPagination]="true"
+              [paginatorLength]="pagination.totalItems"
+              [paginatorPageSize]="pagination.itemsPerPage"
+              [paginatorPageSizeOptions]="[5, 10, 25, 50]"
+              [sorting]="true"
+              [getPage]="onPageChange.bind(this)"
+              (sort) = 'sortEvent($event)'
+              ></smc-simplemattable>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--User Profile Starts-->

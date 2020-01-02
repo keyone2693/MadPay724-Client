@@ -1,17 +1,17 @@
 export interface Factor {
-    Id: string;
-    DateCreated: Date;
-    DateModified: Date;
-    UserName: string;
-    Status: boolean;
-    Kind: number;
-    Bank: number;
-    GiftCode: string;
-    IsGifted: boolean;
-    Price: number;
-    EndPrice: number;
-    RefBank: string;
-    EnterMoneyWalletId: string;
-    UserId: string;
-    GateId: string;
+    id: string;
+    dateCreated: Date;
+    dateModified: Date;
+    userName: string;
+    status: boolean;
+    kind: number;
+    bank: number;
+    giftCode: string;
+    isGifted: boolean;
+    price: number;
+    endPrice: number;
+    refBank: string;
+    enterMoneyWalletId: string;
+    userId: string;
+    gateId: string;
 }
