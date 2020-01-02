@@ -12,6 +12,7 @@ import { Entry } from 'src/app/data/models/accountant/entry';
 export class EntryService {
   baseUrl = environment.apiUrl + environment.apiV1 + 'site/panel/entries/';
   bancardEntrybaseUrl = environment.apiUrl + environment.apiV1 + 'site/panel/bankcards/';
+  walletEntrybaseUrl = environment.apiUrl + environment.apiV1 + 'site/panel/wallets/';
 
   constructor(private http: HttpClient) { }
 
@@ -101,6 +102,30 @@ export class EntryService {
     }
     return this.http.get<Entry[]>
       (this.bancardEntrybaseUrl + bankcardId + '/entries/', { observe: 'response', params })
+      .pipe(
+        map(response => {
+          paginatedResult.result = response.body;
+          if (response.headers.get('Pagination') != null) {
+            paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
+          }
+          return paginatedResult;
+        })
+      );
+  }
+  getWalletEntries(walletId: string, page?, itemPerPage?, filter?, sortHe?, sortDir?):
+    Observable<PaginationResult<Entry[]>> {
+    const paginatedResult: PaginationResult<Entry[]> = new PaginationResult<Entry[]>();
+    let params = new HttpParams();
+
+    if (page != null && itemPerPage != null) {
+      params = params.append('pageNumber', page);
+      params = params.append('pageSize', itemPerPage);
+      params = params.append('filter', filter);
+      params = params.append('sortHe', sortHe);
+      params = params.append('sortDir', sortDir);
+    }
+    return this.http.get<Entry[]>
+      (this.walletEntrybaseUrl + walletId + '/entries/', { observe: 'response', params })
       .pipe(
         map(response => {
           paginatedResult.result = response.body;

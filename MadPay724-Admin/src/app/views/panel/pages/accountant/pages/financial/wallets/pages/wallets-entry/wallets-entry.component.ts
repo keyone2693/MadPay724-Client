@@ -1,35 +1,38 @@
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { Entry } from 'src/app/data/models/accountant/entry';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { EntryService } from 'src/app/core/_services/panel/accountant/entry.service';
+import { Component, OnInit, ViewChild, OnDestroy, AfterViewInit, ElementRef } from '@angular/core';
 import { Subscription, Observable, Subject, fromEvent } from 'rxjs';
-import { TableColumn, Width } from 'simplemattable';
-import { CurrentTitleStateModel } from '../../../../../store/_models/currentTitleStateModel';
-import { Store } from '@ngrx/store';
-import { AccountantStateModel } from '../../../../../store/_models/accountantStateModel';
-import * as fromAccountantStore from '../../../../../store';
-import { UiType } from 'src/app/data/enums/uiType.enum';
-import { CheckboxMPComponent } from 'src/app/shared/component/checkbox-mp/checkbox-mp.component';
-import { ButtonMPComponent } from 'src/app/shared/component/button-mp/button-mp.component';
-import { InputMpComponent } from 'src/app/shared/component/input-mp/input-mp.component';
-import { IRCurrencyPipe } from 'ngx-persian';
+import { Entry } from 'src/app/data/models/accountant/entry';
 import { Pagination } from 'src/app/data/models/common/pagination';
 import { FilterSortOrderBy } from 'src/app/data/models/common/filterSortOrderBy';
-import { debounceTime, switchMap, map, distinctUntilChanged } from 'rxjs/operators';
-import { Sort } from '@angular/material';
+import { TableColumn, Width } from 'simplemattable';
+import { InputMpComponent } from 'src/app/shared/component/input-mp/input-mp.component';
+import { UiType } from 'src/app/data/enums/uiType.enum';
+import { CheckboxMPComponent } from 'src/app/shared/component/checkbox-mp/checkbox-mp.component';
 import { HtmlMpComponent } from 'src/app/shared/component/html-mp/html-mp.component';
+import { ButtonMPComponent } from 'src/app/shared/component/button-mp/button-mp.component';
 import { TooltipPosition } from 'src/app/data/enums/tooltipPosition.enum';
+import { CurrentTitleStateModel } from '../../../../../store/_models/currentTitleStateModel';
+import { EntryService } from 'src/app/core/_services/panel/accountant/entry.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { AccountantStateModel } from '../../../../../store/_models/accountantStateModel';
+import { Store } from '@ngrx/store';
+import { IRCurrencyPipe } from 'ngx-persian';
+
+
+import * as fromAccountantStore from '../../../../../store';
+import { map, distinctUntilChanged, switchMap, debounceTime } from 'rxjs/operators';
+import { Sort } from '@angular/material';
+
 
 @Component({
-  selector: 'app-bankCards-entry',
-  templateUrl: './bankCards-entry.component.html',
-  styleUrls: ['./bankCards-entry.component.css']
+  selector: 'app-wallets-entry',
+  templateUrl: './wallets-entry.component.html',
+  styleUrls: ['./wallets-entry.component.css']
 })
-export class BankCardsEntryComponent implements OnInit, OnDestroy, AfterViewInit {
+export class WalletsEntryComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('searchKey', { static: false }) filter: ElementRef;
   subManager = new Subscription();
-  bankcardEntries: Entry[];
+  walletEntries: Entry[];
   pagination: Pagination = {
     currentPage: 0,
     itemsPerPage: 5,
@@ -61,7 +64,7 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy, AfterViewInit
     //   this.DatePipe.transform(data, 'HH:mm')),
     new TableColumn<Entry, 'isApprove'>('تاییدی', 'isApprove')
       .withNgComponent(CheckboxMPComponent)
-      .withNgComponentInput((component: CheckboxMPComponent,isApprove,entry) => {
+      .withNgComponentInput((component: CheckboxMPComponent, isApprove, entry) => {
         component.event = (data) => {
           this.onApproveChange(data, entry.id);
         };
@@ -74,7 +77,7 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy, AfterViewInit
       .withNgComponentInput((component: CheckboxMPComponent, isPardakht, entry) => {
         component.event = (data) => {
           this.onPardakhtChange(data, entry.id);
-          
+
         };
         component.checked = isPardakht;
         component.disabled = !entry.isApprove || entry.isReject;
@@ -99,7 +102,7 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy, AfterViewInit
         component.tooltipText = textForUser;
         component.tooltipPosition = TooltipPosition.Below;
         component.class = 'txtwxp';
-        component.text = textForUser.substring(0,10) + ' ...'
+        component.text = textForUser.substring(0, 10) + ' ...'
       }),
     new TableColumn<Entry, 'id'>('عملیات', 'id')
       .withNgComponent(ButtonMPComponent)
@@ -111,14 +114,15 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy, AfterViewInit
       })
   ];
 
-  bankcardInfo$: Observable<CurrentTitleStateModel>
+  walletInfo$: Observable<CurrentTitleStateModel>
 
   constructor(private route: ActivatedRoute, private alertService: ToastrService
     , private entryService: EntryService, private store: Store<AccountantStateModel>,
     private router: Router, private irCurrencyPipe: IRCurrencyPipe) { }
 
+
   ngOnInit() {
-    this.bankcardInfo$ = this.store.select(fromAccountantStore.getCurrentTitle);
+    this.walletInfo$ = this.store.select(fromAccountantStore.getCurrentTitle);
   }
   ngAfterViewInit() {
     this.subManager.add(
@@ -152,26 +156,26 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy, AfterViewInit
     }
     //offset : page index
     //limit : page size
-    let bankcardId = ''
+    let walletId = ''
     this.subManager.add(
       this.route.params.subscribe(params => {
-        bankcardId = params['bankcardId'];
+        walletId = params['walletId'];
       })
     );
     const observable = new Subject<Entry[]>();
     setTimeout(() => {
       this.subManager.add(
-        this.entryService.getBankCardEntries(bankcardId,
+        this.entryService.getWalletEntries(walletId,
           offset, limit,
           filter.trim(), sortHeader, sortDirection)
           .subscribe((data) => {
-            this.bankcardEntries = data.result;
+            this.walletEntries = data.result;
             this.pagination = data.pagination;
           }, error => {
             this.alertService.error(error);
           })
       );
-      observable.next(this.bankcardEntries);
+      observable.next(this.walletEntries);
     }, 0);
 
     return observable;
@@ -187,7 +191,7 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy, AfterViewInit
             this.alertService.success('واریزی از حالت تایید خارج شد', 'موفق');
           }
         }, error => {
-            this.alertService.error(error);
+          this.alertService.error(error);
         })
     )
   }
@@ -202,7 +206,7 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy, AfterViewInit
             this.alertService.success('واریزی از حالت پرداخت خارج شد', 'موفق');
           }
         }, error => {
-            this.alertService.error(error);
+          this.alertService.error(error);
         })
     )
   }
@@ -217,8 +221,9 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy, AfterViewInit
             this.alertService.success('واریزی از حالت رد خارج شد', 'موفق');
           }
         }, error => {
-            this.alertService.error(error);
+          this.alertService.error(error);
         })
     )
   }
+
 }

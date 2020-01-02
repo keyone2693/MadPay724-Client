@@ -144,7 +144,17 @@
         color="green"
       >
         <i class="icon-bag"></i>
-        نمایش فاکتور و جزییات
+       فاکتور ها
+      </button>
+       <button
+        *appHasRole="['Admin', 'Accountant']"
+        mat-raised-button
+        (click)="onBankCardClick(bankCard)"
+        color="red"
+        class="mt-0 ml-1"
+      >
+        <i class="ft-external-link"></i>
+         واریزی ها
       </button>
     </mat-cell>
   </ng-container>
