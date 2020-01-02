@@ -84,4 +84,9 @@ export class InventoryBankCardListComponent implements OnInit, OnDestroy {
         })
     )
   }
+  onBankCardClick(bancard: BankCard) {
+    this.store.dispatch(new fromAccountantStore.EditCurrentTitle(
+      { id: bancard.id, title: bancard.cardNumber }));
+    this.router.navigate(['/panel/accountant/bankcards', bancard.id, 'entry'])
+  }
 }

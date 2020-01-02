@@ -46,6 +46,7 @@ import { ButtonMPComponent } from 'src/app/shared/component/button-mp/button-mp.
 import { CheckboxMPComponent } from 'src/app/shared/component/checkbox-mp/checkbox-mp.component';
 import { InputMpComponent } from 'src/app/shared/component/input-mp/input-mp.component';
 import { HtmlMpComponent } from 'src/app/shared/component/html-mp/html-mp.component';
+import { WalletsEntryComponent } from './pages/financial/wallets/pages/wallets-entry/wallets-entry.component';
 
 @NgModule({
   imports: [
@@ -80,6 +81,7 @@ import { HtmlMpComponent } from 'src/app/shared/component/html-mp/html-mp.compon
     EntryApproveComponent,
     EntryEditComponent,
     BankCardsEntryComponent,
+    WalletsEntryComponent,
     //
     ButtonMPComponent,
     CheckboxMPComponent,

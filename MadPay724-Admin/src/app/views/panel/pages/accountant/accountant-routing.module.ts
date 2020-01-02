@@ -70,13 +70,13 @@ const routes: Routes = [
                 data: { roles: ['Accountant', 'Admin'], title: ['مدیریت موجودی ها'] }
             },
             {
-                path: 'inventorywallet/:userId', canActivate: [AuthGuard],
+                path: 'inventory/:userId/wallets', canActivate: [AuthGuard],
                 resolve: { inventorywallets: InventoryWalletResolver },
                 component: InventoryWalletListComponent,
                 data: { roles: ['Accountant', 'Admin'], title: ['کیف پول های'] }
             },
             {
-                path: 'inventorybankcard/:userId', canActivate: [AuthGuard],
+                path: 'inventory/:userId/bankcards', canActivate: [AuthGuard],
                 resolve: { inventorybankcards: InventoryBankCardResolver },
                 component: InventoryBankCardListComponent,
                 data: { roles: ['Accountant', 'Admin'], title: ['کارت های بانکی'] }

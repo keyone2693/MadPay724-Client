@@ -22,6 +22,7 @@ import { IRCurrencyPipe } from 'ngx-persian';
 import * as fromAccountantStore from '../../../../../store';
 import { map, distinctUntilChanged, switchMap, debounceTime } from 'rxjs/operators';
 import { Sort } from '@angular/material';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -118,7 +119,7 @@ export class WalletsEntryComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(private route: ActivatedRoute, private alertService: ToastrService
     , private entryService: EntryService, private store: Store<AccountantStateModel>,
-    private router: Router, private irCurrencyPipe: IRCurrencyPipe) { }
+    private router: Router, private irCurrencyPipe: IRCurrencyPipe, private loc: Location) { }
 
 
   ngOnInit() {
@@ -143,7 +144,11 @@ export class WalletsEntryComponent implements OnInit, OnDestroy, AfterViewInit {
     this.filterSortOrderBy.sortDirection = data.direction;
     this.onPageChange(this.pagination.currentPage, this.pagination.itemsPerPage);
   }
+  onSearchClear() {
+    this.onPageChange(this.pagination.currentPage, this.pagination.itemsPerPage);
+  }
   onPageChange(offset: number, limit: number, filter?: string): Observable<Entry[]> {
+
     let { sortDirection, sortHeader } = this.filterSortOrderBy;
     if (filter === undefined || filter == null) {
       filter = '';
@@ -154,6 +159,7 @@ export class WalletsEntryComponent implements OnInit, OnDestroy, AfterViewInit {
     if (sortHeader === undefined || sortHeader == null) {
       sortHeader = '';
     }
+    this.filterSortOrderBy.searchKey = filter;
     //offset : page index
     //limit : page size
     let walletId = ''
@@ -224,6 +230,9 @@ export class WalletsEntryComponent implements OnInit, OnDestroy, AfterViewInit {
           this.alertService.error(error);
         })
     )
+  }
+  onBack() {
+    this.loc.back();
   }
 
 }

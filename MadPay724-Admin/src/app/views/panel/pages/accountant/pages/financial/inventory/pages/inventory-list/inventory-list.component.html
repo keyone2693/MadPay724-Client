@@ -176,7 +176,7 @@
     <mat-header-cell *matHeaderCellDef> کیف پول/کارت بانک </mat-header-cell>
     <mat-cell *matCellDef="let inventory">
       <button mat-button
-      [routerLink]="['/panel/accountant/inventorywallet/', inventory.id]"
+      [routerLink]="['/panel/accountant/inventory', inventory.id,'wallets']"
       (click)="onWallet(inventory)"
        matTooltip="برای مشاهده کیف پول های کاربر کلیک کنید"
               
@@ -184,7 +184,7 @@
         <i class="icon-wallet"></i>
       </button>
       <button mat-button
-      [routerLink]="['/panel/accountant/inventorybankcard/', inventory.id]"
+      [routerLink]="['/panel/accountant/inventory', inventory.id,'bankcards']"
       (click)="onBankCard(inventory)"
        matTooltip="برای مشاهده کارت های بانکی کاربر کلیک کنید"
         color="warn" class="btn-action">

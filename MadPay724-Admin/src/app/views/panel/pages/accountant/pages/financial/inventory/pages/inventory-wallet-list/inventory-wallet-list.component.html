@@ -178,15 +178,25 @@
                       عملیات
                     </mat-header-cell>
                     <mat-cell *matCellDef="let wallet">
-                      <button
-                        *appHasRole="['Admin', 'Accountant']"
-                        mat-raised-button
-                        [routerLink]="['/panel/accountant/inventory']"
-                        color="green"
-                      >
-                        <i class="icon-bag"></i>
-                        نمایش فاکتور و جزییات
-                      </button>
+                       <button
+                          *appHasRole="['Admin', 'Accountant']"
+                          mat-raised-button
+                          [routerLink]="['/panel/accountant/inventory']"
+                          color="green"
+                        >
+                          <i class="icon-bag"></i>
+                        فاکتور ها
+                        </button>
+                        <button
+                          *appHasRole="['Admin', 'Accountant']"
+                          mat-raised-button
+                          (click)="onWalletClick(wallet)"
+                          color="red"
+                          class="mt-0 ml-1"
+                        >
+                          <i class="ft-external-link"></i>
+                          واریزی ها
+                        </button>
                     </mat-cell>
                   </ng-container>
 

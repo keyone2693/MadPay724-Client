@@ -20,6 +20,7 @@ import { debounceTime, switchMap, map, distinctUntilChanged } from 'rxjs/operato
 import { Sort } from '@angular/material';
 import { HtmlMpComponent } from 'src/app/shared/component/html-mp/html-mp.component';
 import { TooltipPosition } from 'src/app/data/enums/tooltipPosition.enum';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-bankCards-entry',
@@ -115,7 +116,7 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy, AfterViewInit
 
   constructor(private route: ActivatedRoute, private alertService: ToastrService
     , private entryService: EntryService, private store: Store<AccountantStateModel>,
-    private router: Router, private irCurrencyPipe: IRCurrencyPipe) { }
+    private router: Router, private irCurrencyPipe: IRCurrencyPipe,private loc: Location) { }
 
   ngOnInit() {
     this.bankcardInfo$ = this.store.select(fromAccountantStore.getCurrentTitle);
@@ -220,5 +221,8 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy, AfterViewInit
             this.alertService.error(error);
         })
     )
+  }
+  onBack() {
+    this.loc.back();
   }
 }

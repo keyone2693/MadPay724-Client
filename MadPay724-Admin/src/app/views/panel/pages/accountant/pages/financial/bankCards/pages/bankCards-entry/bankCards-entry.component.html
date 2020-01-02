@@ -32,6 +32,15 @@
           <div class="row">
             <div class="col-md-12">
               <div class="search-div">
+                 <button
+                  mat-raised-button
+                  (click)="onBack()"
+                  color="red"
+                  class="float-left mb-10"
+                >
+                  <i class="ft-chevrons-right"></i>
+                 بازگشت به کارت های بانکی / مدیریت موجودی
+                </button>
                 <mat-form-field class="search-form-field" floatLabel="never">
                   <input
                    #searchKey

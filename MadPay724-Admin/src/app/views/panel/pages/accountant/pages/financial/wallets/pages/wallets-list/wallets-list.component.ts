@@ -10,6 +10,9 @@ import { AccountantStateModel } from '../../../../../store/_models/accountantSta
 import { Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 
+import * as fromAccountantStore from '../../../../../store';
+
+
 @Component({
   selector: 'app-wallets-list',
   templateUrl: './wallets-list.component.html',
@@ -136,6 +139,10 @@ export class WalletsListComponent implements OnInit, OnDestroy {
         })
     )
   }
-
+  onWalletClick(wallet: Wallet) {
+    this.store.dispatch(new fromAccountantStore.EditCurrentTitle(
+      { id: wallet.id, title: wallet.name }));
+    this.router.navigate(['/panel/accountant/wallets', wallet.id, 'entry'])
+  }
 
 }
