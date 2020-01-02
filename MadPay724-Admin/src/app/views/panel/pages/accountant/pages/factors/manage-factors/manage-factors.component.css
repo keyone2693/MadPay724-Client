@@ -45,11 +45,7 @@ mat-footer-row mat-footer-cell {
   margin-right: 2px;
 }
 .txtwxp{
-    font-size: 14px;
-    font-weight: 900;
-    color: #ff4081;
-    border-bottom: 2px solid #ff4081;
-    border-radius: 4px;
+    font-size: 14px;font-weight: 900;color: #ff4081;
 }
 .btn-action {
   min-width: 20px;

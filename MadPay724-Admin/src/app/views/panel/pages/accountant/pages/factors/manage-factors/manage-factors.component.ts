@@ -56,11 +56,9 @@ export class ManageFactorsComponent implements OnInit, OnDestroy, AfterViewInit 
         component.isForCopy = true;
         component.icon = "ft-copy";
       }),
-    new TableColumn<Factor, 'dateCreated'>('تاریخ ایجاد', 'dateCreated')
-     .withTransform((data) =>
-       this.persianCalendarService.PersianCalendar(data)
-       + ' ' +
-       this.datePipe.transform(data, 'HH:mm')),
+
+   
+    new TableColumn<Factor, 'kind'>('نوع', 'kind'),
     new TableColumn<Factor, 'status'>('وضعیت', 'status')
       .withNgComponent(CheckboxMPComponent)
       .withNgComponentInput((component: CheckboxMPComponent, status, factor) => {
@@ -69,15 +67,23 @@ export class ManageFactorsComponent implements OnInit, OnDestroy, AfterViewInit 
         };
         component.checked = status;
         component.disabled = false;
-        component.type = UiType.Info;
+        component.type = UiType.Success;
       }),
-    new TableColumn<Factor, 'kind'>('نوع', 'kind'),
     new TableColumn<Factor, 'bank'>('بانک', 'bank'),
+    new TableColumn<Factor, 'dateCreated'>('تاریخ ایجاد', 'dateCreated')
+      .withNgStyle(() => ({ 'font-size': '14px', 'color': '#ff4081' }))
+      .withTransform((data) =>
+        this.persianCalendarService.PersianCalendar(data)
+        + ' ( ' +
+        this.datePipe.transform(data, 'HH:mm')
+        + ' )'
+      ),
 
     new TableColumn<Factor, 'price'>('مبلغ اصلی', 'price')
       .withTransform((data) => this.irCurrencyPipe.transform(data).replace("ریال", "تومان")),
     new TableColumn<Factor, 'endPrice'>('مبلغ نهایی', 'endPrice')
-      .withTransform((data) => this.irCurrencyPipe.transform(data).replace("ریال", "تومان")),
+      .withTransform((data) => this.irCurrencyPipe.transform(data).replace("ریال", "تومان"))
+      .withNgStyle(() => ({'font-weight': '900' })),
     
     new TableColumn<Factor, 'id'>('عملیات', 'id')
       .withNgComponent(ButtonMPComponent)
@@ -85,7 +91,7 @@ export class ManageFactorsComponent implements OnInit, OnDestroy, AfterViewInit 
         component.event = () => { this.router.navigate(['/panel/accountant/factoredit/', id]) };
         component.icon = "ft-alert-octagon";
         component.text = " جزییات و ویرایش";
-        component.type = UiType.Success;
+        component.type = UiType.Info;
       })
   ];
 
