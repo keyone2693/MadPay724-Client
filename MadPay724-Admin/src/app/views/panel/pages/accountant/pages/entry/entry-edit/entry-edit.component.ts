@@ -6,6 +6,7 @@ import { Title } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { EntryService } from 'src/app/core/_services/panel/accountant/entry.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-entry-edit',
@@ -21,11 +22,11 @@ export class EntryEditComponent implements OnInit, OnDestroy {
   })
   constructor(private route: ActivatedRoute, private title: Title,
     private formBuilder: FormBuilder, private alertService: ToastrService,
-    private entrySerrvice: EntryService, private router: Router) { }
+    private entrySerrvice: EntryService, private router: Router, private loc:Location) { }
 
   ngOnInit() {
     this.loadEntry();
-   // this.title.setTitle('ویرایش،جزییات واریزی ' + this.entry.ownerName);
+    this.title.setTitle('ویرایش،جزییات واریزی ' + this.entry.ownerName);
     this.populateForm();
   }
   loadEntry() {
@@ -45,15 +46,16 @@ export class EntryEditComponent implements OnInit, OnDestroy {
     this.subManager.unsubscribe();
   }
   onClear() {
-    if (!this.entry.isApprove) {
-      this.router.navigate(['/panel/accountant/entryapprove']);
-    } else if (this.entry.isApprove && !this.entry.isPardakht && !this.entry.isReject) {
-      this.router.navigate(['/panel/accountant/entrypardakht']);
-    } else if (this.entry.isApprove && (this.entry.isPardakht || this.entry.isReject)) {
-      this.router.navigate(['/panel/accountant/entryarchive']);
-    } else {
-      this.router.navigate(['/panel/accountant/entryarchive']);
-    }    
+    this.loc.back();
+    // if (!this.entry.isApprove) {
+    //   this.router.navigate(['/panel/accountant/entryapprove']);
+    // } else if (this.entry.isApprove && !this.entry.isPardakht && !this.entry.isReject) {
+    //   this.router.navigate(['/panel/accountant/entrypardakht']);
+    // } else if (this.entry.isApprove && (this.entry.isPardakht || this.entry.isReject)) {
+    //   this.router.navigate(['/panel/accountant/entryarchive']);
+    // } else {
+    //   this.router.navigate(['/panel/accountant/entryarchive']);
+    // }
   }
   onSubmitEditEntry() {
     if (this.entryEditForm.valid) {
