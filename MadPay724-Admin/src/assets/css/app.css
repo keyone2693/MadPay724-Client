@@ -9496,7 +9496,7 @@ a.bg-base:hover, a.bg-base:focus, button.bg-base:hover, button.bg-base:focus {
 }
 
 .text-left {
-  text-align : right !important;
+  text-align : left !important;
 }
 
 .text-right {
@@ -9653,6 +9653,7 @@ a.text-base:hover, a.text-base:focus {
 
 .text-muted {
   color : #6C757D !important;
+      font-size: 13px !important;
 }
 
 .text-black-50 {

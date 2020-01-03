@@ -5,6 +5,7 @@ import { PaginationResult } from 'src/app/data/models/common/paginationResult';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Factor } from 'src/app/data/models/accountant/factor';
+import { Wallet } from 'src/app/data/models/wallet';
 
 @Injectable({
   providedIn: 'root'
@@ -65,10 +66,10 @@ export class FactorService {
   getFactor(factorId: string): Observable<Factor> {
     return this.http.get<Factor>(this.baseUrl + factorId);
   }
-  changeStatusFactor(factorId: string, status: boolean) {
-    return this.http.patch(this.baseUrl + factorId + '/status', { status });
+  changeStatusFactor(factorId: string, status: boolean): Observable<Wallet> {
+    return this.http.patch<Wallet>(this.baseUrl + factorId + '/status', { status });
   }
   updateFactor(factorId: string, data: any) {
-    return this.http.patch(this.baseUrl + factorId + '/update', data);
+    return this.http.patch(this.baseUrl + factorId + '/edit', data);
   }
 }

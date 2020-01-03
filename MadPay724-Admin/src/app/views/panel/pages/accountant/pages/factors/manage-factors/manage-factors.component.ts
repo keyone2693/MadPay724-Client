@@ -66,7 +66,7 @@ export class ManageFactorsComponent implements OnInit, OnDestroy, AfterViewInit 
         };
         component.checked = status;
         component.disabled = false;
-        component.type = UiType.Success;
+        component.type = UiType.Info;
       }),
     new TableColumn<Factor, 'bank'>('بانک', 'bank'),
     new TableColumn<Factor, 'dateCreated'>('تاریخ ایجاد', 'dateCreated')
@@ -90,7 +90,7 @@ export class ManageFactorsComponent implements OnInit, OnDestroy, AfterViewInit 
         component.event = () => { this.router.navigate(['/panel/accountant/factors', id,'detail']) };
         component.icon = "ft-alert-octagon";
         component.text = " جزییات و ویرایش";
-        component.type = UiType.Info;
+        component.type = UiType.Success;
       })
   ];
 

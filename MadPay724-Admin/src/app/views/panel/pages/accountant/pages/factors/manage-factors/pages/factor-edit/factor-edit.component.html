@@ -10,7 +10,7 @@
       <a>مدیریت فاکتور </a>
     </li>
     <li class="breadcrumb-item active" aria-current="page">
-      جزییات،ویرایش فاکتور
+      جزییات / ویرایش فاکتور
     </li>
   </ol>
 </nav>
@@ -19,24 +19,32 @@
     <div class="card-header">
       <div class="row">
         <div class="col-6">
-          <div *ngIf="factor.status" class="alert alert-info">
-            <strong>تایید شده</strong>
-             تغییر وضعیت تاییدی :
+          <div
+            [ngClass]="
+              factorDetail.factor.status ? 'alert-success' : 'alert-secondary'
+            "
+            class="alert "
+          >
             <code class="a-pointer">
               <mat-checkbox
-                      [checked]="factor.status"
-                      (change)="onStatusChange($event, factor.id)"
+                [checked]="factorDetail.factor.status"
+                (change)="onStatusChange($event, factorDetail.factor.id)"
               ></mat-checkbox>
             </code>
+            <strong>تایید شده</strong>
+            (وضعیت موفق بودن پرداخت بانکی)
           </div>
-          <div *ngIf="!factor.status" class="alert alert-secondary">
-            <strong>تایید نشده</strong>
-             تغییر وضعیت تاییدی :
-            <code class="a-pointer">
-               <mat-checkbox
-                      [checked]="factor.status"
-                      (change)="onStatusChange($event, factor.id)"
-              ></mat-checkbox>
+          <div class="alert alert-secondary">
+            <strong>زمان ثبت درخواست :</strong>
+            <code>
+              ( {{ factorDetail.factor.dateCreated | date: "HH:mm" }} )
+              {{ factorDetail.factor.dateCreated | persianDate }}
+            </code>
+            <br />
+            <strong>زمان اخرین تغییر درخواست :</strong>
+            <code>
+              ( {{ factorDetail.factor.dateModified | date: "HH:mm" }} )
+              {{ factorDetail.factor.dateModified | persianDate }}
             </code>
           </div>
         </div>
@@ -44,31 +52,85 @@
           <h1 class="white">جزییات،ویرایش فاکتور</h1>
           <h4 class="white">
             با شناسه :
-            <code>{{ factor.id }}</code>
+            <code>{{ factorDetail.factor.id }}</code>
           </h4>
           <h4 class="white">
             و برای کاربر با نام :
-            <code>{{ factor.userName }}</code>
+            <code>{{ factorDetail.factor.userName }}</code>
           </h4>
-          <div class="alert alert-secondary">
-              <strong>زمان ثبت درخواست :</strong>
-              <code>
-                ( {{ factor.dateCreated | date: "HH:mm" }} )
-                {{ factor.dateCreated | persianDate }}
-              </code>
-            <br/>
-              <strong>زمان اخرین تغییر درخواست :</strong>
-              <code>
-                ( {{ factor.dateModified | date: "HH:mm" }} )
-                {{ factor.dateModified | persianDate }}
-              </code>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row match-height">
+    <div class="col-lg-6 col-md-12">
+      <div class="card gradient-mint">
+        <div class="card-body">
+          <div class="px-3 py-3">
+            <div class="row text-white">
+              <div class="col-6 text-right pl-0">
+                <h4 class="text-white mb-2">موجودی کیف پول</h4>
+                <span>درآمد</span>
+                <br />
+                <span
+                  >{{
+                    (factorDetail.wallet.interMoney | irc).replace(
+                      "ریال",
+                      "تومان"
+                    )
+                  }}
+                </span>
+              </div>
+              <div class="col-6  text-left">
+                <h1>
+                  <i
+                    class="fa fa-line-chart background-round text-white p-2 font-medium-3"
+                  ></i>
+                </h1>
+                <h4 class="pt-1 m-0 text-white">
+                  {{
+                    (factorDetail.wallet.inventory | irc).replace(
+                      "ریال",
+                      "تومان"
+                    )
+                  }}
+                </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-12">
+      <div class="card gradient-orange-amber">
+        <div class="card-body">
+          <div class="px-3 py-3">
+            <div class="row text-white">
+              <div class="col-6 text-right pl-0">
+                <h4 class="text-white mb-2">درگاه</h4>
+                <span>ادرس</span>
+
+                <br />
+                <span>{{ factorDetail.gate.websiteUrl }}</span>
+              </div>
+              <div class="col-6 text-left">
+                <h1>
+                  <i
+                    class="fa fa-star-o background-round text-white p-2 font-medium-3"
+                  ></i>
+                </h1>
+                <h4 class="pt-1 m-0 text-white">
+                  {{ factorDetail.gate.websiteName }}
+                </h4>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-2 col-md-6 col-12">
+    <div class="col-lg-3 col-md-6 col-12">
       <div class="card">
         <div class="card-body">
           <div class="px-0 py-3">
@@ -77,7 +139,9 @@
                 <i class="icon-home danger font-large-2 float-left"></i>
               </div>
               <div class="media-body text-center">
-                <h5 class="mb-1 text-bold-500">{{ factor.bank }}</h5>
+                <h5 class="mb-1 text-bold-500">
+                  {{ factorDetail.factor.bank.toBankName() }}
+                </h5>
                 <span class="text-muted">نام بانک</span>
               </div>
             </div>
@@ -85,18 +149,20 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-2 col-md-6 col-12">
+    <div class="col-lg-3 col-md-6 col-12">
       <div class="card">
         <div class="card-body">
           <div class="px-0 py-3">
             <div class="media">
               <div class="media-left align-self-center">
                 <i
-                  class="icon-user-following danger font-large-2 float-left"
+                  class="icon-user-following warning  font-large-2 float-left"
                 ></i>
               </div>
               <div class="media-body text-center">
-                <h5 class="mb-1 text-bold-500">{{ factor.userName }}</h5>
+                <h5 class="mb-1 text-bold-500">
+                  {{ factorDetail.factor.userName }}
+                </h5>
                 <span class="text-muted">صاحب حساب</span>
               </div>
             </div>
@@ -104,16 +170,18 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-4 col-md-6 col-12">
+    <div class="col-lg-3 col-md-6 col-12">
       <div class="card">
         <div class="card-body">
           <div class="px-0 py-3">
             <div class="media">
               <div class="media-left align-self-center">
-                <i class="icon-rocket danger font-large-2 float-left"></i>
+                <i class="icon-rocket info font-large-2 float-left"></i>
               </div>
               <div class="media-body text-center">
-                <h5 class="mb-1 text-bold-500">{{ factor.refBank }}</h5>
+                <h5 class="mb-1 text-bold-500">
+                  {{ factorDetail.factor.refBank }}
+                </h5>
                 <span class="text-muted">کد پیگیری</span>
               </div>
             </div>
@@ -121,16 +189,18 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-4 col-md-6 col-12">
+    <div class="col-lg-3 col-md-6 col-12">
       <div class="card">
         <div class="card-body">
           <div class="px-0 py-3">
             <div class="media">
               <div class="media-left align-self-center">
-                <i class="icon-credit-card danger font-large-2 float-left"></i>
+                <i class="icon-bag success  font-large-2 float-left"></i>
               </div>
               <div class="media-body text-center">
-                <h5 class="mb-1 text-bold-500">{{ factor.kind }}</h5>
+                <h5 class="mb-1 text-bold-500">
+                  {{ factorDetail.factor.kind.toFactorType() }}
+                </h5>
                 <span class="text-muted">نوع فاکتور</span>
               </div>
             </div>
@@ -160,22 +230,18 @@
                     />
                     <mat-error
                       *ngIf="
-                        factorEditForm
-                          .get('refBank')
-                          .hasError('required') &&
+                        factorEditForm.get('refBank').hasError('required') &&
                         factorEditForm.get('refBank').touched
                       "
                       >این فیلد نمیتواند خالی باشد</mat-error
                     >
                     <mat-error
                       *ngIf="
-                        factorEditForm
-                          .get('refBank')
-                          .hasError('maxlength') &&
+                        factorEditForm.get('refBank').hasError('maxlength') &&
                         factorEditForm.get('refBank').touched
                       "
                     >
-                      این فیلد نمیتواند بیشتر از 200 کاراکتر باشد</mat-error
+                      این فیلد نمیتواند بیشتر از 500 کاراکتر باشد</mat-error
                     >
                   </mat-form-field>
                 </div>
@@ -207,15 +273,17 @@
         </div>
       </div>
     </div>
-    
+
     <div class="col-md-4">
       <div
-        [ngClass]="factor.status ? 'bg-success' : 'bg-danger'"
+        [ngClass]="factorDetail.factor.status ? 'bg-success' : 'bg-danger'"
         class="card card-inverse  text-center"
       >
         <div class="card-header">
           <i
-            [ngClass]="factor.status ? 'icon-like' : 'icon-dislike'"
+            [ngClass]="
+              factorDetail.factor.status ? 'icon-like' : 'icon-dislike'
+            "
             class=" font-large-1 float-left mr-2"
           ></i>
           <h4 class="card-title">مبلغ نهایی فاکتور</h4>
@@ -223,26 +291,22 @@
         <div class="card-body">
           <div class="card-block">
             <h3 class=" bg-wihtred">
-              {{ (factor.endPrice | irc).replace("ریال", "تومان") }}
+              {{
+                (factorDetail.factor.endPrice | irc).replace("ریال", "تومان")
+              }}
             </h3>
           </div>
         </div>
       </div>
-       <div
-        [ngClass]="bg-info"
-        class="card card-inverse  text-center"
-      >
+      <div class="card card-inverse  text-center bg-info">
         <div class="card-header">
-          <i
-            [ngClass]="icon-like"
-            class=" font-large-1 float-left mr-2"
-          ></i>
+          <i class="font-large-1 float-left mr-2 ft-alert-circle"></i>
           <h4 class="card-title">قیمت اصلی فاکتور</h4>
         </div>
         <div class="card-body">
           <div class="card-block">
             <h3 class=" bg-wihtred">
-              {{ (factor.price | irc).replace("ریال", "تومان") }}
+              {{ (factorDetail.factor.price | irc).replace("ریال", "تومان") }}
             </h3>
           </div>
         </div>

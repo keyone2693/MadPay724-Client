@@ -129,7 +129,7 @@ const routes: Routes = [
             },
             {
                 path: 'factors/:factorId/detail', canActivate: [AuthGuard],
-                resolve: { factor: FactorResolver },
+                resolve: { factorDetail: FactorResolver },
                 component: FactorEditComponent,
                 data: { roles: ['Admin', 'Accountant'], title: ['جزییات و ویرایش فاکتور '] },
             }

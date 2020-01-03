@@ -8,6 +8,9 @@ import { Factor } from 'src/app/data/models/accountant/factor';
 import { FactorService } from 'src/app/core/_services/panel/accountant/factor.service';
 import { Location } from '@angular/common';
 
+import 'src/app/shared/extentions/number.extentions'
+import { FactorDetail } from 'src/app/data/models/accountant/factorDetail';
+
 @Component({
   selector: 'app-factor-edit',
   templateUrl: './factor-edit.component.html',
@@ -15,9 +18,9 @@ import { Location } from '@angular/common';
 })
 export class FactorEditComponent implements OnInit, OnDestroy {
   subManager = new Subscription();
-  factor: Factor;
+  factorDetail: FactorDetail;
   factorEditForm: FormGroup = this.formBuilder.group({
-    refBank: ['', [Validators.required, Validators.maxLength(200)]],
+    refBank: ['', [Validators.required, Validators.maxLength(500)]],
   })
   constructor(private route: ActivatedRoute, private title: Title,
     private formBuilder: FormBuilder, private alertService: ToastrService,
@@ -25,19 +28,19 @@ export class FactorEditComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadFactor();
-    this.title.setTitle('ویرایش،جزییات فاکتور ' + this.factor.userName);
+    this.title.setTitle('ویرایش،جزییات فاکتور ' + this.factorDetail.factor.userName);
     this.populateForm();
   }
   loadFactor() {
     this.subManager.add(
       this.route.data.subscribe(data => {
-        this.factor = data.factor;
+        this.factorDetail = data.factorDetail;
       })
     );
   }
   populateForm() {
     this.factorEditForm.setValue({
-      refBank: this.factor.refBank
+      refBank: this.factorDetail.factor.refBank
     });
   }
   ngOnDestroy() {
@@ -50,7 +53,7 @@ export class FactorEditComponent implements OnInit, OnDestroy {
     if (this.factorEditForm.valid) {
       const factorForUpdate = Object.assign({}, this.factorEditForm.value)
       this.subManager.add(
-        this.factorSerrvice.updateFactor(this.factor.id, factorForUpdate).subscribe((data) => {
+        this.factorSerrvice.updateFactor(this.factorDetail.factor.id, factorForUpdate).subscribe((data) => {
           this.alertService.success('فاکتور ویرایش شد', 'موفق');
           this.onClear();
         }, error => {
@@ -64,8 +67,9 @@ export class FactorEditComponent implements OnInit, OnDestroy {
   onStatusChange(event: any, factorId: string) {
     this.subManager.add(
       this.factorSerrvice.changeStatusFactor(factorId, event.checked)
-        .subscribe(() => {
-          this.factor.status = event.checked;
+        .subscribe(data => {
+          this.factorDetail.factor.status = event.checked;
+          this.factorDetail.wallet = data;
           if (event.checked === true) {
             this.alertService.success('وضعیت فاکتور تایید شد', 'موفق');
           } else {
