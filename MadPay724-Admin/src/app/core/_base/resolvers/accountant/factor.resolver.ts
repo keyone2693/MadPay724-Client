@@ -8,16 +8,11 @@ import { Factor } from 'src/app/data/models/accountant/factor';
 
 
 @Injectable()
-export class FactorResolver implements Resolve<Factor[]> {
-    pageNumber = 0;
-    pageSize = 5;
-    filter = '';
-    sortHe = '';
-    sortDir = '';
-    constructor(private factorService: FactorService, private router: Router,
+export class FactorResolver implements Resolve<Factor> {
+    constructor(private factorService: FactorService,
                 private alertService: ToastrService) { }
-    resolve(route: ActivatedRouteSnapshot): Observable<Factor[]> {
-        return this.factorService.getFactors(this.pageNumber, this.pageSize, this.filter, this.sortHe, this.sortDir).pipe(
+    resolve(route: ActivatedRouteSnapshot): Observable<Factor> {
+        return this.factorService.getFactor(route.params['factorId']).pipe(
             catchError(error => {
                 this.alertService.error(error, 'خطا');
                 return of(null);

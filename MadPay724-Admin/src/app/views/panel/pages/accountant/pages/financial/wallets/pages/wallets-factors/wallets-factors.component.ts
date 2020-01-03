@@ -88,7 +88,7 @@ export class WalletsFactorsComponent implements OnInit, OnDestroy, AfterViewInit
     new TableColumn<Factor, 'id'>('عملیات', 'id')
       .withNgComponent(ButtonMPComponent)
       .withNgComponentInput((component: ButtonMPComponent, id) => {
-        component.event = () => { this.router.navigate(['/panel/accountant/factoredit/', id]) };
+        component.event = () => { this.router.navigate(['/panel/accountant/factors', id, 'detail']) };
         component.icon = "ft-alert-octagon";
         component.text = " جزییات و ویرایش";
         component.type = UiType.Info;

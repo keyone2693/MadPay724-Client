@@ -27,6 +27,8 @@ import { BankCardsEntryComponent } from './pages/financial/bankCards/pages/bankC
 import { BankCardEntryResolver } from 'src/app/core/_base/resolvers/accountant/bankCardEntry.resolver';
 import { WalletsEntryComponent } from './pages/financial/wallets/pages/wallets-entry/wallets-entry.component';
 import { WalletsFactorsComponent } from './pages/financial/wallets/pages/wallets-factors/wallets-factors.component';
+import { FactorEditComponent } from './pages/factors/manage-factors/pages/factor-edit/factor-edit.component';
+import { FactorResolver } from 'src/app/core/_base/resolvers/accountant/factor.resolver';
 
 const routes: Routes = [
     {
@@ -126,10 +128,10 @@ const routes: Routes = [
                 data: { roles: ['Admin', 'Accountant'], title: ['مدیریت فاکتورها'] }
             },
             {
-                path: 'factors/edit/:factId', canActivate: [AuthGuard],
-                //  resolve: { blogs:  },
-                component: ManageFactorsComponent,
-                data: { roles: ['Admin', 'Accountant'], title: ['ویرایش فاکتور '] },
+                path: 'factors/:factorId/detail', canActivate: [AuthGuard],
+                resolve: { factor: FactorResolver },
+                component: FactorEditComponent,
+                data: { roles: ['Admin', 'Accountant'], title: ['جزییات و ویرایش فاکتور '] },
             }
         ]
     }

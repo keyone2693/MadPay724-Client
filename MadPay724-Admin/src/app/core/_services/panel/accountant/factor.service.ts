@@ -68,4 +68,7 @@ export class FactorService {
   changeStatusFactor(factorId: string, status: boolean) {
     return this.http.patch(this.baseUrl + factorId + '/status', { status });
   }
+  updateFactor(factorId: string, data: any) {
+    return this.http.patch(this.baseUrl + factorId + '/update', data);
+  }
 }
