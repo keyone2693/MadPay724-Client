@@ -10,13 +10,13 @@
     <li class="breadcrumb-item">
       <a>فاکتور ها </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">
-      مدیریت فاکتور ها
+    <li class="breadcrumb-item active" aria-current="page" *ngIf="walletInfo$ | async as walletInfo">
+      مدیریت فاکتور های کیف پول {{walletInfo.title}}
     </li>
   </ol>
 </nav>
 <!--Basic User Details Starts-->
-<section id="user-area">
+<section id="user-area" *ngIf="walletInfo$ | async as walletInfo">
   <div class="row">
     <div class="col-md-12">
       <div class="card">
@@ -25,13 +25,22 @@
             <h4 class="card-title"> مدیریت فاکتور ها</h4>
           </div>
           <p>
-            تمام فاکتورها در این صفحه نمایش داده می‌شوند
+            تمام فاکتورهای کیف پول {{walletInfo.title}} در این صفحه نمایش داده می‌شوند
           </p>
         </div>
         <div class="card-body">
           <div class="row">
             <div class="col-md-12">
               <div class="search-div">
+                 <button
+                  mat-raised-button
+                  (click)="onBack()"
+                  color="red"
+                  class="float-left mb-10"
+                >
+                  <i class="ft-chevrons-right"></i>
+                  بازگشت به کیف پول ها / مدیریت موجودی
+                </button>
                 <mat-form-field class="search-form-field" floatLabel="never">
                   <input
                    #searchKey

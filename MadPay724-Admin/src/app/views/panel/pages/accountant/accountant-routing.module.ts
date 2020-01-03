@@ -26,6 +26,7 @@ import { EntryEditComponent } from './pages/entry/entry-edit/entry-edit.componen
 import { BankCardsEntryComponent } from './pages/financial/bankCards/pages/bankCards-entry/bankCards-entry.component';
 import { BankCardEntryResolver } from 'src/app/core/_base/resolvers/accountant/bankCardEntry.resolver';
 import { WalletsEntryComponent } from './pages/financial/wallets/pages/wallets-entry/wallets-entry.component';
+import { WalletsFactorsComponent } from './pages/financial/wallets/pages/wallets-factors/wallets-factors.component';
 
 const routes: Routes = [
     {
@@ -104,6 +105,12 @@ const routes: Routes = [
                 //resolve: { entries: BankCardEntryResolver },
                 component: WalletsEntryComponent,
                 data: { roles: ['Accountant', 'Admin'], title: ['واریزی های کیف پول'] }
+            },
+            {
+                path: 'wallets/:walletId/factors', canActivate: [AuthGuard],
+                //resolve: { entries: BankCardEntryResolver },
+                component: WalletsFactorsComponent,
+                data: { roles: ['Accountant', 'Admin'], title: ['فاکتور های کیف پول'] }
             },
             
             //-----------------

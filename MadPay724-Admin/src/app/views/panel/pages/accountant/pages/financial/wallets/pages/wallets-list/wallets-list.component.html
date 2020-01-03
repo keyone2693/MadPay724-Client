@@ -140,7 +140,7 @@
       <button
         *appHasRole="['Admin', 'Accountant']"
         mat-raised-button
-        [routerLink]="['/panel/accountant/inventory']"
+       (click)="onWalletFactorsClick(wallet)"
         color="green"
       >
         <i class="icon-bag"></i>

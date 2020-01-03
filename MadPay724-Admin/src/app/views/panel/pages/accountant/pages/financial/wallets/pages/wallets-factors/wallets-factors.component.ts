@@ -5,29 +5,30 @@ import { Pagination } from 'src/app/data/models/common/pagination';
 import { FilterSortOrderBy } from 'src/app/data/models/common/filterSortOrderBy';
 import { TableColumn, Width } from 'simplemattable';
 import { InputMpComponent } from 'src/app/shared/component/input-mp/input-mp.component';
-import { UiType } from 'src/app/data/enums/uiType.enum';
 import { CheckboxMPComponent } from 'src/app/shared/component/checkbox-mp/checkbox-mp.component';
-import { ButtonMPComponent } from 'src/app/shared/component/button-mp/button-mp.component';
-import { CurrentTitleStateModel } from '../../../store/_models/currentTitleStateModel';
+import { CurrentTitleStateModel } from '../../../../../store/_models/currentTitleStateModel';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FactorService } from 'src/app/core/_services/panel/accountant/factor.service';
 import { ToastrService } from 'ngx-toastr';
-import { AccountantStateModel } from '../../../store/_models/accountantStateModel';
 import { Store } from '@ngrx/store';
+import { AccountantStateModel } from '../../../../../store/_models/accountantStateModel';
 import { IRCurrencyPipe } from 'ngx-persian';
-import { debounceTime, map, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { Location, DatePipe } from '@angular/common';
-
-import { Sort } from '@angular/material';
+import { DatePipe, Location } from '@angular/common';
 import { PersianCalendarService } from 'src/app/core/_base/pipe/PersianDatePipe/persian-date.service';
+import { debounceTime, map, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { Sort } from '@angular/material';
+import { ButtonMPComponent } from 'src/app/shared/component/button-mp/button-mp.component';
+import { UiType } from 'src/app/data/enums/uiType.enum';
+
+import * as fromAccountantStore from '../../../../../store';
 
 
 @Component({
-  selector: 'app-manage-factors',
-  templateUrl: './manage-factors.component.html',
-  styleUrls: ['./manage-factors.component.css']
+  selector: 'app-wallets-factors',
+  templateUrl: './wallets-factors.component.html',
+  styleUrls: ['./wallets-factors.component.css']
 })
-export class ManageFactorsComponent implements OnInit, OnDestroy, AfterViewInit {
+export class WalletsFactorsComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('searchKey', { static: false }) filter: ElementRef;
   subManager = new Subscription();
   factors: Factor[];
@@ -56,7 +57,7 @@ export class ManageFactorsComponent implements OnInit, OnDestroy, AfterViewInit 
         component.icon = "ft-copy";
       }),
 
-   
+
     new TableColumn<Factor, 'kind'>('نوع', 'kind'),
     new TableColumn<Factor, 'status'>('وضعیت', 'status')
       .withNgComponent(CheckboxMPComponent)
@@ -82,8 +83,8 @@ export class ManageFactorsComponent implements OnInit, OnDestroy, AfterViewInit 
       .withTransform((data) => this.irCurrencyPipe.transform(data).replace("ریال", "تومان")),
     new TableColumn<Factor, 'endPrice'>('مبلغ نهایی', 'endPrice')
       .withTransform((data) => this.irCurrencyPipe.transform(data).replace("ریال", "تومان"))
-      .withNgStyle(() => ({'font-weight': '900' })),
-    
+      .withNgStyle(() => ({ 'font-weight': '900' })),
+
     new TableColumn<Factor, 'id'>('عملیات', 'id')
       .withNgComponent(ButtonMPComponent)
       .withNgComponentInput((component: ButtonMPComponent, id) => {
@@ -94,6 +95,8 @@ export class ManageFactorsComponent implements OnInit, OnDestroy, AfterViewInit 
       })
   ];
 
+  walletInfo$: Observable<CurrentTitleStateModel>
+
   constructor(private route: ActivatedRoute, private alertService: ToastrService
     , private factorService: FactorService, private store: Store<AccountantStateModel>,
     private router: Router, private irCurrencyPipe: IRCurrencyPipe, private loc: Location,
@@ -101,6 +104,7 @@ export class ManageFactorsComponent implements OnInit, OnDestroy, AfterViewInit 
 
 
   ngOnInit() {
+    this.walletInfo$ = this.store.select(fromAccountantStore.getCurrentTitle);
   }
   ngAfterViewInit() {
     this.subManager.add(
@@ -139,10 +143,16 @@ export class ManageFactorsComponent implements OnInit, OnDestroy, AfterViewInit 
     this.filterSortOrderBy.searchKey = filter;
     //offset : page index
     //limit : page size
+    let walletId = ''
+    this.subManager.add(
+      this.route.params.subscribe(params => {
+        walletId = params['walletId'];
+      })
+    );
     const observable = new Subject<Factor[]>();
     setTimeout(() => {
       this.subManager.add(
-        this.factorService.getFactors(offset, limit,
+        this.factorService.getWalletFactors(walletId,offset, limit,
           filter.trim(), sortHeader, sortDirection)
           .subscribe((data) => {
             this.factors = data.result;
@@ -174,4 +184,5 @@ export class ManageFactorsComponent implements OnInit, OnDestroy, AfterViewInit 
   onBack() {
     this.loc.back();
   }
+
 }

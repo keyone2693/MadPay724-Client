@@ -11,6 +11,7 @@ import { Factor } from 'src/app/data/models/accountant/factor';
 })
 export class FactorService {
   baseUrl = environment.apiUrl + environment.apiV1 + 'site/panel/factors/';
+  walletFactorsbaseUrl = environment.apiUrl + environment.apiV1 + 'site/panel/wallets/';
 
   constructor(private http: HttpClient) { }
   getFactors(page?, itemPerPage?, filter?, sortHe?, sortDir?):
@@ -27,6 +28,30 @@ export class FactorService {
     }
     return this.http.get<Factor[]>
       (this.baseUrl, { observe: 'response', params })
+      .pipe(
+        map(response => {
+          paginatedResult.result = response.body;
+          if (response.headers.get('Pagination') != null) {
+            paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
+          }
+          return paginatedResult;
+        })
+      );
+  }
+  getWalletFactors(walletId: string, page?, itemPerPage?, filter?, sortHe?, sortDir?):
+    Observable<PaginationResult<Factor[]>> {
+    const paginatedResult: PaginationResult<Factor[]> = new PaginationResult<Factor[]>();
+    let params = new HttpParams();
+
+    if (page != null && itemPerPage != null) {
+      params = params.append('pageNumber', page);
+      params = params.append('pageSize', itemPerPage);
+      params = params.append('filter', filter);
+      params = params.append('sortHe', sortHe);
+      params = params.append('sortDir', sortDir);
+    }
+    return this.http.get<Factor[]>
+      (this.walletFactorsbaseUrl + walletId + '/factors/', { observe: 'response', params })
       .pipe(
         map(response => {
           paginatedResult.result = response.body;
