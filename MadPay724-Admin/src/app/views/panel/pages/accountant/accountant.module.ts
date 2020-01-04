@@ -49,6 +49,7 @@ import { HtmlMpComponent } from 'src/app/shared/component/html-mp/html-mp.compon
 import { WalletsEntryComponent } from './pages/financial/wallets/pages/wallets-entry/wallets-entry.component';
 import { WalletsFactorsComponent } from './pages/financial/wallets/pages/wallets-factors/wallets-factors.component';
 import { FactorEditComponent } from './pages/factors/manage-factors/pages/factor-edit/factor-edit.component';
+import { Ng5SliderModule } from 'ng5-slider';
 
 @NgModule({
   imports: [
@@ -63,7 +64,8 @@ import { FactorEditComponent } from './pages/factors/manage-factors/pages/factor
     ClipboardModule,
     StoreModule.forFeature('accountantSection', accountantReducers),
     PersianPipeModule,
-    SimplemattableModule
+    SimplemattableModule,
+    Ng5SliderModule
   ],
   declarations: [
     AccountantComponent,

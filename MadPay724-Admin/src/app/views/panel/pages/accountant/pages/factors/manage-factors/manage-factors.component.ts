@@ -20,6 +20,7 @@ import { Location, DatePipe } from '@angular/common';
 
 import { Sort } from '@angular/material';
 import { PersianCalendarService } from 'src/app/core/_base/pipe/PersianDatePipe/persian-date.service';
+import { Options } from 'ng5-slider';
 
 
 @Component({
@@ -42,7 +43,15 @@ export class ManageFactorsComponent implements OnInit, OnDestroy, AfterViewInit 
     sortHeader: '',
     searchKey: ''
   };
-
+  minPrice: number = 100;
+  maxPrice: number = 400;
+  options: Options = {
+    floor: 0,
+    ceil: 500,
+    translate: (value: number): string => {
+      return this.irCurrencyPipe.transform(value).replace("ریال", "تومان");
+    }
+  };
   columns = [
     new TableColumn<Factor, 'id'>('شناسه', 'id')
       .withWidth(Width.px(50))

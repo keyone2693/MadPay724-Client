@@ -32,27 +32,92 @@
           <div class="row">
             <div class="col-md-12">
               <div class="search-div">
-                <mat-form-field class="search-form-field" floatLabel="never">
+                 <mat-form-field class="col-md-4">
+                  <mat-label>وضعیت پرداخت</mat-label>
+                  <mat-select >
+                    <mat-option  value="1" >
+                      مهم نیست
+                    </mat-option>
+                    <mat-option  value="2" >
+                      موفق
+                    </mat-option>
+                    <mat-option  value="3" >
+                      ناموفق
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                 <mat-form-field class="col-md-4">
+                  <mat-label>نوع فاکتور</mat-label>
+                  <mat-select>
+                    <mat-option  value="0" >
+                      مهم نیست
+                    </mat-option>
+                    <mat-option  value="1" >
+                      فاکتور
+                    </mat-option>
+                    <mat-option  value="2" >
+                      ایزی پی
+                    </mat-option>
+                    <mat-option  value="3" >
+                      حمایتی
+                    </mat-option>
+                    <mat-option  value="4" >
+                      افزایش موجودی
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                 <mat-form-field class="col-md-4">
+                  <mat-label>بانک</mat-label>
+                  <mat-select >
+                     <mat-option  value="0" >
+                      مهم نیست
+                    </mat-option>
+                    <mat-option  value="1" >
+                      سامان
+                    </mat-option>
+                    <mat-option  value="2" >
+                      ملت
+                    </mat-option>
+                    <mat-option  value="3" >
+                      پارسیان
+                    </mat-option>
+                    <mat-option  value="4" >
+                      پاسارگاد
+                    </mat-option>
+                    <mat-option  value="5" >
+                      ایران کیش
+                    </mat-option>
+                    <mat-option  value="6" >
+                      ملی
+                    </mat-option>
+                    <mat-option  value="7" >
+                      آسان پرداخت
+                    </mat-option>
+                    <mat-option  value="8" >
+                      زرین پال
+                    </mat-option>
+                    <mat-option  value="9" >
+                      مجازی
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>  
+                <div class="col-md-4">
+                  <mat-label>محدوده ی مبلغ پرداختی</mat-label>
+                  <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
+                </div> 
+                <mat-form-field class="search-form-field" floatLabel="never"
+                 matTooltipPosition="left"
+                  matTooltip=" جستوجو براساس شناسه فاکتور ,نام کاربر ,شناسه کاربر ,یوزرنیم کاربر ,شناسه درگاه ,آدرس درگاه ,نام درگاه ,شناسه ی کیف پول ,نام کیف پول"
+                >
                   <input
                    #searchKey
                     matInput
                     type="text"
-                    [(ngModel)]="filterSortOrderBy.searchKey"
-                    placeholder="جستوجو ..."
+                    placeholder="جستوجوی کلی ..."
                   />
-                  <button
-                    mat-button
-                    *ngIf="filterSortOrderBy.searchKey"
-                    matSuffix
-                    mat-icon-button
-                    aria-label="Clear"
-                    
-                    (click)="onSearchClear()"
-                  >
-                    <i class="ft-x"></i>
-                  </button>
                 </mat-form-field>
               </div>
+
               <smc-simplemattable class="mysimplemattable" 
               [data]="factors" [columns]="columns"
               [paginator]="true" [backendPagination]="true"
