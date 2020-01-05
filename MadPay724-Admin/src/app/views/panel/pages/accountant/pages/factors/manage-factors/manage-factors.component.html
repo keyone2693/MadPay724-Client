@@ -22,7 +22,7 @@
       <div class="card">
         <div class="card-header">
           <div class="card-title-wrap bar-success">
-            <h4 class="card-title"> مدیریت فاکتور ها</h4>
+            <h4 class="card-title">مدیریت فاکتور ها</h4>
           </div>
           <p>
             تمام فاکتورها در این صفحه نمایش داده می‌شوند
@@ -32,101 +32,142 @@
           <div class="row">
             <div class="col-md-12">
               <div class="search-div">
-                 <mat-form-field class="col-md-4">
-                  <mat-label>وضعیت پرداخت</mat-label>
-                  <mat-select >
-                    <mat-option  value="1" >
-                      مهم نیست
-                    </mat-option>
-                    <mat-option  value="2" >
-                      موفق
-                    </mat-option>
-                    <mat-option  value="3" >
-                      ناموفق
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-                 <mat-form-field class="col-md-4">
-                  <mat-label>نوع فاکتور</mat-label>
-                  <mat-select>
-                    <mat-option  value="0" >
-                      مهم نیست
-                    </mat-option>
-                    <mat-option  value="1" >
-                      فاکتور
-                    </mat-option>
-                    <mat-option  value="2" >
-                      ایزی پی
-                    </mat-option>
-                    <mat-option  value="3" >
-                      حمایتی
-                    </mat-option>
-                    <mat-option  value="4" >
-                      افزایش موجودی
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-                 <mat-form-field class="col-md-4">
-                  <mat-label>بانک</mat-label>
-                  <mat-select >
-                     <mat-option  value="0" >
-                      مهم نیست
-                    </mat-option>
-                    <mat-option  value="1" >
-                      سامان
-                    </mat-option>
-                    <mat-option  value="2" >
-                      ملت
-                    </mat-option>
-                    <mat-option  value="3" >
-                      پارسیان
-                    </mat-option>
-                    <mat-option  value="4" >
-                      پاسارگاد
-                    </mat-option>
-                    <mat-option  value="5" >
-                      ایران کیش
-                    </mat-option>
-                    <mat-option  value="6" >
-                      ملی
-                    </mat-option>
-                    <mat-option  value="7" >
-                      آسان پرداخت
-                    </mat-option>
-                    <mat-option  value="8" >
-                      زرین پال
-                    </mat-option>
-                    <mat-option  value="9" >
-                      مجازی
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>  
-                <div class="col-md-4">
-                  <mat-label>محدوده ی مبلغ پرداختی</mat-label>
-                  <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
-                </div> 
-                <mat-form-field class="search-form-field" floatLabel="never"
-                 matTooltipPosition="left"
-                  matTooltip=" جستوجو براساس شناسه فاکتور ,نام کاربر ,شناسه کاربر ,یوزرنیم کاربر ,شناسه درگاه ,آدرس درگاه ,نام درگاه ,شناسه ی کیف پول ,نام کیف پول"
-                >
-                  <input
-                   #searchKey
-                    matInput
-                    type="text"
-                    placeholder="جستوجوی کلی ..."
-                  />
-                </mat-form-field>
+                <div class="row mb-4">
+                  <mat-form-field class="col-md-4">
+                    <mat-label>وضعیت پرداخت</mat-label>
+                    <mat-select>
+                      <mat-option value="1">
+                        مهم نیست
+                      </mat-option>
+                      <mat-option value="2">
+                        موفق
+                      </mat-option>
+                      <mat-option value="3">
+                        ناموفق
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field class="col-md-4">
+                    <mat-label>نوع فاکتور</mat-label>
+                    <mat-select>
+                      <mat-option value="0">
+                        مهم نیست
+                      </mat-option>
+                      <mat-option value="1">
+                        فاکتور
+                      </mat-option>
+                      <mat-option value="2">
+                        ایزی پی
+                      </mat-option>
+                      <mat-option value="3">
+                        حمایتی
+                      </mat-option>
+                      <mat-option value="4">
+                        افزایش موجودی
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field class="col-md-4">
+                    <mat-label>بانک</mat-label>
+                    <mat-select>
+                      <mat-option value="0">
+                        مهم نیست
+                      </mat-option>
+                      <mat-option value="1">
+                        سامان
+                      </mat-option>
+                      <mat-option value="2">
+                        ملت
+                      </mat-option>
+                      <mat-option value="3">
+                        پارسیان
+                      </mat-option>
+                      <mat-option value="4">
+                        پاسارگاد
+                      </mat-option>
+                      <mat-option value="5">
+                        ایران کیش
+                      </mat-option>
+                      <mat-option value="6">
+                        ملی
+                      </mat-option>
+                      <mat-option value="7">
+                        آسان پرداخت
+                      </mat-option>
+                      <mat-option value="8">
+                        زرین پال
+                      </mat-option>
+                      <mat-option value="9">
+                        مجازی
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="row mb-4">
+                  <div class="col-md-6">
+                    <mat-label class="mb-3 d-inline-block"
+                      >محدوده ی قیمت</mat-label
+                    >
+                    <ng5-slider
+                      [(value)]="minPrice"
+                      [(highValue)]="maxPrice"
+                      [options]="options"
+                    ></ng5-slider>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-label class="mb-3 d-inline-block"
+                      >محدوده ی تاریخ</mat-label
+                    >
+                    <ng5-slider
+                      [(value)]="minDate"
+                      [(highValue)]="maxDate"
+                      [options]="optionsDate"
+                    ></ng5-slider>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <div class="col-md-9">
+                    <mat-form-field
+                      class="search-form-field"
+                      floatLabel="never"
+                      matTooltipPosition="bottom"
+                      matTooltip=" جستوجو براساس شناسه فاکتور ,نام کاربر ,شناسه کاربر ,یوزرنیم کاربر ,شناسه درگاه ,آدرس درگاه ,نام درگاه ,شناسه ی کیف پول ,نام کیف پول"
+                    >
+                      <input
+                        #searchKey
+                        matInput
+                        type="text"
+                        placeholder="جستوجوی کلی ..."
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-3">
+                    <button
+                      mat-raised-button
+                      (click)="onBack()"
+                      color="red"
+                      class="float-left mb-10"
+                    >
+                      <i class="icon-magnifier"></i>
+                     جست و جو
+                    </button>
+                  </div>
+                </div>
               </div>
-
-              <smc-simplemattable class="mysimplemattable" 
-              [data]="factors" [columns]="columns"
-              [paginator]="true" [backendPagination]="true"
-              [paginatorLength]="pagination.totalItems"
-              [paginatorPageSize]="pagination.itemsPerPage"
-              [paginatorPageSizeOptions]="[5, 10, 25, 50]"
-              [sorting]="true"
-              [getPage]="onPageChange.bind(this)"
-              (sort) = 'sortEvent($event)'
+            </div>
+            <div class="col-md-12">
+              <smc-simplemattable
+                class="mysimplemattable"
+                [data]="factors"
+                [columns]="columns"
+                [paginator]="true"
+                [backendPagination]="true"
+                [paginatorLength]="pagination.totalItems"
+                [paginatorPageSize]="pagination.itemsPerPage"
+                [paginatorPageSizeOptions]="[5, 10, 25, 50]"
+                [sorting]="true"
+                [getPage]="onPageChange.bind(this)"
+                (sort)="sortEvent($event)"
               ></smc-simplemattable>
             </div>
           </div>

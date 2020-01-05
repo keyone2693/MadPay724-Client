@@ -20,7 +20,7 @@ import { Location, DatePipe } from '@angular/common';
 
 import { Sort } from '@angular/material';
 import { PersianCalendarService } from 'src/app/core/_base/pipe/PersianDatePipe/persian-date.service';
-import { Options } from 'ng5-slider';
+import { Options, LabelType } from 'ng5-slider';
 
 
 @Component({
@@ -43,13 +43,40 @@ export class ManageFactorsComponent implements OnInit, OnDestroy, AfterViewInit 
     sortHeader: '',
     searchKey: ''
   };
-  minPrice: number = 100;
-  maxPrice: number = 400;
+  minPrice: number = 500000;
+  maxPrice: number = 5000000;
   options: Options = {
     floor: 0,
-    ceil: 500,
-    translate: (value: number): string => {
-      return this.irCurrencyPipe.transform(value).replace("ریال", "تومان");
+    ceil: 10000000,
+    step:10000,
+    translate: (value: number, label: LabelType): string => {
+      switch (label) {
+        case LabelType.Low:
+          return '<b>حداقل:</b> ' + this.irCurrencyPipe.transform(value).replace("ریال", "تومان");
+        case LabelType.High:
+          return '<b>حداکثر:</b> ' + this.irCurrencyPipe.transform(value).replace("ریال", "تومان");
+        default:
+          return this.irCurrencyPipe.transform(value).replace("ریال", "");
+      }
+    }
+  };
+  dateRange: Date[] = this.createDateRange();
+  minDate: number = this.dateRange[100].getTime();
+  maxDate: number = this.dateRange[450].getTime();
+  optionsDate: Options = {
+    stepsArray: this.dateRange.map((date: Date) => {
+      return { value: date.getTime() };
+    }),
+    translate: (value: number, label: LabelType): string => {
+      var valDt = new Date(value);
+      switch (label) {
+        case LabelType.Low:
+          return '<b>حداقل:</b> ' + this.persianCalendarService.PersianCalendarSmall(valDt);
+        case LabelType.High:
+          return '<b>حداکثر:</b> ' + this.persianCalendarService.PersianCalendarSmall(valDt) ;
+        default:
+          return this.persianCalendarService.PersianCalendarSmall(valDt);
+      }
     }
   };
   columns = [
@@ -108,7 +135,22 @@ export class ManageFactorsComponent implements OnInit, OnDestroy, AfterViewInit 
     private router: Router, private irCurrencyPipe: IRCurrencyPipe, private loc: Location,
     private persianCalendarService: PersianCalendarService, private datePipe: DatePipe) { }
 
-
+  createDateRange(): Date[] {
+    var currentDate = new Date().getFullYear();
+    const dates: Date[] = [];
+    for (let i: number = 1; i <= 12; i++) {
+      for (let j: number = 1; j <= 31; j++) {
+        dates.push(new Date(currentDate-1, i, j));
+      }
+    }
+    for (let i: number = 1; i <= 12; i++) {
+      for (let j: number = 1; j <= 31; j++) {
+        dates.push(new Date(currentDate, i, j));
+      }
+    }
+    
+    return dates;
+  }
   ngOnInit() {
   }
   ngAfterViewInit() {

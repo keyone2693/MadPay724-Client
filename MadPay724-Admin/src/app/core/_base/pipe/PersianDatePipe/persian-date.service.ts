@@ -21,6 +21,7 @@ export class PersianCalendarService {
   strMonth: string = null;
   day: number = null;
   month: number = null;
+  myMonth: number = null;
   year: number = null;
   ld: number = null;
   farsiDate: string = null;
@@ -44,8 +45,15 @@ export class PersianCalendarService {
     this.WeekDay = this.today.getDay();
     this.toPersian(gregorianDate);
     return this.strWeekDay + ' ' + this.day + ' ' + this.strMonth + ' ' + this.year;
-
-
+  }
+  PersianCalendarSmall(gregorianDate: Date): string {
+    this.today = new Date(gregorianDate);
+    this.gregorianYear = this.today.getFullYear();
+    this.gregorianMonth = this.today.getMonth() + 1;
+    this.gregorianDate = this.today.getDate();
+    this.WeekDay = this.today.getDay();
+    this.toPersian(gregorianDate);
+    return this.day + ' - ' + this.myMonth + ' - ' + this.year;
   }
   toPersian(gregorianDate: Date) {
     if ((this.gregorianYear % 4) !== 0) {
@@ -54,6 +62,7 @@ export class PersianCalendarService {
       this.farsiDate = this.func2();
     }
     this.strMonth = this.monthNames[Math.floor(this.month - 1)];
+    this.myMonth = Math.floor(this.month);
     // this.strWeekDay = this.weekDayNames[this.WeekDay + 1];
     if (this.WeekDay === 6) {
       this.strWeekDay = this.weekDayNames[0];

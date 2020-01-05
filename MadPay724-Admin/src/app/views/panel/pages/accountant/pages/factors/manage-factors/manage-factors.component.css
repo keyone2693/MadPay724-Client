@@ -14,12 +14,12 @@ mat-footer-row mat-footer-cell {
 .mat-red {
   background: #e24a4a;
   color: #fff;
-  float: right !important;
-  margin-top: 15px;
+  width: 100%;
+  margin-top: 25px;
 }
 
 .search-form-field {
-  width: 60%;
+  width: 100%;
   margin-right: 10px;
   margin-bottom: 15px;
 }
