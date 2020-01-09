@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
-import { Subscription, Observable, fromEvent, Subject } from 'rxjs';
+import { Subscription, Observable, fromEvent, Subject, of } from 'rxjs';
 import { Factor } from 'src/app/data/models/accountant/factor';
 import { Pagination } from 'src/app/data/models/common/pagination';
 import { FilterSortOrderBy } from 'src/app/data/models/common/filterSortOrderBy';
@@ -21,6 +21,7 @@ import { Location, DatePipe } from '@angular/common';
 import { Sort } from '@angular/material';
 import { PersianCalendarService } from 'src/app/core/_base/pipe/PersianDatePipe/persian-date.service';
 import { Options, LabelType } from 'ng5-slider';
+import { FactorSearch } from 'src/app/data/models/accountant/factorSearch';
 
 
 @Component({
@@ -28,8 +29,18 @@ import { Options, LabelType } from 'ng5-slider';
   templateUrl: './manage-factors.component.html',
   styleUrls: ['./manage-factors.component.css']
 })
-export class ManageFactorsComponent implements OnInit, OnDestroy, AfterViewInit {
-  @ViewChild('searchKey', { static: false }) filter: ElementRef;
+export class ManageFactorsComponent implements OnInit, OnDestroy {
+  dateRange: Date[] = this.createDateRange();
+  search: FactorSearch = {
+    status: 0,
+    factorType: 0,
+    minPrice: 0,
+    maxPrice: 10000000,
+    minDate: this.dateRange[0].getTime(),
+    maxDate: this.dateRange[730].getTime(),
+    bank: 0,
+    filter: ''
+  }
   subManager = new Subscription();
   factors: Factor[];
   pagination: Pagination = {
@@ -43,12 +54,10 @@ export class ManageFactorsComponent implements OnInit, OnDestroy, AfterViewInit 
     sortHeader: '',
     searchKey: ''
   };
-  minPrice: number = 500000;
-  maxPrice: number = 5000000;
   options: Options = {
     floor: 0,
     ceil: 10000000,
-    step:10000,
+    step: 10000,
     translate: (value: number, label: LabelType): string => {
       switch (label) {
         case LabelType.Low:
@@ -60,9 +69,6 @@ export class ManageFactorsComponent implements OnInit, OnDestroy, AfterViewInit 
       }
     }
   };
-  dateRange: Date[] = this.createDateRange();
-  minDate: number = this.dateRange[100].getTime();
-  maxDate: number = this.dateRange[450].getTime();
   optionsDate: Options = {
     stepsArray: this.dateRange.map((date: Date) => {
       return { value: date.getTime() };
@@ -73,7 +79,7 @@ export class ManageFactorsComponent implements OnInit, OnDestroy, AfterViewInit 
         case LabelType.Low:
           return '<b>حداقل:</b> ' + this.persianCalendarService.PersianCalendarSmall(valDt);
         case LabelType.High:
-          return '<b>حداکثر:</b> ' + this.persianCalendarService.PersianCalendarSmall(valDt) ;
+          return '<b>حداکثر:</b> ' + this.persianCalendarService.PersianCalendarSmall(valDt);
         default:
           return this.persianCalendarService.PersianCalendarSmall(valDt);
       }
@@ -92,7 +98,7 @@ export class ManageFactorsComponent implements OnInit, OnDestroy, AfterViewInit 
         component.icon = "ft-copy";
       }),
 
-   
+
     new TableColumn<Factor, 'kind'>('نوع', 'kind'),
     new TableColumn<Factor, 'status'>('وضعیت', 'status')
       .withNgComponent(CheckboxMPComponent)
@@ -118,12 +124,12 @@ export class ManageFactorsComponent implements OnInit, OnDestroy, AfterViewInit 
       .withTransform((data) => this.irCurrencyPipe.transform(data).replace("ریال", "تومان")),
     new TableColumn<Factor, 'endPrice'>('مبلغ نهایی', 'endPrice')
       .withTransform((data) => this.irCurrencyPipe.transform(data).replace("ریال", "تومان"))
-      .withNgStyle(() => ({'font-weight': '900' })),
-    
+      .withNgStyle(() => ({ 'font-weight': '900' })),
+
     new TableColumn<Factor, 'id'>('عملیات', 'id')
       .withNgComponent(ButtonMPComponent)
       .withNgComponentInput((component: ButtonMPComponent, id) => {
-        component.event = () => { this.router.navigate(['/panel/accountant/factors', id,'detail']) };
+        component.event = () => { this.router.navigate(['/panel/accountant/factors', id, 'detail']) };
         component.icon = "ft-alert-octagon";
         component.text = " جزییات و ویرایش";
         component.type = UiType.Success;
@@ -140,7 +146,7 @@ export class ManageFactorsComponent implements OnInit, OnDestroy, AfterViewInit 
     const dates: Date[] = [];
     for (let i: number = 1; i <= 12; i++) {
       for (let j: number = 1; j <= 31; j++) {
-        dates.push(new Date(currentDate-1, i, j));
+        dates.push(new Date(currentDate - 1, i, j));
       }
     }
     for (let i: number = 1; i <= 12; i++) {
@@ -148,21 +154,10 @@ export class ManageFactorsComponent implements OnInit, OnDestroy, AfterViewInit 
         dates.push(new Date(currentDate, i, j));
       }
     }
-    
+
     return dates;
   }
   ngOnInit() {
-  }
-  ngAfterViewInit() {
-    this.subManager.add(
-      fromEvent(this.filter.nativeElement, 'keyup')
-        .pipe(
-          debounceTime(1000),
-          map((event: Event) => (<HTMLInputElement>event.target).value),
-          distinctUntilChanged(),
-          switchMap(value => this.onPageChange(this.pagination.currentPage, this.pagination.itemsPerPage, value)),
-        ).subscribe()
-    );
   }
   ngOnDestroy() {
     this.subManager.unsubscribe();
@@ -170,42 +165,43 @@ export class ManageFactorsComponent implements OnInit, OnDestroy, AfterViewInit 
   sortEvent(data: Sort) {
     this.filterSortOrderBy.sortHeader = data.active.split('_')[1];
     this.filterSortOrderBy.sortDirection = data.direction;
-    this.onPageChange(this.pagination.currentPage, this.pagination.itemsPerPage);
+    this.onPageChange(this.pagination.currentPage, this.pagination.itemsPerPage, this.search);
   }
   onSearchClear() {
-    this.onPageChange(this.pagination.currentPage, this.pagination.itemsPerPage);
+    this.search = {
+      status: 0,
+      factorType: 0,
+      minPrice: 500000,
+      maxPrice: 5000000,
+      minDate: this.dateRange[100].getTime(),
+      maxDate: this.dateRange[450].getTime(),
+      bank: 0,
+      filter: ''
+    }
+    this.onPageChange(this.pagination.currentPage, this.pagination.itemsPerPage, this.search);
   }
-  onPageChange(offset: number, limit: number, filter?: string): Observable<Factor[]> {
+  onPageChange(offset: number, limit: number, filter?: FactorSearch): Observable<Factor[]> {
 
     let { sortDirection, sortHeader } = this.filterSortOrderBy;
-    if (filter === undefined || filter == null) {
-      filter = '';
-    }
     if (sortDirection === undefined || sortDirection == null) {
       sortDirection = '';
     }
     if (sortHeader === undefined || sortHeader == null) {
       sortHeader = '';
     }
-    this.filterSortOrderBy.searchKey = filter;
     //offset : page index
     //limit : page size
-    const observable = new Subject<Factor[]>();
-    setTimeout(() => {
-      this.subManager.add(
-        this.factorService.getFactors(offset, limit,
-          filter.trim(), sortHeader, sortDirection)
-          .subscribe((data) => {
-            this.factors = data.result;
-            this.pagination = data.pagination;
-          }, error => {
-            this.alertService.error(error);
-          })
-      );
-      observable.next(this.factors);
-    }, 0);
-
-    return observable;
+    this.subManager.add(
+      this.factorService.getFactors(offset, limit,
+        filter, sortHeader, sortDirection)
+        .subscribe((data) => {
+          this.factors = data.result;
+          this.pagination = data.pagination;
+        }, error => {
+          this.alertService.error(error);
+        })
+    );
+    return of(this.factors);
   }
   onStatusChange(event: any, factorId: string) {
     this.subManager.add(
@@ -222,7 +218,7 @@ export class ManageFactorsComponent implements OnInit, OnDestroy, AfterViewInit 
         })
     )
   }
-  onBack() {
-    this.loc.back();
+  onSearch() {
+    this.onPageChange(this.pagination.currentPage, this.pagination.itemsPerPage, this.search);
   }
 }

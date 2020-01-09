@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Factor } from 'src/app/data/models/accountant/factor';
 import { Wallet } from 'src/app/data/models/wallet';
+import { FactorSearch } from 'src/app/data/models/accountant/factorSearch';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class FactorService {
   walletFactorsbaseUrl = environment.apiUrl + environment.apiV1 + 'site/panel/wallets/';
 
   constructor(private http: HttpClient) { }
-  getFactors(page?, itemPerPage?, filter?, sortHe?, sortDir?):
+  getFactors(page?, itemPerPage?, filter?: FactorSearch, sortHe?, sortDir?):
     Observable<PaginationResult<Factor[]>> {
     const paginatedResult: PaginationResult<Factor[]> = new PaginationResult<Factor[]>();
     let params = new HttpParams();
@@ -23,7 +24,14 @@ export class FactorService {
     if (page != null && itemPerPage != null) {
       params = params.append('pageNumber', page);
       params = params.append('pageSize', itemPerPage);
-      params = params.append('filter', filter);
+      params = params.append('filter', filter.filter);
+      params = params.append('bank', filter.bank.toString());
+      params = params.append('factorType', filter.factorType.toString());
+      params = params.append('minDate', filter.minDate.toString());
+      params = params.append('maxDate', filter.maxDate.toString());
+      params = params.append('minPrice', filter.minPrice.toString());
+      params = params.append('maxPrice', filter.maxPrice.toString());
+      params = params.append('status', filter.status.toString());
       params = params.append('sortHe', sortHe);
       params = params.append('sortDir', sortDir);
     }

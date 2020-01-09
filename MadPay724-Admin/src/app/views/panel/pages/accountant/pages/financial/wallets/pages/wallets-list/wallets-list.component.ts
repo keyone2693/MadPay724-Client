@@ -61,7 +61,6 @@ export class WalletsListComponent implements OnInit, OnDestroy {
         this.noContentHideFlag = false;
       }
     });
-
   }
   paginatorEvent(filter: any) {
 

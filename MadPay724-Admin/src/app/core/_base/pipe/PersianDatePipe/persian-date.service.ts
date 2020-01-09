@@ -53,7 +53,7 @@ export class PersianCalendarService {
     this.gregorianDate = this.today.getDate();
     this.WeekDay = this.today.getDay();
     this.toPersian(gregorianDate);
-    return this.day + ' - ' + this.myMonth + ' - ' + this.year;
+    return this.day + '-' + this.myMonth + '-' + this.year;
   }
   toPersian(gregorianDate: Date) {
     if ((this.gregorianYear % 4) !== 0) {

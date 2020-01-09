@@ -35,69 +35,69 @@
                 <div class="row mb-4">
                   <mat-form-field class="col-md-4">
                     <mat-label>وضعیت پرداخت</mat-label>
-                    <mat-select>
-                      <mat-option value="1">
+                    <mat-select [(ngModel)]="search.status">
+                      <mat-option [value]="0">
                         مهم نیست
                       </mat-option>
-                      <mat-option value="2">
+                      <mat-option [value]="1">
                         موفق
                       </mat-option>
-                      <mat-option value="3">
+                      <mat-option [value]="2">
                         ناموفق
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
                   <mat-form-field class="col-md-4">
                     <mat-label>نوع فاکتور</mat-label>
-                    <mat-select>
-                      <mat-option value="0">
+                    <mat-select [(ngModel)]="search.factorType">
+                      <mat-option [value]="0">
                         مهم نیست
                       </mat-option>
-                      <mat-option value="1">
+                      <mat-option [value]="1">
                         فاکتور
                       </mat-option>
-                      <mat-option value="2">
+                      <mat-option [value]="2">
                         ایزی پی
                       </mat-option>
-                      <mat-option value="3">
+                      <mat-option [value]="3">
                         حمایتی
                       </mat-option>
-                      <mat-option value="4">
+                      <mat-option [value]="4">
                         افزایش موجودی
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
                   <mat-form-field class="col-md-4">
                     <mat-label>بانک</mat-label>
-                    <mat-select>
-                      <mat-option value="0">
+                    <mat-select [(ngModel)]="search.bank">
+                      <mat-option [value]="0">
                         مهم نیست
                       </mat-option>
-                      <mat-option value="1">
+                      <mat-option [value]="1">
                         سامان
                       </mat-option>
-                      <mat-option value="2">
+                      <mat-option [value]="2">
                         ملت
                       </mat-option>
-                      <mat-option value="3">
+                      <mat-option [value]="3">
                         پارسیان
                       </mat-option>
-                      <mat-option value="4">
+                      <mat-option [value]="4">
                         پاسارگاد
                       </mat-option>
-                      <mat-option value="5">
+                      <mat-option [value]="5">
                         ایران کیش
                       </mat-option>
-                      <mat-option value="6">
+                      <mat-option [value]="6">
                         ملی
                       </mat-option>
-                      <mat-option value="7">
+                      <mat-option [value]="7">
                         آسان پرداخت
                       </mat-option>
-                      <mat-option value="8">
+                      <mat-option [value]="8">
                         زرین پال
                       </mat-option>
-                      <mat-option value="9">
+                      <mat-option [value]="9">
                         مجازی
                       </mat-option>
                     </mat-select>
@@ -109,8 +109,8 @@
                       >محدوده ی قیمت</mat-label
                     >
                     <ng5-slider
-                      [(value)]="minPrice"
-                      [(highValue)]="maxPrice"
+                      [(value)]="search.minPrice"
+                      [(highValue)]="search.maxPrice"
                       [options]="options"
                     ></ng5-slider>
                   </div>
@@ -119,8 +119,8 @@
                       >محدوده ی تاریخ</mat-label
                     >
                     <ng5-slider
-                      [(value)]="minDate"
-                      [(highValue)]="maxDate"
+                      [(value)]="search.minDate"
+                      [(highValue)]="search.maxDate"
                       [options]="optionsDate"
                     ></ng5-slider>
                   </div>
@@ -130,11 +130,10 @@
                     <mat-form-field
                       class="search-form-field"
                       floatLabel="never"
-                      matTooltipPosition="bottom"
                       matTooltip=" جستوجو براساس شناسه فاکتور ,نام کاربر ,شناسه کاربر ,یوزرنیم کاربر ,شناسه درگاه ,آدرس درگاه ,نام درگاه ,شناسه ی کیف پول ,نام کیف پول"
                     >
                       <input
-                        #searchKey
+                        [(ngModel)]="search.filter"
                         matInput
                         type="text"
                         placeholder="جستوجوی کلی ..."
@@ -144,7 +143,7 @@
                   <div class="col-md-3">
                     <button
                       mat-raised-button
-                      (click)="onBack()"
+                      (click)="onSearch()"
                       color="red"
                       class="float-left mb-10"
                     >
