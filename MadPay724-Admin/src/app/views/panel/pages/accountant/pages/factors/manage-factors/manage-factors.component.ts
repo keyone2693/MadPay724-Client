@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
-import { Subscription, Observable, fromEvent, Subject, of } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription, Observable, of } from 'rxjs';
 import { Factor } from 'src/app/data/models/accountant/factor';
 import { Pagination } from 'src/app/data/models/common/pagination';
 import { FilterSortOrderBy } from 'src/app/data/models/common/filterSortOrderBy';
@@ -8,14 +8,12 @@ import { InputMpComponent } from 'src/app/shared/component/input-mp/input-mp.com
 import { UiType } from 'src/app/data/enums/uiType.enum';
 import { CheckboxMPComponent } from 'src/app/shared/component/checkbox-mp/checkbox-mp.component';
 import { ButtonMPComponent } from 'src/app/shared/component/button-mp/button-mp.component';
-import { CurrentTitleStateModel } from '../../../store/_models/currentTitleStateModel';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FactorService } from 'src/app/core/_services/panel/accountant/factor.service';
 import { ToastrService } from 'ngx-toastr';
 import { AccountantStateModel } from '../../../store/_models/accountantStateModel';
 import { Store } from '@ngrx/store';
 import { IRCurrencyPipe } from 'ngx-persian';
-import { debounceTime, map, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { Location, DatePipe } from '@angular/common';
 
 import { Sort } from '@angular/material';
@@ -35,9 +33,9 @@ export class ManageFactorsComponent implements OnInit, OnDestroy {
     status: 0,
     factorType: 0,
     minPrice: 0,
-    maxPrice: 10000000,
+    maxPrice: 100000000,
     minDate: this.dateRange[0].getTime(),
-    maxDate: this.dateRange[730].getTime(),
+    maxDate: this.dateRange[729].getTime(),
     bank: 0,
     filter: ''
   }
@@ -56,7 +54,7 @@ export class ManageFactorsComponent implements OnInit, OnDestroy {
   };
   options: Options = {
     floor: 0,
-    ceil: 10000000,
+    ceil: 100000000,
     step: 10000,
     translate: (value: number, label: LabelType): string => {
       switch (label) {
@@ -142,19 +140,14 @@ export class ManageFactorsComponent implements OnInit, OnDestroy {
     private persianCalendarService: PersianCalendarService, private datePipe: DatePipe) { }
 
   createDateRange(): Date[] {
-    var currentDate = new Date().getFullYear();
+    var currentYear = new Date().getFullYear();
     const dates: Date[] = [];
-    for (let i: number = 1; i <= 12; i++) {
-      for (let j: number = 1; j <= 31; j++) {
-        dates.push(new Date(currentDate - 1, i, j));
-      }
+    for (let i:number = 0; i < 730; i++) {
+      var tempDate = new Date();
+      tempDate.setDate(tempDate.getDate() - 729);
+      tempDate.setDate(tempDate.getDate() + i);
+      dates.push(tempDate);
     }
-    for (let i: number = 1; i <= 12; i++) {
-      for (let j: number = 1; j <= 31; j++) {
-        dates.push(new Date(currentDate, i, j));
-      }
-    }
-
     return dates;
   }
   ngOnInit() {
@@ -165,7 +158,7 @@ export class ManageFactorsComponent implements OnInit, OnDestroy {
   sortEvent(data: Sort) {
     this.filterSortOrderBy.sortHeader = data.active.split('_')[1];
     this.filterSortOrderBy.sortDirection = data.direction;
-    this.onPageChange(this.pagination.currentPage, this.pagination.itemsPerPage, this.search);
+    this.onPageChange(this.pagination.currentPage, this.pagination.itemsPerPage);
   }
   onSearchClear() {
     this.search = {
@@ -178,10 +171,9 @@ export class ManageFactorsComponent implements OnInit, OnDestroy {
       bank: 0,
       filter: ''
     }
-    this.onPageChange(this.pagination.currentPage, this.pagination.itemsPerPage, this.search);
+    this.onPageChange(this.pagination.currentPage, this.pagination.itemsPerPage);
   }
-  onPageChange(offset: number, limit: number, filter?: FactorSearch): Observable<Factor[]> {
-
+  onPageChange(offset: number, limit: number): Observable<Factor[]> {
     let { sortDirection, sortHeader } = this.filterSortOrderBy;
     if (sortDirection === undefined || sortDirection == null) {
       sortDirection = '';
@@ -193,7 +185,7 @@ export class ManageFactorsComponent implements OnInit, OnDestroy {
     //limit : page size
     this.subManager.add(
       this.factorService.getFactors(offset, limit,
-        filter, sortHeader, sortDirection)
+        this.search, sortHeader, sortDirection)
         .subscribe((data) => {
           this.factors = data.result;
           this.pagination = data.pagination;
@@ -219,6 +211,6 @@ export class ManageFactorsComponent implements OnInit, OnDestroy {
     )
   }
   onSearch() {
-    this.onPageChange(this.pagination.currentPage, this.pagination.itemsPerPage, this.search);
+    this.onPageChange(this.pagination.currentPage, this.pagination.itemsPerPage);
   }
 }
