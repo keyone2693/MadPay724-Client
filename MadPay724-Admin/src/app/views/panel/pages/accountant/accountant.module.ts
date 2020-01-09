@@ -50,6 +50,8 @@ import { WalletsEntryComponent } from './pages/financial/wallets/pages/wallets-e
 import { WalletsFactorsComponent } from './pages/financial/wallets/pages/wallets-factors/wallets-factors.component';
 import { FactorEditComponent } from './pages/factors/manage-factors/pages/factor-edit/factor-edit.component';
 import { Ng5SliderModule } from 'ng5-slider';
+import { GatesComponent } from './pages/financial/gates/gates.component';
+import { GateFactorsComponent } from './pages/financial/gates/pages/gate-factors/gate-factors.component';
 
 @NgModule({
   imports: [
@@ -88,6 +90,8 @@ import { Ng5SliderModule } from 'ng5-slider';
     WalletsEntryComponent,
     WalletsFactorsComponent,
     FactorEditComponent,
+    GatesComponent,
+    GateFactorsComponent,
     //
     ButtonMPComponent,
     CheckboxMPComponent,

@@ -24,14 +24,14 @@
             <small class="float-left" *ngIf="!bankcard.approve"
               >تایید نشده<i class="icon-close px-1"></i
             ></small>
-            <h5 class="text-white cardnum">
+            <h6 class="text-white cardnum">
               {{bankcard.cardNumber | slice:0:4}}-{{bankcard.cardNumber | slice:4:8}}-{{bankcard.cardNumber | slice:8:12}}-{{bankcard.cardNumber | slice:12:16}}
-            </h5>
+            </h6>
             <span class="float-right lblhesab"
-              ><small>شماره حساب : </small><small>{{bankcard.hesabNumber}}</small></span
+              ><small>ش.ح: </small><small>{{bankcard.hesabNumber}}</small></span
             >
             <span class="float-left lblexpire"
-              ><small>انقضا : </small><small>{{bankcard.expireDateYear}}/{{bankcard.expireDateMonth}}</small></span
+              ><small>انقضا: </small><small>{{bankcard.expireDateYear}}/{{bankcard.expireDateMonth}}</small></span
             >
           </div>
         </div>
