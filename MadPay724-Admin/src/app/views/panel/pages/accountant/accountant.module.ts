@@ -52,13 +52,13 @@ import { FactorEditComponent } from './pages/factors/manage-factors/pages/factor
 import { Ng5SliderModule } from 'ng5-slider';
 import { GatesComponent } from './pages/financial/gates/gates.component';
 import { GateFactorsComponent } from './pages/financial/gates/pages/gate-factors/gate-factors.component';
+import { GateAccService } from 'src/app/core/_services/panel/accountant/gateAccService.service';
 
 @NgModule({
   imports: [
     CommonModule,
     AccountantRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
+    FormsModule, ReactiveFormsModule,
     AccountantMaterialModule,
     DigitOnlyModule,
     SweetAlert2Module.forRoot(),
@@ -103,6 +103,7 @@ import { GateFactorsComponent } from './pages/financial/gates/pages/gate-factors
     InventoryService,
     EntryService,
     FactorService,
+    GateAccService,
     //
     InventoryResolver,
     InventoryWalletResolver,

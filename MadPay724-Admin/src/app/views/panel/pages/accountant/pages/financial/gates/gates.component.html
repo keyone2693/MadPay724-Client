@@ -8,39 +8,27 @@
       <a>حسابدار </a>
     </li>
     <li class="breadcrumb-item">
-      <a>فاکتور ها </a>
-    </li>
-    <li class="breadcrumb-item active" aria-current="page" *ngIf="walletInfo$ | async as walletInfo">
-      مدیریت فاکتور های کیف پول {{walletInfo.title}}
+      <a>درگاه های پرداخت </a>
     </li>
   </ol>
 </nav>
 <!--Basic User Details Starts-->
-<section id="user-area" *ngIf="walletInfo$ | async as walletInfo">
+<section id="user-area">
   <div class="row">
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
           <div class="card-title-wrap bar-success">
-            <h4 class="card-title"> مدیریت فاکتور ها</h4>
+            <h4 class="card-title"> مدیریت درگاه ها ها</h4>
           </div>
           <p>
-            تمام فاکتورهای کیف پول {{walletInfo.title}} در این صفحه نمایش داده می‌شوند
+در این صفحه تمامی درگاه های کاربران نمایش داده میشود
           </p>
         </div>
         <div class="card-body">
           <div class="row">
             <div class="col-md-12">
               <div class="search-div">
-                 <button
-                  mat-raised-button
-                  (click)="onBack()"
-                  color="red"
-                  class="float-left mb-10"
-                >
-                  <i class="ft-chevrons-right"></i>
-                  بازگشت به کیف پول ها / مدیریت موجودی
-                </button>
                 <mat-form-field class="search-form-field" floatLabel="never">
                   <input
                    #searchKey
@@ -63,7 +51,7 @@
                 </mat-form-field>
               </div>
               <smc-simplemattable class="mysimplemattable" 
-              [data]="factors" [columns]="columns"
+              [data]="gates" [columns]="columns"
               [paginator]="true" [backendPagination]="true"
               [paginatorLength]="pagination.totalItems"
               [paginatorPageSize]="pagination.itemsPerPage"
@@ -80,4 +68,3 @@
   </div>
 </section>
 <!--User Profile Starts-->
-s

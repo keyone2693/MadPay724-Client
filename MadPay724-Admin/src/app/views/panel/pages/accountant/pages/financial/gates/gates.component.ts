@@ -10,7 +10,6 @@ import { UiType } from 'src/app/data/enums/uiType.enum';
 import { CurrentTitleStateModel } from '../../../store/_models/currentTitleStateModel';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { GatesService } from 'src/app/core/_services/panel/user/gateService.service';
 import { AccountantStateModel } from '../../../store/_models/accountantStateModel';
 import { Location } from '@angular/common';
 import { Store } from '@ngrx/store';
@@ -20,6 +19,7 @@ import { CheckboxMPComponent } from 'src/app/shared/component/checkbox-mp/checkb
 import { HtmlMpComponent } from 'src/app/shared/component/html-mp/html-mp.component';
 
 import * as fromAccountantStore from '../../../store';
+import { GateAccService } from 'src/app/core/_services/panel/accountant/gateAccService.service';
 
 @Component({
   selector: 'app-gates',
@@ -43,6 +43,14 @@ export class GatesComponent implements OnInit, OnDestroy, AfterViewInit {
   };
 
   columns = [
+    new TableColumn<Gate, 'iconUrl'>('ایکن', 'iconUrl')
+      .withWidth(Width.px(40))
+      .withNgComponent(HtmlMpComponent)
+      .withNgComponentInput((component: HtmlMpComponent, iconUrl) => {
+        component.isImage = true;
+        component.text = iconUrl;
+        component.class = 'img-icon';
+      }),
     new TableColumn<Gate, 'id'>('شناسه', 'id')
       .withWidth(Width.px(50))
       .withNgComponent(InputMpComponent)
@@ -54,7 +62,7 @@ export class GatesComponent implements OnInit, OnDestroy, AfterViewInit {
         component.isForCopy = true;
         component.icon = "ft-copy";
       }),
-    new TableColumn<Gate, 'iconUrl'>('ایکن', 'iconUrl'),
+   
     new TableColumn<Gate, 'isActive'>('وضعیت', 'isActive')
       .withNgComponent(CheckboxMPComponent)
       .withNgComponentInput((component: CheckboxMPComponent, isActive, gate) => {
@@ -86,7 +94,7 @@ export class GatesComponent implements OnInit, OnDestroy, AfterViewInit {
         component.type = UiType.Error;
       }),
     new TableColumn<Gate, 'ip'>('آی پی', 'ip')
-      .withWidth(Width.px(50))
+      .withWidth(Width.px(10))
       .withNgComponent(InputMpComponent)
       .withNgComponentInput((component: InputMpComponent, ip) => {
         component.event = () => { };
@@ -100,7 +108,7 @@ export class GatesComponent implements OnInit, OnDestroy, AfterViewInit {
     new TableColumn<Gate, 'websiteName'>('نام وبسایت', 'websiteName'),
     new TableColumn<Gate, 'phoneNumber'>('موبایل', 'phoneNumber'),
     new TableColumn<Gate, 'websiteUrl'>('آدرس', 'websiteUrl')
-      .withWidth(Width.px(50))
+      .withWidth(Width.px(10))
       .withNgComponent(InputMpComponent)
       .withNgComponentInput((component: InputMpComponent, websiteUrl) => {
         component.event = () => { };
@@ -111,7 +119,7 @@ export class GatesComponent implements OnInit, OnDestroy, AfterViewInit {
         component.icon = "ft-copy";
       }),
     new TableColumn<Gate, 'text'>('متن', 'text')
-      .withWidth(Width.px(50))
+      .withWidth(Width.px(30))
       .withNgComponent(HtmlMpComponent)
       .withNgComponentInput((component: HtmlMpComponent, text) => {
         component.text = text.substring(0, 10) + '...';
@@ -120,9 +128,6 @@ export class GatesComponent implements OnInit, OnDestroy, AfterViewInit {
         component.tooltipPosition = 'below';
         component.class = 'txtwxp';
       }),
-
-    
-
     new TableColumn<Gate, 'id'>('عملیات', 'id')
       .withNgComponent(ButtonMPComponent)
       .withNgComponentInput((component: ButtonMPComponent, id) => {
@@ -132,8 +137,8 @@ export class GatesComponent implements OnInit, OnDestroy, AfterViewInit {
         component.type = UiType.Success;
       })
   ];
-  constructor(private route: ActivatedRoute, private alertService: ToastrService
-    , private gateService: GatesService, private store: Store<AccountantStateModel>,
+  constructor(private alertService: ToastrService
+    , private gateService: GateAccService, private store: Store<AccountantStateModel>,
     private router: Router, private loc: Location) { }
 
 
@@ -176,12 +181,6 @@ export class GatesComponent implements OnInit, OnDestroy, AfterViewInit {
     this.filterSortOrderBy.searchKey = filter;
     //offset : page index
     //limit : page size
-    let walletId = ''
-    this.subManager.add(
-      this.route.params.subscribe(params => {
-        walletId = params['walletId'];
-      })
-    );
       this.subManager.add(
         this.gateService.getAccGates(offset, limit,
           filter.trim(), sortHeader, sortDirection)

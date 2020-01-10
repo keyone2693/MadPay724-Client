@@ -2,4 +2,9 @@
     font-size: 14px;
     font-weight: 900;
     color: #ff4081;
+    padding: 0 25px;
+}
+.img-icon{
+    width: 40px;
+    border-radius: 100px;
 }

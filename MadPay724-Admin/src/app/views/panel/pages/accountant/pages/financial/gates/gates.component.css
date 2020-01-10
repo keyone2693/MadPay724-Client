@@ -1,0 +1,46 @@
+
+
+.hide {
+  display: none;
+}
+
+mat-footer-row mat-footer-cell {
+  justify-content: center;
+  font-style: italic;
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.mat-red {
+  background: #e24a4a;
+  color: #fff;
+  float: right !important;
+  margin-top: 15px;
+}
+
+.search-form-field {
+  width: 60%;
+  margin-right: 10px;
+  margin-bottom: 15px;
+}
+
+.col-fontsize-10 {
+  font-size: 10px;
+  font-weight: 900;
+}
+
+
+.txtwxp{
+    font-size: 14px;font-weight: 900;color: #ff4081;
+}
+.btn-action {
+  min-width: 20px;
+}
+
+.btn-action i {
+  font-size: 20px;
+}
+
+.btncomy-green {
+  color: #0092ff;
+}

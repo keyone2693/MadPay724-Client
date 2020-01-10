@@ -1,9 +1,13 @@
+<img 
+*ngIf="isImage"
+[ngClass]="class"
+[src]="text"  
+/>
 <div 
 *ngIf="!isTooltip"
 [ngClass]="class"
 [innerHTML]="html"  
 ></div>
-
 <p 
 *ngIf="isTooltip"
 [ngClass]="class"
