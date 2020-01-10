@@ -148,4 +148,9 @@ export class WalletsListComponent implements OnInit, OnDestroy {
       { id: wallet.id, title: wallet.name }));
     this.router.navigate(['/panel/accountant/wallets', wallet.id, 'factors'])
   }
+  onWalletGatesClick(wallet: Wallet) {
+    this.store.dispatch(new fromAccountantStore.EditCurrentTitle(
+      { id: wallet.id, title: wallet.name }));
+    this.router.navigate(['/panel/accountant/wallets', wallet.id, 'gates'])
+  }
 }

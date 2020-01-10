@@ -183,6 +183,7 @@
                           mat-raised-button
                            (click)="onWalletFactorsClick(wallet)"
                           color="green"
+                          class="mt-0 ml-1"
                         >
                           <i class="icon-bag"></i>
                         فاکتور ها
@@ -192,11 +193,21 @@
                           mat-raised-button
                           (click)="onWalletClick(wallet)"
                           color="red"
-                          class="mt-0"
+                          class="mt-0 ml-1"
                         >
                           <i class="ft-external-link"></i>
                           واریزی ها
                         </button>
+                         <button
+                            *appHasRole="['Admin', 'Accountant']"
+                            mat-raised-button
+                            (click)="onWalletGatesClick(wallet)"
+                            color="primary"
+                            class="mt-0 ml-1"
+                          >
+                            <i class="icon-globe"></i>
+                            درگاه ها
+                          </button>
                     </mat-cell>
                   </ng-container>
 

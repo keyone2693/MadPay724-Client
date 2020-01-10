@@ -31,6 +31,7 @@ import { FactorEditComponent } from './pages/factors/manage-factors/pages/factor
 import { FactorResolver } from 'src/app/core/_base/resolvers/accountant/factor.resolver';
 import { GatesComponent } from './pages/financial/gates/gates.component';
 import { GateFactorsComponent } from './pages/financial/gates/pages/gate-factors/gate-factors.component';
+import { WalletsGatesComponent } from './pages/financial/wallets/pages/wallets-gates/wallets-gates.component';
 
 const routes: Routes = [
     {
@@ -106,15 +107,18 @@ const routes: Routes = [
             },
             {
                 path: 'wallets/:walletId/entry', canActivate: [AuthGuard],
-                //resolve: { entries: BankCardEntryResolver },
                 component: WalletsEntryComponent,
                 data: { roles: ['Accountant', 'Admin'], title: ['واریزی های کیف پول'] }
             },
             {
                 path: 'wallets/:walletId/factors', canActivate: [AuthGuard],
-                //resolve: { entries: BankCardEntryResolver },
                 component: WalletsFactorsComponent,
                 data: { roles: ['Accountant', 'Admin'], title: ['فاکتور های کیف پول'] }
+            },
+            {
+                path: 'wallets/:walletId/gates', canActivate: [AuthGuard],
+                component: WalletsGatesComponent,
+                data: { roles: ['Accountant', 'Admin'], title: ['درگاه های کیف پول'] }
             },
             {
                 path: 'gates', canActivate: [AuthGuard],

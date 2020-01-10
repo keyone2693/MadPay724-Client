@@ -156,6 +156,16 @@
         <i class="ft-external-link"></i>
          واریزی ها
       </button>
+       <button
+        *appHasRole="['Admin', 'Accountant']"
+        mat-raised-button
+        (click)="onWalletGatesClick(wallet)"
+        color="primary"
+        class="mt-0 ml-1"
+      >
+        <i class="icon-globe"></i>
+         درگاه ها
+      </button>
     </mat-cell>
   </ng-container>
 

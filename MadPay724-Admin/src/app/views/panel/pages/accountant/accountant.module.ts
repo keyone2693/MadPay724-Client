@@ -53,6 +53,7 @@ import { Ng5SliderModule } from 'ng5-slider';
 import { GatesComponent } from './pages/financial/gates/gates.component';
 import { GateFactorsComponent } from './pages/financial/gates/pages/gate-factors/gate-factors.component';
 import { GateAccService } from 'src/app/core/_services/panel/accountant/gateAccService.service';
+import { WalletsGatesComponent } from './pages/financial/wallets/pages/wallets-gates/wallets-gates.component';
 
 @NgModule({
   imports: [
@@ -92,6 +93,7 @@ import { GateAccService } from 'src/app/core/_services/panel/accountant/gateAccS
     FactorEditComponent,
     GatesComponent,
     GateFactorsComponent,
+    WalletsGatesComponent,
     //
     ButtonMPComponent,
     CheckboxMPComponent,

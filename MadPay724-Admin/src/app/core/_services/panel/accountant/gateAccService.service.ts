@@ -69,14 +69,14 @@ export class GateAccService {
         })
       );
   }
- 
-  changeActiveGate(active: any, gateId: string) {
-    return this.http.put(this.baseUrl , active);
+
+  changeActiveGate(gateId: string, flag: any) {
+    return this.http.patch(this.baseUrl + 'financial/gates/' + gateId + '/activegate', {flag});
   }
-  changeDirectGate(active: any, gateId: string) {
-    return this.http.put(this.baseUrl , active);
+  changeDirectGate(gateId: string, flag: any) {
+    return this.http.patch(this.baseUrl + 'financial/gates/' + gateId + '/directgate', {flag});
   }
-  changeIpGate(active: any, gateId: string) {
-    return this.http.put(this.baseUrl, active);
+  changeIpGate(gateId: string, flag: any) {
+    return this.http.patch(this.baseUrl + 'financial/gates/' + gateId + '/ipgate',{flag});
   }
 }
