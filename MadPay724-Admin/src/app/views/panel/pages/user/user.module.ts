@@ -58,6 +58,10 @@ import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from 'src/app/core/_
 import { PersianPipeModule } from 'src/app/shared/modules/common/persianPipe.module';
 import { UserGateFactorsComponent } from './pages/gate-manage/pages/user-gate-factors/user-gate-factors.component';
 import { GenericTableModule } from 'src/app/shared/modules/common/genericTable.module';
+import { ButtonMPComponent } from 'src/app/shared/component/button-mp/button-mp.component';
+import { CheckboxMPComponent } from 'src/app/shared/component/checkbox-mp/checkbox-mp.component';
+import { InputMpComponent } from 'src/app/shared/component/input-mp/input-mp.component';
+import { HtmlMpComponent } from 'src/app/shared/component/html-mp/html-mp.component';
 
 @NgModule({
   imports: [
@@ -113,7 +117,12 @@ import { GenericTableModule } from 'src/app/shared/modules/common/genericTable.m
     EasypayAddComponent,
     EasypayEditComponent,
     //
-    UserGateFactorsComponent
+    UserGateFactorsComponent,
+    //
+    ButtonMPComponent,
+    CheckboxMPComponent,
+    InputMpComponent,
+    HtmlMpComponent
   ],
   providers: [
     NotificationService,
@@ -141,7 +150,11 @@ import { GenericTableModule } from 'src/app/shared/modules/common/genericTable.m
       WalletFormComponent,
       CreateFormTicketComponent,
       GateFormComponent,
-      GateActiveComponent
+      GateActiveComponent,
+      ButtonMPComponent,
+      CheckboxMPComponent,
+      InputMpComponent,
+      HtmlMpComponent
     ]
 })
 export class UserModule { }

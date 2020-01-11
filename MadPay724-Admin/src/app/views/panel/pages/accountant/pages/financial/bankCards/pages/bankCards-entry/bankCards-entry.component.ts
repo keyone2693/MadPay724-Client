@@ -5,10 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { EntryService } from 'src/app/core/_services/panel/accountant/entry.service';
 import { Subscription, Observable, Subject, fromEvent } from 'rxjs';
 import { TableColumn, Width } from 'simplemattable';
-import { CurrentTitleStateModel } from '../../../../../store/_models/currentTitleStateModel';
 import { Store } from '@ngrx/store';
-import { AccountantStateModel } from '../../../../../store/_models/accountantStateModel';
-import * as fromAccountantStore from '../../../../../store';
+import * as fromStore from '../../../../../../../../../store';
 import { UiType } from 'src/app/data/enums/uiType.enum';
 import { CheckboxMPComponent } from 'src/app/shared/component/checkbox-mp/checkbox-mp.component';
 import { ButtonMPComponent } from 'src/app/shared/component/button-mp/button-mp.component';
@@ -21,6 +19,7 @@ import { Sort } from '@angular/material';
 import { HtmlMpComponent } from 'src/app/shared/component/html-mp/html-mp.component';
 import { TooltipPosition } from 'src/app/data/enums/tooltipPosition.enum';
 import { Location } from '@angular/common';
+import { CurrentTitleStateModel } from 'src/app/store/_model/currentTitleStateModel';
 
 @Component({
   selector: 'app-bankCards-entry',
@@ -115,11 +114,11 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy, AfterViewInit
   bankcardInfo$: Observable<CurrentTitleStateModel>
 
   constructor(private route: ActivatedRoute, private alertService: ToastrService
-    , private entryService: EntryService, private store: Store<AccountantStateModel>,
+    , private entryService: EntryService, private store: Store<fromStore.State>,
     private router: Router, private irCurrencyPipe: IRCurrencyPipe,private loc: Location) { }
 
   ngOnInit() {
-    this.bankcardInfo$ = this.store.select(fromAccountantStore.getCurrentTitle);
+    this.bankcardInfo$ = this.store.select(fromStore.getCurrentTitle);
   }
   ngAfterViewInit() {
     this.subManager.add(

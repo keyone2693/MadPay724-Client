@@ -11,16 +11,15 @@ import { ButtonMPComponent } from 'src/app/shared/component/button-mp/button-mp.
 import { ActivatedRoute, Router } from '@angular/router';
 import { GatesService } from 'src/app/core/_services/panel/user/gateService.service';
 import { ToastrService } from 'ngx-toastr';
-import { AccountantStateModel } from 'src/app/views/panel/pages/accountant/store/_models/accountantStateModel';
 import { Store } from '@ngrx/store';
 import { IRCurrencyPipe } from 'ngx-persian';
 import { DatePipe, Location } from '@angular/common';
 import { PersianCalendarService } from 'src/app/core/_base/pipe/PersianDatePipe/persian-date.service';
-import { CurrentTitleStateModel } from 'src/app/views/panel/pages/accountant/store/_models/currentTitleStateModel';
 import { debounceTime, map, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { Sort } from '@angular/material';
 
-//import * as fromAccountantStore from '../../../../../store';
+import * as fromStore from '../../../../../../../../store';
+import { CurrentTitleStateModel } from 'src/app/store/_model/currentTitleStateModel';
 
 
 @Component({
@@ -61,9 +60,6 @@ export class UserGateFactorsComponent implements OnInit, OnDestroy, AfterViewIni
     new TableColumn<Factor, 'status'>('وضعیت', 'status')
       .withNgComponent(CheckboxMPComponent)
       .withNgComponentInput((component: CheckboxMPComponent, status, factor) => {
-        component.event = (data) => {
-          this.onStatusChange(data, factor.id);
-        };
         component.checked = status;
         component.disabled = false;
         component.type = UiType.Info;
@@ -97,13 +93,13 @@ export class UserGateFactorsComponent implements OnInit, OnDestroy, AfterViewIni
   gateInfo$: Observable<CurrentTitleStateModel>
 
   constructor(private route: ActivatedRoute, private alertService: ToastrService
-    , private gatesService: GatesService, private store: Store<AccountantStateModel>,
+    , private gatesService: GatesService, private store: Store<fromStore.State>,
     private router: Router, private irCurrencyPipe: IRCurrencyPipe, private loc: Location,
     private persianCalendarService: PersianCalendarService, private datePipe: DatePipe) { }
 
 
   ngOnInit() {
-    //this.gateInfo$ = this.store.select(fromAccountantStore.getCurrentTitle);
+    this.gateInfo$ = this.store.select(fromStore.getCurrentTitle);
   }
   ngAfterViewInit() {
     this.subManager.add(

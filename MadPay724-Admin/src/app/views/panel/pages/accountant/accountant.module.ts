@@ -12,11 +12,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { HasRoleModule } from 'src/app/Shared/Modules/hasRole/hasRole.module';
 import { DigitOnlyModule } from '@uiowa/digit-only';
 import { AccountantMaterialModule } from 'src/app/shared/modules/material/accountant-material.module';
-import { ClipboardModule } from 'ngx-clipboard';
 import { InventoryBankCardResolver } from 'src/app/core/_base/resolvers/accountant/inventoryBankCard.resolver';
 import { InventoryWalletResolver } from 'src/app/core/_base/resolvers/accountant/inventoryWallet.resolver';
-import { StoreModule } from '@ngrx/store';
-import { accountantReducers } from './store/reducers';
 import { AccWalletResolver } from 'src/app/core/_base/resolvers/accountant/accWallet.resolver';
 import { AccBankCardResolver } from 'src/app/core/_base/resolvers/accountant/accBankcard.resolver';
 import { InventoryComponent } from './pages/financial/inventory/inventory.component';
@@ -41,10 +38,6 @@ import { EntryResolver } from 'src/app/core/_base/resolvers/accountant/entry.res
 import { EntryEditComponent } from './pages/entry/entry-edit/entry-edit.component';
 import { BankCardEntryResolver } from 'src/app/core/_base/resolvers/accountant/bankCardEntry.resolver';
 import { BankCardsEntryComponent } from './pages/financial/bankCards/pages/bankCards-entry/bankCards-entry.component';
-import { ButtonMPComponent } from 'src/app/shared/component/button-mp/button-mp.component';
-import { CheckboxMPComponent } from 'src/app/shared/component/checkbox-mp/checkbox-mp.component';
-import { InputMpComponent } from 'src/app/shared/component/input-mp/input-mp.component';
-import { HtmlMpComponent } from 'src/app/shared/component/html-mp/html-mp.component';
 import { WalletsEntryComponent } from './pages/financial/wallets/pages/wallets-entry/wallets-entry.component';
 import { WalletsFactorsComponent } from './pages/financial/wallets/pages/wallets-factors/wallets-factors.component';
 import { FactorEditComponent } from './pages/factors/manage-factors/pages/factor-edit/factor-edit.component';
@@ -54,6 +47,10 @@ import { GateFactorsComponent } from './pages/financial/gates/pages/gate-factors
 import { GateAccService } from 'src/app/core/_services/panel/accountant/gateAccService.service';
 import { WalletsGatesComponent } from './pages/financial/wallets/pages/wallets-gates/wallets-gates.component';
 import { GenericTableModule } from 'src/app/shared/modules/common/genericTable.module';
+import { ButtonMPComponent } from 'src/app/shared/component/button-mp/button-mp.component';
+import { InputMpComponent } from 'src/app/shared/component/input-mp/input-mp.component';
+import { CheckboxMPComponent } from 'src/app/shared/component/checkbox-mp/checkbox-mp.component';
+import { HtmlMpComponent } from 'src/app/shared/component/html-mp/html-mp.component';
 
 @NgModule({
   imports: [
@@ -64,8 +61,6 @@ import { GenericTableModule } from 'src/app/shared/modules/common/genericTable.m
     DigitOnlyModule,
     SweetAlert2Module.forRoot(),
     HasRoleModule,
-    ClipboardModule,
-    StoreModule.forFeature('accountantSection', accountantReducers),
     PersianPipeModule,
     Ng5SliderModule,
     GenericTableModule
@@ -118,6 +113,10 @@ import { GenericTableModule } from 'src/app/shared/modules/common/genericTable.m
     EntryPardakhtResolver,
     EntryResolver,
     BankCardEntryResolver
-  ]
+  ],entryComponents:
+    [ButtonMPComponent,
+      CheckboxMPComponent,
+      InputMpComponent,
+      HtmlMpComponent]
 })
 export class AccountantModule { }

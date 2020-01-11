@@ -10,19 +10,18 @@ import { CheckboxMPComponent } from 'src/app/shared/component/checkbox-mp/checkb
 import { HtmlMpComponent } from 'src/app/shared/component/html-mp/html-mp.component';
 import { ButtonMPComponent } from 'src/app/shared/component/button-mp/button-mp.component';
 import { TooltipPosition } from 'src/app/data/enums/tooltipPosition.enum';
-import { CurrentTitleStateModel } from '../../../../../store/_models/currentTitleStateModel';
 import { EntryService } from 'src/app/core/_services/panel/accountant/entry.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { AccountantStateModel } from '../../../../../store/_models/accountantStateModel';
 import { Store } from '@ngrx/store';
 import { IRCurrencyPipe } from 'ngx-persian';
 
 
-import * as fromAccountantStore from '../../../../../store';
+import * as fromStore from '../../../../../../../../../store';
 import { map, distinctUntilChanged, switchMap, debounceTime } from 'rxjs/operators';
 import { Sort } from '@angular/material';
 import { Location } from '@angular/common';
+import { CurrentTitleStateModel } from 'src/app/store/_model/currentTitleStateModel';
 
 
 @Component({
@@ -118,12 +117,12 @@ export class WalletsEntryComponent implements OnInit, OnDestroy, AfterViewInit {
   walletInfo$: Observable<CurrentTitleStateModel>
 
   constructor(private route: ActivatedRoute, private alertService: ToastrService
-    , private entryService: EntryService, private store: Store<AccountantStateModel>,
+    , private entryService: EntryService, private store: Store<fromStore.State>,
     private router: Router, private irCurrencyPipe: IRCurrencyPipe, private loc: Location) { }
 
 
   ngOnInit() {
-    this.walletInfo$ = this.store.select(fromAccountantStore.getCurrentTitle);
+    this.walletInfo$ = this.store.select(fromStore.getCurrentTitle);
   }
   ngAfterViewInit() {
     this.subManager.add(

@@ -11,15 +11,14 @@ import { CheckboxMPComponent } from 'src/app/shared/component/checkbox-mp/checkb
 import { ButtonMPComponent } from 'src/app/shared/component/button-mp/button-mp.component';
 import { ToastrService } from 'ngx-toastr';
 import { GateAccService } from 'src/app/core/_services/panel/accountant/gateAccService.service';
-import { AccountantStateModel } from '../../../../../store/_models/accountantStateModel';
 import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { debounceTime, distinctUntilChanged, switchMap, map } from 'rxjs/operators';
 import { Location } from '@angular/common';
 import { Sort } from '@angular/material';
-import { CurrentTitleStateModel } from '../../../../../store/_models/currentTitleStateModel';
 
-import * as fromAccountantStore from '../../../../../store';
+import * as fromStore from '../../../../../../../../../store';
+import { CurrentTitleStateModel } from 'src/app/store/_model/currentTitleStateModel';
 
 
 @Component({
@@ -135,12 +134,12 @@ export class WalletsGatesComponent implements  OnInit , OnDestroy, AfterViewInit
       })
   ];
   constructor(private route: ActivatedRoute,private alertService: ToastrService
-    , private gateService: GateAccService, private store: Store<AccountantStateModel>,
+    , private gateService: GateAccService, private store: Store<fromStore.State>,
     private router: Router, private loc: Location) { }
 
 
   ngOnInit() {
-    this.walletInfo$ = this.store.select(fromAccountantStore.getCurrentTitle);
+    this.walletInfo$ = this.store.select(fromStore.getCurrentTitle);
   }
   ngAfterViewInit() {
     this.subManager.add(
@@ -246,7 +245,7 @@ onStatusChange(type: number, event: any, gateId: string) {
 
 }
   onGateFactorsClick(gate: Gate) {
-    this.store.dispatch(new fromAccountantStore.EditCurrentTitle(
+    this.store.dispatch(new fromStore.EditCurrentTitle(
       { id: gate.id, title: gate.websiteName }));
     this.router.navigate(['/panel/accountant/gates', gate.id, 'factors']);
   }

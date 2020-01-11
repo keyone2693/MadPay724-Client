@@ -11,7 +11,6 @@ import { ButtonMPComponent } from 'src/app/shared/component/button-mp/button-mp.
 import { ActivatedRoute, Router } from '@angular/router';
 import { FactorService } from 'src/app/core/_services/panel/accountant/factor.service';
 import { ToastrService } from 'ngx-toastr';
-import { AccountantStateModel } from '../../../store/_models/accountantStateModel';
 import { Store } from '@ngrx/store';
 import { IRCurrencyPipe } from 'ngx-persian';
 import { Location, DatePipe } from '@angular/common';
@@ -135,7 +134,7 @@ export class ManageFactorsComponent implements OnInit, OnDestroy {
   ];
 
   constructor(private route: ActivatedRoute, private alertService: ToastrService
-    , private factorService: FactorService, private store: Store<AccountantStateModel>,
+    , private factorService: FactorService,
     private router: Router, private irCurrencyPipe: IRCurrencyPipe, private loc: Location,
     private persianCalendarService: PersianCalendarService, private datePipe: DatePipe) { }
 

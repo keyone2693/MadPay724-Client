@@ -7,10 +7,7 @@ import { TableColumn, Width } from 'simplemattable';
 import { InputMpComponent } from 'src/app/shared/component/input-mp/input-mp.component';
 import { ButtonMPComponent } from 'src/app/shared/component/button-mp/button-mp.component';
 import { UiType } from 'src/app/data/enums/uiType.enum';
-import { CurrentTitleStateModel } from '../../../store/_models/currentTitleStateModel';
-import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { AccountantStateModel } from '../../../store/_models/accountantStateModel';
 import { Location } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { debounceTime, map, distinctUntilChanged, switchMap } from 'rxjs/operators';
@@ -18,9 +15,9 @@ import { Sort } from '@angular/material';
 import { CheckboxMPComponent } from 'src/app/shared/component/checkbox-mp/checkbox-mp.component';
 import { HtmlMpComponent } from 'src/app/shared/component/html-mp/html-mp.component';
 
-import * as fromAccountantStore from '../../../store';
+import * as fromStore from '../../../../../../../store';
 import { GateAccService } from 'src/app/core/_services/panel/accountant/gateAccService.service';
-import { timingSafeEqual } from 'crypto';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-gates',
@@ -139,7 +136,7 @@ export class GatesComponent implements OnInit, OnDestroy, AfterViewInit {
       })
   ];
   constructor(private alertService: ToastrService
-    , private gateService: GateAccService, private store: Store<AccountantStateModel>,
+    , private gateService: GateAccService, private store: Store<fromStore.State>,
     private router: Router, private loc: Location) { }
 
 
@@ -243,7 +240,7 @@ export class GatesComponent implements OnInit, OnDestroy, AfterViewInit {
    
   }
   onGateFactorsClick(gate: Gate) {
-    this.store.dispatch(new fromAccountantStore.EditCurrentTitle(
+    this.store.dispatch(new fromStore.EditCurrentTitle(
       { id: gate.id, title: gate.websiteName }));
     this.router.navigate(['/panel/accountant/gates', gate.id, 'factors']);
   }

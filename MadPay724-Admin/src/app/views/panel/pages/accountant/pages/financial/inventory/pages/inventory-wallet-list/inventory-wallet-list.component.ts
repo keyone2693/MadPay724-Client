@@ -7,9 +7,8 @@ import { InventoryService } from 'src/app/core/_services/panel/accountant/Invent
 import { ToastrService } from 'ngx-toastr';
 import { Store } from '@ngrx/store';
 
-import * as fromAccountantStore from '../../../../../store';
-import { CurrentTitleStateModel } from '../../../../../store/_models/currentTitleStateModel';
-import { AccountantStateModel } from '../../../../../store/_models/accountantStateModel';
+import * as fromStore from '../../../../../../../../../store';
+import { CurrentTitleStateModel } from 'src/app/store/_model/currentTitleStateModel';
 
 
 @Component({
@@ -32,8 +31,8 @@ export class InventoryWalletListComponent implements OnInit, OnDestroy {
   userInfo$: Observable<CurrentTitleStateModel>;
   constructor(private inventoryService: InventoryService,
     private router: Router, private route: ActivatedRoute,
-    private alertService: ToastrService, private store: Store<AccountantStateModel>) {
-      this.userInfo$ = this.store.select(fromAccountantStore.getCurrentTitle);
+    private alertService: ToastrService, private store: Store<fromStore.State>) {
+    this.userInfo$ = this.store.select(fromStore.getCurrentTitle);
   }
 
   ngOnInit() {
@@ -86,17 +85,17 @@ export class InventoryWalletListComponent implements OnInit, OnDestroy {
     this.alertService.info('', 'کپی شد');
   }
   onWalletClick(wallet: Wallet) {
-    this.store.dispatch(new fromAccountantStore.EditCurrentTitle(
+    this.store.dispatch(new fromStore.EditCurrentTitle(
       { id: wallet.id, title: wallet.name }));
     this.router.navigate(['/panel/accountant/wallets', wallet.id, 'entry'])
   }
   onWalletFactorsClick(wallet: Wallet) {
-    this.store.dispatch(new fromAccountantStore.EditCurrentTitle(
+    this.store.dispatch(new fromStore.EditCurrentTitle(
       { id: wallet.id, title: wallet.name }));
     this.router.navigate(['/panel/accountant/wallets', wallet.id, 'factors'])
   }
   onWalletGatesClick(wallet: Wallet) {
-    this.store.dispatch(new fromAccountantStore.EditCurrentTitle(
+    this.store.dispatch(new fromStore.EditCurrentTitle(
       { id: wallet.id, title: wallet.name }));
     this.router.navigate(['/panel/accountant/wallets', wallet.id, 'gates'])
   }

@@ -6,12 +6,10 @@ import { FilterSortOrderBy } from 'src/app/data/models/common/filterSortOrderBy'
 import { TableColumn, Width } from 'simplemattable';
 import { InputMpComponent } from 'src/app/shared/component/input-mp/input-mp.component';
 import { CheckboxMPComponent } from 'src/app/shared/component/checkbox-mp/checkbox-mp.component';
-import { CurrentTitleStateModel } from '../../../../../store/_models/currentTitleStateModel';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FactorService } from 'src/app/core/_services/panel/accountant/factor.service';
 import { ToastrService } from 'ngx-toastr';
 import { Store } from '@ngrx/store';
-import { AccountantStateModel } from '../../../../../store/_models/accountantStateModel';
 import { IRCurrencyPipe } from 'ngx-persian';
 import { DatePipe, Location } from '@angular/common';
 import { PersianCalendarService } from 'src/app/core/_base/pipe/PersianDatePipe/persian-date.service';
@@ -20,7 +18,8 @@ import { Sort } from '@angular/material';
 import { ButtonMPComponent } from 'src/app/shared/component/button-mp/button-mp.component';
 import { UiType } from 'src/app/data/enums/uiType.enum';
 
-import * as fromAccountantStore from '../../../../../store';
+import * as fromStore from '../../../../../../../../../store';
+import { CurrentTitleStateModel } from 'src/app/store/_model/currentTitleStateModel';
 
 
 @Component({
@@ -98,13 +97,13 @@ export class WalletsFactorsComponent implements OnInit, OnDestroy, AfterViewInit
   walletInfo$: Observable<CurrentTitleStateModel>
 
   constructor(private route: ActivatedRoute, private alertService: ToastrService
-    , private factorService: FactorService, private store: Store<AccountantStateModel>,
+    , private factorService: FactorService, private store: Store<fromStore.State>,
     private router: Router, private irCurrencyPipe: IRCurrencyPipe, private loc: Location,
     private persianCalendarService: PersianCalendarService, private datePipe: DatePipe) { }
 
 
   ngOnInit() {
-    this.walletInfo$ = this.store.select(fromAccountantStore.getCurrentTitle);
+    this.walletInfo$ = this.store.select(fromStore.getCurrentTitle);
   }
   ngAfterViewInit() {
     this.subManager.add(

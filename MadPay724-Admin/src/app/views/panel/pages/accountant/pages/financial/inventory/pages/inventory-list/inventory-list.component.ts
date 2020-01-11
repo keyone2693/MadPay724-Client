@@ -9,8 +9,7 @@ import { Store } from '@ngrx/store';
 import { Inventory } from 'src/app/data/models/accountant/inventory';
 import { InventoryService } from 'src/app/core/_services/panel/accountant/Inventory.service';
 
-import * as fromAccountantStore from '../../../../../store';
-import { AccountantStateModel } from '../../../../../store/_models/accountantStateModel';
+import * as fromStore from '../../../../../../../../../store';
 
 @Component({
   selector: 'app-inventory-list',
@@ -38,7 +37,7 @@ export class InventoryListComponent implements OnInit, OnDestroy {
   noContentHideFlag = true;
   constructor(private inventoryService: InventoryService,
     private router: Router, private route: ActivatedRoute,
-    private alertService: ToastrService, private store: Store<AccountantStateModel>) { }
+    private alertService: ToastrService, private store: Store<fromStore.State>) { }
 
   ngOnInit() {
     this.loadgetInventories();
@@ -126,13 +125,13 @@ export class InventoryListComponent implements OnInit, OnDestroy {
 
   //----------------------------
   onWallet(user: Inventory) {
-    this.store.dispatch(new fromAccountantStore.EditCurrentTitle({
+    this.store.dispatch(new fromStore.EditCurrentTitle({
       id: user.id,
       title: user.name
     }))
   }
   onBankCard(user: Inventory) {
-    this.store.dispatch(new fromAccountantStore.EditCurrentTitle({
+    this.store.dispatch(new fromStore.EditCurrentTitle({
       id: user.id,
       title: user.name
     }))

@@ -8,9 +8,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Store } from '@ngrx/store';
 import { InventoryService } from 'src/app/core/_services/panel/accountant/Inventory.service';
-import { AccountantStateModel } from '../../../../../store/_models/accountantStateModel';
 
-import * as fromAccountantStore from '../../../../../store';
+import * as fromStore from '../../../../../../../../../store';
 
 @Component({
   selector: 'app-bankCards-list',
@@ -38,7 +37,7 @@ export class BankCardsListComponent implements OnInit, OnDestroy {
   noContentHideFlag = true;
   constructor(private inventoryService: InventoryService,
     private router: Router, private route: ActivatedRoute,
-    private alertService: ToastrService, private store: Store<AccountantStateModel>) { }
+    private alertService: ToastrService, private store: Store<fromStore.State>) { }
 
   ngOnInit() {
     this.loadgetBankCards();
@@ -141,7 +140,7 @@ export class BankCardsListComponent implements OnInit, OnDestroy {
   }
 
   onBankCardClick(bancard: BankCard) {
-    this.store.dispatch(new fromAccountantStore.EditCurrentTitle(
+    this.store.dispatch(new fromStore.EditCurrentTitle(
       { id: bancard.id, title: bancard.cardNumber }));
     this.router.navigate(['/panel/accountant/bankcards', bancard.id, 'entry'])
   }

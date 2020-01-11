@@ -1,5 +1,5 @@
 import * as currentTitleAction from '../actions';
-import { CurrentTitleStateModel } from '../_models/currentTitleStateModel';
+import { CurrentTitleStateModel } from '../_model/currentTitleStateModel';
 
 
 export const initCurrentTitle: CurrentTitleStateModel = {

@@ -6,11 +6,10 @@ import { Pagination } from 'src/app/data/models/common/pagination';
 import { FilterSortOrderBy } from 'src/app/data/models/common/filterSortOrderBy';
 import { InventoryService } from 'src/app/core/_services/panel/accountant/Inventory.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AccountantStateModel } from '../../../../../store/_models/accountantStateModel';
 import { Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 
-import * as fromAccountantStore from '../../../../../store';
+import * as fromStore from '../../../../../../../../../store';
 
 
 @Component({
@@ -39,7 +38,7 @@ export class WalletsListComponent implements OnInit, OnDestroy {
   noContentHideFlag = true;
   constructor(private inventoryService: InventoryService,
     private router: Router, private route: ActivatedRoute,
-    private alertService: ToastrService, private store: Store<AccountantStateModel>) { }
+    private alertService: ToastrService, private store: Store<fromStore.State>) { }
 
   ngOnInit() {
     this.loadgetWallets();
@@ -139,17 +138,17 @@ export class WalletsListComponent implements OnInit, OnDestroy {
     )
   }
   onWalletClick(wallet: Wallet) {
-    this.store.dispatch(new fromAccountantStore.EditCurrentTitle(
+    this.store.dispatch(new fromStore.EditCurrentTitle(
       { id: wallet.id, title: wallet.name }));
     this.router.navigate(['/panel/accountant/wallets', wallet.id, 'entry']);
   }
   onWalletFactorsClick(wallet: Wallet) {
-    this.store.dispatch(new fromAccountantStore.EditCurrentTitle(
+    this.store.dispatch(new fromStore.EditCurrentTitle(
       { id: wallet.id, title: wallet.name }));
     this.router.navigate(['/panel/accountant/wallets', wallet.id, 'factors']);
   }
   onWalletGatesClick(wallet: Wallet) {
-    this.store.dispatch(new fromAccountantStore.EditCurrentTitle(
+    this.store.dispatch(new fromStore.EditCurrentTitle(
       { id: wallet.id, title: wallet.name }));
     this.router.navigate(['/panel/accountant/wallets', wallet.id, 'gates']);
   }

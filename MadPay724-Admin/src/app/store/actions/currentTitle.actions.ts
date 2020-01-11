@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { CurrentTitleStateModel } from '../_models/currentTitleStateModel';
+import { CurrentTitleStateModel } from '../_model/currentTitleStateModel';
 
 export enum CurrentTitleActionTypes{
     EDIT_CURRENTTTITLE = '[Current Title] Edit',
