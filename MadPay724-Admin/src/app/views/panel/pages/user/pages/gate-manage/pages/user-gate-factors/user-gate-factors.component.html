@@ -2,13 +2,10 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item">
-      <a [routerLink]="['/panel/accountant/dashboard']">داشبورد</a>
+      <a [routerLink]="['/panel/user/dashboard']">داشبورد</a>
     </li>
     <li class="breadcrumb-item">
-      <a>حسابدار </a>
-    </li>
-    <li class="breadcrumb-item">
-      <a>فاکتور ها </a>
+      <a> درگاه ها </a>
     </li>
     <li class="breadcrumb-item active" aria-current="page" *ngIf="gateInfo$ | async as gateInfo">
       مدیریت فاکتور های درگاه {{gateInfo.title}}
@@ -39,7 +36,7 @@
                   class="float-left mb-10"
                 >
                   <i class="ft-chevrons-right"></i>
-                بازگشت به درگاه ها / کیف پول ها
+                بازگشت به درگاه ها 
                 </button>
                 <mat-form-field class="search-form-field" floatLabel="never">
                   <input

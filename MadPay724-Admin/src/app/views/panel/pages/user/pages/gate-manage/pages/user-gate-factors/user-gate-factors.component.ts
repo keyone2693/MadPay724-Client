@@ -20,6 +20,7 @@ import { Sort } from '@angular/material';
 
 import * as fromStore from '../../../../../../../../store';
 import { CurrentTitleStateModel } from 'src/app/store/_model/currentTitleStateModel';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -55,13 +56,12 @@ export class UserGateFactorsComponent implements OnInit, OnDestroy, AfterViewIni
         component.icon = "ft-copy";
       }),
 
-
     new TableColumn<Factor, 'kind'>('نوع', 'kind'),
     new TableColumn<Factor, 'status'>('وضعیت', 'status')
       .withNgComponent(CheckboxMPComponent)
       .withNgComponentInput((component: CheckboxMPComponent, status, factor) => {
         component.checked = status;
-        component.disabled = false;
+        component.disabled = true;
         component.type = UiType.Info;
       }),
     new TableColumn<Factor, 'bank'>('بانک', 'bank'),
@@ -83,7 +83,7 @@ export class UserGateFactorsComponent implements OnInit, OnDestroy, AfterViewIni
     new TableColumn<Factor, 'id'>('عملیات', 'id')
       .withNgComponent(ButtonMPComponent)
       .withNgComponentInput((component: ButtonMPComponent, id) => {
-        component.event = () => { this.router.navigate(['/panel/accountant/factors', id, 'detail']) };
+        component.event = () => { this.router.navigate(['/panel/user/gate/factors', id, 'detail']) };
         component.icon = "ft-alert-octagon";
         component.text = " جزییات و ویرایش";
         component.type = UiType.Success;
@@ -95,11 +95,17 @@ export class UserGateFactorsComponent implements OnInit, OnDestroy, AfterViewIni
   constructor(private route: ActivatedRoute, private alertService: ToastrService
     , private gatesService: GatesService, private store: Store<fromStore.State>,
     private router: Router, private irCurrencyPipe: IRCurrencyPipe, private loc: Location,
-    private persianCalendarService: PersianCalendarService, private datePipe: DatePipe) { }
+    private persianCalendarService: PersianCalendarService, private datePipe: DatePipe,
+  private title: Title) { }
 
 
   ngOnInit() {
     this.gateInfo$ = this.store.select(fromStore.getCurrentTitle);
+    this.subManager.add(
+      this.gateInfo$.subscribe(data => {
+        this.title.setTitle('فاکتور های درگاه' + data.title);
+      })
+    );
   }
   ngAfterViewInit() {
     this.subManager.add(

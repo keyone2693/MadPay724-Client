@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { UserComponent } from './user.component';
 
 import { UserRoutingModule } from './user-routing.module';
@@ -62,6 +62,7 @@ import { ButtonMPComponent } from 'src/app/shared/component/button-mp/button-mp.
 import { CheckboxMPComponent } from 'src/app/shared/component/checkbox-mp/checkbox-mp.component';
 import { InputMpComponent } from 'src/app/shared/component/input-mp/input-mp.component';
 import { HtmlMpComponent } from 'src/app/shared/component/html-mp/html-mp.component';
+import { UserGateFactorDetailComponent } from './pages/gate-manage/pages/user-gate-factors/pages/user-gate-factor-detail/user-gate-factor-detail.component';
 
 @NgModule({
   imports: [
@@ -78,7 +79,8 @@ import { HtmlMpComponent } from 'src/app/shared/component/html-mp/html-mp.compon
     SweetAlert2Module.forRoot(),
     ChartistModule,
     PersianPipeModule,
-    GenericTableModule
+    GenericTableModule,
+    PersianPipeModule
   ],
   declarations: [
     UserComponent,
@@ -118,6 +120,7 @@ import { HtmlMpComponent } from 'src/app/shared/component/html-mp/html-mp.compon
     EasypayEditComponent,
     //
     UserGateFactorsComponent,
+    UserGateFactorDetailComponent,
     //
     ButtonMPComponent,
     CheckboxMPComponent,
@@ -125,6 +128,7 @@ import { HtmlMpComponent } from 'src/app/shared/component/html-mp/html-mp.compon
     HtmlMpComponent
   ],
   providers: [
+    DatePipe,
     NotificationService,
     BankCardsService,
     DocumentService,

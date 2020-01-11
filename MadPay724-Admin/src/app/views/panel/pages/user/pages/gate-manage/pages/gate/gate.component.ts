@@ -4,6 +4,11 @@ import { GateActiveComponent } from '../gate-active/gate-active.component';
 import { Gate } from 'src/app/data/models/user/gate';
 import { Wallet } from 'src/app/data/models/wallet';
 
+import * as fromStore from '../../../../../../../../store';
+import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-gate',
   templateUrl: './gate.component.html',
@@ -12,7 +17,8 @@ import { Wallet } from 'src/app/data/models/wallet';
 export class GateComponent implements OnInit {
   @Input() gate: Gate;
   @Input() wallets: Wallet[];
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog,private router:Router,
+    private store: Store<fromStore.State>) { }
 
   ngOnInit() {
   }
@@ -34,5 +40,11 @@ export class GateComponent implements OnInit {
       sub.unsubscribe();
     });
 
+  }
+
+  onGateFactorsClick(gate: Gate) {
+    this.store.dispatch(new fromStore.EditCurrentTitle(
+      { id: gate.id, title: gate.websiteName }));
+    this.router.navigate(['/panel/user/gates', gate.id, 'factors']);
   }
 }

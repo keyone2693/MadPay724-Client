@@ -20,7 +20,9 @@
               <i class="ft-more-vertical"></i>
           </button>
           <mat-menu #menu="matMenu" xPosition="before">
-            <button mat-menu-item>
+            <button mat-menu-item
+            (click)="onGateFactorsClick(gate)">
+              
               <i class="ft-trending-down pl-1"></i>
               <span>تراکنش ها</span>
             </button>
