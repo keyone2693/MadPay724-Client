@@ -20,6 +20,7 @@ import { HtmlMpComponent } from 'src/app/shared/component/html-mp/html-mp.compon
 
 import * as fromAccountantStore from '../../../store';
 import { GateAccService } from 'src/app/core/_services/panel/accountant/gateAccService.service';
+import { timingSafeEqual } from 'crypto';
 
 @Component({
   selector: 'app-gates',
@@ -130,8 +131,8 @@ export class GatesComponent implements OnInit, OnDestroy, AfterViewInit {
       }),
     new TableColumn<Gate, 'id'>('عملیات', 'id')
       .withNgComponent(ButtonMPComponent)
-      .withNgComponentInput((component: ButtonMPComponent, id) => {
-        component.event = () => { this.router.navigate(['/panel/accountant/gates', id, 'detail']) };
+      .withNgComponentInput((component: ButtonMPComponent, id, gate) => {
+        component.event = () => this.onGateFactorsClick(gate);
         component.icon = "icon-bag";
         component.text = " فاکتور ها";
         component.type = UiType.Success;
@@ -241,7 +242,13 @@ export class GatesComponent implements OnInit, OnDestroy, AfterViewInit {
     }
    
   }
+  onGateFactorsClick(gate: Gate) {
+    this.store.dispatch(new fromAccountantStore.EditCurrentTitle(
+      { id: gate.id, title: gate.websiteName }));
+    this.router.navigate(['/panel/accountant/gates', gate.id, 'factors']);
+  }
   onBack() {
     this.loc.back();
   }
+  
 }

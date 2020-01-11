@@ -13,6 +13,7 @@ import { FactorSearch } from 'src/app/data/models/accountant/factorSearch';
 })
 export class FactorService {
   baseUrl = environment.apiUrl + environment.apiV1 + 'site/panel/factors/';
+  baseGateUrl = environment.apiUrl + environment.apiV1 + 'site/panel/';
   walletFactorsbaseUrl = environment.apiUrl + environment.apiV1 + 'site/panel/wallets/';
 
   constructor(private http: HttpClient) { }
@@ -84,7 +85,7 @@ export class FactorService {
       params = params.append('sortDir', sortDir);
     }
     return this.http.get<Factor[]>
-      (this.baseUrl + 'gates/' + gateId + '/factors/', { observe: 'response', params })
+      (this.baseGateUrl + 'gates/' + gateId + '/factors/', { observe: 'response', params })
       .pipe(
         map(response => {
           paginatedResult.result = response.body;

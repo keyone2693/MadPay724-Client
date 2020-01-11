@@ -141,16 +141,16 @@ export class WalletsListComponent implements OnInit, OnDestroy {
   onWalletClick(wallet: Wallet) {
     this.store.dispatch(new fromAccountantStore.EditCurrentTitle(
       { id: wallet.id, title: wallet.name }));
-    this.router.navigate(['/panel/accountant/wallets', wallet.id, 'entry'])
+    this.router.navigate(['/panel/accountant/wallets', wallet.id, 'entry']);
   }
   onWalletFactorsClick(wallet: Wallet) {
     this.store.dispatch(new fromAccountantStore.EditCurrentTitle(
       { id: wallet.id, title: wallet.name }));
-    this.router.navigate(['/panel/accountant/wallets', wallet.id, 'factors'])
+    this.router.navigate(['/panel/accountant/wallets', wallet.id, 'factors']);
   }
   onWalletGatesClick(wallet: Wallet) {
     this.store.dispatch(new fromAccountantStore.EditCurrentTitle(
       { id: wallet.id, title: wallet.name }));
-    this.router.navigate(['/panel/accountant/wallets', wallet.id, 'gates'])
+    this.router.navigate(['/panel/accountant/wallets', wallet.id, 'gates']);
   }
 }
