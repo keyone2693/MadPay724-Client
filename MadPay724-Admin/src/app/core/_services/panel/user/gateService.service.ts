@@ -41,6 +41,33 @@ export class GatesService {
   getGates(userId: string = this.userId): Observable<GatesWallets> {
     return this.http.get<GatesWallets>(this.baseUrl + 'users/' + userId + '/gates');
   }
+
+
+  getGateFactors(gateId: string, page?, itemPerPage?, filter?, sortHe?, sortDir?
+    , userId: string = this.userId):
+    Observable<PaginationResult<Factor[]>> {
+    const paginatedResult: PaginationResult<Factor[]> = new PaginationResult<Factor[]>();
+    let params = new HttpParams();
+
+    if (page != null && itemPerPage != null) {
+      params = params.append('pageNumber', page);
+      params = params.append('pageSize', itemPerPage);
+      params = params.append('filter', filter);
+      params = params.append('sortHe', sortHe);
+      params = params.append('sortDir', sortDir);
+    }
+    return this.http.get<Factor[]>
+      (this.baseUrl + 'users/' + userId + '/gates/' + gateId + '/factors/', { observe: 'response', params })
+      .pipe(
+        map(response => {
+          paginatedResult.result = response.body;
+          if (response.headers.get('Pagination') != null) {
+            paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
+          }
+          return paginatedResult;
+        })
+      );
+  }
   getGate(gateId: Gate, userId: string = this.userId): Observable<GateWallets> {
     return this.http.get<GateWallets>(this.baseUrl + 'users/' + userId + '/gates/' + gateId);
   }

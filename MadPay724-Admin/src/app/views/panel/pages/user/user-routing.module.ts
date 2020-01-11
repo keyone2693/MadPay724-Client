@@ -24,6 +24,7 @@ import { EasypayManageComponent } from './pages/easypay-manage/easypay-manage.co
 import { EasyPayEditResolver } from 'src/app/core/_base/resolvers/user/easyPayEdit.resolver';
 import { EasypayAddComponent } from './pages/easypay-manage/pages/easypay-add/easypay-add.component';
 import { EasypayEditComponent } from './pages/easypay-manage/pages/easypay-edit/easypay-edit.component';
+import { UserGateFactorsComponent } from './pages/gate-manage/pages/user-gate-factors/user-gate-factors.component';
 
 
 const routes: Routes = [
@@ -46,6 +47,11 @@ const routes: Routes = [
         resolve: { gatewallets: GateEditResolver },
         component: GateEditComponent,
         data: { roles: ['User'], title: ['ویرایش در گاه پرداخت'] },
+      },
+      {
+        path: 'gate/:gateId/factors', canActivate: [AuthGuard],
+        component: UserGateFactorsComponent,
+        data: { roles: ['User'], title: ['فاکتور های درگاه پرداخت'] },
       },
       //
       {

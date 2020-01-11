@@ -127,8 +127,8 @@ export class WalletsGatesComponent implements  OnInit , OnDestroy, AfterViewInit
       }),
     new TableColumn<Gate, 'id'>('عملیات', 'id')
       .withNgComponent(ButtonMPComponent)
-      .withNgComponentInput((component: ButtonMPComponent, id) => {
-        component.event = () => { this.router.navigate(['/panel/accountant/gates', id, 'detail']) };
+      .withNgComponentInput((component: ButtonMPComponent, id,gate) => {
+        component.event = () => this.onGateFactorsClick(gate);
         component.icon = "icon-bag";
         component.text = " فاکتور ها";
         component.type = UiType.Success;
@@ -245,6 +245,11 @@ onStatusChange(type: number, event: any, gateId: string) {
   }
 
 }
+  onGateFactorsClick(gate: Gate) {
+    this.store.dispatch(new fromAccountantStore.EditCurrentTitle(
+      { id: gate.id, title: gate.websiteName }));
+    this.router.navigate(['/panel/accountant/gates', gate.id, 'factors']);
+  }
 onBack() {
   this.loc.back();
 }

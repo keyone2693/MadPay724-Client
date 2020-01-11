@@ -56,6 +56,8 @@ import { GateEditResolver } from 'src/app/core/_base/resolvers/user/gateEdit.res
 import { EasyPayEditResolver } from 'src/app/core/_base/resolvers/user/easyPayEdit.resolver';
 import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from 'src/app/core/_config/material.persian-date.adapter';
 import { PersianPipeModule } from 'src/app/shared/modules/common/persianPipe.module';
+import { UserGateFactorsComponent } from './pages/gate-manage/pages/user-gate-factors/user-gate-factors.component';
+import { GenericTableModule } from 'src/app/shared/modules/common/genericTable.module';
 
 @NgModule({
   imports: [
@@ -71,7 +73,8 @@ import { PersianPipeModule } from 'src/app/shared/modules/common/persianPipe.mod
     // NgxUiLoaderModule,
     SweetAlert2Module.forRoot(),
     ChartistModule,
-    PersianPipeModule
+    PersianPipeModule,
+    GenericTableModule
   ],
   declarations: [
     UserComponent,
@@ -108,7 +111,9 @@ import { PersianPipeModule } from 'src/app/shared/modules/common/persianPipe.mod
     EasypayManageComponent,
     EasypayListComponent,
     EasypayAddComponent,
-    EasypayEditComponent
+    EasypayEditComponent,
+    //
+    UserGateFactorsComponent
   ],
   providers: [
     NotificationService,

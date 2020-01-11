@@ -41,7 +41,6 @@ import { EntryResolver } from 'src/app/core/_base/resolvers/accountant/entry.res
 import { EntryEditComponent } from './pages/entry/entry-edit/entry-edit.component';
 import { BankCardEntryResolver } from 'src/app/core/_base/resolvers/accountant/bankCardEntry.resolver';
 import { BankCardsEntryComponent } from './pages/financial/bankCards/pages/bankCards-entry/bankCards-entry.component';
-import { SimplemattableModule } from 'simplemattable';
 import { ButtonMPComponent } from 'src/app/shared/component/button-mp/button-mp.component';
 import { CheckboxMPComponent } from 'src/app/shared/component/checkbox-mp/checkbox-mp.component';
 import { InputMpComponent } from 'src/app/shared/component/input-mp/input-mp.component';
@@ -54,6 +53,7 @@ import { GatesComponent } from './pages/financial/gates/gates.component';
 import { GateFactorsComponent } from './pages/financial/gates/pages/gate-factors/gate-factors.component';
 import { GateAccService } from 'src/app/core/_services/panel/accountant/gateAccService.service';
 import { WalletsGatesComponent } from './pages/financial/wallets/pages/wallets-gates/wallets-gates.component';
+import { GenericTableModule } from 'src/app/shared/modules/common/genericTable.module';
 
 @NgModule({
   imports: [
@@ -67,8 +67,8 @@ import { WalletsGatesComponent } from './pages/financial/wallets/pages/wallets-g
     ClipboardModule,
     StoreModule.forFeature('accountantSection', accountantReducers),
     PersianPipeModule,
-    SimplemattableModule,
-    Ng5SliderModule
+    Ng5SliderModule,
+    GenericTableModule
   ],
   declarations: [
     AccountantComponent,
@@ -118,6 +118,6 @@ import { WalletsGatesComponent } from './pages/financial/wallets/pages/wallets-g
     EntryPardakhtResolver,
     EntryResolver,
     BankCardEntryResolver
-  ], entryComponents: [ButtonMPComponent, CheckboxMPComponent, InputMpComponent, HtmlMpComponent]
+  ]
 })
 export class AccountantModule { }
