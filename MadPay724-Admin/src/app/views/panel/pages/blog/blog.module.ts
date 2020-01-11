@@ -24,7 +24,6 @@ import { HasRoleModule } from 'src/app/Shared/Modules/hasRole/hasRole.module';
 import { BlogResolver } from 'src/app/core/_base/resolvers/blog/blog.resolver';
 import { SharedTagInputModule } from 'src/app/shared/modules/textEditor/sharedTagInput.module';
 import { SharedEJTextEditorModule } from 'src/app/shared/modules/textEditor/sharedEJTextEditor.module';
-import { StoreModule } from '@ngrx/store';
 import { PersianPipeModule } from 'src/app/shared/modules/common/persianPipe.module';
 
 
