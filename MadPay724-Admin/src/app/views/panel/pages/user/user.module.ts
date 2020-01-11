@@ -63,6 +63,8 @@ import { CheckboxMPComponent } from 'src/app/shared/component/checkbox-mp/checkb
 import { InputMpComponent } from 'src/app/shared/component/input-mp/input-mp.component';
 import { HtmlMpComponent } from 'src/app/shared/component/html-mp/html-mp.component';
 import { UserGateFactorDetailComponent } from './pages/gate-manage/pages/user-gate-factors/pages/user-gate-factor-detail/user-gate-factor-detail.component';
+import { UserFactorService } from 'src/app/core/_services/panel/user/userFactor.service';
+import { UserFactorResolver } from 'src/app/core/_base/resolvers/user/userFactor.resolver';
 
 @NgModule({
   imports: [
@@ -120,12 +122,7 @@ import { UserGateFactorDetailComponent } from './pages/gate-manage/pages/user-ga
     EasypayEditComponent,
     //
     UserGateFactorsComponent,
-    UserGateFactorDetailComponent,
-    //
-    ButtonMPComponent,
-    CheckboxMPComponent,
-    InputMpComponent,
-    HtmlMpComponent
+    UserGateFactorDetailComponent
   ],
   providers: [
     DatePipe,
@@ -135,6 +132,7 @@ import { UserGateFactorDetailComponent } from './pages/gate-manage/pages/user-ga
     WalletService,
     GatesService,
     EasyPayService,
+    UserFactorService,
    
     NotificationResolver,
     BankCardResolver,
@@ -145,6 +143,7 @@ import { UserGateFactorDetailComponent } from './pages/gate-manage/pages/user-ga
     GateResolver,
     GateEditResolver,
     EasyPayEditResolver,
+    UserFactorResolver,
     { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS }
   ],
@@ -154,11 +153,7 @@ import { UserGateFactorDetailComponent } from './pages/gate-manage/pages/user-ga
       WalletFormComponent,
       CreateFormTicketComponent,
       GateFormComponent,
-      GateActiveComponent,
-      ButtonMPComponent,
-      CheckboxMPComponent,
-      InputMpComponent,
-      HtmlMpComponent
+      GateActiveComponent
     ]
 })
 export class UserModule { }

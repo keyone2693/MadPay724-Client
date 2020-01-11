@@ -88,12 +88,7 @@ import { HtmlMpComponent } from 'src/app/shared/component/html-mp/html-mp.compon
     FactorEditComponent,
     GatesComponent,
     GateFactorsComponent,
-    WalletsGatesComponent,
-    //
-    ButtonMPComponent,
-    CheckboxMPComponent,
-    InputMpComponent,
-    HtmlMpComponent
+    WalletsGatesComponent
   ],
   providers: [
     DatePipe,
@@ -113,10 +108,6 @@ import { HtmlMpComponent } from 'src/app/shared/component/html-mp/html-mp.compon
     EntryPardakhtResolver,
     EntryResolver,
     BankCardEntryResolver
-  ],entryComponents:
-    [ButtonMPComponent,
-      CheckboxMPComponent,
-      InputMpComponent,
-      HtmlMpComponent]
+  ]
 })
 export class AccountantModule { }

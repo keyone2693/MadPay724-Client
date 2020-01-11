@@ -4,6 +4,7 @@ import { FactorDetail } from 'src/app/data/models/accountant/factorDetail';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Location } from '@angular/common';
+import 'src/app/shared/extentions/number.extentions'
 
 @Component({
   selector: 'app-user-gate-factor-detail',

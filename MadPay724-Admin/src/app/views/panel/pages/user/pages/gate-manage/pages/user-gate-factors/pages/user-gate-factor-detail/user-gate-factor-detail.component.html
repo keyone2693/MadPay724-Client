@@ -26,6 +26,7 @@
               <mat-checkbox
                 [checked]="factorDetail.factor.status"
                 (change)="onStatusChange($event, factorDetail.factor.id)"
+                [disabled]="true"
               ></mat-checkbox>
             </code>
             <strong>تایید شده</strong>
@@ -222,6 +223,7 @@
                     <input
                       matInput
                       [value]="factorDetail.factor.refBank"
+                      readonly
                       placeholder="شماره پیگیری بانک  *"
                     />
                   </mat-form-field>

@@ -27,6 +27,8 @@ import { EasypayEditComponent } from './pages/easypay-manage/pages/easypay-edit/
 import { UserGateFactorsComponent } from './pages/gate-manage/pages/user-gate-factors/user-gate-factors.component';
 import { UserGateFactorDetailComponent } from './pages/gate-manage/pages/user-gate-factors/pages/user-gate-factor-detail/user-gate-factor-detail.component';
 
+import { UserFactorResolver } from 'src/app/core/_base/resolvers/user/userFactor.resolver';
+
 
 const routes: Routes = [
   {
@@ -56,6 +58,7 @@ const routes: Routes = [
       },
       {
         path: 'gate/factors/:factorId/detail', canActivate: [AuthGuard],
+        resolve: { factorDetail: UserFactorResolver },
         component: UserGateFactorDetailComponent,
         data: { roles: ['User'], title: ['جزییات  فاکتور'] },
       },

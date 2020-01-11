@@ -45,6 +45,6 @@ export class GateComponent implements OnInit {
   onGateFactorsClick(gate: Gate) {
     this.store.dispatch(new fromStore.EditCurrentTitle(
       { id: gate.id, title: gate.websiteName }));
-    this.router.navigate(['/panel/user/gates', gate.id, 'factors']);
+    this.router.navigate(['/panel/user/gate', gate.id, 'factors']);
   }
 }

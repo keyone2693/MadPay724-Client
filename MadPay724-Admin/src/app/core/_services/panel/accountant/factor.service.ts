@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 import { Factor } from 'src/app/data/models/accountant/factor';
 import { Wallet } from 'src/app/data/models/wallet';
 import { FactorSearch } from 'src/app/data/models/accountant/factorSearch';
+import { FactorDetail } from 'src/app/data/models/accountant/factorDetail';
 
 @Injectable({
   providedIn: 'root'
@@ -96,8 +97,8 @@ export class FactorService {
         })
       );
   }
-  getFactor(factorId: string): Observable<Factor> {
-    return this.http.get<Factor>(this.baseUrl + factorId);
+  getFactor(factorId: string): Observable<FactorDetail> {
+    return this.http.get<FactorDetail>(this.baseUrl + factorId);
   }
   changeStatusFactor(factorId: string, status: boolean): Observable<Wallet> {
     return this.http.patch<Wallet>(this.baseUrl + factorId + '/status', { status });
