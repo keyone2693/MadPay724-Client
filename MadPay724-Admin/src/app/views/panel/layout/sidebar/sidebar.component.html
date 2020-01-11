@@ -66,7 +66,7 @@
         <!--#endregion-->
         <!--#region Accountant-->
         <li
-          *appHasRole="['Admin', 'Accountant']"
+          *appHasRole="['Accountant']"
           routerLinkActive="active"
           class=" nav-item"
         >
@@ -204,14 +204,14 @@
           >
         </li>
         <li
-          *appHasRole="['Admin', 'AdminBlog', 'Blog']"
+          *appHasRole="['Admin','AdminBlog', 'Blog']"
           class="has-sub nav-item"
         >
           <a href="javascript:;">
             <i class="ft-clipboard"></i>
             <span data-i18n="" class="menu-title">بلاگ</span>
             <span
-              *appHasRole="['Admin', 'AdminBlog']"
+              *appHasRole="['Admin','AdminBlog']"
               [hidden]="notifications.unverifiedBlogCount === 0"
               matTooltip="بلاگ های تایید نشده"
               matTooltipPosition="left"
