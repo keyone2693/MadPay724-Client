@@ -1,0 +1,16 @@
+
+
+.hide {
+  display: none;
+}
+
+.mat-red {
+  background: rgb(250, 52, 52);
+  color: #fff;
+  float: right !important;
+  margin-top: 15px;
+}
+.search-div{
+  margin-bottom: 20px;
+  display: inline-block;
+}

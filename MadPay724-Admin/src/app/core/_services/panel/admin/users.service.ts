@@ -49,5 +49,7 @@ export class UsersService {
   getUserRoles(userId: string): Observable<Role[]> {
     return this.http.get<Role[]>(this.baseUrl + 'users/' + userId + '/roles');
   }
-
+  changeRoleStatus(userId: string, value: string, check: boolean) {
+    return this.http.patch(this.baseUrl + 'users/' + userId + '/changerole', { value, check });
+  }
 }

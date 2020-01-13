@@ -9,6 +9,7 @@ import { Role } from 'src/app/data/models/admin/role';
 import * as fromStore from 'src/app/store';
 import { Store } from '@ngrx/store';
 import { CurrentTitleStateModel } from 'src/app/store/_model/currentTitleStateModel';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-users-roles',
@@ -20,7 +21,7 @@ export class UsersRolesComponent implements OnInit, OnDestroy {
   userRoles: MatTableDataSource<Role>;
   displayedColumns: string[] = ['role', 'status', 'text'];
   userInfo$: Observable<CurrentTitleStateModel>;
-  constructor(private usersService: UsersService,
+  constructor(private usersService: UsersService,private loc: Location,
     private router: Router, private route: ActivatedRoute,
     private alertService: ToastrService, private store: Store<fromStore.State>) { }
 
@@ -37,5 +38,37 @@ export class UsersRolesComponent implements OnInit, OnDestroy {
     });
 
   }
-
+  getRoleText(role: Role): string{
+    switch (role.value) {
+      case 'Admin':
+        return 'دسترسی ادمین ، بلاگ ، مدیریت بلاگ ، حسابداری';
+      case 'Accountant':
+        return 'دسترسی حسابداری';
+      case 'AdminBlog':
+        return 'دسترسی مدیریت بلاگ ، بلاگ';
+      case 'Blog':
+        return 'دستری بلاگ';
+      case 'User':
+        return 'دسترسی کاربر';
+      default:
+        return '';
+    }
+  }
+  onStatusChange(event: any,value:string ,userId: string) {
+    this.subManager.add(
+      this.usersService.changeRoleStatus(userId, value, event.checked)
+        .subscribe(() => {
+          if (event.checked === true) {
+            this.alertService.success('نقش به کاربر اختصاص داده شد', 'موفق');
+          } else {
+            this.alertService.success('نقش از کاربر سلب شد', 'موفق');
+          }
+        }, error => {
+          this.alertService.error(error);
+        })
+    )
+  }
+  onBack() {
+    this.loc.back();
+  }
 }

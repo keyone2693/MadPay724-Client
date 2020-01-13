@@ -7,8 +7,12 @@
     <li class="breadcrumb-item">
       <a>کاربران </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page" *ngIf="userInfo$ | async as userInfo">
-      مدیریت نقش های {{userInfo.title}}
+    <li
+      class="breadcrumb-item active"
+      aria-current="page"
+      *ngIf="userInfo$ | async as userInfo"
+    >
+      مدیریت نقش های {{ userInfo.title }}
     </li>
   </ol>
 </nav>
@@ -19,52 +23,63 @@
       <div class="card">
         <div class="card-header">
           <div class="card-title-wrap bar-success">
-            <h4 class="card-title">موجودی ها</h4>
+            <h4 class="card-title">نقش ها</h4>
           </div>
-          <p  *ngIf="userInfo$ | async as userInfo">
-            تمام نقش های کاربر {{userInfo.title}} در این صفحه نمایش داده می‌شوند
+          <p *ngIf="userInfo$ | async as userInfo">
+            تمام نقش های کاربر {{ userInfo.title }} در این صفحه نمایش داده
+            می‌شوند
           </p>
         </div>
         <div class="card-body">
           <div class="row">
-            <mat-table
-              [dataSource]="roles"
-              (matSortChange)="sortDataEvent($event)"
-              matSort
-              class="mat-elevation-z8"
-            >
-              <ng-container matColumnDef="age">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
-                  نقش
-                </mat-header-cell>
-                <mat-cell *matCellDef="let role"> {{ role.role }} </mat-cell>
-              </ng-container>
-              <ng-container matColumnDef="isReject">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
-                  وضعیت
-                </mat-header-cell>
-                <mat-cell *matCellDef="let role">
-                  <mat-checkbox
-                    [checked]="role.has"
-                    [disabled]="false"
-                    (change)="onRejectChange($event, role.id)"
-                  ></mat-checkbox>
-                </mat-cell>
-              </ng-container>
-              <ng-container matColumnDef="age">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
-                  توضیحات
-                </mat-header-cell>
-                <mat-cell *matCellDef="let role"> {{ role.text }} </mat-cell>
-              </ng-container>
+            <div class="col-md-12">
+              <div class="search-div">
+                <button
+                  mat-raised-button
+                  (click)="onBack()"
+                  color="red"
+                  class="float-left mb-10"
+                >
+                  <i class="ft-chevrons-right"></i>
+                  بازگشت
+                </button>
+              </div>
+              <mat-table [dataSource]="userRoles" class="mat-elevation-z8">
+                <ng-container matColumnDef="role">
+                  <mat-header-cell *matHeaderCellDef>
+                    نقش
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let role"> {{ role.value }} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="status">
+                  <mat-header-cell *matHeaderCellDef>
+                    وضعیت
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let role">
+                    <mat-checkbox
+                      [checked]="role.has"
+                      [disabled]="false"
+                      (change)="onStatusChange($event,role.value, role.userId)"
+                    ></mat-checkbox>
+                  </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="text">
+                  <mat-header-cell *matHeaderCellDef>
+                    توضیحات
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let role">
+                    {{ getRoleText(role) }}
+                  </mat-cell>
+                </ng-container>
 
-              <mat-header-row
-                *matHeaderRowDef="displayedColumns"
-              ></mat-header-row>
-              <mat-row
-                *matRowDef="let row; columns: displayedColumns"
-              ></mat-row>
-            </mat-table>
+                <mat-header-row
+                  *matHeaderRowDef="displayedColumns"
+                ></mat-header-row>
+                <mat-row
+                  *matRowDef="let row; columns: displayedColumns"
+                ></mat-row>
+              </mat-table>
+            </div>
           </div>
         </div>
       </div>
