@@ -1,0 +1,107 @@
+table {
+  width: 100%;
+}
+
+.delete-icon {
+  font-size: 25px;
+  color: red;
+}
+
+.edit-icon {
+  font-size: 25px;
+  color: #111;
+}
+
+.hide {
+  display: none;
+}
+
+mat-footer-row mat-footer-cell {
+  justify-content: center;
+  font-style: italic;
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.mat-blue {
+  background: #197dff;
+  color: #fff;
+  float: right !important;
+  margin-top: 15px;
+}
+.mat-red {
+  background: #ff4081;
+  color: #fff;
+  float: right !important;
+  margin-top: 15px;
+}
+
+.search-form-field {
+  width: 60%;
+  margin-right: 10px;
+  margin-bottom: 15px;
+}
+
+.user-img {
+  width: 35px;
+  border-radius: 53px;
+  border: 2px solid #ededed;
+}
+
+.mat-column-photoUrl {
+  flex: 0 0 60px;
+}
+
+.mat-column-id{
+  flex: 0 0 180px;
+}
+.mat-column-userName {
+  flex: 0 0 120px;
+}
+.mat-column-phoneNumber {
+  flex: 0 0 100px;
+}
+
+.col-fontsize-10{
+  font-size: 10px;
+  font-weight: 900;
+}
+.monytoman{
+      font-size: 7px;
+      color: #ff4081;
+      padding: 0px 2px;
+      border-radius: 25px;
+      line-height: 2;
+      margin-right: 2px;
+}
+.btn-action{
+min-width: 20px;
+}
+.btn-action i{
+  font-size: 20px;
+}
+
+.btncomy-green {
+  color: #0092ff;
+}
+
+.txt-price-blue{
+  font-weight: 900;
+  color: rgb(0, 68, 255);
+  border-bottom: 2px solid rgb(0, 68, 255);
+}
+.txt-price-green {
+font-weight: 900;
+color: green(0, 255, 34);
+border-bottom: 2px solid rgb(2, 119, 2);
+}
+.txt-price-red {
+font-weight: 900;
+color: rgb(255, 0, 64);
+border-bottom: 2px solid rgb(255, 0, 64);
+}
+.txt-price-org {
+font-weight: 900;
+color: rgb(255, 187, 0);
+border-bottom: 2px solid rgb(255, 187, 0);
+}

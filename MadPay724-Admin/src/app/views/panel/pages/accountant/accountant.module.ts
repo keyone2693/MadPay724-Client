@@ -47,10 +47,6 @@ import { GateFactorsComponent } from './pages/financial/gates/pages/gate-factors
 import { GateAccService } from 'src/app/core/_services/panel/accountant/gateAccService.service';
 import { WalletsGatesComponent } from './pages/financial/wallets/pages/wallets-gates/wallets-gates.component';
 import { GenericTableModule } from 'src/app/shared/modules/common/genericTable.module';
-import { ButtonMPComponent } from 'src/app/shared/component/button-mp/button-mp.component';
-import { InputMpComponent } from 'src/app/shared/component/input-mp/input-mp.component';
-import { CheckboxMPComponent } from 'src/app/shared/component/checkbox-mp/checkbox-mp.component';
-import { HtmlMpComponent } from 'src/app/shared/component/html-mp/html-mp.component';
 
 @NgModule({
   imports: [

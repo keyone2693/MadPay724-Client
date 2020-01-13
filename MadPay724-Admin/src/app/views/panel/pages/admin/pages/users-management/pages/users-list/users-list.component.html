@@ -1,0 +1,207 @@
+<div class="search-div">
+  <button
+    mat-raised-button
+    (click)="onCreate()"
+    color="blue"
+    class="float-left mb-10"
+  >
+    <i class="ft-plus-circle"></i>
+    افزودن بلاگ
+  </button>
+  <mat-form-field class="search-form-field" floatLabel="never">
+    <input
+      matInput
+      type="text"
+      placeholder="جستوجو ..."
+      [(ngModel)]="filterSortOrderBy.searchKey"
+      (keyup)="applyFilter()"
+    />
+    <button
+      mat-button
+      *ngIf="filterSortOrderBy.searchKey"
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="onSearchClear()"
+    >
+      <i class="ft-x"></i>
+    </button>
+  </mat-form-field>
+</div>
+
+<mat-table
+  [dataSource]="users"
+  (matSortChange)="sortDataEvent($event)"
+  matSort
+  class="mat-elevation-z8"
+> 
+ <ng-container matColumnDef="photoUrl">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> عکس </mat-header-cell>
+    <mat-cell *matCellDef="let user">
+      <img
+        class="user-img "
+        src="{{ user.photoUrl }}"
+        alt="{{ user.photoUrl }}"
+      />
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> شناسه </mat-header-cell>
+    <mat-cell *matCellDef="let user">
+      <mat-form-field class="col-md-12">
+        <button
+          mat-button
+          matSuffix
+          mat-icon-button
+          class="btncomy-green"
+          [ngxClipboard]="userId"
+          (cbOnSuccess)="copied()"
+        >
+          <i class="ft-copy col-fontsize-10"></i>
+        </button>
+        <input
+          #userId
+          matInput
+          value="{{ user.id }}"
+          class="col-fontsize-10"
+        />
+      </mat-form-field>
+    </mat-cell>
+  </ng-container>
+
+
+
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> نام </mat-header-cell>
+    <mat-cell *matCellDef="let user">
+      {{ user.name }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="userName">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      نام کاربری
+    </mat-header-cell>
+    <mat-cell *matCellDef="let user">
+      <mat-form-field class="col-md-12">
+        <button
+          mat-button
+          matSuffix
+          mat-icon-button
+          class="btncomy-green"
+          [ngxClipboard]="userId"
+          (cbOnSuccess)="copied()"
+         
+        >
+          <i class="ft-copy col-fontsize-10"></i>
+        </button>
+        <input
+          #userId
+          matInput
+          value="{{ user.userName }}"
+          class="col-fontsize-10"
+        />
+      </mat-form-field>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="phoneNumber">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      موبایل
+    </mat-header-cell>
+    <mat-cell *matCellDef="let user">
+      <mat-form-field class="col-md-12">
+        <button
+          mat-button
+          matSuffix
+          mat-icon-button
+          class="btncomy-green"
+          [ngxClipboard]="userId"
+          (cbOnSuccess)="copied()"
+        >
+          <i class="ft-copy col-fontsize-10"></i>
+        </button>
+        <input
+          #userId
+          matInput
+          value="{{ user.phoneNumber }}"
+          class="col-fontsize-10"
+        />
+      </mat-form-field>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="age">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> سن </mat-header-cell>
+    <mat-cell *matCellDef="let user"> {{ user.age }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="inventorySum">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      موجودی <span class="monytoman">تومان</span>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let user" class="txt-price-blue">
+      {{ (user.inventorySum | irc).replace("ریال", "") }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="interMoneySum">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      درامد <span class="monytoman">تومان</span>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let user"class="txt-price-green">
+      {{ (user.interMoneySum | irc).replace("ریال", "") }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="exitMoneySum">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      برداشتی <span class="monytoman">تومان</span>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let user"class="txt-price-red">
+      {{ (user.exitMoneySum | irc).replace("ریال", "") }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="onExitMoneySum">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      در حال برداشت <span class="monytoman">تومان</span>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let user"class="txt-price-org">
+      {{ (user.onExitMoneySum | irc).replace("ریال", "") }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef> کیف پول/کارت بانک </mat-header-cell>
+    <mat-cell *matCellDef="let user">
+      <button mat-button
+      [routerLink]="['/panel/accountant/user', user.id,'wallets']"
+      (click)="onWallet(user)"
+       matTooltip="برای مشاهده کیف پول های کاربر کلیک کنید"
+              
+        color="primary" class="btn-action">
+        <i class="icon-wallet"></i>
+      </button>
+      <button mat-button
+      [routerLink]="['/panel/accountant/user', user.id,'bankcards']"
+      (click)="onBankCard(user)"
+       matTooltip="برای مشاهده کارت های بانکی کاربر کلیک کنید"
+        color="warn" class="btn-action">
+        <i class="icon-credit-card"></i>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>
+<mat-paginator
+  [pageIndex]="pagination.currentPage"
+  [length]="pagination.totalItems"
+  [pageSize]="pagination.itemsPerPage"
+  [pageSizeOptions]="[5, 10, 25, 50]"
+  (page)="paginatorEvent($event)"
+  showFirstLastButtons
+>
+</mat-paginator>

@@ -4,6 +4,8 @@ import { AdminComponent } from './admin.component';
 import { AuthGuard } from 'src/app/core/_base/guards/auth.guard';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { UsersManagementComponent } from './pages/users-management/users-management.component';
+import { InventoryResolver } from 'src/app/core/_base/resolvers/accountant/inventory.resolver';
+import { UserResolver } from 'src/app/core/_base/resolvers/admin/user.resolver';
 
 const routes: Routes = [
     {
@@ -12,7 +14,10 @@ const routes: Routes = [
         children: [
           {path: 'dashboard', canActivate: [AuthGuard], component: DashboardComponent,
           data: {roles: ['Admin'], title: ['داشبورد مدیریت']}},
-          {path: 'users/usersmanagement', canActivate: [AuthGuard], component: UsersManagementComponent,
+          {
+            path: 'users/management', canActivate: [AuthGuard],
+            resolve: { users: UserResolver },
+            component: UsersManagementComponent,
             data: {roles: ['Admin'], title: ['مدیریت کاربران']}}
         ]
        }
