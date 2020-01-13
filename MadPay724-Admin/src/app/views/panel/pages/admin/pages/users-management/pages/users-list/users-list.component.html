@@ -41,7 +41,7 @@
       <img
         class="user-img "
         src="{{ user.photoUrl }}"
-        alt="{{ user.photoUrl }}"
+        alt=""
       />
     </mat-cell>
   </ng-container>
@@ -165,7 +165,7 @@
 
   <ng-container matColumnDef="onExitMoneySum">
     <mat-header-cell *matHeaderCellDef mat-sort-header>
-      در حال برداشت <span class="monytoman">تومان</span>
+      در برداشت <span class="monytoman">تومان</span>
     </mat-header-cell>
     <mat-cell *matCellDef="let user"class="txt-price-org">
       {{ (user.onExitMoneySum | irc).replace("ریال", "") }}
@@ -178,9 +178,36 @@
       <button mat-button
       [routerLink]="['/panel/accountant/user', user.id,'wallets']"
       (click)="onWallet(user)"
+       matTooltip="برای مشاهده نقش های کاربر کلیک کنید"
+        color="green" class="btn-action">
+        <i class="icon-user-following"></i>
+      </button>
+      <button mat-button
+      [routerLink]="['/panel/accountant/user', user.id,'wallets']"
+      (click)="onWallet(user)"
+       matTooltip="برای مشاهده درگاه های کاربر کلیک کنید"
+        color="warn" class="btn-action">
+        <i class="icon-globe"></i>
+      </button>
+      <button mat-button
+      [routerLink]="['/panel/accountant/user', user.id,'wallets']"
+      (click)="onWallet(user)"
+       matTooltip="برای مشاهده ایزی پی های کاربر کلیک کنید"
+        color="green" class="btn-action">
+        <i class="icon-link"></i>
+      </button>
+      <button mat-button
+      [routerLink]="['/panel/accountant/user', user.id,'wallets']"
+      (click)="onWallet(user)"
+       matTooltip="برای مشاهده فاکتور های کاربر کلیک کنید"
+        color="warn" class="btn-action">
+        <i class="ft-shopping-cart"></i>
+      </button>
+      <button mat-button
+      [routerLink]="['/panel/accountant/user', user.id,'wallets']"
+      (click)="onWallet(user)"
        matTooltip="برای مشاهده کیف پول های کاربر کلیک کنید"
-              
-        color="primary" class="btn-action">
+        color="green" class="btn-action">
         <i class="icon-wallet"></i>
       </button>
       <button mat-button

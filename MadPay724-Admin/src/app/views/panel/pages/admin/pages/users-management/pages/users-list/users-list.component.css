@@ -35,6 +35,9 @@ mat-footer-row mat-footer-cell {
   float: right !important;
   margin-top: 15px;
 }
+.mat-green {
+  color: rgb(2, 119, 2);
+}
 
 .search-form-field {
   width: 60%;
@@ -61,7 +64,12 @@ mat-footer-row mat-footer-cell {
 .mat-column-phoneNumber {
   flex: 0 0 100px;
 }
-
+.mat-column-age {
+  flex: 0 0 40px;
+}
+.mat-column-name,.mat-column-inventorySum,.mat-column-interMoneySum,.mat-column-exitMoneySum,.mat-column-onExitMoneySum {
+  flex: 0 0 100px;
+}
 .col-fontsize-10{
   font-size: 10px;
   font-weight: 900;
