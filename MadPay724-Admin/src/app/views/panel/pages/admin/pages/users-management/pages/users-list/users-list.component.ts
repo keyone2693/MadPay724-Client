@@ -131,6 +131,13 @@ export class UsersListComponent implements OnInit, OnDestroy {
     }));
     this.router.navigate(['/panel/admin/users', user.id, 'roles']);
   }
+  onGate(user: Inventory) {
+    this.store.dispatch(new fromStore.EditCurrentTitle({
+      id: user.id,
+      title: user.name
+    }));
+    this.router.navigate(['/panel/admin/users', user.id, 'gates']);
+  }
   onBankCard(user: Inventory) {
     this.store.dispatch(new fromStore.EditCurrentTitle({
       id: user.id,

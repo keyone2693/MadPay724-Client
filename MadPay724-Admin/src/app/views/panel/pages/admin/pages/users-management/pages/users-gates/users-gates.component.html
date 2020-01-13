@@ -1,0 +1,55 @@
+<!-- User Profile Starts-->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/panel/accountant/dashboard']">داشبورد</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a>حسابدار </a>
+    </li>
+    <li class="breadcrumb-item">
+      <a>درگاه های پرداخت </a>
+    </li>
+  </ol>
+</nav>
+<!--Basic User Details Starts-->
+<section id="user-area">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-wrap bar-success">
+            <h4 class="card-title">مدیریت درگاه ها</h4>
+          </div>
+          <p>
+            در این صفحه تمامی درگاه های کاربران نمایش داده میشود
+          </p>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="search-div">
+                <button
+                  mat-raised-button
+                  (click)="onBack()"
+                  color="red"
+                  class="float-left mb-10"
+                >
+                  <i class="ft-chevrons-right"></i>
+                  بازگشت به مدیریت کاربران
+                </button>
+              </div>
+              <smc-simplemattable
+                class="mysimplemattable"
+                [data]="gates"
+                [columns]="columns"
+                [sorting]="true"
+              ></smc-simplemattable>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--User Profile Starts-->

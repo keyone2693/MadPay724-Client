@@ -8,6 +8,7 @@ import { InventoryResolver } from 'src/app/core/_base/resolvers/accountant/inven
 import { UserResolver } from 'src/app/core/_base/resolvers/admin/user.resolver';
 import { UserRolesResolver } from 'src/app/core/_base/resolvers/admin/userRoles.resolver';
 import { UsersRolesComponent } from './pages/users-management/pages/users-roles/users-roles.component';
+import { UsersGatesComponent } from './pages/users-management/pages/users-gates/users-gates.component';
 
 const routes: Routes = [
     {
@@ -28,6 +29,12 @@ const routes: Routes = [
             resolve: { roles: UserRolesResolver },
             component: UsersRolesComponent,
             data: { roles: ['Admin'], title: ['مدیریت نقش های کاربران'] }
+          },
+          //
+          {
+            path: 'users/:userId/gates', canActivate: [AuthGuard],
+            component: UsersGatesComponent,
+            data: { roles: ['Admin'], title: ['مدیریت درگاه های کاربران'] }
           }
         ]
        }

@@ -13,6 +13,12 @@ import { UserResolver } from 'src/app/core/_base/resolvers/admin/user.resolver';
 import { UsersService } from 'src/app/core/_services/panel/admin/users.service';
 import { UserRolesResolver } from 'src/app/core/_base/resolvers/admin/userRoles.resolver';
 import { UsersRolesComponent } from './pages/users-management/pages/users-roles/users-roles.component';
+import { GatesService } from 'src/app/core/_services/panel/admin/gatesService.service';
+import { UsersBankcardsComponent } from './pages/users-management/pages/users-bankcards/users-bankcards.component';
+import { UsersEasypaysComponent } from './pages/users-management/pages/users-easypays/users-easypays.component';
+import { UsersFactorsComponent } from './pages/users-management/pages/users-factors/users-factors.component';
+import { UsersGatesComponent } from './pages/users-management/pages/users-gates/users-gates.component';
+import { UsersWalletsComponent } from './pages/users-management/pages/users-wallets/users-wallets.component';
 
 
 
@@ -27,6 +33,7 @@ import { UsersRolesComponent } from './pages/users-management/pages/users-roles/
     PersianPipeModule
   ], providers: [
     UsersService,
+    GatesService,
     UserResolver,
     UserRolesResolver
   ],
@@ -35,7 +42,12 @@ import { UsersRolesComponent } from './pages/users-management/pages/users-roles/
     DashboardComponent,
     UsersManagementComponent,
     UsersListComponent,
-    UsersRolesComponent
+    UsersRolesComponent,
+    UsersBankcardsComponent,
+    UsersEasypaysComponent,
+    UsersFactorsComponent,
+    UsersGatesComponent,
+    UsersWalletsComponent
   ]
 })
 export class AdminModule { }
