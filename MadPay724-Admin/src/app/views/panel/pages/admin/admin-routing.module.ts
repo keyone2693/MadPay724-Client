@@ -6,6 +6,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { UsersManagementComponent } from './pages/users-management/users-management.component';
 import { InventoryResolver } from 'src/app/core/_base/resolvers/accountant/inventory.resolver';
 import { UserResolver } from 'src/app/core/_base/resolvers/admin/user.resolver';
+import { UserRolesResolver } from 'src/app/core/_base/resolvers/admin/userRoles.resolver';
+import { UsersRolesComponent } from './pages/users-management/pages/users-roles/users-roles.component';
 
 const routes: Routes = [
     {
@@ -13,12 +15,20 @@ const routes: Routes = [
         component: AdminComponent,
         children: [
           {path: 'dashboard', canActivate: [AuthGuard], component: DashboardComponent,
-          data: {roles: ['Admin'], title: ['داشبورد مدیریت']}},
+            data: { roles: ['Admin'], title: ['داشبورد مدیریت'] }
+          },
           {
             path: 'users/management', canActivate: [AuthGuard],
             resolve: { users: UserResolver },
             component: UsersManagementComponent,
-            data: {roles: ['Admin'], title: ['مدیریت کاربران']}}
+            data: { roles: ['Admin'], title: ['مدیریت کاربران'] }
+          },
+          {
+            path: 'users/:userId/roles', canActivate: [AuthGuard],
+            resolve: { roles: UserRolesResolver },
+            component: UsersRolesComponent,
+            data: { roles: ['Admin'], title: ['مدیریت نقش های کاربران'] }
+          }
         ]
        }
 ];

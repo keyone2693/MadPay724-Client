@@ -124,11 +124,12 @@ export class UsersListComponent implements OnInit, OnDestroy {
   }
 
   //----------------------------
-  onWallet(user: Inventory) {
+  onRole(user: Inventory) {
     this.store.dispatch(new fromStore.EditCurrentTitle({
       id: user.id,
       title: user.name
-    }))
+    }));
+    this.router.navigate(['/panel/admin/users', user.id, 'roles']);
   }
   onBankCard(user: Inventory) {
     this.store.dispatch(new fromStore.EditCurrentTitle({

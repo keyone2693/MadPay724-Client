@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { Inventory } from 'src/app/data/models/accountant/inventory';
 import { PaginationResult } from 'src/app/data/models/common/paginationResult';
 import { map } from 'rxjs/operators';
+import { Role } from 'src/app/data/models/admin/role';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +35,7 @@ export class UsersService {
       params = params.append('sortDir', sortDir);
     }
     return this.http.get<Inventory[]>
-      (this.baseUrl + 'users' , { observe: 'response', params })
+      (this.baseUrl + 'users', { observe: 'response', params })
       .pipe(
         map(response => {
           paginatedResult.result = response.body;
@@ -44,6 +45,9 @@ export class UsersService {
           return paginatedResult;
         })
       );
+  }
+  getUserRoles(userId: string): Observable<Role[]> {
+    return this.http.get<Role[]>(this.baseUrl + 'users/' + userId + '/roles');
   }
 
 }

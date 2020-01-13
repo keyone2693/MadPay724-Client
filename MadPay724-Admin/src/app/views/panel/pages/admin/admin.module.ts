@@ -11,6 +11,8 @@ import { GenericTableModule } from 'src/app/shared/modules/common/genericTable.m
 import { PersianPipeModule } from 'src/app/shared/modules/common/persianPipe.module';
 import { UserResolver } from 'src/app/core/_base/resolvers/admin/user.resolver';
 import { UsersService } from 'src/app/core/_services/panel/admin/users.service';
+import { UserRolesResolver } from 'src/app/core/_base/resolvers/admin/userRoles.resolver';
+import { UsersRolesComponent } from './pages/users-management/pages/users-roles/users-roles.component';
 
 
 
@@ -25,13 +27,15 @@ import { UsersService } from 'src/app/core/_services/panel/admin/users.service';
     PersianPipeModule
   ], providers: [
     UsersService,
-    UserResolver
+    UserResolver,
+    UserRolesResolver
   ],
   declarations: [
     AdminComponent,
     DashboardComponent,
     UsersManagementComponent,
-    UsersListComponent
+    UsersListComponent,
+    UsersRolesComponent
   ]
 })
 export class AdminModule { }

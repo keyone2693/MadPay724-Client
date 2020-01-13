@@ -1,0 +1,74 @@
+<!-- User Profile Starts-->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/panel/dashboard']">داشبورد</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a>کاربران </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page" *ngIf="userInfo$ | async as userInfo">
+      مدیریت نقش های {{userInfo.title}}
+    </li>
+  </ol>
+</nav>
+<!--Basic User Details Starts-->
+<section id="user-area">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-wrap bar-success">
+            <h4 class="card-title">موجودی ها</h4>
+          </div>
+          <p  *ngIf="userInfo$ | async as userInfo">
+            تمام نقش های کاربر {{userInfo.title}} در این صفحه نمایش داده می‌شوند
+          </p>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <mat-table
+              [dataSource]="roles"
+              (matSortChange)="sortDataEvent($event)"
+              matSort
+              class="mat-elevation-z8"
+            >
+              <ng-container matColumnDef="age">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  نقش
+                </mat-header-cell>
+                <mat-cell *matCellDef="let role"> {{ role.role }} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="isReject">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  وضعیت
+                </mat-header-cell>
+                <mat-cell *matCellDef="let role">
+                  <mat-checkbox
+                    [checked]="role.has"
+                    [disabled]="false"
+                    (change)="onRejectChange($event, role.id)"
+                  ></mat-checkbox>
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="age">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  توضیحات
+                </mat-header-cell>
+                <mat-cell *matCellDef="let role"> {{ role.text }} </mat-cell>
+              </ng-container>
+
+              <mat-header-row
+                *matHeaderRowDef="displayedColumns"
+              ></mat-header-row>
+              <mat-row
+                *matRowDef="let row; columns: displayedColumns"
+              ></mat-row>
+            </mat-table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--User Profile Starts-->
