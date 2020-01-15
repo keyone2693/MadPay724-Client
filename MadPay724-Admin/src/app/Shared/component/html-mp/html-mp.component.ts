@@ -7,8 +7,9 @@ import { Component, Input } from '@angular/core';
 })
 export class HtmlMpComponent{
   @Input() html: string;
-  @Input() isTooltip: boolean;
-  @Input() isImage: boolean;
+  @Input() isTooltip: boolean = false;
+  @Input() isBadge: boolean = false;
+  @Input() isImage: boolean = false;
   @Input() tooltipText: string;
   @Input() tooltipPosition: string;
   @Input() text: string;

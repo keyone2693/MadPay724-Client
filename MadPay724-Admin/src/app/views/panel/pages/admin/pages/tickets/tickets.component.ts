@@ -9,15 +9,16 @@ import { UiType } from 'src/app/data/enums/uiType.enum';
 import { CheckboxMPComponent } from 'src/app/shared/component/checkbox-mp/checkbox-mp.component';
 import { ButtonMPComponent } from 'src/app/shared/component/button-mp/button-mp.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TicketService } from 'src/app/core/_services/panel/user/ticket.service';
 import { ToastrService } from 'ngx-toastr';
-import { IRCurrencyPipe } from 'ngx-persian';
 import { PersianCalendarService } from 'src/app/core/_base/pipe/PersianDatePipe/persian-date.service';
 import { DatePipe } from '@angular/common';
 import { Sort } from '@angular/material';
 import { FilterSortOrderBy } from 'src/app/data/models/common/filterSortOrderBy';
 import { TicketSearch } from 'src/app/data/models/admin/ticketSearch';
-
+import { TicketsService } from 'src/app/core/_services/panel/admin/tickets.service';
+import 'src/app/shared/extentions/bool.extentions'
+import 'src/app/shared/extentions/number.extentions'
+import { HtmlMpComponent } from 'src/app/shared/component/html-mp/html-mp.component';
 @Component({
   selector: 'app-tickets',
   templateUrl: './tickets.component.html',
@@ -26,11 +27,12 @@ import { TicketSearch } from 'src/app/data/models/admin/ticketSearch';
 export class TicketsComponent implements OnInit, OnDestroy {
   dateRange: Date[] = this.createDateRange();
   search: TicketSearch = {
-    close: 0,
+    closed: 0,
     level: 0,
     department: 0,
     minDate: this.dateRange[0].getTime(),
     maxDate: this.dateRange[729].getTime(),
+    isAdminSide: 0,
     filter: ''
   }
   subManager = new Subscription();
@@ -73,6 +75,36 @@ export class TicketsComponent implements OnInit, OnDestroy {
         component.isForCopy = true;
         component.icon = "ft-copy";
       }),
+
+
+    new TableColumn<Ticket, 'title'>('تایتل', 'title'),
+
+    new TableColumn<Ticket, 'closed'>('وضعیت', 'closed')
+      .withNgComponent(CheckboxMPComponent)
+      .withNgComponentInput((component: CheckboxMPComponent, closed, ticket) => {
+        component.event = (data) => {
+          this.onCloseChange(ticket.id,data);
+        };
+        component.checked = closed;
+        component.disabled = false;
+        component.type = UiType.Error;
+      }),
+    
+    new TableColumn<Ticket, 'level'>('اولویت', 'level')
+      .withNgComponent(HtmlMpComponent)
+      .withNgComponentInput((component: HtmlMpComponent, level, ticket) => {
+        component.isBadge = true  ;
+        component.text = level.toTicketLevel();
+        component.class = 
+          level === 1 ? 'badge badge-info color-white' :
+          level === 2 ? 'badge badge-warning color-white' : 'badge badge-danger color-white';
+      }),
+    new TableColumn<Ticket, 'department'>('دپارتمان', 'department').withTransform((data) =>
+      data.toTicketDepartment()
+    ),
+    new TableColumn<Ticket, 'isAdminSide'>('وضعیت', 'isAdminSide').withTransform((data) =>
+      data.toTicketStatus()
+    ),
     new TableColumn<Ticket, 'dateCreated'>(' ایجاد', 'dateCreated')
       .withNgStyle(() => ({ 'font-size': '14px', 'color': '#ff4081' }))
       .withTransform((data) =>
@@ -89,28 +121,6 @@ export class TicketsComponent implements OnInit, OnDestroy {
         this.datePipe.transform(data, 'HH:mm')
         + ' )'
       ),
-
-    new TableColumn<Ticket, 'title'>('تایتل', 'title'),
-    new TableColumn<Ticket, 'level'>('دپارتمان', 'level').withTransform((data) =>
-      data.toTicketLevel()
-    ),
-    new TableColumn<Ticket, 'closed'>('وضعیت', 'closed')
-      .withNgComponent(CheckboxMPComponent)
-      .withNgComponentInput((component: CheckboxMPComponent, closed, ticket) => {
-        component.event = (data) => {
-          this.onStatusChange(data, ticket.id);
-        };
-        component.checked = closed;
-        component.disabled = false;
-        component.type = UiType.Error;
-      }),
-    new TableColumn<Ticket, 'department'>('دپارتمان', 'department').withTransform((data) =>
-      data.toTicketDepartment()
-    ),
-    new TableColumn<Ticket, 'isAdminSide'>('وضعیت', 'isAdminSide').withTransform((data) =>
-      data.toTicketStatus()
-    ),
-
     new TableColumn<Ticket, 'id'>('عملیات', 'id')
       .withNgComponent(ButtonMPComponent)
       .withNgComponentInput((component: ButtonMPComponent, id) => {
@@ -122,8 +132,8 @@ export class TicketsComponent implements OnInit, OnDestroy {
   ];
 
   constructor(private route: ActivatedRoute, private alertService: ToastrService
-    , private ticketService: TicketService,
-    private router: Router, private loc: Location,
+    , private ticketService: TicketsService,
+    private router: Router,
     private persianCalendarService: PersianCalendarService, private datePipe: DatePipe) { }
 
   createDateRange(): Date[] {
@@ -149,11 +159,12 @@ export class TicketsComponent implements OnInit, OnDestroy {
   }
   onSearchClear() {
     this.search = {
-      close: 0,
+      closed: 0,
       level: 0,
       department: 0,
-      minDate: this.dateRange[100].getTime(),
-      maxDate: this.dateRange[450].getTime(),
+      minDate: this.dateRange[0].getTime(),
+      maxDate: this.dateRange[729].getTime(),
+      isAdminSide: 0,
       filter: ''
     }
     this.onPageChange(this.pagination.currentPage, this.pagination.itemsPerPage);
@@ -180,15 +191,15 @@ export class TicketsComponent implements OnInit, OnDestroy {
     );
     return of(this.tickets);
   }
-  onStatusChange(event: any, ticketId: string) {
+  onCloseChange(event: any, ticketId: string) {
     this.subManager.add(
-      this.ticketService.changeStatusTicket(ticketId, event.checked)
+      this.ticketService.setTicketClosed(ticketId, event.checked)
         .subscribe(() => {
           this.onPageChange(this.pagination.currentPage, this.pagination.itemsPerPage);
           if (event.checked === true) {
-            this.alertService.success('وضعیت فاکتور تایید شد', 'موفق');
+            this.alertService.success('تیکت بسته شد', 'موفق');
           } else {
-            this.alertService.success('وضعیت فاکتور از حالت تایید خارج شد', 'موفق');
+            this.alertService.success('تیکت باز شد', 'موفق');
           }
         }, error => {
           this.alertService.error(error);

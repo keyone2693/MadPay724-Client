@@ -48,7 +48,7 @@ Number.prototype.toFactorType = function (this: number): string {
             return ''
     }
 }
-Number.prototype.toTicketDepartment = function (this: number): string {
+Number.prototype.toTicketLevel = function (this: number): string {
     var ticketDepartment = this;
     switch (ticketDepartment) {
         case 1:
@@ -61,7 +61,7 @@ Number.prototype.toTicketDepartment = function (this: number): string {
             return ''
     }
 }
-Number.prototype.toTicketLevel = function (this: number): string {
+Number.prototype.toTicketDepartment = function (this: number): string {
     var ticketLevel = this;
     switch (ticketLevel) {
         case 1:

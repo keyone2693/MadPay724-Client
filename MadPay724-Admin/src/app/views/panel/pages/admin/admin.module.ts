@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { AdminComponent } from './admin.component';
 import { AdminRoutingModule } from './admin-routing.module';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { UsersManagementComponent } from './pages/users-management/users-management.component';
@@ -19,6 +19,9 @@ import { UsersEasypaysComponent } from './pages/users-management/pages/users-eas
 import { UsersFactorsComponent } from './pages/users-management/pages/users-factors/users-factors.component';
 import { UsersGatesComponent } from './pages/users-management/pages/users-gates/users-gates.component';
 import { UsersWalletsComponent } from './pages/users-management/pages/users-wallets/users-wallets.component';
+import { TicketsComponent } from './pages/tickets/tickets.component';
+import { TicketsDetailsComponent } from './pages/tickets/pages/tickets-details/tickets-details.component';
+import { Ng5SliderModule } from 'ng5-slider';
 
 
 
@@ -30,8 +33,10 @@ import { UsersWalletsComponent } from './pages/users-management/pages/users-wall
     AdminMaterialModule,
     ReactiveFormsModule,
     GenericTableModule,
-    PersianPipeModule
+    PersianPipeModule,
+    Ng5SliderModule
   ], providers: [
+    DatePipe,
     UsersService,
     GatesService,
     UserResolver,
@@ -47,7 +52,9 @@ import { UsersWalletsComponent } from './pages/users-management/pages/users-wall
     UsersEasypaysComponent,
     UsersFactorsComponent,
     UsersGatesComponent,
-    UsersWalletsComponent
+    UsersWalletsComponent,
+    TicketsComponent,
+    TicketsDetailsComponent
   ]
 })
 export class AdminModule { }

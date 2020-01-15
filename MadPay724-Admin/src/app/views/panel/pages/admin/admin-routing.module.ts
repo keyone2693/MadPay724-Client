@@ -9,6 +9,8 @@ import { UserResolver } from 'src/app/core/_base/resolvers/admin/user.resolver';
 import { UserRolesResolver } from 'src/app/core/_base/resolvers/admin/userRoles.resolver';
 import { UsersRolesComponent } from './pages/users-management/pages/users-roles/users-roles.component';
 import { UsersGatesComponent } from './pages/users-management/pages/users-gates/users-gates.component';
+import { TicketsDetailsComponent } from './pages/tickets/pages/tickets-details/tickets-details.component';
+import { TicketsComponent } from './pages/tickets/tickets.component';
 
 const routes: Routes = [
     {
@@ -35,6 +37,17 @@ const routes: Routes = [
             path: 'users/:userId/gates', canActivate: [AuthGuard],
             component: UsersGatesComponent,
             data: { roles: ['Admin'], title: ['مدیریت درگاه های کاربران'] }
+          },
+          //ticket
+          {
+            path: 'tickets/management', canActivate: [AuthGuard],
+            component: TicketsComponent,
+            data: { roles: ['Admin'], title: ['مدیریت تیکت ها'] }
+          },
+          {
+            path: 'tickets/:ticketId/detail', canActivate: [AuthGuard],
+            component: TicketsDetailsComponent,
+            data: { roles: ['Admin'], title: ['مدیریت تیکت ها'] }
           }
         ]
        }

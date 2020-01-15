@@ -62,7 +62,20 @@
             </li>
           </ul>
         </li>
-
+        <li *appHasRole="['Admin']" routerLinkActive="active" class=" nav-item">
+          <a [routerLink]="['/panel/admin/tickets/management']">
+            <i class="icon-bubbles"> </i
+            ><span class="menu-title">تیکت ها</span>
+            <span
+              [hidden]="notifications.unClosedTicketCount === 0"
+              *appHasRole="['Admin']"
+              matTooltip="تیکت های باز"
+              matTooltipPosition="left"
+              class="tag badge badge-pill badge-danger mt-1"
+              >{{ notifications.unClosedTicketCount }}</span
+            >
+          </a>
+        </li>
         <!--#endregion-->
         <!--#region Accountant-->
         <li

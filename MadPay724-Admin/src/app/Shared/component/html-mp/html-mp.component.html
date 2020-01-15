@@ -14,3 +14,8 @@
 matTooltip="{{tooltipText}}"
 [matTooltipPosition]="tooltipPosition"
 >{{text}}</p>
+
+<span 
+*ngIf="isBadge"
+[ngClass]="class"
+> {{text}} </span>

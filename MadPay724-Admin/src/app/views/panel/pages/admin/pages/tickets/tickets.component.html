@@ -33,21 +33,37 @@
             <div class="col-md-12">
               <div class="search-div">
                 <div class="row mb-4">
-                  <mat-form-field class="col-md-4">
+                  <mat-form-field class="col-md-3">
                     <mat-label>وضعیت باز بودن</mat-label>
-                    <mat-select [(ngModel)]="search.close">
+                    <mat-select [(ngModel)]="search.closed">
                       <mat-option [value]="0">
                         مهم نیست
                       </mat-option>
                       <mat-option [value]="1">
-                        باز 
-                      </mat-option>
-                      <mat-option [value]="2">
                         بسته
                       </mat-option>
+                      <mat-option [value]="2">
+                        باز 
+                      </mat-option>
+                      
                     </mat-select>
                   </mat-form-field>
-                  <mat-form-field class="col-md-4">
+                  <mat-form-field class="col-md-3">
+                    <mat-label>سمت پاسخ</mat-label>
+                    <mat-select [(ngModel)]="search.isAdminSide">
+                      <mat-option [value]="0">
+                        مهم نیست
+                      </mat-option> 
+                      <mat-option [value]="1">
+                        پشتیبان
+                      </mat-option>
+                      <mat-option [value]="2">
+                       کاربر
+                      </mat-option>
+                     
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field class="col-md-3">
                     <mat-label>اولویت</mat-label>
                     <mat-select [(ngModel)]="search.level">
                       <mat-option [value]="0">
@@ -64,7 +80,7 @@
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
-                  <mat-form-field class="col-md-4">
+                  <mat-form-field class="col-md-3">
                     <mat-label>دپارتمان</mat-label>
                     <mat-select [(ngModel)]="search.department">
                       <mat-option [value]="0">

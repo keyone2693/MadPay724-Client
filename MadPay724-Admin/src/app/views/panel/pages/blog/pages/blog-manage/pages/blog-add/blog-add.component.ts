@@ -4,10 +4,10 @@ import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BlogService } from 'src/app/core/_services/panel/blog/blog.service';
 import { BlogGroup } from 'src/app/data/models/blog/blogGroup';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 import {
   ToolbarService, LinkService, ImageService, HtmlEditorService,
-  RichTextEditorComponent, TableService, NodeSelection, QuickToolbarService, ActionBeginEventArgs
+  RichTextEditorComponent, TableService, NodeSelection, QuickToolbarService,
 } from '@syncfusion/ej2-angular-richtexteditor';
 import { addClass, removeClass, Browser } from '@syncfusion/ej2-base';
 import { ToolbarModule } from '@syncfusion/ej2-angular-navigations';

@@ -11,7 +11,6 @@ import { ButtonMPComponent } from 'src/app/shared/component/button-mp/button-mp.
 import { ActivatedRoute, Router } from '@angular/router';
 import { FactorService } from 'src/app/core/_services/panel/accountant/factor.service';
 import { ToastrService } from 'ngx-toastr';
-import { Store } from '@ngrx/store';
 import { IRCurrencyPipe } from 'ngx-persian';
 import { Location, DatePipe } from '@angular/common';
 

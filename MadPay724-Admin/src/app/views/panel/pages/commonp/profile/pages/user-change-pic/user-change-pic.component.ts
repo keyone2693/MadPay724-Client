@@ -1,6 +1,6 @@
 import { OnInit, Input, Output, EventEmitter, Component } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { Photo } from 'src/app/data/models/photo';
