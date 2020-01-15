@@ -1,0 +1,92 @@
+<section class="chat-app-window">
+  <div class="badge badge-dark mb-1">تاریخچه ی گفتگو</div>
+  <ng-scrollbar class="my-scrollbar">
+    <div class="chats">
+      <div class="chats">
+        <app-chat-message-ticket
+          *ngFor="let ticketContent of ticketContents"
+          [ticketContent]="ticketContent"
+        ></app-chat-message-ticket>
+      </div>
+    </div>
+  </ng-scrollbar>
+</section>
+<section class="chat-app-form bg-blue-grey bg-lighten-5">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title-wrap bar-success my-2">
+        <h4 class="card-title dis-inline">پاسخ به تیکت :</h4>
+        <span class=" dis-inline tickettitle">خطا در پول</span>
+      </div>
+      <div *ngIf="ticketClosed">
+          <p>
+              برای ارسال پیغام ابتدا تیکت را از حالت <span class="badge badge-danger">بسته بودن</span> خارج کنید
+            </p>
+      </div>
+      <div *ngIf="!ticketClosed">
+         <p>
+        * پس از ارسال تیکت حداکثر تا ۱۲ ساعت آینده پاسخ برای شما ارسال خواهد شد.
+      </p>
+      <p>
+        * برخی از تیکت ها ممکن است، نیاز به زمان بیشتری برای بررسی داشته باشند.
+      </p>
+      <p>
+        * پس از ارسال تیکت، نیازی به تماس تلفنی نیست. تیکت ارسالی شما قطعا توسط
+        همکاران ما بررسی و پاسخ داده خواهد شد.
+      </p>
+      </div>
+     
+    </div>
+    <div
+    *ngIf="!ticketClosed"
+    class="card-body" >
+      <div class="card-block text-center row">
+        <form [formGroup]="ticketContentForm" class="chat-app-input col-md-12">
+          <mat-form-field class="col-md-12 ml-10">
+            <textarea
+            formControlName="text"
+              matInput
+              placeholder="متن پاسخ تیکت *"
+            ></textarea>
+            <mat-error
+            *ngIf="
+              ticketContentForm.get('text').hasError('required') &&
+              ticketContentForm.get('text').touched
+            "
+            >این فیلد نمیتواند خالی باشد</mat-error
+          >
+      
+          <mat-error
+            *ngIf="
+              ticketContentForm.get('text').hasError('maxlength') &&
+              ticketContentForm.get('text').touched
+            "
+          >
+            این فیلد نمیتواند بیشتر از 1000 کاراکتر باشد</mat-error
+          >
+          </mat-form-field>
+          <label class="attach float-right">
+              <input (change)="onFileSelect($event)"
+               type="file" name="file" />
+              <span
+              [ngClass]="selected ? 'msgicon-green' : 'msgicon-blue'"
+               class="ft-folder msgicon"></span>
+              <span *ngIf="!selected" class="msg-info">انتخاب فایل</span>
+              <span *ngIf="selected" class="msg-success">فایل اضافه شد
+                <span class="filename">({{fileName}})</span>
+                </span>
+            </label>
+          <button
+          (click)="onSubmitCreate()"
+          [disabled]="ticketContentForm.invalid"
+          mat-raised-button color="green"
+          id="btnAddTicketContent"
+          class="float-left mb-10">
+            <i class="icon-check"></i>
+            <span>ارسال</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

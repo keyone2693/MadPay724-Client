@@ -4,7 +4,7 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
 import {
     MatDatepickerModule, MatTableModule, MatCheckboxModule,
     MatPaginatorModule, MatSortModule, MatFormFieldModule,
-    MatSelectModule, MatInputModule, MatButtonModule, MatTooltipModule
+    MatSelectModule, MatInputModule, MatButtonModule, MatTooltipModule, MatSlideToggleModule
 } from '@angular/material';
 
 @NgModule({
@@ -19,7 +19,8 @@ import {
         MatTableModule,
         MatPaginatorModule,
         MatSortModule,
-        MatTooltipModule
+        MatTooltipModule,
+        MatSlideToggleModule
     ],
     exports: [
         MatCheckboxModule,
@@ -32,7 +33,8 @@ import {
         MatTableModule,
         MatPaginatorModule,
         MatSortModule,
-        MatTooltipModule
+        MatTooltipModule,
+        MatSlideToggleModule
     ]
 })
 export class AdminMaterialModule { }

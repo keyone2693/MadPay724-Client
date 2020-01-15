@@ -11,6 +11,7 @@ import { UsersRolesComponent } from './pages/users-management/pages/users-roles/
 import { UsersGatesComponent } from './pages/users-management/pages/users-gates/users-gates.component';
 import { TicketsDetailsComponent } from './pages/tickets/pages/tickets-details/tickets-details.component';
 import { TicketsComponent } from './pages/tickets/tickets.component';
+import { TicketDetailsResolver } from 'src/app/core/_base/resolvers/admin/ticketDetails.resolver';
 
 const routes: Routes = [
     {
@@ -46,6 +47,7 @@ const routes: Routes = [
           },
           {
             path: 'tickets/:ticketId/detail', canActivate: [AuthGuard],
+            resolve: { ticket: TicketDetailsResolver },
             component: TicketsDetailsComponent,
             data: { roles: ['Admin'], title: ['مدیریت تیکت ها'] }
           }

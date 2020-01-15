@@ -22,6 +22,10 @@ import { UsersWalletsComponent } from './pages/users-management/pages/users-wall
 import { TicketsComponent } from './pages/tickets/tickets.component';
 import { TicketsDetailsComponent } from './pages/tickets/pages/tickets-details/tickets-details.component';
 import { Ng5SliderModule } from 'ng5-slider';
+import { ChatTicketComponent } from './pages/tickets/pages/tickets-details/pages/chat-ticket/chat-ticket.component';
+import { ChatMessageTicketComponent } from './pages/tickets/pages/tickets-details/pages/chat-ticket/pages/chat-message-ticket/chat-message-ticket.component';
+import { TicketDetailsResolver } from 'src/app/core/_base/resolvers/admin/ticketDetails.resolver';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 
 
@@ -34,13 +38,15 @@ import { Ng5SliderModule } from 'ng5-slider';
     ReactiveFormsModule,
     GenericTableModule,
     PersianPipeModule,
-    Ng5SliderModule
+    Ng5SliderModule,
+    NgScrollbarModule
   ], providers: [
     DatePipe,
     UsersService,
     GatesService,
     UserResolver,
-    UserRolesResolver
+    UserRolesResolver,
+    TicketDetailsResolver
   ],
   declarations: [
     AdminComponent,
@@ -54,7 +60,9 @@ import { Ng5SliderModule } from 'ng5-slider';
     UsersGatesComponent,
     UsersWalletsComponent,
     TicketsComponent,
-    TicketsDetailsComponent
+    TicketsDetailsComponent,
+    ChatMessageTicketComponent,
+    ChatTicketComponent
   ]
 })
 export class AdminModule { }
