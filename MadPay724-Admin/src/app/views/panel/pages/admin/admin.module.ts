@@ -26,6 +26,10 @@ import { ChatTicketComponent } from './pages/tickets/pages/tickets-details/pages
 import { ChatMessageTicketComponent } from './pages/tickets/pages/tickets-details/pages/chat-ticket/pages/chat-message-ticket/chat-message-ticket.component';
 import { TicketDetailsResolver } from 'src/app/core/_base/resolvers/admin/ticketDetails.resolver';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { DocumentsComponent } from './pages/documents/documents.component';
+import { DocumentResolver } from 'src/app/core/_base/resolvers/admin/document.resolver';
+import { DocumentService } from 'src/app/core/_services/panel/admin/document.service';
+import { DocumentsDetailsComponent } from './pages/documents/pages/documents-details/documents-details.component';
 
 
 
@@ -44,9 +48,12 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
     DatePipe,
     UsersService,
     GatesService,
+    DocumentService,
+    //
     UserResolver,
     UserRolesResolver,
-    TicketDetailsResolver
+    TicketDetailsResolver,
+    DocumentResolver
   ],
   declarations: [
     AdminComponent,
@@ -62,7 +69,9 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
     TicketsComponent,
     TicketsDetailsComponent,
     ChatMessageTicketComponent,
-    ChatTicketComponent
+    ChatTicketComponent,
+    DocumentsComponent,
+    DocumentsDetailsComponent
   ]
 })
 export class AdminModule { }

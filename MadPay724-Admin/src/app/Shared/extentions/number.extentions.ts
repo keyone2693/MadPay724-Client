@@ -7,6 +7,7 @@ declare global {
         toFactorType(): string;
         toTicketDepartment(): string;
         toTicketLevel(): string;
+        toDocStatus(): string;
     }
 }
 
@@ -76,6 +77,19 @@ Number.prototype.toTicketDepartment = function (this: number): string {
             return 'نظارت بر محتوا';
         case 6:
             return 'حل اختلاف';
+        default:
+            return ''
+    }
+}
+Number.prototype.toDocStatus = function (this: number): string {
+    var docStatus = this;
+    switch (docStatus) {
+        case 0:
+            return 'در حال بررسی';
+        case 1:
+            return 'تایید شده';
+        case 2:
+            return 'رد شده';
         default:
             return ''
     }

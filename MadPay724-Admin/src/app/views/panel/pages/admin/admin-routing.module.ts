@@ -12,6 +12,9 @@ import { UsersGatesComponent } from './pages/users-management/pages/users-gates/
 import { TicketsDetailsComponent } from './pages/tickets/pages/tickets-details/tickets-details.component';
 import { TicketsComponent } from './pages/tickets/tickets.component';
 import { TicketDetailsResolver } from 'src/app/core/_base/resolvers/admin/ticketDetails.resolver';
+import { DocumentsComponent } from './pages/documents/documents.component';
+import { DocumentsDetailsComponent } from './pages/documents/pages/documents-details/documents-details.component';
+import { DocumentResolver } from 'src/app/core/_base/resolvers/admin/document.resolver';
 
 const routes: Routes = [
     {
@@ -38,6 +41,18 @@ const routes: Routes = [
             path: 'users/:userId/gates', canActivate: [AuthGuard],
             component: UsersGatesComponent,
             data: { roles: ['Admin'], title: ['مدیریت درگاه های کاربران'] }
+          },
+          //documents
+          {
+            path: 'documents/management', canActivate: [AuthGuard],
+            component: DocumentsComponent,
+            data: { roles: ['Admin'], title: ['مدیریت مدارک '] }
+          },
+          {
+            path: 'documents/:docId/details', canActivate: [AuthGuard],
+            resolve: { document: DocumentResolver },
+            component: DocumentsDetailsComponent,
+            data: { roles: ['Admin'], title: ['ویرایش و جزییات مدرک'] }
           },
           //ticket
           {
