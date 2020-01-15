@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 import { GatesWallets } from 'src/app/data/models/user/gatesWallets';
 import { GateWallets } from 'src/app/data/models/user/gateWallets';
 import { Gate } from 'src/app/data/models/user/gate';

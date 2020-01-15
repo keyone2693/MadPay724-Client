@@ -1,17 +1,11 @@
 import { Injectable } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { GatesWallets } from 'src/app/data/models/user/gatesWallets';
-import { GateWallets } from 'src/app/data/models/user/gateWallets';
+import { environment } from 'src/environments/environment.prod';
 import { Gate } from 'src/app/data/models/user/gate';
-import { Store } from '@ngrx/store';
 
-import * as fromStore from '../../../../store';
 import { PaginationResult } from 'src/app/data/models/common/paginationResult';
 import { map } from 'rxjs/operators';
-import { Factor } from 'src/app/data/models/accountant/factor';
 
 @Injectable({
   providedIn: 'root'

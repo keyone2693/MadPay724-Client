@@ -1,0 +1,156 @@
+<!-- User Profile Starts-->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/panel/admin/dashboard']">داشبورد</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a>ادمین </a>
+    </li>
+    <li class="breadcrumb-item">
+      <a>تیکت ها </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">
+      مدیریت تیکت ها
+    </li>
+  </ol>
+</nav>
+<!--Basic User Details Starts-->
+<section id="user-area">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-wrap bar-success">
+            <h4 class="card-title">مدیریت تیکت ها</h4>
+          </div>
+          <p>
+            تمام تیکتها در این صفحه نمایش داده می‌شوند
+          </p>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="search-div">
+                <div class="row mb-4">
+                  <mat-form-field class="col-md-4">
+                    <mat-label>وضعیت باز بودن</mat-label>
+                    <mat-select [(ngModel)]="search.close">
+                      <mat-option [value]="0">
+                        مهم نیست
+                      </mat-option>
+                      <mat-option [value]="1">
+                        باز 
+                      </mat-option>
+                      <mat-option [value]="2">
+                        بسته
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field class="col-md-4">
+                    <mat-label>اولویت</mat-label>
+                    <mat-select [(ngModel)]="search.level">
+                      <mat-option [value]="0">
+                        مهم نیست
+                      </mat-option>
+                      <mat-option [value]="1">
+                        عادی
+                      </mat-option>
+                      <mat-option [value]="2">
+                        مهم
+                      </mat-option>
+                      <mat-option [value]="3">
+                        خیلی مهم
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field class="col-md-4">
+                    <mat-label>دپارتمان</mat-label>
+                    <mat-select [(ngModel)]="search.department">
+                      <mat-option [value]="0">
+                        مهم نیست
+                      </mat-option>
+                      <mat-option [value]="1">
+                        پشتیبانی فنی
+                      </mat-option>
+                      <mat-option [value]="2">
+                        مالی و حسابداری
+                      </mat-option>
+                      <mat-option [value]="3">
+                        سوالات عمومی
+                      </mat-option>
+                      <mat-option [value]="4">
+                        انتقادات و پیشنهادات
+                      </mat-option>
+                      <mat-option [value]="5">
+                        نظارت بر محتوا
+                      </mat-option>
+                      <mat-option [value]="6">
+                        حل اختلاف
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="row mb-4">
+                  <div class="col-md-12">
+                    <mat-label class="mb-3 d-inline-block"
+                      >محدوده ی تاریخ</mat-label
+                    >
+                    <ng5-slider
+                      [(value)]="search.minDate"
+                      [(highValue)]="search.maxDate"
+                      [options]="optionsDate"
+                    ></ng5-slider>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <div class="col-md-9">
+                    <mat-form-field
+                      class="search-form-field"
+                      floatLabel="never"
+                      matTooltip=" جستوجو براساس شناسه و محتوای تیکت"
+                    >
+                      <input
+                        [(ngModel)]="search.filter"
+                        matInput
+                        type="text"
+                        placeholder="جستوجو ..."
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-3">
+                    <button
+                      mat-raised-button
+                      (click)="onSearch()"
+                      color="red"
+                      class="float-left mb-10"
+                    >
+                      <i class="icon-magnifier"></i>
+                     جست و جو
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <smc-simplemattable
+                class="mysimplemattable"
+                [data]="tickets"
+                [columns]="columns"
+                [paginator]="true"
+                [backendPagination]="true"
+                [paginatorLength]="pagination.totalItems"
+                [paginatorPageSize]="pagination.itemsPerPage"
+                [paginatorPageSizeOptions]="[5, 10, 25, 50]"
+                [sorting]="true"
+                [getPage]="onPageChange.bind(this)"
+                (sort)="sortEvent($event)"
+              ></smc-simplemattable>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--User Profile Starts-->

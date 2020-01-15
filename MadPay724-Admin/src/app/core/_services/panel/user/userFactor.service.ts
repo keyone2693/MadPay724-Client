@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Factor } from 'src/app/data/models/accountant/factor';
 import * as fromStore from '../../../../store';
 import { Store } from '@ngrx/store';
 import { FactorDetail } from 'src/app/data/models/accountant/factorDetail';

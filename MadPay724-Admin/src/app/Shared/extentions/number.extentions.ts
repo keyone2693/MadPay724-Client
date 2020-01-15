@@ -5,6 +5,8 @@ declare global {
     interface Number {
         toBankName(): string;
         toFactorType(): string;
+        toTicketDepartment(): string;
+        toTicketLevel(): string;
     }
 }
 
@@ -42,6 +44,38 @@ Number.prototype.toFactorType = function (this: number): string {
             return 'ایزی پی';
         case FactorTypes.Support:
             return 'حمایتی';
+        default:
+            return ''
+    }
+}
+Number.prototype.toTicketDepartment = function (this: number): string {
+    var ticketDepartment = this;
+    switch (ticketDepartment) {
+        case 1:
+            return 'عادی';
+        case 2:
+            return 'مهم';
+        case 3:
+            return 'خیلی مهم';
+        default:
+            return ''
+    }
+}
+Number.prototype.toTicketLevel = function (this: number): string {
+    var ticketLevel = this;
+    switch (ticketLevel) {
+        case 1:
+            return 'پشتیبانی فنی';
+        case 2:
+            return ' مالی و حسابداری';
+        case 3:
+            return 'سوالات عمومی';
+        case 4:
+            return 'انتقادات و پیشنهادات';
+        case 5:
+            return 'نظارت بر محتوا';
+        case 6:
+            return 'حل اختلاف';
         default:
             return ''
     }
