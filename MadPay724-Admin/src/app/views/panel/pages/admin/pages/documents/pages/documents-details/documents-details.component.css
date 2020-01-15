@@ -1,0 +1,26 @@
+.bg-gray{
+background: #333 !important;
+background-image: #333 !important;
+}
+.a-pointer{
+    cursor: pointer;
+}.mat-green {
+  background: #4caf50;
+  color: #fff;
+  width: 250px;
+  float: left;
+  font-weight: 900;
+  font-size: 16px;
+}
+.bg-wihtred{
+    background: #fff;
+    padding: 10px 5px;
+    border-radius: 70px;
+    color: #FF4961 !important
+}.ml-10 {
+  margin-left: 10px;
+}
+.img-doc{
+  height: 260px;
+    border-radius: 5px;
+}

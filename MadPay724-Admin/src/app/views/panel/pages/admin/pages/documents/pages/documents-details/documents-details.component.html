@@ -1,3 +1,236 @@
-<p>
-  documents-details works!
-</p>
+<!-- User Profile Starts-->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/panel/accountant/dashboard']">داشبورد</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a>حسابدار </a>
+    </li>
+    <li class="breadcrumb-item">
+      <a>مدیریت مدرک </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">
+      جزییات،ویرایش مدرک
+    </li>
+  </ol>
+</nav>
+<!--Basic User Details Starts-->
+<section id="kb">
+  <div class="card bg-gray white text-center p-4">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-6">
+          <a href="{{document.picUrl}}" target="_blank">
+                      <img [src]="document.picUrl" class="img-doc" alt="">
+          </a>
+        </div>
+        <div class="col-6">
+          <h1 class="white">جزییات،ویرایش مدرک</h1>
+          <h4 class="white">
+            با شناسه :
+            <code>{{ document.id }}</code>
+          </h4>
+          <h4 class="white">
+             برای کاربر با نام :
+            <code>{{ document.userName }}</code>
+          </h4>
+          <div class="alert alert-secondary">
+            <strong>زمان ثبت درخواست :</strong>
+            <code>
+              ( {{ document.dateCreated | date: "HH:mm" }} )
+              {{ document.dateCreated | persianDate }}
+            </code>
+            <br />
+            <strong>زمان اخرین تغییر درخواست :</strong>
+            <code>
+              ( {{ document.dateModified | date: "HH:mm" }} )
+              {{ document.dateModified | persianDate }}
+            </code>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-2 col-md-6 col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="px-0 py-3">
+            <div class="media">
+              <div class="media-left align-self-center">
+                <i class="icon-user-following danger font-large-2 float-left"></i>
+              </div>
+              <div class="media-body text-center">
+                <h5 class="mb-1 text-bold-500">{{ document.name }}</h5>
+                <span class="text-muted">نام و نام خانوادگی</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="px-0 py-3">
+            <div class="media">
+              <div class="media-left align-self-center">
+                <i class="icon-screen-tablet info font-large-2 float-left"></i>
+              </div>
+              <div class="media-body text-center">
+                <h5 class="mb-1 text-bold-500">{{ document.nationalCode }}</h5>
+                <span class="text-muted">شماره ملی</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="px-0 py-3">
+            <div class="media">
+              <div class="media-left align-self-center">
+                <i  *ngIf="document.isTrue" class="ft-user success font-large-2 float-left"></i>
+                <i  *ngIf="!document.isTrue" class="ft-file-text success font-large-2 float-left"></i>
+              </div>
+              <div class="media-body text-center">
+                <h5 class="mb-1 text-bold-500">{{ document.fatherNameRegisterCode }}</h5>
+                <span *ngIf="document.isTrue" class="text-muted">نام پدر</span>
+                <span *ngIf="!document.isTrue" class="text-muted">شماره ثبت</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="px-0 py-3">
+            <div class="media">
+              <div class="media-left align-self-center">
+                <i class="ft-calendar warning font-large-2 float-left"></i>
+              </div>
+              <div class="media-body text-center">
+                <h5 class="mb-1 text-bold-500">{{ document.birthDay | persianDate }}</h5>
+                <span class="text-muted">تارخ تولد</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-bankTrackingCode-wrap bar-success">
+            <h4 class="card-bankTrackingCode mb-0">ویرایش</h4>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-block">
+            <div [formGroup]="documentEditForm">
+              <div class="row">
+                <div class="col-md-8">
+                  <mat-form-field class="col-md-3">
+                    <mat-label>وضعیت مدرک</mat-label>
+                    <mat-select formControlName="approve">
+                      <mat-option [value]="0">
+                        در حال بررسی
+                      </mat-option>
+                      <mat-option [value]="1">
+                        تایید شده
+                      </mat-option>
+                      <mat-option [value]="2">
+                        رد شده
+                      </mat-option>
+                    </mat-select>
+                    <mat-error
+                      *ngIf="
+                        documentEditForm.get('approve').hasError('approve') &&
+                        documentEditForm.get('approve').touched
+                      "
+                      >این فیلد نمیتواند خالی باشد</mat-error
+                    >
+                  </mat-form-field>
+                  <mat-form-field class="col-md-12">
+                    <textarea
+                      matInput
+                      formControlName="message"
+                      placeholder="پیغام ارسالی به کاربر  *"
+                    ></textarea>
+                    <mat-error
+                      *ngIf="
+                        documentEditForm.get('message').hasError('required') &&
+                        documentEditForm.get('message').touched
+                      "
+                      >این فیلد نمیتواند خالی باشد</mat-error
+                    >
+                    <mat-error
+                      *ngIf="
+                        documentEditForm
+                          .get('message')
+                          .hasError('maxlength') &&
+                        documentEditForm.get('message').touched
+                      "
+                    >
+                      این فیلد نمیتواند بیشتر از 1000 کاراکتر باشد</mat-error
+                    >
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button
+            mat-raised-button
+            (click)="onSubmitEditDocument()"
+            [disabled]="documentEditForm.invalid"
+            color="green"
+            class="float-left mb-10"
+          >
+            <i class="icon-check"></i>
+            <span>ویرایش </span>
+          </button>
+          <button
+            mat-raised-button
+            (click)="onClear()"
+            color="warn"
+            class="float-left mb-10 ml-10"
+          >
+            <i class="icon-close"></i>
+            انصراف
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div
+        class="card card-inverse  text-center bg-info"
+      >
+        <div class="card-header">
+          <i
+            class=" font-large-1 float-left mr-2 icon-home"
+          ></i>
+          <h4 class="card-title">آدرس</h4>
+        </div>
+        <div class="card-body">
+          <div class="card-block">
+            <h3 class=" bg-wihtred">
+              {{ document.address }}
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Convex template Knowledge Base Ends -->
+</section>
+<!--User Profile Starts-->

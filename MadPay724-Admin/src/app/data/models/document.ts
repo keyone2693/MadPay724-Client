@@ -10,4 +10,7 @@ export interface Document {
     dateCreated: Date;
     address: string;
     picUrl: string;
+    
+    userId: string;
+    userName: string;
 }

@@ -47,7 +47,7 @@ export class DocumentService {
     return this.http.get<Document>(this.baseUrl + 'documents/' + docId);
   }
 
-  changeDocumentStatus(docId: string,status: number) {
-    return this.http.patch(this.baseUrl + 'documents/' + docId + '/statuschange', { status });
+  updateDocument(docId: string, document: any) {
+    return this.http.put(this.baseUrl + 'documents/' + docId, document);
   }
 }
