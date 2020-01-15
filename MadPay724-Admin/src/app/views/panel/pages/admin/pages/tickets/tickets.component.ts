@@ -19,6 +19,11 @@ import { TicketsService } from 'src/app/core/_services/panel/admin/tickets.servi
 import 'src/app/shared/extentions/bool.extentions'
 import 'src/app/shared/extentions/number.extentions'
 import { HtmlMpComponent } from 'src/app/shared/component/html-mp/html-mp.component';
+import { Store } from '@ngrx/store';
+
+import * as fromStore from 'src/app/store';
+
+
 @Component({
   selector: 'app-tickets',
   templateUrl: './tickets.component.html',
@@ -133,7 +138,7 @@ export class TicketsComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute, private alertService: ToastrService
     , private ticketService: TicketsService,
-    private router: Router,
+    private router: Router, private store: Store<fromStore.State>,
     private persianCalendarService: PersianCalendarService, private datePipe: DatePipe) { }
 
   createDateRange(): Date[] {
@@ -191,14 +196,15 @@ export class TicketsComponent implements OnInit, OnDestroy {
     );
     return of(this.tickets);
   }
-  onCloseChange(event: any, ticketId: string) {
+  onCloseChange( ticketId: string,event: any) {
     this.subManager.add(
       this.ticketService.setTicketClosed(ticketId, event.checked)
         .subscribe(() => {
-          this.onPageChange(this.pagination.currentPage, this.pagination.itemsPerPage);
           if (event.checked === true) {
+            this.store.dispatch(new fromStore.DecUnClosedTicketCount());
             this.alertService.success('تیکت بسته شد', 'موفق');
           } else {
+            this.store.dispatch(new fromStore.IncUnClosedTicketCount());
             this.alertService.success('تیکت باز شد', 'موفق');
           }
         }, error => {

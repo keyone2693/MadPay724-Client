@@ -55,6 +55,6 @@ export class TicketsService {
   }
 
   setTicketClosed(ticketId: string,closed: any) {
-    return this.http.put(this.baseUrl + 'tickets/' + ticketId, { closed });
+    return this.http.patch(this.baseUrl + 'tickets/' + ticketId, { closed });
   }
 }

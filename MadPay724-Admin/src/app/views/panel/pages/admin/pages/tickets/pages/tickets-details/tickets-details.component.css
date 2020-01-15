@@ -1,0 +1,22 @@
+.divtopnav{
+    border-bottom: 1px solid #D9D9D9;
+  }
+  .divmottnav{
+    padding-top: 15px;
+  } .media-body{
+    padding: 0 25px;
+    }
+    .update-time{
+      margin-left: 25px;
+    } 
+    .drltr{
+      direction: ltr !important;
+      text-align: left;
+    }
+    .btnpasokh{
+      margin-bottom: 18px;
+    }
+    .chkclosed{
+      margin: 20px 0 20px 20px;
+      float: left;
+    }

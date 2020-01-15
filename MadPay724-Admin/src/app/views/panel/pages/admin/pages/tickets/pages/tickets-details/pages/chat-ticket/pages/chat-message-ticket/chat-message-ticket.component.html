@@ -11,7 +11,7 @@ class="chat">
         data-original-title=""
       >
         <img
-        [src]="!ticketContent.isAdminSide ? photoUrl : '../../../../../../../assets/img/profilepic.png'"
+        [src]="ticketContent.isAdminSide ? photoUrl : '../../../../../../../assets/img/profilepic.png'"
           class="width-50 rounded-circle"
           alt="avatar"
         />
@@ -26,7 +26,8 @@ class="chat">
       <div class="chat-content bgblavk" *ngIf="ticketContent.fileUrl !== ''">
           <p>
               <a
-              [ngClass]="{'whitecolo': !ticketContent.isAdminSide}"
+              target="_blank"
+              Class="whitecolo"
               href="{{ticketContent.fileUrl}}">
              دانلود فایل
            </a></p>

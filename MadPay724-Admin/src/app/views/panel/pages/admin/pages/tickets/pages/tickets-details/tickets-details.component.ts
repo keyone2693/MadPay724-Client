@@ -31,8 +31,9 @@ export class TicketsDetailsComponent implements OnInit, OnDestroy {
   }
   onSetClosed() {
     this.ticketService.setTicketClosed(
-      this.closedck.checked,
-      this.ticket.id
+      this.ticket.id,
+      this.closedck.checked
+      
     ).subscribe(() => {
       this.alertService.success('وضعیت تیکت با موفیت تغییر کرد', 'موفق');
       this.ticket.closed = this.closedck.checked;
