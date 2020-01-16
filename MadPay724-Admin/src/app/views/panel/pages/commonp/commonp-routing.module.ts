@@ -10,6 +10,7 @@ import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard
 import { AccountantDashboardComponent } from './pages/accountant-dashboard/accountant-dashboard.component';
 import { BlogDashboardComponent } from './pages/blog-dashboard/blog-dashboard.component';
 import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
+import { UserDashboardResolver } from 'src/app/core/_base/resolvers/common/userDashboard.resolver';
 
 const routes: Routes = [
   {
@@ -29,7 +30,9 @@ const routes: Routes = [
         data: { roles: ['Blog', 'AdminBlog'], title: ['داشبورد بلاگر'] }
       },
       {
-        path: 'user/dashboard', canActivate: [AuthGuard], component: UserDashboardComponent,
+        path: 'user/dashboard', canActivate: [AuthGuard],
+        resolve: { userDashboard :UserDashboardResolver },
+        component: UserDashboardComponent,
         data: { roles: ['User'], title: ['داشبورد کاربر'] }
       },
       

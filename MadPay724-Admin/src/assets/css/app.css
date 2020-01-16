@@ -49899,16 +49899,16 @@ ul.no-list-style {
 }
 
 .ct-label.ct-horizontal.ct-end {
-  -webkit-box-align : flex-start;
-  -webkit-align-items : flex-start;
-  -ms-flex-align : flex-start;
-     -moz-box-align : start;
-          align-items : flex-start;
-  -webkit-box-pack : flex-start;
-  -webkit-justify-content : flex-start;
-  -ms-flex-pack : flex-start;
-     -moz-box-pack : start;
-          justify-content : flex-start;
+  -webkit-box-align : flex-end;
+  -webkit-align-items : flex-end;
+  -ms-flex-align : flex-end;
+     -moz-box-align : end;
+          align-items : flex-end;
+  -webkit-box-pack : flex-end;
+  -webkit-justify-content : flex-end;
+  -ms-flex-pack : flex-end;
+     -moz-box-pack : end;
+          justify-content : flex-end;
   text-align : left;
   text-anchor : start;
 }

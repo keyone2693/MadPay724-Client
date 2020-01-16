@@ -53,3 +53,6 @@
 .mat-checkbox-disabled{
   cursor: no-drop !important;
 }
+.ct-labels{
+  overflow: visible;
+}

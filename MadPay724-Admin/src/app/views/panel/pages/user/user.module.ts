@@ -10,7 +10,6 @@ import { DigitOnlyModule } from '@uiowa/digit-only';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import { ChartistModule } from 'ng-chartist';
 import { DocumentComponent } from './pages/userinfo/document/document.component';
 import { RightDocumentComponent } from './pages/userinfo/document/pages/right-document/right-document.component';
 import { LeftDocumentComponent } from './pages/userinfo/document/pages/left-document/left-document.component';
@@ -78,10 +77,8 @@ import { UserFactorResolver } from 'src/app/core/_base/resolvers/user/userFactor
     // InfiniteScrollModule,
     // NgxUiLoaderModule,
     SweetAlert2Module.forRoot(),
-    ChartistModule,
     PersianPipeModule,
     GenericTableModule,
-    PersianPipeModule
   ],
   declarations: [
     UserComponent,

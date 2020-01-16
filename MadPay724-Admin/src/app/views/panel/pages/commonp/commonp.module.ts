@@ -15,6 +15,9 @@ import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.co
 import { BlogDashboardComponent } from './pages/blog-dashboard/blog-dashboard.component';
 import { AccountantDashboardComponent } from './pages/accountant-dashboard/accountant-dashboard.component';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
+import { ChartistModule } from 'ng-chartist';
+import { DashboardService } from 'src/app/core/_services/common/dashboard.service';
+import { UserDashboardResolver } from 'src/app/core/_base/resolvers/common/userDashboard.resolver';
 
 @NgModule({
   imports: [
@@ -23,7 +26,8 @@ import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    PersianPipeModule
+    PersianPipeModule,
+    ChartistModule
   ],
   declarations: [
     ProfileComponent,
@@ -36,6 +40,8 @@ import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard
     UserDashboardComponent
   ],
   providers: [
+    DashboardService,
+    UserDashboardResolver,
     PreventUnsavedGuard,
     UserService, //
     UserProfileResolver
