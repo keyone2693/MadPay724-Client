@@ -25,7 +25,7 @@ export function NotificationReducer(state = initNotificationState, action: Notif
                 unVerifiedBlogCount: action.payload.unVerifiedBlogCount,
                 unClosedTicketCount: action.payload.unClosedTicketCount,
                 unCheckedEntry: action.payload.unCheckedEntry,
-                UnSpecifiedEntry: action.payload.unSpecifiedEntry,
+                unSpecifiedEntry: action.payload.unSpecifiedEntry,
                 unVerifiedGateInPast7Days: action.payload.unVerifiedGateInPast7Days,
                 unVerifiedBankCardInPast7Days: action.payload.unVerifiedBankCardInPast7Days,
                 unVerifiedDocuments: action.payload.unVerifiedDocuments
@@ -34,9 +34,9 @@ export function NotificationReducer(state = initNotificationState, action: Notif
             return { ...state, error: action.payload }      
         //--------------------------------------------
         case fromAction.NotificationActionTypes.INC_BLOGUNVERIFIEDCOUNT:
-            return { ...state, unverifiedBlogCount: state.unVerifiedBlogCount + 1 }
+            return { ...state, unVerifiedBlogCount: state.unVerifiedBlogCount + 1 }
         case fromAction.NotificationActionTypes.DEC_BLOGUNVERIFIEDCOUNT:
-            return { ...state, unverifiedBlogCount: state.unVerifiedBlogCount - 1 }
+            return { ...state, unVerifiedBlogCount: state.unVerifiedBlogCount - 1 }
         //--------------------------------------------
         case fromAction.NotificationActionTypes.INC_UNCLOSEDTICKETCOUNT:
             return { ...state, unClosedTicketCount: state.unClosedTicketCount + 1 }

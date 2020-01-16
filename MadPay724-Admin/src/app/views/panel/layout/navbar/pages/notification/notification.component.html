@@ -23,13 +23,13 @@
          *appHasRole="['Admin']"
           [routerLink]="['/panel/admin/documents/management']"
           class="dropdown-item noti-container py-2">
-          <i class="icon-docs danger float-right d-block font-medium-4 mt-1 ml-2 "></i>
+          <i class="icon-docs danger float-right d-block font-medium-2 mt-0 ml-2 "></i>
           <span
             *ngIf="notifications.unVerifiedDocuments > 0"
             class="noti-wrapper">
             <span class="noti-title line-height-1 d-block text-bold-400 danger">
               <strong>{{ notifications.unVerifiedDocuments }}</strong>
-             مدارک در انتظار بررسی
+             مدرک در انتظار بررسی
             </span>
             <span class="noti-text">
               برای بررسی مدارک کلیک کنید !!!
@@ -47,13 +47,13 @@
          *appHasRole="['Admin', 'Accountant']"
           [routerLink]="['/panel/accountant/entryapprove']"
           class="dropdown-item noti-container py-2">
-          <i class="icon-shield info float-right d-block font-medium-4 mt-1 ml-2 "></i>
+          <i class="icon-shield info float-right d-block font-medium-2 mt-0 ml-2 "></i>
           <span
             *ngIf="notifications.unCheckedEntry > 0"
             class="noti-wrapper">
             <span class="noti-title line-height-1 d-block text-bold-400 info">
               <strong>{{ notifications.unCheckedEntry }}</strong>
-             واریزی های در انتظار بررسی
+             واریزی در انتظار بررسی
             </span>
             <span class="noti-text">
               برای بررسی واریزی ها کلیک کنید !!!
@@ -71,13 +71,13 @@
          *appHasRole="['Admin', 'Accountant']"
           [routerLink]="['/panel/accountant/entrypardakht']"
           class="dropdown-item noti-container py-2">
-          <i class="icon-share-alt warning float-right d-block font-medium-4 mt-1 ml-2 "></i>
+          <i class="icon-share-alt warning float-right d-block font-medium-2 mt-0 ml-2 "></i>
           <span
             *ngIf="notifications.unSpecifiedEntry > 0"
             class="noti-wrapper">
             <span class="noti-title line-height-1 d-block text-bold-400 warning">
               <strong>{{ notifications.unSpecifiedEntry }}</strong>
-             واریزی های در انتظار پرداخت
+             واریزی در انتظار پرداخت
             </span>
             <span class="noti-text">
               برای پرداخت واریزی ها کلیک کنید !!!
@@ -95,13 +95,13 @@
          *appHasRole="['Admin', 'Accountant']"
           [routerLink]="['/panel/accountant/gates']"
           class="dropdown-item noti-container py-2">
-          <i class="icon-globe danger float-right d-block font-medium-4 mt-1 ml-2 "></i>
+          <i class="icon-globe danger float-right d-block font-medium-2 mt-0 ml-2 "></i>
           <span
             *ngIf="notifications.unVerifiedGateInPast7Days > 0"
             class="noti-wrapper">
             <span class="noti-title line-height-1 d-block text-bold-400 danger">
               <strong>{{ notifications.unVerifiedGateInPast7Days }}</strong>
-             درگاه های در انتظار تایید در 7 روز گذشته
+             درگاه در انتظار تایید در 7 روز گذشته
             </span>
             <span class="noti-text">
               برای تایید درگاه ها کلیک کنید !!!
@@ -119,13 +119,13 @@
          *appHasRole="['Admin', 'Accountant']"
           [routerLink]="['/panel/accountant/bankcards']"
           class="dropdown-item noti-container py-2">
-          <i class="icon-credit-card success float-right d-block font-medium-4 mt-1 ml-2 "></i>
+          <i class="icon-credit-card success float-right d-block font-medium-2 mt-0 ml-2 "></i>
           <span
             *ngIf="notifications.unVerifiedBankCardInPast7Days > 0"
             class="noti-wrapper">
             <span class="noti-title line-height-1 d-block text-bold-400 success">
               <strong>{{ notifications.unVerifiedBankCardInPast7Days }}</strong>
-             کارت های بانکی در انتظار تایید در 7 روز گذشته
+             کارت بانکی در انتظار تایید در 7 روز گذشته
             </span>
             <span class="noti-text">
               برای تایید کارت های بانکی کلیک کنید !!!
@@ -145,14 +145,14 @@
           class="dropdown-item noti-container py-2"
         >
           <i
-            class="ft-copy danger float-right d-block font-medium-4 mt-1 ml-2 "
+            class="ft-copy danger float-right d-block font-medium-2 mt-0 ml-2 "
           ></i>
           <span
-            *ngIf="notifications.unverifiedBlogCount > 0"
+            *ngIf="notifications.unVerifiedBlogCount > 0"
             class="noti-wrapper"
           >
             <span class="noti-title line-height-1 d-block text-bold-400 danger">
-              <strong>{{ notifications.unverifiedBlogCount }}</strong>
+              <strong>{{ notifications.unVerifiedBlogCount }}</strong>
               بلاگ در انتظار تایید نمایش
             </span>
             <span class="noti-text">
@@ -160,7 +160,7 @@
             </span>
           </span>
           <span
-            *ngIf="notifications.unverifiedBlogCount === 0"
+            *ngIf="notifications.unVerifiedBlogCount === 0"
             class="noti-wrapper"
           >
             <span class="noti-title line-height-1 d-block text-bold-400 danger">
@@ -174,13 +174,13 @@
           class="dropdown-item noti-container py-2"
         >
           <i
-            class="icon-bubbles warning  float-right d-block font-medium-4 mt-1 ml-2 "
+            class="icon-bubbles info  float-right d-block font-medium-2 mt-0 ml-2 "
           ></i>
           <span
             *ngIf="notifications.unClosedTicketCount > 0"
             class="noti-wrapper"
           >
-            <span class="noti-title line-height-1 d-block text-bold-400 warning ">
+            <span class="noti-title line-height-1 d-block text-bold-400 info ">
               <strong>{{ notifications.unClosedTicketCount }}</strong>
               تیکت باز دارید
             </span>
@@ -192,7 +192,7 @@
             *ngIf="notifications.unClosedTicketCount === 0"
             class="noti-wrapper"
           >
-            <span class="noti-title line-height-1 d-block text-bold-400 warning ">
+            <span class="noti-title line-height-1 d-block text-bold-400 info ">
               تیکت بازی وجود ندارد !!!
             </span>
           </span>

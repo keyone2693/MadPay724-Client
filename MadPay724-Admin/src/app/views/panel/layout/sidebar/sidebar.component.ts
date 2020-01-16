@@ -36,4 +36,12 @@ export class SidebarComponent implements OnInit {
     document.getElementsByTagName('head')[0].appendChild(node);
   }
 
+  getEntryNotifySum(unCheckedEntry: number, unSpecifiedEntry:number): number {
+    return unCheckedEntry + unSpecifiedEntry
+  }
+
+  getMaliNotifySum(unVerifiedGateInPast7Days: number, unVerifiedBankCardInPast7Days: number): number {
+    return unVerifiedGateInPast7Days + unVerifiedBankCardInPast7Days
+  }
+
 }

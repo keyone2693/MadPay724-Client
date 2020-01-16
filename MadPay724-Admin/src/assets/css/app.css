@@ -46533,8 +46533,8 @@ margin: 0 auto;
 .app-sidebar .navigation i, .off-canvas-sidebar .navigation i {
   font-size : 18px;
   float : right;
-  margin-left: 10px;
-  margin-right : 1px;
+  margin-left: 2px;
+  margin-right :0px;
   line-height : 2rem;
   width : 30px;
   text-align : center;

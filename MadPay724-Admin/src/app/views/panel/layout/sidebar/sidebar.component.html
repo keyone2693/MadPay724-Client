@@ -105,6 +105,12 @@
          <li *appHasRole="['Admin', 'Accountant']" class="has-sub nav-item">
           <a href="javascript:;">
             <i class="icon-logout"></i>
+              <span
+              [hidden]="getEntryNotifySum(notifications.unCheckedEntry , notifications.unSpecifiedEntry)  === 0"
+              matTooltip="واریزی های بررسی نشده"
+              matTooltipPosition="left"
+              class="tag badge badge-pill badge-danger mt-1"
+              >{{ getEntryNotifySum(notifications.unCheckedEntry , notifications.unSpecifiedEntry) }}</span>
             <span data-i18n="" class="menu-title">مدیریت واریزی</span>
           </a>
           <ul class="menu-content">
@@ -114,8 +120,13 @@
                 class="menu-item"
               >
                 <i class="icon-shield"></i>
-                 واریز تایید نشده</a
-              >
+                <span
+                [hidden]="notifications.unCheckedEntry === 0"
+                matTooltip="واریزی های بررسی نشده"
+                matTooltipPosition="left"
+                class="tag badge badge-pill badge-success mt-1 madpaynotifybadge"
+                >{{ notifications.unCheckedEntry}}</span>
+                 واریز تایید نشده</a>
             </li>
             <li routerLinkActive="active mlisub">
               <a
@@ -123,8 +134,13 @@
                 class="menu-item"
               >
                 <i class="icon-share-alt"></i>
-                 واریز پرداخت نشده</a
-              >
+                 <span
+                [hidden]="notifications.unSpecifiedEntry === 0"
+                matTooltip="واریزی های پرداخت نشده"
+                matTooltipPosition="left"
+                class="tag badge badge-pill badge-success mt-1 madpaynotifybadge"
+                >{{notifications.unSpecifiedEntry }}</span>
+                 واریز پرداخت نشده</a>
             </li>
             <li routerLinkActive="active mlisub">
               <a
@@ -140,6 +156,12 @@
         <li *appHasRole="['Admin', 'Accountant']" class="has-sub nav-item">
           <a href="javascript:;">
             <i class="icon-pie-chart"></i>
+                            <span
+                [hidden]="getMaliNotifySum(notifications.unVerifiedGateInPast7Days,notifications.unVerifiedBankCardInPast7Days) === 0"
+                matTooltip="کارت ها و درگاه های تایید نشده 7 روز پیش"
+                matTooltipPosition="left"
+                class="tag badge badge-pill badge-warning mt-1" style="color: #fff;"
+                >{{getMaliNotifySum(notifications.unVerifiedGateInPast7Days,notifications.unVerifiedBankCardInPast7Days) }}</span>
             <span data-i18n="" class="menu-title">مدیریت مالی</span>
           </a>
           <ul class="menu-content">
@@ -149,6 +171,12 @@
                 class="menu-item"
               >
                 <i class="icon-globe"></i>
+                                            <span
+                [hidden]="notifications.unVerifiedGateInPast7Days === 0"
+                matTooltip="درگاه های تایید نشده 7 روز پیش"
+                matTooltipPosition="left"
+                class="tag badge badge-pill badge-success mt-1 madpaynotifybadge"
+                >{{notifications.unVerifiedGateInPast7Days }}</span>
                 درگاه های پرداخت</a
               >
             </li>
@@ -158,6 +186,12 @@
                 class="menu-item"
               >
                 <i class="icon-credit-card"></i>
+                                            <span
+                [hidden]="notifications.unVerifiedBankCardInPast7Days === 0"
+                matTooltip="کارت های تایید نشده 7 روز پیش"
+                matTooltipPosition="left"
+                class="tag badge badge-pill badge-success mt-1 madpaynotifybadge"
+                >{{notifications.unVerifiedBankCardInPast7Days }}</span>
                  کارت های بانکی</a
               >
             </li>
@@ -185,14 +219,6 @@
           <a href="javascript:;">
             <i class="ft-shopping-cart"></i>
             <span data-i18n="" class="menu-title">فاکتور ها</span>
-            <span
-              *appHasRole="['Admin', 'Accountant']"
-              [hidden]="notifications.unverifiedBlogCount === 0"
-              matTooltip="بلاگ های تایید نشده"
-              matTooltipPosition="left"
-              class="tag badge badge-pill badge-danger mt-1"
-              >{{ notifications.unverifiedBlogCount }}</span
-            >
           </a>
           <ul class="menu-content">
             <!-- <li routerLinkActive="active mlisub">
@@ -204,14 +230,6 @@
             <li routerLinkActive="active mlisub">
               <a [routerLink]="['/panel/accountant/factors']" class="menu-item">
                 <i class="icon-bag"></i>
-                <span
-                  *appHasRole="['Admin', 'Accountant']"
-                  [hidden]="notifications.unverifiedBlogCount === 0"
-                  matTooltipPosition="left"
-                  matTooltip="بلاگ های تایید نشده"
-                  class="tag badge badge-pill badge-success mt-1 madpaynotifybadge"
-                  >{{ notifications.unverifiedBlogCount }}</span
-                >
                 مدیریت فاکتور ها</a
               >
             </li>
@@ -239,12 +257,11 @@
             <span data-i18n="" class="menu-title">بلاگ</span>
             <span
               *appHasRole="['Admin','AdminBlog']"
-              [hidden]="notifications.unverifiedBlogCount === 0"
+              [hidden]="notifications.unVerifiedBlogCount === 0"
               matTooltip="بلاگ های تایید نشده"
               matTooltipPosition="left"
               class="tag badge badge-pill badge-danger mt-1"
-              >{{ notifications.unverifiedBlogCount }}</span
-            >
+              >{{ notifications.unVerifiedBlogCount }}</span>
           </a>
           <ul class="menu-content">
             <li routerLinkActive="active mlisub">
@@ -258,11 +275,11 @@
                 <i class="ft-airplay "></i>
                 <span
                   *appHasRole="['Admin', 'AdminBlog']"
-                  [hidden]="notifications.unverifiedBlogCount === 0"
+                  [hidden]="notifications.unVerifiedBlogCount === 0"
                   matTooltipPosition="left"
                   matTooltip="بلاگ های تایید نشده"
                   class="tag badge badge-pill badge-success mt-1 madpaynotifybadge"
-                  >{{ notifications.unverifiedBlogCount }}</span
+                  >{{ notifications.unVerifiedBlogCount }}</span
                 >
                 مدیریت بلاگ</a
               >
