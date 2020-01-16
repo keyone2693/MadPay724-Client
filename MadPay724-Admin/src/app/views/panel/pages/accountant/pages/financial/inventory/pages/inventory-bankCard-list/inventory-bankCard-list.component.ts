@@ -74,8 +74,10 @@ export class InventoryBankCardListComponent implements OnInit, OnDestroy {
       this.inventoryService.approveInventoryBankCard(bancardId, event.checked)
         .subscribe(() => {
           if (event.checked === true) {
+            this.store.dispatch(new fromStore.DecUnVerifiedBankCardCount());
             this.alertService.success('کارت بانکی تایید شد', 'موفق');
           } else {
+            this.store.dispatch(new fromStore.IncUnVerifiedBankCardCount());
             this.alertService.success('کارت بانکی از حالت تایید خارج شد', 'موفق');
           }
         }, error => {

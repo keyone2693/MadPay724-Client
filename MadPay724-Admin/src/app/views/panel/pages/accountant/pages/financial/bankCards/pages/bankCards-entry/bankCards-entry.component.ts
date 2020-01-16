@@ -5,8 +5,6 @@ import { ToastrService } from 'ngx-toastr';
 import { EntryService } from 'src/app/core/_services/panel/accountant/entry.service';
 import { Subscription, Observable, Subject, fromEvent } from 'rxjs';
 import { TableColumn, Width } from 'simplemattable';
-import { Store } from '@ngrx/store';
-import * as fromStore from '../../../../../../../../../store';
 import { UiType } from 'src/app/data/enums/uiType.enum';
 import { CheckboxMPComponent } from 'src/app/shared/component/checkbox-mp/checkbox-mp.component';
 import { ButtonMPComponent } from 'src/app/shared/component/button-mp/button-mp.component';
@@ -20,6 +18,9 @@ import { HtmlMpComponent } from 'src/app/shared/component/html-mp/html-mp.compon
 import { TooltipPosition } from 'src/app/data/enums/tooltipPosition.enum';
 import { Location } from '@angular/common';
 import { CurrentTitleStateModel } from 'src/app/store/_model/currentTitleStateModel';
+import * as fromStore from 'src/app/store';
+import { Store } from '@ngrx/store';
+
 
 @Component({
   selector: 'app-bankCards-entry',
@@ -182,8 +183,10 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy, AfterViewInit
         .subscribe(() => {
           this.onPageChange(this.pagination.currentPage, this.pagination.itemsPerPage);
           if (event.checked === true) {
+            this.store.dispatch(new fromStore.DecUnCheckedEntryCount());
             this.alertService.success('واریزی تایید شد', 'موفق');
           } else {
+            this.store.dispatch(new fromStore.IncUnCheckedEntryCount());
             this.alertService.success('واریزی از حالت تایید خارج شد', 'موفق');
           }
         }, error => {
@@ -197,8 +200,10 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy, AfterViewInit
         .subscribe(() => {
           this.onPageChange(this.pagination.currentPage, this.pagination.itemsPerPage);
           if (event.checked === true) {
+            this.store.dispatch(new fromStore.DecUnSpecifiedEntryCount());
             this.alertService.success('واریزی پرداخت شد', 'موفق');
           } else {
+            this.store.dispatch(new fromStore.IncUnSpecifiedEntryCount());
             this.alertService.success('واریزی از حالت پرداخت خارج شد', 'موفق');
           }
         }, error => {
@@ -212,8 +217,10 @@ export class BankCardsEntryComponent implements OnInit, OnDestroy, AfterViewInit
         .subscribe(() => {
           this.onPageChange(this.pagination.currentPage, this.pagination.itemsPerPage);
           if (event.checked === true) {
+            this.store.dispatch(new fromStore.DecUnSpecifiedEntryCount());
             this.alertService.success('واریزی رد شد', 'موفق');
           } else {
+            this.store.dispatch(new fromStore.IncUnSpecifiedEntryCount());
             this.alertService.success('واریزی از حالت رد خارج شد', 'موفق');
           }
         }, error => {

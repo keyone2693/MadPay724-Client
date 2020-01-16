@@ -7,7 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Pagination } from 'src/app/data/models/common/pagination';
 import { FilterSortOrderBy } from 'src/app/data/models/common/filterSortOrderBy';
-import * as fromStore from '../../../../../../../../store';
+import * as fromStore from 'src/app/store';
 import { Store } from '@ngrx/store';
 
 @Component({

@@ -172,6 +172,7 @@ export class GateFactorsComponent implements OnInit, OnDestroy, AfterViewInit {
           if (event.checked === true) {
             this.alertService.success('وضعیت فاکتور تایید شد', 'موفق');
           } else {
+
             this.alertService.success('وضعیت فاکتور از حالت تایید خارج شد', 'موفق');
           }
         }, error => {

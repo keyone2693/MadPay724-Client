@@ -42,6 +42,31 @@ export function NotificationReducer(state = initNotificationState, action: Notif
             return { ...state, unClosedTicketCount: state.unClosedTicketCount + 1 }
         case fromAction.NotificationActionTypes.DEC_UNCLOSEDTICKETCOUNT:
             return { ...state, unClosedTicketCount: state.unClosedTicketCount - 1 }
+        //entry
+        case fromAction.NotificationActionTypes.INC_UNCHECKEDENTRY:
+            return { ...state, unCheckedEntry: state.unCheckedEntry + 1 }
+        case fromAction.NotificationActionTypes.DEC_UNCHECKEDENTRY:
+            return { ...state, unCheckedEntry: state.unCheckedEntry - 1 }
+        //entry
+        case fromAction.NotificationActionTypes.INC_UNSPECIFIEDENTRY:
+            return { ...state, unSpecifiedEntry: state.unSpecifiedEntry + 1 }
+        case fromAction.NotificationActionTypes.DEC_UNSPECIFIEDENTRY:
+            return { ...state, unSpecifiedEntry: state.unSpecifiedEntry - 1 }
+        //gate
+        case fromAction.NotificationActionTypes.INC_UNVERIFIEDGATEINPAST7DAYS:
+            return { ...state, unVerifiedGateInPast7Days: state.unVerifiedGateInPast7Days + 1 }
+        case fromAction.NotificationActionTypes.DEC_UNVERIFIEDGATEINPAST7DAYS:
+            return { ...state, unVerifiedGateInPast7Days: state.unVerifiedGateInPast7Days - 1 }
+        //card
+        case fromAction.NotificationActionTypes.INC_UNVERIFIEDBANKCARDINPAST7DAYS:
+            return { ...state, unVerifiedBankCardInPast7Days: state.unVerifiedBankCardInPast7Days + 1 }
+        case fromAction.NotificationActionTypes.DEC_UNVERIFIEDBANKCARDINPAST7DAYS:
+            return { ...state, unVerifiedBankCardInPast7Days: state.unVerifiedBankCardInPast7Days - 1 }
+        //document
+        case fromAction.NotificationActionTypes.INC_UNVERIFIEDDOCUMENTS:
+            return { ...state, unVerifiedDocuments: state.unVerifiedDocuments + 1 }
+        case fromAction.NotificationActionTypes.DEC_UNVERIFIEDDOCUMENTS:
+            return { ...state, unVerifiedDocuments: state.unVerifiedDocuments - 1 }
         //--------------------------------------------
         default:
             return state;

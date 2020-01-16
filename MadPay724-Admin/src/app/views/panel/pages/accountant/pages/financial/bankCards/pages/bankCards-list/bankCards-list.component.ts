@@ -6,10 +6,10 @@ import { Pagination } from 'src/app/data/models/common/pagination';
 import { FilterSortOrderBy } from 'src/app/data/models/common/filterSortOrderBy';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Store } from '@ngrx/store';
 import { InventoryService } from 'src/app/core/_services/panel/accountant/Inventory.service';
 
-import * as fromStore from '../../../../../../../../../store';
+import * as fromStore from 'src/app/store';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-bankCards-list',
@@ -129,8 +129,10 @@ export class BankCardsListComponent implements OnInit, OnDestroy {
       this.inventoryService.approveInventoryBankCard(bancardId, event.checked)
         .subscribe(() => {
           if (event.checked === true) {
+            this.store.dispatch(new fromStore.DecUnVerifiedBankCardCount());
             this.alertService.success('کارت بانکی تایید شد', 'موفق');
           } else {
+            this.store.dispatch(new fromStore.IncUnVerifiedBankCardCount());
             this.alertService.success('کارت بانکی از حالت تایید خارج شد', 'موفق');
           }
         }, error => {

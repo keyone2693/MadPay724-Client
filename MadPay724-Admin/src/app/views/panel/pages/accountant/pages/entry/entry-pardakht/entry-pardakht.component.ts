@@ -8,6 +8,10 @@ import { EntryService } from 'src/app/core/_services/panel/accountant/entry.serv
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
+import * as fromStore from 'src/app/store';
+import { Store } from '@ngrx/store';
+
+
 @Component({
   selector: 'app-entry-pardakht',
   templateUrl: './entry-pardakht.component.html',
@@ -33,7 +37,7 @@ export class EntryPardakhtComponent implements OnInit, OnDestroy {
   noContentHideFlag = true;
   constructor(private entryService: EntryService,
     private router: Router, private route: ActivatedRoute,
-    private alertService: ToastrService) { }
+    private alertService: ToastrService, private store: Store<fromStore.State>) { }
 
   ngOnInit() {
     this.loadgetEntries();
@@ -125,8 +129,10 @@ export class EntryPardakhtComponent implements OnInit, OnDestroy {
         .subscribe(() => {
           this.applyFilter();
           if (event.checked === true) {
+            this.store.dispatch(new fromStore.DecUnCheckedEntryCount());
             this.alertService.success('واریزی تایید شد', 'موفق');
           } else {
+            this.store.dispatch(new fromStore.IncUnCheckedEntryCount());
             this.alertService.success('واریزی از حالت تایید خارج شد', 'موفق');
           }
         }, error => {
@@ -140,8 +146,10 @@ export class EntryPardakhtComponent implements OnInit, OnDestroy {
         .subscribe(() => {
           this.applyFilter();
           if (event.checked === true) {
+            this.store.dispatch(new fromStore.DecUnSpecifiedEntryCount());
             this.alertService.success('واریزی پرداخت شد', 'موفق');
           } else {
+            this.store.dispatch(new fromStore.IncUnSpecifiedEntryCount());
             this.alertService.success('واریزی از حالت پرداخت خارج شد', 'موفق');
           }
         }, error => {
@@ -155,8 +163,10 @@ export class EntryPardakhtComponent implements OnInit, OnDestroy {
         .subscribe(() => {
           this.applyFilter();
           if (event.checked === true) {
+            this.store.dispatch(new fromStore.DecUnSpecifiedEntryCount());
             this.alertService.success('واریزی رد شد', 'موفق');
           } else {
+            this.store.dispatch(new fromStore.IncUnSpecifiedEntryCount());
             this.alertService.success('واریزی از حالت رد خارج شد', 'موفق');
           }
         }, error => {

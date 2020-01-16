@@ -198,10 +198,11 @@ export class GatesComponent implements OnInit, OnDestroy, AfterViewInit {
         this.subManager.add(
           this.gateService.changeActiveGate(gateId, event.checked)
             .subscribe(() => {
-              this.onPageChange(this.pagination.currentPage, this.pagination.itemsPerPage);
               if (event.checked === true) {
+                this.store.dispatch(new fromStore.DecUnVerifiedGateCount());
                 this.alertService.success('وضعیت فاکتور تایید شد', 'موفق');
               } else {
+                this.store.dispatch(new fromStore.IncUnVerifiedGateCount());
                 this.alertService.success('وضعیت فاکتور از حالت تایید خارج شد', 'موفق');
               }
             }, error => {
@@ -212,7 +213,6 @@ export class GatesComponent implements OnInit, OnDestroy, AfterViewInit {
         this.subManager.add(
           this.gateService.changeDirectGate(gateId, event.checked)
             .subscribe(() => {
-              this.onPageChange(this.pagination.currentPage, this.pagination.itemsPerPage);
               if (event.checked === true) {
                 this.alertService.success('وضعیت فاکتور تایید شد', 'موفق');
               } else {
@@ -226,7 +226,6 @@ export class GatesComponent implements OnInit, OnDestroy, AfterViewInit {
         this.subManager.add(
           this.gateService.changeIpGate(gateId, event.checked)
             .subscribe(() => {
-              this.onPageChange(this.pagination.currentPage, this.pagination.itemsPerPage);
               if (event.checked === true) {
                 this.alertService.success('وضعیت فاکتور تایید شد', 'موفق');
               } else {
