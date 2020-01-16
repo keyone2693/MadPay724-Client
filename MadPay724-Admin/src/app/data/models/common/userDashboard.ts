@@ -19,6 +19,7 @@ export interface UserDashboard {
     exitMoney5Days: Days,
 
     totalSuccessFactor: number,
+    factor8Months:Days,
     last10Factors: Factor[],
 
 

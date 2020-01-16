@@ -64,6 +64,15 @@ export class PersianCalendarService {
     this.toPersian(gregorianDate);
     return this.day + ' ' + this.strMonth;
   }
+  PersianCalendarMonth(gregorianDate: Date): string {
+    this.today = new Date(gregorianDate);
+    this.gregorianYear = this.today.getFullYear();
+    this.gregorianMonth = this.today.getMonth() + 1;
+    this.gregorianDate = this.today.getDate();
+    this.WeekDay = this.today.getDay();
+    this.toPersian(gregorianDate);
+    return this.strMonth;
+  }
   toPersian(gregorianDate: Date) {
     if ((this.gregorianYear % 4) !== 0) {
       this.farsiDate = this.func1();

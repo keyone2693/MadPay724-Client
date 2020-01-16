@@ -8,6 +8,7 @@ import {
 import { ChartEvent, ChartType } from 'ng-chartist';
 import * as Chartist from 'chartist';
 import { UserDashboard } from 'src/app/data/models/common/userDashboard';
+import { TicketContent } from 'src/app/data/models/ticketContent';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { PersianCalendarService } from 'src/app/core/_base/pipe/PersianDatePipe/persian-date.service';
@@ -182,14 +183,11 @@ export class UserDashboardComponent implements OnInit {
   };
   //#endregion
 
-  //#region line-chart
-  LineChartType: ChartType = 'Line';
-  LineChartData: IChartistData = {
-    labels: ['1', '2', '3', '4', '5', '6', '7', '8'],
-    series: [[0, 4500, 2600, 6100, 2600, 6500, 3200, 6800]]
-  };
+  //#region FactorChart
+  FactorChartType: ChartType = 'Line';
+ FactorChartData: IChartistData 
 
-  LineChartOptions: ILineChartOptions = {
+ FactorChartOptions: ILineChartOptions = {
     low: 0,
     fullWidth: true,
     chartPadding: {
@@ -210,7 +208,7 @@ export class UserDashboardComponent implements OnInit {
     })
   };
 
-  LineChartEvents: ChartEvent = {
+  FactorChartEvents: ChartEvent = {
     created: (data) => {
       const defs = data.svg.elem('defs');
       defs.elem('linearGradient', {
@@ -502,6 +500,7 @@ export class UserDashboardComponent implements OnInit {
     this.loadInventoryChart();
     this.loadInretMoneyChart();
     this.loadExitMoneyChart();
+    this.loadFactorChart();
   }
   loadUserDashboard() {
     this.subManager.add(
@@ -511,11 +510,11 @@ export class UserDashboardComponent implements OnInit {
     )
   }
   loadInventoryChart() {
-    var dt1 = new Date();
-    var dt2 = new Date();
-    var dt3 = new Date();
-    var dt4 = new Date();
-    var dt5 = new Date();
+    const dt1 = new Date();
+    const dt2 = new Date();
+    const dt3 = new Date();
+    const dt4 = new Date();
+    const dt5 = new Date();
     dt2.setDate(dt2.getDate() - 1);
     dt3.setDate(dt3.getDate() - 2);
     dt4.setDate(dt4.getDate() - 3);
@@ -538,18 +537,18 @@ export class UserDashboardComponent implements OnInit {
     };
   }
   loadInretMoneyChart() {
-    var dt1 = new Date();
-    var dt2 = new Date();
-    var dt3 = new Date();
-    var dt4 = new Date();
-    var dt5 = new Date();
+    const dt1 = new Date();
+    const dt2 = new Date();
+    const dt3 = new Date();
+    const dt4 = new Date();
+    const dt5 = new Date();
     dt2.setDate(dt2.getDate() - 1);
     dt3.setDate(dt3.getDate() - 2);
     dt4.setDate(dt4.getDate() - 3);
     dt5.setDate(dt5.getDate() - 4);
     this.InterMoneyChartData = {
       labels: [
-        this.persianCalendarService.PersianCalendarVerySmall(dt5),
+      this.persianCalendarService.PersianCalendarVerySmall(dt5),
         this.persianCalendarService.PersianCalendarVerySmall(dt4),
         this.persianCalendarService.PersianCalendarVerySmall(dt3),
         this.persianCalendarService.PersianCalendarVerySmall(dt2),
@@ -565,11 +564,11 @@ export class UserDashboardComponent implements OnInit {
     };
   }
   loadExitMoneyChart() {
-    var dt1 = new Date();
-    var dt2 = new Date();
-    var dt3 = new Date();
-    var dt4 = new Date();
-    var dt5 = new Date();
+    const dt1 = new Date();
+    const dt2 = new Date();
+    const dt3 = new Date();
+    const dt4 = new Date();
+    const dt5 = new Date();
     dt2.setDate(dt2.getDate() - 1);
     dt3.setDate(dt3.getDate() - 2);
     dt4.setDate(dt4.getDate() - 3);
@@ -591,4 +590,50 @@ export class UserDashboardComponent implements OnInit {
       ]]
     };
   }
+  loadFactorChart() {
+    const dt1 = new Date();
+    const  dt2 = new Date();
+    const dt3 = new Date();
+    const dt4 = new Date();
+    const dt5 = new Date();
+    const dt6 = new Date();
+    const dt7 = new Date();
+    const dt8 = new Date();
+    dt2.setMonth(dt2.getMonth() - 1);
+    dt3.setMonth(dt3.getMonth() - 2);
+    dt4.setMonth(dt4.getMonth() - 3);
+    dt5.setMonth(dt5.getMonth() - 4);
+    dt6.setMonth(dt5.getMonth() - 4);
+    dt7.setMonth(dt5.getMonth() - 4);
+    dt8.setMonth(dt5.getMonth() - 4);
+    this.FactorChartData = {
+      labels: [
+        this.persianCalendarService.PersianCalendarMonth(dt8),
+        this.persianCalendarService.PersianCalendarMonth(dt7),
+        this.persianCalendarService.PersianCalendarMonth(dt6),
+        this.persianCalendarService.PersianCalendarMonth(dt5),
+        this.persianCalendarService.PersianCalendarMonth(dt4),
+        this.persianCalendarService.PersianCalendarMonth(dt3),
+        this.persianCalendarService.PersianCalendarMonth(dt2),
+        this.persianCalendarService.PersianCalendarMonth(dt1)
+      ],
+      series: [[
+        this.userDashboard.factor8Months.day8,
+        this.userDashboard.factor8Months.day7,
+        this.userDashboard.factor8Months.day6,
+        this.userDashboard.factor8Months.day5,
+        this.userDashboard.factor8Months.day4,
+        this.userDashboard.factor8Months.day3,
+        this.userDashboard.factor8Months.day2,
+        this.userDashboard.factor8Months.day1
+      ]]
+    };
+  }
+
+   sortTicketContent(tc: TicketContent[]) {
+    return tc.sort((a, b) => {
+      return <any>new Date(b.dateCreated) - <any>new Date(a.dateCreated);
+    });
+}
+
 }

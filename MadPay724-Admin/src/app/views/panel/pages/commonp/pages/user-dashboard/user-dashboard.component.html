@@ -91,19 +91,18 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-title-wrap bar-success">
-                                    <h4 class="card-title">ارزیابی محصول</h4>
+                                    <h4 class="card-title">فروش چند ماه اخیر </h4>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="card-block">
-                                    
                                     <x-chartist
                                      id="line-chart"
                                      class="height-300 lineChart lineChartShadow"
-                                      [type]="LineChartType"
-                                      [data]="LineChartData"
-                                      [options]="LineChartOptions"
-                                      [events]="LineChartEvents"
+                                      [type]="FactorChartType"
+                                      [data]="FactorChartData"
+                                      [options]="FactorChartOptions"
+                                      [events]="FactorChartEvents"
                                     ></x-chartist>
                                 </div>
                             </div>
@@ -113,61 +112,30 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-title-wrap bar-danger">
-                                    <h4 class="card-title">فعالیت های امروز</h4>
+                                    <h4 class="card-title">تیکت های اخیر</h4>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="col-12 timeline-left" id="activity">
                                     <div class="timeline">
                                         <ul class="list-unstyled base-timeline activity-timeline">
-                                            <li class="">
-                                                <div class="timeline-icon bg-danger">
-                                                    <i class="fa fa-tasks"></i>
+                                            <li *ngFor="let ticket of this.userDashboard.last5Tickets">
+                                                <div 
+                                                [ngClass]="ticket.closed ? 'bg-dark' : ticket.isAdminSide ? 'bg-danger' : 'bg-primary'"
+                                                class="timeline-icon">
+                                                    <i 
+                                                    [ngClass]="ticket.closed ? 'fa-times' : ticket.isAdminSide ? 'fa-handshake-o' : 'fa-volume-off'"
+                                                    class="fa "></i>
                                                 </div>
-                                                <div class="act-time">امروز</div>
+                                                <div class="act-time">{{ticket.dateModified | persianTimeAgo}}</div>
                                                 <div class="base-timeline-info">
-                                                    <a href="#" class="text-uppercase text-danger">وظیفه اضافه شده است</a>
+                                                    <a 
+                                                    [ngClass]="ticket.closed ? 'text-dark' : ticket.isAdminSide ? 'text-danger' : 'text-primary'"
+                                                    class="text-uppercase ">{{ticket.title}}</a>
                                                 </div>
                                                 <small class="text-muted">
-                                                  25 دقیقه پیش
+                                                  {{sortTicketContent(ticket.ticketContents)[0].text}}
                                               </small>
-                                            </li>
-                                            <li class="">
-                                                <div class="timeline-icon bg-primary">
-                                                    <i class="fa fa-handshake-o"></i>
-                                                </div>
-                                                <div class="act-time">دیروز</div>
-                                                <div class="base-timeline-info">
-                                                    <a href="#" class="text-uppercase text-primary">معامله اضافه شده</a>
-                                                </div>
-                                                <small class="text-muted">
-                                                  23 ساعت پیش
-                                              </small>
-                                            </li>
-                                            <li class="">
-                                                <div class="timeline-icon bg-dark">
-                                                    <i class="fa fa-tasks"></i>
-                                                </div>
-                                                <div class="act-time">09 مهر</div>
-                                                <div class="base-timeline-info">
-                                                    <a href="#" class="text-uppercase text-dark">وظیفه به روز شده است</a>
-                                                </div>
-                                                <small class="text-muted">
-                                                  15 روز پیش
-                                              </small>
-                                            </li>
-                                            <li class="">
-                                                <div class="timeline-icon bg-warning">
-                                                    <i class="fa fa-handshake-o"></i>
-                                                </div>
-                                                <div class="act-time">04 مهر</div>
-                                                <div class="base-timeline-info">
-                                                    <a href="#" class="text-uppercase text-warning">وظیفه شروع شده است</a>
-                                                </div>
-                                                <small class="text-muted">
-                                                  20 روز پیش
-                                              </small>
-                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -204,7 +172,7 @@
                             <div class="card-header">
                                 <div class="card-title-wrap bar-primary">
                                     <h4 class="card-title">
-                                        خریداران اخیر
+                                        فاکتورهای اخیر
                                     </h4>
                                 </div>
                                 <a class="heading-elements-toggle">
