@@ -8,6 +8,7 @@ declare global {
         toTicketDepartment(): string;
         toTicketLevel(): string;
         toDocStatus(): string;
+        toBadgeClass(): string;
     }
 }
 
@@ -93,4 +94,18 @@ Number.prototype.toDocStatus = function (this: number): string {
         default:
             return ''
     }
+}
+
+Number.prototype.toBadgeClass = function (this: number): string {
+    var number = this;
+    if (number >= 0 && number <= 3)
+        return 'badge-success';
+   else if (number >= 4 && number <= 6)
+        return 'badge-info';
+    else if (number >= 7 && number <= 10)
+        return 'badge-warning';
+    else if (number >= 11)
+        return 'badge-danger';
+    
+    return 'badge-warning';
 }

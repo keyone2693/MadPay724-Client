@@ -5311,11 +5311,11 @@ input[type='submit'].btn-block, input[type='reset'].btn-block, input[type='butto
 }
 
 .badge-warning {
-  color : #212529;
+  color : #fff;
   background-color : #FF9149;
 }
 .badge-warning[href]:hover, .badge-warning[href]:focus {
-  color : #212529;
+  color : #fff;
   text-decoration : none;
   background-color : #FF7216;
 }
@@ -40887,7 +40887,7 @@ h2.title {
       -ms-transform : none;
        -o-transform : none;
           transform : none;
-  opacity : 1;
+  opacity : 1 !important;
 }
 
 .form-control.open ~ .dropdown-menu {

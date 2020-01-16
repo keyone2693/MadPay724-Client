@@ -1,0 +1,16 @@
+.my-scrollbar{
+    background: #fff;
+  padding: 25px 15px;
+  }.my-scrollbar {
+    --scrollbar-color: transparent;
+    --scrollbar-container-color: transparent;
+    --scrollbar-thumb-color: rgba(0, 0, 0, 0.2);
+    --scrollbar-thumb-hover-color: rgba(0, 0, 0, 0.3);
+    --scrollbar-border-radius: 4px;
+    --scrollbar-size: 6px;
+    --scrollbar-padding: 8px;
+    --scroll-view-margin: 0;
+    --scroll-view-color: transparent;
+    height:320px ;
+    opacity: 0;
+  }

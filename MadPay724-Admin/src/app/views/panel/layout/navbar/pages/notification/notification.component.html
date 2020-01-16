@@ -4,18 +4,21 @@
     href="#"
     data-toggle="dropdown"
     class="nav-link position-relative dropdown-toggle"
+    aria-expanded="false"
   >
     <i class="ft-bell blue-grey darken-4"></i
     ><span
       *ngIf="allNotifications(notifications) > 0"
-      class="notification badge badge-pill badge-danger"
+      [ngClass]="allNotifications(notifications).toBadgeClass()"
+      class="notification badge badge-pill"
       >{{ allNotifications(notifications) }}</span
     >
     <p class="d-none">اطلاعیه</p>
   </a>
-  <div
-    *ngIf="role$ | async as role"
-    class="notification-dropdown dropdown-menu dropdown-menu-left"
+ 
+  <ng-scrollbar
+  *ngIf="role$ | async as role"
+    class="my-scrollbar notification-dropdown dropdown-menu dropdown-menu-left"
   >
     <div class="arrow_box_right">
       <div class="noti-list">
@@ -199,5 +202,6 @@
         </a>
       </div>
     </div>
-  </div>
+  </ng-scrollbar>
+    
 </ng-container>

@@ -5,6 +5,9 @@ import { Observable } from 'rxjs';
 import { NotificationStateModel } from 'src/app/store/_model/notificationsStateModel';
 import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { Router } from '@angular/router';
+
+import 'src/app/shared/extentions/number.extentions';
+
 @Component({
   selector: 'app-notification',
   templateUrl: './notification.component.html',

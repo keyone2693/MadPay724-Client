@@ -7,7 +7,8 @@ import { Title } from '@angular/platform-browser';
 import { Location } from '@angular/common';
 import { Document } from 'src/app/data/models/document';
 import { DocumentService } from 'src/app/core/_services/panel/admin/document.service';
-
+import * as fromStore from 'src/app/store';
+import { Store } from '@ngrx/store';
 @Component({
   selector: 'app-documents-details',
   templateUrl: './documents-details.component.html',
@@ -20,7 +21,7 @@ export class DocumentsDetailsComponent implements OnInit, OnDestroy {
     approve: ['', [Validators.required]],
     message: ['', [Validators.required, Validators.maxLength(100)]],
   })
-  constructor(private route: ActivatedRoute, private title: Title,
+  constructor(private route: ActivatedRoute, private title: Title, private store: Store<fromStore.State>,
     private formBuilder: FormBuilder, private alertService: ToastrService,
     private documentSerrvice: DocumentService , private router: Router , private loc: Location) { }
 
@@ -53,6 +54,13 @@ export class DocumentsDetailsComponent implements OnInit, OnDestroy {
       const documentForUpdate = Object.assign({}, this.documentEditForm.value)
       this.subManager.add(
         this.documentSerrvice.updateDocument(this.document.id, documentForUpdate).subscribe(() => {
+
+          if (documentForUpdate.approve === 0) {
+            this.store.dispatch(new fromStore.IncUnVerifiedDocumentCount());
+          } else {
+            this.store.dispatch(new fromStore.DecUnVerifiedDocumentCount());
+}
+
           this.alertService.success('مدرک ویرایش شد', 'موفق');
           this.onClear();
         }, error => {

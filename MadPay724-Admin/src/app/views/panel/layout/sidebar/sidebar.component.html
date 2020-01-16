@@ -62,34 +62,6 @@
             </li>
           </ul>
         </li>
-        <li *appHasRole="['Admin']" routerLinkActive="active" class=" nav-item">
-          <a [routerLink]="['/panel/admin/tickets/management']">
-            <i class="icon-bubbles"> </i
-            ><span class="menu-title">تیکت ها</span>
-            <span
-              [hidden]="notifications.unClosedTicketCount === 0"
-              *appHasRole="['Admin']"
-              matTooltip="تیکت های باز"
-              matTooltipPosition="left"
-              class="tag badge badge-pill badge-danger mt-1"
-              >{{ notifications.unClosedTicketCount }}</span
-            >
-          </a>
-        </li>
-        <li *appHasRole="['Admin']" routerLinkActive="active" class=" nav-item">
-          <a [routerLink]="['/panel/admin/documents/management']">
-            <i class="icon-docs"> </i
-            ><span class="menu-title">مدارک کاربران</span>
-            <span
-              [hidden]="notifications.unClosedTicketCount === 0"
-              *appHasRole="['Admin']"
-              matTooltip="مدارک بررسی نشده"
-              matTooltipPosition="left"
-              class="tag badge badge-pill badge-danger mt-1"
-              >{{ notifications.unClosedTicketCount }}</span
-            >
-          </a>
-        </li>
         <!--#endregion-->
         <!--#region Accountant-->
         <li
@@ -109,7 +81,8 @@
               [hidden]="getEntryNotifySum(notifications.unCheckedEntry , notifications.unSpecifiedEntry)  === 0"
               matTooltip="واریزی های بررسی نشده"
               matTooltipPosition="left"
-              class="tag badge badge-pill badge-danger mt-1"
+              [ngClass]="getEntryNotifySum(notifications.unCheckedEntry , notifications.unSpecifiedEntry).toBadgeClass()"
+              class="tag badge badge-pill mt-1"
               >{{ getEntryNotifySum(notifications.unCheckedEntry , notifications.unSpecifiedEntry) }}</span>
             <span data-i18n="" class="menu-title">مدیریت واریزی</span>
           </a>
@@ -124,7 +97,8 @@
                 [hidden]="notifications.unCheckedEntry === 0"
                 matTooltip="واریزی های بررسی نشده"
                 matTooltipPosition="left"
-                class="tag badge badge-pill badge-success mt-1 madpaynotifybadge"
+                [ngClass]="notifications.unCheckedEntry.toBadgeClass()"
+                class="tag badge badge-pill mt-1 madpaynotifybadge"
                 >{{ notifications.unCheckedEntry}}</span>
                  واریز تایید نشده</a>
             </li>
@@ -138,7 +112,8 @@
                 [hidden]="notifications.unSpecifiedEntry === 0"
                 matTooltip="واریزی های پرداخت نشده"
                 matTooltipPosition="left"
-                class="tag badge badge-pill badge-success mt-1 madpaynotifybadge"
+                [ngClass]="notifications.unSpecifiedEntry.toBadgeClass()"
+                class="tag badge badge-pill mt-1 madpaynotifybadge"
                 >{{notifications.unSpecifiedEntry }}</span>
                  واریز پرداخت نشده</a>
             </li>
@@ -160,7 +135,8 @@
                 [hidden]="getMaliNotifySum(notifications.unVerifiedGateInPast7Days,notifications.unVerifiedBankCardInPast7Days) === 0"
                 matTooltip="کارت ها و درگاه های تایید نشده 7 روز پیش"
                 matTooltipPosition="left"
-                class="tag badge badge-pill badge-warning mt-1" style="color: #fff;"
+                [ngClass]="getMaliNotifySum(notifications.unVerifiedGateInPast7Days,notifications.unVerifiedBankCardInPast7Days).toBadgeClass()"
+                class="tag badge badge-pill mt-1"
                 >{{getMaliNotifySum(notifications.unVerifiedGateInPast7Days,notifications.unVerifiedBankCardInPast7Days) }}</span>
             <span data-i18n="" class="menu-title">مدیریت مالی</span>
           </a>
@@ -172,10 +148,12 @@
               >
                 <i class="icon-globe"></i>
                                             <span
+                
                 [hidden]="notifications.unVerifiedGateInPast7Days === 0"
                 matTooltip="درگاه های فعال نشده 7 روز پیش"
                 matTooltipPosition="left"
-                class="tag badge badge-pill badge-success mt-1 madpaynotifybadge"
+                [ngClass]="notifications.unVerifiedGateInPast7Days.toBadgeClass()"
+                class="tag badge badge-pill mt-1 madpaynotifybadge"
                 >{{notifications.unVerifiedGateInPast7Days }}</span>
                 درگاه های پرداخت</a
               >
@@ -187,10 +165,12 @@
               >
                 <i class="icon-credit-card"></i>
                                             <span
+                                            
                 [hidden]="notifications.unVerifiedBankCardInPast7Days === 0"
                 matTooltip="کارت های تایید نشده 7 روز پیش"
                 matTooltipPosition="left"
-                class="tag badge badge-pill badge-success mt-1 madpaynotifybadge"
+                [ngClass]="notifications.unVerifiedBankCardInPast7Days.toBadgeClass()"
+                class="tag badge badge-pill mt-1 madpaynotifybadge"
                 >{{notifications.unVerifiedBankCardInPast7Days }}</span>
                  کارت های بانکی</a
               >
@@ -256,11 +236,13 @@
             <i class="ft-clipboard"></i>
             <span data-i18n="" class="menu-title">بلاگ</span>
             <span
+             
               *appHasRole="['Admin','AdminBlog']"
               [hidden]="notifications.unVerifiedBlogCount === 0"
               matTooltip="بلاگ های تایید نشده"
               matTooltipPosition="left"
-              class="tag badge badge-pill badge-danger mt-1"
+              [ngClass]="notifications.unVerifiedBlogCount.toBadgeClass()"
+              class="tag badge badge-pill mt-1"
               >{{ notifications.unVerifiedBlogCount }}</span>
           </a>
           <ul class="menu-content">
@@ -275,10 +257,12 @@
                 <i class="ft-airplay "></i>
                 <span
                   *appHasRole="['Admin', 'AdminBlog']"
+                 
                   [hidden]="notifications.unVerifiedBlogCount === 0"
                   matTooltipPosition="left"
                   matTooltip="بلاگ های تایید نشده"
-                  class="tag badge badge-pill badge-success mt-1 madpaynotifybadge"
+                   [ngClass]="notifications.unVerifiedBlogCount.toBadgeClass()"
+                  class="tag badge badge-pill mt-1 madpaynotifybadge"
                   >{{ notifications.unVerifiedBlogCount }}</span
                 >
                 مدیریت بلاگ</a
@@ -344,18 +328,52 @@
           </ul>
         </li>
         <!--#endregion-->
-
+        <!--#region Admin-->
+        <li *appHasRole="['Admin']" routerLinkActive="active" class=" nav-item">
+          <a [routerLink]="['/panel/admin/tickets/management']">
+            <i class="icon-bubbles"> </i
+            ><span class="menu-title">تیکت ها</span>
+            <span
+              [hidden]="notifications.unClosedTicketCount === 0"
+              *appHasRole="['Admin']"
+              matTooltip="تیکت های باز"
+              matTooltipPosition="left"
+              [ngClass]="notifications.unClosedTicketCount.toBadgeClass()"
+              class="tag badge badge-pill mt-1"
+              >{{ notifications.unClosedTicketCount }}</span
+            >
+          </a>
+        </li>
+        <li *appHasRole="['Admin']" routerLinkActive="active" class=" nav-item">
+          <a [routerLink]="['/panel/admin/documents/management']">
+            <i class="icon-docs"> </i
+            ><span class="menu-title">مدارک کاربران</span>
+            <span
+            
+              [hidden]="notifications.unVerifiedDocuments === 0"
+              *appHasRole="['Admin']"
+              matTooltip="مدارک بررسی نشده"
+              matTooltipPosition="left"
+              [ngClass]="notifications.unVerifiedDocuments.toBadgeClass()"
+              class="tag badge badge-pill mt-1"
+              >{{ notifications.unVerifiedDocuments }}</span
+            >
+          </a>
+        </li>
+        <!--#endregion-->
         <!--#region Com-->
         <li *appHasRole="['User']" routerLinkActive="active" class=" nav-item">
           <a [routerLink]="['/panel/user/tickets']">
             <i class="icon-bubbles"> </i
             ><span class="menu-title">پشتیبانی</span>
             <span
-              [hidden]="notifications.unClosedTicketCount === 0"
+              
               *appHasRole="['User']"
               matTooltip="تیکت های باز"
               matTooltipPosition="left"
-              class="tag badge badge-pill badge-danger mt-1"
+              [hidden]="notifications.unClosedTicketCount === 0"
+              [ngClass]="notifications.unClosedTicketCount.toBadgeClass()"
+              class="tag badge badge-pill mt-1"
               >{{ notifications.unClosedTicketCount }}</span
             >
           </a>

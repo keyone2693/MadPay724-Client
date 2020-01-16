@@ -4,6 +4,9 @@ import { Store } from '@ngrx/store';
 import { NotificationStateModel } from 'src/app/store/_model/notificationsStateModel';
 import { Observable } from 'rxjs';
 
+import 'src/app/shared/extentions/number.extentions';
+
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
