@@ -225,27 +225,31 @@
             $sidebar.addClass('hide-sidebar');
         });
 
+         
         //$('.noti-list').perfectScrollbar();
 
 
         // Page full screen
-        $('.apptogglefullscreen').on('click', function(e) {
-            if (typeof screenfull != 'undefined'){
-                if (screenfull.enabled) {
-                    screenfull.toggle();
-                }
-            }
+         $('.apptogglefullscreen').on('click', function (e) {
+             if (typeof screenfull != 'undefined'){
+                 if (screenfull.isEnabled) {
+                   screenfull.toggle();
+                 }
+             }
         });
         if (typeof screenfull != 'undefined'){
-            if (screenfull.enabled) {
-                $(document).on(screenfull.raw.fullscreenchange, function(){
-                    if(screenfull.isFullscreen){
-                        $('.apptogglefullscreen').find('i').toggleClass('ft-minimize ft-maximize');
-                    }
-                    else{
-                        $('.apptogglefullscreen').find('i').toggleClass('ft-maximize ft-minimize');
-                    }
-                });
+            if (screenfull.isEnabled) {
+              $(document).on(screenfull.raw.fullscreenchange, function() {
+                if (screenfull.isFullscreen) {
+                  $(".apptogglefullscreen")
+                    .find("i")
+                    .toggleClass("ft-minimize ft-maximize");
+                } else {
+                  $(".apptogglefullscreen")
+                    .find("i")
+                    .toggleClass("ft-maximize ft-minimize");
+                }
+              });
             }
         }
     });
