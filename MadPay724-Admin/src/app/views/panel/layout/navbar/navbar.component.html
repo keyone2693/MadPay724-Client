@@ -35,23 +35,15 @@
           <span class="mx-1 blue-grey darken-4 text-bold-400">دسترسی سریع</span>
         </a>
         <div class="apps dropdown-menu">
-          <div class="arrow_box" *appHasRole="['User']">
-            <a [routerLink]="['/panel/user/wallet']" class="dropdown-item py-1"
-              ><span>افزایش موجودی</span></a
+          <div class="arrow_box" *appHasRole="['Admin']">
+             <a [routerLink]="['/panel/admin/users/management']" class="dropdown-item py-1"
+              ><span>مدیریت کاربران</span></a
             >
-            <a [routerLink]="['/panel/user/gate']" class="dropdown-item py-1"
-              ><span>درگاه پرداخت</span></a
+            <a [routerLink]="['/panel/admin/tickets/management']" class="dropdown-item py-1"
+              ><span>مدیریت تیکت ها</span></a
             >
-            <a [routerLink]="['/panel/user/wallet']" class="dropdown-item py-1"
-              ><span>کیف پول</span></a
-            >
-          </div>
-          <div class="arrow_box" *appHasRole="['Admin','AdminBlog','Blog']">
-            <a [routerLink]="['/panel/blog/bloggroup']" class="dropdown-item py-1"
-              ><span>مدیریت دسته بندی بلاگ</span></a
-            >
-            <a [routerLink]="['/panel/blog/blog']" class="dropdown-item py-1"
-              ><span>مدیریت بلاگ</span></a
+            <a [routerLink]="['/panel/admin/documents/management']" class="dropdown-item py-1"
+              ><span>مدیریت مدارک</span></a
             >
           </div>
           <div class="arrow_box" *appHasRole="['Admin','Accountant']">
@@ -63,6 +55,27 @@
             >
             <a [routerLink]="['/panel/accountant/entryarchive']" class="dropdown-item py-1"
               ><span>آرشیو واریزی ها</span></a
+            >
+          </div>
+          
+          <div class="arrow_box" *appHasRole="['Admin','AdminBlog','Blog']">
+            <a [routerLink]="['/panel/blog/bloggroup']" class="dropdown-item py-1"
+              ><span>مدیریت دسته بندی بلاگ</span></a
+            >
+            <a [routerLink]="['/panel/blog/blog']" class="dropdown-item py-1"
+              ><span>مدیریت بلاگ</span></a
+            >
+          </div>
+          
+           <div class="arrow_box" *appHasRole="['User']">
+            <a [routerLink]="['/panel/user/wallet']" class="dropdown-item py-1"
+              ><span>افزایش موجودی</span></a
+            >
+            <a [routerLink]="['/panel/user/gate']" class="dropdown-item py-1"
+              ><span>درگاه پرداخت</span></a
+            >
+            <a [routerLink]="['/panel/user/wallet']" class="dropdown-item py-1"
+              ><span>کیف پول</span></a
             >
           </div>
         </div>
