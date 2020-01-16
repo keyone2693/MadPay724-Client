@@ -1,12 +1,19 @@
-<div class=" section">
-  <div class="box">
+<div 
+[ngClass]="{'gate-main': !gate.isActive}"
+class=" section">
+  <div
+  [ngClass]="{'gate-child': !gate.isActive}"
+  class="box">
     <div class="top-xs header">
       <div class="row">
         <div class="right-box">
           <p>
-            <span class="green-small-circle flash"></span
+            <span 
+            [ngClass]="gate.isActive ? 'green-small-circle' : 'red-small-circle'"
+            class="green-small-circle flash"></span
             ><span title="{{gate.websiteName}}" class="header-title"
               >{{gate.websiteName}}
+              <small *ngIf="!gate.isActive" style="color: rgb(235, 68, 68);">(غیر فعال)</small>
             </span>
           </p>
         </div>
@@ -103,6 +110,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div
+  >
   <!---->
 </div>

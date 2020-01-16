@@ -61,7 +61,7 @@ export class GatesComponent implements OnInit, OnDestroy, AfterViewInit {
         component.icon = "ft-copy";
       }),
    
-    new TableColumn<Gate, 'isActive'>('وضعیت', 'isActive')
+    new TableColumn<Gate, 'isActive'>('فعالی', 'isActive')
       .withNgComponent(CheckboxMPComponent)
       .withNgComponentInput((component: CheckboxMPComponent, isActive, gate) => {
         component.event = (data) => {
@@ -71,7 +71,7 @@ export class GatesComponent implements OnInit, OnDestroy, AfterViewInit {
         component.disabled = false;
         component.type = UiType.Success;
       }),
-    new TableColumn<Gate, 'isDirect'>('وضعیت', 'isDirect')
+    new TableColumn<Gate, 'isDirect'>('مستقیم', 'isDirect')
       .withNgComponent(CheckboxMPComponent)
       .withNgComponentInput((component: CheckboxMPComponent, isDirect, gate) => {
         component.event = (data) => {
@@ -81,7 +81,7 @@ export class GatesComponent implements OnInit, OnDestroy, AfterViewInit {
         component.disabled = false;
         component.type = UiType.Info;
       }),
-    new TableColumn<Gate, 'isIp'>('وضعیت', 'isIp')
+    new TableColumn<Gate, 'isIp'>('آی پی', 'isIp')
       .withNgComponent(CheckboxMPComponent)
       .withNgComponentInput((component: CheckboxMPComponent, isIp, gate) => {
         component.event = (data) => {

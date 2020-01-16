@@ -210,4 +210,5 @@ position: absolute;
     color: #fff !important;
     border-bottom: 2px solid rgb(255, 85, 85);
     width: auto;
+    pointer-events: none;
 }

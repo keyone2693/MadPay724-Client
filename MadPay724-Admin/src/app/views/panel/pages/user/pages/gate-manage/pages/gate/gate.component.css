@@ -1,3 +1,14 @@
+
+.gate-main{
+    position: relative;
+}
+.gate-child{
+    -webkit-filter: blur(0.5px);
+    -moz-filter: blur(0.5px);
+    -o-filter: blur(0.5px);
+    -ms-filter: blur(0.5px);
+    filter: blur(0.5px);
+}
 .row {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -193,6 +204,18 @@ span[class^='madicono-'] {
   border: 3px solid #0cca5b;
   border-radius: 50%;
   background-color: #adeac8;
+  vertical-align: middle;
+  margin-right: 5px;
+  position: relative;
+  top: -1px;
+}
+.red-small-circle {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 3px solid #d81c1c;
+  border-radius: 50%;
+  background-color: #ee9b9b;
   vertical-align: middle;
   margin-right: 5px;
   position: relative;

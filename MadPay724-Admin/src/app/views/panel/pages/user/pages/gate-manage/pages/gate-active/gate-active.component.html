@@ -13,8 +13,8 @@
 
 <mat-dialog-content [formGroup]="gateForm">
   <div class="alert alert-warning">
-                            <strong>توجه! </strong> شما برای فعال سازی مبلغ 20,000 تومان پرداخت کرده اید در صورت غیر فعال سازی مبلغ برگشت داده نخواهد شد
-                        </div>
+        <strong>توجه! </strong> شما برای فعال سازی مبلغ 20,000 تومان پرداخت میکنید در صورت غیر فعال سازی مبلغ برگشت داده نخواهد شد
+  </div>
   <mat-form-field class="col-md-12" *ngIf="gateActiveDirect.isDirect"  >
     <mat-label>یک کیف‌ پول را برای کسر مبلغ مذکور انتخاب کنید *</mat-label>
     <mat-select formControlName="walletId">
