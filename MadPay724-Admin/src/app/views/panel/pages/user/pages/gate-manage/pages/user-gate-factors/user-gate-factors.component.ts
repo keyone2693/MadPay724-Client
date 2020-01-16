@@ -85,7 +85,7 @@ export class UserGateFactorsComponent implements OnInit, OnDestroy, AfterViewIni
       .withNgComponentInput((component: ButtonMPComponent, id) => {
         component.event = () => { this.router.navigate(['/panel/user/gate/factors', id, 'detail']) };
         component.icon = "ft-alert-octagon";
-        component.text = " جزییات و ویرایش";
+        component.text = " جزییات فاکتور";
         component.type = UiType.Success;
       })
   ];

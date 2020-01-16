@@ -24,7 +24,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/accountant/accountant.module').then(m => m.AccountantModule)
   },
   {
-    path: 'commonp', component: PanelComponent,
+    path: 'common', component: PanelComponent,
     loadChildren: () => import('./pages/commonp/commonp.module').then(m => m.CommonpModule)
   }
 ];
