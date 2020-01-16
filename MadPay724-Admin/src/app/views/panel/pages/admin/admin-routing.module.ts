@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './admin.component';
 import { AuthGuard } from 'src/app/core/_base/guards/auth.guard';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { UsersManagementComponent } from './pages/users-management/users-management.component';
-import { InventoryResolver } from 'src/app/core/_base/resolvers/accountant/inventory.resolver';
 import { UserResolver } from 'src/app/core/_base/resolvers/admin/user.resolver';
 import { UserRolesResolver } from 'src/app/core/_base/resolvers/admin/userRoles.resolver';
 import { UsersRolesComponent } from './pages/users-management/pages/users-roles/users-roles.component';
@@ -21,9 +19,7 @@ const routes: Routes = [
         path: '',
         component: AdminComponent,
         children: [
-          {path: 'dashboard', canActivate: [AuthGuard], component: DashboardComponent,
-            data: { roles: ['Admin'], title: ['داشبورد مدیریت'] }
-          },
+          
           {
             path: 'users/management', canActivate: [AuthGuard],
             resolve: { users: UserResolver },

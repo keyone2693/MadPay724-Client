@@ -6,7 +6,7 @@ import { UserService } from 'src/app/core/_services/panel/user.service';
 import { User } from 'src/app/data/models/user';
 import { Store } from '@ngrx/store';
 
-import * as fromStore from '../../../../../store';
+import * as fromStore from 'src/app/store';
 import { Observable } from 'rxjs';
 
 @Component({

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { AccountantComponent } from './accountant.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AccountantRoutingModule } from './accountant-routing.module';
 import { ManageFactorsComponent } from './pages/factors/manage-factors/manage-factors.component';
 import { FactorsReportComponent } from './pages/factors/factorsreport/factorsreport.component';
@@ -63,7 +62,6 @@ import { GenericTableModule } from 'src/app/shared/modules/common/genericTable.m
   ],
   declarations: [
     AccountantComponent,
-    DashboardComponent,
     FactorsReportComponent,
     InventoryComponent,
     ManageFactorsComponent,

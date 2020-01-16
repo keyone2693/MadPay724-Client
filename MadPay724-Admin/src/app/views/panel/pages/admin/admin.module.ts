@@ -3,7 +3,6 @@ import { AdminComponent } from './admin.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { UsersManagementComponent } from './pages/users-management/users-management.component';
 import { UsersListComponent } from './pages/users-management/pages/users-list/users-list.component';
 import { AdminMaterialModule } from 'src/app/shared/modules/material/admin-material.module';
@@ -57,7 +56,6 @@ import { DocumentsDetailsComponent } from './pages/documents/pages/documents-det
   ],
   declarations: [
     AdminComponent,
-    DashboardComponent,
     UsersManagementComponent,
     UsersListComponent,
     UsersRolesComponent,

@@ -1,7 +1,6 @@
 import { Routes, RouterModule } from '@angular/router';
 import { BlogComponent } from './blog.component';
 import { NgModule } from '@angular/core';
-import { BlogDashboardComponent } from './pages/blog-dashboard/blog-dashboard.component';
 import { AuthGuard } from 'src/app/core/_base/guards/auth.guard';
 import { BlogGroupManageComponent } from './pages/blog-group-manage/blog-group-manage.component';
 import { BlogGroupResolver } from 'src/app/core/_base/resolvers/blog/blogGroup.resolver';
@@ -17,10 +16,7 @@ const routes: Routes = [
         path: '',
         component: BlogComponent,
         children: [
-            {
-                path: 'dashboard', canActivate: [AuthGuard], component: BlogDashboardComponent,
-                data: { roles: ['Blog', 'AdminBlog'], title: ['داشبورد بلاگر'] }
-            },
+            
             //
             {
                 path: 'bloggroup', canActivate: [AuthGuard],

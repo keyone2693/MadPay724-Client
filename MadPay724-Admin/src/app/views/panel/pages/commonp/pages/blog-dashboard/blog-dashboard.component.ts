@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-blog-dashboard',
@@ -6,10 +6,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./blog-dashboard.component.css']
 })
 export class BlogDashboardComponent implements OnInit {
+
   constructor() { }
 
   ngOnInit() {
-
   }
 
 }

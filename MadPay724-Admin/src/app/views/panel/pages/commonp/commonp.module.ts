@@ -6,11 +6,15 @@ import { PersianPipeModule } from 'src/app/shared/modules/common/persianPipe.mod
 import { UserService } from 'src/app/core/_services/panel/user.service';
 import { UserProfileResolver } from 'src/app/core/_base/resolvers/user/userprofile.resolver';
 import { CommonpRoutingModule } from './commonp-routing.module';
-import { UserChangePassComponent } from './profile/pages/user-change-pass/user-change-pass.component';
-import { ProfileComponent } from './profile/profile.component';
-import { UserChangePicComponent } from './profile/pages/user-change-pic/user-change-pic.component';
 import { CommonpComponent } from './commonp.component';
 import { PreventUnsavedGuard } from 'src/app/core/_base/guards/prevent-unsaved.guard';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { UserChangePassComponent } from './pages/profile/pages/user-change-pass/user-change-pass.component';
+import { UserChangePicComponent } from './pages/profile/pages/user-change-pic/user-change-pic.component';
+import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
+import { BlogDashboardComponent } from './pages/blog-dashboard/blog-dashboard.component';
+import { AccountantDashboardComponent } from './pages/accountant-dashboard/accountant-dashboard.component';
+import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 
 @NgModule({
   imports: [
@@ -25,7 +29,11 @@ import { PreventUnsavedGuard } from 'src/app/core/_base/guards/prevent-unsaved.g
     ProfileComponent,
     UserChangePassComponent,
     UserChangePicComponent,
-    CommonpComponent
+    CommonpComponent,
+    AdminDashboardComponent,
+    AccountantDashboardComponent,
+    BlogDashboardComponent,
+    UserDashboardComponent
   ],
   providers: [
     PreventUnsavedGuard,

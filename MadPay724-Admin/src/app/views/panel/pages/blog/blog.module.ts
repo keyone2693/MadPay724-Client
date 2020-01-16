@@ -8,7 +8,6 @@ import { DigitOnlyModule } from '@uiowa/digit-only';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FileUploadModule } from 'ng2-file-upload';
 import { BlogMaterialModule } from 'src/app/Shared/Modules/material/blog-material.module';
-import { BlogDashboardComponent } from './pages/blog-dashboard/blog-dashboard.component';
 import { BlogGroupManageComponent } from './pages/blog-group-manage/blog-group-manage.component';
 import { BlogGroupListComponent } from './pages/blog-group-manage/pages/blog-group-list/blog-group-list.component';
 import { BlogGroupAddComponent } from './pages/blog-group-manage/pages/blog-group-add/blog-group-add.component';
@@ -47,7 +46,6 @@ import { PersianPipeModule } from 'src/app/shared/modules/common/persianPipe.mod
   ],
   declarations: [
     BlogComponent,
-    BlogDashboardComponent,
     BlogGroupManageComponent,
     BlogGroupListComponent,
     BlogGroupAddComponent,

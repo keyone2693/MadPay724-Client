@@ -38,7 +38,7 @@
       >
         <!--#region Admin-->
         <li *appHasRole="['Admin']" routerLinkActive="active" class=" nav-item">
-          <a [routerLink]="['/panel/admin/dashboard']"
+          <a [routerLink]="['/panel/common/admin/dashboard']"
             ><i class="icon-home"></i
             ><span data-i18n="" class="menu-title">داشبورد</span></a
           >
@@ -69,7 +69,7 @@
           routerLinkActive="active"
           class=" nav-item"
         >
-          <a [routerLink]="['/panel/accountant/dashboard']"
+          <a [routerLink]="['/panel/common/accountant/dashboard']"
             ><i class="icon-home"></i
             ><span data-i18n="" class="menu-title">داشبورد</span></a
           >
@@ -223,7 +223,7 @@
           routerLinkActive="active"
           class=" nav-item"
         >
-          <a [routerLink]="['/panel/blog/dashboard']"
+          <a [routerLink]="['/panel/common/blog/dashboard']"
             ><i class="icon-home"></i
             ><span data-i18n="" class="menu-title">داشبورد</span></a
           >
@@ -274,7 +274,7 @@
 
         <!--#region User-->
         <li *appHasRole="['User']" routerLinkActive="active" class=" nav-item">
-          <a [routerLink]="['/panel/user/dashboard']"
+          <a [routerLink]="['/panel/common/user/dashboard']"
             ><i class="icon-home"></i
             ><span data-i18n="" class="menu-title">داشبورد</span></a
           >

@@ -124,23 +124,23 @@ export class AuthService {
     const userRoles = this.userRoles;
     if (Array.isArray(userRoles)) {
       if (userRoles.includes('Admin')) {
-        return 'panel/admin/dashboard';
+        return 'panel/common/admin/dashboard';
       } else if (userRoles.includes('Accountant')) {
-        return 'panel/accountant/dashboard';
+        return 'panel/common/accountant/dashboard';
       } else if (userRoles.includes('Blog') || userRoles.includes('AdminBlog')) {
-        return 'panel/blog/dashboard';
+        return 'panel/common/blog/dashboard';
       } else {
-        return 'panel/user/dashboard';
+        return 'panel/common/user/dashboard';
       }
     } else {
       if (userRoles === 'Admin') {
-        return 'panel/admin/dashboard';
+        return 'panel/common/admin/dashboard';
       } else if (userRoles === 'Accountant') {
-        return 'panel/accountant/dashboard';
+        return 'panel/common/accountant/dashboard';
       } else if (userRoles === 'Blog' || userRoles === 'AdminBlog') {
-        return 'panel/blog/dashboard';
+        return 'panel/common/blog/dashboard';
       } else {
-        return 'panel/user/dashboard';
+        return 'panel/common/user/dashboard';
       }
     }
 

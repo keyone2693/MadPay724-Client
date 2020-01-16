@@ -15,7 +15,6 @@ import { DocumentComponent } from './pages/userinfo/document/document.component'
 import { RightDocumentComponent } from './pages/userinfo/document/pages/right-document/right-document.component';
 import { LeftDocumentComponent } from './pages/userinfo/document/pages/left-document/left-document.component';
 import { DocumentListComponent } from './pages/userinfo/document/pages/document-list/document-list.component';
-import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
 import { NotificationComponent } from './pages/notification/notification.component';
 import { BankCardComponent } from './pages/manage-bank-card/pages/bank-card/bank-card.component';
 import { ManageBankCardComponent } from './pages/manage-bank-card/manage-bank-card.component';
@@ -91,7 +90,6 @@ import { UserFactorResolver } from 'src/app/core/_base/resolvers/user/userFactor
     LeftDocumentComponent,
     DocumentListComponent,
 
-    UserDashboardComponent,
     NotificationComponent,
     //
     BankCardComponent,

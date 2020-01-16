@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { UserComponent } from './user.component';
 import { AuthGuard } from 'src/app/core/_base/guards/auth.guard';
-import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
 import { GateResolver } from 'src/app/core/_base/resolvers/user/gate.resolver';
 import { GateManageComponent } from './pages/gate-manage/gate-manage.component';
 import { GateEditResolver } from 'src/app/core/_base/resolvers/user/gateEdit.resolver';
@@ -35,10 +34,7 @@ const routes: Routes = [
     path: '',
     component: UserComponent,
     children: [
-      {
-        path: 'dashboard', canActivate: [AuthGuard], component: UserDashboardComponent,
-        data: { roles: ['User'], title: ['داشبورد کاربر'] }
-      },
+
       //
       {
         path: 'gate', canActivate: [AuthGuard],

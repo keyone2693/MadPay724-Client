@@ -2,7 +2,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { AuthGuard } from 'src/app/core/_base/guards/auth.guard';
 import { AccountantComponent } from './accountant.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FactorsReportComponent } from './pages/factors/factorsreport/factorsreport.component';
 import { ManageFactorsComponent } from './pages/factors/manage-factors/manage-factors.component';
 import { InventoryResolver } from 'src/app/core/_base/resolvers/accountant/inventory.resolver';
@@ -24,7 +23,6 @@ import { EntryArchiveResolver } from 'src/app/core/_base/resolvers/accountant/en
 import { EntryResolver } from 'src/app/core/_base/resolvers/accountant/entry.resolver';
 import { EntryEditComponent } from './pages/entry/entry-edit/entry-edit.component';
 import { BankCardsEntryComponent } from './pages/financial/bankCards/pages/bankCards-entry/bankCards-entry.component';
-import { BankCardEntryResolver } from 'src/app/core/_base/resolvers/accountant/bankCardEntry.resolver';
 import { WalletsEntryComponent } from './pages/financial/wallets/pages/wallets-entry/wallets-entry.component';
 import { WalletsFactorsComponent } from './pages/financial/wallets/pages/wallets-factors/wallets-factors.component';
 import { FactorEditComponent } from './pages/factors/manage-factors/pages/factor-edit/factor-edit.component';
@@ -38,10 +36,7 @@ const routes: Routes = [
         path: '',
         component: AccountantComponent,
         children: [
-            {
-                path: 'dashboard', canActivate: [AuthGuard], component: DashboardComponent,
-                data: { roles: ['Accountant', 'Admin'], title: ['داشبورد حسابدار'] }
-            },
+            
             //
             {
                 path: 'entryapprove', canActivate: [AuthGuard],
