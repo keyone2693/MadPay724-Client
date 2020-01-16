@@ -21,6 +21,7 @@ import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router
 import { CustomRouteSerializer } from './shared/helpers/customRouteSerializer';
 import { reducers } from './store';
 import { effects } from './store/effects';
+import { MpPreloadingStrategy } from './core/_config/mpPreloadingStrategy';
 
 
 
@@ -69,6 +70,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     environment.development ? StoreDevtoolsModule.instrument({ maxAge: 10 }) : []
   ],
   providers: [
+    MpPreloadingStrategy,
     ErrorInterceptorProvider,
     TitleService,
     AuthService
