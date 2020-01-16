@@ -13,22 +13,20 @@ import { Observable, Subscription } from 'rxjs';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit, OnDestroy {
+export class NavbarComponent implements OnDestroy {
   user$: Observable<User>;
   subManager = new Subscription();
   constructor(private router: Router,
     private alertService: ToastrService,
     public authService: AuthService,
     private store: Store<fromStore.State>) {
-    this.store.dispatch(new fromStore.LoadNotification())
-  }
-
-  ngOnInit() {
+    
+    this.store.dispatch(new fromStore.LoadNotification());
     this.user$ = this.store.select(fromStore.getLoggedUserState);
     //
     this.loaduser();
-
   }
+
   ngOnDestroy() {
     this.subManager.unsubscribe();
   }

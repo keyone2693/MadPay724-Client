@@ -19,13 +19,133 @@
   >
     <div class="arrow_box_right">
       <div class="noti-list">
+         <a 
+         *appHasRole="['Admin']"
+          [routerLink]="['/panel/admin/documents/management']"
+          class="dropdown-item noti-container py-2">
+          <i class="icon-docs danger float-right d-block font-medium-4 mt-1 ml-2 "></i>
+          <span
+            *ngIf="notifications.unVerifiedDocuments > 0"
+            class="noti-wrapper">
+            <span class="noti-title line-height-1 d-block text-bold-400 danger">
+              <strong>{{ notifications.unVerifiedDocuments }}</strong>
+             مدارک در انتظار بررسی
+            </span>
+            <span class="noti-text">
+              برای بررسی مدارک کلیک کنید !!!
+            </span>
+          </span>
+          <span
+            *ngIf="notifications.unVerifiedDocuments === 0"
+            class="noti-wrapper">
+            <span class="noti-title line-height-1 d-block text-bold-400 danger">
+              مدرکی برای بررسی وجود ندارد
+            </span>
+          </span>
+        </a>
+         <a 
+         *appHasRole="['Admin', 'Accountant']"
+          [routerLink]="['/panel/accountant/entryapprove']"
+          class="dropdown-item noti-container py-2">
+          <i class="icon-shield info float-right d-block font-medium-4 mt-1 ml-2 "></i>
+          <span
+            *ngIf="notifications.unCheckedEntry > 0"
+            class="noti-wrapper">
+            <span class="noti-title line-height-1 d-block text-bold-400 info">
+              <strong>{{ notifications.unCheckedEntry }}</strong>
+             واریزی های در انتظار بررسی
+            </span>
+            <span class="noti-text">
+              برای بررسی واریزی ها کلیک کنید !!!
+            </span>
+          </span>
+          <span
+            *ngIf="notifications.unCheckedEntry === 0"
+            class="noti-wrapper">
+            <span class="noti-title line-height-1 d-block text-bold-400 info">
+              واریزی برای بررسی وجود ندارد
+            </span>
+          </span>
+        </a>
+          <a 
+         *appHasRole="['Admin', 'Accountant']"
+          [routerLink]="['/panel/accountant/entrypardakht']"
+          class="dropdown-item noti-container py-2">
+          <i class="icon-share-alt warning float-right d-block font-medium-4 mt-1 ml-2 "></i>
+          <span
+            *ngIf="notifications.unSpecifiedEntry > 0"
+            class="noti-wrapper">
+            <span class="noti-title line-height-1 d-block text-bold-400 warning">
+              <strong>{{ notifications.unSpecifiedEntry }}</strong>
+             واریزی های در انتظار پرداخت
+            </span>
+            <span class="noti-text">
+              برای پرداخت واریزی ها کلیک کنید !!!
+            </span>
+          </span>
+          <span
+            *ngIf="notifications.unSpecifiedEntry === 0"
+            class="noti-wrapper">
+            <span class="noti-title line-height-1 d-block text-bold-400 warning">
+              واریزی برای پرداخت وجود ندارد
+            </span>
+          </span>
+        </a>
+          <a 
+         *appHasRole="['Admin', 'Accountant']"
+          [routerLink]="['/panel/accountant/gates']"
+          class="dropdown-item noti-container py-2">
+          <i class="icon-globe danger float-right d-block font-medium-4 mt-1 ml-2 "></i>
+          <span
+            *ngIf="notifications.unVerifiedGateInPast7Days > 0"
+            class="noti-wrapper">
+            <span class="noti-title line-height-1 d-block text-bold-400 danger">
+              <strong>{{ notifications.unVerifiedGateInPast7Days }}</strong>
+             درگاه های در انتظار تایید در 7 روز گذشته
+            </span>
+            <span class="noti-text">
+              برای تایید درگاه ها کلیک کنید !!!
+            </span>
+          </span>
+          <span
+            *ngIf="notifications.unVerifiedGateInPast7Days === 0"
+            class="noti-wrapper">
+            <span class="noti-title line-height-1 d-block text-bold-400 danger">
+              درگاهی برای تایید وجود ندارد
+            </span>
+          </span>
+        </a>
+           <a 
+         *appHasRole="['Admin', 'Accountant']"
+          [routerLink]="['/panel/accountant/bankcards']"
+          class="dropdown-item noti-container py-2">
+          <i class="icon-credit-card success float-right d-block font-medium-4 mt-1 ml-2 "></i>
+          <span
+            *ngIf="notifications.unVerifiedBankCardInPast7Days > 0"
+            class="noti-wrapper">
+            <span class="noti-title line-height-1 d-block text-bold-400 success">
+              <strong>{{ notifications.unVerifiedBankCardInPast7Days }}</strong>
+             کارت های بانکی در انتظار تایید در 7 روز گذشته
+            </span>
+            <span class="noti-text">
+              برای تایید کارت های بانکی کلیک کنید !!!
+            </span>
+          </span>
+          <span
+            *ngIf="notifications.unVerifiedBankCardInPast7Days === 0"
+            class="noti-wrapper">
+            <span class="noti-title line-height-1 d-block text-bold-400 success">
+              کارت بانکی برای تایید وجود ندارد
+            </span>
+          </span>
+        </a>
         <a
           *appHasRole="['Admin', 'AdminBlog']"
           [routerLink]="['/panel/blog/blog']"
           class="dropdown-item noti-container py-2"
         >
           <i
-            class="ft-airplay danger float-right d-block font-medium-4 mt-1 ml-2 "
+            class="ft-copy danger float-right d-block font-medium-4 mt-1 ml-2 "
           ></i>
           <span
             *ngIf="notifications.unverifiedBlogCount > 0"

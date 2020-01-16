@@ -5,8 +5,14 @@ import { NotificationStateModel } from '../_model/notificationsStateModel';
 export type NotificationActoions = fromAction.AllNotificationActoions;
 
 export const initNotificationState: NotificationStateModel = {
-    unverifiedBlogCount: 0,
-    unClosedTicketCount:0
+    unVerifiedBlogCount: 0,
+    unClosedTicketCount: 0,
+    unCheckedEntry: 0,
+    unSpecifiedEntry: 0,
+    unVerifiedGateInPast7Days: 0,
+    unVerifiedBankCardInPast7Days: 0,
+    unVerifiedDocuments: 0
+    
 }
 export function NotificationReducer(state = initNotificationState, action: NotificationActoions) {
     switch (action.type) {
@@ -16,16 +22,21 @@ export function NotificationReducer(state = initNotificationState, action: Notif
         case fromAction.NotificationActionTypes.LOAD_NOTIFICATION_SUCCESS:            
             return {
                 ...state,
-                unverifiedBlogCount: action.payload.unverifiedBlogCount,
-                unClosedTicketCount: action.payload.unClosedTicketCount
+                unVerifiedBlogCount: action.payload.unVerifiedBlogCount,
+                unClosedTicketCount: action.payload.unClosedTicketCount,
+                unCheckedEntry: action.payload.unCheckedEntry,
+                UnSpecifiedEntry: action.payload.unSpecifiedEntry,
+                unVerifiedGateInPast7Days: action.payload.unVerifiedGateInPast7Days,
+                unVerifiedBankCardInPast7Days: action.payload.unVerifiedBankCardInPast7Days,
+                unVerifiedDocuments: action.payload.unVerifiedDocuments
             }
         case fromAction.NotificationActionTypes.LOAD_NOTIFICATION_FAIL:
             return { ...state, error: action.payload }      
         //--------------------------------------------
         case fromAction.NotificationActionTypes.INC_BLOGUNVERIFIEDCOUNT:
-            return { ...state, unverifiedBlogCount: state.unverifiedBlogCount + 1 }
+            return { ...state, unverifiedBlogCount: state.unVerifiedBlogCount + 1 }
         case fromAction.NotificationActionTypes.DEC_BLOGUNVERIFIEDCOUNT:
-            return { ...state, unverifiedBlogCount: state.unverifiedBlogCount - 1 }
+            return { ...state, unverifiedBlogCount: state.unVerifiedBlogCount - 1 }
         //--------------------------------------------
         case fromAction.NotificationActionTypes.INC_UNCLOSEDTICKETCOUNT:
             return { ...state, unClosedTicketCount: state.unClosedTicketCount + 1 }

@@ -17,7 +17,8 @@ export class NotificationComponent implements OnInit {
     private authService: AuthService, private router: Router) {
     
     this.role$ = this.store.select(fromStore.getUserRoles);
-    this.notifications$ = this.store.select(fromStore.getNotificationState)
+    this.notifications$ = this.store.select(fromStore.getNotificationState);
+
   }
 
   ngOnInit() {
