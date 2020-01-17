@@ -3,6 +3,7 @@ import { BlogGroup } from './blogGroup';
 
 export interface Blog {
     id: string;
+    dateModified: string;
     title: string;
     tags: string;
     picAddress: string;

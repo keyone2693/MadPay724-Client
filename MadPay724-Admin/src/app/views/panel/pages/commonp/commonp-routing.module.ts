@@ -11,6 +11,9 @@ import { AccountantDashboardComponent } from './pages/accountant-dashboard/accou
 import { BlogDashboardComponent } from './pages/blog-dashboard/blog-dashboard.component';
 import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
 import { UserDashboardResolver } from 'src/app/core/_base/resolvers/common/userDashboard.resolver';
+import { BlogDashboardResolver } from 'src/app/core/_base/resolvers/common/blogDashboard.resolver';
+import { AdminDashboardResolver } from 'src/app/core/_base/resolvers/common/adminDashboard.resolver';
+import { AccountantDashboardResolver } from 'src/app/core/_base/resolvers/common/accountantDashboard.resolver';
 
 const routes: Routes = [
   {
@@ -18,15 +21,21 @@ const routes: Routes = [
     component: CommonpComponent,
     children: [
       {
-        path: 'admin/dashboard', canActivate: [AuthGuard], component: AdminDashboardComponent,
+        path: 'admin/dashboard', canActivate: [AuthGuard],
+        resolve: { adminDashboard: AdminDashboardResolver },
+        component: AdminDashboardComponent,
         data: { roles: ['Admin'], title: ['داشبورد مدیریت'] }
       },
       {
-        path: 'accountant/dashboard', canActivate: [AuthGuard], component: AccountantDashboardComponent,
-        data: { roles: ['Accountant', 'Admin'], title: ['داشبورد حسابدار'] }
+        path: 'accountant/dashboard', canActivate: [AuthGuard],
+        resolve: { accountantDashboard: AccountantDashboardResolver },
+        component: AccountantDashboardComponent,
+        data: { roles: ['Accountant'], title: ['داشبورد حسابدار'] }
       },
       {
-        path: 'blog/dashboard', canActivate: [AuthGuard], component: BlogDashboardComponent,
+        path: 'blog/dashboard', canActivate: [AuthGuard],
+        resolve: { blogDashboard: BlogDashboardResolver },
+        component: BlogDashboardComponent,
         data: { roles: ['Blog', 'AdminBlog'], title: ['داشبورد بلاگر'] }
       },
       {

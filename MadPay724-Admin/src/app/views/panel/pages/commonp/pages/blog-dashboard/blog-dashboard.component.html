@@ -8,7 +8,7 @@
                                     <div class="media">
                                         <div class="media-body white text-right">
                                             <h4 class="font-medium-5 card-title mb-0">
-                                              {{ (blogDashboard.totalBlogCount}}
+                                              {{ blogDashboard.totalBlogCount}}
                                                </h4>
                                             <span class="grey darken-1">مجموع بلاگ ها </span>
                                         </div>
@@ -35,7 +35,7 @@
                                     <div class="media">
                                         <div class="media-body white text-right">
                                             <h4 class="font-medium-5 card-title mb-0">
-                                              {{ (blogDashboard.approvedBlogCount}}
+                                              {{ blogDashboard.approvedBlogCount}}
                                               </h4>
                                             <span class="grey darken-1">بلاگ های تایید شده</span>
                                         </div>
@@ -63,7 +63,7 @@
                                     <div class="media">
                                         <div class="media-body white text-right">
                                             <h4 class="font-medium-5 card-title mb-0">
-                                              {{ (blogDashboard.unApprovedBlogCount}}
+                                              {{ blogDashboard.unApprovedBlogCount}}
                                               </h4>
                                             <span class="grey darken-1">بلاگ های تایید نشده</span>
                                         </div>
@@ -108,22 +108,23 @@
                                     ></x-chartist>
                                 <div class="card-block">
                                     <div class="row my-3">
-                                        <div class="col">
-                                            <span class="mb-1 text-muted d-block">{{getPersent(this.blogDashboard.totalBlogCount)}} % - همه</span>
+                                       <div class="col">
+                                            <span class="mb-1 text-muted d-block">100 % - همه</span>
                                             <div class="progress" style="height: 8px;">
-                                                <div class="progress-bar gradient-green-tea" 
-                                                [style.width.%] = "getPersent(this.blogDashboard.totalBlogCount)"
+                                                <div class="progress-bar gradient-blackberry "
+                                                [style.width.%] = "100"
                                                 role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <span class="mb-1 text-muted d-block">{{getPersent(this.blogDashboard.approvedBlogCount)}} % - تایید شده</span>
                                             <div class="progress" style="height: 8px;">
-                                                <div class="progress-bar gradient-blackberry "
+                                                <div class="progress-bar gradient-green-tea" 
                                                 [style.width.%] = "getPersent(this.blogDashboard.approvedBlogCount)"
                                                 role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </div>
+                                        
                                         <div class="col">
                                             <span class="mb-1 text-muted d-block">{{getPersent(this.blogDashboard.unApprovedBlogCount)}} % - تایید نشده</span>
                                             <div class="progress" style="height: 8px;">
@@ -164,13 +165,13 @@
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let blog of blogDashboard.last7Blogs">
-                                                <td class="text-truncate"><img [src]="{{blog.picAddress}}" alt=""> </td>
+                                                <td class="text-truncate"><img class="blog-img" [src]="blog.picAddress" alt=""> </td>
                                                 <td class="text-truncate">{{blog.name}} </td>
                                                 <td class="text-truncate">{{blog.blogGroupName}} </td>
                                                 <td class="text-truncate">{{blog.title}} </td>
                                                 <td class="text-truncate">
-                                                    ({{ blog.dateCreated | date: "HH:mm" }})
-                                                    {{ blog.dateCreated | persianDate }}
+                                                    ({{ blog.dateModified | date: "HH:mm" }})
+                                                    {{ blog.dateModified | persianDate }}
                                                 </td>
                                                 <td>
                                                     <button
@@ -188,23 +189,34 @@
                         </div>
                     </div>
                 </div>
-                <div class="row match-height">
+                <div class="row match-height" *appHasRole="['AdminBlog']">
                     <div class="col-xl-12">
                       <div class="card">
                             <div class="card-header">
                                 <div class="card-title-wrap bar-success">
-                                    <h4 class="card-title">فروش چند ماه اخیر </h4>
+                                    <h4 class="card-title">پرکار ترین کاربران </h4>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="card-block">
+                                  <div class="chart-info mb-2">
+                                        <span class="text-uppercase mr-3">
+                                          <i class="fa fa-circle primary font-small-2 mr-1"></i> همه ی بلاگ کاربر
+                                        </span>
+                                        <span class="text-uppercase">
+                                          <i class="fa fa-circle warning font-small-2 mr-1"></i> بلاگ تایید شده کاربر
+                                        </span>
+                                          <span class="text-uppercase">
+                                          <i class="fa fa-circle danger font-small-2 mr-1"></i> بلاگ تایید نشده کاربر
+                                        </span>
+                                  </div>
                                     <x-chartist
                                      id="line-chart"
                                      class="height-300 lineChart lineChartShadow"
-                                      [type]="blogChartType"
-                                      [data]="blogChartData"
-                                      [options]="blogChartOptions"
-                                      [events]="blogChartEvents"
+                                      [type]="UserBlogsChartType"
+                                      [data]="UserBlogsChartData"
+                                      [options]="UserBlogsChartOptions"
+                                      [events]="UserBlogsChartEvents"
                                     ></x-chartist>
                                 </div>
                             </div>

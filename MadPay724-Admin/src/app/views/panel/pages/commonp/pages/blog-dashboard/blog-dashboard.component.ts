@@ -223,114 +223,92 @@ export class BlogDashboardComponent implements OnInit {
   };
   //#endregion
 
-  //#region Bar-Chart
-  DarmadSummaryChartType: ChartType = 'Bar';
-  DarmadSummaryChartData: IChartistData;
+  //#region UserBlogsChart
+  UserBlogsChartType: ChartType = 'Line';
+  UserBlogsChartData: IChartistData
 
-  DarmadSummaryChartOptions: IBarChartOptions = {
+  UserBlogsChartOptions: ILineChartOptions = {
+    low: 0,
+    fullWidth: true,
+    chartPadding: {
+      right: 20
+    },
+    axisY: {
+      low: 0,
+      scaleMinSpace: 60,
+      labelInterpolationFnc: function labelInterpolationFnc(value) {
+        return value
+      }
+    },
     axisX: {
       showGrid: false
     },
-    axisY: {
-      showGrid: false,
-      showLabel: false,
-      offset: 0
-    },
-    low: 0,
-    high: 100
+    lineSmooth: Chartist.Interpolation.simple({
+      divisor: 2
+    })
   };
 
-  DarmadSummaryChartEvents: ChartEvent = {
+  UserBlogsChartEvents: ChartEvent = {
     created: (data) => {
       const defs = data.svg.elem('defs');
       defs.elem('linearGradient', {
-        id: 'gradient4',
-        x1: 0,
+        id: 'linear1',
+        x1: 1,
         y1: 1,
-        x2: 0,
+        x2: 1,
         y2: 0
       }).elem('stop', {
         offset: 0,
-        'stop-color': 'rgba(238, 9, 121,1)'
+        'stop-color': 'rgba(185,168,231, 1)'
       }).parent().elem('stop', {
         offset: 1,
-        'stop-color': 'rgba(255, 106, 0, 1)'
+        'stop-color': 'rgba(118,74,233, 1)'
       });
       defs.elem('linearGradient', {
-        id: 'gradient5',
-        x1: 0,
+        id: 'linear2',
+        x1: 1,
         y1: 1,
-        x2: 0,
+        x2: 1,
         y2: 0
       }).elem('stop', {
         offset: 0,
-        'stop-color': 'rgba(0, 75, 145,1)'
+        'stop-color': 'rgba(32,201,151, 1)'
       }).parent().elem('stop', {
         offset: 1,
-        'stop-color': 'rgba(120, 204, 55, 1)'
-      });
-
-      defs.elem('linearGradient', {
-        id: 'gradient6',
-        x1: 0,
-        y1: 1,
-        x2: 0,
-        y2: 0
-      }).elem('stop', {
-        offset: 0,
-        'stop-color': 'rgba(132, 60, 247,1)'
-      }).parent().elem('stop', {
-        offset: 1,
-        'stop-color': 'rgba(56, 184, 242, 1)'
+        'stop-color': 'rgba(40,167,69, 1)'
       });
       defs.elem('linearGradient', {
-        id: 'gradient7',
-        x1: 0,
+        id: 'linear3',
+        x1: 1,
         y1: 1,
-        x2: 0,
+        x2: 1,
         y2: 0
       }).elem('stop', {
         offset: 0,
-        'stop-color': 'rgba(155, 60, 183,1)'
+        'stop-color': 'rgba(247,140,153, 1)'
       }).parent().elem('stop', {
         offset: 1,
-        'stop-color': 'rgba(255, 57, 111, 1)'
+        'stop-color': 'rgba(255,73,97, 1)'
       });
-      defs.elem('linearGradient', {
-        id: 'gradient8',
-        x1: 0,
-        y1: 1,
-        x2: 0,
-        y2: 0
-      }).elem('stop', {
-        offset: 0,
-        'stop-color': 'rgba(0, 201, 255,1)'
-      }).parent().elem('stop', {
-        offset: 1,
-        'stop-color': 'rgba(17,228,183, 1)'
-      });
+      
     },
     draw: (data) => {
-      if (data.type === 'bar') {
-        data.element.attr({
-          y1: 195,
-          x1: data.x1 + 0.001
+      const circleRadius = 10;
+      if (data.type === 'point') {
+        const circle = new Chartist.Svg('circle', {
+          cx: data.x,
+          cy: data.y,
+          r: circleRadius,
+          class:
+            data.value.y === 0 || data.value.y === 6800
+              ? 'ct-circle-transperent'
+              : 'ct-circle'
         });
-        data.group.append(
-          new Chartist.Svg(
-            'circle',
-            {
-              cx: data.x2,
-              cy: data.y2,
-              r: 12
-            }, 'ct-slice-bar'
-          )
-        );
+        data.element.replace(circle);
       }
     }
   };
   //#endregion
-
 
   constructor(private route: ActivatedRoute,
     private persianCalendarService: PersianCalendarService) { }
@@ -341,7 +319,7 @@ export class BlogDashboardComponent implements OnInit {
     this.loadApprovedBlogChart();
     this.loadUnApprovedBlogChart();
     this.loadBlogSummary();
-    this.loadDarmadSummary();
+    this.loadUserBlogsChart();
   }
   loadblogDashboard() {
     this.subManager.add(
@@ -373,7 +351,7 @@ export class BlogDashboardComponent implements OnInit {
         this.blogDashboard.totalBlog5Days.day4,
         this.blogDashboard.totalBlog5Days.day3,
         this.blogDashboard.totalBlog5Days.day2,
-        this.blogDashboard.totalBlog5Days.day1
+        this.blogDashboard.totalBlogCount
       ]]
     };
   }
@@ -400,7 +378,7 @@ export class BlogDashboardComponent implements OnInit {
         this.blogDashboard.approvedBlog5Days.day4,
         this.blogDashboard.approvedBlog5Days.day3,
         this.blogDashboard.approvedBlog5Days.day2,
-        this.blogDashboard.approvedBlog5Days.day1
+        this.blogDashboard.approvedBlogCount
       ]]
     };
   }
@@ -427,7 +405,7 @@ export class BlogDashboardComponent implements OnInit {
         this.blogDashboard.unApprovedBlog5Days.day4,
         this.blogDashboard.unApprovedBlog5Days.day3,
         this.blogDashboard.unApprovedBlog5Days.day2,
-        this.blogDashboard.unApprovedBlog5Days.day1
+        this.blogDashboard.unApprovedBlogCount
       ]]
     };
   }
@@ -435,13 +413,8 @@ export class BlogDashboardComponent implements OnInit {
     this.BlogSummaryChartData = {
       series: [
         {
-          name: 'همه',
-          className: 'ct-progress',
-          value: this.getPersent(this.blogDashboard.totalBlogCount)
-        },
-        {
           name: 'تایید شده',
-          className: 'ct-outstanding',
+          className: 'ct-progress',
           value: this.getPersent(this.blogDashboard.approvedBlogCount)
         },
         {
@@ -452,26 +425,68 @@ export class BlogDashboardComponent implements OnInit {
       ]
     };
   }
-  loadDarmadSummary() {
-    this.DarmadSummaryChartData = {
-      labels: ['افزایش موجودی', 'حمایتی', 'ایزی پی', 'فاکتور ', 'کل'],
-      series: [
+  loadUserBlogsChart() {
+    this.UserBlogsChartData = {
+      labels: [
+        this.blogDashboard.last12UserBlogInfo[11] ? this.blogDashboard.last12UserBlogInfo[11].name : '-',
+        this.blogDashboard.last12UserBlogInfo[10] ? this.blogDashboard.last12UserBlogInfo[10].name : '-',
+        this.blogDashboard.last12UserBlogInfo[9] ? this.blogDashboard.last12UserBlogInfo[9].name : '-',
+        this.blogDashboard.last12UserBlogInfo[8] ? this.blogDashboard.last12UserBlogInfo[8].name : '-',
+        this.blogDashboard.last12UserBlogInfo[7] ? this.blogDashboard.last12UserBlogInfo[7].name : '-',
+        this.blogDashboard.last12UserBlogInfo[6] ? this.blogDashboard.last12UserBlogInfo[6].name : '-',
+        this.blogDashboard.last12UserBlogInfo[5] ? this.blogDashboard.last12UserBlogInfo[5].name : '-',
+        this.blogDashboard.last12UserBlogInfo[4] ? this.blogDashboard.last12UserBlogInfo[4].name : '-',
+        this.blogDashboard.last12UserBlogInfo[3] ? this.blogDashboard.last12UserBlogInfo[3].name : '-',
+        this.blogDashboard.last12UserBlogInfo[2] ? this.blogDashboard.last12UserBlogInfo[2].name : '-',
+        this.blogDashboard.last12UserBlogInfo[1] ? this.blogDashboard.last12UserBlogInfo[1].name : '-',
+        this.blogDashboard.last12UserBlogInfo[0] ? this.blogDashboard.last12UserBlogInfo[0].name : '-'
+      ],
+      series: [[
+        this.blogDashboard.last12UserBlogInfo[11] ? this.blogDashboard.last12UserBlogInfo[11].totalBlog : 0,
+        this.blogDashboard.last12UserBlogInfo[10] ? this.blogDashboard.last12UserBlogInfo[10].totalBlog : 0,
+        this.blogDashboard.last12UserBlogInfo[9] ? this.blogDashboard.last12UserBlogInfo[9].totalBlog : 0,
+        this.blogDashboard.last12UserBlogInfo[8] ? this.blogDashboard.last12UserBlogInfo[8].totalBlog : 0,
+        this.blogDashboard.last12UserBlogInfo[7] ? this.blogDashboard.last12UserBlogInfo[7].totalBlog : 0,
+        this.blogDashboard.last12UserBlogInfo[6] ? this.blogDashboard.last12UserBlogInfo[6].totalBlog : 0,
+        this.blogDashboard.last12UserBlogInfo[5] ? this.blogDashboard.last12UserBlogInfo[5].totalBlog : 0,
+        this.blogDashboard.last12UserBlogInfo[4] ? this.blogDashboard.last12UserBlogInfo[4].totalBlog : 0,
+        this.blogDashboard.last12UserBlogInfo[3] ? this.blogDashboard.last12UserBlogInfo[3].totalBlog : 0,
+        this.blogDashboard.last12UserBlogInfo[2] ? this.blogDashboard.last12UserBlogInfo[2].totalBlog : 0,
+        this.blogDashboard.last12UserBlogInfo[1] ? this.blogDashboard.last12UserBlogInfo[1].totalBlog : 0,
+        this.blogDashboard.last12UserBlogInfo[0] ? this.blogDashboard.last12UserBlogInfo[0].totalBlog : 0
+      ],
         [
-          this.getDaramdPersent(this.blogDashboard.totalIncInventoryDaramad),
-          this.getDaramdPersent(this.blogDashboard.totalSupportDaramad),
-          this.getDaramdPersent(this.blogDashboard.totalEasyPayDaramad),
-          this.getDaramdPersent(this.blogDashboard.totalFactorDaramad),
-          100
+          this.blogDashboard.last12UserBlogInfo[11] ? this.blogDashboard.last12UserBlogInfo[11].approvedBlog : 0,
+          this.blogDashboard.last12UserBlogInfo[10] ? this.blogDashboard.last12UserBlogInfo[10].approvedBlog : 0,
+          this.blogDashboard.last12UserBlogInfo[9] ? this.blogDashboard.last12UserBlogInfo[9].approvedBlog : 0,
+          this.blogDashboard.last12UserBlogInfo[8] ? this.blogDashboard.last12UserBlogInfo[8].approvedBlog : 0,
+          this.blogDashboard.last12UserBlogInfo[7] ? this.blogDashboard.last12UserBlogInfo[7].approvedBlog : 0,
+          this.blogDashboard.last12UserBlogInfo[6] ? this.blogDashboard.last12UserBlogInfo[6].approvedBlog : 0,
+          this.blogDashboard.last12UserBlogInfo[5] ? this.blogDashboard.last12UserBlogInfo[5].approvedBlog : 0,
+          this.blogDashboard.last12UserBlogInfo[4] ? this.blogDashboard.last12UserBlogInfo[4].approvedBlog : 0,
+          this.blogDashboard.last12UserBlogInfo[3] ? this.blogDashboard.last12UserBlogInfo[3].approvedBlog : 0,
+          this.blogDashboard.last12UserBlogInfo[2] ? this.blogDashboard.last12UserBlogInfo[2].approvedBlog : 0,
+          this.blogDashboard.last12UserBlogInfo[1] ? this.blogDashboard.last12UserBlogInfo[1].approvedBlog : 0,
+          this.blogDashboard.last12UserBlogInfo[0] ? this.blogDashboard.last12UserBlogInfo[0].approvedBlog : 0
+        ],
+        [
+        this.blogDashboard.last12UserBlogInfo[11] ? this.blogDashboard.last12UserBlogInfo[11].unApprovedBlog : 0,
+        this.blogDashboard.last12UserBlogInfo[10] ? this.blogDashboard.last12UserBlogInfo[10].unApprovedBlog : 0,
+        this.blogDashboard.last12UserBlogInfo[9] ? this.blogDashboard.last12UserBlogInfo[9].unApprovedBlog : 0,
+        this.blogDashboard.last12UserBlogInfo[8] ? this.blogDashboard.last12UserBlogInfo[8].unApprovedBlog : 0,
+        this.blogDashboard.last12UserBlogInfo[7] ? this.blogDashboard.last12UserBlogInfo[7].unApprovedBlog : 0,
+        this.blogDashboard.last12UserBlogInfo[6] ? this.blogDashboard.last12UserBlogInfo[6].unApprovedBlog : 0,
+        this.blogDashboard.last12UserBlogInfo[5] ? this.blogDashboard.last12UserBlogInfo[5].unApprovedBlog : 0,
+        this.blogDashboard.last12UserBlogInfo[4] ? this.blogDashboard.last12UserBlogInfo[4].unApprovedBlog : 0,
+        this.blogDashboard.last12UserBlogInfo[3] ? this.blogDashboard.last12UserBlogInfo[3].unApprovedBlog : 0,
+        this.blogDashboard.last12UserBlogInfo[2] ? this.blogDashboard.last12UserBlogInfo[2].unApprovedBlog : 0,
+        this.blogDashboard.last12UserBlogInfo[1] ? this.blogDashboard.last12UserBlogInfo[1].unApprovedBlog : 0,
+        this.blogDashboard.last12UserBlogInfo[0] ? this.blogDashboard.last12UserBlogInfo[0].unApprovedBlog : 0
         ]
       ]
     };
   }
 
-  sortTicketContent(tc: TicketContent[]) {
-    return tc.sort((a, b) => {
-      return <any>new Date(b.dateCreated) - <any>new Date(a.dateCreated);
-    });
-  }
 
   getPersent(number: number) {
     return Math.floor((100 * number) / this.blogDashboard.totalBlogCount);

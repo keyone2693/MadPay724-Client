@@ -4,15 +4,15 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { DashboardService } from 'src/app/core/_services/common/dashboard.service';
-import { UserDashboard } from 'src/app/data/models/common/userDashboard';
+import { AccountantDashboard } from 'src/app/data/models/common/accountantDashboard';
 
 @Injectable()
-export class UserDashboardResolver implements Resolve<UserDashboard> {
+export class AccountantDashboardResolver implements Resolve<AccountantDashboard> {
     constructor(private dashboardService: DashboardService, private router: Router,
                 private alertService: ToastrService) {}
 
-    resolve(route: ActivatedRouteSnapshot): Observable<UserDashboard> {
-        return this.dashboardService.getUserDashboard().pipe(
+    resolve(route: ActivatedRouteSnapshot): Observable<AccountantDashboard> {
+        return this.dashboardService.getAccountantDashboard().pipe(
             catchError(error => {
                 this.alertService.error(error, 'خطا');
                 return of(null);

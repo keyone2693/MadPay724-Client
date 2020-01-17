@@ -18,6 +18,10 @@ import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard
 import { ChartistModule } from 'ng-chartist';
 import { DashboardService } from 'src/app/core/_services/common/dashboard.service';
 import { UserDashboardResolver } from 'src/app/core/_base/resolvers/common/userDashboard.resolver';
+import { AccountantDashboardResolver } from 'src/app/core/_base/resolvers/common/accountantDashboard.resolver';
+import { AdminDashboardResolver } from 'src/app/core/_base/resolvers/common/adminDashboard.resolver';
+import { BlogDashboardResolver } from 'src/app/core/_base/resolvers/common/blogDashboard.resolver';
+import { HasRoleModule } from 'src/app/Shared/Modules/hasRole/hasRole.module';
 
 @NgModule({
   imports: [
@@ -27,7 +31,8 @@ import { UserDashboardResolver } from 'src/app/core/_base/resolvers/common/userD
     FormsModule,
     ReactiveFormsModule,
     PersianPipeModule,
-    ChartistModule
+    ChartistModule,
+    HasRoleModule
   ],
   declarations: [
     ProfileComponent,
@@ -44,7 +49,10 @@ import { UserDashboardResolver } from 'src/app/core/_base/resolvers/common/userD
     UserDashboardResolver,
     PreventUnsavedGuard,
     UserService, //
-    UserProfileResolver
+    UserProfileResolver,
+    BlogDashboardResolver,
+    AdminDashboardResolver,
+    AccountantDashboardResolver
   ]
 })
 export class CommonpModule { }

@@ -51116,9 +51116,37 @@ ul.no-list-style {
   stroke-width : 5;
   stroke : #FFF;
 }
+.lineChart .ct-series.ct-series-b .ct-line {
+  stroke : url(#linear2) !important;
+  stroke-width : 5px;
+}
+
+.lineChart .ct-series.ct-series-b .ct-circle {
+  fill : url(#linear2) !important;
+  stroke-width : 5;
+  stroke : #FFF;
+}
+.lineChart .ct-series.ct-series-c .ct-line {
+  stroke : url(#linear3) !important;
+  stroke-width : 5px;
+}
+
+.lineChart .ct-series.ct-series-c .ct-circle {
+  fill : url(#linear3) !important;
+  stroke-width : 5;
+  stroke : #FFF;
+}
 
 .lineChart .ct-series.ct-series-a .ct-circle-transperent {
-  fill : transparent;
+  fill : url(#linear1);
+  stroke-width : 0;
+}
+.lineChart .ct-series.ct-series-b .ct-circle-transperent {
+  fill : url(#linear2);
+  stroke-width : 0;
+}
+.lineChart .ct-series.ct-series-c .ct-circle-transperent {
+  fill : url(#linear3);
   stroke-width : 0;
 }
 
