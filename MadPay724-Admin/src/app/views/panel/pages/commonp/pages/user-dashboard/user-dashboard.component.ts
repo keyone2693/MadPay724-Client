@@ -306,13 +306,10 @@ export class UserDashboardComponent implements OnInit {
   //#endregion
 
   //#region Bar-Chart
-  BarChartType: ChartType = 'Bar';
-  BarChartData: IChartistData = {
-    labels: ['ورزشی', 'موزیک', 'مسافرت', 'اخبار', 'وبلاگ'],
-    series: [[35, 20, 30, 45, 55]]
-  };
+  DarmadSummaryChartType: ChartType = 'Bar';
+  DarmadSummaryChartData: IChartistData;
 
-  BarChartOptions: IBarChartOptions = {
+  DarmadSummaryChartOptions: IBarChartOptions = {
     axisX: {
       showGrid: false
     },
@@ -322,10 +319,10 @@ export class UserDashboardComponent implements OnInit {
       offset: 0
     },
     low: 0,
-    high: 60
+    high: 100
   };
 
-  BarChartEvents: ChartEvent = {
+  DarmadSummaryChartEvents: ChartEvent = {
     created: (data) => {
       const defs = data.svg.elem('defs');
       defs.elem('linearGradient', {
@@ -427,6 +424,7 @@ export class UserDashboardComponent implements OnInit {
     this.loadExitMoneyChart();
     this.loadFactorChart();
     this.loadFinancialSummary();
+    this.loadDarmadSummary();
   }
   loadUserDashboard() {
     this.subManager.add(
@@ -437,10 +435,10 @@ export class UserDashboardComponent implements OnInit {
   }
   loadInventoryChart() {
     const dt1 = new Date();
-    const dt2 = dt1;
-    const dt3 = dt1;
-    const dt4 = dt1;
-    const dt5 = dt1;
+    const dt2 = new Date();
+    const dt3 = new Date();
+    const dt4 = new Date();
+    const dt5 = new Date();
     dt2.setDate(dt2.getDate() - 1);
     dt3.setDate(dt3.getDate() - 2);
     dt4.setDate(dt4.getDate() - 3);
@@ -464,10 +462,10 @@ export class UserDashboardComponent implements OnInit {
   }
   loadInretMoneyChart() {
     const dt1 = new Date();
-    const dt2 = dt1;
-    const dt3 = dt1;
-    const dt4 = dt1;
-    const dt5 = dt1;
+    const dt2 = new Date();
+    const dt3 = new Date();
+    const dt4 = new Date();
+    const dt5 = new Date();
     dt2.setDate(dt2.getDate() - 1);
     dt3.setDate(dt3.getDate() - 2);
     dt4.setDate(dt4.getDate() - 3);
@@ -491,10 +489,10 @@ export class UserDashboardComponent implements OnInit {
   }
   loadExitMoneyChart() {
     const dt1 = new Date();
-    const dt2 = dt1;
-    const dt3 = dt1;
-    const dt4 = dt1;
-    const dt5 = dt1;
+    const dt2 = new Date();
+    const dt3 = new Date();
+    const dt4 = new Date();
+    const dt5 = new Date();
     dt2.setDate(dt2.getDate() - 1);
     dt3.setDate(dt3.getDate() - 2);
     dt4.setDate(dt4.getDate() - 3);
@@ -518,28 +516,28 @@ export class UserDashboardComponent implements OnInit {
   }
   loadFactorChart() {
     const dt1 = new Date();
-    const dt2 = dt1;
-    const dt3 = dt1;
-    const dt4 = dt1;
-    const dt5 = dt1;
-    const dt6 = dt1;
-    const dt7 = dt1;
-    const dt8 = dt1;
-    const dt9 = dt1;
-    const dt10 = dt1;
-    const dt11 = dt1;
-    const dt12 = dt1;
+    const dt2 = new Date();
+    const dt3 = new Date();
+    const dt4 = new Date();
+    const dt5 = new Date();
+    const dt6 = new Date();
+    const dt7 = new Date();
+    const dt8 = new Date();
+    const dt9 = new Date();
+    const dt10 = new Date();
+    const dt11 = new Date();
+    const dt12 = new Date();
     dt2.setMonth(dt2.getMonth() - 1);
     dt3.setMonth(dt3.getMonth() - 2);
     dt4.setMonth(dt4.getMonth() - 3);
     dt5.setMonth(dt5.getMonth() - 4);
-    dt6.setMonth(dt5.getMonth() - 5);
-    dt7.setMonth(dt5.getMonth() - 6);
-    dt8.setMonth(dt5.getMonth() - 7);
-    dt9.setMonth(dt5.getMonth() - 8);
-    dt10.setMonth(dt5.getMonth() -9);
-    dt11.setMonth(dt5.getMonth() - 10);
-    dt12.setMonth(dt5.getMonth() - 11);
+    dt6.setMonth(dt6.getMonth() - 5);
+    dt7.setMonth(dt7.getMonth() - 6);
+    dt8.setMonth(dt8.getMonth() - 7);
+    dt9.setMonth(dt9.getMonth() - 8);
+    dt10.setMonth(dt10.getMonth() -9);
+    dt11.setMonth(dt11.getMonth() - 10);
+    dt12.setMonth(dt12.getMonth() - 11);
     this.FactorChartData = {
       labels: [
         this.persianCalendarService.PersianCalendarMonth(dt12),
@@ -556,18 +554,18 @@ export class UserDashboardComponent implements OnInit {
         this.persianCalendarService.PersianCalendarMonth(dt1)
       ],
       series: [[
-        this.userDashboard.factor8Months.day12,
-        this.userDashboard.factor8Months.day11,
-        this.userDashboard.factor8Months.day10,
-        this.userDashboard.factor8Months.day9,
-        this.userDashboard.factor8Months.day8,
-        this.userDashboard.factor8Months.day7,
-        this.userDashboard.factor8Months.day6,
-        this.userDashboard.factor8Months.day5,
-        this.userDashboard.factor8Months.day4,
-        this.userDashboard.factor8Months.day3,
-        this.userDashboard.factor8Months.day2,
-        this.userDashboard.factor8Months.day1
+        this.userDashboard.factor12Months.day12,
+        this.userDashboard.factor12Months.day11,
+        this.userDashboard.factor12Months.day10,
+        this.userDashboard.factor12Months.day9,
+        this.userDashboard.factor12Months.day8,
+        this.userDashboard.factor12Months.day7,
+        this.userDashboard.factor12Months.day6,
+        this.userDashboard.factor12Months.day5,
+        this.userDashboard.factor12Months.day4,
+        this.userDashboard.factor12Months.day3,
+        this.userDashboard.factor12Months.day2,
+        this.userDashboard.factor12Months.day1
       ]]
     };
   }
@@ -592,6 +590,20 @@ export class UserDashboardComponent implements OnInit {
       ]
     };
   }
+  loadDarmadSummary() {
+    this.DarmadSummaryChartData  = {
+      labels: ['افزایش موجودی', 'حمایتی', 'ایزی پی', 'فاکتور ', 'کل'],
+      series: [
+        [
+          this.getDaramdPersent(this.userDashboard.totalIncInventoryDaramad),
+          this.getDaramdPersent(this.userDashboard.totalSupportDaramad),
+          this.getDaramdPersent(this.userDashboard.totalEasyPayDaramad),
+          this.getDaramdPersent(this.userDashboard.totalFactorDaramad),
+          100
+        ]
+      ]
+    };
+  }
 
    sortTicketContent(tc: TicketContent[]) {
     return tc.sort((a, b) => {
@@ -602,6 +614,10 @@ export class UserDashboardComponent implements OnInit {
   getPersent(number: number) {
     const sum = this.userDashboard.totalInventory + this.userDashboard.totalInterMoney + this.userDashboard.totalExitMoney;
     return Math.floor((100 * number) / sum) ;
+  }
+
+  getDaramdPersent(number: number) {
+    return Math.floor((100 * number) / this.userDashboard.totalSuccessFactor);
   }
   
 }

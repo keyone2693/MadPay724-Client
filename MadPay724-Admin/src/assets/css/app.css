@@ -49959,11 +49959,11 @@ ul.no-list-style {
 }
 
 .ct-chart-bar .ct-label.ct-horizontal.ct-end {
-  -webkit-box-align : flex-start;
-  -webkit-align-items : flex-start;
-  -ms-flex-align : flex-start;
-     -moz-box-align : start;
-          align-items : flex-start;
+  -webkit-box-align : flex-end;
+  -webkit-align-items : flex-end;
+  -ms-flex-align : flex-end;
+     -moz-box-align : end;
+          align-items : flex-end;
   -webkit-box-pack : center;
   -webkit-justify-content : center;
   -ms-flex-pack : center;
@@ -49971,6 +49971,7 @@ ul.no-list-style {
           justify-content : center;
   text-align : center;
   text-anchor : start;
+  line-height: 12px;
 }
 
 .ct-chart-bar.ct-horizontal-bars .ct-label.ct-horizontal.ct-start {

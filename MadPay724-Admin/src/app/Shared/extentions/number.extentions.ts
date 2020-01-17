@@ -46,6 +46,8 @@ Number.prototype.toFactorType = function (this: number): string {
             return 'ایزی پی';
         case FactorTypes.Support:
             return 'حمایتی';
+        case FactorTypes.IncInventory:
+            return 'افزایش موجودی';
         default:
             return ''
     }

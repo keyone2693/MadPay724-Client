@@ -18,11 +18,18 @@ export interface UserDashboard {
     totalExitMoney: number,
     exitMoney5Days: Days,
 
-    totalSuccessFactor: number,
-    factor8Months:Days,
+
+    factor12Months: Days,
     last7Factors: Factor[],
 
 
     totalSuccessEntry: number,
     last10Entries: Entry[],
+
+
+    totalFactorDaramad: number,
+    totalEasyPayDaramad: number,
+    totalSupportDaramad: number,
+    totalIncInventoryDaramad: number,
+    totalSuccessFactor: number,
 }
