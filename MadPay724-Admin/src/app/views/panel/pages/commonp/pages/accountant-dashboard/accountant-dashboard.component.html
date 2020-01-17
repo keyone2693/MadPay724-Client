@@ -1,3 +1,230 @@
-<p>
-  accountant-dashboard works!
-</p>
+
+                <!--Statistics cards Starts-->
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <div class="card bg-white">
+                            <div class="card-body">
+                                <div class="card-block pt-2 pb-0">
+                                    <div class="media">
+                                        <div class="media-body white text-right">
+                                            <h4 class="font-medium-5 card-title mb-0">
+                                              {{ accountantDashboard.totalSuccessEntryPrice}}
+                                               </h4>
+                                            <span class="grey darken-1">مجموع واریزی ها </span>
+                                        </div>
+                                        <div class="media-right text-right">
+                                            <i class="icon-cup font-large-1 primary"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                    <x-chartist
+                                     id="Widget-line-chart"
+                                     class="height-150 lineChartWidget WidgetlineChart mb-2"
+                                      [type]="Entry5DaysChartType"
+                                      [data]="Entry5DaysChartData"
+                                      [options]="Entry5DaysChartOptions"
+                                      [events]="Entry5DaysChartEvents"
+                                    ></x-chartist>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <div class="card bg-white">
+                            <div class="card-body">
+                                <div class="card-block pt-2 pb-0">
+                                    <div class="media">
+                                        <div class="media-body white text-right">
+                                            <h4 class="font-medium-5 card-title mb-0">
+                                              {{ accountantDashboard.totalSuccessFactorPrice}}
+                                              </h4>
+                                            <span class="grey darken-1">مجموع فاکتور ها</span>
+                                        </div>
+                                        <div class="media-right text-right">
+                                            <i class="icon-wallet font-large-1 warning"></i>
+                                        </div>
+                                    </div>
+                                </div>                               
+                                 <x-chartist
+                                     id="Widget-line-chart1"
+                                     class="height-150 lineChartWidget WidgetlineChart1 mb-2"
+                                      [type]="Factor5DaysChartType"
+                                      [data]="Factor5DaysChartData"
+                                      [options]="Factor5DaysChartOptions"
+                                      [events]="Factor5DaysChartEvents"
+                                    ></x-chartist>
+
+                            </div>
+                        </div>
+                    </div>
+             
+                </div>
+                <!--Statistics cards Ends-->
+
+                <div class="row match-height">
+                     <div class="col-12 col-md-6" id="recent-sales">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title-wrap bar-primary">
+                                    <h4 class="card-title">
+                                        فاکتور های اخیر
+                                    </h4>
+                                </div>
+                                <a class="heading-elements-toggle">
+                                    <i class="la la-ellipsis-v font-medium-3"></i>
+                                </a>
+                            </div>
+                            <div class="card-content mt-1">
+                                <div class="table-responsive">
+                                   <table class="table table-hover table-xl mb-0" id="recent-orders">
+                                        <thead>
+                                            <tr>
+                                                <th class="border-top-0">نام</th>
+                                                <th class="border-top-0">تاریخ ایجاد </th>
+                                                <th class="border-top-0">نوع</th>
+                                                <th class="border-top-0">بانک</th>
+                                                <th class="border-top-0">وضعیت</th>
+                                                <th class="border-top-0">کد رهگیری</th>
+                                                <th class="border-top-0">مبلغ</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let factor of accountantDashboard.last7Factors">
+                                                <td class="text-truncate">{{factor.userName}}</td>
+                                                <td class="text-truncate">
+                                                    ({{ factor.dateCreated | date: "HH:mm" }})
+                                                    {{ factor.dateCreated | persianDate }}
+                                                </td>
+                                                <td>
+                                                    <button
+                                                    [ngClass]="factor.kind === 1 ? 'btn-outline-warning' :
+                                                     factor.kind === 2 ? 'btn-outline-info' :
+                                                      factor.kind === 3 ? 'btn-outline-danger' : 'btn-outline-dark'"
+                                                    class="btn btn-sm round mb-0" type="button">
+                                                        {{factor.kind.toFactorType()}}
+                                                    </button
+                                                    >
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary round mb-0" type="button">
+                                                        {{factor.bank.toBankName()}}
+                                                    </button>
+                                                </td>
+                                                <td>
+                                                    <button
+                                                    [ngClass]="factor.status ? 'btn-outline-success' :'btn-outline-danger' "
+                                                    class="btn btn-sm round mb-0" type="button">
+                                                        {{factor.status.toStatus()}}
+                                                    </button
+                                                    >
+                                                </td>
+                                                <td class="text-truncate"> {{factor.refBank}}</td>
+                                                <td class="text-truncate">
+                                                    {{ (factor.endPrice | irc).replace("ریال","تومان")}}
+                                                </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
+                    <div class="col-12 col-md-6" id="recent-sales">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title-wrap bar-primary">
+                                    <h4 class="card-title">
+                                        واریزی های اخیر
+                                    </h4>
+                                </div>
+                                <a class="heading-elements-toggle">
+                                    <i class="la la-ellipsis-v font-medium-3"></i>
+                                </a>
+                            </div>
+                            <div class="card-content mt-1">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-xl mb-0" id="recent-orders">
+                                        <thead>
+                                            <tr>
+                                                <th class="border-top-0">مبلغ</th>
+                                                <th class="border-top-0">نام شخص</th>
+                                                <th class="border-top-0">نام بانک</th>
+                                                <th class="border-top-0">شماره کارت</th>
+                                                <th class="border-top-0">تاریخ ایجاد </th>
+                                                <th class="border-top-0">وضعیت تایید</th>
+                                                <th class="border-top-0">وضعیت پرداخت</th>
+                                                <th class="border-top-0">وضعیت رد</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let entry of accountantDashboard.last7Entries">
+                                                <td class="text-truncate">{{ (entry.price | irc).replace("ریال","تومان")}} </td>
+                                                <td class="text-truncate">{{entry.ownerName}} </td>
+                                                <td class="text-truncate">{{entry.bankName}} </td>
+                                                <td class="text-truncate">{{entry.cardNumber}} </td>
+                                                <td class="text-truncate">
+                                                    ({{ entry.dateModified | date: "HH:mm" }})
+                                                    {{ entry.dateModified | persianDate }}
+                                                </td>
+                                                <td>
+                                                    <button
+                                                    [ngClass]="accountant.status ? 'btn-outline-success' :'btn-outline-danger' "
+                                                    class="btn btn-sm round mb-0" type="button">
+                                                        {{entry.isApprove.toStatus()}}
+                                                    </button>
+                                                </td>
+                                                  <td>
+                                                    <button
+                                                    [ngClass]="accountant.status ? 'btn-outline-success' :'btn-outline-danger' "
+                                                    class="btn btn-sm round mb-0" type="button">
+                                                        {{entry.isPardakht.toStatus()}}
+                                                    </button>
+                                                </td>
+                                                  <td>
+                                                    <button
+                                                    [ngClass]="accountant.status ? 'btn-outline-success' :'btn-outline-danger' "
+                                                    class="btn btn-sm round mb-0" type="button">
+                                                        {{entry.isReject.toStatus()}}
+                                                    </button>
+                                                </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row match-height">
+                    <div class="col-xl-12">
+                      <div class="card">
+                            <div class="card-header">
+                                <div class="card-title-wrap bar-success">
+                                    <h4 class="card-title">کیف پول / کارت بانکی / درگاه </h4>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-block">
+                                  <div class="chart-info mb-2">
+                                        <span class="text-uppercase mr-3">
+                                          <i class="fa fa-circle primary font-small-2 mr-1"></i> کیف پول ها
+                                        </span>
+                                        <span class="text-uppercase">
+                                          <i class="fa fa-circle warning font-small-2 mr-1"></i> کارت بانکی
+                                        </span>
+                                        <span class="text-uppercase">
+                                          <i class="fa fa-circle danger font-small-2 mr-1"></i> درگاه ها
+                                        </span>                                        
+                                  </div>
+                                    <x-chartist
+                                     id="line-chart"
+                                     class="height-300 lineChart lineChartShadow"
+                                      [type]="CardGateWalletChartType"
+                                      [data]="CardGateWalletChartData"
+                                      [options]="CardGateWalletChartOptions"
+                                      [events]="CardGateWalletChartEvents"
+                                    ></x-chartist>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
