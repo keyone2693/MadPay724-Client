@@ -6,7 +6,6 @@ export interface AccountantDashboard {
     totalSuccessEntry: number;
     totalSuccessEntryPrice: number;
 
-
     totalEntryApprove: number;
     totalEntryUnApprove: number;
 

@@ -23,11 +23,11 @@ export class DashboardService {
   }
   getAdminDashboard(userId: string = this.userId): Observable<AdminDashboard> {
     return this.http.get<AdminDashboard>
-      (this.baseUrl + 'admin/' + userId + '/common/dashboard');
+      (this.baseUrl + 'admin/common/dashboard');
   }
   getAccountantDashboard(userId: string = this.userId): Observable<AccountantDashboard> {
     return this.http.get<AccountantDashboard>
-      (this.baseUrl + 'accountant/' + userId + '/common/dashboard');
+      (this.baseUrl + 'accountant/common/dashboard');
   }
   getBlogDashboard(userId: string = this.userId): Observable<BlogDashboard> {
     return this.http.get<BlogDashboard>

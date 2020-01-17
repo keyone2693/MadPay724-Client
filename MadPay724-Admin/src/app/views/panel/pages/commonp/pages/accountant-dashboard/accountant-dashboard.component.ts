@@ -122,66 +122,69 @@ export class AccountantDashboardComponent implements OnInit {
   };
   //#endregion
 
-  //#region AccountantSummary
-  AccountantSummaryChartType: ChartType = 'Pie';
-  AccountantSummaryChartData: IChartistData
+  //#region EntryFactor
+  EntryFactorChartType: ChartType = 'Line';
+  EntryFactorChartData: IChartistData;
 
-  AccountantSummaryChartOptions: IPieChartOptions = {
-    donut: true,
-    startAngle: 310,
-    donutSolid: true,
-    donutWidth: 30,
-    showLabel: false
-
+  EntryFactorChartOptions: ILineChartOptions = {
+    low: 0,
+    showArea: true,
+    fullWidth: true,
+    axisY: {
+      low: 0,
+      scaleMinSpace: 50,
+    },
+    axisX: {
+      showGrid: false
+    }
   };
 
-  AccountantSummaryChartEvents: ChartEvent = {
+  EntryFactorChartEvents: ChartEvent = {
     created: (data) => {
-      const defs = data.svg.elem('defs');
+      var defs = data.svg.elem('defs');
       defs.elem('linearGradient', {
-        id: 'donutGradient1',
+        id: 'laGradient',
         x1: 0,
         y1: 1,
-        x2: 0,
+        x2: 1,
         y2: 0
       }).elem('stop', {
         offset: 0,
-        'stop-color': 'rgba(155, 60, 183,1)'
+        'stop-color': 'rgba(0, 201, 255, 1)'
       }).parent().elem('stop', {
         offset: 1,
-        'stop-color': 'rgba(255, 57, 111, 1)'
+        'stop-color': 'rgba(146, 254, 157, 1)'
       });
+
       defs.elem('linearGradient', {
-        id: 'donutGradient2',
+        id: 'laGradient1',
         x1: 0,
         y1: 1,
-        x2: 0,
+        x2: 1,
         y2: 0
       }).elem('stop', {
         offset: 0,
-        'stop-color': 'rgba(0, 75, 145,0.8)'
-      }).parent().elem('stop', {
-        offset: 1,
-        'stop-color': 'rgba(120, 204, 55, 0.8)'
-      });
-      defs.elem('linearGradient', {
-        id: 'donutGradient3',
-        x1: 0,
-        y1: 1,
-        x2: 0,
-        y2: 0
-      }).elem('stop', {
-        offset: 0,
-        'stop-color': 'rgba(132, 60, 247,1)'
+        'stop-color': 'rgba(132, 60, 247, 1)'
       }).parent().elem('stop', {
         offset: 1,
         'stop-color': 'rgba(56, 184, 242, 1)'
       });
+    },
+    draw: (data) => {
+      var circleRadius = 6;
+      if (data.type === 'point') {
+        var circle = new Chartist.Svg('circle', {
+          cx: data.x,
+          cy: data.y,
+          r: circleRadius,
+          class: data.value.y === 0 ? 'ct-point-circle-transperent' : 'ct-point-circle'
+        });
+        data.element.replace(circle);
+      }
     }
   };
   //#endregion
-
-  //#region EntryFactor
+  //#region CardGateWallet
 CardGateWalletChartType: ChartType = 'Line';
   CardGateWalletChartData: IChartistData
 
@@ -274,7 +277,7 @@ CardGateWalletChartType: ChartType = 'Line';
     this.loadaccountantDashboard();
     this.loadEntry5DaysChart();
     this.loadFactor5DaysChart();
-    this.loadAccountantSummary();
+    this.loadEntryFactorChart();
     this.loadCardGateWalletChart();
   }
   loadaccountantDashboard() {
@@ -339,22 +342,78 @@ CardGateWalletChartType: ChartType = 'Line';
     };
   }
 
-  loadAccountantSummary() {
-    this.AccountantSummaryChartData = {
+  loadEntryFactorChart() {
+    const dt1 = new Date();
+    const dt2 = new Date();
+    const dt3 = new Date();
+    const dt4 = new Date();
+    const dt5 = new Date();
+    const dt6 = new Date();
+    const dt7 = new Date();
+    const dt8 = new Date();
+    const dt9 = new Date();
+    const dt10 = new Date();
+    const dt11 = new Date();
+    const dt12 = new Date();
+    dt2.setMonth(dt2.getMonth() - 1);
+    dt3.setMonth(dt3.getMonth() - 2);
+    dt4.setMonth(dt4.getMonth() - 3);
+    dt5.setMonth(dt5.getMonth() - 4);
+    dt6.setMonth(dt6.getMonth() - 5);
+    dt7.setMonth(dt7.getMonth() - 6);
+    dt8.setMonth(dt8.getMonth() - 7);
+    dt9.setMonth(dt9.getMonth() - 8);
+    dt10.setMonth(dt10.getMonth() - 9);
+    dt11.setMonth(dt11.getMonth() - 10);
+    dt12.setMonth(dt12.getMonth() - 11);
+    this.EntryFactorChartData = {
+      labels: [
+        this.persianCalendarService.PersianCalendarMonth(dt12),
+        this.persianCalendarService.PersianCalendarMonth(dt11),
+        this.persianCalendarService.PersianCalendarMonth(dt10),
+        this.persianCalendarService.PersianCalendarMonth(dt9),
+        this.persianCalendarService.PersianCalendarMonth(dt8),
+        this.persianCalendarService.PersianCalendarMonth(dt7),
+        this.persianCalendarService.PersianCalendarMonth(dt6),
+        this.persianCalendarService.PersianCalendarMonth(dt5),
+        this.persianCalendarService.PersianCalendarMonth(dt4),
+        this.persianCalendarService.PersianCalendarMonth(dt3),
+        this.persianCalendarService.PersianCalendarMonth(dt2),
+        this.persianCalendarService.PersianCalendarMonth(dt1)
+      ],
       series: [
-        {
-          name: 'تایید شده',
-          className: 'ct-progress',
-          value: this.getPersent(this.accountantDashboard.approvedAccountantCount)
-        },
-        {
-          name: 'تایید نشده',
-          className: 'ct-done',
-          value: this.getPersent(this.accountantDashboard.unApprovedAccountantCount)
-        }
+        [
+          this.accountantDashboard.factor12Months.day12,
+          this.accountantDashboard.factor12Months.day11,
+          this.accountantDashboard.factor12Months.day10,
+          this.accountantDashboard.factor12Months.day9,
+          this.accountantDashboard.factor12Months.day8,
+          this.accountantDashboard.factor12Months.day7,
+          this.accountantDashboard.factor12Months.day6,
+          this.accountantDashboard.factor12Months.day5,
+          this.accountantDashboard.factor12Months.day4,
+          this.accountantDashboard.factor12Months.day3,
+          this.accountantDashboard.factor12Months.day2,
+          this.accountantDashboard.factor12Months.day1
+        ],
+        [
+          this.accountantDashboard.entry12Months.day12,
+          this.accountantDashboard.entry12Months.day11,
+          this.accountantDashboard.entry12Months.day10,
+          this.accountantDashboard.entry12Months.day9,
+          this.accountantDashboard.entry12Months.day8,
+          this.accountantDashboard.entry12Months.day7,
+          this.accountantDashboard.entry12Months.day6,
+          this.accountantDashboard.entry12Months.day5,
+          this.accountantDashboard.entry12Months.day4,
+          this.accountantDashboard.entry12Months.day3,
+          this.accountantDashboard.entry12Months.day2,
+          this.accountantDashboard.entry12Months.day1,
+        ]     
       ]
     };
   }
+ 
   loadCardGateWalletChart() {
     const dt1 = new Date();
     const dt2 = new Date();
@@ -441,9 +500,5 @@ CardGateWalletChartType: ChartType = 'Line';
     };
   }
 
-
-  getPersent(number: number) {
-    return Math.floor((100 * number) / this.accountantDashboard.totalAccountantCount);
-  }
 
 }
