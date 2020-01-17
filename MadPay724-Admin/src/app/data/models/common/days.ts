@@ -8,5 +8,7 @@ export interface Days {
          day7: number,
          day8: number,
          day9: number,
-         day10: number,
+      day10: number,
+      day11: number,
+      day12: number,
 }

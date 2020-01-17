@@ -3519,7 +3519,7 @@ input[type='submit'].btn-block, input[type='reset'].btn-block, input[type='butto
 }
 
 .dropdown-menu.show {
-  display : block;
+  display : block !important;
 }
 
 .dropdown-header {

@@ -13,6 +13,9 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { PersianCalendarService } from 'src/app/core/_base/pipe/PersianDatePipe/persian-date.service';
 
+import 'src/app/shared/extentions/number.extentions';
+import 'src/app/shared/extentions/bool.extentions';
+
 @Component({
   selector: 'app-user-dashboard',
   templateUrl: './user-dashboard.component.html',
@@ -197,7 +200,7 @@ export class UserDashboardComponent implements OnInit {
       low: 0,
       scaleMinSpace: 60,
       labelInterpolationFnc: function labelInterpolationFnc(value) {
-        return value / 1000 + 'K';
+        return value 
       }
     },
     axisX: {
@@ -243,64 +246,61 @@ export class UserDashboardComponent implements OnInit {
   };
   //#endregion
 
-  //#region Stack-Bar-Chart
-  StackBarChartType: ChartType = 'Bar';
-  StackBarChartData: IChartistData = {
-    labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-    series: [[7, 4, 2, -2, -4, -7, -7, -4, -2, 2, 4, 7]]
+  //#region FinancialSummary
+  FinancialSummaryChartType: ChartType = 'Pie';
+  FinancialSummaryChartData: IChartistData
+
+  FinancialSummaryChartOptions: IPieChartOptions = {
+    donut: true,
+    startAngle: 310,
+    donutSolid: true,
+    donutWidth: 30,
+    showLabel: false
+
   };
 
-  StackBarChartOptions: Chartist.IBarChartOptions = {
-    axisX: {
-      showGrid: false
-    },
-    axisY: {
-      showGrid: true,
-      showLabel: false,
-      offset: 0
-    }
-  };
-
-  StackBarChartEvents: ChartEvent = {
+  FinancialSummaryChartEvents: ChartEvent = {
     created: (data) => {
       const defs = data.svg.elem('defs');
       defs.elem('linearGradient', {
-        id: 'StackbarGradient',
+        id: 'donutGradient1',
         x1: 0,
         y1: 1,
         x2: 0,
         y2: 0
       }).elem('stop', {
         offset: 0,
-        'stop-color': 'rgba(0, 201, 255,1)'
+        'stop-color': 'rgba(155, 60, 183,1)'
       }).parent().elem('stop', {
         offset: 1,
-        'stop-color': 'rgba(17,228,183, 1)'
+        'stop-color': 'rgba(255, 57, 111, 1)'
       });
-    },
-    draw: (data) => {
-      if (data.type === 'bar') {
-        data.element.attr({
-          style: 'stroke-width: 5px',
-          x1: data.x1 + 0.001
-        });
-
-        data.group.append(
-          new Chartist.Svg(
-            'circle',
-            {
-              cx: data.x2,
-              cy: data.y2,
-              r: 5
-            },
-            'ct-slice-bar'
-          )
-        );
-      } else if (data.type === 'label') {
-        data.element.attr({
-          y: 270
-        });
-      }
+      defs.elem('linearGradient', {
+        id: 'donutGradient2',
+        x1: 0,
+        y1: 1,
+        x2: 0,
+        y2: 0
+      }).elem('stop', {
+        offset: 0,
+        'stop-color': 'rgba(0, 75, 145,0.8)'
+      }).parent().elem('stop', {
+        offset: 1,
+        'stop-color': 'rgba(120, 204, 55, 0.8)'
+      });
+      defs.elem('linearGradient', {
+        id: 'donutGradient3',
+        x1: 0,
+        y1: 1,
+        x2: 0,
+        y2: 0
+      }).elem('stop', {
+        offset: 0,
+        'stop-color': 'rgba(132, 60, 247,1)'
+      }).parent().elem('stop', {
+        offset: 1,
+        'stop-color': 'rgba(56, 184, 242, 1)'
+      });
     }
   };
   //#endregion
@@ -416,84 +416,9 @@ export class UserDashboardComponent implements OnInit {
   };
   //#endregion
 
-  //#region Dashboard-Chart
-  DashboardChartType: ChartType = 'Pie';
-  DashboardChartData: IChartistData = {
-    series: [
-      {
-        name: 'done',
-        className: 'ct-done',
-        value: 35
-      },
-      {
-        name: 'progress',
-        className: 'ct-progress',
-        value: 14
-      },
-      {
-        name: 'outstanding',
-        className: 'ct-outstanding',
-        value: 23
-      }
-    ]
-  };
-
-  DashboardChartOptions: IPieChartOptions = {
-    donut: true,
-    startAngle: 310,
-    donutSolid: true,
-    donutWidth: 30,
-    showLabel: false
-
-  };
-
-  DashboardChartEvents: ChartEvent = {
-    created: (data) => {
-      const defs = data.svg.elem('defs');
-      defs.elem('linearGradient', {
-        id: 'donutGradient1',
-        x1: 0,
-        y1: 1,
-        x2: 0,
-        y2: 0
-      }).elem('stop', {
-        offset: 0,
-        'stop-color': 'rgba(155, 60, 183,1)'
-      }).parent().elem('stop', {
-        offset: 1,
-        'stop-color': 'rgba(255, 57, 111, 1)'
-      });
-      defs.elem('linearGradient', {
-        id: 'donutGradient2',
-        x1: 0,
-        y1: 1,
-        x2: 0,
-        y2: 0
-      }).elem('stop', {
-        offset: 0,
-        'stop-color': 'rgba(0, 75, 145,0.8)'
-      }).parent().elem('stop', {
-        offset: 1,
-        'stop-color': 'rgba(120, 204, 55, 0.8)'
-      });
-      defs.elem('linearGradient', {
-        id: 'donutGradient3',
-        x1: 0,
-        y1: 1,
-        x2: 0,
-        y2: 0
-      }).elem('stop', {
-        offset: 0,
-        'stop-color': 'rgba(132, 60, 247,1)'
-      }).parent().elem('stop', {
-        offset: 1,
-        'stop-color': 'rgba(56, 184, 242, 1)'
-      });
-    }
-  };
-  //#endregion
-
-  constructor(private route: ActivatedRoute, private persianCalendarService: PersianCalendarService) { }
+ 
+  constructor(private route: ActivatedRoute,
+    private persianCalendarService: PersianCalendarService) { }
 
   ngOnInit() {
     this.loadUserDashboard();
@@ -501,6 +426,7 @@ export class UserDashboardComponent implements OnInit {
     this.loadInretMoneyChart();
     this.loadExitMoneyChart();
     this.loadFactorChart();
+    this.loadFinancialSummary();
   }
   loadUserDashboard() {
     this.subManager.add(
@@ -511,10 +437,10 @@ export class UserDashboardComponent implements OnInit {
   }
   loadInventoryChart() {
     const dt1 = new Date();
-    const dt2 = new Date();
-    const dt3 = new Date();
-    const dt4 = new Date();
-    const dt5 = new Date();
+    const dt2 = dt1;
+    const dt3 = dt1;
+    const dt4 = dt1;
+    const dt5 = dt1;
     dt2.setDate(dt2.getDate() - 1);
     dt3.setDate(dt3.getDate() - 2);
     dt4.setDate(dt4.getDate() - 3);
@@ -538,10 +464,10 @@ export class UserDashboardComponent implements OnInit {
   }
   loadInretMoneyChart() {
     const dt1 = new Date();
-    const dt2 = new Date();
-    const dt3 = new Date();
-    const dt4 = new Date();
-    const dt5 = new Date();
+    const dt2 = dt1;
+    const dt3 = dt1;
+    const dt4 = dt1;
+    const dt5 = dt1;
     dt2.setDate(dt2.getDate() - 1);
     dt3.setDate(dt3.getDate() - 2);
     dt4.setDate(dt4.getDate() - 3);
@@ -565,10 +491,10 @@ export class UserDashboardComponent implements OnInit {
   }
   loadExitMoneyChart() {
     const dt1 = new Date();
-    const dt2 = new Date();
-    const dt3 = new Date();
-    const dt4 = new Date();
-    const dt5 = new Date();
+    const dt2 = dt1;
+    const dt3 = dt1;
+    const dt4 = dt1;
+    const dt5 = dt1;
     dt2.setDate(dt2.getDate() - 1);
     dt3.setDate(dt3.getDate() - 2);
     dt4.setDate(dt4.getDate() - 3);
@@ -592,22 +518,34 @@ export class UserDashboardComponent implements OnInit {
   }
   loadFactorChart() {
     const dt1 = new Date();
-    const  dt2 = new Date();
-    const dt3 = new Date();
-    const dt4 = new Date();
-    const dt5 = new Date();
-    const dt6 = new Date();
-    const dt7 = new Date();
-    const dt8 = new Date();
+    const dt2 = dt1;
+    const dt3 = dt1;
+    const dt4 = dt1;
+    const dt5 = dt1;
+    const dt6 = dt1;
+    const dt7 = dt1;
+    const dt8 = dt1;
+    const dt9 = dt1;
+    const dt10 = dt1;
+    const dt11 = dt1;
+    const dt12 = dt1;
     dt2.setMonth(dt2.getMonth() - 1);
     dt3.setMonth(dt3.getMonth() - 2);
     dt4.setMonth(dt4.getMonth() - 3);
     dt5.setMonth(dt5.getMonth() - 4);
-    dt6.setMonth(dt5.getMonth() - 4);
-    dt7.setMonth(dt5.getMonth() - 4);
-    dt8.setMonth(dt5.getMonth() - 4);
+    dt6.setMonth(dt5.getMonth() - 5);
+    dt7.setMonth(dt5.getMonth() - 6);
+    dt8.setMonth(dt5.getMonth() - 7);
+    dt9.setMonth(dt5.getMonth() - 8);
+    dt10.setMonth(dt5.getMonth() -9);
+    dt11.setMonth(dt5.getMonth() - 10);
+    dt12.setMonth(dt5.getMonth() - 11);
     this.FactorChartData = {
       labels: [
+        this.persianCalendarService.PersianCalendarMonth(dt12),
+        this.persianCalendarService.PersianCalendarMonth(dt11),
+        this.persianCalendarService.PersianCalendarMonth(dt10),
+        this.persianCalendarService.PersianCalendarMonth(dt9),
         this.persianCalendarService.PersianCalendarMonth(dt8),
         this.persianCalendarService.PersianCalendarMonth(dt7),
         this.persianCalendarService.PersianCalendarMonth(dt6),
@@ -618,6 +556,10 @@ export class UserDashboardComponent implements OnInit {
         this.persianCalendarService.PersianCalendarMonth(dt1)
       ],
       series: [[
+        this.userDashboard.factor8Months.day12,
+        this.userDashboard.factor8Months.day11,
+        this.userDashboard.factor8Months.day10,
+        this.userDashboard.factor8Months.day9,
         this.userDashboard.factor8Months.day8,
         this.userDashboard.factor8Months.day7,
         this.userDashboard.factor8Months.day6,
@@ -629,11 +571,37 @@ export class UserDashboardComponent implements OnInit {
       ]]
     };
   }
+  loadFinancialSummary() {
+    this.FinancialSummaryChartData  = {
+      series: [
+        {
+          name: 'موجودی',
+          className: 'ct-progress',
+          value: this.getPersent(this.userDashboard.totalInventory)
+        },
+        {
+          name: 'درآمد',
+          className: 'ct-outstanding',
+          value: this.getPersent(this.userDashboard.totalInterMoney)
+        },
+        {
+          name: 'واریزی',
+          className: 'ct-done',
+          value: this.getPersent(this.userDashboard.totalExitMoney)
+        }
+      ]
+    };
+  }
 
    sortTicketContent(tc: TicketContent[]) {
     return tc.sort((a, b) => {
       return <any>new Date(b.dateCreated) - <any>new Date(a.dateCreated);
     });
-}
+   }
 
+  getPersent(number: number) {
+    const sum = this.userDashboard.totalInventory + this.userDashboard.totalInterMoney + this.userDashboard.totalExitMoney;
+    return Math.floor((100 * number) / sum) ;
+  }
+  
 }

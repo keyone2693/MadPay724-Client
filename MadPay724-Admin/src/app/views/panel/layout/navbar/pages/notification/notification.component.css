@@ -13,4 +13,5 @@
     --scroll-view-color: transparent;
     height:320px ;
     opacity: 0;
+    display: none;
   }

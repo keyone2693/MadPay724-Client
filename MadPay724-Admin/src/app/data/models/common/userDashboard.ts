@@ -20,7 +20,7 @@ export interface UserDashboard {
 
     totalSuccessFactor: number,
     factor8Months:Days,
-    last10Factors: Factor[],
+    last7Factors: Factor[],
 
 
     totalSuccessEntry: number,
