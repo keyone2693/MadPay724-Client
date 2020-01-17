@@ -508,77 +508,6 @@
                 </div>
                 <!--Line with Area Chart 1 Ends-->
 
-                <div class="row match-height">
-                  
-                    <div class="col-12 col-md-12" id="recent-sales">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title-wrap bar-primary">
-                                    <h4 class="card-title">
-                                        فاکتورهای اخیر
-                                    </h4>
-                                </div>
-                                <a class="heading-elements-toggle">
-                                    <i class="la la-ellipsis-v font-medium-3"></i>
-                                </a>
-                            </div>
-                            <div class="card-content mt-1">
-                                <div class="table-responsive">
-                                    <table class="table table-hover table-xl mb-0" id="recent-orders">
-                                        <thead>
-                                            <tr>
-                                                <th class="border-top-0">نام</th>
-                                                <th class="border-top-0">تاریخ ایجاد </th>
-                                                <th class="border-top-0">نوع</th>
-                                                <th class="border-top-0">بانک</th>
-                                                <th class="border-top-0">وضعیت</th>
-                                                <th class="border-top-0">کد رهگیری</th>
-                                                <th class="border-top-0">مبلغ</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr *ngFor="let factor of adminDashboard.last7Factors">
-                                                <td class="text-truncate">{{factor.userName}}</td>
-                                                <td class="text-truncate">
-                                                    ({{ factor.dateCreated | date: "HH:mm" }})
-                                                    {{ factor.dateCreated | persianDate }}
-                                                </td>
-                                                <td>
-                                                    <button
-                                                    [ngClass]="factor.kind === 1 ? 'btn-outline-warning' :
-                                                     factor.kind === 2 ? 'btn-outline-info' :
-                                                      factor.kind === 3 ? 'btn-outline-danger' : 'btn-outline-dark'"
-                                                    class="btn btn-sm round mb-0" type="button">
-                                                        {{factor.kind.toFactorType()}}
-                                                    </button
-                                                    >
-                                                </td>
-                                                <td>
-                                                    <button class="btn btn-sm btn-outline-primary round mb-0" type="button">
-                                                        {{factor.bank.toBankName()}}
-                                                    </button>
-                                                </td>
-                                                <td>
-                                                    <button
-                                                    [ngClass]="factor.status ? 'btn-outline-success' :'btn-outline-danger' "
-                                                    class="btn btn-sm round mb-0" type="button">
-                                                        {{factor.status.toStatus()}}
-                                                    </button
-                                                    >
-                                                </td>
-                                                <td class="text-truncate"> {{factor.refBank}}</td>
-                                                <td class="text-truncate">
-                                                    {{ (factor.endPrice | irc).replace("ریال","تومان")}}
-                                                </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                  <div class="row">
                     <div class="col-xl-4 col-lg-6 col-md-6 col-12">
                         <div class="card bg-white">
@@ -679,7 +608,7 @@
                                           <i class="fa fa-circle primary font-small-2 mr-1"></i> همه ی بلاگ کاربر
                                         </span>
                                         <span class="text-uppercase">
-                                          <i class="fa fa-circle warning font-small-2 mr-1"></i> بلاگ تایید شده کاربر
+                                          <i class="fa fa-circle success font-small-2 mr-1"></i> بلاگ تایید شده کاربر
                                         </span>
                                           <span class="text-uppercase">
                                           <i class="fa fa-circle danger font-small-2 mr-1"></i> بلاگ تایید نشده کاربر
