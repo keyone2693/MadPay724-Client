@@ -32,6 +32,7 @@ import { DocumentsDetailsComponent } from './pages/documents/pages/documents-det
 import { FileManagerComponent } from './pages/file-manager/file-manager.component';
 
 import { FileManagerModule, NavigationPaneService, ToolbarService, DetailsViewService  } from '@syncfusion/ej2-angular-filemanager';
+import { AuthService } from 'src/app/core/_services/auth/auth.service';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { FileManagerModule, NavigationPaneService, ToolbarService, DetailsViewSe
     UsersService,
     GatesService,
     DocumentService,
+    AuthService,
     //
     UserResolver,
     UserRolesResolver,

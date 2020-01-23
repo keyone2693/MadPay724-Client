@@ -96,7 +96,6 @@ export class AuthService {
         return result as any;
       })
     );
-
   }
 
   roleMatch(allowedRoles): boolean {
