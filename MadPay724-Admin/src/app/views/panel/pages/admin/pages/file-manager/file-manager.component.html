@@ -36,6 +36,7 @@
                 [ajaxSettings]="ajaxSettings"
                 [toolbarSettings]="toolbarSettings"
                 [navigationPaneSettings]="navigationPaneSettings"
+                 (beforeSend)="beforeSend($event)" 
               >
               </ejs-filemanager>
             </div>

@@ -17,13 +17,20 @@ export class FileManagerComponent implements OnInit {
   ngOnInit() {
     this.ajaxSettings = {
       url: this.hostUrl + environment.apiV1 + 'site/panel/admin/filemanager/operations',
-      downloadUrl: this.hostUrl + 'site/panel/admin/filemanager/download',
-      uploadUrl: this.hostUrl + 'site/panel/admin/filemanager/upload',
-      getImageUrl: this.hostUrl + 'site/panel/admin/filemanager/getimage'
+      downloadUrl: this.hostUrl+ environment.apiV1  + 'site/panel/admin/filemanager/download',
+      uploadUrl: this.hostUrl + environment.apiV1 + 'site/panel/admin/filemanager/upload',
+      getImageUrl: this.hostUrl + environment.apiV1  + 'site/panel/admin/filemanager/getimage'
     };
     this.view = "LargeIcons";
     this.enablePersistence = true;
     this.enableRtl = true;
+  }
+
+  beforeSend(args: any) {
+    args.ajaxSettings.beforeSend = function (args) {
+      //Setting authorization header 
+      args.httpRequest.setRequestHeader("Authorization", `Bearer ${localStorage.getItem('token')}`)
+    } 
   }
 
 }
