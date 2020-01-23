@@ -360,6 +360,12 @@
             >
           </a>
         </li>
+         <li *appHasRole="['Admin']" routerLinkActive="active" class=" nav-item">
+          <a [routerLink]="['/panel/admin/file/management']">
+            <i class="ft-folder"> </i
+            ><span class="menu-title">فایل منیجر</span>
+          </a>
+        </li>
         <!--#endregion-->
         <!--#region Com-->
         <li *appHasRole="['User']" routerLinkActive="active" class=" nav-item">

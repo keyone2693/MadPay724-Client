@@ -21,12 +21,23 @@
             <h4 class="card-title">مدیریت فایل ها</h4>
           </div>
           <p>
-            امکان کپی ، انتقال ، حذف ، اپلود و مشاهده ی فایل ها را در این بخش دارید
+            امکان کپی ، انتقال ، حذف ، اپلود و مشاهده ی فایل ها را در این بخش
+            دارید
           </p>
         </div>
         <div class="card-body">
           <div class="row">
             <div class="col-md-12">
+              <ejs-filemanager
+                id="mp-file-manager"
+                [enableRtl]='enableRtl'
+                [view]='view'
+                [enablePersistence]='enablePersistence'
+                [ajaxSettings]="ajaxSettings"
+                [toolbarSettings]="toolbarSettings"
+                [navigationPaneSettings]="navigationPaneSettings"
+              >
+              </ejs-filemanager>
             </div>
           </div>
         </div>

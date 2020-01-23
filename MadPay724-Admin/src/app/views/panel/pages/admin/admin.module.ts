@@ -31,7 +31,7 @@ import { DocumentService } from 'src/app/core/_services/panel/admin/document.ser
 import { DocumentsDetailsComponent } from './pages/documents/pages/documents-details/documents-details.component';
 import { FileManagerComponent } from './pages/file-manager/file-manager.component';
 
-import { FileManagerModule } from '@syncfusion/ej2-angular-filemanager';
+import { FileManagerModule, NavigationPaneService, ToolbarService, DetailsViewService  } from '@syncfusion/ej2-angular-filemanager';
 
 
 @NgModule({
@@ -55,7 +55,9 @@ import { FileManagerModule } from '@syncfusion/ej2-angular-filemanager';
     UserResolver,
     UserRolesResolver,
     TicketDetailsResolver,
-    DocumentResolver
+    DocumentResolver,
+    //
+    NavigationPaneService, ToolbarService, DetailsViewService
   ],
   declarations: [
     AdminComponent,
