@@ -29,7 +29,9 @@ import { DocumentsComponent } from './pages/documents/documents.component';
 import { DocumentResolver } from 'src/app/core/_base/resolvers/admin/document.resolver';
 import { DocumentService } from 'src/app/core/_services/panel/admin/document.service';
 import { DocumentsDetailsComponent } from './pages/documents/pages/documents-details/documents-details.component';
+import { FileManagerComponent } from './pages/file-manager/file-manager.component';
 
+import { FileManagerModule } from '@syncfusion/ej2-angular-filemanager';
 
 
 @NgModule({
@@ -42,7 +44,8 @@ import { DocumentsDetailsComponent } from './pages/documents/pages/documents-det
     GenericTableModule,
     PersianPipeModule,
     Ng5SliderModule,
-    NgScrollbarModule
+    NgScrollbarModule,
+    FileManagerModule
   ], providers: [
     DatePipe,
     UsersService,
@@ -69,7 +72,8 @@ import { DocumentsDetailsComponent } from './pages/documents/pages/documents-det
     ChatMessageTicketComponent,
     ChatTicketComponent,
     DocumentsComponent,
-    DocumentsDetailsComponent
+    DocumentsDetailsComponent,
+    FileManagerComponent
   ]
 })
 export class AdminModule { }

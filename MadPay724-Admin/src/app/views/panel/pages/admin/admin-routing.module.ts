@@ -13,6 +13,7 @@ import { TicketDetailsResolver } from 'src/app/core/_base/resolvers/admin/ticket
 import { DocumentsComponent } from './pages/documents/documents.component';
 import { DocumentsDetailsComponent } from './pages/documents/pages/documents-details/documents-details.component';
 import { DocumentResolver } from 'src/app/core/_base/resolvers/admin/document.resolver';
+import { FileManagerComponent } from './pages/file-manager/file-manager.component';
 
 const routes: Routes = [
     {
@@ -61,6 +62,12 @@ const routes: Routes = [
             resolve: { ticket: TicketDetailsResolver },
             component: TicketsDetailsComponent,
             data: { roles: ['Admin'], title: ['مدیریت تیکت ها'] }
+          },
+          //filemanager
+          {
+            path: 'file/management', canActivate: [AuthGuard],
+            component: FileManagerComponent,
+            data: { roles: ['Admin'], title: ['فایل منیجر'] }
           }
         ]
        }
