@@ -1,21 +1,41 @@
-.btn-success{
-      border-radius: 50px;
-      padding-bottom: 8px;
+.btn-success {
+  border-radius: 50px;
+  padding-bottom: 8px;
 
-padding-top: 10px;
+  padding-top: 10px;
+}
 
-}.btn-success i,
-.btn-success span {
+.btn-success i,
+.btn-success span,
+.btn-danger i,
+.btn-danger span {
   color: #fff !important;
 }
 
-.btn-success i {
-border: 2px solid #fff;
-padding: 6px;
-border-radius: 50px;
-vertical-align: middle;
-font-size: 18px;
+.btn-success i,
+.btn-danger i {
+  border: 2px solid #fff;
+  padding: 6px;
+  border-radius: 50px;
+  vertical-align: middle;
+  font-size: 18px;
 }
-.btn-success span {
+.btn-success span,
+.btn-danger span {
   color: #fff !important;
+}
+
+.btn-danger {
+  border-radius: 50px;
+  padding: 3px 2px 3px 5px !important;
+  transition: all 0.5s;
+  width: 38px;
+  overflow: hidden;
+  height: 38px;
+}
+.btn-danger:hover {
+  width: 120px; 
+}
+.btn-danger span {
+  display: inline-block;
 }

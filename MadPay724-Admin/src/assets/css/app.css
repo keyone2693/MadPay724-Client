@@ -4377,6 +4377,7 @@ visibility: visible !important;
   padding-left : 0;
   margin-bottom : 0;
   list-style : none;
+      padding-inline-start: 0;
 }
 .navbar-nav .nav-link {
   padding-right : 0;
@@ -47145,6 +47146,12 @@ text-transform: uppercase;
   .navbar-nav > li {
     float : right;
     margin-right : 0.5rem;
+  }
+ 
+}
+@media (max-width: 996px) {
+ .navbar-nav > li:last-child {
+    margin-right : 1.5rem !important;
   }
 }
 

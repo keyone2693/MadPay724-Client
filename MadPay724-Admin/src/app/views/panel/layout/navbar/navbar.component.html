@@ -98,19 +98,21 @@
     <div class="navbar-container">
       <div id="navbarSupportedContent" class="collapse navbar-collapse">
         <ul class="navbar-nav">
+          <li class="nav-item mt-1 d-lg-block">
+            <a
+              id="apps"
+              href="#"
+              data-toggle="dropdown"
+              class="btn-danger nav-link position-relative notification-sidebar-toggle">
+              <i class="ft-message-square blue-grey darken-4"></i>
+              <span class="mx-1  blue-grey darken-4 text-bold-400"
+                >چت انلاین</span>
+            </a>
+          </li>
           <li class="dropdown nav-item mt-1">
             <app-notification></app-notification>
           </li>
-          <li class="nav-item mt-1 d-none d-lg-block">
-            <a
-              id="navbar-notification-sidebar"
-              href="javascript:;"
-              class="nav-link position-relative notification-sidebar-toggle"
-            >
-              <i class="icon-equalizer blue-grey darken-4"></i>
-              <p class="d-none">Notifications Sidebar</p>
-            </a>
-          </li>
+          
           <li class="dropdown nav-item mr-0">
             <a
               *ngIf="user$ | async as user"
@@ -163,5 +165,4 @@
     </div>
   </div>
   <app-chat></app-chat>
-
 </nav>
