@@ -10,6 +10,7 @@ import { MatTooltipModule, MatPaginatorIntl, MAT_RADIO_DEFAULT_OPTIONS } from '@
 import { NotificationComponent } from './layout/navbar/pages/notification/notification.component';
 import { FaMatPaginatorIntl } from '../../Shared/Modules/material/faMatPaginatorIntl';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { ChatComponent } from './layout/navbar/pages/chat/chat.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
     PanelComponent,
     NavbarComponent,
     SidebarComponent,
-    NotificationComponent
+    NotificationComponent,
+    ChatComponent
   ],
   providers: [
     AuthGuard,

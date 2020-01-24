@@ -45992,7 +45992,8 @@ datetime .form-group {
 }
 
 .notification-dropdown {
-  width : 400px;
+  min-width : 400px;
+  min-height: 400px;
 }
 .notification-dropdown .noti-list {
   position : relative;
@@ -47282,16 +47283,16 @@ ul.no-list-style {
   top : 0;
   bottom : 0;
   height : 100vh;
-  -webkit-transition : right 0.4s cubic-bezier(0.05, 0.74, 0.2, 0.99);
-       -o-transition : right 0.4s cubic-bezier(0.05, 0.74, 0.2, 0.99);
-     -moz-transition : right 0.4s cubic-bezier(0.05, 0.74, 0.2, 0.99);
-          transition : right 0.4s cubic-bezier(0.05, 0.74, 0.2, 0.99);
+  -webkit-transition : left 0.4s cubic-bezier(0.05, 0.74, 0.2, 0.99);
+       -o-transition : left 0.4s cubic-bezier(0.05, 0.74, 0.2, 0.99);
+     -moz-transition : left 0.4s cubic-bezier(0.05, 0.74, 0.2, 0.99);
+          transition : left 0.4s cubic-bezier(0.05, 0.74, 0.2, 0.99);
   -webkit-backface-visibility : hidden;
      -moz-backface-visibility : hidden;
           backface-visibility : hidden;
-  border-left : 1px solid rgba(0, 0, 0, 0.05);
-  -webkit-box-shadow : 0 0 8px rgba(0, 0, 0, 0.1);
-          box-shadow : 0 0 8px rgba(0, 0, 0, 0.1);
+  border-right : 1px solid rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow : 0 0 8px rgba(0, 0, 0, 0.4);
+          box-shadow : 0 0 8px rgba(0, 0, 0, 0.7);
 }
 #notification-sidebar.open {
   left: 0;

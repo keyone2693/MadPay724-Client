@@ -1,4 +1,6 @@
-( function ( $ ) {
+
+
+(function ($) {
     'use strict';
 
     $(document).ready( function(){
@@ -19,11 +21,11 @@
             $('.navbar-collapse').toggleClass('show');
         });
         
-        if($('.notification-sidebar-content').length > 0){
-            $('.notification-sidebar-content').perfectScrollbar({
-                theme:"dark"
-            });
-        }
+        // if($('.notification-sidebar-content').length > 0){
+        //     $('.notification-sidebar-content').perfectScrollbar({
+        //         theme:"dark"
+        //     });
+        // }
     });
 
 } ( jQuery ) );

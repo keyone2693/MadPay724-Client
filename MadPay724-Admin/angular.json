@@ -39,9 +39,7 @@
                             "src/assets/vendors/js/prism.min.js",
                             "src/assets/vendors/js/jquery.matchHeight-min.js",
                             "src/assets/vendors/js/screenfull.min.js",
-                            "src/assets/vendors/js/pace/pace.min.js",
-                            "src/assets/js/notification-sidebar.js",
-                            "node_modules/@ckeditor/ckeditor5-build-classic/build/translations/fa.js"
+                            "src/assets/vendors/js/pace/pace.min.js"
                         ],
                         "es5BrowserSupport": true
                     },
