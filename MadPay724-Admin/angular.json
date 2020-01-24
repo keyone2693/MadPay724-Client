@@ -34,12 +34,9 @@
                         ],
                         "scripts": [
                             "src/assets/vendors/js/core/jquery-3.3.1.min.js",
-                            "src/assets/vendors/js/core/popper.min.js",
                             "src/assets/vendors/js/core/bootstrap.min.js",
-                            "src/assets/vendors/js/prism.min.js",
                             "src/assets/vendors/js/jquery.matchHeight-min.js",
-                            "src/assets/vendors/js/screenfull.min.js",
-                            "src/assets/vendors/js/pace/pace.min.js"
+                            "src/assets/vendors/js/screenfull.min.js"
                         ],
                         "es5BrowserSupport": true
                     },
