@@ -20,9 +20,13 @@ export class FileManagerComponent implements OnInit, OnDestroy {
   ajaxSettings: any;
 
   constructor(private authService: AuthService) {
-    this.subManager.add(
-      this.authService.getNewRefreshToken().subscribe()
-    );
+
+    if (!this.authService.isAuthorized) {
+      this.subManager.add(
+        this.authService.getNewRefreshToken().subscribe()
+      );
+    }
+    
   }
 
   ngOnInit() {
@@ -132,9 +136,13 @@ export class FileManagerComponent implements OnInit, OnDestroy {
     });
   }
   beforeSend(args: any) {
-    this.subManager.add(
-      this.authService.getNewRefreshToken().subscribe()
-    );
+
+    if (!this.authService.isAuthorized) {
+      this.subManager.add(
+        this.authService.getNewRefreshToken().subscribe()
+      );
+    }
+
 
     args.ajaxSettings.beforeSend = function (args) {
       //Setting authorization header 
