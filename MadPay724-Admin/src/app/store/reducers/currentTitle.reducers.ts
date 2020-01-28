@@ -17,4 +17,4 @@ export function CurrentTitleReducer(state = initCurrentTitle,
         default:
             return state;
     }
-    }
+}

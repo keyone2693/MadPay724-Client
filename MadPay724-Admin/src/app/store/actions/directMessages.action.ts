@@ -71,7 +71,7 @@ export class JoinSent implements Action {
 }
 
 
-export type DirectMessagesAction =
+export type AllDirectMessagesAction =
     SendDirectMessageComplete
     | SendDirectMessageComplete
     | ReceivedDirectMessage
