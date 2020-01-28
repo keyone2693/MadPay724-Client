@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
   }
   getDecodedToken() {
     const token = localStorage.getItem('token');
-    if (token) {
+    if (this.authService.loggedIn()) {
       const decodedToken = this.jwtHelper.decodeToken(token);
       this.store.dispatch(new fromStore.EditDecodedToken(decodedToken));
     }

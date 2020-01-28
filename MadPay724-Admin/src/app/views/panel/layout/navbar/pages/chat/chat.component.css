@@ -20,7 +20,7 @@
   --scrollbar-padding: 8px;
   --scroll-view-margin: 0;
   --scroll-view-color: transparent;
-  height: 500px;
+      height: calc(100% - 75px) !important;
 }
 .dis-inline {
   display: inline-block;
@@ -43,8 +43,8 @@ font-size: 11px;
 padding-bottom: 2px;
 }
 
-.bar-danger{
-        border-left: 3px solid #E9ECEF;
+.btn-left-admin{
+    border-left: 3px solid #E9ECEF;
     border-right: none !important;
     text-align: left;
     padding-left: 1.5rem;
@@ -52,7 +52,6 @@ padding-bottom: 2px;
     margin-right: 0;
     margin-left: -1.5rem;
 }
-
 .chat-left p{
     text-align: left;
 }
@@ -60,4 +59,31 @@ padding-bottom: 2px;
 .badge-dark{
         margin: 0 auto;
     display: block;
+}
+
+.h100-persent{
+  height: 100% !important;
+}
+
+.tab-content{
+      height: calc(100% - 50px);
+}
+
+.chat-form{
+  height: 160px !important;
+}
+
+.chat-place{
+   height: calc(100% - 160px);
+}
+.fnsize-12{
+  font-size: 12px;
+}
+
+.card .card-block{
+  padding: 5px !important;
+}
+
+.btn-mar-5{
+  margin-bottom: 5px !important;
 }

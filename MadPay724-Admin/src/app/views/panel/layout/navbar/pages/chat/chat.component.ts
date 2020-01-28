@@ -25,6 +25,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   selectedOnlineUserName = '';
   dmState$: Observable<DirectMessageStateContainer>;
   connected: boolean;
+  isAdminOnline = true;
   message = '';
   //***********
   constructor(private authService: AuthService, private store: Store<fromStore.State>) {
@@ -59,10 +60,15 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   connect() {
-    this.store.dispatch(new fromStore.Join());
+    if (this.isAdminOnline) {
+      this.store.dispatch(new fromStore.Join());
+    }
+    
   }
   sendMessage() {
-    this.store.dispatch(new fromStore.SendDirectMessage(this.message, this.selectedOnlineUserName))
+    if (this.isAdminOnline) {
+      this.store.dispatch(new fromStore.SendDirectMessage(this.message, this.selectedOnlineUserName))
+    }
   }
   selectChat(onlineUserName: string) {
     this.selectedOnlineUserName = onlineUserName;

@@ -4,7 +4,7 @@
 >
   <a class="notification-sidebar-close"><i class="ft-x font-medium-3"></i></a>
   <div class="side-nav notification-sidebar-content">
-    <div class="row">
+    <div class="row h100-persent">
       <div class="col-12 mt-1">
         <ul class="nav nav-tabs">
           <li class="nav-item">
@@ -36,59 +36,105 @@
             role="tabpanel"
             aria-expanded="true"
             aria-labelledby="base-tab1"
-            class="tab-pane active"
+            class="tab-pane active h100-persent"
           >
-            <div id="activity-timeline" class="col-12 timeline-left">
-                <section class="chat-app-window">
+            <div
+              *ngIf="connected"
+              id="activity-timeline"
+              class="col-12 timeline-left h100-persent"
+            >
+              <section class="chat-app-window chat-place">
+                 <a (click)="disConnect()"
+                          class="btn mr-1 btn-round btn-danger btn-mar-5"
+                          >پایان گفت و گو</a>
                 <div class="badge badge-dark mb-1">تاریخچه ی گفتگو</div>
+               
                 <ng-scrollbar class="my-scrollbar">
                   <div class="chats">
-                    <div class="chats" *ngIf="dmState$ | async as dmState" >
-                      <div *ngFor="let dm of dmState.directMessages" class="card chat" >
-                          <div class="card-header" [ngClass]="{'chat-left': isAdmin(dm) }">
-                              <div class="card-title-wrap " [ngClass]="isAdmin(dm) ? 'bar-danger' :'bar-success'">
-                                  <p class="card-title">
-                                      {{ getUserInfoName(dm)}} <small class="time">(persianTimeAgo)</small>
-                                  </p>
-                              </div>
-                              <p>{{ dm.message}}</p>
+                    <div class="chats" *ngIf="dmState$ | async as dmState">
+                      <div
+                        *ngFor="let dm of dmState.directMessages"
+                        class="card chat"
+                      >
+                        <div
+                          class="card-header"
+                          [ngClass]="{ 'chat-left': isAdmin(dm) }"
+                        >
+                          <div
+                            class="card-title-wrap "
+                            [ngClass]="isAdmin(dm) ? 'bar-danger btn-left-admin' : 'bar-success'">
+                            <p class="card-title">
+                              {{ getUserInfoName(dm) }}
+                              <small class="time">(persianTimeAgo)</small>
+                            </p>
                           </div>
-                      </div>
-                    </div>
-                  </div>
-                </ng-scrollbar>
-                </section>
-                
-                <section class="chat-app-form bg-blue-grey bg-lighten-5">
-                  <div class="card">
-                    <div class="card-header"></div>
-                    <div *ngIf="true" class="card-body">
-                      <div class="card-block text-center row">
-                        <form class="chat-app-input col-md-12"  *ngIf="connected">
-                          <fieldset class="form-group">
-                            <textarea
-                            [(ngModel)]="message"
-                            name="message"
-                              class="form-control"
-                              rows="3"
-                              placeholder="سوال خود را بپرسید *"
-                            ></textarea>
-                          </fieldset>
-                          <a
-                            (click)="sendMessage()"
-                            class="btn mr-1 btn-round btn-info"
-                            >ارسال</a
-                          >
-                        </form>
-                        <div class="chat-app-input col-md-12" *ngIf="!connected">
-                            <a (click)="connect()" class="btn mr-1 btn-round btn-info">
-                                        شروع گفت و گو
-                            </a>
+                          <p>{{ dm.message }}</p>
                         </div>
                       </div>
                     </div>
                   </div>
-                </section>             
+                </ng-scrollbar>
+              </section>
+              <section
+                class="chat-app-form bg-blue-grey bg-lighten-5 chat-form"
+              >
+                <div class="card">
+                  <div *ngIf="true" class="card-body">
+                    <div class="card-block text-center row">
+                      <form class="chat-app-input col-md-12">
+                        <fieldset class="form-group">
+                          <textarea
+                            [(ngModel)]="message"
+                            name="message"
+                            class="form-control"
+                            rows="3"
+                            placeholder="سوال خود را بپرسید *"
+                          ></textarea>
+                        </fieldset>
+                        <a
+                          (click)="sendMessage()"
+                          class="btn mr-1 btn-round btn-info"
+                          >ارسال</a
+                        >
+                         
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div>
+              <div *ngIf="!connected" class="col-12 timeline-left h100-persent">
+                <div class="card">
+                  <div class="card-header">
+                    <div [ngClass]="isAdminOnline ? 'bar-success' : 'bar-danger'" class="card-title-wrap my-2">
+                      <h4 class="card-title dis-inline">گفت و گو و چت آنلاین :</h4>
+                      <span class=" dis-inline tickettitle" *ngIf="isAdminOnline">پشتیبانی آنلاین میباشد</span>
+                      <span class=" dis-inline tickettitle" *ngIf="!isAdminOnline">پشتیبانی آفلاین میباشد</span>
+                    </div>
+                    <div>
+                      <p class="fnsize-12" *ngIf="!isAdminOnline">
+                        پشتیبان مربوطه در حال حاظر آنلاین نمیباشد
+                        در صورت نیاز و مهم بودن سوالاتان در بخش 
+                          <span class="badge badge-danger">پشتیبانی </span>
+                        با ما در ارتباط باشید
+                      </p>
+                      <p class="fnsize-12" *ngIf="isAdminOnline">
+                        برای شروع گفت و گو 
+                        برروی دکمه ی 
+                          <span class="badge badge-success">شروع گفت و گو </span>
+                        کلیک کنید
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <a  *ngIf="isAdminOnline" (click)="connect()" class="btn mr-1 btn-round btn-info">
+                  شروع گفت و گو
+                </a>
+                <a  *ngIf="!isAdminOnline" [routerLink]="['/panel/user/tickets']" routerLinkActive="router-link-active" class="btn mr-1 btn-round btn-danger">
+                  رفتن به بخش تیکت ها
+                </a>
+              </div>
             </div>
           </div>
           <div id="settings-tab" aria-labelledby="base-tab2" class="tab-pane">

@@ -26,7 +26,7 @@ export class AuthService{
     private router: Router,
     private store: Store<fromStore.State>) {
     const token = localStorage.getItem('token');
-    if (token != null || token != undefined) {
+    if (this.loggedIn()) {
       const decode = this.jwtHelper.decodeToken(token);
       this.userRoles = decode.role as Array<string>;
       this.userName = decode.unique_name;
