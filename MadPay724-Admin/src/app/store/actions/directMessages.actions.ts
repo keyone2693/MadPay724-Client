@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { UserInfo } from 'src/app/data/models/common/userInfo';
+import { UserInfo } from 'src/app/data/models/common/chat/userInfo';
 
 export enum DirectMessagesActionTypes {
     RECEIVED_NEW_ONLINE_USER = '[DirectMessage] Received New Online User',

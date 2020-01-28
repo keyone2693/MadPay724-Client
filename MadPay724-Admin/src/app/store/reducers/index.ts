@@ -8,19 +8,23 @@ import { loggedUserReducer } from './loggedUser.reducers';
 import { NotificationStateModel } from '../_model/notificationsStateModel';
 import { NotificationReducer } from './notification.reducers';
 import { CurrentTitleReducer } from './currentTitle.reducers';
+import { DirectMessageReducer } from './directMessages.reducers';
 import { CurrentTitleStateModel } from '../_model/currentTitleStateModel';
+import { DirectMessageStateModel } from '../_model/directMessageStateModel';
 
 export interface State {
     router: fromRouter.RouterReducerState<RouterStateUrl>;
     authToken: AuthTokenState,
     loggedUser: User,
     notification: NotificationStateModel,
-    currentTitle: CurrentTitleStateModel
+    currentTitle: CurrentTitleStateModel,
+    directMessage: DirectMessageStateModel
 }
 export const reducers: ActionReducerMap<State> = {
     router: fromRouter.routerReducer,
     authToken: authTokenReducer,
     loggedUser: loggedUserReducer,
     notification: NotificationReducer,
-    currentTitle: CurrentTitleReducer
+    currentTitle: CurrentTitleReducer,
+    directMessage: DirectMessageReducer
 }

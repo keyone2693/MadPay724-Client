@@ -6,8 +6,7 @@ import { AuthService } from '../auth/auth.service';
 
 import * as signalR from '@microsoft/signalr'
 import { environment } from 'src/environments/environment.prod';
-import { discardPeriodicTasks } from '@angular/core/testing';
-import { UserInfo } from 'src/app/data/models/common/userInfo';
+import { UserInfo } from 'src/app/data/models/common/chat/userInfo';
 
 @Injectable({
   providedIn: 'root'
