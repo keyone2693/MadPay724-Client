@@ -11,11 +11,14 @@ import { NotificationComponent } from './layout/navbar/pages/notification/notifi
 import { FaMatPaginatorIntl } from '../../Shared/Modules/material/faMatPaginatorIntl';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { ChatComponent } from './layout/navbar/pages/chat/chat.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     PanelRoutingModule,
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule ,
     HasRoleModule,
     MatTooltipModule,
     NgScrollbarModule

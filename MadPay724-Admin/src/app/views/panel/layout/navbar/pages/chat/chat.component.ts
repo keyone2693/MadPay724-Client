@@ -27,6 +27,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   message = '';
   //***********
   constructor(private authService: AuthService, private store: Store<fromStore.State>) {
+    this.selectedOnlineUserName = 'admin@madpay724.com';
     this.dmState$ = this.store.select<DirectMessageStateModel>(state => state.directMessage);
     this.subManager.add(
       this.store.select<DirectMessageStateModel>(state => state.directMessage).subscribe(data => {
@@ -57,7 +58,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
   sendMessage() {
     console.log('send message to : ' + this.selectedOnlineUserName + ' : ' + this.message);
-    this.store.dispatch(new fromStore.SendDirectMessage(this.message, this.onlineUser.userName))
+    this.store.dispatch(new fromStore.SendDirectMessage(this.message, this.selectedOnlineUserName))
   }
   selectChat(onlineUserName: string) {
     this.selectedOnlineUserName = onlineUserName;
@@ -67,6 +68,12 @@ export class ChatComponent implements OnInit, OnDestroy {
       return directMessage.fromOnlineUser.userName;
     }
     return '';
+  }
+  isAdmin(directMessage: DirectMessage) {
+    if (directMessage.fromOnlineUser) {
+     return true
+    }
+    return false;
   }
   disConnect() {
     this.store.dispatch(new fromStore.Leave());

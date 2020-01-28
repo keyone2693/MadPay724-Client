@@ -39,60 +39,56 @@
             class="tab-pane active"
           >
             <div id="activity-timeline" class="col-12 timeline-left">
-              <section class="chat-app-window">
+                <section class="chat-app-window">
                 <div class="badge badge-dark mb-1">تاریخچه ی گفتگو</div>
                 <ng-scrollbar class="my-scrollbar">
                   <div class="chats">
-                    <div class="chats">
-                      <div class="card chat">
-                          <div class="card-header">
-                              <div class="card-title-wrap bar-success">
+                    <div class="chats" >
+                      <div *ngFor="let dm of (dmState$ | async)?.directMessages" class="card chat" >
+                          <div class="card-header" [ngClass]="{'chat-left': isAdmin(dm) }">
+                              <div class="card-title-wrap " [ngClass]="isAdmin(dm) ? 'bar-danger' :'bar-success'">
                                   <p class="card-title">
-                                      username <small class="time">(persianTimeAgo)</small>
+                                      {{ getUserInfoName(dm)}} <small class="time">(persianTimeAgo)</small>
                                   </p>
                               </div>
-                              <p>متن سوال شما در این قسمت قرار میگیرید </p>
-                          </div>
-                      </div>
-                      <div class="card chat">
-                          <div class="card-header chat-left">
-                              <div class="card-title-wrap bar-danger">
-                                  <p class="card-title">
-                                      username <small class="time">(persianTimeAgo)</small>
-                                  </p>
-                              </div>
-                              <p>متن سوال شما در این قسمت قرار میگیرید </p>
+                              <p>{{ dm.message}}</p>
                           </div>
                       </div>
                     </div>
                   </div>
                 </ng-scrollbar>
-              </section>
-              <section class="chat-app-form bg-blue-grey bg-lighten-5">
-                <div class="card">
-                  <div class="card-header"></div>
-                  <div *ngIf="true" class="card-body">
-                    <div class="card-block text-center row">
-                      <form class="chat-app-input col-md-12">
-                        <fieldset class="form-group">
-                          <textarea
-                            class="form-control"
-                            id="basicTextarea"
-                            rows="3"
-                            formControlName="text"
-                            placeholder="سوال خود را بپرسید *"
-                          ></textarea>
-                        </fieldset>
-                        <a
-                          (click)="onSubmitCreate()"
-                          class="btn mr-1 btn-round btn-info"
-                          >ارسال</a
-                        >
-                      </form>
+                </section>
+                
+                <section class="chat-app-form bg-blue-grey bg-lighten-5">
+                  <div class="card">
+                    <div class="card-header"></div>
+                    <div *ngIf="true" class="card-body">
+                      <div class="card-block text-center row">
+                        <form class="chat-app-input col-md-12"  *ngIf="connected">
+                          <fieldset class="form-group">
+                            <textarea
+                            [(ngModel)]="message"
+                            name="message"
+                              class="form-control"
+                              rows="3"
+                              placeholder="سوال خود را بپرسید *"
+                            ></textarea>
+                          </fieldset>
+                          <a
+                            (click)="sendMessage()"
+                            class="btn mr-1 btn-round btn-info"
+                            >ارسال</a
+                          >
+                        </form>
+                        <div class="chat-app-input col-md-12" *ngIf="!connected">
+                            <a (click)="connect()" class="btn mr-1 btn-round btn-info">
+                                        شروع گفت و گو
+                            </a>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </section>
+                </section>             
             </div>
           </div>
           <div id="settings-tab" aria-labelledby="base-tab2" class="tab-pane">
