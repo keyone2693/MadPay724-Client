@@ -8,6 +8,10 @@ import * as signalR from '@microsoft/signalr'
 import { environment } from 'src/environments/environment.prod';
 import { UserInfo } from 'src/app/data/models/common/chat/userInfo';
 
+import * as fromStore from 'src/app/store';
+import { Store } from '@ngrx/store';
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,7 +22,7 @@ export class DirectMessageService implements OnDestroy {
   _hubConnection: HubConnection | undefined;
   headers: HttpHeaders | undefined;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService,private store: Store<fromStore.State>) {
     this.headers = new HttpHeaders();
     this.headers = this.headers.set('Content-Type', 'application/json');
     this.headers = this.headers.set('Accept', 'application/json');
@@ -73,32 +77,32 @@ export class DirectMessageService implements OnDestroy {
     this._hubConnection.on('NewOnlineUser', (onlineUser: UserInfo) => {
       console.log('NewOnlineUser received');
       console.log(onlineUser);
-      // change the store
+      this.store.dispatch(new fromStore.ReceivedNewOnlineUser(onlineUser));
     });
 
     this._hubConnection.on('OnlineUsers', (onlineUsers: UserInfo[]) => {
       console.log('OnlineUsers received');
       console.log(onlineUsers);
-      // change the store
+      this.store.dispatch(new fromStore.ReceivedOnlineUsers(onlineUsers));
     });
 
     this._hubConnection.on('Joined', (onlineUser: UserInfo) => {
       console.log('Joined received');
       console.log(onlineUser);
-      // change the store
+      this.store.dispatch(new fromStore.JoinSent());
     });
 
     this._hubConnection.on('UserLeft', (name: string) => {
       console.log('UserLeft received');
       console.log(name);
-      // change the store
+      this.store.dispatch(new fromStore.ReceivedUserLeft(name));
     });
 
     this._hubConnection.on('SendDirectMessage', (message: string, onlineUser: UserInfo) => {
       console.log('SendDirectMessage received');
       console.log(message);
       console.log(onlineUser);
-      // change the store
+      this.store.dispatch(new fromStore.ReceivedDirectMessage(message, onlineUser));
     });
 
   }
