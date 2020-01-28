@@ -43,8 +43,8 @@
                 <div class="badge badge-dark mb-1">تاریخچه ی گفتگو</div>
                 <ng-scrollbar class="my-scrollbar">
                   <div class="chats">
-                    <div class="chats" >
-                      <div *ngFor="let dm of (dmState$ | async)?.directMessages" class="card chat" >
+                    <div class="chats" *ngIf="dmState$ | async as dmState" >
+                      <div *ngFor="let dm of dmState.directMessages" class="card chat" >
                           <div class="card-header" [ngClass]="{'chat-left': isAdmin(dm) }">
                               <div class="card-title-wrap " [ngClass]="isAdmin(dm) ? 'bar-danger' :'bar-success'">
                                   <p class="card-title">

@@ -15,7 +15,8 @@ import { Store } from '@ngrx/store';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService{
+
   baseUrl = environment.apiUrl + environment.apiV1 + 'site/panel/auth/';
   jwtHelper = new JwtHelperService();
   userRoles: string[] = [];
@@ -29,7 +30,7 @@ export class AuthService {
       const decode = this.jwtHelper.decodeToken(token);
       this.userRoles = decode.role as Array<string>;
       this.userName = decode.unique_name;
-    }    
+    }
   }
 
   login(model: any) {
@@ -55,11 +56,19 @@ export class AuthService {
 
   loggedIn() {
     const token = localStorage.getItem('token');
-    if (token != null || token != undefined) {
-      return true;
-    } else {
+    if (token == null || token == undefined) {
       return false;
     }
+    var parts = token.split('.');
+    if (parts.length !== 3) {
+      return false;
+    }
+    var decoded = this.jwtHelper.urlBase64Decode(parts[1]);
+    if (!decoded) {
+      return false;
+    }
+
+    return true;
   }
   logout() {
     localStorage.removeItem('token');
@@ -97,7 +106,7 @@ export class AuthService {
       })
     );
   }
-  isAuthorized(): boolean{
+  isAuthorized(): boolean {
     const token = localStorage.getItem('token');
     return !this.jwtHelper.isTokenExpired(token);
   }

@@ -7,6 +7,7 @@ import * as fromStore from 'src/app/store';
 import { Store } from '@ngrx/store';
 import { DirectMessageStateModel } from 'src/app/store/_model/directMessageStateModel';
 import { AuthService } from 'src/app/core/_services/auth/auth.service';
+import { DirectMessageStateContainer } from 'src/app/store/_model/directMessageStateContainer';
 
 @Component({
   selector: 'app-chat',
@@ -22,17 +23,21 @@ export class ChatComponent implements OnInit, OnDestroy {
   onlineUser: UserInfo;
   directMessages: DirectMessage;
   selectedOnlineUserName = '';
-  dmState$: Observable<DirectMessageStateModel>;
+  dmState$: Observable<DirectMessageStateContainer>;
   connected: boolean;
   message = '';
   //***********
   constructor(private authService: AuthService, private store: Store<fromStore.State>) {
-    this.selectedOnlineUserName = 'admin@madpay724.com';
-    this.dmState$ = this.store.select<DirectMessageStateModel>(state => state.directMessage);
+    if (this.authService.roleMatch(['Admin'])) {
+      this.selectedOnlineUserName = 'keyvan@madpay.com';
+
+    } else if (this.authService.roleMatch(['User'])) {
+      this.selectedOnlineUserName = 'admin@madpay724.com';
+    }
+    this.dmState$ = this.store.select<DirectMessageStateContainer>(state => state.directMessage.dm);
     this.subManager.add(
       this.store.select<DirectMessageStateModel>(state => state.directMessage).subscribe(data => {
         this.connected = data.dm.connected;
-        console.log(data.dm);
       })
     );
   }
@@ -57,7 +62,6 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.store.dispatch(new fromStore.Join());
   }
   sendMessage() {
-    console.log('send message to : ' + this.selectedOnlineUserName + ' : ' + this.message);
     this.store.dispatch(new fromStore.SendDirectMessage(this.message, this.selectedOnlineUserName))
   }
   selectChat(onlineUserName: string) {
@@ -71,7 +75,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
   isAdmin(directMessage: DirectMessage) {
     if (directMessage.fromOnlineUser) {
-     return true
+      return true
     }
     return false;
   }

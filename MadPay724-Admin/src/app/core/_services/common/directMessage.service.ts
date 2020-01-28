@@ -45,23 +45,19 @@ export class DirectMessageService implements OnDestroy {
     }
   }
   join() {
-    console.log('Send Join')
     if (this._hubConnection) {
       this._hubConnection.invoke('Join');
     }
   }
 
   init() {
-    if (!this.authService.isAuthorized) {
       this.subManager.add(
-        this.authService.getNewRefreshToken().subscribe()
+        this.authService.getNewRefreshToken().subscribe(() => {
+          this.initHub();
+        })
       );
-    } else {
-      this.initHub();
-    }
   }
   initHub() {
-    console.log('initHub');
 
     const token = localStorage.getItem('token');
     this._hubConnection = new signalR.HubConnectionBuilder()
@@ -75,33 +71,22 @@ export class DirectMessageService implements OnDestroy {
 
 
     this._hubConnection.on('NewOnlineUser', (onlineUser: UserInfo) => {
-      console.log('NewOnlineUser received');
-      console.log(onlineUser);
       this.store.dispatch(new fromStore.ReceivedNewOnlineUser(onlineUser));
     });
 
     this._hubConnection.on('OnlineUsers', (onlineUsers: UserInfo[]) => {
-      console.log('OnlineUsers received');
-      console.log(onlineUsers);
       this.store.dispatch(new fromStore.ReceivedOnlineUsers(onlineUsers));
     });
 
     this._hubConnection.on('Joined', (onlineUser: UserInfo) => {
-      console.log('Joined received');
-      console.log(onlineUser);
       this.store.dispatch(new fromStore.JoinSent());
     });
 
     this._hubConnection.on('UserLeft', (name: string) => {
-      console.log('UserLeft received');
-      console.log(name);
       this.store.dispatch(new fromStore.ReceivedUserLeft(name));
     });
 
     this._hubConnection.on('SendDirectMessage', (message: string, onlineUser: UserInfo) => {
-      console.log('SendDirectMessage received');
-      console.log(message);
-      console.log(onlineUser);
       this.store.dispatch(new fromStore.ReceivedDirectMessage(message, onlineUser));
     });
 
