@@ -1,0 +1,321 @@
+<aside
+  id="notification-sidebar"
+  class="notification-sidebar d-none d-sm-none d-md-block"
+>
+  <a class="notification-sidebar-close"><i class="ft-x font-medium-3"></i></a>
+  <div class="side-nav notification-sidebar-content">
+    <div class="row h100-persent">
+      <div class="col-12 mt-1">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a
+              id="base-tab1"
+              data-toggle="tab"
+              aria-controls="base-tab1"
+              href="#activity-tab"
+              aria-expanded="true"
+              class="nav-link active"
+              ><strong>گفت و گو آنلاین</strong></a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              id="base-tab2"
+              data-toggle="tab"
+              aria-controls="base-tab2"
+              href="#settings-tab"
+              aria-expanded="false"
+              class="nav-link"
+              ><strong>تنظیمات</strong></a
+            >
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div
+            id="activity-tab"
+            role="tabpanel"
+            aria-expanded="true"
+            aria-labelledby="base-tab1"
+            class="tab-pane active h100-persent"
+          >
+            <div
+              *ngIf="connected"
+              id="activity-timeline"
+              class="col-12 timeline-left h100-persent"
+            >
+              <section class="chat-app-window chat-place">
+                 <a (click)="disConnect()"
+                          class="btn mr-1 btn-round btn-danger btn-mar-5"
+                          >پایان گفت و گو</a>
+                <div class="badge badge-dark mb-1">تاریخچه ی گفتگو</div>
+               
+                <ng-scrollbar class="my-scrollbar">
+                  <div class="chats">
+                    <div class="chats" *ngIf="dmState$ | async as dmState">
+                      <div
+                        *ngFor="let dm of dmState.directMessages"
+                        class="card chat"
+                      >
+                        <div
+                          class="card-header"
+                          [ngClass]="{ 'chat-left': isAdmin(dm) }"
+                        >
+                          <div
+                            class="card-title-wrap "
+                            [ngClass]="isAdmin(dm) ? 'bar-danger btn-left-admin' : 'bar-success'">
+                            <p class="card-title">
+                              {{ getUserInfoName(dm) }}
+                              <small class="time">(persianTimeAgo)</small>
+                            </p>
+                          </div>
+                          <p>{{ dm.message }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-scrollbar>
+              </section>
+              <section
+                class="chat-app-form bg-blue-grey bg-lighten-5 chat-form"
+              >
+                <div class="card">
+                  <div *ngIf="true" class="card-body">
+                    <div class="card-block text-center row">
+                      <form class="chat-app-input col-md-12">
+                        <fieldset class="form-group">
+                          <textarea
+                            [(ngModel)]="message"
+                            name="message"
+                            class="form-control"
+                            rows="3"
+                            placeholder="سوال خود را بپرسید *"
+                          ></textarea>
+                        </fieldset>
+                        <a
+                          (click)="sendMessage()"
+                          class="btn mr-1 btn-round btn-info"
+                          >ارسال</a
+                        >
+                         
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div>
+              <div *ngIf="!connected" class="col-12 timeline-left h100-persent">
+                <div class="card">
+                  <div class="card-header">
+                    <div [ngClass]="isAdminOnline ? 'bar-success' : 'bar-danger'" class="card-title-wrap my-2">
+                      <h4 class="card-title dis-inline">گفت و گو و چت آنلاین :</h4>
+                      <span class=" dis-inline tickettitle" *ngIf="isAdminOnline">پشتیبانی آنلاین میباشد</span>
+                      <span class=" dis-inline tickettitle" *ngIf="!isAdminOnline">پشتیبانی آفلاین میباشد</span>
+                    </div>
+                    <div>
+                      <p class="fnsize-12" *ngIf="!isAdminOnline">
+                        پشتیبان مربوطه در حال حاظر آنلاین نمیباشد
+                        در صورت نیاز و مهم بودن سوالاتان در بخش 
+                          <span class="badge badge-danger">پشتیبانی </span>
+                        با ما در ارتباط باشید
+                      </p>
+                      <p class="fnsize-12" *ngIf="isAdminOnline">
+                        برای شروع گفت و گو 
+                        برروی دکمه ی 
+                          <span class="badge badge-success">شروع گفت و گو </span>
+                        کلیک کنید
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <a  *ngIf="isAdminOnline" (click)="connect()" class="btn mr-1 btn-round btn-info">
+                  شروع گفت و گو
+                </a>
+                <a  *ngIf="!isAdminOnline" [routerLink]="['/panel/user/tickets']" routerLinkActive="router-link-active" class="btn mr-1 btn-round btn-danger">
+                  رفتن به بخش تیکت ها
+                </a>
+              </div>
+            </div>
+          </div>
+          <div id="settings-tab" aria-labelledby="base-tab2" class="tab-pane">
+            <div id="settings" class="col-12">
+              <h6 class="mt-1 mb-3 text-bold-400">تنظیمات عمومی</h6>
+              <ul class="list-unstyled">
+                <li>
+                  <div class="togglebutton">
+                    <div class="switch">
+                      <span class="text-bold-500">اطلاعیه</span>
+                      <div class="float-right">
+                        <div class="form-group">
+                          <div
+                            class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0"
+                          >
+                            <input
+                              id="notifications1"
+                              checked="checked"
+                              type="checkbox"
+                              class="custom-control-input"
+                            />
+                            <label
+                              for="notifications1"
+                              class="custom-control-label"
+                            ></label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <p>
+                    هنگام بررسی بله یا بدون پاسخ، از کادرهای جعبه استفاده کنید.
+                  </p>
+                </li>
+                <li>
+                  <div class="togglebutton">
+                    <div class="switch">
+                      <span class="text-bold-500">نمایش فعالیت اخیر</span>
+                      <div class="float-right">
+                        <div class="form-group">
+                          <div
+                            class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0"
+                          >
+                            <input
+                              id="recent-activity1"
+                              checked="checked"
+                              type="checkbox"
+                              class="custom-control-input"
+                            />
+                            <label
+                              for="recent-activity1"
+                              class="custom-control-label"
+                            ></label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <p>
+                    برای مشخص کردن ویژگی لازم است که کادر ورودی خود را با ورودی
+                    مرتبط کنیم.
+                  </p>
+                </li>
+                <li>
+                  <div class="togglebutton">
+                    <div class="switch">
+                      <span class="text-bold-500">اطلاعیه</span>
+                      <div class="float-right">
+                        <div class="form-group">
+                          <div
+                            class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0"
+                          >
+                            <input
+                              id="notifications2"
+                              type="checkbox"
+                              class="custom-control-input"
+                            />
+                            <label
+                              for="notifications2"
+                              class="custom-control-label"
+                            ></label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <p>
+                    هنگام بررسی بله یا بدون پاسخ، از کادرهای جعبه استفاده کنید.
+                  </p>
+                </li>
+                <li>
+                  <div class="togglebutton">
+                    <div class="switch">
+                      <span class="text-bold-500">نمایش فعالیت اخیر</span>
+                      <div class="float-right">
+                        <div class="form-group">
+                          <div
+                            class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0"
+                          >
+                            <input
+                              id="recent-activity2"
+                              type="checkbox"
+                              class="custom-control-input"
+                            />
+                            <label
+                              for="recent-activity2"
+                              class="custom-control-label"
+                            ></label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <p>
+                    برای مشخص کردن ویژگی لازم است که کادر ورودی خود را با ورودی
+                    مرتبط کنیم.
+                  </p>
+                </li>
+                <li>
+                  <div class="togglebutton">
+                    <div class="switch">
+                      <span class="text-bold-500"
+                        >ایمیل های خود را نمایش دهید</span
+                      >
+                      <div class="float-right">
+                        <div class="form-group">
+                          <div
+                            class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0"
+                          >
+                            <input
+                              id="show-emails"
+                              type="checkbox"
+                              class="custom-control-input"
+                            />
+                            <label
+                              for="show-emails"
+                              class="custom-control-label"
+                            ></label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <p>
+                    هنگام بررسی بله یا بدون پاسخ، از کادرهای جعبه استفاده کنید.
+                  </p>
+                </li>
+                <li>
+                  <div class="togglebutton">
+                    <div class="switch">
+                      <span class="text-bold-500">نمایش آمار کار</span>
+                      <div class="float-right">
+                        <div class="form-group">
+                          <div
+                            class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0"
+                          >
+                            <input
+                              id="show-stats"
+                              checked="checked"
+                              type="checkbox"
+                              class="custom-control-input"
+                            />
+                            <label
+                              for="show-stats"
+                              class="custom-control-label"
+                            ></label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <p>
+                    برای مشخص کردن ویژگی لازم است که کادر ورودی خود را با ورودی
+                    مرتبط کنیم.
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</aside>

@@ -12,6 +12,8 @@ import { FaMatPaginatorIntl } from '../../Shared/Modules/material/faMatPaginator
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { ChatComponent } from './layout/navbar/pages/chat/chat.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AdminChatComponent } from './layout/navbar/pages/chat/pages/admin-chat/admin-chat.component';
+import { UserChatComponent } from './layout/navbar/pages/chat/pages/user-chat/user-chat.component';
 
 @NgModule({
   imports: [
@@ -28,7 +30,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NavbarComponent,
     SidebarComponent,
     NotificationComponent,
-    ChatComponent
+    ChatComponent,
+    UserChatComponent,
+    AdminChatComponent
   ],
   providers: [
     AuthGuard,

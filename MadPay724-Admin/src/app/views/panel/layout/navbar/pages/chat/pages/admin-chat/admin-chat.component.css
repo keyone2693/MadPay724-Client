@@ -1,0 +1,89 @@
+.whitecolo {
+  color: #fff !important;
+}
+
+.bgblavk {
+  background: #333 !important;
+}
+
+.my-scrollbar {
+  background: #fff;
+  padding: 25px 15px;
+}
+.my-scrollbar {
+  --scrollbar-color: transparent;
+  --scrollbar-container-color: transparent;
+  --scrollbar-thumb-color: rgba(0, 0, 0, 0.2);
+  --scrollbar-thumb-hover-color: rgba(0, 0, 0, 0.3);
+  --scrollbar-border-radius: 4px;
+  --scrollbar-size: 6px;
+  --scrollbar-padding: 8px;
+  --scroll-view-margin: 0;
+  --scroll-view-color: transparent;
+      height: calc(100% - 75px) !important;
+}
+.dis-inline {
+  display: inline-block;
+}
+.card-title{
+font-weight: 900;
+}
+.card-title small{
+color: #646464;
+font-size: 11px;
+}
+.timeline-left{
+    padding: 0 !important;
+}
+.chat{
+    padding: 0;
+    margin: 0;
+}
+.chat .card-header{
+padding-bottom: 2px;
+}
+
+.btn-left-admin{
+    border-left: 3px solid #E9ECEF;
+    border-right: none !important;
+    text-align: left;
+    padding-left: 1.5rem;
+    padding-right: 0;
+    margin-right: 0;
+    margin-left: -1.5rem;
+}
+.chat-left p{
+    text-align: left;
+}
+
+.badge-dark{
+        margin: 0 auto;
+    display: block;
+}
+
+.h100-persent{
+  height: 100% !important;
+}
+
+.tab-content{
+      height: calc(100% - 50px);
+}
+
+.chat-form{
+  height: 160px !important;
+}
+
+.chat-place{
+   height: calc(100% - 160px);
+}
+.fnsize-12{
+  font-size: 12px;
+}
+
+.card .card-block{
+  padding: 5px !important;
+}
+
+.btn-mar-5{
+  margin-bottom: 5px !important;
+}
