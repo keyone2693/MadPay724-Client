@@ -8,6 +8,7 @@ import { DirectMessageStateContainer } from 'src/app/store/_model/directMessageS
 import { Subscription, Observable } from 'rxjs';
 import { UserInfo } from 'src/app/data/models/common/chat/userInfo';
 import { DirectMessage } from 'src/app/data/models/common/chat/directMessage';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin-chat',
@@ -26,8 +27,9 @@ export class AdminChatComponent implements OnInit, OnDestroy {
   connected: boolean;
   message = '';
   //***********
-  constructor(private authService: AuthService, private store: Store<fromStore.State>) {   
-    this.connect();
+  constructor(private authService: AuthService,private alertService: ToastrService,
+    private store: Store<fromStore.State>) {   
+    
     
     this.onlineUsers$ = this.store.select(fromStore.getOnlineUsers);
     this.dmState$ = this.store.select(fromStore.getDirectMessageStateContainer);
@@ -38,7 +40,7 @@ export class AdminChatComponent implements OnInit, OnDestroy {
     );
   }
   ngOnInit() {
-    this.selectedOnlineUserName = 'keyvan@madpay.com';
+    this.connect();
   }
   ngOnDestroy() {
     this.subManager.unsubscribe();
@@ -48,7 +50,12 @@ export class AdminChatComponent implements OnInit, OnDestroy {
       this.store.dispatch(new fromStore.Join());
   }
   sendMessage() {
+    if (this.selectedOnlineUserName !== '') {
       this.store.dispatch(new fromStore.SendDirectMessage(this.message, this.selectedOnlineUserName))
+    }
+    else {
+      this.alertService.warning('کاربری انتخاب نشده است','ناموفق')
+    }
   }
   selectChat(onlineUserName: string) {
     this.selectedOnlineUserName = onlineUserName;
@@ -65,8 +72,8 @@ export class AdminChatComponent implements OnInit, OnDestroy {
     }
     return false;
   }
-  disConnect() {
-    this.store.dispatch(new fromStore.Leave());
+  backToUserList() {
+    this.selectedOnlineUserName = '';
   }
 
 }

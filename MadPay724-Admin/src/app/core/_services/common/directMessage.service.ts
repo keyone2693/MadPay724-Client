@@ -66,7 +66,7 @@ export class DirectMessageService implements OnDestroy {
       .withAutomaticReconnect()
       .configureLogging(signalR.LogLevel.Information)
       .build();
-
+    
     this._hubConnection.start().catch(err => console.error(err.toString()));
 
 

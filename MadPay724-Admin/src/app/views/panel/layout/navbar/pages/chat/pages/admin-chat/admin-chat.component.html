@@ -38,15 +38,39 @@
             aria-labelledby="base-tab1"
             class="tab-pane active h100-persent"
           >
-            <div
-              *ngIf="connected"
-              id="activity-timeline"
-              class="col-12 timeline-left h100-persent"
-            >
+          <ng-container *ngIf="selectedOnlineUserName === ''">
+            
+               <div *ngIf="onlineUsers$ | async as onlineUsers" class="col-12 timeline-left h100-persent">
+                <div *ngIf="onlineUsers.length === 0" class="card">
+                  <div class="card-header">
+                    <div class="card-title-wrap my-2 bar-success">
+                      <h4 class="card-title dis-inline">چت فعالی وجود ندارد</h4>
+                      <span class=" dis-inline tickettitle"> ... </span>
+                    </div>
+                  </div>
+                </div>
+                <div *ngFor="let onlineUser of onlineUsers"   class="card">
+                  <div class="card-header">
+                    <div class="card-title-wrap my-2 bar-success">
+                      <h4 class="card-title dis-inline">نام کاربری :</h4>
+                      <span class=" dis-inline tickettitle">{{onlineUser.userName}}</span>
+                    </div>
+                    <div>
+                      <a (click)="selectChat(onlineUser.userName)" class="btn mr-1 btn-round btn-info">
+                       چت با این کاربر
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+          </ng-container>
+          <ng-container *ngIf="selectedOnlineUserName !== ''">
+            <div id="activity-timeline" class="col-12 timeline-left h100-persent">
               <section class="chat-app-window chat-place">
-                 <a (click)="disConnect()"
+                 <a (click)="backToUserList()"
                           class="btn mr-1 btn-round btn-danger btn-mar-5"
-                          >پایان گفت و گو</a>
+                          >برگشت به لیست کاربران</a>
                 <div class="badge badge-dark mb-1">تاریخچه ی گفتگو</div>
                
                 <ng-scrollbar class="my-scrollbar">
@@ -103,29 +127,7 @@
                 </div>
               </section>
             </div>
-            <div>
-              <div *ngIf="!connected" class="col-12 timeline-left h100-persent">
-                <div class="card">
-                  <div class="card-header">
-                    <div class="card-title-wrap my-2 bar-success">
-                      <h4 class="card-title dis-inline">گفت و گو و چت آنلاین :</h4>
-                      <span class=" dis-inline tickettitle">شما آنلاین میباشید</span>
-                    </div>
-                    <div>
-                      <p class="fnsize-12">
-                        برای شروع گفت و گو 
-                        برروی دکمه ی 
-                          <span class="badge badge-success">شروع گفت و گو </span>
-                        کلیک کنید
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <a (click)="connect()" class="btn mr-1 btn-round btn-info">
-                  شروع گفت و گو
-                </a>
-              </div>
-            </div>
+          </ng-container>
           </div>
           <div id="settings-tab" aria-labelledby="base-tab2" class="tab-pane">
             <div id="settings" class="col-12">

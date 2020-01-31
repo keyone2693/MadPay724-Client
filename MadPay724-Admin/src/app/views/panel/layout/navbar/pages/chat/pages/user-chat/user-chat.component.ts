@@ -17,16 +17,17 @@ import { DirectMessage } from 'src/app/data/models/common/chat/directMessage';
 export class UserChatComponent implements OnInit, OnDestroy {
   subManager = new Subscription();
   //*********** 
-  onlineUsers: UserInfo[];
+  onlineUsers$: Observable<UserInfo[]>;
   onlineUser: UserInfo;
   directMessages: DirectMessage;
   selectedOnlineUserName = '';
   dmState$: Observable<DirectMessageStateContainer>;
   connected: boolean;
-  isAdminOnline = true;
   message = '';
   //***********
   constructor(private authService: AuthService, private store: Store<fromStore.State>) {
+
+    this.onlineUsers$ = this.store.select(fromStore.getOnlineUsers);
     this.dmState$ = this.store.select(fromStore.getDirectMessageStateContainer);
     this.subManager.add(
       this.store.select(fromStore.getConnected).subscribe(data => {
@@ -41,13 +42,13 @@ export class UserChatComponent implements OnInit, OnDestroy {
     this.subManager.unsubscribe();
   }
 
-  connect() {
-    if (this.isAdminOnline) {
+  connect(onlineUsers: UserInfo[]) {
+    if (this.isAdminOnline(onlineUsers)) {
       this.store.dispatch(new fromStore.Join());
     }
   }
-  sendMessage() {
-    if (this.isAdminOnline) {
+  sendMessage(onlineUsers: UserInfo[]) {
+    if (this.isAdminOnline(onlineUsers)) {
       this.store.dispatch(new fromStore.SendDirectMessage(this.message, this.selectedOnlineUserName))
     }
   }
@@ -62,6 +63,13 @@ export class UserChatComponent implements OnInit, OnDestroy {
       return true
     }
     return false;
+  }
+  isAdminOnline(onlineUsers: UserInfo[]):boolean {
+    if (onlineUsers.some(el => el.userName === 'admin@madpay724.com')) {
+      return true;
+    } else {
+      return false;
+    }
   }
   disConnect() {
     this.store.dispatch(new fromStore.Leave());
