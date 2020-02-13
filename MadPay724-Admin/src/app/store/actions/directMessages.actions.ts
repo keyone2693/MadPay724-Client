@@ -5,7 +5,10 @@ export enum DirectMessagesActionTypes {
     RECEIVED_NEW_ONLINE_USER = '[DirectMessage] Received New Online User',
     RECEIVED_ONLINE_USERS = '[DirectMessage] Received Online Users',
 
-    RECEIVED_USER_LEFT = '[DirectMessage] ',
+    RECEIVED_USER_LEFT = '[DirectMessage] User Left',
+
+    INIT_HUB = '[DirectMessage] Init Hub',
+    INIT_HUB_SUCCESS = '[DirectMessage] Init Hub Success',
 
     JOIN = '[DirectMessage] Join',
     JOIN_SENT = '[DirectMessage] Join Sent',
@@ -70,6 +73,15 @@ export class JoinSent implements Action {
     constructor() { }
 }
 
+export class InitHub implements Action {
+    readonly type = DirectMessagesActionTypes.INIT_HUB;
+    constructor() { }
+}
+export class InitHubSuccess implements Action {
+    readonly type = DirectMessagesActionTypes.INIT_HUB_SUCCESS;
+    constructor() { }
+}
+
 
 export type AllDirectMessagesAction =
     SendDirectMessageComplete
@@ -81,4 +93,6 @@ export type AllDirectMessagesAction =
     | Leave
     | LeaveSent
     | Join
-    | JoinSent;
+    | JoinSent
+    | InitHub
+    | InitHubSuccess;

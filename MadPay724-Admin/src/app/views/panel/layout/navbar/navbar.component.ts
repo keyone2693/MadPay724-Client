@@ -55,6 +55,9 @@ export class NavbarComponent implements OnDestroy {
     this.store.dispatch(new fromStore.ResetDecodedToken());
     this.store.dispatch(new fromStore.ResetLoggedUser());
     this.authService.userRoles = [];
+
+    this.store.dispatch(new fromStore.Leave());
+
     this.router.navigate(['/auth/login']);
     this.alertService.warning('با موفقیت خارج شدید', 'موفق');
   }

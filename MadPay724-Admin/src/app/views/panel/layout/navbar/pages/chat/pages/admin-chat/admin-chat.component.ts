@@ -38,16 +38,18 @@ export class AdminChatComponent implements OnInit, OnDestroy {
         this.connected = data;
       })
     );
+
+    this.connect();
+
   }
   ngOnInit() {
-    this.connect();
   }
   ngOnDestroy() {
     this.subManager.unsubscribe();
   }
 
   connect() {
-      this.store.dispatch(new fromStore.Join());
+    this.store.dispatch(new fromStore.Join());
   }
   sendMessage() {
     if (this.selectedOnlineUserName !== '') {

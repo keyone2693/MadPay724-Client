@@ -58,7 +58,6 @@ export class DirectMessageService implements OnDestroy {
       );
   }
   initHub() {
-
     const token = localStorage.getItem('token');
     this._hubConnection = new signalR.HubConnectionBuilder()
       .withUrl(environment.apiUrl + environment.apiV1 + 'site/panel/chat',
@@ -66,7 +65,6 @@ export class DirectMessageService implements OnDestroy {
       .withAutomaticReconnect()
       .configureLogging(signalR.LogLevel.Information)
       .build();
-    
     this._hubConnection.start().catch(err => console.error(err.toString()));
 
 

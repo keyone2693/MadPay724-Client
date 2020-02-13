@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { Store } from '@ngrx/store';
 
-import * as fromStore from '../../../../store';
+import * as fromStore from 'src/app/store';
 
 
 
@@ -17,7 +17,8 @@ export class LoginComponent implements OnInit {
   model: any = {};
   returnUrl: any = '';
   constructor(private authService: AuthService, private router: Router,
-    private alertService: ToastrService, private route: ActivatedRoute) { }
+    private alertService: ToastrService, private route: ActivatedRoute,
+    private store: Store<fromStore.State>) { }
 
   ngOnInit() {
     this.model.isremember = true;
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.authService.login(this.model).subscribe(next => {
+      this.store.dispatch(new fromStore.InitHub());
       if (this.returnUrl === null || this.returnUrl === undefined) {
         this.returnUrl = this.authService.getDashboardUrl();
       }

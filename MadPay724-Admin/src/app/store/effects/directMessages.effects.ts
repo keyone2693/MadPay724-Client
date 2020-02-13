@@ -12,6 +12,17 @@ export class DirectMessageEffects {
     constructor(private action$: Actions, private directMessageService: DirectMessageService) { }
 
     @Effect()
+    InitHub$: Observable<Action> = this.action$.pipe(
+        ofType<directMessageActions.InitHub>
+            (directMessageActions.DirectMessagesActionTypes.INIT_HUB),
+        switchMap(() => {
+            this.directMessageService.initHub();
+
+            return of(new directMessageActions.InitHubSuccess())
+        })
+    )
+
+    @Effect()
     sendDirectMessage$: Observable<Action> = this.action$.pipe(
         ofType<directMessageActions.SendDirectMessage>
             (directMessageActions.DirectMessagesActionTypes.SEND_DIRECT_MESSAGE),
@@ -27,6 +38,7 @@ export class DirectMessageEffects {
             (directMessageActions.DirectMessagesActionTypes.JOIN),
         switchMap(() => {
             this.directMessageService.join();
+
             return of(new directMessageActions.JoinSent())
         })
     )

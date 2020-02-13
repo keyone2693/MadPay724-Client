@@ -15,6 +15,12 @@ export const initDirectMessage: DirectMessageStateModel = {
 export function DirectMessageReducer(state = initDirectMessage,
     action: directMessageAction.AllDirectMessagesAction) {
     switch (action.type) {
+        case directMessageAction.DirectMessagesActionTypes.INIT_HUB: {
+            return state;
+        }
+        case directMessageAction.DirectMessagesActionTypes.INIT_HUB_SUCCESS: {
+            return state;
+        }
         case directMessageAction.DirectMessagesActionTypes.RECEIVED_DIRECT_MESSAGE: {
             const directMessage: DirectMessage = {
                 message: action.message,
