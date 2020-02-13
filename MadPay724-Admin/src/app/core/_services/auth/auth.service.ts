@@ -110,6 +110,12 @@ export class AuthService{
     const token = localStorage.getItem('token');
     return !this.jwtHelper.isTokenExpired(token);
   }
+  isAdmin(): boolean {
+    if (this.roleMatch(["Admin"])) {
+      return true;
+    }
+    return false;
+  }
   roleMatch(allowedRoles): boolean {
     let isMatch = false;
     const userRoles = this.userRoles;

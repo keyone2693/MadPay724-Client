@@ -10,6 +10,7 @@ import { UserInfo } from 'src/app/data/models/common/chat/userInfo';
 
 import * as fromStore from 'src/app/store';
 import { Store } from '@ngrx/store';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Injectable({
@@ -22,7 +23,8 @@ export class DirectMessageService implements OnDestroy {
   _hubConnection: HubConnection | undefined;
   headers: HttpHeaders | undefined;
 
-  constructor(private authService: AuthService,private store: Store<fromStore.State>) {
+  constructor(private authService: AuthService, private store: Store<fromStore.State>,
+    private alertService: ToastrService) {
     this.headers = new HttpHeaders();
     this.headers = this.headers.set('Content-Type', 'application/json');
     this.headers = this.headers.set('Accept', 'application/json');
@@ -69,6 +71,9 @@ export class DirectMessageService implements OnDestroy {
 
 
     this._hubConnection.on('NewOnlineUser', (onlineUser: UserInfo) => {
+      if (this.authService.isAdmin() && onlineUser.userName != "admin@madpay724.com") {
+        this.alertService.success(' کاربر ' + onlineUser.userName + ' به گفت و گو پیوست ', 'توجه');
+      }
       this.store.dispatch(new fromStore.ReceivedNewOnlineUser(onlineUser));
     });
 
@@ -81,6 +86,10 @@ export class DirectMessageService implements OnDestroy {
     });
 
     this._hubConnection.on('UserLeft', (name: string) => {
+      if (this.authService.isAdmin() && name != "admin@madpay724.com") {
+        this.alertService.warning(' کاربر ' + name + ' از گفت و گو خارج شد', 'توجه');
+      }
+
       this.store.dispatch(new fromStore.ReceivedUserLeft(name));
     });
 
