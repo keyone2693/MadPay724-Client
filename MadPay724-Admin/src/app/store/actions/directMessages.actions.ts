@@ -30,7 +30,7 @@ export class SendDirectMessage implements Action {
 
 export class SendDirectMessageComplete implements Action {
     readonly type = DirectMessagesActionTypes.SEND_DIRECT_MESSAGE_COMPLETE;
-    constructor(public message: string) { }
+    constructor(public message: string, public userId: string) { }
 }
 
 export class ReceivedDirectMessage implements Action {

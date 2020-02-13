@@ -49,7 +49,10 @@ export function DirectMessageReducer(state = initDirectMessage,
         case directMessageAction.DirectMessagesActionTypes.SEND_DIRECT_MESSAGE_COMPLETE: {
             const directMessage: DirectMessage = {
                 message: action.message,
-                fromOnlineUser: null
+                fromOnlineUser : {
+                    userName: action.userId,
+                    connectionId: '-1'
+                } 
             };
             return Object.assign({}, state, {
                 dm: {

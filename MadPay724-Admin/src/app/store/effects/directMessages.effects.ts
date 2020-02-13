@@ -28,7 +28,7 @@ export class DirectMessageEffects {
             (directMessageActions.DirectMessagesActionTypes.SEND_DIRECT_MESSAGE),
         switchMap((action: directMessageActions.SendDirectMessage) => {
             this.directMessageService.sendDirectMessage(action.message, action.userId);
-            return of(new directMessageActions.SendDirectMessageComplete(action.message))
+            return of(new directMessageActions.SendDirectMessageComplete(action.message, action.userId))
         })
     )
 

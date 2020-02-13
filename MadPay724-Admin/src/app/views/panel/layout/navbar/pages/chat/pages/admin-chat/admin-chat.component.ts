@@ -68,19 +68,22 @@ export class AdminChatComponent implements OnInit, OnDestroy {
     return false;
   }
   getUserInfoName(directMessage: DirectMessage) {
-    if (directMessage.fromOnlineUser) {
+    if (directMessage.fromOnlineUser.connectionId != '-1') {
       return directMessage.fromOnlineUser.userName;
     }
     return '';
   }
   isUser(directMessage: DirectMessage) {
-    if (directMessage.fromOnlineUser) {
+    if (directMessage.fromOnlineUser.connectionId != '-1') {
       return true
     }
     return false;
   }
   backToUserList() {
     this.selectedOnlineUserName = '';
+  }
+  GetUserMess(directMessages: DirectMessage[]): DirectMessage[] {
+    return directMessages.filter(p => p.fromOnlineUser.userName === this.selectedOnlineUserName)
   }
 
 }

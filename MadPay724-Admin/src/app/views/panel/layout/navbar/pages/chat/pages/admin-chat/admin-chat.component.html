@@ -76,7 +76,7 @@
                   <div class="chats">
                     <div class="chats" *ngIf="dmState$ | async as dmState">
                       <div
-                        *ngFor="let dm of dmState.directMessages"
+                        *ngFor="let dm of GetUserMess(dmState.directMessages)"
                         class="card chat"
                       >
                         <div

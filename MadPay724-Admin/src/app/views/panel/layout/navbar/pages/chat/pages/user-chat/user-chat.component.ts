@@ -58,13 +58,13 @@ export class UserChatComponent implements OnInit, OnDestroy {
     }
   }
   getUserInfoName(directMessage: DirectMessage) {
-    if (directMessage.fromOnlineUser) {
+    if (directMessage.fromOnlineUser.connectionId != '-1') {
       return directMessage.fromOnlineUser.userName;
     }
     return '';
   }
   isAdmin(directMessage: DirectMessage) {
-    if (directMessage.fromOnlineUser) {
+    if (directMessage.fromOnlineUser.connectionId != '-1') {
       return true
     }
     return false;
