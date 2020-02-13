@@ -14,12 +14,12 @@ import { AuthService } from 'src/app/core/_services/auth/auth.service';
 export class ChatComponent implements OnInit {
   url = '../../../../../assets/js/notification-sidebar.js';
   loadAPI: any;
-  isAdmin = false;
+  isAdmin = 0;
   constructor(private authService: AuthService) {
     if (this.authService.roleMatch(['Admin'])) {
-      this.isAdmin = true;
+      this.isAdmin = 1;
     } else if (this.authService.roleMatch(['User'])) {
-      this.isAdmin = false;
+      this.isAdmin = 2;
     }
   }
   ngOnInit() {

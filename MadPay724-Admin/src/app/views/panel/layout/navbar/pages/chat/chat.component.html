@@ -1,4 +1,2 @@
-<app-admin-chat *ngIf="isAdmin;else userchat"></app-admin-chat>
-<ng-template #userchat>
-    <app-user-chat ></app-user-chat>
-</ng-template>
+<app-admin-chat *ngIf="isAdmin == 1"></app-admin-chat>
+<app-user-chat *ngIf="isAdmin == 2"></app-user-chat>

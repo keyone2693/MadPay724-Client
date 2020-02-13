@@ -53,6 +53,8 @@ export class UserChatComponent implements OnInit, OnDestroy {
   sendMessage(onlineUsers: UserInfo[]) {
     if (this.isAdminOnline(onlineUsers)) {
       this.store.dispatch(new fromStore.SendDirectMessage(this.message, this.selectedOnlineUserName))
+    } else {
+      this.alertService.warning('امکان چت انلاین وجود ندارد ', 'پشتیبان آفلاین میباشد');
     }
   }
   getUserInfoName(directMessage: DirectMessage) {

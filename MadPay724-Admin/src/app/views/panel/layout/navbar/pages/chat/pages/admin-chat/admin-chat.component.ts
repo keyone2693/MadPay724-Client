@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import * as fromStore from 'src/app/store';
 import { Store } from '@ngrx/store';
-import { DirectMessageStateModel } from 'src/app/store/_model/directMessageStateModel';
 import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { DirectMessageStateContainer } from 'src/app/store/_model/directMessageStateContainer';
 import { Subscription, Observable } from 'rxjs';
@@ -61,6 +60,12 @@ export class AdminChatComponent implements OnInit, OnDestroy {
   }
   selectChat(onlineUserName: string) {
     this.selectedOnlineUserName = onlineUserName;
+  }
+  isAnyUserOnline(onlineUsers: UserInfo[]):boolean {
+    if (onlineUsers.some(el => el.userName !== 'admin@madpay724.com')) {
+      return true;
+    }
+    return false;
   }
   getUserInfoName(directMessage: DirectMessage) {
     if (directMessage.fromOnlineUser) {

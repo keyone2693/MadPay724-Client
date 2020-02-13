@@ -41,28 +41,27 @@
           <ng-container *ngIf="selectedOnlineUserName === ''">
             
                <div *ngIf="onlineUsers$ | async as onlineUsers" class="col-12 timeline-left h100-persent">
-                <div *ngIf="onlineUsers.length === 0" class="card">
-                  <div class="card-header">
-                    <div class="card-title-wrap my-2 bar-success">
-                      <h4 class="card-title dis-inline">چت فعالی وجود ندارد</h4>
-                      <span class=" dis-inline tickettitle"> ... </span>
+                  <div *ngIf="!isAnyUserOnline(onlineUsers)" class="card">
+                    <div class="card-header">
+                      <div class="card-title-wrap my-2 bar-success">
+                        <h4 class="card-title dis-inline">چت فعالی وجود ندارد</h4>
+                        <span class=" dis-inline tickettitle"> ... </span>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div *ngFor="let onlineUser of onlineUsers"   class="card">
-                  <div class="card-header">
-                    <div class="card-title-wrap my-2 bar-success">
-                      <h4 class="card-title dis-inline">نام کاربری :</h4>
-                      <span class=" dis-inline tickettitle">{{onlineUser.userName}}</span>
-                    </div>
-                    <div>
-                      <a (click)="selectChat(onlineUser.userName)" class="btn mr-1 btn-round btn-info">
-                       چت با این کاربر
-                      </a>
+                  <div *ngFor="let onlineUser of onlineUsers"   class="card">
+                    <div *ngIf="onlineUser.userName !== 'admin@madpay724.com'" class="card-header">
+                      <div class="card-title-wrap my-2 bar-success">
+                        <h4 class="card-title dis-inline">نام کاربری :</h4>
+                        <span class=" dis-inline tickettitle">{{onlineUser.userName}}</span>
+                      </div>
+                      <div>
+                        <a (click)="selectChat(onlineUser.userName)" class="btn mr-1 btn-round btn-info">
+                        چت با این کاربر
+                        </a>
+                      </div>
                     </div>
                   </div>
-                </div>
-                
               </div>
           </ng-container>
           <ng-container *ngIf="selectedOnlineUserName !== ''">
