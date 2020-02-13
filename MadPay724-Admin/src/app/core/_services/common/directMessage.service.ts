@@ -94,6 +94,7 @@ export class DirectMessageService implements OnDestroy {
     });
 
     this._hubConnection.on('SendDirectMessage', (message: string, onlineUser: UserInfo) => {
+      this.alertService.warning(' از کاربر ' + onlineUser.userName + ' پیغامی دارید ', 'پیام جدید');
       this.store.dispatch(new fromStore.ReceivedDirectMessage(message, onlineUser));
     });
 
