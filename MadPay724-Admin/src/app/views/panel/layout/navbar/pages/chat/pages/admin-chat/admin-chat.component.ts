@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { DirectMessageStateContainer } from 'src/app/store/_model/directMessageStateContainer';
 import { Subscription, Observable } from 'rxjs';
 import { UserInfo } from 'src/app/data/models/common/chat/userInfo';
+import { MessageSettings } from 'src/app/data/models/common/chat/messageSettings';
 import { DirectMessage } from 'src/app/data/models/common/chat/directMessage';
 import { ToastrService } from 'ngx-toastr';
 import { CookieService } from 'ngx-cookie-service';
@@ -19,7 +20,7 @@ import { CryptoService } from 'src/app/core/_services/common/crypto.service';
   styleUrls: ['./admin-chat.component.css']
 })
 export class AdminChatComponent implements OnInit, OnDestroy {
-  
+
   subManager = new Subscription();
   //*********** 
   onlineUsers$: Observable<UserInfo[]>;
@@ -29,11 +30,12 @@ export class AdminChatComponent implements OnInit, OnDestroy {
   dmState$: Observable<DirectMessageStateContainer>;
   connected: boolean;
   message = '';
+  messageSettings: MessageSettings;
   //***********
-  constructor(private authService: AuthService,private alertService: ToastrService,
+  constructor(private authService: AuthService, private alertService: ToastrService,
     private store: Store<fromStore.State>, private cookieService: CookieService,
-    private cryptoService: CryptoService) {   
-  
+    private cryptoService: CryptoService) {
+
     this.onlineUsers$ = this.store.select(fromStore.getOnlineUsers);
     this.dmState$ = this.store.select(fromStore.getDirectMessageStateContainer);
     this.subManager.add(
@@ -46,25 +48,27 @@ export class AdminChatComponent implements OnInit, OnDestroy {
 
   }
   ngOnInit() {
+    this.loadMessageSettings();
+  }
+  loadMessageSettings() {
+    if (!this.cookieService.check('dms')) {
+      const dmSettings: MessageSettings = {
+        activeMessage: true,
+        activeConnect: true
+      }
+      const encvalue = this.cryptoService.encrypt(dmSettings);
 
-    this.cookieService.deleteAll();
+      this.cookieService.set('dms', encvalue, 365, '/');
+    }
+    const value = this.cookieService.get('dms');
+    this.messageSettings = this.cryptoService.decrypt(value);
+  }
+  changeMessageSettings() {
+    this.cookieService.delete('dms', '/');
 
-    const value = 'keyvan';      
-
-    this.cookieService.set('value', value);
-
-    const encvalue = this.cryptoService.encrypt(value); 
-    this.cookieService.set('encValue', encvalue);
-
-    const dcvalue = this.cryptoService.decrypt(encvalue); 
-    this.cookieService.set('dcvalue', dcvalue);
-
-   
-
-
-
-    const allCookies: {} = this.cookieService.getAll();
-    console.log(allCookies);
+    const encvalue = this.cryptoService.encrypt(this.messageSettings);
+    this.cookieService.set('dms', encvalue, 365, '/');
+    this.alertService.success('تنظیمات اطلاع رسانی چت با موفقیت تغییر کرد', 'موفق');
   }
   ngOnDestroy() {
     this.subManager.unsubscribe();
@@ -78,13 +82,13 @@ export class AdminChatComponent implements OnInit, OnDestroy {
       this.store.dispatch(new fromStore.SendDirectMessage(this.message, this.selectedOnlineUserName))
     }
     else {
-      this.alertService.warning('کاربری انتخاب نشده است','ناموفق')
+      this.alertService.warning('کاربری انتخاب نشده است', 'ناموفق')
     }
   }
   selectChat(onlineUserName: string) {
     this.selectedOnlineUserName = onlineUserName;
   }
-  isAnyUserOnline(onlineUsers: UserInfo[]):boolean {
+  isAnyUserOnline(onlineUsers: UserInfo[]): boolean {
     if (onlineUsers.some(el => el.userName !== 'admin@madpay724.com')) {
       return true;
     }

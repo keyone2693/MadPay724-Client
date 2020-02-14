@@ -87,7 +87,7 @@
                             class="card-title-wrap "
                             [ngClass]="isUser(dm) ? 'bar-danger btn-left-admin' : 'bar-success'">
                             <p class="card-title"> 
-                                                           <small class="time">({{dm.date |persianTimeAgo}})</small>
+                            <small class="time">({{dm.date |persianTimeAgo}})</small>
 
                               {{ getUserInfoName(dm) }}
                             </p>
@@ -131,25 +131,27 @@
           </div>
           <div id="settings-tab" aria-labelledby="base-tab2" class="tab-pane">
             <div id="settings" class="col-12">
-              <h6 class="mt-1 mb-3 text-bold-400">تنظیمات عمومی</h6>
+              <h6 class="mt-1 mb-3 text-bold-400">تنظیمات اطلاع رسانی</h6>
               <ul class="list-unstyled">
                 <li>
                   <div class="togglebutton">
                     <div class="switch">
-                      <span class="text-bold-500">اطلاعیه</span>
+                      <span class="text-bold-500">آنلاین بودن پشتیبان</span>
                       <div class="float-right">
                         <div class="form-group">
                           <div
                             class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0"
                           >
                             <input
-                              id="notifications1"
+                             id="chk-connect"
+                              [(ngModel)]="messageSettings.activeConnect"
+                              (change)="changeMessageSettings()"
                               checked="checked"
                               type="checkbox"
                               class="custom-control-input"
                             />
                             <label
-                              for="notifications1"
+                              for="chk-connect"
                               class="custom-control-label"
                             ></label>
                           </div>
@@ -158,26 +160,27 @@
                     </div>
                   </div>
                   <p>
-                    هنگام بررسی بله یا بدون پاسخ، از کادرهای جعبه استفاده کنید.
+                    در هنگام آنلاین شدن پشتیبان به شما اطلاع رسانی میشود
                   </p>
                 </li>
                 <li>
                   <div class="togglebutton">
                     <div class="switch">
-                      <span class="text-bold-500">نمایش فعالیت اخیر</span>
+                      <span class="text-bold-500">دریافت پیام</span>
                       <div class="float-right">
                         <div class="form-group">
                           <div
                             class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0"
                           >
                             <input
-                              id="recent-activity1"
-                              checked="checked"
+                            id="chk-message"
+                              [(ngModel)]="messageSettings.activeMessage"
+                              (change)="changeMessageSettings()"
                               type="checkbox"
                               class="custom-control-input"
                             />
                             <label
-                              for="recent-activity1"
+                              for="chk-message"
                               class="custom-control-label"
                             ></label>
                           </div>
@@ -186,123 +189,10 @@
                     </div>
                   </div>
                   <p>
-                    برای مشخص کردن ویژگی لازم است که کادر ورودی خود را با ورودی
-                    مرتبط کنیم.
+                    در هنگام دریافت پیام اطلاع رسانی میشود
                   </p>
                 </li>
-                <li>
-                  <div class="togglebutton">
-                    <div class="switch">
-                      <span class="text-bold-500">اطلاعیه</span>
-                      <div class="float-right">
-                        <div class="form-group">
-                          <div
-                            class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0"
-                          >
-                            <input
-                              id="notifications2"
-                              type="checkbox"
-                              class="custom-control-input"
-                            />
-                            <label
-                              for="notifications2"
-                              class="custom-control-label"
-                            ></label>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <p>
-                    هنگام بررسی بله یا بدون پاسخ، از کادرهای جعبه استفاده کنید.
-                  </p>
-                </li>
-                <li>
-                  <div class="togglebutton">
-                    <div class="switch">
-                      <span class="text-bold-500">نمایش فعالیت اخیر</span>
-                      <div class="float-right">
-                        <div class="form-group">
-                          <div
-                            class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0"
-                          >
-                            <input
-                              id="recent-activity2"
-                              type="checkbox"
-                              class="custom-control-input"
-                            />
-                            <label
-                              for="recent-activity2"
-                              class="custom-control-label"
-                            ></label>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <p>
-                    برای مشخص کردن ویژگی لازم است که کادر ورودی خود را با ورودی
-                    مرتبط کنیم.
-                  </p>
-                </li>
-                <li>
-                  <div class="togglebutton">
-                    <div class="switch">
-                      <span class="text-bold-500"
-                        >ایمیل های خود را نمایش دهید</span
-                      >
-                      <div class="float-right">
-                        <div class="form-group">
-                          <div
-                            class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0"
-                          >
-                            <input
-                              id="show-emails"
-                              type="checkbox"
-                              class="custom-control-input"
-                            />
-                            <label
-                              for="show-emails"
-                              class="custom-control-label"
-                            ></label>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <p>
-                    هنگام بررسی بله یا بدون پاسخ، از کادرهای جعبه استفاده کنید.
-                  </p>
-                </li>
-                <li>
-                  <div class="togglebutton">
-                    <div class="switch">
-                      <span class="text-bold-500">نمایش آمار کار</span>
-                      <div class="float-right">
-                        <div class="form-group">
-                          <div
-                            class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0"
-                          >
-                            <input
-                              id="show-stats"
-                              checked="checked"
-                              type="checkbox"
-                              class="custom-control-input"
-                            />
-                            <label
-                              for="show-stats"
-                              class="custom-control-label"
-                            ></label>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <p>
-                    برای مشخص کردن ویژگی لازم است که کادر ورودی خود را با ورودی
-                    مرتبط کنیم.
-                  </p>
-                </li>
+              
               </ul>
             </div>
           </div>
