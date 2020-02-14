@@ -30,12 +30,12 @@ export class SendDirectMessage implements Action {
 
 export class SendDirectMessageComplete implements Action {
     readonly type = DirectMessagesActionTypes.SEND_DIRECT_MESSAGE_COMPLETE;
-    constructor(public message: string, public userId: string) { }
+    constructor(public message: string, public userId: string, public date: Date) { }
 }
 
 export class ReceivedDirectMessage implements Action {
     readonly type = DirectMessagesActionTypes.RECEIVED_DIRECT_MESSAGE;
-    constructor(public message: string, public onlineUser: UserInfo) { }
+    constructor(public message: string, public onlineUser: UserInfo,public date:Date) { }
 }
 
 export class ReceivedNewOnlineUser implements Action {

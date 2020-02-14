@@ -24,7 +24,8 @@ export function DirectMessageReducer(state = initDirectMessage,
         case directMessageAction.DirectMessagesActionTypes.RECEIVED_DIRECT_MESSAGE: {
             const directMessage: DirectMessage = {
                 message: action.message,
-                fromOnlineUser: action.onlineUser
+                fromOnlineUser: action.onlineUser,
+                date: action.date
             };
             return Object.assign({}, state, {
                 dm: {
@@ -52,7 +53,8 @@ export function DirectMessageReducer(state = initDirectMessage,
                 fromOnlineUser : {
                     userName: action.userId,
                     connectionId: '-1'
-                } 
+                },
+                date: action.date
             };
             return Object.assign({}, state, {
                 dm: {

@@ -8,6 +8,10 @@ import { Subscription, Observable } from 'rxjs';
 import { UserInfo } from 'src/app/data/models/common/chat/userInfo';
 import { DirectMessage } from 'src/app/data/models/common/chat/directMessage';
 import { ToastrService } from 'ngx-toastr';
+import { CookieService } from 'ngx-cookie-service';
+import { CryptoService } from 'src/app/core/_services/common/crypto.service';
+
+
 
 @Component({
   selector: 'app-admin-chat',
@@ -27,9 +31,9 @@ export class AdminChatComponent implements OnInit, OnDestroy {
   message = '';
   //***********
   constructor(private authService: AuthService,private alertService: ToastrService,
-    private store: Store<fromStore.State>) {   
-    
-    
+    private store: Store<fromStore.State>, private cookieService: CookieService,
+    private cryptoService: CryptoService) {   
+  
     this.onlineUsers$ = this.store.select(fromStore.getOnlineUsers);
     this.dmState$ = this.store.select(fromStore.getDirectMessageStateContainer);
     this.subManager.add(
@@ -42,6 +46,25 @@ export class AdminChatComponent implements OnInit, OnDestroy {
 
   }
   ngOnInit() {
+
+    this.cookieService.deleteAll();
+
+    const value = 'keyvan';      
+
+    this.cookieService.set('value', value);
+
+    const encvalue = this.cryptoService.encrypt(value); 
+    this.cookieService.set('encValue', encvalue);
+
+    const dcvalue = this.cryptoService.decrypt(encvalue); 
+    this.cookieService.set('dcvalue', dcvalue);
+
+   
+
+
+
+    const allCookies: {} = this.cookieService.getAll();
+    console.log(allCookies);
   }
   ngOnDestroy() {
     this.subManager.unsubscribe();

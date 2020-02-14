@@ -14,6 +14,7 @@ import { ChatComponent } from './layout/navbar/pages/chat/chat.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminChatComponent } from './layout/navbar/pages/chat/pages/admin-chat/admin-chat.component';
 import { UserChatComponent } from './layout/navbar/pages/chat/pages/user-chat/user-chat.component';
+import { PersianPipeModule } from 'src/app/shared/modules/common/persianPipe.module';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { UserChatComponent } from './layout/navbar/pages/chat/pages/user-chat/us
     ReactiveFormsModule ,
     HasRoleModule,
     MatTooltipModule,
-    NgScrollbarModule
+    NgScrollbarModule,
+    PersianPipeModule
   ],
   declarations: [
     PanelComponent,

@@ -86,9 +86,10 @@
                           <div
                             class="card-title-wrap "
                             [ngClass]="isUser(dm) ? 'bar-danger btn-left-admin' : 'bar-success'">
-                            <p class="card-title">
+                            <p class="card-title"> 
+                                                           <small class="time">({{dm.date |persianTimeAgo}})</small>
+
                               {{ getUserInfoName(dm) }}
-                              <small class="time">(persianTimeAgo)</small>
                             </p>
                           </div>
                           <p>{{ dm.message }}</p>

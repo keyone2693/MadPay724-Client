@@ -11,6 +11,7 @@ import { UserInfo } from 'src/app/data/models/common/chat/userInfo';
 import * as fromStore from 'src/app/store';
 import { Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Injectable({
@@ -24,13 +25,17 @@ export class DirectMessageService implements OnDestroy {
   headers: HttpHeaders | undefined;
 
   constructor(private authService: AuthService, private store: Store<fromStore.State>,
-    private alertService: ToastrService) {
+    private alertService: ToastrService, private cookieService: CookieService) {
     this.headers = new HttpHeaders();
     this.headers = this.headers.set('Content-Type', 'application/json');
     this.headers = this.headers.set('Accept', 'application/json');
 
     this.init();
 
+  }
+  go() {
+    const allCookies: {} = this.cookieService.getAll();
+    console.log(allCookies);
   }
   ngOnDestroy() {
     this.subManager.unsubscribe();
@@ -93,9 +98,9 @@ export class DirectMessageService implements OnDestroy {
       this.store.dispatch(new fromStore.ReceivedUserLeft(name));
     });
 
-    this._hubConnection.on('SendDirectMessage', (message: string, onlineUser: UserInfo) => {
+    this._hubConnection.on('SendDirectMessage', (message: string, onlineUser: UserInfo,date: Date) => {
       this.alertService.warning(' از کاربر ' + onlineUser.userName + ' پیغامی دارید ', 'پیام جدید');
-      this.store.dispatch(new fromStore.ReceivedDirectMessage(message, onlineUser));
+      this.store.dispatch(new fromStore.ReceivedDirectMessage(message, onlineUser, date));
     });
 
   }
