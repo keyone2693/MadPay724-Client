@@ -25,6 +25,7 @@ import { MpPreloadingStrategy } from './core/_config/mpPreloadingStrategy';
 
 import { CookieService } from 'ngx-cookie-service';
 import { CryptoService } from './core/_services/common/crypto.service';
+import { DirectMessageSaveService } from './core/_services/common/directMessageSave.service';
 
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -78,7 +79,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     AuthService,
     //
     CookieService,
-    CryptoService
+    CryptoService,
+    DirectMessageSaveService
   ],
   entryComponents: [NotyfToast],
   bootstrap: [AppComponent]

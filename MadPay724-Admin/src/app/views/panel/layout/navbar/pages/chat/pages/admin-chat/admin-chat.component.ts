@@ -9,8 +9,8 @@ import { UserInfo } from 'src/app/data/models/common/chat/userInfo';
 import { MessageSettings } from 'src/app/data/models/common/chat/messageSettings';
 import { DirectMessage } from 'src/app/data/models/common/chat/directMessage';
 import { ToastrService } from 'ngx-toastr';
-import { CookieService } from 'ngx-cookie-service';
-import { CryptoService } from 'src/app/core/_services/common/crypto.service';
+import { DirectMessageSaveService } from 'src/app/core/_services/common/directMessageSave.service';
+
 
 
 
@@ -33,8 +33,7 @@ export class AdminChatComponent implements OnInit, OnDestroy {
   messageSettings: MessageSettings;
   //***********
   constructor(private authService: AuthService, private alertService: ToastrService,
-    private store: Store<fromStore.State>, private cookieService: CookieService,
-    private cryptoService: CryptoService) {
+    private store: Store<fromStore.State>, private dmSaveService: DirectMessageSaveService) {
 
     this.onlineUsers$ = this.store.select(fromStore.getOnlineUsers);
     this.dmState$ = this.store.select(fromStore.getDirectMessageStateContainer);
@@ -48,28 +47,13 @@ export class AdminChatComponent implements OnInit, OnDestroy {
 
   }
   ngOnInit() {
-    this.loadMessageSettings();
-  }
-  loadMessageSettings() {
-    if (!this.cookieService.check('dms')) {
-      const dmSettings: MessageSettings = {
-        activeMessage: true,
-        activeConnect: true
-      }
-      const encvalue = this.cryptoService.encrypt(dmSettings);
-
-      this.cookieService.set('dms', encvalue, 365, '/');
-    }
-    const value = this.cookieService.get('dms');
-    this.messageSettings = this.cryptoService.decrypt(value);
+    this.messageSettings = this.dmSaveService.loadMessageSettings();
   }
   changeMessageSettings() {
-    this.cookieService.delete('dms', '/');
-
-    const encvalue = this.cryptoService.encrypt(this.messageSettings);
-    this.cookieService.set('dms', encvalue, 365, '/');
+    this.dmSaveService.changeMessageSettings(this.messageSettings);
     this.alertService.success('تنظیمات اطلاع رسانی چت با موفقیت تغییر کرد', 'موفق');
   }
+
   ngOnDestroy() {
     this.subManager.unsubscribe();
   }

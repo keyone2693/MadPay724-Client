@@ -9,6 +9,10 @@ import { Subscription, Observable } from 'rxjs';
 import { UserInfo } from 'src/app/data/models/common/chat/userInfo';
 import { DirectMessage } from 'src/app/data/models/common/chat/directMessage';
 import { ToastrService } from 'ngx-toastr';
+import { CookieService } from 'ngx-cookie-service';
+import { CryptoService } from 'src/app/core/_services/common/crypto.service';
+import { MessageSettings } from 'src/app/data/models/common/chat/messageSettings';
+import { DirectMessageSaveService } from 'src/app/core/_services/common/directMessageSave.service';
 
 @Component({
   selector: 'app-user-chat',
@@ -26,9 +30,12 @@ export class UserChatComponent implements OnInit, OnDestroy {
   connected: boolean;
   isAdminShownMess = false;
   message = '';
+  messageSettings: MessageSettings;
+
   //***********
   constructor(private authService: AuthService, private alertService: ToastrService,
-     private store: Store<fromStore.State>) {
+    private store: Store<fromStore.State>, private cookieService: CookieService,
+    private cryptoService: CryptoService, private dmSaveService: DirectMessageSaveService) {
 
     this.onlineUsers$ = this.store.select(fromStore.getOnlineUsers);
     this.dmState$ = this.store.select(fromStore.getDirectMessageStateContainer);
@@ -40,6 +47,12 @@ export class UserChatComponent implements OnInit, OnDestroy {
   }
   ngOnInit() {
     this.selectedOnlineUserName = 'admin@madpay724.com';
+    this.messageSettings = this.dmSaveService.loadMessageSettings();
+  }
+
+  changeMessageSettings() {
+    this.dmSaveService.changeMessageSettings(this.messageSettings);
+    this.alertService.success('تنظیمات اطلاع رسانی چت با موفقیت تغییر کرد', 'موفق');
   }
   ngOnDestroy() {
     this.subManager.unsubscribe();
@@ -71,16 +84,22 @@ export class UserChatComponent implements OnInit, OnDestroy {
   }
   isAdminOnline(onlineUsers: UserInfo[]): boolean {
     if (onlineUsers.some(el => el.userName === 'admin@madpay724.com')) {
-      if (!this.isAdminShownMess) {
-        this.alertService.success('میتوانید با پشتیبان گفت و گو کنید', 'پشتیبان آنلاین میباشد');
-        this.isAdminShownMess = true;
+      if (this.dmSaveService.isActiveConnect()) {
+        if (!this.isAdminShownMess) {
+          this.alertService.success('میتوانید با پشتیبان گفت و گو کنید', 'پشتیبان آنلاین میباشد');
+          this.isAdminShownMess = true;
+        }
       }
+
       return true;
     } else {
-      if (this.isAdminShownMess) {
-        this.alertService.warning('امکان چت انلاین وجود ندارد ', 'پشتیبان آفلاین میباشد');
-        this.isAdminShownMess = false;
+      if (this.dmSaveService.isActiveConnect()) {
+        if (this.isAdminShownMess) {
+          this.alertService.warning('امکان چت انلاین وجود ندارد ', 'پشتیبان آفلاین میباشد');
+          this.isAdminShownMess = false;
+        }
       }
+
       return false;
     }
   }

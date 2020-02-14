@@ -12,6 +12,7 @@ import * as fromStore from 'src/app/store';
 import { Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 import { CookieService } from 'ngx-cookie-service';
+import { DirectMessageSaveService } from './directMessageSave.service';
 
 
 @Injectable({
@@ -25,7 +26,7 @@ export class DirectMessageService implements OnDestroy {
   headers: HttpHeaders | undefined;
 
   constructor(private authService: AuthService, private store: Store<fromStore.State>,
-    private alertService: ToastrService, private cookieService: CookieService) {
+    private alertService: ToastrService, private cookieService: CookieService, private dmSaveService: DirectMessageSaveService) {
     this.headers = new HttpHeaders();
     this.headers = this.headers.set('Content-Type', 'application/json');
     this.headers = this.headers.set('Accept', 'application/json');
@@ -76,8 +77,10 @@ export class DirectMessageService implements OnDestroy {
 
 
     this._hubConnection.on('NewOnlineUser', (onlineUser: UserInfo) => {
-      if (this.authService.isAdmin() && onlineUser.userName != "admin@madpay724.com") {
-        this.alertService.success(' کاربر ' + onlineUser.userName + ' به گفت و گو پیوست ', 'توجه');
+      if (this.authService.isAdmin() && onlineUser.userName !== "admin@madpay724.com") {
+        if (this.dmSaveService.isActiveConnect()) {
+          this.alertService.success(' کاربر ' + onlineUser.userName + ' به گفت و گو پیوست ', 'توجه');
+        }
       }
       this.store.dispatch(new fromStore.ReceivedNewOnlineUser(onlineUser));
     });
@@ -91,15 +94,24 @@ export class DirectMessageService implements OnDestroy {
     });
 
     this._hubConnection.on('UserLeft', (name: string) => {
-      if (this.authService.isAdmin() && name != "admin@madpay724.com") {
-        this.alertService.warning(' کاربر ' + name + ' از گفت و گو خارج شد', 'توجه');
+      if (this.authService.isAdmin() && name !== "admin@madpay724.com") {
+        if (this.dmSaveService.isActiveConnect()) {
+          this.alertService.warning(' کاربر ' + name + ' از گفت و گو خارج شد', 'توجه');
+        }
       }
 
       this.store.dispatch(new fromStore.ReceivedUserLeft(name));
     });
 
-    this._hubConnection.on('SendDirectMessage', (message: string, onlineUser: UserInfo,date: Date) => {
-      this.alertService.warning(' از کاربر ' + onlineUser.userName + ' پیغامی دارید ', 'پیام جدید');
+    this._hubConnection.on('SendDirectMessage', (message: string, onlineUser: UserInfo, date: Date) => {
+      if (this.dmSaveService.isActiveMessage()) {
+        if (onlineUser.userName === "admin@madpay724.com") {
+          this.alertService.warning(' از پشتیبان  پیغامی دارید ', 'پیام جدید');
+
+        } else{
+          this.alertService.warning(' از کاربر ' + onlineUser.userName + ' پیغامی دارید ', 'پیام جدید');
+        }
+      }
       this.store.dispatch(new fromStore.ReceivedDirectMessage(message, onlineUser, date));
     });
 
