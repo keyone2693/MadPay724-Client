@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { UserInfo } from 'src/app/data/models/common/chat/userInfo';
+import { DirectMessage } from 'src/app/data/models/common/chat/directMessage';
 
 export enum DirectMessagesActionTypes {
     RECEIVED_NEW_ONLINE_USER = '[DirectMessage] Received New Online User',
@@ -20,6 +21,7 @@ export enum DirectMessagesActionTypes {
     SEND_DIRECT_MESSAGE_COMPLETE = '[DirectMessage] Send Direct Message Complete',
 
     RECEIVED_DIRECT_MESSAGE = '[DirectMessage] Received Direct Message',
+
 }
 
 
@@ -70,7 +72,7 @@ export class Join implements Action {
 
 export class JoinSent implements Action {
     readonly type = DirectMessagesActionTypes.JOIN_SENT;
-    constructor() { }
+    constructor(public messages: DirectMessage[]) { }
 }
 
 export class InitHub implements Action {
@@ -84,7 +86,7 @@ export class InitHubSuccess implements Action {
 
 
 export type AllDirectMessagesAction =
-    SendDirectMessageComplete
+     SendDirectMessageComplete
     | SendDirectMessageComplete
     | ReceivedDirectMessage
     | ReceivedNewOnlineUser

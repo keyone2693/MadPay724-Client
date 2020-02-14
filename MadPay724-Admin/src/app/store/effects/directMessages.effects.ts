@@ -5,11 +5,14 @@ import { Injectable } from '@angular/core';
 import { DirectMessageService } from 'src/app/core/_services/common/DirectMessage.service';
 import * as directMessageActions from '../actions/directMessages.actions'
 import { switchMap } from 'rxjs/operators';
+import { DirectMessageSaveService } from 'src/app/core/_services/common/directMessageSave.service';
+import { DirectMessage } from 'src/app/data/models/common/chat/directMessage';
 
 
 @Injectable()
 export class DirectMessageEffects {
-    constructor(private action$: Actions, private directMessageService: DirectMessageService) { }
+    constructor(private action$: Actions, private directMessageService: DirectMessageService
+        , private dmSaveService: DirectMessageSaveService) { }
 
     @Effect()
     InitHub$: Observable<Action> = this.action$.pipe(
@@ -27,8 +30,10 @@ export class DirectMessageEffects {
         ofType<directMessageActions.SendDirectMessage>
             (directMessageActions.DirectMessagesActionTypes.SEND_DIRECT_MESSAGE),
         switchMap((action: directMessageActions.SendDirectMessage) => {
-            this.directMessageService.sendDirectMessage(action.message, action.userId);
-            return of(new directMessageActions.SendDirectMessageComplete(action.message, action.userId,new Date()))
+            var dt = new Date();
+            this.directMessageService.sendDirectMessage(action.message, action.userId, dt);
+            this.dmSaveService.addToMessages(dMessage);
+            return of(new directMessageActions.SendDirectMessageComplete(action.message, action.userId, dt))
         })
     )
 
@@ -38,8 +43,8 @@ export class DirectMessageEffects {
             (directMessageActions.DirectMessagesActionTypes.JOIN),
         switchMap(() => {
             this.directMessageService.join();
-
-            return of(new directMessageActions.JoinSent())
+            const mess = this.dmSaveService.loadMessages();
+            return of(new directMessageActions.JoinSent(mess.directMessages))
         })
     )
 

@@ -13,6 +13,7 @@ import { Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 import { CookieService } from 'ngx-cookie-service';
 import { DirectMessageSaveService } from './directMessageSave.service';
+import { DirectMessage } from 'src/app/data/models/common/chat/directMessage';
 
 
 @Injectable({
@@ -26,7 +27,8 @@ export class DirectMessageService implements OnDestroy {
   headers: HttpHeaders | undefined;
 
   constructor(private authService: AuthService, private store: Store<fromStore.State>,
-    private alertService: ToastrService, private cookieService: CookieService, private dmSaveService: DirectMessageSaveService) {
+    private alertService: ToastrService, private cookieService: CookieService,
+    private dmSaveService: DirectMessageSaveService) {
     this.headers = new HttpHeaders();
     this.headers = this.headers.set('Content-Type', 'application/json');
     this.headers = this.headers.set('Accept', 'application/json');
@@ -41,7 +43,17 @@ export class DirectMessageService implements OnDestroy {
   ngOnDestroy() {
     this.subManager.unsubscribe();
   }
-  sendDirectMessage(message: string, userId: string): string {
+  sendDirectMessage(message: string, userId: string,date:Date): string {
+    const dMessage: DirectMessage = {
+      message: message,
+      fromOnlineUser: {
+        userName: userId,
+        connectionId: '-1'
+      },
+      date: date
+    };
+    this.dmSaveService.addToMessages(dMessage);
+
     if (this._hubConnection) {
       this._hubConnection.invoke('SendDirectMessage', message, userId);
     }
@@ -90,7 +102,8 @@ export class DirectMessageService implements OnDestroy {
     });
 
     this._hubConnection.on('Joined', (onlineUser: UserInfo) => {
-      this.store.dispatch(new fromStore.JoinSent());
+      const mess = this.dmSaveService.loadMessages();
+      this.store.dispatch(new fromStore.JoinSent(mess.directMessages));
     });
 
     this._hubConnection.on('UserLeft', (name: string) => {
@@ -104,6 +117,13 @@ export class DirectMessageService implements OnDestroy {
     });
 
     this._hubConnection.on('SendDirectMessage', (message: string, onlineUser: UserInfo, date: Date) => {
+      const dMessage: DirectMessage = {
+        message: message,
+        fromOnlineUser: onlineUser,
+        date: date
+      };
+      this.dmSaveService.addToMessages(dMessage);
+      //
       if (this.dmSaveService.isActiveMessage()) {
         if (onlineUser.userName === "admin@madpay724.com") {
           this.alertService.warning(' از پشتیبان  پیغامی دارید ', 'پیام جدید');

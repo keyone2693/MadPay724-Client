@@ -35,6 +35,7 @@ export class AdminChatComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService, private alertService: ToastrService,
     private store: Store<fromStore.State>, private dmSaveService: DirectMessageSaveService) {
 
+    
     this.onlineUsers$ = this.store.select(fromStore.getOnlineUsers);
     this.dmState$ = this.store.select(fromStore.getDirectMessageStateContainer);
     this.subManager.add(

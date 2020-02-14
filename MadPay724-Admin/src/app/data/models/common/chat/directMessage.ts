@@ -1,7 +1,7 @@
 import { UserInfo } from './userInfo';
 
 export interface DirectMessage {
-    fromOnlineUser: UserInfo | null;
+    fromOnlineUser: UserInfo;
     message: string;
     date: Date;
 }
