@@ -62,6 +62,24 @@ export class NavbarComponent implements OnDestroy {
     );
     return dss;
   }
+
+  onChatClick() {
+    if (this.authService.roleMatch(["User"])) {
+      let dmArr: DirectMessage[];
+      this.subManager.add(
+        this.directMessages$.subscribe(data => {
+          data.forEach(el => {
+            el.isRead = true;
+            dmArr.push(el)
+          });
+        })
+      );
+      //
+      
+      this.store.dispatch(new fromStore.JoinSent(dmArr));
+    }
+  }
+
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('refreshToken');

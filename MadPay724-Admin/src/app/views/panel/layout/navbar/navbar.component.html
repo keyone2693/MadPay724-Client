@@ -105,19 +105,19 @@
               href="#"
               data-toggle="dropdown"
               class="btn-danger nav-link position-relative notification-sidebar-toggle"
+              (click)="onChatClick()"
             >
               <i class="ft-message-square blue-grey darken-4"></i>
-              <span class="mx-1  blue-grey darken-4 text-bold-400"
+              <span class="mx-1  blue-grey darken-4 text-bold-400 spn-chat"
                 >چت انلاین</span
               ><span
               *ngIf="allMessageNotifications() > 0"
               [ngClass]="allMessageNotifications().toBadgeClass()"
-              style="right:-16px !important"
+              style="right:-20px !important"
               class="notification badge badge-pill"
               >{{ allMessageNotifications() }}</span
             >
             </a>
-            
           </li>
           <li class="dropdown nav-item mt-1">
             <app-notification></app-notification>

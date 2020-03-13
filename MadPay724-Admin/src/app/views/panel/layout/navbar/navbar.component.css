@@ -32,10 +32,15 @@
   width: 38px;
   overflow: hidden;
   height: 38px;
+  color: transparent;
+}
+.spn-chat {
+  display: none;
+  transition: 2s;
 }
 .btn-danger:hover {
   width: 120px; 
 }
-.btn-danger span {
-  display: inline-block;
+.btn-danger:hover .spn-chat{
+  display: inline-block !important;
 }

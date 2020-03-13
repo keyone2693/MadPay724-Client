@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, NgZone } from '@angular/core';
 
 import * as fromStore from 'src/app/store';
 import { Store } from '@ngrx/store';
@@ -10,6 +10,9 @@ import { MessageSettings } from 'src/app/data/models/common/chat/messageSettings
 import { DirectMessage } from 'src/app/data/models/common/chat/directMessage';
 import { ToastrService } from 'ngx-toastr';
 import { DirectMessageSaveService } from 'src/app/core/_services/common/directMessageSave.service';
+import 'src/app/shared/extentions/number.extentions';
+import { NgScrollbar } from 'ngx-scrollbar';
+import { map, tap } from 'rxjs/operators';
 
 
 
@@ -111,5 +114,14 @@ export class AdminChatComponent implements OnInit, OnDestroy {
   GetUserMess(directMessages: DirectMessage[]): DirectMessage[] {
     return directMessages.filter(p => p.fromOnlineUser.userName === this.selectedOnlineUserName)
   }
-
+  userMessageNotifications(username: string): number {
+    let dss = 0;
+    this.subManager.add(
+      this.dmState$.subscribe(data => {
+        const arr = data.directMessages.filter(p => !p.isRead && p.fromOnlineUser.userName === username);
+        dss = arr.length;
+      })
+    );
+    return dss;
+  }
 }

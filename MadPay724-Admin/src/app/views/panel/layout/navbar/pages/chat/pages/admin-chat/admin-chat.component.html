@@ -52,7 +52,14 @@
                   <div *ngFor="let onlineUser of onlineUsers"   class="card">
                     <div *ngIf="onlineUser.userName !== 'admin@madpay724.com'" class="card-header">
                       <div class="card-title-wrap my-2 bar-success">
-                        <h4 class="card-title dis-inline">نام کاربری :</h4>
+                        <h4 class="card-title dis-inline">
+                          نام کاربری : 
+                          <small *ngIf="userMessageNotifications(onlineUser.userName) > 0"
+                            [ngClass]="userMessageNotifications(onlineUser.userName).toBadgeClass()"
+                            style="color:#fff !important"
+                            class="badge badge-pill"
+                          >{{userMessageNotifications(onlineUser.userName)}} پیام خوانده نشده</small>
+                        </h4>
                         <span class=" dis-inline tickettitle">{{onlineUser.userName}}</span>
                       </div>
                       <div>
