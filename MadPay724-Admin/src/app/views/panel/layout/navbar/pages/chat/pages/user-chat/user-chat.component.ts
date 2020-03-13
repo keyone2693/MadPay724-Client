@@ -13,6 +13,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { CryptoService } from 'src/app/core/_services/common/crypto.service';
 import { MessageSettings } from 'src/app/data/models/common/chat/messageSettings';
 import { DirectMessageSaveService } from 'src/app/core/_services/common/directMessageSave.service';
+import { DirectMessageService } from 'src/app/core/_services/common/directMessage.service';
 
 @Component({
   selector: 'app-user-chat',
@@ -35,7 +36,10 @@ export class UserChatComponent implements OnInit, OnDestroy {
   //***********
   constructor(private authService: AuthService, private alertService: ToastrService,
     private store: Store<fromStore.State>, private cookieService: CookieService,
-    private cryptoService: CryptoService, private dmSaveService: DirectMessageSaveService) {
+    private cryptoService: CryptoService, private dmSaveService: DirectMessageSaveService,
+    private dmService: DirectMessageService) {
+    
+    
 
     this.onlineUsers$ = this.store.select(fromStore.getOnlineUsers);
     this.dmState$ = this.store.select(fromStore.getDirectMessageStateContainer);
@@ -44,6 +48,7 @@ export class UserChatComponent implements OnInit, OnDestroy {
         this.connected = data;
       })
     );
+    this.connect();
   }
   ngOnInit() {
     this.selectedOnlineUserName = 'admin@madpay724.com';
@@ -58,13 +63,11 @@ export class UserChatComponent implements OnInit, OnDestroy {
     this.subManager.unsubscribe();
   }
 
-  connect(onlineUsers: UserInfo[]) {
-    if (this.isAdminOnline(onlineUsers)) {
+  connect() {
       this.store.dispatch(new fromStore.Join());
-    }
   }
-  sendMessage(onlineUsers: UserInfo[]) {
-    if (this.isAdminOnline(onlineUsers)) {
+  sendMessage() {
+    if (this.isAdminOnline()) {
       this.store.dispatch(new fromStore.SendDirectMessage(this.message, this.selectedOnlineUserName))
     } else {
       this.alertService.warning('امکان چت انلاین وجود ندارد ', 'پشتیبان آفلاین میباشد');
@@ -82,7 +85,13 @@ export class UserChatComponent implements OnInit, OnDestroy {
     }
     return false;
   }
-  isAdminOnline(onlineUsers: UserInfo[]): boolean {
+  isAdminOnline(): boolean {
+    let onlineUsers = [];
+    this.subManager.add(
+      this.onlineUsers$.subscribe(data => {
+        onlineUsers = data;
+      })
+    );
     if (onlineUsers.some(el => el.userName === 'admin@madpay724.com')) {
       if (this.dmSaveService.isActiveConnect()) {
         if (!this.isAdminShownMess) {
@@ -90,7 +99,6 @@ export class UserChatComponent implements OnInit, OnDestroy {
           this.isAdminShownMess = true;
         }
       }
-
       return true;
     } else {
       if (this.dmSaveService.isActiveConnect()) {

@@ -21,15 +21,15 @@ export function DirectMessageReducer(state = initDirectMessage,
         case directMessageAction.DirectMessagesActionTypes.INIT_HUB_SUCCESS: {
             return state;
         }
-        case directMessageAction.DirectMessagesActionTypes.LOAD_DIRECT_MESSAGE: {
-            return Object.assign({}, state, {
-                dm: {
-                    onlineUsers: state.dm.onlineUsers,
-                    directMessages: action.messages,
-                    connected: state.dm.connected
-                }
-            });
-        }
+        // case directMessageAction.DirectMessagesActionTypes.LOAD_DIRECT_MESSAGE: {
+        //     return Object.assign({}, state, {
+        //         dm: {
+        //             onlineUsers: state.dm.onlineUsers,
+        //             directMessages: action.messages,
+        //             connected: state.dm.connected
+        //         }
+        //     });
+        // }
         case directMessageAction.DirectMessagesActionTypes.RECEIVED_DIRECT_MESSAGE: {
             const directMessage: DirectMessage = {
                 message: action.message,

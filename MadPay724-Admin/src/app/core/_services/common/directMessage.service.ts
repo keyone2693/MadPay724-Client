@@ -38,10 +38,14 @@ export class DirectMessageService implements OnDestroy {
   }
   go() {
     const allCookies: {} = this.cookieService.getAll();
-    console.log(allCookies);
   }
   ngOnDestroy() {
     this.subManager.unsubscribe();
+  }
+  loadOnlineUsers() {
+     if (this._hubConnection) {
+      this._hubConnection.invoke('LoadOnlineUsers');
+    }
   }
   sendDirectMessage(message: string, userId: string,date:Date): string {
     const dMessage: DirectMessage = {
@@ -75,7 +79,7 @@ export class DirectMessageService implements OnDestroy {
         this.authService.getNewRefreshToken().subscribe(() => {
           this.initHub();
         })
-      );
+    );
   }
   initHub() {
     const token = localStorage.getItem('token');
@@ -98,6 +102,8 @@ export class DirectMessageService implements OnDestroy {
     });
 
     this._hubConnection.on('OnlineUsers', (onlineUsers: UserInfo[]) => {
+      console.log('OnlineUsers');
+      console.log(onlineUsers);
       this.store.dispatch(new fromStore.ReceivedOnlineUsers(onlineUsers));
     });
 

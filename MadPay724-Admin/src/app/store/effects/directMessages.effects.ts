@@ -6,7 +6,6 @@ import { DirectMessageService } from 'src/app/core/_services/common/DirectMessag
 import * as directMessageActions from '../actions/directMessages.actions'
 import { switchMap } from 'rxjs/operators';
 import { DirectMessageSaveService } from 'src/app/core/_services/common/directMessageSave.service';
-import { DirectMessage } from 'src/app/data/models/common/chat/directMessage';
 
 
 @Injectable()
@@ -32,7 +31,6 @@ export class DirectMessageEffects {
         switchMap((action: directMessageActions.SendDirectMessage) => {
             var dt = new Date();
             this.directMessageService.sendDirectMessage(action.message, action.userId, dt);
-            this.dmSaveService.addToMessages(dMessage);
             return of(new directMessageActions.SendDirectMessageComplete(action.message, action.userId, dt))
         })
     )

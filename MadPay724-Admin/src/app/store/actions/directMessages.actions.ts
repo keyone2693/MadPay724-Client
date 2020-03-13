@@ -86,7 +86,7 @@ export class InitHubSuccess implements Action {
 
 
 export type AllDirectMessagesAction =
-     SendDirectMessageComplete
+    SendDirectMessageComplete
     | SendDirectMessageComplete
     | ReceivedDirectMessage
     | ReceivedNewOnlineUser

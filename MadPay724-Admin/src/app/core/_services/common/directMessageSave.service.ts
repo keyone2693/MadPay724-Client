@@ -14,7 +14,7 @@ export class DirectMessageSaveService {
 
   constructor(private cookieService: CookieService,
     private cryptoService: CryptoService) { }
-  
+
   loadMessages(): DirectMessageSave {
     if (!this.cookieService.check('dm')) {
       const dm: DirectMessageSave = {
@@ -22,15 +22,16 @@ export class DirectMessageSaveService {
       }
       const encvalue = this.cryptoService.encrypt(dm);
       this.cookieService.set('dm', encvalue, 365, '/');
+      this.cookieService.deleteAll('/');
     }
     const value = this.cookieService.get('dm');
     const decValue = this.cryptoService.decrypt(value);
     if (decValue != undefined && decValue != null) {
       return decValue;
     } else {
-      return { directMessages: []};
+      return { directMessages: [] };
     }
-    
+
   }
   addToMessages(dMessage: DirectMessage) {
     if (!this.cookieService.check('dm')) {
@@ -50,7 +51,7 @@ export class DirectMessageSaveService {
       this.cookieService.set('dm', encvalue, 365, '/');
     }
   }
-  
+
   loadMessageSettings(): MessageSettings {
     if (!this.cookieService.check('dms')) {
       const dmSettings: MessageSettings = {
@@ -71,7 +72,7 @@ export class DirectMessageSaveService {
     this.cookieService.set('dms', encvalue, 365, '/');
   }
 
-  isActiveMessage():boolean {
+  isActiveMessage(): boolean {
     if (!this.cookieService.check('dms')) {
       this.loadMessageSettings();
     }

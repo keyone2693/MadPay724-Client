@@ -32,7 +32,6 @@
         </ul>
         <div class="tab-content">
           <div
-          *ngIf="onlineUsers$ | async as onlineUsers"
             id="activity-tab"
             role="tabpanel"
             aria-expanded="true"
@@ -40,7 +39,7 @@
             class="tab-pane active h100-persent"
           >
             <div
-              *ngIf="connected"
+              *ngIf="connected  && isAdminOnline()"
               id="activity-timeline"
               class="col-12 timeline-left h100-persent"
             >
@@ -94,7 +93,7 @@
                           ></textarea>
                         </fieldset>
                         <a
-                          (click)="sendMessage(onlineUsers)"
+                          (click)="sendMessage()"
                           class="btn mr-1 btn-round btn-info"
                           >ارسال</a
                         >
@@ -106,22 +105,22 @@
               </section>
             </div>
             <div>
-              <div *ngIf="!connected" class="col-12 timeline-left h100-persent">
+              <div *ngIf="!connected || !isAdminOnline()" class="col-12 timeline-left h100-persent">
                 <div class="card">
                   <div class="card-header">
-                    <div [ngClass]="isAdminOnline(onlineUsers) ? 'bar-success' : 'bar-danger'" class="card-title-wrap my-2">
+                    <div [ngClass]="isAdminOnline() ? 'bar-success' : 'bar-danger'" class="card-title-wrap my-2">
                       <h4 class="card-title dis-inline">گفت و گو و چت آنلاین :</h4>
-                      <span class=" dis-inline tickettitle" *ngIf="isAdminOnline(onlineUsers)">پشتیبانی آنلاین میباشد</span>
-                      <span class=" dis-inline tickettitle" *ngIf="!isAdminOnline(onlineUsers)">پشتیبانی آفلاین میباشد</span>
+                      <span class=" dis-inline tickettitle" *ngIf="isAdminOnline()">پشتیبانی آنلاین میباشد</span>
+                      <span class=" dis-inline tickettitle" *ngIf="!isAdminOnline()">پشتیبانی آفلاین میباشد</span>
                     </div>
                     <div>
-                      <p class="fnsize-12" *ngIf="!isAdminOnline(onlineUsers)">
+                      <p class="fnsize-12" *ngIf="!isAdminOnline()">
                         پشتیبان مربوطه در حال حاظر آنلاین نمیباشد
                         در صورت نیاز و مهم بودن سوالاتان در بخش 
                           <span class="badge badge-danger">پشتیبانی </span>
                         با ما در ارتباط باشید
                       </p>
-                      <p class="fnsize-12" *ngIf="isAdminOnline(onlineUsers)">
+                      <p class="fnsize-12" *ngIf="isAdminOnline()">
                         برای شروع گفت و گو 
                         برروی دکمه ی 
                           <span class="badge badge-success">شروع گفت و گو </span>
@@ -130,10 +129,10 @@
                     </div>
                   </div>
                 </div>
-                <a  *ngIf="isAdminOnline(onlineUsers)" (click)="connect(onlineUsers)" class="btn mr-1 btn-round btn-info">
+                <a  *ngIf="isAdminOnline()" (click)="connect()" class="btn mr-1 btn-round btn-info">
                   شروع گفت و گو
                 </a>
-                <a  *ngIf="!isAdminOnline(onlineUsers)" [routerLink]="['/panel/user/tickets']" routerLinkActive="router-link-active" class="btn mr-1 btn-round btn-danger">
+                <a  *ngIf="!isAdminOnline()" [routerLink]="['/panel/user/tickets']" routerLinkActive="router-link-active" class="btn mr-1 btn-round btn-danger">
                   رفتن به بخش تیکت ها
                 </a>
               </div>
