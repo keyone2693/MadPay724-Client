@@ -5,5 +5,5 @@ export const environment = {
   apiUrlJwt: 'localhost:44342',
   apiV1: 'api/v1/',
   encryptSecretKey: '@ot0"hreOi"@=OA',
-
+  expireHour: 24
 };

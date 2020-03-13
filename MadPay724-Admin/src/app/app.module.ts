@@ -23,7 +23,6 @@ import { reducers } from './store';
 import { effects } from './store/effects';
 import { MpPreloadingStrategy } from './core/_config/mpPreloadingStrategy';
 
-import { CookieService } from 'ngx-cookie-service';
 import { CryptoService } from './core/_services/common/crypto.service';
 import { DirectMessageSaveService } from './core/_services/common/directMessageSave.service';
 
@@ -78,7 +77,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     TitleService,
     AuthService,
     //
-    CookieService,
+    // CookieService,
     CryptoService,
     DirectMessageSaveService
   ],

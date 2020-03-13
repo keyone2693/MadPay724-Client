@@ -11,10 +11,10 @@ import { UserInfo } from 'src/app/data/models/common/chat/userInfo';
 import * as fromStore from 'src/app/store';
 import { Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
-import { CookieService } from 'ngx-cookie-service';
 import { DirectMessageSaveService } from './directMessageSave.service';
 import { DirectMessage } from 'src/app/data/models/common/chat/directMessage';
-
+import { DirectMessageSave } from 'src/app/data/models/common/chat/directMessageSave';
+import { CryptoService } from './crypto.service';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +27,7 @@ export class DirectMessageService implements OnDestroy {
   headers: HttpHeaders | undefined;
 
   constructor(private authService: AuthService, private store: Store<fromStore.State>,
-    private alertService: ToastrService, private cookieService: CookieService,
+    private alertService: ToastrService, private cryptoService: CryptoService,
     private dmSaveService: DirectMessageSaveService) {
     this.headers = new HttpHeaders();
     this.headers = this.headers.set('Content-Type', 'application/json');
@@ -37,7 +37,7 @@ export class DirectMessageService implements OnDestroy {
 
   }
   go() {
-    const allCookies: {} = this.cookieService.getAll();
+    //const allCookies: {} = this.cookieService.getAll();
   }
   ngOnDestroy() {
     this.subManager.unsubscribe();
@@ -102,8 +102,6 @@ export class DirectMessageService implements OnDestroy {
     });
 
     this._hubConnection.on('OnlineUsers', (onlineUsers: UserInfo[]) => {
-      console.log('OnlineUsers');
-      console.log(onlineUsers);
       this.store.dispatch(new fromStore.ReceivedOnlineUsers(onlineUsers));
     });
 
@@ -116,6 +114,22 @@ export class DirectMessageService implements OnDestroy {
       if (this.authService.isAdmin() && name !== "admin@madpay724.com") {
         if (this.dmSaveService.isActiveConnect()) {
           this.alertService.warning(' کاربر ' + name + ' از گفت و گو خارج شد', 'توجه');
+          //
+          const value = localStorage.getItem('dm');
+          const decValue: DirectMessageSave | undefined | null = this.cryptoService.decrypt(value);
+          if (decValue != undefined && decValue != null) {
+            const newdm: DirectMessageSave = { directMessages: [] }
+            //
+            decValue.directMessages.forEach(el => {
+              if (name !== el.fromOnlineUser.userName) {
+                newdm.directMessages.push(el);
+              }
+            });
+            //
+            localStorage.removeItem('dm');
+            const encvalue = this.cryptoService.encrypt(newdm);
+            localStorage.setItem('dm', encvalue);
+          }
         }
       }
 

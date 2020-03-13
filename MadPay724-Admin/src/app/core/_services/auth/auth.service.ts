@@ -73,6 +73,7 @@ export class AuthService{
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('refreshToken');
+    localStorage.removeItem('dm');
     this.store.dispatch(new fromStore.ResetDecodedToken());
     this.store.dispatch(new fromStore.ResetLoggedUser());
     this.userRoles = [];

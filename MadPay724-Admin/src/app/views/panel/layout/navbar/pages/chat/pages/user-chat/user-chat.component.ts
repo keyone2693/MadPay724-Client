@@ -9,7 +9,6 @@ import { Subscription, Observable } from 'rxjs';
 import { UserInfo } from 'src/app/data/models/common/chat/userInfo';
 import { DirectMessage } from 'src/app/data/models/common/chat/directMessage';
 import { ToastrService } from 'ngx-toastr';
-import { CookieService } from 'ngx-cookie-service';
 import { CryptoService } from 'src/app/core/_services/common/crypto.service';
 import { MessageSettings } from 'src/app/data/models/common/chat/messageSettings';
 import { DirectMessageSaveService } from 'src/app/core/_services/common/directMessageSave.service';
@@ -35,7 +34,7 @@ export class UserChatComponent implements OnInit, OnDestroy {
 
   //***********
   constructor(private authService: AuthService, private alertService: ToastrService,
-    private store: Store<fromStore.State>, private cookieService: CookieService,
+    private store: Store<fromStore.State>,
     private cryptoService: CryptoService, private dmSaveService: DirectMessageSaveService,
     private dmService: DirectMessageService) {
     
@@ -113,6 +112,7 @@ export class UserChatComponent implements OnInit, OnDestroy {
   }
   disConnect() {
     this.store.dispatch(new fromStore.Leave());
+    localStorage.removeItem('dm');
   }
 
 }

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
 import { CryptoService } from 'src/app/core/_services/common/crypto.service';
 import { MessageSettings } from 'src/app/data/models/common/chat/messageSettings';
 import { DirectMessageSave } from 'src/app/data/models/common/chat/directMessageSave';
 import { DirectMessage } from 'src/app/data/models/common/chat/directMessage';
+import { environment } from 'src/environments/environment.prod';
 
 
 
@@ -12,80 +12,88 @@ import { DirectMessage } from 'src/app/data/models/common/chat/directMessage';
 })
 export class DirectMessageSaveService {
 
-  constructor(private cookieService: CookieService,
-    private cryptoService: CryptoService) { }
+  constructor(private cryptoService: CryptoService) { }
 
   loadMessages(): DirectMessageSave {
-    if (!this.cookieService.check('dm')) {
-      const dm: DirectMessageSave = {
+    if (localStorage.getItem('dm') == null) {
+        const dm: DirectMessageSave = {
         directMessages: []
       }
       const encvalue = this.cryptoService.encrypt(dm);
-      this.cookieService.set('dm', encvalue, 365, '/');
-      this.cookieService.deleteAll('/');
+      localStorage.setItem('dm', encvalue);
     }
-    const value = this.cookieService.get('dm');
-    const decValue = this.cryptoService.decrypt(value);
+    const value = localStorage.getItem('dm');
+    const decValue: DirectMessageSave | undefined | null = this.cryptoService.decrypt(value);
     if (decValue != undefined && decValue != null) {
-      return decValue;
+      const newdm: DirectMessageSave = { directMessages: [] }
+      //
+      decValue.directMessages.forEach(el => {
+        const nowdt = new Date();
+        const eldt = new Date(el.date);
+
+        const hours = Math.abs(nowdt.getTime() - eldt.getTime()) / 36e5;
+
+        if (hours < environment.expireHour) {
+          newdm.directMessages.push(el);
+        }
+      });
+      //
+      localStorage.removeItem('dm');
+      const encvalue = this.cryptoService.encrypt(newdm);
+      localStorage.setItem('dm', encvalue);
+      //
+      return newdm;
     } else {
       return { directMessages: [] };
     }
-
   }
   addToMessages(dMessage: DirectMessage) {
-    if (!this.cookieService.check('dm')) {
+    if (localStorage.getItem('dm') == null) {
       const dm: DirectMessageSave = {
         directMessages: [dMessage]
       }
       const encvalue = this.cryptoService.encrypt(dm);
-      this.cookieService.set('dm', encvalue, 365, '/');
+      localStorage.setItem('dm', encvalue);
     } else {
-
-      const value = this.cookieService.get('dm');
+      const value = localStorage.getItem('dm');
       const decValue: DirectMessageSave = this.cryptoService.decrypt(value);
-      decValue.directMessages.concat(dMessage);
+      decValue.directMessages.push(dMessage);
       const encvalue = this.cryptoService.encrypt(decValue);
-
-      this.cookieService.delete('dm', '/');
-      this.cookieService.set('dm', encvalue, 365, '/');
+      localStorage.removeItem('dm');
+      localStorage.setItem('dm', encvalue);
     }
   }
 
   loadMessageSettings(): MessageSettings {
-    if (!this.cookieService.check('dms')) {
+    if (localStorage.getItem('dms') == null) {
       const dmSettings: MessageSettings = {
         activeMessage: true,
         activeConnect: true
       }
       const encvalue = this.cryptoService.encrypt(dmSettings);
-
-      this.cookieService.set('dms', encvalue, 365, '/');
+      localStorage.setItem('dms', encvalue);
     }
-    const value = this.cookieService.get('dms');
+    const value = localStorage.getItem('dms');
     return this.cryptoService.decrypt(value);
   }
   changeMessageSettings(messageSettings: MessageSettings) {
-    this.cookieService.delete('dms', '/');
-
+    localStorage.removeItem('dms');
     const encvalue = this.cryptoService.encrypt(messageSettings);
-    this.cookieService.set('dms', encvalue, 365, '/');
+    localStorage.setItem('dms', encvalue);
   }
 
   isActiveMessage(): boolean {
-    if (!this.cookieService.check('dms')) {
+    if (localStorage.getItem('dms') == null) {
       this.loadMessageSettings();
     }
-    const value = this.cookieService.get('dms');
-
+    const value = localStorage.getItem('dms');
     return (this.cryptoService.decrypt(value)).activeMessage;
   }
   isActiveConnect(): boolean {
-    if (!this.cookieService.check('dms')) {
+    if (localStorage.getItem('dms') == null) {
       this.loadMessageSettings();
     }
-    const value = this.cookieService.get('dms');
-
+    const value = localStorage.getItem('dms');
     return (this.cryptoService.decrypt(value)).activeConnect;
   }
 }
