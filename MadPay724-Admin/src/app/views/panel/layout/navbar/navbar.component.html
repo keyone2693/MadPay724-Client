@@ -98,21 +98,31 @@
     <div class="navbar-container">
       <div id="navbarSupportedContent" class="collapse navbar-collapse">
         <ul class="navbar-nav">
-          <li *appHasRole="['Admin','User']" class="nav-item mt-1 d-lg-block">
+          <li *appHasRole="['Admin', 'User']" class="nav-item mt-1 d-lg-block">
             <a
+              style="overflow: visible !important;"
               id="apps"
               href="#"
               data-toggle="dropdown"
-              class="btn-danger nav-link position-relative notification-sidebar-toggle">
+              class="btn-danger nav-link position-relative notification-sidebar-toggle"
+            >
               <i class="ft-message-square blue-grey darken-4"></i>
               <span class="mx-1  blue-grey darken-4 text-bold-400"
-                >چت انلاین</span>
+                >چت انلاین</span
+              ><span
+              *ngIf="allMessageNotifications() > 0"
+              [ngClass]="allMessageNotifications().toBadgeClass()"
+              style="right:-16px !important"
+              class="notification badge badge-pill"
+              >{{ allMessageNotifications() }}</span
+            >
             </a>
+            
           </li>
           <li class="dropdown nav-item mt-1">
             <app-notification></app-notification>
           </li>
-          
+
           <li class="dropdown nav-item mr-0">
             <a
               *ngIf="user$ | async as user"

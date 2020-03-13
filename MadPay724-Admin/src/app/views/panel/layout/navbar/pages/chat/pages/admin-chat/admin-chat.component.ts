@@ -72,6 +72,20 @@ export class AdminChatComponent implements OnInit, OnDestroy {
   }
   selectChat(onlineUserName: string) {
     this.selectedOnlineUserName = onlineUserName;
+    let dmArr: DirectMessage[];
+    this.subManager.add(
+      this.dmState$.subscribe(data => {
+        dmArr = data.directMessages;
+      })
+    );
+    //
+    const arrTrue = dmArr.filter(p => p.fromOnlineUser.userName === onlineUserName);
+    const arrFalse = dmArr.filter(p => p.fromOnlineUser.userName !== onlineUserName);
+    arrTrue.forEach(el => {
+      el.isRead = true;
+      arrFalse.push(el)
+    });
+    this.store.dispatch(new fromStore.JoinSent(arrFalse));
   }
   isAnyUserOnline(onlineUsers: UserInfo[]): boolean {
     if (onlineUsers.some(el => el.userName !== 'admin@madpay724.com')) {

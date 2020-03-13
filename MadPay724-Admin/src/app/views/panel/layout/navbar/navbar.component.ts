@@ -7,6 +7,8 @@ import { Store } from '@ngrx/store';
 
 import * as fromStore from '../../../../store';
 import { Observable, Subscription } from 'rxjs';
+import { DirectMessage } from 'src/app/data/models/common/chat/directMessage';
+import 'src/app/shared/extentions/number.extentions';
 
 @Component({
   selector: 'app-navbar',
@@ -16,11 +18,13 @@ import { Observable, Subscription } from 'rxjs';
 export class NavbarComponent implements OnDestroy {
   user$: Observable<User>;
   subManager = new Subscription();
+  directMessages$: Observable<DirectMessage[]>;
   constructor(private router: Router,
     private alertService: ToastrService,
     public authService: AuthService,
     private store: Store<fromStore.State>) {
     
+    this.directMessages$ = this.store.select(fromStore.getDirectMessages);
     this.store.dispatch(new fromStore.LoadNotification());
     this.user$ = this.store.select(fromStore.getLoggedUserState);
     //
@@ -47,7 +51,16 @@ export class NavbarComponent implements OnDestroy {
     if (loadNeeded) {
       this.store.dispatch(new fromStore.LoadLoggedUser());
     }
-
+  }
+  allMessageNotifications(): number {
+    let dss = 0;
+    this.subManager.add(
+      this.directMessages$.subscribe(data => {
+        const arr = data.filter(p => !p.isRead);
+       dss = arr.length;
+      })
+    );
+    return dss;
   }
   logout() {
     localStorage.removeItem('token');

@@ -54,7 +54,8 @@ export class DirectMessageService implements OnDestroy {
         userName: userId,
         connectionId: '-1'
       },
-      date: date
+      date: date,
+      isRead: true
     };
     this.dmSaveService.addToMessages(dMessage);
 
@@ -140,7 +141,8 @@ export class DirectMessageService implements OnDestroy {
       const dMessage: DirectMessage = {
         message: message,
         fromOnlineUser: onlineUser,
-        date: date
+        date: date,
+        isRead: false
       };
       this.dmSaveService.addToMessages(dMessage);
       //
