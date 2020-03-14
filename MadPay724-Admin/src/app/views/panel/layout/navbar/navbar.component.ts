@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/core/_services/auth/auth.service';
@@ -13,7 +13,9 @@ import 'src/app/shared/extentions/number.extentions';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+  
 })
 export class NavbarComponent implements OnDestroy {
   user$: Observable<User>;
@@ -52,37 +54,31 @@ export class NavbarComponent implements OnDestroy {
       this.store.dispatch(new fromStore.LoadLoggedUser());
     }
   }
-  allMessageNotifications(): number {
-    let dss = 0;
-    this.subManager.add(
-      this.directMessages$.subscribe(data => {
-        const arr = data.filter(p => !p.isRead);
-       dss = arr.length;
-      })
-    );
-    return dss;
+  allMessageNotifications(directMessages: DirectMessage[]): number {
+      if (directMessages != null && directMessages != undefined) {
+        return directMessages.filter(p => !p.isRead).length;
+      }
+    
+    return 0;
   }
 
-  onChatClick() {
-    if (this.authService.roleMatch(["User"])) {
-      let dmArr: DirectMessage[];
-      this.subManager.add(
-        this.directMessages$.subscribe(data => {
-          data.forEach(el => {
-            el.isRead = true;
-            dmArr.push(el)
-          });
-        })
-      );
-      //
-      
-      this.store.dispatch(new fromStore.JoinSent(dmArr));
-    }
+  onChatClick(directMessages: DirectMessage[]) {
+      if (this.authService.roleMatch(["User"])) {
+        let dmArr: DirectMessage[] = [];
+        directMessages.forEach(el => {
+          el.isRead = true;
+          dmArr.push(el);
+        });
+        //
+        this.store.dispatch(new fromStore.JoinSent(dmArr));
+      }
+
   }
 
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('refreshToken');
+    localStorage.removeItem('dm');
     this.store.dispatch(new fromStore.ResetDecodedToken());
     this.store.dispatch(new fromStore.ResetLoggedUser());
     this.authService.userRoles = [];

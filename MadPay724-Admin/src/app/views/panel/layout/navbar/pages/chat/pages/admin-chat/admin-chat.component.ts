@@ -75,7 +75,7 @@ export class AdminChatComponent implements OnInit, OnDestroy {
   }
   selectChat(onlineUserName: string) {
     this.selectedOnlineUserName = onlineUserName;
-    let dmArr: DirectMessage[];
+    let dmArr: DirectMessage[] = [];
     this.subManager.add(
       this.dmState$.subscribe(data => {
         dmArr = data.directMessages;

@@ -85,7 +85,7 @@ export class UserChatComponent implements OnInit, OnDestroy {
     return false;
   }
   isAdminOnline(): boolean {
-    let onlineUsers = [];
+    let onlineUsers: UserInfo[] = [];
     this.subManager.add(
       this.onlineUsers$.subscribe(data => {
         onlineUsers = data;
