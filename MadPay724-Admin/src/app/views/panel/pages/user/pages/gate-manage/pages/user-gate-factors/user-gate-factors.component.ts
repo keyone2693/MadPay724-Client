@@ -16,7 +16,7 @@ import { IRCurrencyPipe } from 'ngx-persian';
 import { DatePipe, Location } from '@angular/common';
 import { PersianCalendarService } from 'src/app/core/_base/pipe/PersianDatePipe/persian-date.service';
 import { debounceTime, map, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { Sort } from '@angular/material';
+import { Sort } from '@angular/material/sort';
 
 import * as fromStore from '../../../../../../../../store';
 import { CurrentTitleStateModel } from 'src/app/store/_model/currentTitleStateModel';

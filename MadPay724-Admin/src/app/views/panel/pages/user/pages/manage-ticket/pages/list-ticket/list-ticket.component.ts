@@ -2,10 +2,10 @@ import { Component, OnInit, OnDestroy, Input, ViewChild } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import * as _ from 'lodash';
 import { NgScrollbar } from 'ngx-scrollbar';
-import { MatDialogConfig, MatDialog } from '@angular/material';
 import { Ticket } from 'src/app/data/models/ticket';
 import { TicketService } from 'src/app/core/_services/panel/user/ticket.service';
 import { CreateFormTicketComponent } from './pages/create-form-ticket/create-form-ticket.component';
+import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-list-ticket',

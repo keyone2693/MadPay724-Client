@@ -19,7 +19,7 @@ import { IRCurrencyPipe } from 'ngx-persian';
 
 import * as fromStore from '../../../../../../../../../store';
 import { map, distinctUntilChanged, switchMap, debounceTime } from 'rxjs/operators';
-import { Sort } from '@angular/material';
+import { Sort } from '@angular/material/sort';
 import { Location } from '@angular/common';
 import { CurrentTitleStateModel } from 'src/app/store/_model/currentTitleStateModel';
 

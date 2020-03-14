@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DocumentService } from 'src/app/core/_services/panel/admin/document.service';
 import { Pagination } from 'src/app/data/models/common/pagination';
 import { FilterSortOrderBy } from 'src/app/data/models/common/filterSortOrderBy';
-import { Sort } from '@angular/material';
+import { Sort } from '@angular/material/sort';
 import { distinctUntilChanged, map, debounceTime, switchMap } from 'rxjs/operators';
 import { Location } from '@angular/common';
 

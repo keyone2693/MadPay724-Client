@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { PersianCalendarService } from 'src/app/core/_base/pipe/PersianDatePipe/persian-date.service';
 import { DatePipe } from '@angular/common';
-import { Sort } from '@angular/material';
+import { Sort } from '@angular/material/sort';
 import { FilterSortOrderBy } from 'src/app/data/models/common/filterSortOrderBy';
 import { TicketSearch } from 'src/app/data/models/admin/ticketSearch';
 import { TicketsService } from 'src/app/core/_services/panel/admin/tickets.service';

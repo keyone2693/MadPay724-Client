@@ -1,7 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material';
-import { ToastrService } from 'ngx-toastr';
-import { WalletFormComponent } from '../wallet-form/wallet-form.component';
+import { Component, OnInit, Input } from '@angular/core';
 import { Wallet } from 'src/app/data/models/wallet';
 
 @Component({

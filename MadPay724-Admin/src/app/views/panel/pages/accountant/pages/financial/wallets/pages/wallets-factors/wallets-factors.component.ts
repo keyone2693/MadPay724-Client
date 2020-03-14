@@ -14,7 +14,7 @@ import { IRCurrencyPipe } from 'ngx-persian';
 import { DatePipe, Location } from '@angular/common';
 import { PersianCalendarService } from 'src/app/core/_base/pipe/PersianDatePipe/persian-date.service';
 import { debounceTime, map, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { Sort } from '@angular/material';
+import { Sort } from '@angular/material/sort';
 import { ButtonMPComponent } from 'src/app/shared/component/button-mp/button-mp.component';
 import { UiType } from 'src/app/data/enums/uiType.enum';
 

@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
 import { BankCard } from 'src/app/data/models/bankcard';
 import { BankCardsService } from 'src/app/core/_services/panel/user/bankCards.service';
 

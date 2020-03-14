@@ -15,7 +15,7 @@ import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { debounceTime, distinctUntilChanged, switchMap, map } from 'rxjs/operators';
 import { Location } from '@angular/common';
-import { Sort } from '@angular/material';
+import { Sort } from '@angular/material/sort';
 
 import * as fromStore from '../../../../../../../../../store';
 import { CurrentTitleStateModel } from 'src/app/store/_model/currentTitleStateModel';

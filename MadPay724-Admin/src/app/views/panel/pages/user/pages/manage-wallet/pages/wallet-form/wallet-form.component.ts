@@ -1,9 +1,9 @@
 import { Component, OnInit, EventEmitter, Output, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { Wallet } from 'src/app/data/models/wallet';
 import { WalletService } from 'src/app/core/_services/panel/user/wallet.service';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-wallet-form',

@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { Blog } from 'src/app/data/models/blog/blog';
 import { BlogService } from 'src/app/core/_services/panel/blog/blog.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -9,6 +8,9 @@ import { Pagination } from 'src/app/data/models/common/pagination';
 import { FilterSortOrderBy } from 'src/app/data/models/common/filterSortOrderBy';
 import * as fromStore from 'src/app/store';
 import { Store } from '@ngrx/store';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-blog-list',

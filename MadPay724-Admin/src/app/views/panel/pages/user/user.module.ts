@@ -7,7 +7,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserMaterialModule } from 'src/app/Shared/Modules/material/user-material.module';
 
 import { DigitOnlyModule } from '@uiowa/digit-only';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { DocumentComponent } from './pages/userinfo/document/document.component';
@@ -63,6 +62,7 @@ import { HtmlMpComponent } from 'src/app/shared/component/html-mp/html-mp.compon
 import { UserGateFactorDetailComponent } from './pages/gate-manage/pages/user-gate-factors/pages/user-gate-factor-detail/user-gate-factor-detail.component';
 import { UserFactorService } from 'src/app/core/_services/panel/user/userFactor.service';
 import { UserFactorResolver } from 'src/app/core/_base/resolvers/user/userFactor.resolver';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   imports: [

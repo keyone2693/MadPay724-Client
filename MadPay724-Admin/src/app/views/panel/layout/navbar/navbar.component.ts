@@ -66,8 +66,13 @@ export class NavbarComponent implements OnDestroy {
       if (this.authService.roleMatch(["User"])) {
         let dmArr: DirectMessage[] = [];
         directMessages.forEach(el => {
-          el.isRead = true;
-          dmArr.push(el);
+          if (el.isRead) {
+            dmArr.push(el);
+          }else{
+            let newEl = { ...el };
+            newEl.isRead = true;
+            dmArr.push(newEl);
+          }
         });
         //
         this.store.dispatch(new fromStore.JoinSent(dmArr));

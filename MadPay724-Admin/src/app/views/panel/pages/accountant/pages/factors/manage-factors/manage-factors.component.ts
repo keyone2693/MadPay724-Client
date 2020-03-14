@@ -14,7 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 import { IRCurrencyPipe } from 'ngx-persian';
 import { Location, DatePipe } from '@angular/common';
 
-import { Sort } from '@angular/material';
+import { Sort } from '@angular/material/sort';
 import { PersianCalendarService } from 'src/app/core/_base/pipe/PersianDatePipe/persian-date.service';
 import { Options, LabelType } from 'ng5-slider';
 import { FactorSearch } from 'src/app/data/models/accountant/factorSearch';

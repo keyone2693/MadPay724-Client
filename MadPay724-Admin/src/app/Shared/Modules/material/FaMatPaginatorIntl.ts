@@ -1,4 +1,4 @@
-import { MatPaginatorIntl } from '@angular/material';
+import { MatPaginatorIntl } from '@angular/material/paginator';
 
 export class FaMatPaginatorIntl extends MatPaginatorIntl {
     itemsPerPageLabel = 'تعداد نمایش';

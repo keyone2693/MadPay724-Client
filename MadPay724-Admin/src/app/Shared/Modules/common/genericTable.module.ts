@@ -5,8 +5,13 @@ import { ButtonMPComponent } from '../../component/button-mp/button-mp.component
 import { CheckboxMPComponent } from '../../component/checkbox-mp/checkbox-mp.component';
 import { InputMpComponent } from '../../component/input-mp/input-mp.component';
 import { HtmlMpComponent } from '../../component/html-mp/html-mp.component';
-import { MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatTooltipModule, MatInputModule } from '@angular/material';
+
 import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   imports: [

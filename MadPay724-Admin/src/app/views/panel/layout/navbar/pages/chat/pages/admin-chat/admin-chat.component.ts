@@ -75,6 +75,7 @@ export class AdminChatComponent implements OnInit, OnDestroy {
   }
   selectChat(onlineUserName: string) {
     this.selectedOnlineUserName = onlineUserName;
+    //
     let dmArr: DirectMessage[] = [];
     this.subManager.add(
       this.dmState$.subscribe(data => {
@@ -82,11 +83,16 @@ export class AdminChatComponent implements OnInit, OnDestroy {
       })
     );
     //
-    const arrTrue = dmArr.filter(p => p.fromOnlineUser.userName === onlineUserName);
-    const arrFalse = dmArr.filter(p => p.fromOnlineUser.userName !== onlineUserName);
+    let arrTrue = dmArr.filter(p => p.fromOnlineUser.userName === onlineUserName);
+    let arrFalse = dmArr.filter(p => p.fromOnlineUser.userName !== onlineUserName);
     arrTrue.forEach(el => {
-      el.isRead = true;
-      arrFalse.push(el)
+      if (el.isRead) {
+        arrFalse.push(el);
+      } else {
+        let newEl = { ...el };
+        newEl.isRead = true;
+        arrFalse.push(newEl);
+      }
     });
     this.store.dispatch(new fromStore.JoinSent(arrFalse));
   }

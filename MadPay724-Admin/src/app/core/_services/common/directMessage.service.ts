@@ -43,11 +43,11 @@ export class DirectMessageService implements OnDestroy {
     this.subManager.unsubscribe();
   }
   loadOnlineUsers() {
-     if (this._hubConnection) {
+    if (this._hubConnection) {
       this._hubConnection.invoke('LoadOnlineUsers');
     }
   }
-  sendDirectMessage(message: string, userId: string,date:Date): string {
+  sendDirectMessage(message: string, userId: string, date: Date): string {
     const dMessage: DirectMessage = {
       message: message,
       fromOnlineUser: {
@@ -76,10 +76,10 @@ export class DirectMessageService implements OnDestroy {
   }
 
   init() {
-      this.subManager.add(
-        this.authService.getNewRefreshToken().subscribe(() => {
-          this.initHub();
-        })
+    this.subManager.add(
+      this.authService.getNewRefreshToken().subscribe(() => {
+        this.initHub();
+      })
     );
   }
   initHub() {
@@ -150,7 +150,7 @@ export class DirectMessageService implements OnDestroy {
         if (onlineUser.userName === "admin@madpay724.com") {
           this.alertService.warning(' از پشتیبان  پیغامی دارید ', 'پیام جدید');
 
-        } else{
+        } else {
           this.alertService.warning(' از کاربر ' + onlineUser.userName + ' پیغامی دارید ', 'پیام جدید');
         }
       }

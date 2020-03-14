@@ -2,7 +2,7 @@ import { Effect, Actions, ofType, act } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { Injectable } from '@angular/core';
-import { DirectMessageService } from 'src/app/core/_services/common/DirectMessage.service';
+import { DirectMessageService } from 'src/app/core/_services/common/directMessage.service';
 import * as directMessageActions from '../actions/directMessages.actions'
 import { switchMap } from 'rxjs/operators';
 import { DirectMessageSaveService } from 'src/app/core/_services/common/directMessageSave.service';

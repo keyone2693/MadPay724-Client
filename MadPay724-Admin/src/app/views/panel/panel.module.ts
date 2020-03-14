@@ -6,7 +6,7 @@ import { HasRoleModule } from 'src/app/Shared/Modules/hasRole/hasRole.module';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { AuthGuard } from 'src/app/core/_base/guards/auth.guard';
-import { MatTooltipModule, MatPaginatorIntl, MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material';
+
 import { NotificationComponent } from './layout/navbar/pages/notification/notification.component';
 import { FaMatPaginatorIntl } from '../../Shared/Modules/material/faMatPaginatorIntl';
 import { NgScrollbarModule } from 'ngx-scrollbar';
@@ -15,6 +15,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminChatComponent } from './layout/navbar/pages/chat/pages/admin-chat/admin-chat.component';
 import { UserChatComponent } from './layout/navbar/pages/chat/pages/user-chat/user-chat.component';
 import { PersianPipeModule } from 'src/app/shared/modules/common/persianPipe.module';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
 
 @NgModule({
   imports: [

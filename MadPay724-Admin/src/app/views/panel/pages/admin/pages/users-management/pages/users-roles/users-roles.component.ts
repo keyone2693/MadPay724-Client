@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription, Observable, from } from 'rxjs';
-import { MatTableDataSource } from '@angular/material';
+
+import { MatTableDataSource } from '@angular/material/table';
 import { UsersService } from 'src/app/core/_services/panel/admin/users.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';

@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Location } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { debounceTime, map, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { Sort } from '@angular/material';
+import { Sort } from '@angular/material/sort';
 import { CheckboxMPComponent } from 'src/app/shared/component/checkbox-mp/checkbox-mp.component';
 import { HtmlMpComponent } from 'src/app/shared/component/html-mp/html-mp.component';
 

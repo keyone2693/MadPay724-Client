@@ -13,7 +13,7 @@ import { IRCurrencyPipe } from 'ngx-persian';
 import { Pagination } from 'src/app/data/models/common/pagination';
 import { FilterSortOrderBy } from 'src/app/data/models/common/filterSortOrderBy';
 import { debounceTime, switchMap, map, distinctUntilChanged } from 'rxjs/operators';
-import { Sort } from '@angular/material';
+import { Sort } from '@angular/material/sort';
 import { HtmlMpComponent } from 'src/app/shared/component/html-mp/html-mp.component';
 import { TooltipPosition } from 'src/app/data/enums/tooltipPosition.enum';
 import { Location } from '@angular/common';
