@@ -85,7 +85,8 @@ export class ErrorInterceptor implements HttpInterceptor {
         }
         const appError = error.headers.get('App-Error');
         if (appError) {
-            return throwError(appError);
+            var objj = JSON.parse(appError);
+            return throwError(objj.Message);
         }
         // model state error
         const serverError = error.error.errors;
