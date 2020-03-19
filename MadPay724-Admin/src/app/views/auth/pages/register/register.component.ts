@@ -12,9 +12,22 @@ import { ApiReturn } from 'src/app/data/models/common/apiReturn';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  config = {
+    allowNumbersOnly: true,
+    length: 5,
+    isPasswordInput: false,
+    disableAutoFocus: false,
+    placeholder: '',
+    inputStyles: {
+      'width': '18%',
+      'margin-right': '2%',
+      'float': 'left',
+      'height': '50px'
+    }
+  };
   registerForm: FormGroup;
   waitAmount = 0;
-  showRegisterSection = true;
+  showRegisterSection = false;
   constructor(private authService: AuthService, private alertService: ToastrService,
               private router: Router) {}
 
@@ -25,7 +38,7 @@ export class RegisterComponent implements OnInit {
       password: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]),
       confirmPassword: new FormControl('', Validators.required),
       aproveRules: new FormControl(true, Validators.required),
-      code: new FormControl('0', [Validators.required, Validators.minLength(5), Validators.maxLength(5)])
+      code: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(5)])
     }, [this.passMatchValidator, this.aproveRulesValidator]);
   }
   passMatchValidator(g: FormGroup) {
@@ -34,8 +47,21 @@ export class RegisterComponent implements OnInit {
   aproveRulesValidator(g: FormGroup) {
     return g.get('aproveRules').value === true ? null : { aprovemismatch: true};
   }
+  onOtpChange(otp) {
+    this.registerForm.get('code').setValue(otp);
+  }
   getCode() {
-    if (this.registerForm.valid) {
+    if (this.registerForm.get('name').hasError('required')
+      || this.registerForm.get('userName').hasError('required')
+      || this.registerForm.get('userName').hasError('pattern')
+      || this.registerForm.get('password').hasError('required')
+      || this.registerForm.get('password').hasError('minlength')
+      || this.registerForm.get('password').hasError('maxlength')
+      || this.registerForm.get('confirmPassword').hasError('required')
+      || this.registerForm.hasError('mismatch')
+      || this.registerForm.get('aproveRules').hasError('required')) {
+            this.alertService.warning('اطلاعات را درست وارد کنید و قوانین را تایید کنید', 'خطا');
+    } else {
       var mobile = this.registerForm.get("userName").value;
 
       this.authService.getVerificationCode(mobile).subscribe((data: ApiReturn<number>) => {
@@ -45,16 +71,14 @@ export class RegisterComponent implements OnInit {
       }, (error: ApiReturn<number>) => {
         this.alertService.error(error.message, 'خطا در ثبت نام');
       }
-       //, () => {
-      //   this.authService.login(data).subscribe(() => {
-      //     this.router.navigate(['/panel/user/dashboard']);
-      //   }, error => {
-      //     this.alertService.warning(error, 'ثبت نام موفق خطا در ورود');
-      //   });
-      // }
+        //, () => {
+        //   this.authService.login(data).subscribe(() => {
+        //     this.router.navigate(['/panel/user/dashboard']);
+        //   }, error => {
+        //     this.alertService.warning(error, 'ثبت نام موفق خطا در ورود');
+        //   });
+        // }
       );
-    } else {
-      this.alertService.warning('اطلاعات را درست وارد کنید و قوانین را تایید کنید', 'خطا');
     }
     // this.authService.register(this.model).subscribe(() => {
     //   this.alertService.success('با موفقیت ثبت نام شدید', 'موفق');

@@ -56,7 +56,7 @@
                 registerForm.get('userName').hasError('required') &&
                 registerForm.get('userName').touched
                   ? 'شماره موبایل را وارد کنید'
-                  : registerForm.get('userName').hasError('email') &&
+                  : registerForm.get('userName').hasError('pattern') &&
                     registerForm.get('userName').touched
                   ? 'شماره موبایل صحیح نمیباشد'
                   : null
@@ -66,8 +66,8 @@
               <input
                 formControlName="userName"
                 class="input100"
-                type="text"
-                placeholder="شماره موبایل (یوزرنیم)"
+                type="password"
+                placeholder="شماره موبایل (نام کاربری)"
               />
               <i class="fa fa-envelope-o focus-input1001"></i>
               <i
@@ -180,8 +180,6 @@
         <div class="container-login100-form-btn">
           <a
             class="login100-form-btn"
-            [ngClass]="{ disabledbtn: !registerForm.valid }"
-            [disabled]="!registerForm.valid"
             (click)="getCode()"
           >
            دریافت کد فعال سازی
@@ -194,50 +192,17 @@
           ورود کد فعالسازی
         </span>     
         <div class="row">
-           <div class="col-lg-12 p-t-20">
-            <div
-              class="wrap-input100 validate-input"
-              [ngClass]="{
-                'alert-validate':
-                  registerForm.get('code').errors &&
-                  registerForm.get('code').touched
-              }"
-              [attr.data-validate]="
-                registerForm.get('code').hasError('required') &&
-                registerForm.get('code').touched
-                  ? 'کد فعل سازی را وارد کنید'
-                  : registerForm.get('code').hasError('minlength') &&
-                    registerForm.get('code').touched
-                  ? 'کد فعالسازی باید 5 رقمی باشد'
-                  : registerForm.get('code').hasError('maxlength') &&
-                    registerForm.get('code').touched
-                  ? 'کد فعالسازی باید 5 رقمی باشد'
-                  : null
-              "
-            >
-              <input
-                formControlName="password"
-                class="input100"
-                type="password"
-                placeholder="کد فعالسازی"
-              />
-              <i class="fa fa-lock focus-input1001"></i>
-              <i
-                *ngIf="
-                  (registerForm.get('code').hasError('required') &&
-                    registerForm.get('code').touched) ||
-                  (registerForm.get('code').hasError('minlength') &&
-                    registerForm.get('code').touched) ||
-                  (registerForm.get('code').hasError('maxlength') &&
-                    registerForm.get('code').touched)
-                "
-                class="icon-info material-icons erroe_dis"
-              ></i>
-            </div>
+           <div class="col-lg-12 p-t-20 cstwraper">
+            <ng-otp-input (onInputChange)="onOtpChange($event)" 
+             [config]="config"></ng-otp-input>
           </div>
         </div>
+            <a class="btn-send-sms">
+                         ارسال دوباره ی کد فعال سازی <small>(50)</small> 
+            </a>
         <div class="container-login100-form-btn">
           <button
+          type="submit"
             class="login100-form-btn"
             [ngClass]="{ disabledbtn: !registerForm.valid }"
             [disabled]="!registerForm.valid">
@@ -246,6 +211,7 @@
         </div>
       </ng-template>
       <div class="text-center p-t-50">
+       
         <a class="txt1" [routerLink]="['/auth/login']">
           آیا عضو هستید ؟
         </a>

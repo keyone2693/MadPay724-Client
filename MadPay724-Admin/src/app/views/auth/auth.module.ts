@@ -6,13 +6,15 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginRedirectGuard } from 'src/app/core/_base/guards/login-redirect.guard';
+import { NgOtpInputModule } from 'ng-otp-input';
 
 @NgModule({
   imports: [
     AuthRoutingModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgOtpInputModule
   ],
   declarations: [
     AuthComponent,
