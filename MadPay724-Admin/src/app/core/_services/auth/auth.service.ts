@@ -50,7 +50,10 @@ export class AuthService{
       })
     );
   }
-  register(user: User) {
+  getVerificationCode(mobile: string) {
+    return this.http.post(this.baseUrl + 'code', { mobile: mobile });
+  }
+  register(user: any) {
     return this.http.post(this.baseUrl + 'register', user);
   }
 

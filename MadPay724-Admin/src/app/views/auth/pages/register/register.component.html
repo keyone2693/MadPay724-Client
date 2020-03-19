@@ -1,123 +1,255 @@
 <div class="container-login100 page-background">
-    <div class="wrap-login100">
-        <form [formGroup]="registerForm" (ngSubmit)="register()" class="login100-form validate-form">
-            <span class="login100-form-logo">
-                <img alt="" src="../../../../../assets/img/white.png">
-            </span>
-            <span class="login100-form-title p-b-34 p-t-27">
-                ثبت نام
-            </span>
-            <div class="row">
-                <div class="col-lg-12 p-t-20 ">
-                    <div class="wrap-input100 validate-input "
-
-                        [ngClass]="{'alert-validate': registerForm.get('name').errors
-                                && registerForm.get('name').touched}"
-
-                        [attr.data-validate]="registerForm.get('name').hasError('required')
-                        && registerForm.get('name').touched ? 'نام را وارد کنید' : null"
-                        
-                     >
-                        <input formControlName="name" class="input100" type="text" placeholder="نام و نام خانوادگی">
-                        <i class="fa fa-user focus-input1001"></i>
-                        <i *ngIf="registerForm.get('name').hasError('required')
-                                  && registerForm.get('name').touched" class="icon-info material-icons erroe_dis"></i>
-
-                    </div>
-                </div>
-                <div class="col-lg-12 p-t-20">
-                    <div class="wrap-input100 validate-input"
-
-                    [ngClass]="{'alert-validate': registerForm.get('username').errors
-                    && registerForm.get('username').touched}"
-
-                    [attr.data-validate]="registerForm.get('username').hasError('required')
-                    && registerForm.get('username').touched ? 'ایمیل را وارد کنید' : registerForm.get('username').hasError('email')
-                    && registerForm.get('username').touched ? 'ایمیل صحیح نمیباشد' : null"
-                    
-                    data-validate="ایمیل را وارد کنید">
-                        <input formControlName="username"  class="input100" type="text" placeholder="ایمیل (یوزرنیم)">
-                        <i class="fa fa-envelope-o focus-input1001"></i>
-                        <i *ngIf="(registerForm.get('username').hasError('required')
-                                  && registerForm.get('username').touched) || (registerForm.get('username').hasError('email')
-                                  && registerForm.get('username').touched)" class="icon-info material-icons erroe_dis"></i>
-                    </div>
-                </div>
-                <div class="col-lg-12 p-t-20">
-                    <div class="wrap-input100 validate-input"
-
-                    [ngClass]="{'alert-validate': registerForm.get('phoneNumber').errors
-                    && registerForm.get('phoneNumber').touched}"
-
-                    [attr.data-validate]="registerForm.get('phoneNumber').hasError('required')
-                    && registerForm.get('phoneNumber').touched ? 'شماره موبایل صحیح وارد کنید' : null"
-                    
-                    data-validate="موبایل خود را وارد کنید">
-                        <input formControlName="phoneNumber"  class="input100" type="text" placeholder="شماره موبایل">
-                        <i class="fa fa-envelope-o focus-input1001"></i>
-                        <i *ngIf="(registerForm.get('phoneNumber').hasError('required')
-                                  && registerForm.get('phoneNumber').touched)" class="icon-info material-icons erroe_dis"></i>
-                    </div>
-                </div>
-                <div class="col-lg-12 p-t-20">
-                    <div class="wrap-input100 validate-input" 
-                    
-                    [ngClass]="{'alert-validate': registerForm.get('password').errors
-                    && registerForm.get('password').touched}"
-
-                    [attr.data-validate]="registerForm.get('password').hasError('required')
-                    && registerForm.get('password').touched ? 'پسورد را وارد کنید' : registerForm.get('password').hasError('minlength')
-                    && registerForm.get('password').touched ? 'حداقل 4 حرف باید وارد کنید' : registerForm.get('password').hasError('maxlength')
-                    && registerForm.get('password').touched ? 'حداکثر 10 حرف میتوانید وارد کنید' : null"
-                    >
-                        <input formControlName="password"  class="input100" type="password" placeholder="رمز عبور">
-                        <i class="fa fa-lock focus-input1001"></i>
-                        <i *ngIf="(registerForm.get('password').hasError('required')
-                                  && registerForm.get('password').touched) || (registerForm.get('password').hasError('minlength')
-                                  && registerForm.get('password').touched) || (registerForm.get('password').hasError('maxlength')
-                                  && registerForm.get('password').touched)" class="icon-info material-icons erroe_dis"></i>
-                    </div>
-                </div>
-                <div class="col-lg-12 p-t-20">
-                    <div class="wrap-input100 validate-input"        
-
-                    [ngClass]="{'alert-validate': (registerForm.get('confirmPassword').errors
-                    && registerForm.get('confirmPassword').touched) || (registerForm.hasError('mismatch')
-                    && registerForm.get('confirmPassword').touched)}"
-
-                    [attr.data-validate]="registerForm.get('confirmPassword').hasError('required')
-                    && registerForm.get('confirmPassword').touched  ? 'پسور را دوباره وارد کنید' : registerForm.hasError('mismatch')
-                    && registerForm.get('confirmPassword').touched  ? 'پسور ها یکسان نمیباشد' : null"
-                    
-                    >
-                        <input formControlName="confirmPassword"  class="input100" type="password" name="pass2" placeholder="تکرار رمز عبور">
-                        <i class="fa fa-lock focus-input1001"></i>
-                        <i *ngIf="(registerForm.get('confirmPassword').hasError('required')
-                                  && registerForm.get('confirmPassword').touched) || (registerForm.hasError('mismatch')
-                                  && registerForm.get('confirmPassword').touched)" class="icon-info material-icons erroe_dis"></i>
-                    </div>
-                </div>
+  <div class="wrap-login100">
+    <form
+      [formGroup]="registerForm"
+      (ngSubmit)="register()"
+      class="login100-form validate-form"
+    >
+      <span class="login100-form-logo">
+        <img alt="" src="../../../../../assets/img/white.png" />
+      </span>
+      <ng-container *ngIf="showRegisterSection; else verificationSection">
+        <span class="login100-form-title p-b-34 p-t-27">
+          ثبت نام
+        </span>
+        <div class="row">
+          <div class="col-lg-12 p-t-20 ">
+            <div
+              class="wrap-input100 validate-input "
+              [ngClass]="{
+                'alert-validate':
+                  registerForm.get('name').errors &&
+                  registerForm.get('name').touched
+              }"
+              [attr.data-validate]="
+                registerForm.get('name').hasError('required') &&
+                registerForm.get('name').touched
+                  ? 'نام را وارد کنید'
+                  : null
+              "
+            >
+              <input
+                formControlName="name"
+                class="input100"
+                type="text"
+                placeholder="نام و نام خانوادگی"
+              />
+              <i class="fa fa-user focus-input1001"></i>
+              <i
+                *ngIf="
+                  registerForm.get('name').hasError('required') &&
+                  registerForm.get('name').touched
+                "
+                class="icon-info material-icons erroe_dis"
+              ></i>
             </div>
-            <div class="contact100-form-checkbox">
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" formControlName="aproveRules" type="checkbox" > با شرایط و ضوابط موافقم
-                        <span class="form-check-sign">
-                            <span class="check"></span>
-                        </span>
-                    </label>
-                </div>
+          </div>
+          <div class="col-lg-12 p-t-20">
+            <div
+              class="wrap-input100 validate-input"
+              [ngClass]="{
+                'alert-validate':
+                  registerForm.get('userName').errors &&
+                  registerForm.get('userName').touched
+              }"
+              [attr.data-validate]="
+                registerForm.get('userName').hasError('required') &&
+                registerForm.get('userName').touched
+                  ? 'شماره موبایل را وارد کنید'
+                  : registerForm.get('userName').hasError('email') &&
+                    registerForm.get('userName').touched
+                  ? 'شماره موبایل صحیح نمیباشد'
+                  : null
+              "
+              data-validate="شماره موبایل را وارد کنید"
+            >
+              <input
+                formControlName="userName"
+                class="input100"
+                type="text"
+                placeholder="شماره موبایل (یوزرنیم)"
+              />
+              <i class="fa fa-envelope-o focus-input1001"></i>
+              <i
+                *ngIf="
+                  (registerForm.get('userName').hasError('required') &&
+                    registerForm.get('userName').touched) ||
+                  (registerForm.get('userName').hasError('email') &&
+                    registerForm.get('userName').touched)
+                "
+                class="icon-info material-icons erroe_dis"
+              ></i>
             </div>
-            <div class="container-login100-form-btn">
-                <button class="login100-form-btn" [ngClass]="{'disabledbtn': !registerForm.valid}" [disabled]="!registerForm.valid">
-                    ثبت نام
-                </button>
+          </div>
+          <div class="col-lg-12 p-t-20">
+            <div
+              class="wrap-input100 validate-input"
+              [ngClass]="{
+                'alert-validate':
+                  registerForm.get('password').errors &&
+                  registerForm.get('password').touched
+              }"
+              [attr.data-validate]="
+                registerForm.get('password').hasError('required') &&
+                registerForm.get('password').touched
+                  ? 'پسورد را وارد کنید'
+                  : registerForm.get('password').hasError('minlength') &&
+                    registerForm.get('password').touched
+                  ? 'حداقل 4 حرف باید وارد کنید'
+                  : registerForm.get('password').hasError('maxlength') &&
+                    registerForm.get('password').touched
+                  ? 'حداکثر 10 حرف میتوانید وارد کنید'
+                  : null
+              "
+            >
+              <input
+                formControlName="password"
+                class="input100"
+                type="password"
+                placeholder="رمز عبور"
+              />
+              <i class="fa fa-lock focus-input1001"></i>
+              <i
+                *ngIf="
+                  (registerForm.get('password').hasError('required') &&
+                    registerForm.get('password').touched) ||
+                  (registerForm.get('password').hasError('minlength') &&
+                    registerForm.get('password').touched) ||
+                  (registerForm.get('password').hasError('maxlength') &&
+                    registerForm.get('password').touched)
+                "
+                class="icon-info material-icons erroe_dis"
+              ></i>
             </div>
-            <div class="text-center p-t-50">
-                <a class="txt1"  [routerLink]="['/auth/login']">
-                    آیا عضو هستید ؟
-                </a>
+          </div>
+          <div class="col-lg-12 p-t-20">
+            <div
+              class="wrap-input100 validate-input"
+              [ngClass]="{
+                'alert-validate':
+                  (registerForm.get('confirmPassword').errors &&
+                    registerForm.get('confirmPassword').touched) ||
+                  (registerForm.hasError('mismatch') &&
+                    registerForm.get('confirmPassword').touched)
+              }"
+              [attr.data-validate]="
+                registerForm.get('confirmPassword').hasError('required') &&
+                registerForm.get('confirmPassword').touched
+                  ? 'پسور را دوباره وارد کنید'
+                  : registerForm.hasError('mismatch') &&
+                    registerForm.get('confirmPassword').touched
+                  ? 'پسور ها یکسان نمیباشد'
+                  : null
+              "
+            >
+              <input
+                formControlName="confirmPassword"
+                class="input100"
+                type="password"
+                name="pass2"
+                placeholder="تکرار رمز عبور"
+              />
+              <i class="fa fa-lock focus-input1001"></i>
+              <i
+                *ngIf="
+                  (registerForm.get('confirmPassword').hasError('required') &&
+                    registerForm.get('confirmPassword').touched) ||
+                  (registerForm.hasError('mismatch') &&
+                    registerForm.get('confirmPassword').touched)
+                "
+                class="icon-info material-icons erroe_dis"
+              ></i>
             </div>
-        </form>
-    </div>
+          </div>
+        </div>
+        <div class="contact100-form-checkbox">
+          <div class="form-check">
+            <label class="form-check-label">
+              <input
+                class="form-check-input"
+                formControlName="aproveRules"
+                type="checkbox"
+              />
+              با شرایط و ضوابط موافقم
+              <span class="form-check-sign">
+                <span class="check"></span>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="container-login100-form-btn">
+          <a
+            class="login100-form-btn"
+            [ngClass]="{ disabledbtn: !registerForm.valid }"
+            [disabled]="!registerForm.valid"
+            (click)="getCode()"
+          >
+           دریافت کد فعال سازی
+          </a>
+        </div>
+      </ng-container>
+
+      <ng-template #verificationSection> 
+        <span class="login100-form-title p-b-34 p-t-27">
+          ورود کد فعالسازی
+        </span>     
+        <div class="row">
+           <div class="col-lg-12 p-t-20">
+            <div
+              class="wrap-input100 validate-input"
+              [ngClass]="{
+                'alert-validate':
+                  registerForm.get('code').errors &&
+                  registerForm.get('code').touched
+              }"
+              [attr.data-validate]="
+                registerForm.get('code').hasError('required') &&
+                registerForm.get('code').touched
+                  ? 'کد فعل سازی را وارد کنید'
+                  : registerForm.get('code').hasError('minlength') &&
+                    registerForm.get('code').touched
+                  ? 'کد فعالسازی باید 5 رقمی باشد'
+                  : registerForm.get('code').hasError('maxlength') &&
+                    registerForm.get('code').touched
+                  ? 'کد فعالسازی باید 5 رقمی باشد'
+                  : null
+              "
+            >
+              <input
+                formControlName="password"
+                class="input100"
+                type="password"
+                placeholder="کد فعالسازی"
+              />
+              <i class="fa fa-lock focus-input1001"></i>
+              <i
+                *ngIf="
+                  (registerForm.get('code').hasError('required') &&
+                    registerForm.get('code').touched) ||
+                  (registerForm.get('code').hasError('minlength') &&
+                    registerForm.get('code').touched) ||
+                  (registerForm.get('code').hasError('maxlength') &&
+                    registerForm.get('code').touched)
+                "
+                class="icon-info material-icons erroe_dis"
+              ></i>
+            </div>
+          </div>
+        </div>
+        <div class="container-login100-form-btn">
+          <button
+            class="login100-form-btn"
+            [ngClass]="{ disabledbtn: !registerForm.valid }"
+            [disabled]="!registerForm.valid">
+            تکمیل ثبت نام
+          </button>
+        </div>
+      </ng-template>
+      <div class="text-center p-t-50">
+        <a class="txt1" [routerLink]="['/auth/login']">
+          آیا عضو هستید ؟
+        </a>
+      </div>
+    </form>
+  </div>
 </div>
