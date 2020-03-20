@@ -76,6 +76,7 @@
         "ngx-chips": "^2.1.0",
         "ngx-clipboard": "^13.0.0",
         "ngx-cookie-service": "^3.0.2",
+        "ngx-countdown": "^8.0.3",
         "ngx-infinite-scroll": "^8.0.1",
         "ngx-material-file-input": "^2.1.0",
         "ngx-perfect-scrollbar": "^9.0.0",

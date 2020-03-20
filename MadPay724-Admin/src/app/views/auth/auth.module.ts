@@ -7,6 +7,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginRedirectGuard } from 'src/app/core/_base/guards/login-redirect.guard';
 import { NgOtpInputModule } from 'ng-otp-input';
+import { CountdownModule } from 'ngx-countdown';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { NgOtpInputModule } from 'ng-otp-input';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    NgOtpInputModule
+    NgOtpInputModule,
+    CountdownModule 
   ],
   declarations: [
     AuthComponent,

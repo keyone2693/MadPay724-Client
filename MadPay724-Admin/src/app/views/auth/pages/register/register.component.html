@@ -8,7 +8,7 @@
       <span class="login100-form-logo">
         <img alt="" src="../../../../../assets/img/white.png" />
       </span>
-      <ng-container *ngIf="showRegisterSection; else verificationSection">
+      <div [hidden]="!showRegisterSection">
         <span class="login100-form-title p-b-34 p-t-27">
           ثبت نام
         </span>
@@ -178,40 +178,43 @@
           </div>
         </div>
         <div class="container-login100-form-btn">
-          <a
-            class="login100-form-btn"
-            (click)="getCode()"
-          >
-           دریافت کد فعال سازی
+          <a class="login100-form-btn" (click)="getCode()">
+            دریافت کد فعال سازی
           </a>
         </div>
-      </ng-container>
+      </div>
 
-      <ng-template #verificationSection> 
+      <div  [hidden]="showRegisterSection">
         <span class="login100-form-title p-b-34 p-t-27">
           ورود کد فعالسازی
-        </span>     
+        </span>
         <div class="row">
-           <div class="col-lg-12 p-t-20 cstwraper">
-            <ng-otp-input (onInputChange)="onOtpChange($event)" 
-             [config]="config"></ng-otp-input>
+          <div class="col-lg-12 p-t-20 cstwraper">
+            <ng-otp-input
+            #ngOtpInput
+              (onInputChange)="onOtpChange($event)"
+              [config]="config"
+            ></ng-otp-input>
           </div>
         </div>
-            <a class="btn-send-sms">
-                         ارسال دوباره ی کد فعال سازی <small>(50)</small> 
-            </a>
+         <div class="container-login100-form-btn">
+          <a (click)="getCode()" class="btn-send-sms">
+          <span> ارسال دوباره ی کد فعال سازی </span>
+          <countdown *ngIf="showCountDown" (event)="handleCountDownEvent($event)" [config]="countDownConfig"></countdown>
+        </a>
+        </div>
         <div class="container-login100-form-btn">
           <button
-          type="submit"
+            type="submit"
             class="login100-form-btn"
             [ngClass]="{ disabledbtn: !registerForm.valid }"
-            [disabled]="!registerForm.valid">
+            [disabled]="!registerForm.valid"
+          >
             تکمیل ثبت نام
           </button>
         </div>
-      </ng-template>
+      </div>
       <div class="text-center p-t-50">
-       
         <a class="txt1" [routerLink]="['/auth/login']">
           آیا عضو هستید ؟
         </a>

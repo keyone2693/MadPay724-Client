@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from 'src/app/data/models/user';
 import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { ApiReturn } from 'src/app/data/models/common/apiReturn';
 
@@ -12,6 +11,12 @@ import { ApiReturn } from 'src/app/data/models/common/apiReturn';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  @ViewChild('ngOtpInput') ngOtpInputRef: any;//Get reference using ViewChild and the specified hash
+
+  countDownConfig = {
+    leftTime: 60,
+    format: ' (s) '
+  };
   config = {
     allowNumbersOnly: true,
     length: 5,
@@ -25,9 +30,10 @@ export class RegisterComponent implements OnInit {
       'height': '50px'
     }
   };
+ 
   registerForm: FormGroup;
-  waitAmount = 0;
-  showRegisterSection = false;
+  showRegisterSection = true;
+  showCountDown = true;
   constructor(private authService: AuthService, private alertService: ToastrService,
               private router: Router) {}
 
@@ -49,6 +55,16 @@ export class RegisterComponent implements OnInit {
   }
   onOtpChange(otp) {
     this.registerForm.get('code').setValue(otp);
+    if (otp.length === 5) {
+      this.getCode();
+    }
+  }
+  handleCountDownEvent(event) {
+    if (event.left > 0){
+      this.showCountDown = true;
+    }else {
+      this.showCountDown = false;
+    }
   }
   getCode() {
     if (this.registerForm.get('name').hasError('required')
@@ -65,11 +81,17 @@ export class RegisterComponent implements OnInit {
       var mobile = this.registerForm.get("userName").value;
 
       this.authService.getVerificationCode(mobile).subscribe((data: ApiReturn<number>) => {
-        this.waitAmount = data.result;
+        this.showCountDown = true;
+        this.countDownConfig  = {
+          leftTime: data.result,
+          format: ' (s) '
+        };
         this.alertService.success(data.message, 'موفق');
         this.showRegisterSection = false;
-      }, (error: ApiReturn<number>) => {
-        this.alertService.error(error.message, 'خطا در ثبت نام');
+      }, error => {
+          this.alertService.warning(error, 'خطا در ثبت نام');
+          this.registerForm.get('code').setValue('');
+          this.ngOtpInputRef.setValue('');
       }
         //, () => {
         //   this.authService.login(data).subscribe(() => {
