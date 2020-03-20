@@ -93,14 +93,10 @@
                 registerForm.get('password').hasError('required') &&
                 registerForm.get('password').touched
                   ? 'پسورد را وارد کنید'
-                  : registerForm.get('password').hasError('minlength') &&
+                  : registerForm.get('password').hasError('pattern') &&
                     registerForm.get('password').touched
-                  ? 'حداقل 4 حرف باید وارد کنید'
-                  : registerForm.get('password').hasError('maxlength') &&
-                    registerForm.get('password').touched
-                  ? 'حداکثر 10 حرف میتوانید وارد کنید'
-                  : null
-              "
+                  ? 'باید شامل حروف بزرگ و کوچک غیر فارسی و نیز عدد باشد'
+                  : null"
             >
               <input
                 formControlName="password"
@@ -113,11 +109,8 @@
                 *ngIf="
                   (registerForm.get('password').hasError('required') &&
                     registerForm.get('password').touched) ||
-                  (registerForm.get('password').hasError('minlength') &&
-                    registerForm.get('password').touched) ||
-                  (registerForm.get('password').hasError('maxlength') &&
-                    registerForm.get('password').touched)
-                "
+                  (registerForm.get('password').hasError('pattern') &&
+                    registerForm.get('password').touched)"
                 class="icon-info material-icons erroe_dis"
               ></i>
             </div>

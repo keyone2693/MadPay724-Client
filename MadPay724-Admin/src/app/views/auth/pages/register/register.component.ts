@@ -39,9 +39,10 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = new FormGroup({
+      grantType: new FormControl('password'),
       name: new FormControl('', Validators.required),
-      userName: new FormControl('', [Validators.required , Validators.pattern("0[0-9]{10}") ]),
-      password: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]),
+      userName: new FormControl('', [Validators.required , Validators.pattern('0[0-9]{10}') ]),
+      password: new FormControl('', [Validators.required, Validators.pattern('(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{4,10}') ]),
       confirmPassword: new FormControl('', Validators.required),
       aproveRules: new FormControl(true, Validators.required),
       code: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(5)])
@@ -56,7 +57,7 @@ export class RegisterComponent implements OnInit {
   onOtpChange(otp) {
     this.registerForm.get('code').setValue(otp);
     if (otp.length === 5) {
-      this.getCode();
+      this.register();
     }
   }
   handleCountDownEvent(event) {
@@ -71,8 +72,7 @@ export class RegisterComponent implements OnInit {
       || this.registerForm.get('userName').hasError('required')
       || this.registerForm.get('userName').hasError('pattern')
       || this.registerForm.get('password').hasError('required')
-      || this.registerForm.get('password').hasError('minlength')
-      || this.registerForm.get('password').hasError('maxlength')
+      || this.registerForm.get('password').hasError('pattern')
       || this.registerForm.get('confirmPassword').hasError('required')
       || this.registerForm.hasError('mismatch')
       || this.registerForm.get('aproveRules').hasError('required')) {
@@ -114,7 +114,9 @@ export class RegisterComponent implements OnInit {
       this.authService.register(data).subscribe(() => {
         this.alertService.success('با موفقیت ثبت نام شدید', 'موفق');
       }, error => {
-        this.alertService.error(error, 'خطا در ثبت نام');
+          this.alertService.error(error, 'خطا در ثبت نام');
+          this.registerForm.get('code').setValue('');
+          this.ngOtpInputRef.setValue('');
       }, () => {
           this.authService.login(data).subscribe(() => {
           this.router.navigate(['/panel/user/dashboard']);
