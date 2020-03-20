@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/core/_services/auth/auth.service';
 import { User } from 'src/app/data/models/user';
 import { Store } from '@ngrx/store';
+import { AuthService as SocialAuthService } from "angularx-social-login";
 
 import * as fromStore from '../../../../store';
 import { Observable, Subscription } from 'rxjs';
@@ -23,7 +24,7 @@ export class NavbarComponent implements OnDestroy {
   directMessages$: Observable<DirectMessage[]>;
   constructor(private router: Router,
     private alertService: ToastrService,
-    public authService: AuthService,
+    public authService: AuthService, private socialAuthService: SocialAuthService,
     private store: Store<fromStore.State>) {
     
     this.directMessages$ = this.store.select(fromStore.getDirectMessages);
@@ -90,7 +91,14 @@ export class NavbarComponent implements OnDestroy {
 
     this.store.dispatch(new fromStore.Leave());
 
+    this.socialAuthService.signOut();
+
     this.router.navigate(['/auth/login']);
     this.alertService.warning('با موفقیت خارج شدید', 'موفق');
   }
+
+  signOut(): void {
+    
+  }
+
 }

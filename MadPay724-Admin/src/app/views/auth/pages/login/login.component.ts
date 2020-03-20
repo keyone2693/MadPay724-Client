@@ -2,9 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/core/_services/auth/auth.service';
+import { AuthService as SocialAuthService, SocialUser } from "angularx-social-login";
+import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
 import { Store } from '@ngrx/store';
 
 import * as fromStore from 'src/app/store';
+import { Observable } from 'rxjs';
 
 
 
@@ -16,11 +19,14 @@ import * as fromStore from 'src/app/store';
 export class LoginComponent implements OnInit {
   model: any = {};
   returnUrl: any = '';
-  constructor(private authService: AuthService, private router: Router,
+  private socialLoggedInUser$: Observable<SocialUser>;
+  constructor(private authService: AuthService, private socialAuthService: SocialAuthService,
+    private router: Router,
     private alertService: ToastrService, private route: ActivatedRoute,
     private store: Store<fromStore.State>) { }
 
   ngOnInit() {
+    this.socialLoggedInUser$ = this.socialAuthService.authState;
     this.model.isremember = true;
     this.model.granttype = 'password';
     this.route.queryParams.subscribe(params => this.returnUrl = params.return);
@@ -38,5 +44,15 @@ export class LoginComponent implements OnInit {
       this.alertService.error(error, 'خطا در ورود');
     });
   }
+
+  signInWithGoogle(): void {
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
+
+  signInWithFB(): void {
+    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+
+  
 
 }
