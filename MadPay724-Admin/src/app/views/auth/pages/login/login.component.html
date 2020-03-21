@@ -1,41 +1,88 @@
 <div class="container-login100 page-background">
-    <div class="wrap-login100">
-        <form #loginForm="ngForm" (ngSubmit)="login()" class="login100-form validate-form">
-            <span class="login100-form-logo">
-                <img alt="" src="../../../../../assets/img/white.png">
+  <div class="wrap-login100">
+    <form
+      #loginForm="ngForm"
+      (ngSubmit)="login()"
+      class="login100-form validate-form"
+    >
+      <span class="login100-form-logo">
+        <img alt="" src="../../../../../assets/img/white.png" />
+      </span>
+      <span class="login100-form-title ">
+        ورود
+      </span>
+      <div class="wrap-input100 validate-input" data-validate="Enter username">
+        <input
+          class="input100"
+          type="text"
+          [(ngModel)]="model.username"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="نام کاربری (شماره موبایل)"
+        />
+        <i class="fa fa-user focus-input1001"></i>
+      </div>
+      <div class="wrap-input100 validate-input" data-validate="Enter password">
+        <input
+          class="input100"
+          type="password"
+          [(ngModel)]="model.password"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="پسورد"
+        />
+        <i class="fa fa-lock focus-input1001"></i>
+      </div>
+      <div class="contact100-form-checkbox">
+        <div class="form-check">
+          <label class="form-check-label">
+            <input
+              class="form-check-input"
+              [(ngModel)]="model.isremember"
+              [ngModelOptions]="{ standalone: true }"
+              type="checkbox"
+            />
+            مرا به خاطر بسپار
+            <span class="form-check-sign">
+              <span class="check"></span>
             </span>
-            <span class="login100-form-title p-b-34 p-t-27">
-                ورود
-            </span>
-            <div class="wrap-input100 validate-input" data-validate="Enter username">
-                <input class="input100" type="text" [(ngModel)]="model.username" [ngModelOptions]="{standalone: true}" placeholder="نام کاربری (شماره موبایل)">
-                <i class="fa fa-user focus-input1001"></i>
-            </div>
-            <div class="wrap-input100 validate-input" data-validate="Enter password">
-                <input class="input100" type="password" [(ngModel)]="model.password" [ngModelOptions]="{standalone: true}" placeholder="پسورد">
-                <i class="fa fa-lock focus-input1001"></i>
-            </div>
-            <div class="contact100-form-checkbox">
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" [(ngModel)]="model.isremember" [ngModelOptions]="{standalone: true}" type="checkbox"> مرا به خاطر بسپار
-                        <span class="form-check-sign">
-                            <span class="check"></span>
-                        </span>
-                    </label>
-                </div>
-            </div>
-            <div class="container-login100-form-btn">
-                <button class="login100-form-btn">
-                    ورود
-                </button>
-            </div>
-                <div class="text-center p-t-50">
-                    <a [routerLink]="['/auth/register']" style="font-size: 15px;background: #333;padding: 10px 20px;border-radius: 5px;"  class="txt1 col-md-6">
-                         آیا حساب کاربری ندارید؟ </a>
-                    <a  href="forgot-password.html" class="txt1 col-md-6" style="font-size: 14px;padding: 10px 20px;border-radius: 5px;">
-                         رمز عبور را فراموش کرده اید؟ </a>
-                        </div>
-        </form>
-    </div>
+          </label>
+        </div>
+      </div>
+      <div class="container-login100-form-btn">
+        <button class="login100-form-btn">
+          ورود
+        </button>
+      </div>
+      <div class="social-buttons-block">
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <a (click)="signInWithGoogle()" class="btn btn-block btn-social mb-2 btn-google">
+              <span class="fa fa-google"></span> ورود با گوگل
+            </a>
+          </div>
+          <div class="col-12 col-md-6">
+            <a (click)="signInWithFB()" class="btn btn-block btn-social mb-2 btn-facebook">
+              <span class="fa fa-facebook"></span> ورود با فیسبوک
+            </a>
+          </div>
+          <a  (click)="signOut()" class="btn btn-success Facebook">خروج</a>
+        </div>
+      </div>
+      <div class="text-center pt-3">
+        <a
+          [routerLink]="['/auth/register']"
+          style="font-size: 15px;background: #333;padding: 10px 20px;border-radius: 5px;"
+          class="txt1 col-md-6"
+        >
+          آیا حساب کاربری ندارید؟
+        </a>
+        <a
+          href="forgot-password.html"
+          class="txt1 col-md-6"
+          style="font-size: 14px;padding: 10px 20px;border-radius: 5px;"
+        >
+          رمز عبور را فراموش کرده اید؟
+        </a>
+      </div>
+    </form>
+  </div>
 </div>

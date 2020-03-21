@@ -46,13 +46,27 @@ export class LoginComponent implements OnInit {
   }
 
   signInWithGoogle(): void {
-    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then((response) => {
+      console.log(response);
+    }, (error) => {
+      this.alertService.error(error, 'ناموفق');
+    });
   }
-
   signInWithFB(): void {
-    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID).then((response) => {
+      console.log(response);
+    }, (error) => {
+      this.alertService.error(error, 'ناموفق');
+    });
   }
 
-  
+  signOut(){
+    this.socialAuthService.signOut().then((response) => {
+      console.log(response);
+    }, (error) => {
+      this.alertService.error(error, 'ناموفق');
+    });
+}
+
 
 }

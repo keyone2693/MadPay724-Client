@@ -10,15 +10,16 @@ import { NgOtpInputModule } from 'ng-otp-input';
 import { CountdownModule } from 'ngx-countdown';
 import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
 import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
+import { environment } from 'src/environments/environment.prod';
 
 let config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider("302518043380-t9r6c1j5e245a6n7v8ii59842cta188d.apps.googleusercontent.com")
+    provider: new GoogleLoginProvider(environment.googleClientId)
   },
   {
     id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider("505724516783402")
+    provider: new FacebookLoginProvider(environment.facebookAppId)
   }
 ]);
 
