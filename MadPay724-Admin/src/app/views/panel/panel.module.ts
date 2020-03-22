@@ -18,23 +18,7 @@ import { PersianPipeModule } from 'src/app/shared/modules/common/persianPipe.mod
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
-import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
-import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
-import { environment } from 'src/environments/environment.prod';
 
-let config = new AuthServiceConfig([
-  {
-    id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider(environment.googleClientId)
-  },
-  {
-    id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider(environment.facebookAppId)
-  }
-]);
-export function provideConfig() {
-  return config;
-}
 
 @NgModule({
   imports: [
@@ -45,8 +29,7 @@ export function provideConfig() {
     HasRoleModule,
     MatTooltipModule,
     NgScrollbarModule,
-    PersianPipeModule,
-    SocialLoginModule
+    PersianPipeModule
   ],
   declarations: [
     PanelComponent,
@@ -60,11 +43,7 @@ export function provideConfig() {
   providers: [
     AuthGuard,
     { provide: MatPaginatorIntl, useClass: FaMatPaginatorIntl },
-    { provide: MAT_RADIO_DEFAULT_OPTIONS, useValue: { color: 'warn' } },
-    {
-      provide: AuthServiceConfig,
-      useFactory: provideConfig
-    }
+    { provide: MAT_RADIO_DEFAULT_OPTIONS, useValue: { color: 'warn' } }
   ]
 })
 

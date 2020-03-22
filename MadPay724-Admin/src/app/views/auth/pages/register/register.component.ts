@@ -93,7 +93,7 @@ export class RegisterComponent implements OnInit {
       }
         //, () => {
         //   this.authService.login(data).subscribe(() => {
-        //     this.router.navigate(['/panel/user/dashboard']);
+        //     this.router.navigate(['/panel/common/user/dashboard']);
         //   }, error => {
         //     this.alertService.warning(error, 'ثبت نام موفق خطا در ورود');
         //   });
@@ -117,7 +117,7 @@ export class RegisterComponent implements OnInit {
           this.ngOtpInputRef.setValue('');
       }, () => {
           this.authService.login(data).subscribe(() => {
-          this.router.navigate(['/panel/user/dashboard']);
+            this.router.navigate(['/panel/common/user/dashboard']);
         }, error => {
           this.alertService.warning(error, 'ثبت نام موفق خطا در ورود');
         });

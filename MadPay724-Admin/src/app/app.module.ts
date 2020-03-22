@@ -15,7 +15,6 @@ import { TitleService } from './core/_services/common/title.service';
 import { AuthService } from './core/_services/auth/auth.service';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { environment } from 'src/environments/environment.prod';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { CustomRouteSerializer } from './shared/helpers/customRouteSerializer';
@@ -25,6 +24,10 @@ import { MpPreloadingStrategy } from './core/_config/mpPreloadingStrategy';
 
 import { CryptoService } from './core/_services/common/crypto.service';
 import { DirectMessageSaveService } from './core/_services/common/directMessageSave.service';
+import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
+import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
+import { environment } from 'src/environments/environment.prod';
+
 
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -42,7 +45,19 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   pbDirection: PB_DIRECTION.leftToRight,
   pbThickness: 2
   // , overlayColor: 'rgba(40,40,40,.1)'
-};
+}; let config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider(environment.googleClientId)
+  },
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider(environment.facebookAppId)
+  }
+]);
+export function provideConfig() {
+  return config;
+}
 
 @NgModule({
   declarations: [
@@ -69,7 +84,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
       serializer: CustomRouteSerializer
     }),
     EffectsModule.forRoot(effects),
-    environment.development ? StoreDevtoolsModule.instrument({ maxAge: 10 }) : []
+    environment.development ? StoreDevtoolsModule.instrument({ maxAge: 10 }) : [],
+    SocialLoginModule
   ],
   providers: [
     MpPreloadingStrategy,
@@ -79,7 +95,11 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     //
     // CookieService,
     CryptoService,
-    DirectMessageSaveService
+    DirectMessageSaveService,
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
   ],
   entryComponents: [NotyfToast],
   bootstrap: [AppComponent]

@@ -91,7 +91,14 @@ export class NavbarComponent implements OnDestroy {
 
     this.store.dispatch(new fromStore.Leave());
 
-    this.socialAuthService.signOut();
+    //
+    this.subManager.add(
+      this.store.select(fromStore.getLoggedUserState).subscribe((data) => {
+        if (data.provider === 'GOOGLE' || data.provider === 'FACEBOOK') {
+          this.socialAuthService.signOut()
+        }
+      })
+    );
 
     this.router.navigate(['/auth/login']);
     this.alertService.warning('با موفقیت خارج شدید', 'موفق');

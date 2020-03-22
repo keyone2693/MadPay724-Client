@@ -13,7 +13,8 @@ export const initLoggedUserState: User = {
     age: 0,
     lastActive: null,
     city: '',
-    photoUrl: '../../../assets/img/profilepic.png'
+    photoUrl: '../../../assets/img/profilepic.png',
+    provider : 'MADPAY'
 }
 export function loggedUserReducer(state = initLoggedUserState, action: LoggedUserActions) {
     switch (action.type) {
@@ -30,7 +31,8 @@ export function loggedUserReducer(state = initLoggedUserState, action: LoggedUse
                 age: action.payload.age,
                 lastActive: action.payload.lastActive,
                 city: action.payload.city,
-                photoUrl: action.payload.photoUrl
+                photoUrl: action.payload.photoUrl,
+                provider: action.payload.provider,
             }
         case loggedUserAction.LoggedUserActionTypes.LOADLOGGEDUSER_FAIL: {
             return state;
@@ -47,7 +49,8 @@ export function loggedUserReducer(state = initLoggedUserState, action: LoggedUse
                 age: action.payload.age,
                 lastActive: action.payload.lastActive,
                 city: action.payload.city,
-                photoUrl: action.payload.photoUrl
+                photoUrl: action.payload.photoUrl,
+                provider: action.payload.provider,
             }
         //return Object.assign({}, state, action.payload);
         case loggedUserAction.LoggedUserActionTypes.EDIT_LOGGEDUSERNAME:

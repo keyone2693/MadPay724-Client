@@ -76,9 +76,8 @@ export class LoginComponent implements OnInit, OnDestroy {
             this.alertService.info('پسورد شما همان آدرس ایمیل اکانت گوگل شما میباشد ... لطفا در اولین فرصت در بخش پروفایل کاربری آنرا تغییر دهید', 'توجه');
           }
           this.subManager.add(
-            this.authService.loginWithSocial(res.result.userName).subscribe(() => {
-              console.log('000');
-              this.router.navigate(['/panel/user/dashboard']);
+            this.authService.loginWithSocial(res.result.userName, "GOOGLE").subscribe(() => {
+              this.router.navigate(['/panel/common/user/dashboard']);
             }, error => {
               this.alertService.warning(error, 'ثبت نام موفق خطا در ورود');
             })
@@ -94,40 +93,38 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
   signInWithFB(): void {
     this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID).then((response) => {
-      const model: SocialRegister = {
-        userId: response.id,
-        name: response.firstName + ' ' + response.lastName,
-        email: response.email,
-        photoUrl: response.photoUrl,
-        provider: response.provider
-      };
-      this.subManager.add(
-        this.authService.registerWithSocial(model).subscribe((res: ApiReturn<User>) => {
-          if (res.result.isRegisterBefore) {
-            this.alertService.success(res.message, 'موفق');
-          } else {
-            this.alertService.success(res.message, 'موفق');
-            this.alertService.info('پسورد شما همان آدرس ایمیل اکانت فیسبوک شما میباشد ... لطفا در اولین فرصت در بخش پروفایل کاربری آنرا تغییر دهید', 'توجه');
-          }
-          this.subManager.add(
-            this.authService.loginWithSocial(res.result.userName).subscribe(() => {
-              this.router.navigate(['/panel/user/dashboard']);
-            }, error => {
-              this.alertService.warning(error, 'ثبت نام موفق خطا در ورود');
-            })
-          );
+      if (response.email == null || response.email == undefined) {
+        this.alertService.warning('اکانت فیسبوک شما ایمیل ثبت شده ندارد', 'ناموفق');
+        this.alertService.info('لطفا ابتدا در اکانت فیسبوک در بخش پروفایل کاربری فیسبوک خود ایمیلی را ثبت کنید', 'ناموفق');
+      } else {
+        const model: SocialRegister = {
+          userId: response.id,
+          name: response.firstName + ' ' + response.lastName,
+          email: response.email,
+          photoUrl: response.photoUrl,
+          provider: response.provider
+        };
+        this.subManager.add(
+          this.authService.registerWithSocial(model).subscribe((res: ApiReturn<User>) => {
+            if (res.result.isRegisterBefore) {
+              this.alertService.success(res.message, 'موفق');
+            } else {
+              this.alertService.success(res.message, 'موفق');
+              this.alertService.info('پسورد شما همان آدرس ایمیل اکانت فیسبوک شما میباشد ... لطفا در اولین فرصت در بخش پروفایل کاربری آنرا تغییر دهید', 'توجه');
+            }
+            this.subManager.add(
+              this.authService.loginWithSocial(res.result.userName, "FACBOOK").subscribe(() => {
+                this.router.navigate(['/panel/common/user/dashboard']);
+              }, error => {
+                this.alertService.warning(error, 'ثبت نام موفق خطا در ورود');
+              })
+            );
 
-        }, error => {
-          this.alertService.warning(error, 'ناموفق');
-        })
-      );
-    }, (error) => {
-      this.alertService.error(error, 'ناموفق');
-    });
-  }
-
-  signOut() {
-    this.socialAuthService.signOut().then((response) => {
+          }, error => {
+            this.alertService.warning(error, 'ناموفق');
+          })
+        );
+      }      
     }, (error) => {
       this.alertService.error(error, 'ناموفق');
     });

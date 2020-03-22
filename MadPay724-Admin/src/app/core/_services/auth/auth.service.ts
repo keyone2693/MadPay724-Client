@@ -1,12 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment.prod';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { User } from 'src/app/data/models/user';
+import { AuthService as SocialAuthService, SocialUser } from "angularx-social-login";
 
 import * as fromStore from '../../../store';
 import { Store } from '@ngrx/store';
@@ -14,15 +16,16 @@ import { Store } from '@ngrx/store';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService{
-
+export class AuthService implements OnDestroy {
+  subManager = new Subscription();
+  //***********
   baseUrl = environment.apiUrl + environment.apiV1 + 'site/panel/auth/';
   jwtHelper = new JwtHelperService();
   userRoles: string[] = [];
   userName: string = '';
 
   constructor(private http: HttpClient, private alertService: ToastrService,
-    private router: Router,
+    private router: Router, private socialAuthService: SocialAuthService,
     private store: Store<fromStore.State>) {
     const token = localStorage.getItem('token');
     if (this.loggedIn()) {
@@ -31,7 +34,9 @@ export class AuthService{
       this.userName = decode.unique_name;
     }
   }
-
+  ngOnDestroy() {
+    this.subManager.unsubscribe();
+  }
   login(model: any) {
     return this.http.post(this.baseUrl + 'login', model).pipe(
       map((user: any) => {
@@ -48,8 +53,8 @@ export class AuthService{
       })
     );
   }
-  loginWithSocial(userName: string) {
-    return this.http.post(this.baseUrl + 'login', { grantType: 'social', userName: userName}).pipe(
+  loginWithSocial(userName: string, provider: string) {
+    return this.http.post(this.baseUrl + 'login', { provider: provider, grantType: 'social', userName: userName }).pipe(
       map((user: any) => {
         if (user) {
           //store
@@ -74,6 +79,13 @@ export class AuthService{
     return this.http.post(this.baseUrl + 'register/social', user);
   }
   loggedIn() {
+    var user: User;
+    this.subManager.add(
+      this.store.select(fromStore.getLoggedUserState).subscribe((data) => {
+        user = data;
+      })
+    );
+
     const token = localStorage.getItem('token');
     if (token == null || token == undefined) {
       return false;
@@ -86,8 +98,16 @@ export class AuthService{
     if (!decoded) {
       return false;
     }
-
-    return true;
+    if (user.provider === 'GOOGLE' || user.provider === 'FACEBOOK') {
+      var socialUser: SocialUser;
+      this.socialAuthService.authState.subscribe((user) => {
+        socialUser = user;
+      });
+      if (socialUser == null) {
+        return false
+      }
+    }
+    return true
   }
   logout() {
     localStorage.removeItem('token');
@@ -96,6 +116,15 @@ export class AuthService{
     this.store.dispatch(new fromStore.ResetDecodedToken());
     this.store.dispatch(new fromStore.ResetLoggedUser());
     this.userRoles = [];
+    //
+    this.subManager.add(
+      this.store.select(fromStore.getLoggedUserState).subscribe((data) => {
+        if (data.provider === 'GOOGLE' || data.provider === 'FACEBOOK') {
+          this.socialAuthService.signOut()
+        }
+      })
+    );
+    
     this.router.navigate(['/auth/login']);
     this.alertService.warning('با موفقیت خارج شدید', 'موفق');
   }
@@ -105,6 +134,14 @@ export class AuthService{
     this.store.dispatch(new fromStore.ResetDecodedToken());
     this.store.dispatch(new fromStore.ResetLoggedUser());
     this.userRoles = [];
+    //
+    this.subManager.add(
+      this.store.select(fromStore.getLoggedUserState).subscribe((data) => {
+        if (data.provider === 'GOOGLE' || data.provider === 'FACEBOOK') {
+          this.socialAuthService.signOut()
+        }
+      })
+    );
     this.router.navigate(['/auth/login']);
     this.alertService.error('خطا در اعتبار سنجی خودکار', 'خطا');
     this.alertService.warning('با موفقیت خارج شدید', 'موفق');
@@ -128,7 +165,27 @@ export class AuthService{
   }
   isAuthorized(): boolean {
     const token = localStorage.getItem('token');
-    return !this.jwtHelper.isTokenExpired(token);
+    if (!this.jwtHelper.isTokenExpired(token)) {
+      var user: User;
+      this.subManager.add(
+        this.store.select(fromStore.getLoggedUserState).subscribe((data) => {
+          user = data;
+        })
+      );
+      if (user.provider === 'GOOGLE' || user.provider === 'FACEBOOK') {
+        var socialUser: SocialUser;
+        this.socialAuthService.authState.subscribe((user) => {
+          socialUser = user;
+        });
+        if (socialUser == null) {
+          return false
+        }
+      }
+      return true
+    } else {
+      return false;
+    }
+    
   }
   isAdmin(): boolean {
     if (this.roleMatch(["Admin"])) {
