@@ -45,7 +45,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   pbDirection: PB_DIRECTION.leftToRight,
   pbThickness: 2
   // , overlayColor: 'rgba(40,40,40,.1)'
-}; let config = new AuthServiceConfig([
+};
+let config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
     provider: new GoogleLoginProvider(environment.googleClientId)
