@@ -8,24 +8,11 @@ import { RegisterComponent } from './pages/register/register.component';
 import { LoginRedirectGuard } from 'src/app/core/_base/guards/login-redirect.guard';
 import { NgOtpInputModule } from 'ng-otp-input';
 import { CountdownModule } from 'ngx-countdown';
-import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
-import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
-import { environment } from 'src/environments/environment.prod';
 
-let config = new AuthServiceConfig([
-  {
-    id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider(environment.googleClientId)
-  },
-  {
-    id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider(environment.facebookAppId)
-  }
-]);
 
-export function provideConfig() {
-  return config;
-}
+
+
+
 
 @NgModule({
   imports: [
@@ -34,8 +21,7 @@ export function provideConfig() {
     FormsModule,
     ReactiveFormsModule,
     NgOtpInputModule,
-    CountdownModule ,
-    SocialLoginModule
+    CountdownModule
   ],
   declarations: [
     AuthComponent,
@@ -43,11 +29,7 @@ export function provideConfig() {
     RegisterComponent
   ],
   providers: [
-    LoginRedirectGuard,
-    {
-      provide: AuthServiceConfig,
-      useFactory: provideConfig
-    }
+    LoginRedirectGuard
   ],
 })
 export class AuthModule { }

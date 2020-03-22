@@ -12,7 +12,7 @@ export interface User {
      lastActive: Date;
      city: string;
      photoUrl: string;
-     isRegisterBefore: boolean;
+     isRegisterBefore?: boolean;
      photo?: Photo[];
      bankCard?: BankCard[];
 }

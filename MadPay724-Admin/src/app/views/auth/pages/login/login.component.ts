@@ -10,6 +10,7 @@ import * as fromStore from 'src/app/store';
 import { Observable, Subscription } from 'rxjs';
 import { SocialRegister } from 'src/app/data/models/auth/socialRegister';
 import { User } from 'src/app/data/models/user';
+import { ApiReturn } from 'src/app/data/models/common/apiReturn';
 
 
 
@@ -18,7 +19,7 @@ import { User } from 'src/app/data/models/user';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit, OnDestroy{
+export class LoginComponent implements OnInit, OnDestroy {
   subManager = new Subscription();
   //***********
   model: any = {};
@@ -33,22 +34,27 @@ export class LoginComponent implements OnInit, OnDestroy{
     this.socialLoggedInUser$ = this.socialAuthService.authState;
     this.model.isremember = true;
     this.model.granttype = 'password';
-    this.route.queryParams.subscribe(params => this.returnUrl = params.return);
+    this.subManager.add(
+      this.route.queryParams.subscribe(params => this.returnUrl = params.return)
+    );
   }
   ngOnDestroy() {
     this.subManager.unsubscribe();
   }
   login() {
-    this.authService.login(this.model).subscribe(next => {
-      this.store.dispatch(new fromStore.InitHub());
-      if (this.returnUrl === null || this.returnUrl === undefined) {
-        this.returnUrl = this.authService.getDashboardUrl();
-      }
-      this.router.navigate([this.returnUrl]);
-      this.alertService.success('با موفقیت وارد شدید', 'موفق');
-    }, error => {
-      this.alertService.error(error, 'خطا در ورود');
-    });
+    this.subManager.add(
+      this.authService.login(this.model).subscribe(next => {
+        this.store.dispatch(new fromStore.InitHub());
+        if (this.returnUrl === null || this.returnUrl === undefined) {
+          this.returnUrl = this.authService.getDashboardUrl();
+        }
+        this.router.navigate([this.returnUrl]);
+        this.alertService.success('با موفقیت وارد شدید', 'موفق');
+      }, error => {
+        this.alertService.error(error, 'خطا در ورود');
+      })
+    );
+    
   }
 
   signInWithGoogle(): void {
@@ -62,13 +68,24 @@ export class LoginComponent implements OnInit, OnDestroy{
       };
       //
       this.subManager.add(
-        this.authService.registerWithSocial(model).subscribe((res: User) => {
-          if (res.isRegisterBefore) {
-            //login
+        this.authService.registerWithSocial(model).subscribe((res: ApiReturn<User>) => {
+          if (res.result.isRegisterBefore) {
+            this.alertService.success(res.message, 'موفق');
           } else {
-            //add password
-            //login
+            this.alertService.success(res.message, 'موفق');
+            this.alertService.info('پسورد شما همان آدرس ایمیل اکانت گوگل شما میباشد ... لطفا در اولین فرصت در بخش پروفایل کاربری آنرا تغییر دهید', 'توجه');
           }
+          this.subManager.add(
+            this.authService.loginWithSocial(res.result.userName).subscribe(() => {
+              console.log('000');
+              this.router.navigate(['/panel/user/dashboard']);
+            }, error => {
+              this.alertService.warning(error, 'ثبت نام موفق خطا در ورود');
+            })
+          );
+          
+        }, error => {
+            this.alertService.warning(error, 'ناموفق');
         })
       );
     }, (error) => {
@@ -85,13 +102,23 @@ export class LoginComponent implements OnInit, OnDestroy{
         provider: response.provider
       };
       this.subManager.add(
-        this.authService.registerWithSocial(model).subscribe((res) => {
-          if (res.isRegisterBefore) {
-            //login
+        this.authService.registerWithSocial(model).subscribe((res: ApiReturn<User>) => {
+          if (res.result.isRegisterBefore) {
+            this.alertService.success(res.message, 'موفق');
           } else {
-            //add password
-            //login
+            this.alertService.success(res.message, 'موفق');
+            this.alertService.info('پسورد شما همان آدرس ایمیل اکانت فیسبوک شما میباشد ... لطفا در اولین فرصت در بخش پروفایل کاربری آنرا تغییر دهید', 'توجه');
           }
+          this.subManager.add(
+            this.authService.loginWithSocial(res.result.userName).subscribe(() => {
+              this.router.navigate(['/panel/user/dashboard']);
+            }, error => {
+              this.alertService.warning(error, 'ثبت نام موفق خطا در ورود');
+            })
+          );
+
+        }, error => {
+          this.alertService.warning(error, 'ناموفق');
         })
       );
     }, (error) => {
@@ -99,12 +126,12 @@ export class LoginComponent implements OnInit, OnDestroy{
     });
   }
 
-  signOut(){
+  signOut() {
     this.socialAuthService.signOut().then((response) => {
     }, (error) => {
       this.alertService.error(error, 'ناموفق');
     });
-}
+  }
 
 
 }

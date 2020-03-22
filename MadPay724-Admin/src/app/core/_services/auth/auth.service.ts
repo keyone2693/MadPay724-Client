@@ -7,7 +7,6 @@ import { environment } from 'src/environments/environment.prod';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { User } from 'src/app/data/models/user';
 
 import * as fromStore from '../../../store';
 import { Store } from '@ngrx/store';
@@ -35,8 +34,23 @@ export class AuthService{
 
   login(model: any) {
     return this.http.post(this.baseUrl + 'login', model).pipe(
-      map((resp: any) => {
-        const user = resp;
+      map((user: any) => {
+        if (user) {
+          //store
+          this.store.dispatch(new fromStore.EditLoggedUser(user.user));
+          const decodedToken = this.jwtHelper.decodeToken(user.token);
+          this.store.dispatch(new fromStore.EditDecodedToken(decodedToken));
+          this.userRoles = decodedToken.role as Array<string>;
+
+          localStorage.setItem('token', user.token);
+          localStorage.setItem('refreshToken', user.refresh_token);
+        }
+      })
+    );
+  }
+  loginWithSocial(userName: string) {
+    return this.http.post(this.baseUrl + 'login', { grantType: 'social', userName: userName}).pipe(
+      map((user: any) => {
         if (user) {
           //store
           this.store.dispatch(new fromStore.EditLoggedUser(user.user));
