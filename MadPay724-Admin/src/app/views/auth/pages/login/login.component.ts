@@ -9,6 +9,7 @@ import { Store } from '@ngrx/store';
 import * as fromStore from 'src/app/store';
 import { Observable, Subscription } from 'rxjs';
 import { SocialRegister } from 'src/app/data/models/auth/socialRegister';
+import { User } from 'src/app/data/models/user';
 
 
 
@@ -61,7 +62,7 @@ export class LoginComponent implements OnInit, OnDestroy{
       };
       //
       this.subManager.add(
-        this.authService.registerWithSocial(model).subscribe((res) => {
+        this.authService.registerWithSocial(model).subscribe((res: User) => {
           if (res.isRegisterBefore) {
             //login
           } else {
