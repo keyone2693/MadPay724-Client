@@ -43,14 +43,13 @@ export class RegisterComponent implements OnInit {
       name: new FormControl('', Validators.required),
       userName: new FormControl('', [Validators.required , Validators.pattern('0[0-9]{10}') ]),
       password: new FormControl('', [Validators.required, Validators.pattern('(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{4,10}') ]),
-      confirmPassword: new FormControl('', Validators.required),
       aproveRules: new FormControl(true, Validators.required),
       code: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(5)])
-    }, [this.passMatchValidator, this.aproveRulesValidator]);
+    }, [this.aproveRulesValidator]);
   }
-  passMatchValidator(g: FormGroup) {
-    return g.get('password').value === g.get('confirmPassword').value ? null : { mismatch: true};
-  }
+  // passMatchValidator(g: FormGroup) {
+  //   return g.get('password').value === g.get('confirmPassword').value ? null : { mismatch: true};
+  // }
   aproveRulesValidator(g: FormGroup) {
     return g.get('aproveRules').value === true ? null : { aprovemismatch: true};
   }
@@ -73,7 +72,6 @@ export class RegisterComponent implements OnInit {
       || this.registerForm.get('userName').hasError('pattern')
       || this.registerForm.get('password').hasError('required')
       || this.registerForm.get('password').hasError('pattern')
-      || this.registerForm.get('confirmPassword').hasError('required')
       || this.registerForm.hasError('mismatch')
       || this.registerForm.get('aproveRules').hasError('required')) {
             this.alertService.warning('اطلاعات را درست وارد کنید و قوانین را تایید کنید', 'خطا');

@@ -56,7 +56,9 @@ export class AuthService{
   register(user: any) {
     return this.http.post(this.baseUrl + 'register', user);
   }
-
+  registerWithSocial(user: any) {
+    return this.http.post(this.baseUrl + 'register/social', user);
+  }
   loggedIn() {
     const token = localStorage.getItem('token');
     if (token == null || token == undefined) {
@@ -140,7 +142,6 @@ export class AuthService{
     }
     return isMatch;
   }
-
   getDashboardUrl(): string {
     const userRoles = this.userRoles;
     if (Array.isArray(userRoles)) {

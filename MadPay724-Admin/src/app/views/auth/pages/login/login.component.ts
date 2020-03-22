@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/core/_services/auth/auth.service';
@@ -7,7 +7,8 @@ import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-logi
 import { Store } from '@ngrx/store';
 
 import * as fromStore from 'src/app/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { SocialRegister } from 'src/app/data/models/auth/socialRegister';
 
 
 
@@ -16,7 +17,9 @@ import { Observable } from 'rxjs';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy{
+  subManager = new Subscription();
+  //***********
   model: any = {};
   returnUrl: any = '';
   private socialLoggedInUser$: Observable<SocialUser>;
@@ -31,7 +34,9 @@ export class LoginComponent implements OnInit {
     this.model.granttype = 'password';
     this.route.queryParams.subscribe(params => this.returnUrl = params.return);
   }
-
+  ngOnDestroy() {
+    this.subManager.unsubscribe();
+  }
   login() {
     this.authService.login(this.model).subscribe(next => {
       this.store.dispatch(new fromStore.InitHub());
@@ -47,14 +52,47 @@ export class LoginComponent implements OnInit {
 
   signInWithGoogle(): void {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then((response) => {
-      console.log(response);
+      const model: SocialRegister = {
+        userId: response.id,
+        name: response.firstName + ' ' + response.lastName,
+        email: response.email,
+        photoUrl: response.photoUrl,
+        provider: response.provider
+      };
+      //
+      this.subManager.add(
+        this.authService.registerWithSocial(model).subscribe((res) => {
+          if (res.isRegisterBefore) {
+            //login
+          } else {
+            //add password
+            //login
+          }
+        })
+      );
     }, (error) => {
       this.alertService.error(error, 'ناموفق');
     });
   }
   signInWithFB(): void {
     this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID).then((response) => {
-      console.log(response);
+      const model: SocialRegister = {
+        userId: response.id,
+        name: response.firstName + ' ' + response.lastName,
+        email: response.email,
+        photoUrl: response.photoUrl,
+        provider: response.provider
+      };
+      this.subManager.add(
+        this.authService.registerWithSocial(model).subscribe((res) => {
+          if (res.isRegisterBefore) {
+            //login
+          } else {
+            //add password
+            //login
+          }
+        })
+      );
     }, (error) => {
       this.alertService.error(error, 'ناموفق');
     });
@@ -62,7 +100,6 @@ export class LoginComponent implements OnInit {
 
   signOut(){
     this.socialAuthService.signOut().then((response) => {
-      console.log(response);
     }, (error) => {
       this.alertService.error(error, 'ناموفق');
     });

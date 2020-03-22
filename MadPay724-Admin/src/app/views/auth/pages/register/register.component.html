@@ -95,7 +95,7 @@
                   ? 'پسورد را وارد کنید'
                   : registerForm.get('password').hasError('pattern') &&
                     registerForm.get('password').touched
-                  ? 'باید شامل حروف بزرگ و کوچک غیر فارسی و نیز عدد باشد'
+                  ? 'پسورد قوی نمیباشد'
                   : null"
             >
               <input
@@ -116,43 +116,10 @@
             </div>
           </div>
           <div class="col-lg-12 p-t-20">
-            <div
-              class="wrap-input100 validate-input"
-              [ngClass]="{
-                'alert-validate':
-                  (registerForm.get('confirmPassword').errors &&
-                    registerForm.get('confirmPassword').touched) ||
-                  (registerForm.hasError('mismatch') &&
-                    registerForm.get('confirmPassword').touched)
-              }"
-              [attr.data-validate]="
-                registerForm.get('confirmPassword').hasError('required') &&
-                registerForm.get('confirmPassword').touched
-                  ? 'پسور را دوباره وارد کنید'
-                  : registerForm.hasError('mismatch') &&
-                    registerForm.get('confirmPassword').touched
-                  ? 'پسور ها یکسان نمیباشد'
-                  : null
-              "
-            >
-              <input
-                formControlName="confirmPassword"
-                class="input100"
-                type="password"
-                name="pass2"
-                placeholder="تکرار رمز عبور"
-              />
-              <i class="fa fa-lock focus-input1001"></i>
-              <i
-                *ngIf="
-                  (registerForm.get('confirmPassword').hasError('required') &&
-                    registerForm.get('confirmPassword').touched) ||
-                  (registerForm.hasError('mismatch') &&
-                    registerForm.get('confirmPassword').touched)
-                "
-                class="icon-info material-icons erroe_dis"
-              ></i>
+            <div class="alert alert-primary" role="alert">
+              پسورد شما باید شمال حرفو کوچک و بزرگ غیرفارسی و همچنین عددی باشد
             </div>
+          </div>
           </div>
         </div>
         <div class="contact100-form-checkbox">
