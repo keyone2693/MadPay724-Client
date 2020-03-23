@@ -459,13 +459,13 @@ var Munza = Munza || {};
 
 	Munza.docLoad = {
 		init: function(){
-			Munza.init.itr_slick_sliders();
-			Munza.init.itr_instagramfeed();
-			Munza.init.itr_globals();
-			Munza.init.itr_flickr();
-			Munza.init.itr_tweets();
-			Munza.init.itr_img_map();
-			Munza.init.itr_piecharts();
+			//Munza.init.itr_slick_sliders();
+			//Munza.init.itr_instagramfeed();
+			//Munza.init.itr_globals();
+			//Munza.init.itr_flickr();
+			//Munza.init.itr_tweets();
+			//Munza.init.itr_img_map();
+			//Munza.init.itr_piecharts();
 			Munza.init.itr_appear();
 		}
 	};

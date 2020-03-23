@@ -20,7 +20,14 @@
     7. BOXED MODE.
     8. RESPONSIVE STYLES.
 ============================================================================= */
+#menu-main-menu,.itr-head-btns{
+    background: #fff;
+    border-radius: 70px;
 
+}
+.slbar_btn,.open_search{
+    cursor: pointer;
+}
 header ul, footer ul, .top-bar ul, .post-info ul.post-meta, ul.comment-list, ul.list, ul.post-chat, ul.post-meta, .lft-tools ul, .timeline-TweetList, ul.menu, .sl_bar_content ul, .gallery-size-thumbnail, ul.page-numbers, ul.pager{
     list-style:none;
     margin:0;
@@ -297,7 +304,7 @@ span.topbar-box{
     height: inherit;
 }
 .top-head .itr_main_nav > ul > li > a > span{
-    padding: 8px 15px;
+    padding: 0px 15px 8px;
     margin: 0 3px;
     border: 3px transparent solid;
     transition: border 0.5s ease;

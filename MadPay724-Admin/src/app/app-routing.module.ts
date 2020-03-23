@@ -13,7 +13,7 @@ const routes: Routes = [
     loadChildren: () => import('./views/panel/panel.module').then(m => m.PanelModule),
     data: { preload: false }},
 
-  {path: '**', redirectTo: '/auth/login', pathMatch: 'full'},
+  {path: '**', redirectTo: '/auth/login', pathMatch: 'full'}
 
 ];
 

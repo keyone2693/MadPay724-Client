@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -6,8 +6,9 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
 constructor(private http: HttpClient) {}
-
-  title = 'MadPay724-App';
+  ngAfterViewInit(): void {
+    import('../assets/wp-content/themes/munza/assets/js/vendor/slidingbar.js');
+  }
 }

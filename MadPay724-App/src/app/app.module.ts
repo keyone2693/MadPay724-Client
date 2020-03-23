@@ -12,10 +12,8 @@ import {
 import { NotyfToast } from './Shared/Animation/notyf';
 import { ErrorInterceptorProvider } from './core/_config/error.interceptor';
 import { TitleService } from './core/_services/common/title.service';
-import { CustomRouteSerializer } from './shared/helpers/customRouteSerializer';
 import { MpPreloadingStrategy } from './core/_config/mpPreloadingStrategy';
 
-import { environment } from 'src/environments/environment.prod';
 
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
