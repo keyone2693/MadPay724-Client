@@ -85,7 +85,7 @@
 		}
 
 		.page-title .title_bg {
-			background-image: url('../../../../../../assets/wp-content/uploads/2019/03/title_bg.png');
+			background-image: url('../../../../../uploads/2019/03/title_bg.png');
 			background-repeat: no-repeat;
 			background-size: inherit;
 			background-position: 0 100%
@@ -148,7 +148,7 @@
 		}
 
 		#footWrapper .footer_bg:before {
-			background-image: url('../../../../../../assets/wp-content/uploads/2019/03/foot_bg.png');
+			background-image: url('../../../../../uploads/2019/03/foot_bg.png');
 			background-repeat: no-repeat;
 			background-position: 0 100%;
 			background-size: inherit
@@ -336,7 +336,7 @@
 		}
 
 		.row_5cd59e8e2b72c {
-			background-image: url('../../../../../../assets/wp-content/uploads/2019/03/about1bg.png');
+			background-image: url('../../../../../uploads/2019/03/about1bg.png');
 			background-repeat: no-repeat;
 			background-position: 0% 0%
 		}
