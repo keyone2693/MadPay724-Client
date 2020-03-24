@@ -26,7 +26,8 @@
                         "src/assets/wp-content/themes/munza/assets/css/vendor/rest3c21.css",
                         "src/assets/wp-content/themes/munza/assets/css/vendor/outlinefont3c21.css",
                         "src/assets/wp-content/themes/munza/assets/css/vendor/streamline3c21.css",
-                         "src/assets/wp-content/plugins/js_composer/assets/lib/bower/font-awesome/css/font-awesome.mine23c.css",
+                        "src/assets/wp-content/plugins/js_composer/assets/lib/bower/font-awesome/css/font-awesome.mine23c.css",
+                        "src/assets/wp-content/plugins/munza-core/assets/front/css/vendor/slick.slider3c21.css",
                         "src/assets/wp-content/themes/munza/assets/css/style3c21.css",
                         "src/assets/wp-content/themes/munza/assets/css/inlinethemecss.css",
                         "src/assets/wp-content/plugins/munza-core/assets/front/css/vendor/recent-posts3c21.css",
@@ -41,9 +42,9 @@
                          "src/assets/wp-content/themes/munza/assets/js/vendor/modernizr.js",
                          "src/assets/wp-content/themes/munza/assets/js/vendor/scroll.to.id.js",
                          "src/assets/wp-content/themes/munza/assets/js/vendor/jquery.slurve.js",
+                         "src/assets/wp-content/plugins/munza-core/assets/front/js/vendor/slick.slider.js",
                          "src/assets/wp-content/themes/munza/assets/js/script.js",
                          "src/assets/wp-content/plugins/munza-core/assets/front/js/vendor/progresscircle.js"
-
                        ],
             "es5BrowserSupport": true
           },

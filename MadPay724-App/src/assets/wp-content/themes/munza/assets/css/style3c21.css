@@ -2166,8 +2166,8 @@ select:focus,textarea:focus,input[type="text"]:focus,input[type="password"]:focu
 
 /* footer widgets */
 .footer-middle{
-    padding-top: 200px;
-    padding-bottom: 40px;
+    padding-top: 150px;
+    padding-bottom: 0px;
 }
 #footWrapper .footer_bg {
     position: relative;
