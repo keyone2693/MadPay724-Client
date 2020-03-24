@@ -173,4 +173,14 @@
       mainel.removeClass("is-opened-main");
     }, 1400);
   });
+
+  $(document).on("scroll", function () {
+    $("#feedbak-place").appear(function () {
+        $(".vc_single_bar").each(function () {
+        var pers = $(this).find(".vc_bar").attr('data-value') + '%';
+          $(this).find(".vc_bar").css("width", pers);
+        });
+    });
+  });
+
 })(jQuery);

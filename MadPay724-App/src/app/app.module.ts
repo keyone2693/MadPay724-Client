@@ -13,6 +13,10 @@ import { NotyfToast } from './Shared/Animation/notyf';
 import { ErrorInterceptorProvider } from './core/_config/error.interceptor';
 import { TitleService } from './core/_services/common/title.service';
 import { MpPreloadingStrategy } from './core/_config/mpPreloadingStrategy';
+import { HeaderComponent } from './views/layout/header/header.component';
+import { SearchBarComponent } from './views/layout/search-bar/search-bar.component';
+import { FooterComponent } from './views/layout/footer/footer.component';
+import { SlidingBarComponent } from './views/layout/sliding-bar/sliding-bar.component';
 
 
 
@@ -35,6 +39,10 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    SearchBarComponent,
+    SlidingBarComponent,
     NotyfToast
   ],
   imports: [
