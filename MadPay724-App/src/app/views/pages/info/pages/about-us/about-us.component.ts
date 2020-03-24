@@ -1,15 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { StyleService } from 'src/app/core/_services/common/style.service';
 
 @Component({
   selector: 'app-about-us',
   templateUrl: './about-us.component.html',
   styleUrls: ['./about-us.component.css']
 })
-export class AboutUsComponent implements OnInit {
+export class AboutUsComponent implements OnDestroy {
 
-  constructor() { }
 
-  ngOnInit() {
+  constructor(private styleService: StyleService) {
+    const aboutusUrl = '../../../../../../assets/wp-content/themes/munza/assets/css/aboutus.css';
+    this.styleService.addStyle("aboutus", aboutusUrl);
   }
 
+  ngOnDestroy() {
+    this.styleService.removeStyle("aboutus");
+  }
+  public loadStyle() {
+
+  }
 }

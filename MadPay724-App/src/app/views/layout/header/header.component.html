@@ -2,7 +2,7 @@
     <div class="container">
       <div class="itr_head_wrap">
         <div class="itr_logo">
-          <a href="../index.html" rel="home">
+          <a [routerLink]="['/main/home']" rel="home">
             <img
               alt="مونزا"
               class="site_logo"
@@ -85,7 +85,7 @@
                   id="menu-item-9434"
                   class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home"
                 >
-                  <a href="">درباره ما</a>
+                  <a [routerLink]="['/info/aboutus']" >درباره ما</a>
                 </li>
               </ul>
             </li>
