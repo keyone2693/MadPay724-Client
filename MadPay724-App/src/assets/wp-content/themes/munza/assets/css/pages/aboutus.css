@@ -777,3 +777,14 @@
 			padding-right: 0px !important;
 			padding-left: 0px !important;
 		}
+.top-head{
+	width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+}
+
+.site_logo{
+	content:url('../../images/logo/black-2.png');
+}

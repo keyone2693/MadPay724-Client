@@ -36,7 +36,7 @@ export class SidebarComponent implements OnInit {
     node.type = 'text/javascript';
     node.async = true;
     node.charset = 'utf-8';
-    document.getElementsByTagName('head')[0].appendChild(node);
+    document.body.appendChild(node);
   }
 
   getEntryNotifySum(unCheckedEntry: number, unSpecifiedEntry:number): number {

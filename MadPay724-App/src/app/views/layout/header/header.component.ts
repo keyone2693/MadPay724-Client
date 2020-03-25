@@ -6,8 +6,14 @@ import { Component, AfterViewInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements AfterViewInit {
-  constructor() { }
+  constructor() {
+    const node = document.createElement('script');
+    node.type = 'text/javascript';
+    node.charset = 'utf-8';
+    node.src = '../../../../assets/wp-content/themes/munza/assets/js/vendor/slidingbar.js';
+    node.async = true;
+    document.body.appendChild(node);
+  }
   ngAfterViewInit(): void {
-    import('../../../../assets/wp-content/themes/munza/assets/js/vendor/slidingbar.js');
   }
 }

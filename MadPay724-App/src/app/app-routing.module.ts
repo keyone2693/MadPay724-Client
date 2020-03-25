@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './views/pages/main/main.component';
 import { InfoComponent } from './views/pages/info/info.component';
+import { MpPreloadingStrategy } from './core/_config/mpPreloadingStrategy';
 
 const routes: Routes = [
   {
@@ -20,7 +21,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    preloadingStrategy: MpPreloadingStrategy
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
