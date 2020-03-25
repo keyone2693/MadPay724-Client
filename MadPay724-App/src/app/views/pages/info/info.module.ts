@@ -13,6 +13,9 @@ import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { QuestionsComponent } from './pages/questions/questions.component';
 import { QuestionsAnswersComponent } from './pages/questions/components/questions-answers/questions-answers.component';
 import { QuestionIntroComponent } from './pages/questions/components/question-intro/question-intro.component';
+import { TariffsComponent } from './pages/tariffs/tariffs.component';
+import { TariffsSectionComponent } from './pages/tariffs/components/tariffs-section/tariffs-section.component';
+import { TariffsIntroComponent } from './pages/tariffs/components/tariffs-intro/tariffs-intro.component';
 
 @NgModule({
   imports: [
@@ -30,9 +33,14 @@ import { QuestionIntroComponent } from './pages/questions/components/question-in
     ContactUsComponent,
     ContactUsIntroComponent,
     ContactComponent,
+    //
     QuestionsComponent,
     QuestionsAnswersComponent,
-    QuestionIntroComponent
+    QuestionIntroComponent,
+//
+    TariffsComponent,
+    TariffsIntroComponent,
+    TariffsSectionComponent
   ]
 })
 export class InfoModule { }

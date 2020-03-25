@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { QuestionsComponent } from './pages/questions/questions.component';
 import { ContactUsComponent } from './pages/contact-us/contact-us.component';
+import { TariffsComponent } from './pages/tariffs/tariffs.component';
 
 const routes: Routes = [
     {
@@ -19,6 +20,11 @@ const routes: Routes = [
         path: 'questions',
         component: QuestionsComponent,
         data: { title: ['سوالات متداول | پرسش و پاسخ'] }
+    },
+    {
+        path: 'tariffs',
+        component: TariffsComponent,
+        data: { title: ['تعرفه های استفاده از سرویس ماد پی'] }
     }
 ]
 

@@ -2359,6 +2359,50 @@ select:focus,textarea:focus,input[type="text"]:focus,input[type="password"]:focu
     padding-bottom: 30px
 }
 
+        #footWrapper .foot-top > .container svg {
+            fill: #ffffff
+        }
+
+        #footWrapper .footer-middle,
+        #footWrapper .footer-middle a {
+            color: #ffffff
+        }
+
+            #footWrapper .footer-middle a,
+            #footWrapper .footer-middle a:hover {
+                color: #ffffff
+            }
+
+            #footWrapper .footer-middle .widget li a:after {
+                background-color: #ffffff
+            }
+
+            #footWrapper .footer-middle .widget h2.widgettitle {
+                color: #ffffff
+            }
+
+        .foot_slrv {
+            fill: url(#foot_grad)
+        }
+
+        #footWrapper .footer_bg:before {
+            background-image: url('../../../../uploads/2019/03/foot_bg.png') !important;
+            background-repeat: no-repeat;
+            background-position: 0 100%;
+            background-size: inherit
+        }
+
+        #footWrapper .footer-bottom {
+            color: #ffffff
+        }
+
+            #footWrapper .footer-bottom a {
+                color: #ffffff
+            }
+
+                #footWrapper .footer-bottom a:after {
+                    background-color: #ffffff
+                }
 /* ==========================================================================
   6. TYPOGRAPHY.
 ============================================================================= */
