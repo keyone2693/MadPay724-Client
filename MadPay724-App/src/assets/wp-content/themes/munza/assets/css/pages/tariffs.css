@@ -958,4 +958,6 @@
 
 .itr_logo{
     z-index: 9999;
+}.top-head.sticky-head .itr_head_wrap .slurve-svg{
+    display: none !important;
 }

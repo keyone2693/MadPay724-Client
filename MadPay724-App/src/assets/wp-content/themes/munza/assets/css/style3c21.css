@@ -2757,8 +2757,8 @@ dd {
 --------------------- 4.1. Blog -------------------- */
 .blog-posts .post-item .inner_post_item{
     position: relative;
-    margin-bottom: 30px;
-    padding-bottom: 30px;
+    margin-bottom: 10px;
+    padding-bottom: 0px;
 }
 .blog-posts .post-item .abs_bg{
     position: relative;
@@ -2832,7 +2832,7 @@ dd {
     transform: skew(0deg, 5deg);
 }
 .post-info {
-    padding: 30px 30px 0;
+    padding: 0px 30px;
 }
 .post-info h3.itr-post-title,.post-info h2.itr-post-title{
     font-size: 36px;
@@ -2976,7 +2976,7 @@ ul.post-meta li i,.singl_cat_lbl i{
     font-size: 18px;
 }
 .post-item .more_container{
-    margin: 30px auto 17px;
+    margin: 0px auto 15px;
     text-align: center;
     position: relative;
     border-bottom: 1px #e6e6e6 solid;

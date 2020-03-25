@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './views/pages/main/main.component';
 import { InfoComponent } from './views/pages/info/info.component';
 import { MpPreloadingStrategy } from './core/_config/mpPreloadingStrategy';
+import { BlogComponent } from './views/pages/blog/blog.component';
 
 const routes: Routes = [
   {
@@ -16,12 +17,18 @@ const routes: Routes = [
     data: { preload: true }
   },
   {
+    path: 'blog', component: BlogComponent,
+    loadChildren: () => import('./views/pages/blog/blog.module').then(p => p.BlogModule),
+    data: { preload: true }
+  },
+  {
     path: '**' , redirectTo: 'main/home', pathMatch: 'full'
   }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
+    scrollPositionRestoration: 'enabled',
     preloadingStrategy: MpPreloadingStrategy
   })],
   exports: [RouterModule]
