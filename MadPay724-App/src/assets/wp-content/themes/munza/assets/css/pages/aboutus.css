@@ -784,7 +784,10 @@
     left: 0;
     z-index: 5;
 }
-
+.top-head .container {
+    width: 100%;
+    padding: 0 15px;
+}
 .site_logo{
 	content:url('../../images/logo/black-2.png');
 }

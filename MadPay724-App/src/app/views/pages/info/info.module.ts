@@ -10,6 +10,9 @@ import { ExplanationComponent } from './pages/about-us/components/explanation/ex
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { ContactComponent } from './pages/contact-us/components/contact/contact.component';
 import { ContactUsComponent } from './pages/contact-us/contact-us.component';
+import { QuestionsComponent } from './pages/questions/questions.component';
+import { QuestionsAnswersComponent } from './pages/questions/components/questions-answers/questions-answers.component';
+import { QuestionIntroComponent } from './pages/questions/components/question-intro/question-intro.component';
 
 @NgModule({
   imports: [
@@ -26,7 +29,10 @@ import { ContactUsComponent } from './pages/contact-us/contact-us.component';
     //
     ContactUsComponent,
     ContactUsIntroComponent,
-    ContactComponent
+    ContactComponent,
+    QuestionsComponent,
+    QuestionsAnswersComponent,
+    QuestionIntroComponent
   ]
 })
 export class InfoModule { }

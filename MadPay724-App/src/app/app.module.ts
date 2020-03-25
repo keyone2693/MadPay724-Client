@@ -17,7 +17,7 @@ import { HeaderComponent } from './views/layout/header/header.component';
 import { SearchBarComponent } from './views/layout/search-bar/search-bar.component';
 import { FooterComponent } from './views/layout/footer/footer.component';
 import { SlidingBarComponent } from './views/layout/sliding-bar/sliding-bar.component';
-import { StyleService } from './core/_services/common/style.service';
+import { StyleScriptService } from './core/_services/common/styleScript.service';
 
 
 
@@ -66,7 +66,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     MpPreloadingStrategy,
     ErrorInterceptorProvider,
     TitleService,
-    StyleService
+    StyleScriptService
   ],
   entryComponents: [NotyfToast],
   bootstrap: [AppComponent]

@@ -22,8 +22,9 @@
 ============================================================================= */
 #menu-main-menu,.itr-head-btns{
     background: transparent;
-    border-radius: 70px;
-
+}
+.svg-header-shape{
+    display: none !important;
 }
 .slbar_btn,.open_search{
     cursor: pointer;

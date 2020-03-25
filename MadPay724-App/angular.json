@@ -29,14 +29,12 @@
                         "src/assets/wp-content/plugins/js_composer/assets/lib/bower/font-awesome/css/font-awesome.mine23c.css",
                         "src/assets/wp-content/plugins/munza-core/assets/front/css/vendor/slick.slider3c21.css",
                         "src/assets/wp-content/themes/munza/assets/css/style3c21.css",
-                        "src/assets/wp-content/themes/munza/assets/css/inlinethemecss.css",
                         "src/assets/wp-content/plugins/munza-core/assets/front/css/vendor/recent-posts3c21.css",
                         "src/assets/wp-content/themes/munza/rtl.css",
                         "src/styles.css"
                       ],
             "scripts": [
                          "src/assets/wp-includes/js/jquery/jqueryb8ff.js",
-                         "src/assets/wp-content/themes/munza/assets/js/vendor/skrollr.js",
                          "src/assets/wp-content/plugins/munza-core/assets/front/js/vendor/jquery.appear.min.js",
                          "src/assets/wp-content/plugins/munza-core/assets/front/js/script.js",
                          "src/assets/wp-content/themes/munza/assets/js/vendor/modernizr.js",

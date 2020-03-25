@@ -1,6 +1,6 @@
 
-import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
-import { StyleService } from 'src/app/core/_services/common/style.service';
+import { Component, OnDestroy } from '@angular/core';
+import { StyleScriptService } from 'src/app/core/_services/common/styleScript.service';
 
 @Component({
   selector: 'app-main',
@@ -9,7 +9,7 @@ import { StyleService } from 'src/app/core/_services/common/style.service';
 })
 export class MainComponent implements OnDestroy {
 
-  constructor(private styleService: StyleService) {
+  constructor(private styleService: StyleScriptService) {
     const maincssUrl = '../../../../assets/wp-content/themes/munza/assets/css/pages/main-home.css';
     this.styleService.addStyle('main-home', maincssUrl);
    }

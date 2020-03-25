@@ -911,4 +911,7 @@
     top: 0;
     left: 0;
     z-index: 5;
+}.top-head .container {
+    width: 100%;
+    padding: 0 15px;
 }

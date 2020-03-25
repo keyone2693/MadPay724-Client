@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { StyleService } from 'src/app/core/_services/common/style.service';
+import { StyleScriptService } from 'src/app/core/_services/common/styleScript.service';
 
 @Component({
   selector: 'app-about-us',
@@ -7,7 +7,7 @@ import { StyleService } from 'src/app/core/_services/common/style.service';
   styleUrls: ['./about-us.component.css']
 })
 export class AboutUsComponent implements OnDestroy {
-  constructor(private styleService: StyleService) {
+  constructor(private styleService: StyleScriptService) {
     const aboutusUrl = '../../../../../../assets/wp-content/themes/munza/assets/css/pages/aboutus.css';
     this.styleService.addStyle("aboutus", aboutusUrl);
   }

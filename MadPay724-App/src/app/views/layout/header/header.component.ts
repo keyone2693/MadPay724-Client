@@ -1,11 +1,11 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements AfterViewInit {
+export class HeaderComponent implements OnInit {
   constructor() {
     const node = document.createElement('script');
     node.type = 'text/javascript';
@@ -14,6 +14,7 @@ export class HeaderComponent implements AfterViewInit {
     node.async = true;
     document.body.appendChild(node);
   }
-  ngAfterViewInit(): void {
+  ngOnInit() {
+    
   }
 }

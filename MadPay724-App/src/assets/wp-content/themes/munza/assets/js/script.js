@@ -195,26 +195,26 @@ var MunzaTM = MunzaTM || {};
 		},
 
 		// itr_parallax: function(){
-		// 	if( $('.skrollr').length > 0 ){
-		// 		if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+		 	// if( $('.skrollr').length > 0 ){
+		 	// 	if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 
-		// 		}else {
-		// 			$('.skrollr').each(function(){
-		// 				var th = $(this);
-		// 				if( th.hasClass('itr-parallax-element')){
-		// 					var tp = Math.round( parseInt(th.offset().top,10) + ( parseInt(th.outerHeight(),10)) * 2 ),
-		// 						el = th.attr('data-last-att');
-		// 					th.attr('data-'+tp, el);
-		// 				}
-		// 			});
-		// 			skrollr.init({
-		// 				smoothScrolling: true,
-		// 				mobileDeceleration: 0.004,
-		// 				forceHeight: false
-		// 			});
-		// 		}
-		// 	}
-		// },
+		 	// 	}else {
+		 	// 		$('.skrollr').each(function(){
+		 	// 			var th = $(this);
+		 	// 			if( th.hasClass('itr-parallax-element')){
+			// 				var tp = Math.round( parseInt(th.offset().top,10) + ( parseInt(th.outerHeight(),10)) * 2 ),
+			// 					el = th.attr('data-last-att');
+		 	// 				th.attr('data-'+tp, el);
+		 	// 			}
+		 	// 		});
+		 	// 		skrollr.init({
+		 	// 			smoothScrolling: true,
+		 	// 			mobileDeceleration: 0.004,
+		 	// 			forceHeight: false
+		 	// 		});
+		 	// 	}
+		 	// }
+// },
 
 		// itr_isotope: function(){
 		// 	if($('#itr_blog_content.masonry').length){
