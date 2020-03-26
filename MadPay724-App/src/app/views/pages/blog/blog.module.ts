@@ -11,6 +11,8 @@ import { BlogPostIntroComponent } from './pages/blog-post/components/blog-post-i
 import { BlogPostSidebarComponent } from './pages/blog-post/components/blog-post-sidebar/blog-post-sidebar.component';
 import { BlogPostContentComponent } from './pages/blog-post/components/blog-post-content/blog-post-content.component';
 import { BlogPostComponent } from './pages/blog-post/blog-post.component';
+import { BlogService } from 'src/app/core/_services/blog/blog.service';
+import { BlogResolver } from 'src/app/core/_base/resolvers/blog/BlogResolver.resolver';
 
 @NgModule({
   imports: [
@@ -30,6 +32,9 @@ import { BlogPostComponent } from './pages/blog-post/blog-post.component';
     BlogPostIntroComponent,
     BlogPostSidebarComponent,
     BlogPostContentComponent
+  ], providers: [
+    BlogService,
+    BlogResolver
   ]
 })
 export class BlogModule { }
