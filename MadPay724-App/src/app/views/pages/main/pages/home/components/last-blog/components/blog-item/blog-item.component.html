@@ -3,14 +3,14 @@
     <img
       width="349"
       height="349"
-      [src]="blog.picAddress"
+      src="{{blog.picAddress}}?quality=60"
       class="attachment-large"
       alt="{{blog.title}}"
       srcset="
-        {{blog.picAddress}},
-        {{blog.picAddress}} 300w,
-        {{blog.picAddress}} 100w,
-        {{blog.picAddress}} 150w
+        {{blog.picAddress}}?quality=60,
+        {{blog.picAddress}}?w=300 300w,
+        {{blog.picAddress}}?w=100 100w,
+        {{blog.picAddress}}?w=150 150w
       "
       sizes="(max-width: 349px) 100vw, 349px"
     />
