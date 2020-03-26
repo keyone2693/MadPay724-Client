@@ -21,8 +21,8 @@ export class HomeComponent implements OnDestroy, OnInit {
   }
   loadHomeData() {
     this.subManager.add(
-      this.route.data.subscribe((data: ApiReturn<HomeData>) => {
-        this.homeData = data.result;
+      this.route.data.subscribe(data=> {
+        this.homeData = data.homeData.result;
       })
     );
   }

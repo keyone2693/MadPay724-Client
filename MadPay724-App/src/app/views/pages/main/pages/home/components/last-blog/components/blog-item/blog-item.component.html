@@ -1,0 +1,25 @@
+<a [routerLink]="['/blog/post']"  class="itr-feature text-center style1">
+  <figure class="feature-img rounded">
+    <img
+      width="349"
+      height="349"
+      [src]="blog.picAddress"
+      class="attachment-large"
+      alt="{{blog.title}}"
+      srcset="
+        {{blog.picAddress}},
+        {{blog.picAddress}} 300w,
+        {{blog.picAddress}} 100w,
+        {{blog.picAddress}} 150w
+      "
+      sizes="(max-width: 349px) 100vw, 349px"
+    />
+  </figure>
+  <h4 class="feature_title">{{blog.title}}</h4>
+  <h6 class="feature_sub main-color">
+   {{blog.title}}
+  </h6>
+  <div class="feature_content">
+   {{blog.summerText}} ...
+  </div>
+</a>

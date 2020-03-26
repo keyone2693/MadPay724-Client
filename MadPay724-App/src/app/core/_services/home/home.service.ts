@@ -14,6 +14,6 @@ export class HomeService {
   constructor(private http: HttpClient) { }
 
   getHomeData(): Observable<ApiReturn<HomeData>> {
-    return this.http.get<ApiReturn<HomeData>>(this.baseUrl + 'home/date');
+    return this.http.get<ApiReturn<HomeData>>(this.baseUrl + 'home/data');
   }
 }

@@ -12,6 +12,8 @@ import { CostumerComponent } from './pages/home/components/costumer/costumer.com
 import { HomeComponent } from './pages/home/home.component';
 import { HomeService } from 'src/app/core/_services/home/home.service';
 import { HomeResolver } from 'src/app/core/_base/resolvers/home/home.resolver';
+import { FeedbackItemComponent } from './pages/home/components/feedback/components/feedback-item/feedback-item.component';
+import { BlogItemComponent } from './pages/home/components/last-blog/components/blog-item/blog-item.component';
 
 @NgModule({
   imports: [
@@ -25,9 +27,11 @@ import { HomeResolver } from 'src/app/core/_base/resolvers/home/home.resolver';
     FeedbackComponent,
     StandardInfoComponent,
     LastBlogComponent,
+    BlogItemComponent,
     KnowInfoComponent,
     CostumerComponent,
-    HomeComponent
+    HomeComponent,
+    FeedbackItemComponent
   ], providers: [
     HomeService,
     HomeResolver
