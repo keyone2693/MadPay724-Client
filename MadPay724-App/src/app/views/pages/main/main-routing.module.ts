@@ -5,7 +5,7 @@ import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
     {
-        path: 'home',
+        path: '',
         component: HomeComponent,
         data: { title: ['مادپی 724 | درگاه واسط بانکی'] }
     }

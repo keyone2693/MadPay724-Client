@@ -7,7 +7,7 @@ import { BlogComponent } from './views/pages/blog/blog.component';
 
 const routes: Routes = [
   {
-    path: 'main', component: MainComponent,
+    path: '', component: MainComponent,
     loadChildren: () => import('./views/pages/main/main.module').then(p => p.MainModule),
     data: {preload: true}
   },
@@ -22,7 +22,7 @@ const routes: Routes = [
     data: { preload: true }
   },
   {
-    path: '**' , redirectTo: 'main/home', pathMatch: 'full'
+    path: '**' , redirectTo: '', pathMatch: 'full'
   }
 ];
 

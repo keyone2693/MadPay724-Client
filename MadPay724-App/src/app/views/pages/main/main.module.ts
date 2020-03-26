@@ -10,6 +10,8 @@ import { LastBlogComponent } from './pages/home/components/last-blog/last-blog.c
 import { KnowInfoComponent } from './pages/home/components/know-info/know-info.component';
 import { CostumerComponent } from './pages/home/components/costumer/costumer.component';
 import { HomeComponent } from './pages/home/home.component';
+import { HomeService } from 'src/app/core/_services/home/home.service';
+import { HomeResolver } from 'src/app/core/_base/resolvers/home/home.resolver';
 
 @NgModule({
   imports: [
@@ -26,6 +28,9 @@ import { HomeComponent } from './pages/home/home.component';
     KnowInfoComponent,
     CostumerComponent,
     HomeComponent
+  ], providers: [
+    HomeService,
+    HomeResolver
   ]
 })
 export class MainModule { }
