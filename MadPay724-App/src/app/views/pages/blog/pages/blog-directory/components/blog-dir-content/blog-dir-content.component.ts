@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { BlogDirectoryData } from 'src/app/data/models/blog/blogDirectoryData';
 
 @Component({
   selector: 'app-blog-dir-content',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./blog-dir-content.component.css']
 })
 export class BlogDirContentComponent implements OnInit {
-
+  @Input() blogDirData: BlogDirectoryData
   constructor() { }
 
   ngOnInit() {

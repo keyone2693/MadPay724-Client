@@ -13,11 +13,13 @@ import { BlogPostContentComponent } from './pages/blog-post/components/blog-post
 import { BlogPostComponent } from './pages/blog-post/blog-post.component';
 import { BlogService } from 'src/app/core/_services/blog/blog.service';
 import { BlogResolver } from 'src/app/core/_base/resolvers/blog/BlogResolver.resolver';
+import { PersianPipeModule } from 'src/app/shared/modules/common/persianPipe.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    BlogRoutingModule
+    BlogRoutingModule,
+    PersianPipeModule
   ],
   declarations: [
     BlogComponent,
