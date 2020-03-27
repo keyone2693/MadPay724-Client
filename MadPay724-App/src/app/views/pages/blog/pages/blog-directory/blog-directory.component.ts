@@ -21,8 +21,6 @@ export class BlogDirectoryComponent implements OnDestroy, OnInit {
     private blogService: BlogService, private alertService:ToastrService) {
   }
   ngOnInit() {
-    //console.log(this.router.);
-
     this.styleService.addStyle("blog-dir", '../../../../../../assets/wp-content/themes/munza/assets/css/pages/blog-dir.css');
     this.loadBlogDirData();
   }
@@ -32,26 +30,6 @@ export class BlogDirectoryComponent implements OnDestroy, OnInit {
         this.blogDirData = data.blogDirData;
       })
     );
-  }
-  applyFilter(filterStr: string) {
-    if (filterStr) {
-      this.filter = filterStr;
-    }
-    const pagination = this.blogDirData.blogs.pagination;
-
-    this.subManager.add(
-      this.blogService.getBlogs(
-        pagination.currentPage, pagination.itemsPerPage,
-        this.filter).subscribe((data) => {
-          this.blogDirData = data;
-        }, error => {
-            this.alertService.error(error);
-        })
-    );
-  }
-  applyPage(page: number) {
-    this.blogDirData.blogs.pagination.currentPage = page - 1;
-    this.applyFilter('');
   }
   ngOnDestroy() {
     this.styleService.removeStyle("blog-dir");

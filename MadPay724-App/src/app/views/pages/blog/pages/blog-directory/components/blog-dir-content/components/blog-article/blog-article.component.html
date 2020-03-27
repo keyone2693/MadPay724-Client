@@ -32,10 +32,10 @@
       </h3>
       <ul class="post-meta">
         <li class="author_meta">
-          <a [routerLink]="['/blog/search',blog.name,'page',pagination.currentPage]"  rel="author">{{blog.name}}</a>
+          <a [routerLink]="['/blog/search',blog.name.toSeoString(),'page',1]"  rel="author">{{blog.name}}</a>
         </li>
         <li class="meta-cat">
-          <a [routerLink]="['/blog/group',blog.blogGroupName,'page',pagination.currentPage]">{{blog.blogGroupName}}</a>
+          <a [routerLink]="['/blog/group',blog.blogGroupName.toSeoString(),'page',1]">{{blog.blogGroupName}}</a>
         </li>
         <li>
           <a [routerLink]="['/blog/post#comments']">0نظر</a>

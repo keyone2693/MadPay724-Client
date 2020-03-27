@@ -24,6 +24,12 @@ const routes: Routes = [
         data: { title: ['مقالات مادپی 724'] }
     },
     {
+        path: 'date/year/:year/month/:month/page/:pageNumber',
+        component: BlogDirectoryComponent,
+        resolve: { blogDirData: BlogResolver },
+        data: { title: ['مقالات مادپی 724'] }
+    },
+    {
         path: 'post',
         component: BlogPostComponent,
         data: { title: ['مقالات مادپی 724'] }
