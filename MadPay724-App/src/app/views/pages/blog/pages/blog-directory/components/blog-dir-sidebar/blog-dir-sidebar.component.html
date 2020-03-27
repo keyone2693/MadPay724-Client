@@ -2,7 +2,7 @@
   <h2 class="widgettitle">پربازدید ترین ها</h2>
   <ul>
     <li *ngFor="let item of blogDirData.mostViewed">
-      <a [routerLink]="['/blog/post']">{{item.title}}</a>
+      <a [routerLink]="['/blog/post',item.id,item.title.toSeoString()]">{{item.title}}</a>
     </li>
   </ul>
 </div>
@@ -10,7 +10,7 @@
   <h2 class="widgettitle">پربحث ترین ها</h2>
   <ul>
     <li *ngFor="let item of blogDirData.mostCommented">
-      <a [routerLink]="['/blog/post']">{{item.title}}</a>
+      <a [routerLink]="['/blog/post',item.id,item.title.toSeoString()]">{{item.title}}</a>
     </li>
   </ul>
 </div>

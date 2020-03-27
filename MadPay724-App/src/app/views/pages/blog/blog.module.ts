@@ -15,6 +15,7 @@ import { BlogService } from 'src/app/core/_services/blog/blog.service';
 import { BlogResolver } from 'src/app/core/_base/resolvers/blog/BlogResolver.resolver';
 import { PersianPipeModule } from 'src/app/shared/modules/common/persianPipe.module';
 import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
+import { BlogPostResolver } from 'src/app/core/_base/resolvers/blog/BlogPostResolver.resolver';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
     BlogPostContentComponent
   ], providers: [
     BlogService,
-    BlogResolver
+    BlogResolver,
+    BlogPostResolver
   ]
 })
 export class BlogModule { }

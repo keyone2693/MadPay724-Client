@@ -5,7 +5,7 @@
   <div class="inner_post_item">
     <div class="post-image">
       <a
-      [routerLink]="['/blog/post']"
+      [routerLink]="['/blog/post',blog.id,blog.title.toSeoString()]"
         class="post-thumbnail"
       >
         <img
@@ -26,7 +26,7 @@
     <div class="post-info">
       <div class="meta_date">{{blog.dateModified | persianDate}}</div>
       <h3 class="itr-post-title">
-        <a [routerLink]="['/blog/post']" rel="bookmark"
+        <a [routerLink]="['/blog/post',blog.id,blog.title.toSeoString()]" rel="bookmark"
           >{{blog.title}}</a
         >
       </h3>
@@ -38,7 +38,7 @@
           <a [routerLink]="['/blog/group',blog.blogGroupName.toSeoString(),'page',1]">{{blog.blogGroupName}}</a>
         </li>
         <li>
-          <a [routerLink]="['/blog/post#comments']">0نظر</a>
+          <a [routerLink]="['/blog/post',blog.id,blog.title.toSeoString(),'#comments']">0نظر</a>
         </li>
         <!-- <li>
           <span class="hidden lk">لایک</span
@@ -54,7 +54,7 @@
         <div class="more_container">
           <a
             class="btn btn-sm box_more"
-            [routerLink]="['/blog/post']"
+            [routerLink]="['/blog/post',blog.id,blog.title.toSeoString()]"
             ><span>ادامه مطلب</span></a
           >
         </div>
@@ -69,7 +69,7 @@
             <div class="jssocials-share jssocials-share-twitter">
               <a
                 target="_blank"
-                href="https://twitter.com/share?url=file%3A%2F%2F%2FH%3A%2FDaneshjooyar%2FFile%2FFiles%2FFiles%2FS03-E04%2FFileNeeded%2FWebUi%2FFile%2Fblog%2Findex.html"
+                href="https://twitter.com/share?url="
                 class="jssocials-share-link"
                 ><i class="fa fa-twitter jssocials-share-logo"></i
                 ><i class="fa fa-twitter jssocials-share-logo"></i
@@ -81,7 +81,7 @@
             <div class="jssocials-share jssocials-share-facebook">
               <a
                 target="_blank"
-                href="https://facebook.com/sharer/sharer.php?u=file%3A%2F%2F%2FH%3A%2FDaneshjooyar%2FFile%2FFiles%2FFiles%2FS03-E04%2FFileNeeded%2FWebUi%2FFile%2Fblog%2Findex.html"
+                href="https://facebook.com/sharer/sharer.php?u="
                 class="jssocials-share-link"
                 ><i class="fa fa-facebook jssocials-share-logo"></i
                 ><i class="fa fa-facebook jssocials-share-logo"></i
@@ -93,7 +93,7 @@
             <div class="jssocials-share jssocials-share-googleplus">
               <a
                 target="_blank"
-                href="https://plus.google.com/share?url=file%3A%2F%2F%2FH%3A%2FDaneshjooyar%2FFile%2FFiles%2FFiles%2FS03-E04%2FFileNeeded%2FWebUi%2FFile%2Fblog%2Findex.html"
+                href="https://plus.google.com/share?url="
                 class="jssocials-share-link"
                 ><i class="fa fa-google jssocials-share-logo"></i
                 ><i class="fa fa-google jssocials-share-logo"></i
@@ -105,7 +105,7 @@
             <div class="jssocials-share jssocials-share-linkedin">
               <a
                 target="_blank"
-                href="https://www.linkedin.com/shareArticle?mini=true&amp;url=file%3A%2F%2F%2FH%3A%2FDaneshjooyar%2FFile%2FFiles%2FFiles%2FS03-E04%2FFileNeeded%2FWebUi%2FFile%2Fblog%2Findex.html"
+                href="https://www.linkedin.com/shareArticle?mini=true&amp;url="
                 class="jssocials-share-link"
                 ><i class="fa fa-linkedin jssocials-share-logo"></i
                 ><i class="fa fa-linkedin jssocials-share-logo"></i
@@ -117,7 +117,7 @@
             <div class="jssocials-share jssocials-share-pinterest">
               <a
                 target="_blank"
-                href="https://pinterest.com/pin/create/bookmarklet/?&amp;url=file%3A%2F%2F%2FH%3A%2FDaneshjooyar%2FFile%2FFiles%2FFiles%2FS03-E04%2FFileNeeded%2FWebUi%2FFile%2Fblog%2Findex.html"
+                href="https://pinterest.com/pin/create/bookmarklet/?&amp;url="
                 class="jssocials-share-link"
                 ><i class="fa fa-pinterest jssocials-share-logo"></i
                 ><i class="fa fa-pinterest jssocials-share-logo"></i

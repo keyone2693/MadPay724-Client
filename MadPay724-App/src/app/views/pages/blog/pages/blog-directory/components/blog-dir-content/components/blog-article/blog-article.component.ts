@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Blog } from 'src/app/data/models/blog/blog';
 import { Pagination } from 'src/app/data/models/common/pagination';
+import 'src/app/shared/extentions/string.extentions';
 
 @Component({
   selector: 'app-blog-article',

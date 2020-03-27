@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { BlogPost } from 'src/app/data/models/blog/blogPost';
 
 @Component({
   selector: 'app-blog-post-content',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./blog-post-content.component.css']
 })
 export class BlogPostContentComponent implements OnInit {
-
+  @Input() blogPostData: BlogPost;
   constructor() { }
 
   ngOnInit() {

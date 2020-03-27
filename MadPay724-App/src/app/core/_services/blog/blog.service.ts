@@ -8,6 +8,7 @@ import { map } from 'rxjs/operators';
 import { BlogDirectory } from 'src/app/data/models/blog/blogDirectory';
 import { ApiReturn } from 'src/app/data/models/common/apiReturn';
 import { BlogDirectoryData } from 'src/app/data/models/blog/blogDirectoryData';
+import {  BlogPost } from 'src/app/data/models/blog/blogPost';
 
 
 @Injectable({
@@ -53,7 +54,7 @@ export class BlogService {
         })
       );
   }
-  getBlog(blogId: string): Observable<Blog> {
-    return this.http.get<Blog>(this.baseUrl + 'users/');
+  getBlog(blogId: string): Observable<ApiReturn<BlogPost>> {
+    return this.http.get<ApiReturn<BlogPost>>(this.baseUrl + 'blogs/' + blogId );
   }
 }

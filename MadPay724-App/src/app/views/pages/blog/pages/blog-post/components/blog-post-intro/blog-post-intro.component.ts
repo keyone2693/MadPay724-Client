@@ -1,6 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { StyleScriptService } from 'src/app/core/_services/common/styleScript.service';
 import * as skrollr from 'src/assets/wp-content/themes/munza/assets/js/vendor/skrollr.js';
+import { Blog } from 'src/app/data/models/blog/blog';
 
 @Component({
   selector: 'app-blog-post-intro',
@@ -8,6 +9,7 @@ import * as skrollr from 'src/assets/wp-content/themes/munza/assets/js/vendor/sk
   styleUrls: ['./blog-post-intro.component.css']
 })
 export class BlogPostIntroComponent implements OnDestroy {
+  @Input() blog: Blog;
   skrollrObj: any;
   constructor(private styleService: StyleScriptService) {
   }

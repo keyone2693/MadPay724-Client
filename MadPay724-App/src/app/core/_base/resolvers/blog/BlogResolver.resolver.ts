@@ -22,7 +22,8 @@ export class BlogResolver implements Resolve<BlogDirectoryData> {
             const pageNumber = (+route.params['pageNumber']) -1;
             return this.blogService.getBlogs(pageNumber, this.pageSize, this.filter, this.sortHe, this.sortDir).pipe(
                 catchError(error => {
-                    this.alertService.error(error, 'خطا');
+                    throwError(error);
+
                     this.router.navigate(['']);
                     return of(null);
                 })
@@ -32,7 +33,8 @@ export class BlogResolver implements Resolve<BlogDirectoryData> {
             const pageNumber = (+route.params['pageNumber']) - 1;
             return this.blogService.getBlogs(pageNumber, this.pageSize, filter.toApiString(), this.sortHe, this.sortDir).pipe(
                 catchError(error => {
-                    this.alertService.error(error, 'خطا');
+                    throwError(error);
+
                     this.router.navigate(['']);
                     return of(null);
                 })
@@ -42,7 +44,8 @@ export class BlogResolver implements Resolve<BlogDirectoryData> {
             const pageNumber = (+route.params['pageNumber']) - 1;
             return this.blogService.getBlogs(pageNumber, this.pageSize, groupName.toApiString(), this.sortHe, this.sortDir).pipe(
                 catchError(error => {
-                    this.alertService.error(error, 'خطا');
+                    throwError(error);
+
                     this.router.navigate(['']);
                     return of(null);
                 })
@@ -53,7 +56,8 @@ export class BlogResolver implements Resolve<BlogDirectoryData> {
             const pageNumber = (+route.params['pageNumber']) - 1;
             return this.blogService.getBlogs(pageNumber, this.pageSize, this.filter, year, month).pipe(
                 catchError(error => {
-                    this.alertService.error(error, 'خطا');
+                    throwError(error);
+
                     this.router.navigate(['']);
                     return of(null);
                 })
