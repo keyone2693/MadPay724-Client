@@ -8,10 +8,19 @@ import { BlogDirectoryData } from 'src/app/data/models/blog/blogDirectoryData';
 })
 export class BlogDirContentComponent implements OnInit {
   @Input() blogDirData: BlogDirectoryData;
+  @Output() onPageChange: EventEmitter<number> = new EventEmitter<number>();
 
   constructor() { }
 
   ngOnInit() {
+    console.log(this.blogDirData.blogs.pagination.currentPage);
+  }
+  getCurrentPage(page: number):number {
+    return page + 1;
+  }
+
+  pageChanged(page: number) {
+    this.onPageChange.emit(page);
   }
 
 }

@@ -15,9 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 export class BlogDirectoryComponent implements OnDestroy, OnInit {
   subManager = new Subscription();
   blogDirData: BlogDirectoryData;
-
-  pagination: Pagination;
-
+  filter: string = '';
   constructor(private styleService: StyleScriptService, private route: ActivatedRoute,
     private blogService: BlogService, private alertService:ToastrService) {
   }
@@ -29,24 +27,28 @@ export class BlogDirectoryComponent implements OnDestroy, OnInit {
     this.subManager.add(
       this.route.data.subscribe(data => {
         this.blogDirData = data.blogDirData;
-        this.pagination = this.blogDirData.blogs.pagination;
       })
     );
   }
-  applyFilter(filter: string) {
-    if (!filter) {
-      filter = '';
+  applyFilter(filterStr: string) {
+    if (filterStr) {
+      this.filter = filterStr;
     }
+    const pagination = this.blogDirData.blogs.pagination;
+
     this.subManager.add(
       this.blogService.getBlogs(
-        this.pagination.currentPage, this.pagination.itemsPerPage,
-        filter).subscribe((data) => {
+        pagination.currentPage, pagination.itemsPerPage,
+        this.filter).subscribe((data) => {
           this.blogDirData = data;
-          this.pagination = data.blogs.pagination;
         }, error => {
             this.alertService.error(error);
         })
     );
+  }
+  applyPage(page: number) {
+    this.blogDirData.blogs.pagination.currentPage = page - 1;
+    this.applyFilter('');
   }
   ngOnDestroy() {
     this.styleService.removeStyle("blog-dir");

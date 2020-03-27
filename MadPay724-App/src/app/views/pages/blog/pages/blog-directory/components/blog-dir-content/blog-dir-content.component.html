@@ -2,9 +2,9 @@
   <app-blog-article 
   *ngFor="let item of blogDirData.blogs.result
    | paginate: { 
-     id: 'blog-dir-art',
-     itemsPerPage: blogDirData.blogs.pagination.itemsPerPage,
-      currentPage: blogDirData.blogs.pagination.currentPage,
+      id: 'blog-dir-art',
+      itemsPerPage: blogDirData.blogs.pagination.itemsPerPage,
+      currentPage: getCurrentPage(blogDirData.blogs.pagination.currentPage),
       totalItems: blogDirData.blogs.pagination.totalItems
      }"
    [blog]="item"
@@ -57,11 +57,8 @@
                       directionLinks="true"
                       autoHide="true"
                       responsive="true"
-                      previousLabel="صفحه بعد"
-                      nextLabel="صفحه قبل"
-                      screenReaderPaginationLabel="Pagination"
-                      screenReaderPageLabel="page"
-                      screenReaderCurrentLabel="You're on page">
+                      previousLabel="صفحه قبل"
+                      nextLabel="صفحه بعد">
 </pagination-controls>
   <!-- <ul class="page-numbers">
     <li>

@@ -3,13 +3,16 @@
 <div class="container">
   <div class="row flxrow lft-cell">
     <app-blog-dir-content
-     [blogDirData]="blogDirData"
-      class="itr-main-content itr-content-column">
+      [blogDirData]="blogDirData"
+      (onPageChange)="applyPage($event)"
+      class="itr-main-content itr-content-column"
+    >
     </app-blog-dir-content>
-    <app-blog-dir-sidebar 
-    (onFilterChange)="applyFilter($event)"
-    [blogDirData]="blogDirData"
-     class="itr-main-content sidebar">
+    <app-blog-dir-sidebar
+      [blogDirData]="blogDirData"
+      (onFilterChange)="applyFilter($event)"
+      class="itr-main-content sidebar"
+    >
     </app-blog-dir-sidebar>
   </div>
 </div>
