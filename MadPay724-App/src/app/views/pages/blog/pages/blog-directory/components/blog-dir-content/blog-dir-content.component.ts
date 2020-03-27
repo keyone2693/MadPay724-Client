@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { BlogDirectoryData } from 'src/app/data/models/blog/blogDirectoryData';
 
 @Component({
@@ -7,7 +7,8 @@ import { BlogDirectoryData } from 'src/app/data/models/blog/blogDirectoryData';
   styleUrls: ['./blog-dir-content.component.css']
 })
 export class BlogDirContentComponent implements OnInit {
-  @Input() blogDirData: BlogDirectoryData
+  @Input() blogDirData: BlogDirectoryData;
+
   constructor() { }
 
   ngOnInit() {

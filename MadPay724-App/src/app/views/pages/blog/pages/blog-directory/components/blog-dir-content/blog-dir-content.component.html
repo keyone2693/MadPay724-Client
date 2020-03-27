@@ -1,39 +1,79 @@
-
-    <div id="itr_blog_content" class="blog-posts lg-image">
-        <app-blog-article></app-blog-article>
-        <app-blog-article></app-blog-article>
-        <app-blog-article></app-blog-article>
-        <app-blog-article></app-blog-article>
-        <div id="post-2444" class="post-item post-2444 post type-post status-publish format-quote hentry category-commerce post_format-post-format-quote">
-            <div class="main-bg abs_bg">
-                <i class="stline-close-quote abs_qte"></i>
-                <div class="post-info">
-                    <div class="meta_date">مهر ۱۲, ۱۳۹۶</div>
-                    <h3 class="itr-post-title">
-                        <a href="../quote-jersey-family-to-split-jackpot/index.html" rel="bookmark">نقل قول: خانواده جرزی به تقسیم جکپات</a></h3>
-                    <ul class="post-meta">
-                        <li class="author_meta"><a href="../author/admin/index.html" rel="author">مدیر</a></li>
-                        <li class="meta-cat"><a href="../category/commerce/index.html">فروشگاه</a></li>
-                        <li><a href="../quote-jersey-family-to-split-jackpot/index.html#respond">0 نظر</a></li>
-                        <li><span class="hidden lk">لایک</span><span class="hidden unlk">Unلایک</span>
-                            <a href="#" class="jm-post-like" data-post_id="2444" title="لایک">
-                                <i class="fa fa-heart main-color" data-hover="\f08a"></i><span>1</span>
-                            </a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="pager centered">
-        <ul class='page-numbers'>
-            <li>
-                <span aria-current='page' class='page-numbers current'>1</span></li>
-            <li>
-                <a class='page-numbers' href='page/2/index.html'>2</a></li>
-            <li><a class="next page-numbers" href="page/2/index.html"><i class="fa fa-angle-right">
-
-            </i></a>
-        </li>
+<div id="itr_blog_content" class="blog-posts lg-image">
+  <app-blog-article 
+  *ngFor="let item of blogDirData.blogs.result
+   | paginate: { 
+     id: 'blog-dir-art',
+     itemsPerPage: blogDirData.blogs.pagination.itemsPerPage,
+      currentPage: blogDirData.blogs.pagination.currentPage,
+      totalItems: blogDirData.blogs.pagination.totalItems
+     }"
+   [blog]="item"
+   
+   ></app-blog-article>
+  <div
+    id="post-2444"
+    class="post-item post-2444 post type-post status-publish format-quote hentry category-commerce post_format-post-format-quote"
+  >
+    <div class="main-bg abs_bg">
+      <i class="stline-close-quote abs_qte"></i>
+      <div class="post-info">
+        <div class="meta_date">مهر ۱۲, ۱۳۹۶</div>
+        <h3 class="itr-post-title">
+          <a
+            href="../quote-jersey-family-to-split-jackpot/index.html"
+            rel="bookmark"
+            >نقل قول: خانواده جرزی به تقسیم جکپات</a
+          >
+        </h3>
+        <ul class="post-meta">
+          <li class="author_meta">
+            <a href="../author/admin/index.html" rel="author">مدیر</a>
+          </li>
+          <li class="meta-cat">
+            <a href="../category/commerce/index.html">فروشگاه</a>
+          </li>
+          <li>
+            <a href="../quote-jersey-family-to-split-jackpot/index.html#respond"
+              >0 نظر</a
+            >
+          </li>
+          <li>
+            <span class="hidden lk">لایک</span
+            ><span class="hidden unlk">Unلایک</span>
+            <a href="#" class="jm-post-like" data-post_id="2444" title="لایک">
+              <i class="fa fa-heart main-color" data-hover="\f08a"></i
+              ><span>1</span>
+            </a>
+          </li>
         </ul>
+      </div>
     </div>
+  </div>
+</div>
+
+<div class="pager centered">
+  <pagination-controls class="mypagination"  id="blog-dir-art"
+                      (pageChange)="pageChanged($event)"
+                      directionLinks="true"
+                      autoHide="true"
+                      responsive="true"
+                      previousLabel="صفحه بعد"
+                      nextLabel="صفحه قبل"
+                      screenReaderPaginationLabel="Pagination"
+                      screenReaderPageLabel="page"
+                      screenReaderCurrentLabel="You're on page">
+</pagination-controls>
+  <!-- <ul class="page-numbers">
+    <li>
+      <span aria-current="page" class="page-numbers current">1</span>
+    </li>
+    <li>
+      <a class="page-numbers" href="page/2/index.html">2</a>
+    </li>
+    <li>
+      <a class="next page-numbers" href="page/2/index.html"
+        ><i class="fa fa-angle-right"> </i
+      ></a>
+    </li>
+  </ul> -->
+</div>

@@ -14,12 +14,14 @@ import { BlogPostComponent } from './pages/blog-post/blog-post.component';
 import { BlogService } from 'src/app/core/_services/blog/blog.service';
 import { BlogResolver } from 'src/app/core/_base/resolvers/blog/BlogResolver.resolver';
 import { PersianPipeModule } from 'src/app/shared/modules/common/persianPipe.module';
+import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
 
 @NgModule({
   imports: [
     CommonModule,
     BlogRoutingModule,
-    PersianPipeModule
+    PersianPipeModule,
+    NgxPaginationModule
   ],
   declarations: [
     BlogComponent,

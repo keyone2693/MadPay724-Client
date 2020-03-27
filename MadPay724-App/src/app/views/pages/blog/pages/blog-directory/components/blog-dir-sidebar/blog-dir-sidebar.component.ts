@@ -23,7 +23,7 @@ export class BlogDirSidebarComponent implements OnInit {
   }
   toFilterDate(dt: Date): string {
     let month = dt.getMonth() + 1;
-    let monthstr = month;
+    let monthstr = month.toString();
     switch (month) {
       case 1:
         monthstr = '01';

@@ -11,48 +11,46 @@
         <img
           width="1024"
           height="680"
-          src="../../../../../../../../assets/wp-content/uploads/2017/10/blog3-1024x680.jpg"
+          src="{{blog.picAddress}}?h=150"
           class="attachment-large size-large wp-post-image"
-          alt=""
+          alt="{{blog.title}}"
           srcset="
-            ../../../../../../../../assets/wp-content/uploads/2017/10/blog3.jpg         1024w,
-            ../../../../../../../../assets/wp-content/uploads/2017/10/blog3-600x398.jpg  600w,
-            ../../../../../../../../assets/wp-content/uploads/2017/10/blog3-300x199.jpg  300w,
-            ../../../../../../../../assets/wp-content/uploads/2017/10/blog3-768x510.jpg  768w
+            {{blog.picAddress}}?w=1024         1024w,
+            {{blog.picAddress}}?w=600  600w,
+            {{blog.picAddress}}?w=300  300w,
+            {{blog.picAddress}}?w=768  768w
           "
           sizes="(max-width: 1024px) 100vw, 1024px"
       /></a>
     </div>
     <div class="post-info">
-      <div class="meta_date">مهر ۱۲, ۱۳۹۶</div>
+      <div class="meta_date">{{blog.dateModified | persianDate}}</div>
       <h3 class="itr-post-title">
         <a [routerLink]="['/blog/post']" rel="bookmark"
-          >بارش برف در زمستان</a
+          >{{blog.title}}</a
         >
       </h3>
       <ul class="post-meta">
         <li class="author_meta">
-          <a href="../author/admin/index.html" rel="author">مدیر</a>
+          <a href="../author/admin/index.html" rel="author">{{blog.name}}</a>
         </li>
         <li class="meta-cat">
-          <a href="../category/entertainment/index.html">سرگرمی</a>
+          <a href="../category/entertainment/index.html">{{blog.blogGroupName}}</a>
         </li>
         <li>
-          <a href="../snow-covered-trees-in-winter/index.html#comments">2نظر</a>
+          <a href="../snow-covered-trees-in-winter/index.html#comments">0نظر</a>
         </li>
-        <li>
+        <!-- <li>
           <span class="hidden lk">لایک</span
           ><span class="hidden unlk">Unلایک</span
           ><a href="#" class="jm-post-like" data-post_id="114" title="لایک">
             <i class="fa fa-heart main-color" data-hover="\f08a"></i
             ><span>3</span></a
           >
-        </li>
+        </li> -->
       </ul>
       <div class="entry-content">
-        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده
-        از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
-        سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد
+      {{blog.summerText}}
         <div class="more_container">
           <a
             class="btn btn-sm box_more"

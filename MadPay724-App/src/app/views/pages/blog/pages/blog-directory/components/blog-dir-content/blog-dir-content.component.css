@@ -1,0 +1,40 @@
+.mypagination {
+  text-align: center;
+}
+.mypagination /deep/ .ngx-pagination a,.mypagination /deep/ .ngx-pagination button{
+    padding: 0 !important;
+    background: transparent !important;
+      transition: all 0.5s;
+
+}
+.mypagination /deep/ .ngx-pagination .pagination-previous.disabled,
+.mypagination /deep/ .ngx-pagination .pagination-next.disabled {
+    background-color: #e6e6e6 ;
+    cursor: no-drop;
+
+}
+.mypagination /deep/ .ngx-pagination li {
+  padding: 7px 15px;
+  border-radius: 50px;
+  font-size: 15px;
+  background-color: #fff;
+  -webkit-box-shadow: 0 6px 20px 0 rgba(10, 10, 10, 0.15);
+  box-shadow: 0 6px 20px 0 rgba(10, 10, 10, 0.15);
+  cursor: pointer;
+  transition: all 0.5s;
+}
+.mypagination /deep/ .ngx-pagination li:hover {
+  background-color: #e6e6e6 ;
+}
+.mypagination /deep/ .ngx-pagination li:hover  a {
+    color:#ef2674 !important;
+  background-color: #e6e6e6 ;
+}
+.mypagination /deep/ .ngx-pagination .current {
+  background: #ef2674 !important;
+}
+
+.mypagination /deep/ .ngx-pagination .current:hover {
+      color: #fff !important;
+  background: #ef2674 !important;
+}
