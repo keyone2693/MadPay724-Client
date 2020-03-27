@@ -8,7 +8,7 @@
 .mypagination /deep/ .ngx-pagination a,.mypagination /deep/ .ngx-pagination button,.mypagination /deep/ .ngx-pagination span{
   padding: 7px 15px;
     background: transparent !important;
-      transition: all 0.5s;
+      transition: all 0.2s;
 
 }
 .mypagination /deep/ .ngx-pagination .pagination-previous.disabled,
@@ -34,9 +34,11 @@
   background-color: #e6e6e6 ;
 }
 .mypagination /deep/ .ngx-pagination .current {
-    padding: 7px 15px;
+    padding: 5px 13px;
 cursor: default;
   background: #ef2674 !important;
+  border: 2px solid #fff;
+
 }
 
 .mypagination /deep/ .ngx-pagination .current:hover {

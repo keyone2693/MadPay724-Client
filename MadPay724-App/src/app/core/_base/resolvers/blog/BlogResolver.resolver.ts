@@ -18,14 +18,37 @@ export class BlogResolver implements Resolve<BlogDirectoryData> {
     constructor(private blogService: BlogService, private router: Router,
         private alertService: ToastrService) { }
     resolve(route: ActivatedRouteSnapshot): Observable<BlogDirectoryData> {
-
-        return this.blogService.getBlogs(this.pageNumber, this.pageSize, this.filter, this.sortHe, this.sortDir).pipe(
-            catchError(error => {
-
-                this.alertService.error(error, 'خطا');
-                this.router.navigate(['']);
-                return of(null);
-            })
-        );
+        if (route.url[0].path === 'page') {
+            const pageNumber = (+route.params['pageNumber']) -1;
+            return this.blogService.getBlogs(pageNumber, this.pageSize, this.filter, this.sortHe, this.sortDir).pipe(
+                catchError(error => {
+                    this.alertService.error(error, 'خطا');
+                    this.router.navigate(['']);
+                    return of(null);
+                })
+            );
+        } else if (route.url[0].path === 'search') {
+            const filter = route.params['filter'];
+            const pageNumber = (+route.params['pageNumber']) - 1;
+            return this.blogService.getBlogs(pageNumber, this.pageSize, filter, this.sortHe, this.sortDir).pipe(
+                catchError(error => {
+                    this.alertService.error(error, 'خطا');
+                    this.router.navigate(['']);
+                    return of(null);
+                })
+            );
+        } else if (route.url[0].path === 'group') {
+            const filter = route.params['name'];
+            const pageNumber = (+route.params['pageNumber']) - 1;
+            return this.blogService.getBlogs(pageNumber, this.pageSize, filter, this.sortHe, this.sortDir).pipe(
+                catchError(error => {
+                    this.alertService.error(error, 'خطا');
+                    this.router.navigate(['']);
+                    return of(null);
+                })
+            );
+        }
+        return of(null);
+        
     }
 }

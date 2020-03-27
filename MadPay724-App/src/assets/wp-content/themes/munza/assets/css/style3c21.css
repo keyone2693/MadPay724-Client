@@ -2781,9 +2781,9 @@ dd {
     top: 0;
     left: 0
 }
-.blog-posts .post-item .abs_bg.main-bg a,.blog-posts .post-item .abs_bg.main-bg ul.post-meta li{
+/* .blog-posts .post-item .abs_bg.main-bg a,.blog-posts .post-item .abs_bg.main-bg ul.post-meta li{
     color: #fff
-}
+} */
 .blog-posts .post-item .abs_bg.main-bg a:hover{
     color: rgba(255,255,255,1.7);
 }

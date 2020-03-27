@@ -13,7 +13,6 @@ export class BlogDirContentComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.blogDirData.blogs.pagination.currentPage);
   }
   getCurrentPage(page: number):number {
     return page + 1;

@@ -32,13 +32,13 @@
       </h3>
       <ul class="post-meta">
         <li class="author_meta">
-          <a href="../author/admin/index.html" rel="author">{{blog.name}}</a>
+          <a [routerLink]="['/blog/search',blog.name,'page',pagination.currentPage]"  rel="author">{{blog.name}}</a>
         </li>
         <li class="meta-cat">
-          <a href="../category/entertainment/index.html">{{blog.blogGroupName}}</a>
+          <a [routerLink]="['/blog/group',blog.blogGroupName,'page',pagination.currentPage]">{{blog.blogGroupName}}</a>
         </li>
         <li>
-          <a href="../snow-covered-trees-in-winter/index.html#comments">0نظر</a>
+          <a [routerLink]="['/blog/post#comments']">0نظر</a>
         </li>
         <!-- <li>
           <span class="hidden lk">لایک</span

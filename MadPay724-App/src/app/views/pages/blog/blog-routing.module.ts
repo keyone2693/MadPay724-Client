@@ -6,7 +6,19 @@ import { BlogResolver } from 'src/app/core/_base/resolvers/blog/BlogResolver.res
 
 const routes: Routes = [
     {
-        path: 'directory',
+        path: 'page/:pageNumber',
+        component: BlogDirectoryComponent,
+        resolve: { blogDirData: BlogResolver },
+        data: { title: ['مقالات مادپی 724'] }
+    },
+    {
+        path: 'search/:filter/page/:pageNumber',
+        component: BlogDirectoryComponent,
+        resolve: { blogDirData: BlogResolver },
+        data: { title: ['مقالات مادپی 724'] }
+    },
+    {
+        path: 'group/:name/page/:pageNumber',
         component: BlogDirectoryComponent,
         resolve: { blogDirData: BlogResolver },
         data: { title: ['مقالات مادپی 724'] }

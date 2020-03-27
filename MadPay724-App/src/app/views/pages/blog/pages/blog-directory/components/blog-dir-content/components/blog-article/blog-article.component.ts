@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Blog } from 'src/app/data/models/blog/blog';
+import { Pagination } from 'src/app/data/models/common/pagination';
 
 @Component({
   selector: 'app-blog-article',
@@ -8,6 +9,7 @@ import { Blog } from 'src/app/data/models/blog/blog';
 })
 export class BlogArticleComponent implements OnInit {
   @Input() blog: Blog;
+  @Input() pagination: Pagination;
 
   constructor() { }
 
