@@ -15,6 +15,8 @@
 .mypagination /deep/ .ngx-pagination .pagination-next.disabled {
     background-color: #e6e6e6 ;
     cursor: no-drop;
+      padding: 7px 15px;
+
 
 }
 .mypagination /deep/ .ngx-pagination li {
