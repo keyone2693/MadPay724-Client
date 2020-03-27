@@ -4,120 +4,52 @@
       <img
         width="1024"
         height="680"
-        src="../../../../../../../../assets/wp-content/uploads/2018/01/blog2.jpg"
+        src="{{blogPostData.blog.picAddress}}?h=680"
         class="attachment-full size-full wp-post-image"
-        alt=""
+        alt="{{blogPostData.blog.title}}"
         srcset="
-          ../../../../../../../../assets/wp-content/uploads/2018/01/blog2.jpg         1024w,
-          ../../../../../../../../assets/wp-content/uploads/2018/01/blog2-600x398.jpg  600w,
-          ../../../../../../../../assets/wp-content/uploads/2018/01/blog2-300x199.jpg  300w,
-          ../../../../../../../../assets/wp-content/uploads/2018/01/blog2-768x510.jpg  768w
+          {{blogPostData.blog.picAddress}}?w=1024 1024w,
+          {{blogPostData.blog.picAddress}}?w=600  600w,
+          {{blogPostData.blog.picAddress}}?w=300  300w,
+          {{blogPostData.blog.picAddress}}?w=768  768w
         "
         sizes="(max-width: 1024px) 100vw, 1024px"
       />
     </div>
     <div class="post-info">
-      <div class="meta_date">دی ۲۱, ۱۳۹۶</div>
-      <h2 class="itr-single-title">همه چیز در مورد تکنولوژی است</h2>
+      <div class="meta_date">{{blogPostData.blog.dateModified | persianDate}} </div>
+      <h2 class="itr-single-title">{{blogPostData.blog.title}}</h2>
       <ul class="post-meta">
-        <li class="meta-user"><a href="../author/admin/index.html">مدیر</a></li>
-        <li><a href="index.html#comments">1 نظر</a></li>
-        <li>
+        <li class="meta-user">
+          <a [routerLink]="['/blog/search',blogPostData.blog.name.toSeoString(),'page',1]">{{blogPostData.blog.name}}</a></li>
+        <li><a [routerLink]="['/blog/post',blogPostData.blog.id,blogPostData.blog.title.toSeoString(),'#comments']">0 نظر</a></li>
+        <!-- <li>
           <span class="hidden lk">لایک</span
           ><span class="hidden unlk">Unلایک</span
           ><a href="#" class="jm-post-like" data-post_id="3582" title="لایک"
             ><i class="fa fa-heart main-color" data-hover="\f08a"></i
             ><span>4</span></a
           >
-        </li>
-        <li>130 بازدید</li>
+        </li> -->
+        <li>{{blogPostData.blog.viewCount}} بازدید</li>
       </ul>
       <div class="itr-single-cats">
         <ul class="post-categories">
           <li>
-            <a href="../category/world/index.html" rel="category tag">جهان</a>
-          </li>
-          <li>
-            <a href="../category/technology/index.html" rel="category tag"
-              >فن آوری</a
-            >
+            <a [routerLink]="['/blog/group',blogPostData.blog.blogGroupName.toSeoString(),'page',1]" rel="category tag">{{blogPostData.blog.blogGroupName}}</a>
           </li>
         </ul>
       </div>
     </div>
 
-    <div class="itr-single-content">
-      <p>
-        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده
-        از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
-        سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای
-        متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه
-        درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با
-        نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان
-        خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد<span id="more-3582"></span>
-      </p>
-      <p>
-        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده
-        از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
-        سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای
-        متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه
-        درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با
-        نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان
-        خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید
-        داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان
-        رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات
-        پیوسته اهل دنیای موجود
-      </p>
-      <p>
-        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده
-        از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
-        سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای
-        متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه
-        درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با
-        نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان
-        خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید
-        داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان
-        رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات
-        پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد. لورم ایپسوم
-        متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-        گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که
-        لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف
-        بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته،
-        حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها
-        شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ
-        پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و
-        دشواری موجود در ارائه راهکارها و شرایط سخت.
-      </p>
-      <blockquote class="bquote-1 shape new-angle">
-        <p>
-          لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده
-          از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
-          سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای
-          متنوع با هدف بهبود ابزارهای کاربردی می باشد<br />
-          <span class="main-color">– آرش خادملو “rtl-theme.com”</span>
-        </p>
-      </blockquote>
-      <p>
-        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده
-        از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
-        سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای
-        متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه
-        درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با
-        نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان
-        خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید
-        داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان
-        رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات
-        پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد. لورم ایپسوم
-        متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-        گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که
-        لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف
-        بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته،
-        حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد.
-      </p>
+    <div
+    [innerHtml]="blogPostData.blog.text | safeHtml"
+    class="itr-single-content" >
     </div>
 
     <div class="itr-post-block itr-single-tags">
-      <a href="../tag/template/index.html" rel="tag">قالب</a>
+      <a *ngFor="let tag of blogPostData.blog.tags.split(',')" 
+      [routerLink]="['/blog/search',tag.toSeoString(),'page',1]" rel="tag">{{tag}}</a>
     </div>
     <div class="itr-post-block itr_post_share">
       <span class="main-color">اشتراک: </span>
@@ -129,7 +61,7 @@
           <div class="jssocials-share jssocials-share-twitter">
             <a
               target="_blank"
-              href="https://twitter.com/share?url=file%3A%2F%2F%2FH%3A%2FDaneshjooyar%2FFile%2FFiles%2FFiles%2FS03-E04%2FFileNeeded%2FWebUi%2FFile%2Fit-all-about-technology%2Findex.html&amp;text=%D9%87%D9%85%D9%87%20%DA%86%DB%8C%D8%B2%20%D8%AF%D8%B1%20%D9%85%D9%88%D8%B1%D8%AF%20%D8%AA%DA%A9%D9%86%D9%88%D9%84%D9%88%DA%98%DB%8C%20%D8%A7%D8%B3%D8%AA"
+              href="https://twitter.com/share?url="
               class="jssocials-share-link"
               ><i class="fa fa-twitter jssocials-share-logo"></i
               ><i class="fa fa-twitter jssocials-share-logo"></i
@@ -141,7 +73,7 @@
           <div class="jssocials-share jssocials-share-facebook">
             <a
               target="_blank"
-              href="https://facebook.com/sharer/sharer.php?u=file%3A%2F%2F%2FH%3A%2FDaneshjooyar%2FFile%2FFiles%2FFiles%2FS03-E04%2FFileNeeded%2FWebUi%2FFile%2Fit-all-about-technology%2Findex.html"
+              href="https://facebook.com/sharer/sharer.php?u="
               class="jssocials-share-link"
               ><i class="fa fa-facebook jssocials-share-logo"></i
               ><i class="fa fa-facebook jssocials-share-logo"></i
@@ -153,7 +85,7 @@
           <div class="jssocials-share jssocials-share-googleplus">
             <a
               target="_blank"
-              href="https://plus.google.com/share?url=file%3A%2F%2F%2FH%3A%2FDaneshjooyar%2FFile%2FFiles%2FFiles%2FS03-E04%2FFileNeeded%2FWebUi%2FFile%2Fit-all-about-technology%2Findex.html"
+              href="https://plus.google.com/share?url="
               class="jssocials-share-link"
               ><i class="fa fa-google jssocials-share-logo"></i
               ><i class="fa fa-google jssocials-share-logo"></i
@@ -165,7 +97,7 @@
           <div class="jssocials-share jssocials-share-linkedin">
             <a
               target="_blank"
-              href="https://www.linkedin.com/shareArticle?mini=true&amp;url=file%3A%2F%2F%2FH%3A%2FDaneshjooyar%2FFile%2FFiles%2FFiles%2FS03-E04%2FFileNeeded%2FWebUi%2FFile%2Fit-all-about-technology%2Findex.html"
+              href="https://www.linkedin.com/shareArticle?mini=true&amp;url="
               class="jssocials-share-link"
               ><i class="fa fa-linkedin jssocials-share-logo"></i
               ><i class="fa fa-linkedin jssocials-share-logo"></i
@@ -177,7 +109,7 @@
           <div class="jssocials-share jssocials-share-pinterest">
             <a
               target="_blank"
-              href="https://pinterest.com/pin/create/bookmarklet/?&amp;url=file%3A%2F%2F%2FH%3A%2FDaneshjooyar%2FFile%2FFiles%2FFiles%2FS03-E04%2FFileNeeded%2FWebUi%2FFile%2Fit-all-about-technology%2Findex.html&amp;description=%D9%87%D9%85%D9%87%20%DA%86%DB%8C%D8%B2%20%D8%AF%D8%B1%20%D9%85%D9%88%D8%B1%D8%AF%20%D8%AA%DA%A9%D9%86%D9%88%D9%84%D9%88%DA%98%DB%8C%20%D8%A7%D8%B3%D8%AA"
+              href="https://pinterest.com/pin/create/bookmarklet/?&amp;url="
               class="jssocials-share-link"
               ><i class="fa fa-pinterest jssocials-share-logo"></i
               ><i class="fa fa-pinterest jssocials-share-logo"></i
@@ -189,86 +121,62 @@
         </div>
       </div>
     </div>
-    <div class="itr-post-block nav-single">
-      <div class="nav-previous">
-        <a href="../gallery-grid-post-format/index.html" rel="prev"
+    <div *ngIf="blogPostData.leftBlog != null || blogPostData.rightBlog != null" class="itr-post-block nav-single">
+      <div  *ngIf="blogPostData.leftBlog != null" class="nav-previous">
+        <a  [routerLink]="['/blog/post',blogPostData.leftBlog.id,blogPostData.leftBlog.title.toSeoString()]" rel="prev"
           ><span class="meta-nav"
             ><i class="fa fa-long-arrow-left"></i>پست قبلی
           </span>
-          <span class="nav-block main-color">قالب پست گالری شبکه ای</span></a
+          <span class="nav-block main-color">{{blogPostData.leftBlog.title}}</span></a
         >
       </div>
-      <a href="../blog/index.html" class="nav-blog main-color"
+      <a [routerLink]="['']" class="nav-blog main-color"
         ><i class="stline-navigation-menu-3"></i
       ></a>
-      <div class="nav-next text-right">
-        <a href="../festival-hands-up-people-partying/index.html" rel="next"
+      <div *ngIf="blogPostData.rightBlog != null" class="nav-next text-right">
+        <a [routerLink]="['/blog/post',blogPostData.rightBlog.id,blogPostData.rightBlog.title.toSeoString()]" rel="next"
           ><span class="meta-nav"
             >پست بعدی <i class="fa fa-long-arrow-right"></i
           ></span>
-          <span class="nav-block main-color">جشنواره مردم عروسی</span></a
+          <span class="nav-block main-color">{{blogPostData.rightBlog.title}}</span></a
         >
       </div>
     </div>
     <div class="itr-related-posts">
       <h3 class="itr-inner-heading">
-        ممکنه <span class="main-color">همچنین می خواهم</span>
+        بلاگ های مرتبط <span class="main-color">این پست هارو هم بخون</span>
       </h3>
       <div class="row">
-        <div class="col-md-4">
+        <div *ngFor="let blog of blogPostData.relatedBlogs"   class="col-md-4">
           <div class="itr_rel_img">
             <a
-              href="../festival-hands-up-people-partying/index.html"
+              [routerLink]="['/blog/post',blog.id,blog.title.toSeoString()]"
               rel="bookmark"
               ><img
                 width="1024"
                 height="680"
-                src="../../../../../../../../assets/wp-content/uploads/2017/10/blog1-1024x680.jpg"
+                src="{{blog.picAddress}}?h=680"
                 class="attachment-large size-large wp-post-image"
-                alt=""
+                alt="{{blog.title}}"
                 srcset="
-                  ../../../../../../../../assets/wp-content/uploads/2017/10/blog1.jpg         1024w,
-                  ../../../../../../../../assets/wp-content/uploads/2017/10/blog1-600x398.jpg  600w,
-                  ../../../../../../../../assets/wp-content/uploads/2017/10/blog1-300x199.jpg  300w,
-                  ../../../../../../../../assets/wp-content/uploads/2017/10/blog1-768x510.jpg  768w
+                  {{blog.picAddress}}?w=1024         1024w,
+                  {{blog.picAddress}}?w=600  600w,
+                  {{blog.picAddress}}?w=300  300w,
+                  {{blog.picAddress}}?w=768  768w
                 "
                 sizes="(max-width: 1024px) 100vw, 1024px"
             /></a>
           </div>
           <h5 class="itr_rel_link">
             <a
-              href="../festival-hands-up-people-partying/index.html"
+              [routerLink]="['/blog/post',blog.id,blog.title.toSeoString()]"
               rel="bookmark"
-              >جشنواره مردم عروسی</a
+              >{{blog.title}}</a
             >
           </h5>
-          <div class="itr_rel_date">مهر ۱۲, ۱۳۹۶</div>
+          <div class="itr_rel_date">{{blog.dateModified | persianDate}}</div>
         </div>
-        <div class="col-md-4">
-          <div class="itr_rel_img">
-            <a href="../snow-covered-trees-in-winter/index.html" rel="bookmark"
-              ><img
-                width="1024"
-                height="680"
-                src="../../../../../../../../assets/wp-content/uploads/2017/10/blog3-1024x680.jpg"
-                class="attachment-large size-large wp-post-image"
-                alt=""
-                srcset="
-                  ../../../../../../../../assets/wp-content/uploads/2017/10/blog3.jpg         1024w,
-                  ../../../../../../../../assets/wp-content/uploads/2017/10/blog3-600x398.jpg  600w,
-                  ../../../../../../../../assets/wp-content/uploads/2017/10/blog3-300x199.jpg  300w,
-                  ../../../../../../../../assets/wp-content/uploads/2017/10/blog3-768x510.jpg  768w
-                "
-                sizes="(max-width: 1024px) 100vw, 1024px"
-            /></a>
-          </div>
-          <h5 class="itr_rel_link">
-            <a href="../snow-covered-trees-in-winter/index.html" rel="bookmark"
-              >بارش برف در زمستان</a
-            >
-          </h5>
-          <div class="itr_rel_date">مهر ۱۲, ۱۳۹۶</div>
-        </div>
+    
       </div>
     </div>
 
@@ -276,11 +184,11 @@
       <h3 class="itr-inner-heading">نظرات</h3>
 
       <p class="hint text-right bold">
-        <span class="main-color">۲</span> نظرات
+        <span class="main-color">0</span> نظرات
       </p>
 
       <ul class="comment-list">
-        <li
+        <!-- <li
           id="comment-3"
           class="comment byuser comment-author-admin bypostauthor even thread-even depth-1"
         >
@@ -299,8 +207,6 @@
                 />
                 <b class="fn">مدیر</b> <span class="says">گفت:</span>
               </div>
-              <!-- .comment-author -->
-
               <div class="comment-metadata">
                 <a href="index.html#comment-3">
                   <time datetime="۱۳۹۸/۱/۱۷ ۱۷:۲۴:۵۵">
@@ -308,14 +214,10 @@
                   </time>
                 </a>
               </div>
-              <!-- .comment-metadata -->
             </footer>
-            <!-- .comment-meta -->
-
             <div class="comment-content">
               <p>بهترین طرح بندی رو داره این قالب</p>
             </div>
-            <!-- .comment-content -->
 
             <div class="reply">
               <a
@@ -331,83 +233,11 @@
               >
             </div>
           </article>
-          <!-- .comment-body -->
-        </li>
-        <!-- #comment-## -->
-        <li
-          id="comment-4"
-          class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1"
-        >
-          <article id="div-comment-4" class="comment-body">
-            <footer class="comment-meta">
-              <div class="comment-author vcard">
-                <img
-                  alt=""
-                  src="http://0.gravatar.com/avatar/f6796c48158664cc9e89b7a39e078eb9?s=32&amp;d=mm&amp;r=g"
-                  srcset="
-                    http://0.gravatar.com/avatar/f6796c48158664cc9e89b7a39e078eb9?s=64&amp;d=mm&amp;r=g 2x
-                  "
-                  class="avatar avatar-32 photo"
-                  height="32"
-                  width="32"
-                />
-                <b class="fn">مدیر</b> <span class="says">گفت:</span>
-              </div>
-              <!-- .comment-author -->
-
-              <div class="comment-metadata">
-                <a href="index.html#comment-4">
-                  <time datetime="۱۳۹۸/۱/۱۷ ۱۷:۲۵:۴۲">
-                    فروردین ۱۷, ۱۳۹۸ در ۵:۲۵ ب٫ظ
-                  </time>
-                </a>
-              </div>
-              <!-- .comment-metadata -->
-            </footer>
-            <!-- .comment-meta -->
-
-            <div class="comment-content">
-              <p>کاربردی ترین و بهترین افزونه ها</p>
-            </div>
-            <!-- .comment-content -->
-
-            <div class="reply">
-              <a
-                rel="nofollow"
-                class="comment-reply-link"
-                href="index21b4.html?replytocom=4#respond"
-                data-commentid="4"
-                data-postid="114"
-                data-belowelement="div-comment-4"
-                data-respondelement="respond"
-                aria-label="پاسخ به مدیر"
-                >پاسخ</a
-              >
-            </div>
-          </article>
-          <!-- .comment-body -->
-        </li>
-        <!-- #comment-## -->
+        </li> -->
       </ul>
     </div>
     <div id="respond" class="comment-respond">
-      <h3 id="reply-title" class="comment-reply-title"></h3>
-      <h3 class="itr-inner-heading">
-        ارسال یک <span class="main-color">پاسخ</span>
-      </h3>
-      <small
-        ><a
-          rel="nofollow"
-          id="cancel-comment-reply-link"
-          href="index.html#respond"
-          style="display:none;"
-          >لغو پاسخ</a
-        ></small
-      >
-      <form
-        action="../../../../../../../../assets/wp-comments-post.php"
-        method="post"
-        id="commentform"
+      <div
         class="comment-form"
         novalidate=""
       >
@@ -451,17 +281,6 @@
             required="required"
           />
         </p>
-        <p class="comment-form-url">
-          <label for="url">وب‌سایت</label>
-          <input
-            id="url"
-            name="url"
-            type="url"
-            value=""
-            size="30"
-            maxlength="200"
-          />
-        </p>
         <p class="comment-form-cookies-consent">
           <input
             id="wp-comment-cookies-consent"
@@ -474,37 +293,14 @@
           >
         </p>
         <p class="form-submit">
-          <input
+          <a
             name="submit"
-            type="submit"
-            id="submit"
+            (click)="sendComment"
             class="submit"
             value="ارسال دیدگاه"
-          />
-          <input
-            type="hidden"
-            name="comment_post_ID"
-            value="3582"
-            id="comment_post_ID"
-          />
-          <input
-            type="hidden"
-            name="comment_parent"
-            id="comment_parent"
-            value="0"
-          />
+          ></a>
         </p>
-        <p style="display: none;">
-          <input
-            type="hidden"
-            id="akismet_comment_nonce"
-            name="akismet_comment_nonce"
-            value="94d72e6c7d"
-          />
-        </p>
-        <p style="display: none;"></p>
-        <input type="hidden" id="ak_js" name="ak_js" value="1585144891200" />
-      </form>
+      </div>
     </div>
     <!-- #respond -->
   </article>

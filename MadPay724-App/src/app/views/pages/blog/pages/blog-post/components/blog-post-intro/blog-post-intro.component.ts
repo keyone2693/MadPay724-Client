@@ -1,7 +1,8 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnDestroy, Input } from '@angular/core';
 import { StyleScriptService } from 'src/app/core/_services/common/styleScript.service';
 import * as skrollr from 'src/assets/wp-content/themes/munza/assets/js/vendor/skrollr.js';
 import { Blog } from 'src/app/data/models/blog/blog';
+import 'src/app/shared/extentions/string.extentions';
 
 @Component({
   selector: 'app-blog-post-intro',

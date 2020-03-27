@@ -1,52 +1,53 @@
-                        <div class="widget widget_recent_entries">
-                            <h2 class="widgettitle">نوشته‌های تازه</h2>
-                            <ul>
-                                <li>
-                                    <a href="../it-all-about-technology/index.html">همه چیز در مورد تکنولوژی است</a>
-                                </li>
-                                <li>
-                                    <a href="../festival-hands-up-people-partying/index.html">جشنواره مردم عروسی</a>
-                                </li>
-                                <li>
-                                    <a href="../snow-covered-trees-in-winter/index.html">بارش برف در زمستان</a>
-                                </li>
-                                <li>
-                                    <a href="../gallery-grid-post-format/index.html">قالب پست گالری شبکه ای</a>
-                                </li>
-                                <li>
-                                    <a href="../quote-jersey-family-to-split-jackpot/index.html">نقل قول: خانواده جرزی به تقسیم جکپات</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="widget widget_recent_comments">
-                            <h2 class="widgettitle">آخرین دیدگاه‌ها</h2>
-                            <ul id="recentcomments">
-                                <li class="recentcomments"><span class="comment-author-link">اسدی</span> در <a href="../it-rays-website-has-been-launched/index.html#comment-6">وب سایت ما راه اندازی شده است</a></li>
-                                <li class="recentcomments"><span class="comment-author-link">اسدی</span> در <a href="../product/long-sleeve-tee/index.html#comment-5">محصول شماره ۸</a></li>
-                                <li class="recentcomments"><span class="comment-author-link">مدیر</span> در <a href="../snow-covered-trees-in-winter/index.html#comment-4">بارش برف در زمستان</a></li>
-                                <li class="recentcomments"><span class="comment-author-link">مدیر</span> در <a href="../snow-covered-trees-in-winter/index.html#comment-3">بارش برف در زمستان</a></li>
-                                <li class="recentcomments"><span class="comment-author-link">مدیر</span> در <a href="../it-all-about-technology/index.html#comment-2">همه چیز در مورد تکنولوژی است</a></li>
-                            </ul>
-                        </div>
-                        <div class="widget widget_archive">
-                            <h2 class="widgettitle">بایگانی</h2>
-                            <ul>
-                                <li><a href='../2018/01/index.html'>ژانویه 2018</a></li>
-                                <li><a href='../2017/10/index.html'>اکتبر 2017</a></li>
-                            </ul>
-                        </div>
-                        <div class="widget widget_categories">
-                            <h2 class="widgettitle">دسته‌ها</h2>
-                            <ul>
-                                <li class="cat-item cat-item-7"><a href="../category/world/index.html">جهان</a>
-                                </li>
-                                <li class="cat-item cat-item-4"><a href="../category/life-style/index.html">سبک زندگی</a>
-                                </li>
-                                <li class="cat-item cat-item-3"><a href="../category/entertainment/index.html">سرگرمی</a>
-                                </li>
-                                <li class="cat-item cat-item-2"><a href="../category/commerce/index.html">فروشگاه</a>
-                                </li>
-                                <li class="cat-item cat-item-5"><a href="../category/technology/index.html">فن آوری</a>
-                                </li>
-                            </ul>
-                        </div>
+<div class="widget widget_recent_entries">
+  <h2 class="widgettitle">پربازدید ترین ها</h2>
+  <ul>
+    <li *ngFor="let item of blogPostData.mostViewed">
+      <a [routerLink]="['/blog/post',item.id,item.title.toSeoString()]">{{item.title}}</a>
+    </li>
+  </ul>
+</div>
+<div class="widget widget_recent_entries">
+  <h2 class="widgettitle">پربحث ترین ها</h2>
+  <ul>
+    <li *ngFor="let item of blogPostData.mostCommented">
+      <a [routerLink]="['/blog/post',item.id,item.title.toSeoString()]">{{item.title}}</a>
+    </li>
+  </ul>
+</div>
+<div class="widget widget_recent_comments">
+  <h2 class="widgettitle">آخرین دیدگاه‌ها</h2>
+  <ul id="recentcomments">
+    <li *ngFor="let item of blogPostData.lastComments" class="recentcomments">
+      <span class="comment-author-link">مدیر</span> در
+      <a [routerLink]="['/blog']">بارش برف در زمستان</a>
+    </li>
+  </ul>
+</div>
+<div class="widget widget_archive">
+  <h2 class="widgettitle">بایگانی</h2>
+  <ul>
+    <li><a class="pointer"
+      [routerLink]="['/blog/date/year',toYearMonthDate(dateTime1,true),'month',toYearMonthDate(dateTime1,false),'page',1]" 
+      >{{toPersianDate(dateTime1)}}</a></li>
+       <li><a class="pointer"
+      [routerLink]="['/blog/date/year',toYearMonthDate(dateTime2,true),'month',toYearMonthDate(dateTime2,false),'page',1]" 
+      >{{toPersianDate(dateTime2)}}</a></li>
+       <li><a class="pointer"
+      [routerLink]="['/blog/date/year',toYearMonthDate(dateTime3,true),'month',toYearMonthDate(dateTime3,false),'page',1]" 
+      >{{toPersianDate(dateTime3)}}</a></li>
+        <li><a class="pointer"
+      [routerLink]="['/blog/date/year',toYearMonthDate(dateTime4,true),'month',toYearMonthDate(dateTime4,false),'page',1]" 
+      >{{toPersianDate(dateTime4)}}</a></li>
+        <li><a class="pointer"
+      [routerLink]="['/blog/date/year',toYearMonthDate(dateTime5,true),'month',toYearMonthDate(dateTime5,false),'page',1]" 
+      >{{toPersianDate(dateTime5)}}</a></li>
+  </ul>
+</div>
+<div class="widget widget_categories">
+  <h2 class="widgettitle">دسته‌ها</h2>
+  <ul>
+    <li *ngFor="let item of blogPostData.blogGroups" class="cat-item cat-item-7">
+      <a class="pointer" [routerLink]="['/blog/group',item.name.toSeoString(),'page',1]" >{{item.name}}</a>
+    </li>
+  </ul>
+</div>

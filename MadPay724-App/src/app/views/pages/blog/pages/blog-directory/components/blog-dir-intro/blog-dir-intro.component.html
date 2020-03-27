@@ -62,7 +62,7 @@
               <meta property="position" content="1" />
             </span>
             <i class="fa fa-long-arrow-left"></i>
-             <span property="itemListElement" typeof="ListItem">
+            <span property="itemListElement" typeof="ListItem">
               <a
                 property="item"
                 typeof="WebPage"
@@ -78,10 +78,10 @@
               <a
                 property="item"
                 typeof="WebPage"
-                title="صفحه {{blogIntro.page}}"
-                [routerLink]="['/blog/page' , blogIntro.page]"
+                title="صفحه {{ blogIntro.page }}"
+                [routerLink]="['/blog/page', blogIntro.page]"
                 class="home"
-                ><span property="name">صفحه {{blogIntro.page}}</span>
+                ><span property="name">صفحه {{ blogIntro.page }}</span>
               </a>
               <meta property="position" content="3" />
             </span>
@@ -100,46 +100,53 @@
               <meta property="position" content="1" />
             </span>
             <i class="fa fa-long-arrow-left"></i>
-             <span property="itemListElement" typeof="ListItem">
+            <span property="itemListElement" typeof="ListItem">
               <a
                 property="item"
                 typeof="WebPage"
                 title="وبلاگ مادپی 724"
-                 [routerLink]="['/blog/page/1']"
+                [routerLink]="['/blog/page/1']"
                 class="home"
                 ><span property="name">وبلاگ</span>
               </a>
-              <meta property="position" content="1" />
+              <meta property="position" content="2" />
             </span>
             <i class="fa fa-long-arrow-left"></i>
             <span class="post post-page current-item">جست و جو</span>
             <i class="fa fa-long-arrow-left"></i>
-             <span property="itemListElement" typeof="ListItem">
+            <span property="itemListElement" typeof="ListItem">
               <a
                 property="item"
                 typeof="WebPage"
-                title="{{blogIntro.filter.toApiString()}}"
+                title="{{ blogIntro.filter.toApiString() }}"
                 [routerLink]="['/blog/search', blogIntro.filter, 'page', 1]"
                 class="home"
-                ><span property="name">{{blogIntro.filter.toApiString()}}</span>
+                ><span property="name">{{
+                  blogIntro.filter.toApiString()
+                }}</span>
               </a>
-              <meta property="position" content="1" />
+              <meta property="position" content="3" />
             </span>
             <i class="fa fa-long-arrow-left"></i>
             <span property="itemListElement" typeof="ListItem">
               <a
                 property="item"
                 typeof="WebPage"
-                title="صفحه {{blogIntro.page}}"
-                [routerLink]="['/blog/search', blogIntro.filter, 'page', blogIntro.page]"
+                title="صفحه {{ blogIntro.page }}"
+                [routerLink]="[
+                  '/blog/search',
+                  blogIntro.filter,
+                  'page',
+                  blogIntro.page
+                ]"
                 class="home"
-                ><span property="name">صفحه {{blogIntro.page}}</span>
+                ><span property="name">صفحه {{ blogIntro.page }}</span>
               </a>
-              <meta property="position" content="3" />
+              <meta property="position" content="4" />
             </span>
           </ng-container>
-           <!-- group -->
-       <ng-container *ngIf="blogIntro.routeKind === 3">
+          <!-- group -->
+          <ng-container *ngIf="blogIntro.routeKind === 3">
             <span property="itemListElement" typeof="ListItem">
               <a
                 property="item"
@@ -152,47 +159,54 @@
               <meta property="position" content="1" />
             </span>
             <i class="fa fa-long-arrow-left"></i>
-             <span property="itemListElement" typeof="ListItem">
+            <span property="itemListElement" typeof="ListItem">
               <a
                 property="item"
                 typeof="WebPage"
                 title="وبلاگ مادپی 724"
-                 [routerLink]="['/blog/page/1']"
+                [routerLink]="['/blog/page/1']"
                 class="home"
                 ><span property="name">وبلاگ</span>
               </a>
-              <meta property="position" content="1" />
+              <meta property="position" content="2" />
             </span>
             <i class="fa fa-long-arrow-left"></i>
             <span class="post post-page current-item">دسته بندی</span>
             <i class="fa fa-long-arrow-left"></i>
-             <span property="itemListElement" typeof="ListItem">
+            <span property="itemListElement" typeof="ListItem">
               <a
                 property="item"
                 typeof="WebPage"
-                title="{{blogIntro.groupName.toApiString()}}"
+                title="{{ blogIntro.groupName.toApiString() }}"
                 [routerLink]="['/blog/group', blogIntro.groupName, 'page', 1]"
                 class="home"
-                ><span property="name">{{blogIntro.groupName.toApiString()}}</span>
+                ><span property="name">{{
+                  blogIntro.groupName.toApiString()
+                }}</span>
               </a>
-              <meta property="position" content="1" />
+              <meta property="position" content="3" />
             </span>
             <i class="fa fa-long-arrow-left"></i>
             <span property="itemListElement" typeof="ListItem">
               <a
                 property="item"
                 typeof="WebPage"
-                title="صفحه {{blogIntro.page}}"
-                  [routerLink]="['/blog/group', blogIntro.groupName, 'page', blogIntro.page]"
+                title="صفحه {{ blogIntro.page }}"
+                [routerLink]="[
+                  '/blog/group',
+                  blogIntro.groupName,
+                  'page',
+                  blogIntro.page
+                ]"
                 class="home"
-                ><span property="name">صفحه {{blogIntro.page}}</span>
+                ><span property="name">صفحه {{ blogIntro.page }}</span>
               </a>
-              <meta property="position" content="3" />
+              <meta property="position" content="4" />
             </span>
           </ng-container>
           <!-- date -->
           <ng-container *ngIf="blogIntro.routeKind === 4">
-                <span property="itemListElement" typeof="ListItem">
+            <span property="itemListElement" typeof="ListItem">
               <a
                 property="item"
                 typeof="WebPage"
@@ -204,42 +218,58 @@
               <meta property="position" content="1" />
             </span>
             <i class="fa fa-long-arrow-left"></i>
-             <span property="itemListElement" typeof="ListItem">
+            <span property="itemListElement" typeof="ListItem">
               <a
                 property="item"
                 typeof="WebPage"
                 title="وبلاگ مادپی 724"
-                 [routerLink]="['/blog/page/1']"
+                [routerLink]="['/blog/page/1']"
                 class="home"
                 ><span property="name">وبلاگ</span>
               </a>
-              <meta property="position" content="1" />
+              <meta property="position" content="2" />
             </span>
-           <i class="fa fa-long-arrow-left"></i>
+            <i class="fa fa-long-arrow-left"></i>
             <span class="post post-page current-item">تاریخ</span>
             <i class="fa fa-long-arrow-left"></i>
-             <span property="itemListElement" typeof="ListItem">
+            <span property="itemListElement" typeof="ListItem">
               <a
                 property="item"
                 typeof="WebPage"
-                title="{{toPersianDate(blogIntro.year,blogIntro.month)}}"
-                 [routerLink]="['/blog/date/year', blogIntro.year, 'month', blogIntro.month, 'page', 1]"
+                title="{{ toPersianDate(blogIntro.year, blogIntro.month) }}"
+                [routerLink]="[
+                  '/blog/date/year',
+                  blogIntro.year,
+                  'month',
+                  blogIntro.month,
+                  'page',
+                  1
+                ]"
                 class="home"
-                ><span property="name">{{toPersianDate(blogIntro.year,blogIntro.month)}}</span>
+                ><span property="name">{{
+                  toPersianDate(blogIntro.year, blogIntro.month)
+                }}</span>
               </a>
-              <meta property="position" content="1" />
+              <meta property="position" content="3" />
             </span>
             <i class="fa fa-long-arrow-left"></i>
             <span property="itemListElement" typeof="ListItem">
               <a
                 property="item"
                 typeof="WebPage"
-                title="صفحه {{blogIntro.page}}" 
-                 [routerLink]="['/blog/date/year', blogIntro.year, 'month', blogIntro.month, 'page', blogIntro.page]"
+                title="صفحه {{ blogIntro.page }}"
+                [routerLink]="[
+                  '/blog/date/year',
+                  blogIntro.year,
+                  'month',
+                  blogIntro.month,
+                  'page',
+                  blogIntro.page
+                ]"
                 class="home"
-                ><span property="name">صفحه {{blogIntro.page}}</span>
+                ><span property="name">صفحه {{ blogIntro.page }}</span>
               </a>
-              <meta property="position" content="3" />
+              <meta property="position" content="4" />
             </span>
           </ng-container>
         </div>

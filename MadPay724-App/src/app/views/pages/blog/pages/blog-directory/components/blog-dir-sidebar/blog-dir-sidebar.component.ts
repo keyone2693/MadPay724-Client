@@ -67,8 +67,5 @@ export class BlogDirSidebarComponent implements OnInit {
   toPersianDate(dt: Date):string {
     return this.persianCalendarService.PersianCalendarMonthYear(dt);
   }
-  changeFilter(filter:string) {
-    
-  }
 
 }

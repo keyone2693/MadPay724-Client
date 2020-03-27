@@ -16,6 +16,7 @@ import { BlogResolver } from 'src/app/core/_base/resolvers/blog/BlogResolver.res
 import { PersianPipeModule } from 'src/app/shared/modules/common/persianPipe.module';
 import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
 import { BlogPostResolver } from 'src/app/core/_base/resolvers/blog/BlogPostResolver.resolver';
+import { SafeHtmlPipe } from 'src/app/core/_base/pipe/common/safeHtml.pipe';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { BlogPostResolver } from 'src/app/core/_base/resolvers/blog/BlogPostReso
     NgxPaginationModule
   ],
   declarations: [
+    SafeHtmlPipe,
     BlogComponent,
     //
     BlogDirectoryComponent,
@@ -38,6 +40,7 @@ import { BlogPostResolver } from 'src/app/core/_base/resolvers/blog/BlogPostReso
     BlogPostSidebarComponent,
     BlogPostContentComponent
   ], providers: [
+    SafeHtmlPipe,
     BlogService,
     BlogResolver,
     BlogPostResolver

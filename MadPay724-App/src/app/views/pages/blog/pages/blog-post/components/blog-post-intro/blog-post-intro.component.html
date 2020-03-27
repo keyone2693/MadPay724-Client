@@ -45,44 +45,45 @@
     <div class="title-container">
       <div class="in-page-title">
         <div class="title-headings">
-          <h1>طرح پرسش و پاسخ ۲</h1>
+          <h1>{{blog.title}}</h1>
         </div>
 
         <div class="breadcrumb text-left style2">
-          <!-- Breadcrumb NavXT 6.2.1 -->
-          <span property="itemListElement" typeof="ListItem"
-            ><a
-              property="item"
-              typeof="WebPage"
-              title="Go to مونزا."
-              href="http://paradigm-shift.ir/munza"
-              class="home"
-              ><span property="name">مونزا</span></a
-            ><meta property="position" content="1"/></span
-          ><i class="fa fa-long-arrow-left"></i
-          ><span property="itemListElement" typeof="ListItem"
-            ><a
-              property="item"
-              typeof="WebPage"
-              title="Go to وبلاگ."
-              href="../blog/index.html"
-              class="post-root post post-post"
-              ><span property="name">وبلاگ</span></a
-            ><meta property="position" content="2"/></span
-          ><i class="fa fa-long-arrow-left"></i
-          ><span property="itemListElement" typeof="ListItem"
-            ><a
-              property="item"
-              typeof="WebPage"
-              title="Go to the جهان category archives."
-              href="../category/world/index.html"
-              class="taxonomy category"
-              ><span property="name">جهان</span></a
-            ><meta property="position" content="3"/></span
-          ><i class="fa fa-long-arrow-left"></i
-          ><span class="post post-post current-item"
-            >همه چیز در مورد تکنولوژی است</span
-          >
+         <span property="itemListElement" typeof="ListItem">
+              <a
+                property="item"
+                typeof="WebPage"
+                title="برو به خانه"
+                [routerLink]="['']"
+                class="home"
+                ><span property="name">خانه</span>
+              </a>
+              <meta property="position" content="1" />
+            </span>
+            <i class="fa fa-long-arrow-left"></i>
+             <span property="itemListElement" typeof="ListItem">
+              <a
+                property="item"
+                typeof="WebPage"
+                title="وبلاگ مادپی 724"
+                [routerLink]="['/blog/page/1']"
+                class="home"
+                ><span property="name">وبلاگ</span>
+              </a>
+              <meta property="position" content="2" />
+            </span>
+            <i class="fa fa-long-arrow-left"></i>
+            <span property="itemListElement" typeof="ListItem">
+              <a
+                property="item"
+                typeof="WebPage"
+                title="صفحه {{blog.title}}"
+               [routerLink]="['/blog/post',blog.id,blog.title.toSeoString()]"
+                class="home"
+                ><span property="name">{{blog.title}}</span>
+              </a>
+              <meta property="position" content="3" />
+            </span>
         </div>
       </div>
     </div>
