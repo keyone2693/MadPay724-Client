@@ -59,6 +59,7 @@ class=" section">
           <div class="row label-group pull-left">
             <div class="col-xs text merchant-code">
               <input
+              #copy
                 onfocus="this.select();"
                 readonly="readonly"
                 class="txt-webservice-id"
@@ -66,6 +67,8 @@ class=" section">
               />
             </div>
             <div
+                [ngxClipboard]="copy"
+    (cbOnSuccess)="onCopied()"
               class="ft-copy madicono"
             ></div>
           </div>

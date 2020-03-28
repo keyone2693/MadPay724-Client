@@ -7,6 +7,7 @@ import { Wallet } from 'src/app/data/models/wallet';
 import * as fromStore from '../../../../../../../../store';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class GateComponent implements OnInit {
   @Input() gate: Gate;
   @Input() wallets: Wallet[];
   constructor(private dialog: MatDialog,private router:Router,
-    private store: Store<fromStore.State>) { }
+    private store: Store<fromStore.State>, private alertService: ToastrService) { }
 
   ngOnInit() {
   }
@@ -41,7 +42,9 @@ export class GateComponent implements OnInit {
     });
 
   }
-
+  onCopied() {
+    this.alertService.info('', 'کپی شد');
+  }
   onGateFactorsClick(gate: Gate) {
     this.store.dispatch(new fromStore.EditCurrentTitle(
       { id: gate.id, title: gate.websiteName }));

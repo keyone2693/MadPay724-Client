@@ -212,7 +212,8 @@ onStatusChange(type: number, event: any, gateId: string) {
           }, error => {
             this.alertService.error(error);
           })
-      )
+          );
+          break;
     case 2:
       this.subManager.add(
         this.gateService.changeDirectGate(gateId, event.checked)
@@ -226,7 +227,8 @@ onStatusChange(type: number, event: any, gateId: string) {
           }, error => {
             this.alertService.error(error);
           })
-      )
+          );
+          break;
     case 3:
       this.subManager.add(
         this.gateService.changeIpGate(gateId, event.checked)
@@ -240,7 +242,8 @@ onStatusChange(type: number, event: any, gateId: string) {
           }, error => {
             this.alertService.error(error);
           })
-      )
+          );
+          break;
   }
 
 }

@@ -194,21 +194,22 @@ export class GatesComponent implements OnInit, OnDestroy, AfterViewInit {
   }
   onStatusChange(type: number, event: any, gateId: string) {
     switch (type) {
-      case 1:
-        this.subManager.add(
-          this.gateService.changeActiveGate(gateId, event.checked)
-            .subscribe(() => {
-              if (event.checked === true) {
-                this.store.dispatch(new fromStore.DecUnVerifiedGateCount());
-                this.alertService.success('وضعیت فاکتور تایید شد', 'موفق');
-              } else {
-                this.store.dispatch(new fromStore.IncUnVerifiedGateCount());
-                this.alertService.success('وضعیت فاکتور از حالت تایید خارج شد', 'موفق');
-              }
-            }, error => {
-              this.alertService.error(error);
-            })
-        )
+        case 1:
+            this.subManager.add(
+                this.gateService.changeActiveGate(gateId, event.checked)
+                    .subscribe(() => {
+                        if (event.checked === true) {
+                            this.store.dispatch(new fromStore.DecUnVerifiedGateCount());
+                            this.alertService.success('وضعیت فاکتور تایید شد', 'موفق');
+                        } else {
+                            this.store.dispatch(new fromStore.IncUnVerifiedGateCount());
+                            this.alertService.success('وضعیت فاکتور از حالت تایید خارج شد', 'موفق');
+                        }
+                    }, error => {
+                        this.alertService.error(error);
+                    })
+            );
+            break;
       case 2:
         this.subManager.add(
           this.gateService.changeDirectGate(gateId, event.checked)
@@ -221,7 +222,8 @@ export class GatesComponent implements OnInit, OnDestroy, AfterViewInit {
             }, error => {
               this.alertService.error(error);
             })
-        )
+            );
+            break;
       case 3: 
         this.subManager.add(
           this.gateService.changeIpGate(gateId, event.checked)
@@ -234,7 +236,8 @@ export class GatesComponent implements OnInit, OnDestroy, AfterViewInit {
             }, error => {
               this.alertService.error(error);
             })
-        )  
+            );
+            break;
     }
    
   }

@@ -159,6 +159,7 @@ export class UsersGatesComponent implements OnInit, OnDestroy {
               this.alertService.error(error);
             })
         )
+        break;
       case 2:
         this.subManager.add(
           this.gateService.changeDirectGate(gateId, event.checked)
@@ -173,6 +174,7 @@ export class UsersGatesComponent implements OnInit, OnDestroy {
               this.alertService.error(error);
             })
         )
+        break;
       case 3:
         this.subManager.add(
           this.gateService.changeIpGate(gateId, event.checked)
@@ -187,6 +189,7 @@ export class UsersGatesComponent implements OnInit, OnDestroy {
               this.alertService.error(error);
             })
         )
+        break;
     }
 
   }
