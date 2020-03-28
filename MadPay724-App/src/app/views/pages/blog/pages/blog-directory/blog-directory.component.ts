@@ -23,6 +23,13 @@ export class BlogDirectoryComponent implements OnDestroy, OnInit {
     
   }
   ngOnInit() {
+    this.subManager.add(
+      this.route.url.subscribe(data => {
+        if (data[0].path === 'search') {
+          this.styleService.addScript("seach-bar", '../../../../../../assets/wp-content/themes/munza/assets/js/pages/search-bar.js');
+        }
+      })
+    );
     this.styleService.addStyle("blog-dir", '../../../../../../assets/wp-content/themes/munza/assets/css/pages/blog-dir.css');
     this.loadBlogDirData();
   }
@@ -35,6 +42,7 @@ export class BlogDirectoryComponent implements OnDestroy, OnInit {
   }
   ngOnDestroy() {
     this.styleService.removeStyle("blog-dir");
+    this.styleService.removeScript("seach-bar");
     this.subManager.unsubscribe();
 
   }

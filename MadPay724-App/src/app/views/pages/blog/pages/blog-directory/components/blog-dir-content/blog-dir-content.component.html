@@ -1,36 +1,45 @@
-<div id="itr_blog_content" class="blog-posts lg-image">
-  <app-blog-article 
-  *ngFor="let item of blogDirData.blogs.result
-   | paginate: { 
-      id: 'blog-dir-art',
-      itemsPerPage: blogDirData.blogs.pagination.itemsPerPage,
-      currentPage: getCurrentPage(blogDirData.blogs.pagination.currentPage),
-      totalItems: blogDirData.blogs.pagination.totalItems
-     }"
-   [blog]="item"
-   [pagination]="blogDirData.blogs.pagination"
-   ></app-blog-article>
-  <div
-    id="post-2444"
-    class="post-item post-2444 post type-post status-publish format-quote hentry category-commerce post_format-post-format-quote"
-  >
-    <div class="main-bg abs_bg">
-      <!-- <i class="stline-close-quote abs_qte"></i> -->
-      <div class="post-info">
-          <pagination-controls class="mypagination"  id="blog-dir-art"
-                      (pageChange)="pageChanged($event)"
-                      directionLinks="true"
-                      autoHide="true"
-                      responsive="true"
-                      previousLabel="صفحه قبل"
-                      nextLabel="صفحه بعد">
-</pagination-controls>
+<ng-container *ngIf="blogDirData.blogs.result.length > 0">
+  <div id="itr_blog_content" class="blog-posts lg-image">
+    <app-blog-article
+      *ngFor="
+        let item of blogDirData.blogs.result
+          | paginate
+            : {
+                id: 'blog-dir-art',
+                itemsPerPage: blogDirData.blogs.pagination.itemsPerPage,
+                currentPage: getCurrentPage(
+                  blogDirData.blogs.pagination.currentPage
+                ),
+                totalItems: blogDirData.blogs.pagination.totalItems
+              }
+      "
+      [blog]="item"
+      [pagination]="blogDirData.blogs.pagination"
+    ></app-blog-article>
+    <div
+      id="post-2444"
+      class="post-item post-2444 post type-post status-publish format-quote hentry category-commerce post_format-post-format-quote"
+    >
+      <div class="main-bg abs_bg">
+        <!-- <i class="stline-close-quote abs_qte"></i> -->
+        <div class="post-info">
+          <pagination-controls
+            class="mypagination"
+            id="blog-dir-art"
+            (pageChange)="pageChanged($event)"
+            directionLinks="true"
+            autoHide="true"
+            responsive="true"
+            previousLabel="صفحه قبل"
+            nextLabel="صفحه بعد"
+          >
+          </pagination-controls>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- <div class="pager centered">
+  <!-- <div class="pager centered">
 
    <ul class="page-numbers">
     <li>
@@ -46,3 +55,28 @@
     </li>
   </ul>
 </div>  -->
+</ng-container>
+<ng-container *ngIf="blogDirData.blogs.result.length === 0">
+  <div class="itr-main-content itr-content-column">
+    <div class="no-results-wrap">
+      <div class="lg-not-found">
+        <h3 class="itr-heading style2 left" data-content="اوه!">اوه!</h3>
+        <h4>هیچ چیز در اینجا وجود دارد</h4>
+        <h5>
+          <span class="main-color bold">متاسفیم..</span> با جست و جوی شما مطلبی یافت نشد
+        </h5>
+      </div>
+      <hr />
+            <div class="not-found-form">
+        <div class="srch-home-pg">
+          <a
+            class="main-bg btn btn-md btn-hover-shad rounded btn-align-center"
+            [routerLink]="['/blog/page/1']"
+          >
+            <span>رفتن به صفحه بلاگ ها</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

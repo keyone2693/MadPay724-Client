@@ -18,6 +18,7 @@ import { SearchBarComponent } from './views/layout/search-bar/search-bar.compone
 import { FooterComponent } from './views/layout/footer/footer.component';
 import { SlidingBarComponent } from './views/layout/sliding-bar/sliding-bar.component';
 import { StyleScriptService } from './core/_services/common/styleScript.service';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -47,6 +48,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NotyfToast
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

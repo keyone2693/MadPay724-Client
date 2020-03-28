@@ -2441,8 +2441,8 @@ a.main-bg:hover{color: #fff;}
 input[type=checkbox], input[type=radio] {margin: 4px 5px 0 0;}
 .checkbox-block input[type=checkbox]{vertical-align: sub;}
 .itr-main-content,.site_content{
-    padding-top: 100px;
-    padding-bottom: 100px
+    padding-top: 10px;
+    padding-bottom: 10px
 }
 blockquote{
     margin: 0 0 15px;

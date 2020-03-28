@@ -1,20 +1,16 @@
 <div class="search-wrapper main-bg">
   <span class="close_search"><i class="stline-remove-bold"></i></span>
-  <form
-    role="search"
-    method="get"
-    action="http://paradigm-shift.ir/munza/"
+  <div
     class="search-form"
   >
     <input
+    [(ngModel)]="filter"
       type="text"
       class="form-control"
-      value=""
-      name="s"
       placeHolder="جستجو کلید واژه  ..."
     />
-    <button type="submit" class="btn main-color">
+    <button (click)="goSearch()"  class="btn main-color">
       <i class="fa fa-search"></i>
     </button>
-  </form>
+  </div>
 </div>

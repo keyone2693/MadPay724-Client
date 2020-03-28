@@ -10,6 +10,7 @@ export class SlidingBarComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }
