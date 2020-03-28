@@ -19,6 +19,9 @@ import { FooterComponent } from './views/layout/footer/footer.component';
 import { SlidingBarComponent } from './views/layout/sliding-bar/sliding-bar.component';
 import { StyleScriptService } from './core/_services/common/styleScript.service';
 import { FormsModule } from '@angular/forms';
+import { LayoutService } from './core/_services/layout/layout.service';
+import { environment } from 'src/environments/environment.prod';
+import { PersianCalendarService } from './core/_base/pipe/PersianDatePipe/persian-date.service';
 
 
 
@@ -62,13 +65,18 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     HttpClientModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     NgxUiLoaderRouterModule,
-    NgxUiLoaderHttpModule.forRoot({ showForeground: true })
+    NgxUiLoaderHttpModule.forRoot({
+      showForeground: true ,
+      exclude: [environment.apiUrl + environment.apiV1 + 'site/layout/sidebar/data']
+    })
   ],
   providers: [
     MpPreloadingStrategy,
     ErrorInterceptorProvider,
     TitleService,
-    StyleScriptService
+    StyleScriptService,
+    LayoutService,
+    PersianCalendarService
   ],
   entryComponents: [NotyfToast],
   bootstrap: [AppComponent]

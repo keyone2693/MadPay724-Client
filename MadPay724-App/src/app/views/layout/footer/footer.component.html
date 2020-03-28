@@ -97,37 +97,37 @@
                     id="menu-item-9478"
                     class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-9478"
                   >
-                    <a href="../index.html">صفحه اصلی</a>
+                    <a [routerLink]="['']">صفحه اصلی</a>
                   </li>
                   <li
                     id="menu-item-9478"
                     class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-9478"
                   >
-                    <a href="../index.html">سوالات متداول</a>
+                    <a [routerLink]="['/info/questions']">سوالات متداول</a>
                   </li>
                   <li
                     id="menu-item-9479"
                     class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9479"
                   >
-                    <a href="../blog/index.html">وبلاگ ما</a>
+                    <a [routerLink]="['/blog/page/1']">وبلاگ ما</a>
                   </li>
                   <li
                     id="menu-item-9480"
                     class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9480"
                   >
-                    <a href="../services/index.html">تعرفه ها</a>
+                    <a [routerLink]="['/info/tariffs']">تعرفه ها</a>
                   </li>
                   <li
                     id="menu-item-9360"
                     class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9360"
                   >
-                    <a href="../about-us/index.html">درباره ما</a>
+                    <a [routerLink]="['/info/aboutus']">درباره ما</a>
                   </li>
                   <li
                     id="menu-item-9034"
                     class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9034"
                   >
-                    <a href="#">تماس با ما</a>
+                    <a [routerLink]="['/info/contactus']">تماس با ما</a>
                   </li>
                 </ul>
               </div>
@@ -142,9 +142,6 @@
                 <form
                   id="mc4wp-form-1"
                   class="mc4wp-form mc4wp-form-16"
-                  method="post"
-                  data-id="16"
-                  data-name="Newsletters"
                 >
                   <div class="mc4wp-form-fields">
                     <input
@@ -153,7 +150,7 @@
                       placeholder="آدرس ایمیل شما"
                       required
                     />
-                    <button type="submit" class="nl_btn anim_btn to-right">
+                     <button (click)="onSendEmail()" class="nl_btn anim_btn to-right">
                       <span
                         ><i class="fa fa-long-arrow-right"></i
                         ><i class="fa fa-long-arrow-right btn_back"></i
@@ -168,19 +165,7 @@
                       value=""
                       tabindex="-1"
                       autocomplete="off"/></label
-                  ><input
-                    type="hidden"
-                    name="_mc4wp_timestamp"
-                    value="1557503292"
-                  /><input
-                    type="hidden"
-                    name="_mc4wp_form_id"
-                    value="16"
-                  /><input
-                    type="hidden"
-                    name="_mc4wp_form_element_id"
-                    value="mc4wp-form-1"
-                  />
+                  >
                   <div class="mc4wp-response"></div>
                 </form>
                 <!-- / Mailchimp for WordPress Plugin -->

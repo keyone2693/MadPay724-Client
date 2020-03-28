@@ -20,18 +20,32 @@ export class BlogDirectoryComponent implements OnDestroy, OnInit {
   constructor(private styleService: StyleScriptService,
     private route: ActivatedRoute, private router: Router,
     private blogService: BlogService, private alertService: ToastrService) {
-    
+    this.subManager.add(
+      router.events.pipe(
+        filter(event => event instanceof NavigationEnd)
+      ).subscribe((event: NavigationEnd) => {
+        this.loadScript();
+      })
+    );
   }
   ngOnInit() {
+    
+    this.styleService.addStyle("blog-dir", '../../../../../../assets/wp-content/themes/munza/assets/css/pages/blog-dir.css');
+    this.loadBlogDirData();
+
+  }
+  loadScript() {
     this.subManager.add(
       this.route.url.subscribe(data => {
         if (data[0].path === 'search') {
           this.styleService.addScript("seach-bar", '../../../../../../assets/wp-content/themes/munza/assets/js/pages/search-bar.js');
         }
+        if (data[0].path === 'date' || data[0].path === 'group') {
+          this.styleService.removeScript("slidingbar");
+          this.styleService.addScript("slidingbar", '../../../../../../assets/wp-content/themes/munza/assets/js/vendor/slidingbar.js');
+        }
       })
     );
-    this.styleService.addStyle("blog-dir", '../../../../../../assets/wp-content/themes/munza/assets/css/pages/blog-dir.css');
-    this.loadBlogDirData();
   }
   loadBlogDirData() {
     this.subManager.add(

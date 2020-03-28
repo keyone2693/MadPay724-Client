@@ -3,8 +3,9 @@ import { StyleScriptService } from 'src/app/core/_services/common/styleScript.se
 import { Title } from '@angular/platform-browser';
 import { BlogPost } from 'src/app/data/models/blog/blogPost';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { filter } from 'rxjs/operators';
 
 
 @Component({
@@ -15,15 +16,29 @@ import { ToastrService } from 'ngx-toastr';
 export class BlogPostComponent implements OnDestroy, OnInit {
   subManager = new Subscription();
   blogPostData: BlogPost;
-  
+
   constructor(private styleService: StyleScriptService,
     private route: ActivatedRoute, private router: Router,
-   private alertService: ToastrService,private title:Title) {
+    private alertService: ToastrService, private title: Title) {
+    this.subManager.add(
+      router.events.pipe(
+        filter(event => event instanceof NavigationEnd)
+      ).subscribe((event: NavigationEnd) => {
+        this.loadScript();
+      })
+    );
   }
   ngOnInit() {
     this.styleService.addStyle("blog-dir", '../../../../../../assets/wp-content/themes/munza/assets/css/pages/blog-dir.css');
+
     this.loadBlogPostData();
     this.title.setTitle(this.blogPostData.blog.title);
+  }
+  loadScript() {
+
+    this.styleService.removeScript("slidingbar");
+    this.styleService.addScript("slidingbar", '../../../../../../assets/wp-content/themes/munza/assets/js/vendor/slidingbar.js');
+
   }
   loadBlogPostData() {
     this.subManager.add(
@@ -34,6 +49,7 @@ export class BlogPostComponent implements OnDestroy, OnInit {
   }
   ngOnDestroy() {
     this.styleService.removeStyle("blog-dir");
+    this.styleService.removeScript("side-bar");
 
   }
 

@@ -31,6 +31,7 @@
               "src/assets/wp-content/themes/munza/assets/css/style3c21.css",
               "src/assets/wp-content/plugins/munza-core/assets/front/css/vendor/recent-posts3c21.css",
               "src/assets/wp-content/themes/munza/rtl.css",
+              "node_modules/ngx-toastr/toastr.css",
               "src/styles.css"
             ],
             "scripts": [

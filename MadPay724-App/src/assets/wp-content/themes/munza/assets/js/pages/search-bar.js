@@ -1,4 +1,3 @@
-var MunzaTM = MunzaTM || {};
 
 (function($) {
   "use strict";
