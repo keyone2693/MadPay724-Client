@@ -1,0 +1,47 @@
+<div class="pageContent">
+  <div class="container">
+    <div class="not-found-wrap">
+      <div class="lg-not-found">
+        <img
+          alt="صفحه پیدا نشد"
+          src="../../../.././assets/wp-content/themes/munza/assets/images/error-middle.png"
+        />
+        <h4>هیچ چیز در اینجا وجود دارد</h4>
+        <h5>
+          <span class="main-color bold">متاسفیم..</span> صفحه ای که شما به دنبال
+          آن هستید پیدا نشد.
+        </h5>
+      </div>
+
+      <hr />
+
+      <div class="not-found-form form404cont">
+        <p>شما می توانید از این بخش برای جستجو استفاده کنید.</p>
+        <div class="form-container">
+          <div
+            class="search-form"
+          >
+            <input
+                [(ngModel)]="filter"
+              type="text"
+              class="form-control"
+              placeholder="جستجو کلید واژه  ..."
+            />
+            <button (click)="goSearch()" class="btn main-color">
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="srch-home-pg">
+          <a
+            class="btn main-bg bold btn-hover-shad rounded"
+            [routerLink]="['']"
+          >
+            <span>رفتن به صفحه اصلی</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

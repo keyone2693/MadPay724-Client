@@ -4,6 +4,7 @@ import { MainComponent } from './views/pages/main/main.component';
 import { InfoComponent } from './views/pages/info/info.component';
 import { MpPreloadingStrategy } from './core/_config/mpPreloadingStrategy';
 import { BlogComponent } from './views/pages/blog/blog.component';
+import { NotFoundComponent } from './views/pages/notFound/notFound.component';
 
 const routes: Routes = [
   {
@@ -22,7 +23,12 @@ const routes: Routes = [
     data: { preload: true }
   },
   {
-    path: '**' , redirectTo: '', pathMatch: 'full'
+    path: 'notfound', component: NotFoundComponent,
+    loadChildren: () => import('./views/pages/notFound/notFound.module').then(p => p.NotFoundModule),
+    data: { preload: true }
+  },
+  {
+    path: '**', redirectTo: 'notfound/404', pathMatch: 'full'
   }
 ];
 

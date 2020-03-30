@@ -1823,7 +1823,14 @@ body.error404{
     border-radius: 5px;
     padding: 17px 30px;
 }
-.not-found-form .search-form .btn{top: 20px;right: 20px;}
+.not-found-form .search-form .btn{
+top: 6px;
+    left: 7px;
+    background: #333;
+    border-radius: 50px;
+    /* font-size: 19px; */
+    padding: 18px 20px;
+}
 .srch-home-pg{
     margin-top: 30px;
 }
@@ -1975,7 +1982,6 @@ select:focus,textarea:focus,input[type="text"]:focus,input[type="password"]:focu
 }
 .search-form .btn{
     position: absolute;
-    right: 15px;
     top: 15px;
     padding: 0;
 }
