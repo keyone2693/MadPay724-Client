@@ -7,6 +7,7 @@ import { Wallet } from 'src/app/data/models/wallet';
 import { Store } from '@ngrx/store';
 
 import * as fromStore from '../../../../store';
+import { ApiReturn } from 'src/app/data/models/common/apiReturn';
 
 @Injectable({
   providedIn: 'root'

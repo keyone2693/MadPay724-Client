@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { HasRoleDirective } from 'src/app/core/_base/directives/hasRole.directive';
+import { HasRoleNotShow } from 'src/app/core/_base/directives/hasRoleNotShow.directive';
 
 @NgModule({
-  declarations: [HasRoleDirective],
-  exports: [HasRoleDirective],
+  declarations: [HasRoleDirective, HasRoleNotShow],
+  exports: [HasRoleDirective, HasRoleNotShow],
 })
 export class HasRoleModule { }

@@ -64,8 +64,10 @@
         </li>
         <!--#endregion-->
         <!--#region Accountant-->
-        <li
+        <ng-container *appHasRoleNotShow="['Admin']">
+          <li
           *appHasRole="['Accountant']"
+          
           routerLinkActive="active"
           class=" nav-item"
         >
@@ -74,6 +76,8 @@
             ><span data-i18n="" class="menu-title">داشبورد</span></a
           >
         </li>
+        </ng-container>
+        
          <li *appHasRole="['Admin', 'Accountant']" class="has-sub nav-item">
           <a href="javascript:;">
             <i class="icon-logout"></i>
@@ -218,7 +222,8 @@
         <!--#endregion-->
 
         <!--#region Blog-->
-        <li
+        <ng-container *appHasRoleNotShow="['Admin']">
+          <li
           *appHasRole="['AdminBlog', 'Blog']"
           routerLinkActive="active"
           class=" nav-item"
@@ -228,6 +233,8 @@
             ><span data-i18n="" class="menu-title">داشبورد</span></a
           >
         </li>
+        </ng-container>
+        
         <li
           *appHasRole="['Admin','AdminBlog', 'Blog']"
           class="has-sub nav-item"

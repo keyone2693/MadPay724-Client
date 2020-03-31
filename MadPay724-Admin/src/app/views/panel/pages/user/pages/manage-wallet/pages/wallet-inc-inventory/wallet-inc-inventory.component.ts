@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-wallet-inc-inventory',
@@ -16,8 +17,8 @@ export class WalletIncInventoryComponent implements OnInit {
   constructor(public walletService: WalletService,
     private alertService: ToastrService, private matdialogRef: MatDialogRef<WalletIncInventoryComponent>,
     private router: Router, @Inject(MAT_DIALOG_DATA) private data: Wallet,
-    private formBuilder: FormBuilder) { }
-  
+    private formBuilder: FormBuilder, private ngxService: NgxUiLoaderService) { }
+
   walletForm: FormGroup = this.formBuilder.group({
     walletId: ['', Validators.required],
     price: [2000, [Validators.required, Validators.maxLength(20)]]
@@ -30,15 +31,14 @@ export class WalletIncInventoryComponent implements OnInit {
     this.matdialogRef.close();
   }
   onSubmit() {
-    if (this.walletService.walletForm.valid) {
-      this.walletService.addWallet(this.walletService.walletForm.value).subscribe((data) => {
-        this.alertService.success('کیف پول شما با موفقیت ثبت شد', 'موفق');
-      }, error => {
-        this.alertService.error(error, 'خطا در ثبت کیف پول جدید');
-      });
-    } else {
-      this.alertService.warning('اطلاعات کیف پول را به درستی وارد کنید', 'خطا');
-    }
+    const id = this.walletForm.get('walletId').value;
+    const price = this.walletForm.get('price').value;
+    this.walletService.getBankGate(id, price).subscribe((data) => {
+      this.ngxService.start();
+      window.location.href = data.result;
+    }, error => {
+      this.alertService.error(error, 'خطا در ثبت کیف پول جدید');
+    });
   }
 
 }

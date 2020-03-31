@@ -5,7 +5,7 @@
 
 <mat-dialog-content [formGroup]="walletForm">
   <mat-form-field class="col-md-12 ml-10">
-    <input style="direction: ltr;text-align:left" digitOnly matInput formControlName="price" placeholder="مبلغ به تومان *" />
+    <input style="direction: ltr !important;text-align:left" digitOnly matInput formControlName="price" placeholder="مبلغ به تومان *" />
     <mat-error
       *ngIf="
         walletForm.get('price').hasError('required') &&
