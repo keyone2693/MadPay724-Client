@@ -64,6 +64,7 @@ import { UserFactorService } from 'src/app/core/_services/panel/user/userFactor.
 import { UserFactorResolver } from 'src/app/core/_base/resolvers/user/userFactor.resolver';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { ClipboardModule } from 'ngx-clipboard';
+import { WalletIncInventoryComponent } from './pages/manage-wallet/pages/wallet-inc-inventory/wallet-inc-inventory.component';
 
 @NgModule({
   imports: [
@@ -98,6 +99,7 @@ import { ClipboardModule } from 'ngx-clipboard';
     ManageWalletComponent,
     WalletComponent,
     WalletFormComponent,
+    WalletIncInventoryComponent,
     //
     TicketComponent,
     ManageTicketComponent,
@@ -150,7 +152,8 @@ import { ClipboardModule } from 'ngx-clipboard';
       WalletFormComponent,
       CreateFormTicketComponent,
       GateFormComponent,
-      GateActiveComponent
+      GateActiveComponent,
+      WalletIncInventoryComponent
     ]
 })
 export class UserModule { }

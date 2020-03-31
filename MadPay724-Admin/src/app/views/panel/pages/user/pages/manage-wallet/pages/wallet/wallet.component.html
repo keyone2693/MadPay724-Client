@@ -12,11 +12,15 @@ class="section "  >
           <p>
             <span
             [ngClass]="wallet.isMain ? 'color-3' : wallet.isSms ? 'color-2' : 'color-1'"
-            class="wallet-color"></span
-            ><span
-              ><span class="header-title">{{wallet.name}} </span
-              ><span class="zpid-box pull-left">MP.{{wallet.code}}</span></span
-            ><!---->
+            class="wallet-color">
+          </span>
+            <span>
+              <span class="header-title">
+                {{wallet.name}} 
+                ( <span (click)="onInc()" class="btn-inc">افزایش موجودی </span> ) 
+              </span>
+              <span class="zpid-box pull-left">MP.{{wallet.code}}</span>
+            </span><!---->
           </p>
           <!---->
           <p></p>

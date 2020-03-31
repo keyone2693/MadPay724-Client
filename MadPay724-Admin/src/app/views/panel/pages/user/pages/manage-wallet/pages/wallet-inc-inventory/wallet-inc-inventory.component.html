@@ -1,0 +1,54 @@
+<h2 mat-dialog-title class="mmatdiagtitle">
+  افزودن موجودی کیف پول 
+  {{wallet.name}}
+</h2>
+
+<mat-dialog-content [formGroup]="walletForm">
+  <mat-form-field class="col-md-12 ml-10">
+    <input style="direction: ltr;text-align:left" digitOnly matInput formControlName="price" placeholder="مبلغ به تومان *" />
+    <mat-error
+      *ngIf="
+        walletForm.get('price').hasError('required') &&
+        walletForm.get('price').touched
+      "
+      >این فیلد نمیتواند خالی باشد</mat-error
+    >
+
+    <mat-error
+      *ngIf="
+        walletForm.get('price').hasError('maxlength') &&
+        walletForm.get('price').touched
+      "
+    >
+      این فیلد نمیتواند بیشتر از 20 کاراکتر باشد</mat-error
+    >
+  </mat-form-field>
+   <mat-form-field class="col-md-12">
+    <mat-label>کیف پول انتخابی</mat-label>
+    <mat-select formControlName="walletId">
+      <mat-option value="{{wallet.id}}">{{wallet.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions class="float-left">
+  <button
+    mat-raised-button
+    matDialogClose
+    (click)="onClear()"
+    color="warn"
+    class="float-left mb-10"
+  >
+    <i class="icon-close"></i>
+    انصراف
+  </button>
+  <button
+    mat-raised-button
+    (click)="onSubmit()"
+    [disabled]="walletForm.invalid"
+    color="green"
+    class="float-left mb-10"
+  >
+    <i class="icon-check"></i>
+    <span>افزایش موجودی</span>
+  </button>
+</mat-dialog-actions>

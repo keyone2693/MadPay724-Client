@@ -32,4 +32,8 @@ export class WalletService {
     return this.http.post<Wallet>(this.baseUrl + 'users/' + userId + '/wallets', wallet);
   }
 
+  getBankGate(walletId: string , price:number,userId: string = this.userId): Observable<ApiReturn<string>> {
+    return this.http.post<ApiReturn<string>>(this.baseUrl + 'users/' + userId + '/wallets/' + walletId+'/incinventory', { price: price});
+  }
+
 }

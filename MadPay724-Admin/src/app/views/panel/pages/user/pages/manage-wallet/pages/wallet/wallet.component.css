@@ -78,7 +78,7 @@
     overflow: hidden;
     position: relative;
     top: 5px;
-    width: 85px;
+    width: 200px;
 }
 
 .section .box .header .right-box p .zpid-box {
@@ -211,4 +211,14 @@ position: absolute;
     border-bottom: 2px solid rgb(255, 85, 85);
     width: auto;
     pointer-events: none;
+}
+
+.btn-inc{
+    cursor: pointer;
+    color: red;
+}
+
+.btn-inc:hover{
+    color: rgb(255, 85, 85);
+
 }
