@@ -6,6 +6,8 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { filter } from 'rxjs/operators';
+import { SeoService } from 'src/app/core/_services/common/seo.service';
+import 'src/app/shared/extentions/string.extentions';
 
 
 @Component({
@@ -19,7 +21,8 @@ export class BlogPostComponent implements OnDestroy, OnInit {
 
   constructor(private styleService: StyleScriptService,
     private route: ActivatedRoute, private router: Router,
-    private alertService: ToastrService, private title: Title) {
+    private alertService: ToastrService, private title: Title,
+    private seoService: SeoService) {
     this.subManager.add(
       router.events.pipe(
         filter(event => event instanceof NavigationEnd)
@@ -32,6 +35,15 @@ export class BlogPostComponent implements OnDestroy, OnInit {
     this.styleService.addStyle("blog-dir", '../../../../../../assets/wp-content/themes/munza/assets/css/pages/blog-dir.css');
 
     this.loadBlogPostData();
+
+    //Tags
+    this.seoService.generateTags({
+      title: this.blogPostData.blog.title,
+      description: this.blogPostData.blog.summerText,
+      keywords: this.blogPostData.blog.tags,
+      image: this.blogPostData.blog.picAddress,
+      url: '/blog/post/' + this.blogPostData.blog.id + '/' + this.blogPostData.blog.title.toSeoString() ,
+    });
     this.title.setTitle(this.blogPostData.blog.title);
   }
   loadScript() {

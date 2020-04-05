@@ -13,7 +13,7 @@ export class SeoService {
       title: 'مادپی 724 | درگاه واسط بانکی',
       description: 'مادپی 724 ارائه دهنده درگاه پرداخت,کیف‌پول,کیف پول آنلاین,درگاه ussd,پرداخت درون برنامه ای,درگاه مستقیم,پرداخت موبایلی,درگاه اختصاصی,درگاه واسط,درگاه پرداخت بانکی می باشد.',
       keywords: 'کیف پول,درگاه مستقیم,پرداخت موبایلی,درگاه پرداخت درون برنامه ای,درگاه پرداخت بانکی,درگاه موبایلی,کیف پول آنلاین,ussd اختصاصی,مادپی 724,درگاه واسط,درگاه پرداخت, پرداخت‌یار, پرداخت یار',
-      image: '../../../../assets/wp-content/themes/munza/assets/images/logo/white.png',
+      image: 'https://madpay724.ir/wwwroot/files/logos/logo.png',
       url: '',
       ...config
     }
@@ -31,7 +31,7 @@ export class SeoService {
     this.meta.updateTag({ property: 'og:title', content: config.title });
     this.meta.updateTag({ property: 'og:description', content: config.description });
     this.meta.updateTag({ property: 'og:image', content: config.image });
-    this.meta.updateTag({ property: 'og:url', content: `https://madpay724.ir/${config.url}` });
+    this.meta.updateTag({ property: 'og:url', content: `https://madpay724.ir${config.url}` });
     
   }
 

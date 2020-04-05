@@ -9,12 +9,12 @@ const routes: Routes = [
     {
         path: 'aboutus',
         component: AboutUsComponent,
-        data: { title: ['درباره ما'] }
+        data: { title: ['درباره ما | درباره ی مادپی 724'] }
     },
     {
         path: 'contactus',
         component: ContactUsComponent,
-        data: { title: ['تماس با مادپی 724'] }
+        data: { title: ['تماس با ما | تماس با مادپی 724'] }
     },
     {
         path: 'questions',

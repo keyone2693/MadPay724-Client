@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { StyleScriptService } from 'src/app/core/_services/common/styleScript.service';
+import { SeoService } from 'src/app/core/_services/common/seo.service';
 
 @Component({
   selector: 'app-questions',
@@ -7,7 +8,13 @@ import { StyleScriptService } from 'src/app/core/_services/common/styleScript.se
   styleUrls: ['./questions.component.css']
 })
 export class QuestionsComponent implements OnDestroy, OnInit {
-  constructor(private styleService: StyleScriptService) {
+  constructor(private styleService: StyleScriptService,
+    private seoService: SeoService) {
+    //Tags
+    this.seoService.generateTags({
+      title: 'سوالات متداول | پرسش و پاسخ',
+      url: '/info/questions',
+    });
   }
   ngOnInit() {
     this.styleService.addScript("vc-accordion", '../../../../../../assets/wp-content/plugins/js_composer/assets/lib/vc_accordion/vc-accordion.mine23c.js');

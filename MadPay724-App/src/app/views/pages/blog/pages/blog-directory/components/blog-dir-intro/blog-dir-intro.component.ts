@@ -7,6 +7,8 @@ import { BlogIntro } from 'src/app/data/models/blog/blogIntro';
 import 'src/app/shared/extentions/string.extentions';
 import { filter } from 'rxjs/operators';
 import { PersianCalendarService } from 'src/app/core/_base/pipe/PersianDatePipe/persian-date.service';
+import { SeoService } from 'src/app/core/_services/common/seo.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-blog-dir-intro',
@@ -25,7 +27,10 @@ export class BlogDirIntroComponent implements OnDestroy {
     page: 1
   };
   constructor(private styleService: StyleScriptService,
-    private router: Router, private route: ActivatedRoute, private persianCalendarService: PersianCalendarService) {
+    private router: Router, private route: ActivatedRoute,
+    private persianCalendarService: PersianCalendarService,
+   private title: Title,
+    private seoService: SeoService) {
     this.subManager.add(
       router.events.pipe(
         filter(event => event instanceof NavigationEnd)
@@ -61,12 +66,27 @@ export class BlogDirIntroComponent implements OnDestroy {
       this.blogIntro.routeKind = 1;
       this.blogIntro.page = page;
 
+      //Tags
+      this.seoService.generateTags({
+        title: 'وبلاگ مادپی 724 - یک ارتباط نزدیک تر',
+        description: 'وبلاگ مادپی 724 - منبع جامع اخبار و مقالات تخصصی در حوزه‌های تکنولوژی، بازی‌های کامپیوتری، فرهنگ‌ و هنر، سلامت و زیبایی و سبک زندگی',
+        url: '/blog/page/' + page,
+      });
+      this.title.setTitle('وبلاگ مادپی 724 - یک ارتباط نزدیک تر');
+
     } else if (urls.path === 'search') {
       const filter = params['filter'];
       const page = params['pageNumber'];
       this.blogIntro.routeKind = 2;
       this.blogIntro.filter = filter;
       this.blogIntro.page = page;
+      //Tags
+      this.seoService.generateTags({
+        title: 'جست و جوی ' + filter.toSeoString() + ' | وبلاگ مادپی 724',
+        description: 'وبلاگ مادپی 724 - منبع جامع اخبار و مقالات تخصصی در حوزه‌های تکنولوژی، بازی‌های کامپیوتری، فرهنگ‌ و هنر، سلامت و زیبایی و سبک زندگی',
+        url: '/blog/search/' + filter.toSeoString() + '/page/' + page,
+      });
+      this.title.setTitle('جست و جوی ' + filter.toSeoString() + ' | وبلاگ مادپی 724');
 
     } else if (urls.path === 'group') {
       const groupName = params['name'];
@@ -74,6 +94,13 @@ export class BlogDirIntroComponent implements OnDestroy {
       this.blogIntro.routeKind = 3;
       this.blogIntro.groupName = groupName;
       this.blogIntro.page = page;
+      //Tags
+      this.seoService.generateTags({
+        title: 'بلاگ های دسته بندی ' + groupName.toSeoString() + ' | وبلاگ مادپی 724',
+        description: 'وبلاگ مادپی 724 - منبع جامع اخبار و مقالات تخصصی در حوزه‌های تکنولوژی، بازی‌های کامپیوتری، فرهنگ‌ و هنر، سلامت و زیبایی و سبک زندگی',
+        url: '/blog/group/' + groupName.toSeoString() + '/page/' + page,
+      });
+      this.title.setTitle('بلاگ های دسته بندی ' + groupName.toSeoString() + ' | وبلاگ مادپی 724');
 
     } else if (urls.path === 'date') {
       const year = params['year'];
@@ -83,6 +110,13 @@ export class BlogDirIntroComponent implements OnDestroy {
       this.blogIntro.year = year;
       this.blogIntro.month = month;
       this.blogIntro.page = page;
+      //Tags
+      this.seoService.generateTags({
+        title: 'بلاگ های تاریخ ' + this.toPersianDate(year, month) + ' | وبلاگ مادپی 724',
+        description: 'وبلاگ مادپی 724 - منبع جامع اخبار و مقالات تخصصی در حوزه‌های تکنولوژی، بازی‌های کامپیوتری، فرهنگ‌ و هنر، سلامت و زیبایی و سبک زندگی',
+        url: '/blog/date/year/' + year + '/month/' + month + '/page/' + page,
+      });
+      this.title.setTitle('بلاگ های تاریخ ' + this.toPersianDate(year, month) + ' | وبلاگ مادپی 724');
 
     }
   }
