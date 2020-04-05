@@ -4,6 +4,7 @@ import { map, filter } from 'rxjs/operators';
 
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { SeoService } from './seo.service';
 
 // const APP_TITLE = 'Title';
 const SEPARATOR = ' > ';
@@ -16,6 +17,7 @@ export class TitleService {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private titleService: Title,
+    private seoService: SeoService,
   ) { }
 
   static ucFirst(text: string) {
@@ -48,6 +50,9 @@ export class TitleService {
         }
       }))
       // .subscribe((pathString) => this.titleService.setTitle(`${pathString} - ${APP_TITLE}`));
-       .subscribe((pathString) => this.titleService.setTitle(`${pathString}`));
+      .subscribe((pathString) => {
+        this.titleService.setTitle(`${pathString}`);
+        this.seoService.updateTitle(pathString);
+      });
   }
 }

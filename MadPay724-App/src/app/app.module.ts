@@ -22,6 +22,7 @@ import { FormsModule } from '@angular/forms';
 import { LayoutService } from './core/_services/layout/layout.service';
 import { environment } from 'src/environments/environment.prod';
 import { PersianCalendarService } from './core/_base/pipe/PersianDatePipe/persian-date.service';
+import { SeoService } from './core/_services/common/seo.service';
 
 
 
@@ -76,7 +77,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     TitleService,
     StyleScriptService,
     LayoutService,
-    PersianCalendarService
+    PersianCalendarService,
+    SeoService
   ],
   entryComponents: [NotyfToast],
   bootstrap: [AppComponent]
