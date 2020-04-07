@@ -17,7 +17,7 @@ export class BlogPostResolver implements Resolve<ApiReturn<BlogPost>> {
         return this.blogService.getBlog(blogId).pipe(
             catchError(error => {
                 this.alertService.error(error, 'خطا');
-                this.router.navigate(['']);
+                this.router.navigate(['notfound/404']);
                 return of(null);
             })
         );

@@ -24,7 +24,7 @@ export class BlogResolver implements Resolve<BlogDirectoryData> {
                 catchError(error => {
                     this.alertService.error(error, 'خطا');
 
-                    this.router.navigate(['']);
+                    this.router.navigate(['notfound/404']);
                     return of(null);
                 })
             );
@@ -35,7 +35,7 @@ export class BlogResolver implements Resolve<BlogDirectoryData> {
                 catchError(error => {
                     this.alertService.error(error, 'خطا');
 
-                    this.router.navigate(['']);
+                    this.router.navigate(['notfound/404']);
                     return of(null);
                 })
             );
@@ -46,7 +46,7 @@ export class BlogResolver implements Resolve<BlogDirectoryData> {
                 catchError(error => {
                     this.alertService.error(error, 'خطا');
 
-                    this.router.navigate(['']);
+                    this.router.navigate(['notfound/404']);
                     return of(null);
                 })
             );
@@ -58,7 +58,7 @@ export class BlogResolver implements Resolve<BlogDirectoryData> {
                 catchError(error => {
                     this.alertService.error(error, 'خطا');
 
-                    this.router.navigate(['']);
+                    this.router.navigate(['notfound/404']);
                     return of(null);
                 })
             );

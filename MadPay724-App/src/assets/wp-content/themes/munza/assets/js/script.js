@@ -23,7 +23,7 @@ var MunzaTM = MunzaTM || {};
 
 			$('.slurve-svg').each(function(){
 				var th = $(this);
-				th.after('<svg class="slurve-svg respons_svg"><rect width="100%" height="100%"></rect></svg>');
+				th.after('<svg class="slurve-svg respons_svg"></svg>');
 			});
 
 		},
