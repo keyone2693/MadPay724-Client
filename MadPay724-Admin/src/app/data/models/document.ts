@@ -1,5 +1,6 @@
 export interface Document {
     id: string;
+    dateModified: Date;
     message: string;
     approve: number;
     isTrue: boolean;

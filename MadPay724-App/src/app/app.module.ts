@@ -41,7 +41,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   fgsType: SPINNER.doubleBounce,
   pbDirection: PB_DIRECTION.leftToRight,
   pbThickness: 2
-  // , overlayColor: 'rgba(40,40,40,.1)'
+  , overlayColor: 'rgba(255,255,255,.95)'
 };
 @NgModule({
   declarations: [

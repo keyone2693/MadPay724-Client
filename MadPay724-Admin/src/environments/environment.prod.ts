@@ -1,5 +1,5 @@
 export const environment = {
-  development: true,
+  development:false,
   production: true,
   apiUrl: 'https://localhost:44386/',
   apiUrlJwt: 'localhost:44386',

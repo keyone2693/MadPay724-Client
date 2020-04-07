@@ -14,15 +14,15 @@ export interface Factor {
     enterMoneyWalletId: string;
     userId: string;
     gateId: string;
-    RedirectUrl: string;
-    Mobile: string;
-    Email: string;
-    FactorNumber: string;
-    Description: string;
-    ValidCardNumber: string;
+    redirectUrl: string;
+    mobile: string;
+    email: string;
+    factorNumber: string;
+    description: string;
+    validCardNumber: string;
 
-    IsAlreadyVerified: boolean;
-    GatewayName: string;
-    Message: string;
+    isAlreadyVerified: boolean;
+    gatewayName: string;
+    message: string;
 
 }
