@@ -23,6 +23,7 @@ import { LayoutService } from './core/_services/layout/layout.service';
 import { environment } from 'src/environments/environment.prod';
 import { PersianCalendarService } from './core/_base/pipe/PersianDatePipe/persian-date.service';
 import { SeoService } from './core/_services/common/seo.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 
@@ -69,7 +70,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgxUiLoaderHttpModule.forRoot({
       showForeground: true ,
       exclude: [environment.apiUrl + environment.apiV1 + 'site/layout/sidebar/data']
-    })
+    }),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     MpPreloadingStrategy,
