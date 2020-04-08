@@ -15,7 +15,7 @@ export class AboutUsComponent implements OnDestroy {
       title: 'درباره ما | درباره ی مادپی 724',
       url: '/info/aboutus',
     });
-    const aboutusUrl = '../../../../../../assets/wp-content/themes/munza/assets/css/pages/aboutus.css';
+    const aboutusUrl = './assets/wp-content/themes/munza/assets/css/pages/aboutus.css';
     this.styleService.addStyle("aboutus", aboutusUrl);
   }
 

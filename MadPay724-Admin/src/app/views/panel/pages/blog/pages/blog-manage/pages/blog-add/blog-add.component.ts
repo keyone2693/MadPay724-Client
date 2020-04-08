@@ -29,7 +29,7 @@ public rteObj: RichTextEditorComponent;
 
   blogGroups: BlogGroup[];
   slectedFile: File;
-  imgUrl = '../../../../../../../../../../assets/img/profilepic.png';
+  imgUrl = './assets/img/profilepic.png';
   subManager = new Subscription();
 
   

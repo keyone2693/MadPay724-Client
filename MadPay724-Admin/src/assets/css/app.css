@@ -41541,7 +41541,7 @@ figure.effect-winston figcaption::before {
   left : 0;
   width : 100%;
   height : 100%;
-  background : url(https://pixinvent.com/demo/convex-bootstrap-admin-dashboard-template/app-assets/img/triangle.svg) no-repeat center center;
+  background : url('../app-assets/img/triangle.svg') no-repeat center center;
   -webkit-background-size : 100% 100%;
           background-size : 100% 100%;
   content : '';
@@ -41895,7 +41895,7 @@ figure.effect-phoebe figcaption::before {
   left : 0;
   width : 100%;
   height : 100%;
-  background : url(https://pixinvent.com/demo/convex-bootstrap-admin-dashboard-template/app-assets/img/triangle2.svg) no-repeat center center;
+  background : url('../app-assets/img/triangle2.svg') no-repeat center center;
   -webkit-background-size : 100% 100%;
           background-size : 100% 100%;
   content : '';
@@ -43741,7 +43741,7 @@ ul.list-inline.list-inline-pipe > li + li:before {
   top : 25%;
   bottom : auto;
   right : auto;
-  background : url(https://pixinvent.com/demo/convex-bootstrap-admin-dashboard-template/assets/img/svg/cd-arrow.svg) no-repeat 0 0;
+  background : url('../img/svg/cd-arrow.svg') no-repeat 0 0;
 }
 .cd-timeline-navigation a.prev {
   left : 0;
@@ -47466,8 +47466,12 @@ ul.no-list-style {
  */
 @font-face {
   font-family : 'weathericons';
-  src : url('https://pixinvent.com/demo/convex-bootstrap-admin-dashboard-template/app-assets/fonts/weathericons/weathericons-regular-webfont.eot');
-  src : url('https://pixinvent.com/demo/convex-bootstrap-admin-dashboard-template/app-assets/fonts/weathericons/weathericons-regular-webfont.eot?#iefix') format('embedded-opentype'), url('https://pixinvent.com/demo/convex-bootstrap-admin-dashboard-template/app-assets/fonts/weathericons/weathericons-regular-webfont.woff2') format('woff2'), url('https://pixinvent.com/demo/convex-bootstrap-admin-dashboard-template/app-assets/fonts/weathericons/weathericons-regular-webfont.woff') format('woff'), url('https://pixinvent.com/demo/convex-bootstrap-admin-dashboard-template/app-assets/fonts/weathericons/weathericons-regular-webfont.ttf') format('truetype'), url('https://pixinvent.com/demo/convex-bootstrap-admin-dashboard-template/app-assets/fonts/weathericons/weathericons-regular-webfont.svg#weather_iconsregular') format('svg');
+  src : url('../app-assets/fonts/weathericons/weathericons-regular-webfont.eot');
+  src : url('../app-assets/fonts/weathericons/weathericons-regular-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../app-assets/fonts/weathericons/weathericons-regular-webfont.woff2') format('woff2'),
+     url('../app-assets/fonts/weathericons/weathericons-regular-webfont.woff') format('woff'),
+      url('../app-assets/fonts/weathericons/weathericons-regular-webfont.ttf') format('truetype'),
+       url('../app-assets/fonts/weathericons/weathericons-regular-webfont.svg#weather_iconsregular') format('svg');
   font-style : normal;
 }
 
@@ -52386,7 +52390,7 @@ Horizontal Timeline
       -ms-transform : translateX(-50%) translateY(-50%);
        -o-transform : translateX(-50%) translateY(-50%);
           transform : translateX(-50%) translateY(-50%);
-  background : url(https://pixinvent.com/demo/convex-bootstrap-admin-dashboard-template/app-assets/img/svg/cd-arrow.svg) no-repeat 0 0;
+  background : url('../img/svg/cd-arrow.svg') no-repeat 0 0;
 }
 
 .cd-timeline-navigation a.prev {

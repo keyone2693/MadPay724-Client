@@ -19,7 +19,7 @@
 }
 @font-face {
   font-family: ocra;
-  src: url('../../../../../../../../../assets/fonts/OCRA.ttf') format('truetype');
+  src: url('/assets/fonts/OCRA.ttf') format('truetype');
   font-style: normal;
   font-weight: 300;
 }

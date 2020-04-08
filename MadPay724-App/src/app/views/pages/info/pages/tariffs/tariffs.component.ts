@@ -17,7 +17,7 @@ export class TariffsComponent implements OnDestroy, OnInit {
     });
   }
   ngOnInit() {
-    this.styleService.addStyle("tariffs", '../../../../../../assets/wp-content/themes/munza/assets/css/pages/tariffs.css');
+    this.styleService.addStyle("tariffs", './assets/wp-content/themes/munza/assets/css/pages/tariffs.css');
   }
   ngOnDestroy() {
     this.styleService.removeStyle("tariffs");

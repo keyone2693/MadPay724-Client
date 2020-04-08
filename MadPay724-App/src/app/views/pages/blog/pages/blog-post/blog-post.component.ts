@@ -32,7 +32,7 @@ export class BlogPostComponent implements OnDestroy, OnInit {
     );
   }
   ngOnInit() {
-    this.styleService.addStyle("blog-dir", '../../../../../../assets/wp-content/themes/munza/assets/css/pages/blog-dir.css');
+    this.styleService.addStyle("blog-dir", './assets/wp-content/themes/munza/assets/css/pages/blog-dir.css');
 
     this.loadBlogPostData();
 
@@ -49,7 +49,7 @@ export class BlogPostComponent implements OnDestroy, OnInit {
   loadScript() {
 
     this.styleService.removeScript("slidingbar");
-    this.styleService.addScript("slidingbar", '../../../../../../assets/wp-content/themes/munza/assets/js/vendor/slidingbar.js');
+    this.styleService.addScript("slidingbar", './assets/wp-content/themes/munza/assets/js/vendor/slidingbar.js');
 
   }
   loadBlogPostData() {

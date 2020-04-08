@@ -1,8 +1,9 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UserInfo } from 'src/app/data/models/common/chat/userInfo';
 import { DirectMessage } from 'src/app/data/models/common/chat/directMessage';
 import { Observable, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/core/_services/auth/auth.service';
+import { StyleScriptService } from 'src/app/core/_services/common/styleScript.service';
 
 
 
@@ -11,28 +12,23 @@ import { AuthService } from 'src/app/core/_services/auth/auth.service';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent implements OnInit {
-  url = '../../../../../assets/js/notification-sidebar.js';
-  loadAPI: any;
+export class ChatComponent implements OnInit, OnDestroy  {
+  url = '';
   isAdmin = 0;
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private styleScriptService: StyleScriptService) {
     if (this.authService.roleMatch(['Admin'])) {
       this.isAdmin = 1;
     } else if (this.authService.roleMatch(['User'])) {
       this.isAdmin = 2;
     }
+    this.styleScriptService.addScript("notification-sidebar", './assets/js/notification-sidebar.js');
+
   }
   ngOnInit() {
-    this.loadAPI = new Promise(resolve => {
-      this.loadScript();
-    });
+
   }
-  loadScript() {
-    const node = document.createElement('script');
-    node.src = this.url;
-    node.type = 'text/javascript';
-    node.async = true;
-    node.charset = 'utf-8';
-    document.getElementsByTagName('head')[0].appendChild(node);
+  ngOnDestroy() {
+    this.styleScriptService.removeScript("notification-sidebar");
+
   }
 }

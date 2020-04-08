@@ -16,7 +16,7 @@ export class GateFormComponent implements OnInit {
   gate: Gate;
   wallets: Wallet[];
   slectedFile: File;
-  imgUrl = '../../../../../../../../..//assets/img/logos/logo-gate.png';
+  imgUrl = './assets/img/logos/logo-gate.png';
   constructor( public gateService: GatesService,
               private alertService: ToastrService, private matdialogRef: MatDialogRef<GateFormComponent>,
               private router: Router, @Inject(MAT_DIALOG_DATA) private data: Wallet[]) { }

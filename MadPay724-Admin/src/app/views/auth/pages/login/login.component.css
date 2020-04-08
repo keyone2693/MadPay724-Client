@@ -81,7 +81,6 @@ input[type="password"]:not(.browser-default):focus:not([readonly]) {
   border-right: 2px solid rgba(0, 0, 0, 0.42);
   border-bottom: 2px solid rgba(0, 0, 0, 0.42);
 }
-/*! CSS Used from: http://aceteam2.gigfa.com/lorax/lorax/source/rtl/assets/css/style.css */
 .p-t-50 {
   padding-top: 50px;
 }
@@ -195,7 +194,6 @@ label {
     0 0 0 0 inset;
   animation: checkboxOff 0.3s forwards;
 }
-/*! CSS Used from: http://aceteam2.gigfa.com/lorax/lorax/source/rtl/assets/css/pages/extra_pages.css */
 input[type="text"],
 input[type="text"]:not(.browser-default),
 input[type="password"],

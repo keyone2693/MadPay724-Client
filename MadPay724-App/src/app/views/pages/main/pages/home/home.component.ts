@@ -3,7 +3,6 @@ import { StyleScriptService } from 'src/app/core/_services/common/styleScript.se
 import { HomeData } from 'src/app/data/models/home/homeData';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ApiReturn } from 'src/app/data/models/common/apiReturn';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +15,7 @@ export class HomeComponent implements OnDestroy, OnInit {
   constructor(private styleService: StyleScriptService, private route: ActivatedRoute) {
   }
   ngOnInit() {
-    this.styleService.addScript("home-js", '../../../../../../assets/wp-content/plugins/munza-core/assets/front/js/newscript.js');
+    this.styleService.addScript("home-js", './assets/wp-content/plugins/munza-core/assets/front/js/newscript.js');
     this.loadHomeData();
   }
   loadHomeData() {

@@ -13,7 +13,7 @@ import { DocumentService } from 'src/app/core/_services/panel/user/document.serv
 export class RightDocumentComponent implements OnInit {
   docRightForm: FormGroup;
   slectedFile: File;
-  imgUrl = '../../../../../../../../../../assets/img/profilepic.png';
+  imgUrl = './assets/img/profilepic.png';
   @Output() newDocument = new EventEmitter<Document>();
 
   constructor(private formBuilder: FormBuilder, private docService: DocumentService,

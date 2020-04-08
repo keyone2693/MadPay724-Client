@@ -13,7 +13,7 @@ export const initLoggedUserState: User = {
     age: 0,
     lastActive: null,
     city: '',
-    photoUrl: '../../../assets/img/profilepic.png',
+    photoUrl: './assets/img/profilepic.png',
     provider : 'MADPAY'
 }
 export function loggedUserReducer(state = initLoggedUserState, action: LoggedUserActions) {

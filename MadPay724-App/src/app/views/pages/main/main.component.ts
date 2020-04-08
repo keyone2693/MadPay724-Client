@@ -11,7 +11,7 @@ import { SeoService } from 'src/app/core/_services/common/seo.service';
 export class MainComponent implements OnDestroy {
 
   constructor(private styleService: StyleScriptService, private seoService: SeoService) {
-    const maincssUrl = '../../../../assets/wp-content/themes/munza/assets/css/pages/main-home.css';
+    const maincssUrl = './assets/wp-content/themes/munza/assets/css/pages/main-home.css';
     this.styleService.addStyle('main-home', maincssUrl);
     //Tags
     this.seoService.generateTags({});

@@ -29,7 +29,7 @@ export class BlogEditComponent implements OnInit, OnDestroy {
   slectedFile: File;
   currentImgUrl: '';
   subManager = new Subscription();
-  imgUrl = '../../../../../../../../../../assets/img/profilepic.png';
+  imgUrl = './assets/img/profilepic.png';
   @ViewChild('toolsRTE', { static: true })
   public rteObj: RichTextEditorComponent;
   public tools: ToolbarModule = {

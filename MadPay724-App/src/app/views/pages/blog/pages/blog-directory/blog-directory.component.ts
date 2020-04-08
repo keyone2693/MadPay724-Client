@@ -30,7 +30,7 @@ export class BlogDirectoryComponent implements OnDestroy, OnInit {
   }
   ngOnInit() {
     
-    this.styleService.addStyle("blog-dir", '../../../../../../assets/wp-content/themes/munza/assets/css/pages/blog-dir.css');
+    this.styleService.addStyle("blog-dir", './assets/wp-content/themes/munza/assets/css/pages/blog-dir.css');
     this.loadBlogDirData();
 
   }
@@ -38,11 +38,11 @@ export class BlogDirectoryComponent implements OnDestroy, OnInit {
     this.subManager.add(
       this.route.url.subscribe(data => {
         if (data[0].path === 'search') {
-          this.styleService.addScript("seach-bar", '../../../../../../assets/wp-content/themes/munza/assets/js/pages/search-bar.js');
+          this.styleService.addScript("seach-bar", './assets/wp-content/themes/munza/assets/js/pages/search-bar.js');
         }
         if (data[0].path === 'date' || data[0].path === 'group') {
           this.styleService.removeScript("slidingbar");
-          this.styleService.addScript("slidingbar", '../../../../../../assets/wp-content/themes/munza/assets/js/vendor/slidingbar.js');
+          this.styleService.addScript("slidingbar", './assets/wp-content/themes/munza/assets/js/vendor/slidingbar.js');
         }
       })
     );

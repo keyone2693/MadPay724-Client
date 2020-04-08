@@ -9,7 +9,7 @@ import { StyleScriptService } from 'src/app/core/_services/common/styleScript.se
 export class HeaderComponent implements OnDestroy {
   constructor(private styleService: StyleScriptService) {
 
-    this.styleService.addScript("slidingbar", '../../../../assets/wp-content/themes/munza/assets/js/vendor/slidingbar.js');
+    this.styleService.addScript("slidingbar", './assets/wp-content/themes/munza/assets/js/vendor/slidingbar.js');
 
   }
   ngOnDestroy() {

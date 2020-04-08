@@ -15,7 +15,7 @@ export class ContactUsComponent implements OnDestroy {
       title: 'تماس با ما | تماس با مادپی 724',
       url: '/info/contactus',
     });
-    const contactusUrl = '../../../../../../assets/wp-content/themes/munza/assets/css/pages/contactus.css';
+    const contactusUrl = './assets/wp-content/themes/munza/assets/css/pages/contactus.css';
     this.styleService.addStyle("contactus", contactusUrl);
   }
 

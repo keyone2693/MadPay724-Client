@@ -27,6 +27,7 @@ import { DirectMessageSaveService } from './core/_services/common/directMessageS
 import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
 import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
 import { environment } from 'src/environments/environment.prod';
+import { StyleScriptService } from './core/_services/common/styleScript.service';
 
 
 
@@ -96,6 +97,7 @@ export function provideConfig() {
     //
     // CookieService,
     CryptoService,
+    StyleScriptService,
     DirectMessageSaveService,
     {
       provide: AuthServiceConfig,

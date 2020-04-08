@@ -13,7 +13,7 @@ export class NotFoundComponent implements OnDestroy {
   filter: string = '';
   constructor(private router: Router, private styleService: StyleScriptService,
   private seoService: SeoService) {
-    const maincssUrl = '../../../../assets/wp-content/themes/munza/assets/css/pages/not-found.css';
+    const maincssUrl = './assets/wp-content/themes/munza/assets/css/pages/not-found.css';
     this.styleService.addStyle('not-found', maincssUrl);
     //Tags
     this.seoService.generateTags({
