@@ -18,6 +18,7 @@ import { Sort } from '@angular/material/sort';
 import { PersianCalendarService } from 'src/app/core/_base/pipe/PersianDatePipe/persian-date.service';
 import { Options, LabelType } from 'ng5-slider';
 import { FactorSearch } from 'src/app/data/models/accountant/factorSearch';
+import { ExIRCurrencyPipe } from 'src/app/shared/modules/common/persianPipe.module';
 
 
 @Component({
@@ -134,7 +135,7 @@ export class ManageFactorsComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute, private alertService: ToastrService
     , private factorService: FactorService,
-    private router: Router, private irCurrencyPipe: IRCurrencyPipe, private loc: Location,
+    private router: Router, private irCurrencyPipe: ExIRCurrencyPipe, private loc: Location,
     private persianCalendarService: PersianCalendarService, private datePipe: DatePipe) { }
 
   createDateRange(): Date[] {

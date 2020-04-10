@@ -5,8 +5,8 @@
 export const environment = {
   development: true,
   production: false,
-  apiUrl: 'https://localhost:44386/',
-  apiUrlJwt: 'localhost:44386',
+  apiUrl: 'https://madpay724.ir/',
+  apiUrlJwt: 'madpay724.ir',
   apiV1: 'api/v1/',
   encryptSecretKey: '@ot0"hreOi"@=OA',
   expireHour: 24,

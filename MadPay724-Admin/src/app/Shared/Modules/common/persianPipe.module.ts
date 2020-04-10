@@ -36,6 +36,10 @@ export class ExPersianDate extends PersianDate { };
     ExJdatePipe
   ],
   providers: [
+    ExPersianDate,
+    ExPersianTimeAgoPipe,
+    ExIRCurrencyPipe,
+    ExJdatePipe,
     PersianCalendarService
   ],
   exports: [
