@@ -20,6 +20,7 @@ import { UiType } from 'src/app/data/enums/uiType.enum';
 
 import * as fromStore from '../../../../../../../../../store';
 import { CurrentTitleStateModel } from 'src/app/store/_model/currentTitleStateModel';
+import { ExIRCurrencyPipe } from 'src/app/shared/modules/common/persianPipe.module';
 
 
 @Component({
@@ -98,7 +99,7 @@ export class WalletsFactorsComponent implements OnInit, OnDestroy, AfterViewInit
 
   constructor(private route: ActivatedRoute, private alertService: ToastrService
     , private factorService: FactorService, private store: Store<fromStore.State>,
-    private router: Router, private irCurrencyPipe: IRCurrencyPipe, private loc: Location,
+    private router: Router, private irCurrencyPipe: ExIRCurrencyPipe, private loc: Location,
     private persianCalendarService: PersianCalendarService, private datePipe: DatePipe) { }
 
 

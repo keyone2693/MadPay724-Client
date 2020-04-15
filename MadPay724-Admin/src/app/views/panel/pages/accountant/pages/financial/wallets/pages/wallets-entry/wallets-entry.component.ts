@@ -22,6 +22,7 @@ import { map, distinctUntilChanged, switchMap, debounceTime } from 'rxjs/operato
 import { Sort } from '@angular/material/sort';
 import { Location } from '@angular/common';
 import { CurrentTitleStateModel } from 'src/app/store/_model/currentTitleStateModel';
+import { ExIRCurrencyPipe } from 'src/app/shared/modules/common/persianPipe.module';
 
 
 @Component({
@@ -118,7 +119,7 @@ export class WalletsEntryComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(private route: ActivatedRoute, private alertService: ToastrService
     , private entryService: EntryService, private store: Store<fromStore.State>,
-    private router: Router, private irCurrencyPipe: IRCurrencyPipe, private loc: Location) { }
+    private router: Router, private irCurrencyPipe: ExIRCurrencyPipe, private loc: Location) { }
 
 
   ngOnInit() {
