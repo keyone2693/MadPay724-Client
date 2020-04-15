@@ -15,12 +15,13 @@ export class QuestionsComponent implements OnDestroy, OnInit {
       title: 'سوالات متداول | پرسش و پاسخ',
       url: '/info/questions',
     });
-  }
-  ngOnInit() {
     this.styleService.addScript("vc-accordion", './assets/wp-content/plugins/js_composer/assets/lib/vc_accordion/vc-accordion.mine23c.js');
     this.styleService.addStyle("contactus", './assets/wp-content/themes/munza/assets/css/pages/questions.css');
     this.styleService.addStyle("js-composer", './assets/wp-content/plugins/js_composer/assets/css/js_composer_tta.mine23c.css');
+  
   }
+  ngOnInit() {
+   }
   ngOnDestroy() {
     this.styleService.removeStyle("contactus");
     this.styleService.removeStyle("js-composer");

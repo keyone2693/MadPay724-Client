@@ -27,10 +27,11 @@ export class BlogDirectoryComponent implements OnDestroy, OnInit {
         this.loadScript();
       })
     );
+    this.styleService.addStyle("blog-dir", './assets/wp-content/themes/munza/assets/css/pages/blog-dir.css');
+
   }
   ngOnInit() {
     
-    this.styleService.addStyle("blog-dir", './assets/wp-content/themes/munza/assets/css/pages/blog-dir.css');
     this.loadBlogDirData();
 
   }

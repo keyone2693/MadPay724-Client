@@ -19,82 +19,20 @@
             data-next-icon="fa fa-chevron-right"
             data-prev-icon="fa fa-chevron-left"
           >
-            <div class="wpb_single_image wpb_content_element vc_align_center">
+            <div
+            *ngFor="let customer of customers"
+            class="wpb_single_image wpb_content_element vc_align_center">
               <figure class="wpb_wrapper vc_figure">
                 <a
-                  href="#"
+                  href="/"
                   target="_self"
                   class="vc_single_image-wrapper   vc_box_border_grey"
                   ><img
                     width="188"
                     height="95"
-                    src="../../../../../../assets/wp-content/uploads/2019/03/client1.png"
+                    [src]="customer.url"
                     class="vc_single_image-img attachment-full"
-                    alt=""
-                /></a>
-              </figure>
-            </div>
-
-            <div class="wpb_single_image wpb_content_element vc_align_center">
-              <figure class="wpb_wrapper vc_figure">
-                <a
-                  href="#"
-                  target="_self"
-                  class="vc_single_image-wrapper   vc_box_border_grey"
-                  ><img
-                    width="188"
-                    height="95"
-                    src="../../../../../../assets/wp-content/uploads/2019/03/client2.png"
-                    class="vc_single_image-img attachment-full"
-                    alt=""
-                /></a>
-              </figure>
-            </div>
-
-            <div class="wpb_single_image wpb_content_element vc_align_center">
-              <figure class="wpb_wrapper vc_figure">
-                <a
-                  href="#"
-                  target="_self"
-                  class="vc_single_image-wrapper   vc_box_border_grey"
-                  ><img
-                    width="188"
-                    height="95"
-                    src="../../../../../../assets/wp-content/uploads/2019/03/client3.png"
-                    class="vc_single_image-img attachment-full"
-                    alt=""
-                /></a>
-              </figure>
-            </div>
-
-            <div class="wpb_single_image wpb_content_element vc_align_center">
-              <figure class="wpb_wrapper vc_figure">
-                <a
-                  href="#"
-                  target="_self"
-                  class="vc_single_image-wrapper   vc_box_border_grey"
-                  ><img
-                    width="188"
-                    height="95"
-                    src="../../../../../../assets/wp-content/uploads/2019/03/client4.png"
-                    class="vc_single_image-img attachment-full"
-                    alt=""
-                /></a>
-              </figure>
-            </div>
-
-            <div class="wpb_single_image wpb_content_element vc_align_center">
-              <figure class="wpb_wrapper vc_figure">
-                <a
-                  href="#"
-                  target="_self"
-                  class="vc_single_image-wrapper   vc_box_border_grey"
-                  ><img
-                    width="188"
-                    height="95"
-                    src="../../../../../../assets/wp-content/uploads/2019/03/client5.png"
-                    class="vc_single_image-img attachment-full"
-                    alt=""
+                    alt="{{customer.name}}"
                 /></a>
               </figure>
             </div>

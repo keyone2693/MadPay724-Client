@@ -13,10 +13,11 @@ export class HomeComponent implements OnDestroy, OnInit {
   subManager = new Subscription();
   homeData: HomeData;
   constructor(private styleService: StyleScriptService, private route: ActivatedRoute) {
-  }
-  ngOnInit() {
     this.styleService.addScript("home-js", './assets/wp-content/plugins/munza-core/assets/front/js/newscript.js');
     this.loadHomeData();
+
+  }
+  ngOnInit() {
   }
   loadHomeData() {
     this.subManager.add(

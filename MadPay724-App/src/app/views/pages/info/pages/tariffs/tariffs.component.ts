@@ -15,9 +15,9 @@ export class TariffsComponent implements OnDestroy, OnInit {
       title: 'تعرفه های استفاده از سرویس ماد پی',
       url: '/info/tariffs',
     });
+    this.styleService.addStyle("tariffs", './assets/wp-content/themes/munza/assets/css/pages/tariffs.css');
   }
   ngOnInit() {
-    this.styleService.addStyle("tariffs", './assets/wp-content/themes/munza/assets/css/pages/tariffs.css');
   }
   ngOnDestroy() {
     this.styleService.removeStyle("tariffs");

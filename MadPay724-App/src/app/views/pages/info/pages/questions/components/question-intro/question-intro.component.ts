@@ -10,15 +10,16 @@ import { StyleScriptService } from 'src/app/core/_services/common/styleScript.se
 export class QuestionIntroComponent implements OnDestroy {
   skrollrObj: any;
   constructor(private styleService: StyleScriptService) {
-  }
-  ngOnInit() {
-
-
     this.skrollrObj = skrollr.init({
       smoothScrolling: true,
       mobileDeceleration: 0.004,
       forceHeight: false
     });
+  }
+  ngOnInit() {
+
+
+   
   }
   ngOnDestroy() {
     this.skrollrObj.destroy();
