@@ -5,7 +5,7 @@
 export const environment = {
   development: true,
   production: false,
-  apiUrl: 'https://localhost:44386/',
+  apiUrl: 'https://madpay724.ir/',
   apiV1: 'api/v1/'
 };
 
